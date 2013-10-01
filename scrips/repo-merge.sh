@@ -17,6 +17,9 @@
 #
 #####################################################################################
 
+# This script will permit to merge each code of a branch to the upper ones.
+# If the merge can not be done, a message will explain at which step the script has failed.
+
 # Set up the repos that will have to be handled
 
 export OPENSOURCE_REPOS="rudder-techniques rudder-packages rudder rudder-plugin-helloworld rudder-parent-pom rudder-commons ldap-inventory scala-ldap cf-clerk rudder-doc"

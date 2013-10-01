@@ -17,6 +17,9 @@
 #
 #####################################################################################
 
+# This script is the script used for our demo. It consists into several commands
+# to install the last release of Rudder 'stable' automatically.
+
 set -ex
 
 #VARS

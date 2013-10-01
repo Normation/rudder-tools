@@ -17,6 +17,9 @@
 #
 #####################################################################################
 
+# This script will permit to check the Techniques reporting. It will validate or not
+# the structure of each report of the selected Technique.
+
 use strict;
 use warnings;
 
