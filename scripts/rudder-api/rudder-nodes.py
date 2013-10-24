@@ -55,7 +55,7 @@ sheet.write(0, 3, "Machine type", style)
 row = 1
 
 # Loop nodes
-for node in nodes:
+for node in sorted(nodes):
   #print node
 
   # indexing is zero based, row then column
