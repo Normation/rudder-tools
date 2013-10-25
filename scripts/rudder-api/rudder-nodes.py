@@ -7,16 +7,15 @@
 #
 
 # Imports
-import sys
 import requests
 import json
 import xlwt
 import subprocess
 
 # Global vars
-api_url = "http://rudder.example.com/rudder/api"
+api_url = "http://rudder.example.com/rudder/api"  # CHANGE THIS
 api_version = 2
-api_token = ""
+api_token = ""                                    # CHANGE THIS
 node_url = "%s/%s/nodes" % (api_url, api_version)
 headers = {"X-API-Token": api_token}  
 workbook = "/tmp/test.xls"
@@ -39,17 +38,12 @@ sheet = wbk.add_sheet("Rudder nodes")
 # Set style to bold
 style = xlwt.easyxf("font: bold on")
 
-# Define headers
-header0 = "Node"
-header1 = "Node id"
-header2 = "Operating system"
-header3 = "Machine type"
+# Write headers
+headers = {"Node", "Node id", "Operating system" , "Machine type"}
 
-# Indexing is zero based, row then column
-sheet.write(0, 0, header0, style)
-sheet.write(0, 1, header1, style)
-sheet.write(0, 2, header2, style)
-sheet.write(0, 3, header3, style)
+for index, header in enumerate(headers):
+  # Indexing is zero based, row then column
+  sheet.write(0, index, header, style)
 
 # Row counter
 row = 1
