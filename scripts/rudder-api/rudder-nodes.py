@@ -7,6 +7,7 @@
 #
 
 # Imports
+import sys
 import requests
 import json
 import xlwt
@@ -35,38 +36,41 @@ wbk = xlwt.Workbook()
 # Add Worksheet object to Workbook
 sheet = wbk.add_sheet("Rudder nodes")
 
-# Initialize a style
-style = xlwt.XFStyle()
+# Set style to bold
+style = xlwt.easyxf("font: bold on")
 
-# Create a font to use with the style
-font = xlwt.Font()
-font.bold = True
-
-# Set the style's font to this new one you set up
-style.font = font
+# Define headers
+header0 = "Node"
+header1 = "Node id"
+header2 = "Operating system"
+header3 = "Machine type"
 
 # Indexing is zero based, row then column
-sheet.write(0, 0, "Node", style)
-sheet.write(0, 1, "Node id", style)
-sheet.write(0, 2, "Operating system", style)
-sheet.write(0, 3, "Machine type", style)
+sheet.write(0, 0, header0, style)
+sheet.write(0, 1, header1, style)
+sheet.write(0, 2, header2, style)
+sheet.write(0, 3, header3, style)
 
 # Row counter
 row = 1
 
 # Loop nodes
 for node in sorted(nodes):
-  #print node
+  # Vars
+  host_name = node["hostname"]
+  node_id = node["id"]
+  oper_sys = node["osName"] + " " + node["osVersion"]
+  mach_type = node["machyneType"]
 
-  # indexing is zero based, row then column
-  sheet.write(row, 0, node["hostname"])
-  sheet.write(row, 1, node["id"])
-  sheet.write(row, 2, node["osName"] + " " + node["osVersion"])
-  sheet.write(row, 3, node["machyneType"])
+  # Indexing is zero based, row then column
+  sheet.write(row, 0, host_name)
+  sheet.write(row, 1, node_id)
+  sheet.write(row, 2, oper_sys)
+  sheet.write(row, 3, mach_type)
 
   # Increase row counter
   row += 1
-  
+
 # Save Workbook
 wbk.save(workbook)
 
