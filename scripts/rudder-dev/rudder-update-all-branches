@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -d ${PWD}/.git ]; then
+  echo "This doesn't appear to be a git repository. Exiting..."
+  exit 1
+fi
+
+BRANCHES="branches/rudder/2.4 branches/rudder/2.6 branches/rudder/2.7 branches/rudder/2.8 master"
+
+for branch in ${BRANCHES}; do
+  git checkout ${branch}
+  git pull
+done
+
+# Get all tags aswell
+git fetch --tags
+
+echo ""
+echo "If you are updating branches to perform a merge, you may run these commands:"
+echo "git checkout branches/rudder/2.6 && git merge branches/rudder/2.4"
+echo "git checkout branches/rudder/2.7 && git merge branches/rudder/2.6"
+echo "git checkout branches/rudder/2.8 && git merge branches/rudder/2.7"
+echo "git checkout master && git merge branches/rudder/2.8"
