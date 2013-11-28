@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+REPOS="rudder-parent-pom rudder-commons scala-ldap cf-clerk ldap-inventory rudder rudder-plugin-helloworld"
+BRANCH_TO_BUILD="${1}"
+
+for i in ${REPOS}
+do
+
+	CLONE_URL="git@github.com:Normation/${i}.git"
+
+        # Clone repo
+	echo -n "Cloning ${i}..." 
+        git clone ${CLONE_URL} >/dev/null 2>&1
+        echo " Done."
+
+        cd ${i}
+	git checkout ${BRANCH_TO_BUILD} >/dev/null 2>&1
+
+        # Building
+	echo -n "Building ${i}..." 
+        mvn clean install -Dmaven.test.skip=true >/dev/null 2>&1
+	echo " Done."
+
+	cd ..
+done
