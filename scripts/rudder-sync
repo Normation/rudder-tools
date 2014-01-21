@@ -1,0 +1,63 @@
+#!/bin/sh
+#
+# Name:        rudder-sync.sh
+# Description: Git pull and rsync Rudder techniques repo
+# Author:      Matthieu "Kegeruneku" CERDA <matthieu.cerda@normation.com>
+#
+# Can be used manually or as cron.daily file. Pipe to /dev/null when using
+# cron.
+
+set -e
+
+# Global vars
+MASTER_REPO="https://github.com/Normation/rudder-techniques.git"
+RUDDER_BASE="/var/rudder"
+REPO_NAME="techniques-repository"
+REPO_DIR="${RUDDER_BASE}/${REPO_NAME}"
+TECH_FROM="${REPO_DIR}/techniques"
+TECH_TO="${RUDDER_BASE}/configuration-repository/techniques"
+
+Usage() {
+  # Print usage and exit
+  echo "Usage:   ${0} -b <branch name>"
+  echo "Example: ${0} -b branches/rudder/2.8"
+  exit 1
+}
+
+# Parse commandline options
+while getopts "b:" OPTIONS > /dev/null 2>&1; do
+  case ${OPTIONS} in
+    b) TECHNIQUE_BRANCH=${OPTARG} ;;
+    *) Usage ;;
+  esac
+done
+
+# Check if TECHNIQUE_BRANCH is given or not
+[ -n "${TECHNIQUE_BRANCH}" ] || Usage
+
+# If directory is not present, clone repo in it
+if [ ! -d ${REPO_DIR} ]; then
+
+  cd ${RUDDER_BASE}
+  git clone ${MASTER_REPO} $REPO_NAME}
+
+  cd ${REPO_DIR}
+  git checkout -b ${TECHNIQUE_BRANCH} origin/${TECHNIQUE_BRANCH}
+
+fi
+
+# Update repo to latest version
+cd ${REPO_DIR}
+
+git fetch --all
+git checkout ${TECHNIQUE_BRANCH}
+git pull origin ${TECHNIQUE_BRANCH}
+
+# Rsync repository with live tree
+rsync -av ${TECH_FROM}/ ${TECH_TO}/
+
+# Send e-mail if any modification has been made
+cd ${TECH_TO}
+if [ `git status --porcelain | wc -l` -gt 0 ]; then
+  echo "An update is available in the Rudder Techniques repository"
+fi
