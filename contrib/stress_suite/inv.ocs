@@ -1,0 +1,3957 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<REQUEST>
+  <CONTENT>
+<VMS>
+</VMS>
+<USERSLIST>
+<USER>mail</USER>
+<USER>lp</USER>
+<USER>www-data</USER>
+<USER>man</USER>
+<USER>list</USER>
+<USER>games</USER>
+<USER>sshd</USER>
+<USER>gnats</USER>
+<USER>bin</USER>
+<USER>uucp</USER>
+<USER>sys</USER>
+<USER>postgres</USER>
+<USER>backup</USER>
+<USER>rudder</USER>
+<USER>sync</USER>
+<USER>messagebus</USER>
+<USER>news</USER>
+<USER>irc</USER>
+<USER>nobody</USER>
+<USER>proxy</USER>
+<USER>libuuid</USER>
+<USER>daemon</USER>
+</USERSLIST>
+    <ACCESSLOG>
+      <LOGDATE>%%_logdate%%</LOGDATE>
+    </ACCESSLOG>
+    <BIOS>
+      <ASSETTAG />  <BDATE>12/01/2006</BDATE>
+      <BMANUFACTURER>innotek GmbH</BMANUFACTURER>
+      <BVERSION>VirtualBox</BVERSION>
+      <MMANUFACTURER>Oracle Corporation</MMANUFACTURER>
+      <MMODEL>VirtualBox</MMODEL>
+      <MSN>0</MSN>
+      <SKUNUMBER />  <SMANUFACTURER>innotek GmbH</SMANUFACTURER>
+      <SMODEL>VirtualBox</SMODEL>
+      <SSN>0</SSN>
+    </BIOS>
+    <CONTROLLERS>
+      <CAPTION>82371AB/EB/MB PIIX4 IDE</CAPTION>
+      <DRIVER>ata_piix</DRIVER>
+      <MANUFACTURER>Intel Corporation</MANUFACTURER>
+      <NAME>82371AB/EB/MB PIIX4 IDE</NAME>
+      <PCICLASS>0101</PCICLASS>
+      <PCIID>8086:7111</PCIID>
+      <PCISLOT>00:01.1</PCISLOT>
+      <REV>01</REV>
+      <TYPE>IDE interface</TYPE>
+    </CONTROLLERS>
+    <CONTROLLERS>
+      <CAPTION>VirtualBox Graphics Adapter</CAPTION>
+      <MANUFACTURER>InnoTek Systemberatung GmbH</MANUFACTURER>
+      <NAME>VirtualBox Graphics Adapter</NAME>
+      <PCICLASS>0300</PCICLASS>
+      <PCIID>80ee:beef</PCIID>
+      <PCISLOT>00:02.0</PCISLOT>
+      <TYPE>VGA compatible controller</TYPE>
+    </CONTROLLERS>
+    <CONTROLLERS>
+      <CAPTION>82540EM Gigabit Ethernet Controller</CAPTION>
+      <DRIVER>e1000</DRIVER>
+      <MANUFACTURER>Intel Corporation</MANUFACTURER>
+      <NAME>82540EM Gigabit Ethernet Controller</NAME>
+      <PCICLASS>0200</PCICLASS>
+      <PCIID>8086:100e</PCIID>
+      <PCISLOT>00:03.0</PCISLOT>
+      <REV>02</REV>
+      <TYPE>Ethernet controller</TYPE>
+    </CONTROLLERS>
+    <CONTROLLERS>
+      <CAPTION>VirtualBox Guest Service</CAPTION>
+      <MANUFACTURER>InnoTek Systemberatung GmbH</MANUFACTURER>
+      <NAME>VirtualBox Guest Service</NAME>
+      <PCICLASS>0880</PCICLASS>
+      <PCIID>80ee:cafe</PCIID>
+      <PCISLOT>00:04.0</PCISLOT>
+      <TYPE>System peripheral</TYPE>
+    </CONTROLLERS>
+    <CONTROLLERS>
+      <CAPTION>82801AA AC&apos;97 Audio Controller</CAPTION>
+      <DRIVER>snd_intel8x0</DRIVER>
+      <MANUFACTURER>Intel Corporation</MANUFACTURER>
+      <NAME>82801AA AC&apos;97 Audio Controller</NAME>
+      <PCICLASS>0401</PCICLASS>
+      <PCIID>8086:2415</PCIID>
+      <PCISLOT>00:05.0</PCISLOT>
+      <REV>01</REV>
+      <TYPE>Multimedia audio controller</TYPE>
+    </CONTROLLERS>
+    <CONTROLLERS>
+      <CAPTION>KeyLargo/Intrepid USB</CAPTION>
+      <DRIVER>ohci_hcd</DRIVER>
+      <MANUFACTURER>Apple Computer Inc.</MANUFACTURER>
+      <NAME>KeyLargo/Intrepid USB</NAME>
+      <PCICLASS>0c03</PCICLASS>
+      <PCIID>106b:003f</PCIID>
+      <PCISLOT>00:06.0</PCISLOT>
+      <TYPE>USB Controller</TYPE>
+    </CONTROLLERS>
+    <CONTROLLERS>
+      <CAPTION>82371AB/EB/MB PIIX4 ACPI</CAPTION>
+      <MANUFACTURER>Intel Corporation</MANUFACTURER>
+      <NAME>82371AB/EB/MB PIIX4 ACPI</NAME>
+      <PCICLASS>0680</PCICLASS>
+      <PCIID>8086:7113</PCIID>
+      <PCISLOT>00:07.0</PCISLOT>
+      <REV>08</REV>
+      <TYPE>Bridge</TYPE>
+    </CONTROLLERS>
+    <CPUS>
+      <CORE>1</CORE>
+      <FAMILYNUMBER>6</FAMILYNUMBER>
+      <MANUFACTURER>Intel</MANUFACTURER>
+      <MODEL>15</MODEL>
+      <NAME>Intel(R) Pentium(R) Dual  CPU  E2200  @ 2.20GHz</NAME>
+      <SPEED>2200</SPEED>
+      <STEPPING>13</STEPPING>
+      <THREAD>1</THREAD>
+    </CPUS>
+    <DRIVES>
+      <FILESYSTEM>rootfs</FILESYSTEM>
+      <FREE>5291</FREE>
+      <TOTAL>7683</TOTAL>
+      <TYPE>/</TYPE>
+      <VOLUMN>rootfs</VOLUMN>
+    </DRIVES>
+    <DRIVES>
+      <FILESYSTEM>devtmpfs</FILESYSTEM>
+      <FREE>10</FREE>
+      <TOTAL>10</TOTAL>
+      <TYPE>/dev</TYPE>
+      <VOLUMN>udev</VOLUMN>
+    </DRIVES>
+    <DRIVES>
+      <FILESYSTEM>ext4</FILESYSTEM>
+      <FREE>5291</FREE>
+      <SERIAL>d26020d5-f9c6-4451-b508-cff4ff0f9766</SERIAL>
+      <TOTAL>7683</TOTAL>
+      <TYPE>/</TYPE>
+      <VOLUMN>/dev/disk/by-uuid/d26020d5-f9c6-4451-b508-cff4ff0f9766</VOLUMN>
+    </DRIVES>
+    <ENVS>
+      <KEY>HOME</KEY>
+      <VAL>/</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>CONSOLE</KEY>
+      <VAL>/dev/console</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>PREVLEVEL</KEY>
+      <VAL>N</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>LC_ALL</KEY>
+      <VAL>C</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>RUNLEVEL</KEY>
+      <VAL>2</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>init</KEY>
+      <VAL>/sbin/init</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>previous</KEY>
+      <VAL>N</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>LINES</KEY>
+      <VAL>25</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>PWD</KEY>
+      <VAL>/var/rudder</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>LANG</KEY>
+      <VAL>C</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>runlevel</KEY>
+      <VAL>2</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>INIT_VERSION</KEY>
+      <VAL>sysvinit-2.88</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>DEBIAN_FRONTEND</KEY>
+      <VAL>noninteractive</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>SHLVL</KEY>
+      <VAL>1</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>_</KEY>
+      <VAL>/var/rudder/cfengine-community/bin/cf-execd</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>rootmnt</KEY>
+      <VAL>/root</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>PATH</KEY>
+      <VAL>/sbin:/usr/sbin:/bin:/usr/bin</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>BOOT_IMAGE</KEY>
+      <VAL>/boot/vmlinuz-3.2.0-4-486</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>SHELL</KEY>
+      <VAL>/bin/sh</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>TERM</KEY>
+      <VAL>linux</VAL>
+    </ENVS>
+    <HARDWARE>
+      <ARCHNAME>x86_64-linux-thread-multi</ARCHNAME>
+      <CHASSIS_TYPE>Other</CHASSIS_TYPE>
+      <CHECKSUM>131071</CHECKSUM>
+      <DATELASTLOGGEDUSER>Wed Dec  4 10:08</DATELASTLOGGEDUSER>
+      <DEFAULTGATEWAY>10.210.114.254</DEFAULTGATEWAY>
+      <DESCRIPTION>i686/00-00-01 14:44:20</DESCRIPTION>
+      <DNS>10.232.2.3/10.231.2.3</DNS>
+      <ETIME>2</ETIME>
+      <IPADDR>%%_ipaddr%%</IPADDR>
+      <LASTLOGGEDUSER>root</LASTLOGGEDUSER>
+      <MEMORY>1482</MEMORY>
+      <NAME>%%_hostname%%</NAME>
+      <OSCOMMENTS>#1 Debian 3.2.51-1</OSCOMMENTS>
+      <OSNAME>Debian GNU/Linux 7.2 (wheezy)</OSNAME>
+      <OSVERSION>3.2.0-4-486</OSVERSION>
+      <PROCESSORN>1</PROCESSORN>
+      <PROCESSORS>2200</PROCESSORS>
+      <PROCESSORT>Intel(R) Pentium(R) Dual  CPU  E2200  @ 2.20GHz</PROCESSORT>
+      <SWAP>382</SWAP>
+      <USERDOMAIN />  <USERID>root</USERID>
+      <UUID>3FE35B82-582E-4116-B399-196CC4C0DD54</UUID>
+      <VMSYSTEM>VirtualBox</VMSYSTEM>
+      <WINPRODID />  <WORKGROUP>jcd.priv</WORKGROUP>
+    </HARDWARE>
+    <INPUTS>
+      <CAPTION>AT Translated Set 2 keyboard</CAPTION>
+      <DESCRIPTION>AT Translated Set 2 keyboard</DESCRIPTION>
+      <TYPE>sysrq</TYPE>
+    </INPUTS>
+    <INPUTS>
+      <CAPTION>VirtualBox USB Tablet</CAPTION>
+      <DESCRIPTION>VirtualBox USB Tablet</DESCRIPTION>
+      <TYPE>Pointing</TYPE>
+    </INPUTS>
+    <INPUTS>
+      <CAPTION>PC Speaker</CAPTION>
+      <DESCRIPTION>PC Speaker</DESCRIPTION>
+      <TYPE>Keyboard</TYPE>
+    </INPUTS>
+    <INPUTS>
+      <CAPTION>ImExPS/2 Generic Explorer Mouse</CAPTION>
+      <DESCRIPTION>ImExPS/2 Generic Explorer Mouse</DESCRIPTION>
+      <TYPE>Pointing</TYPE>
+    </INPUTS>
+    <MONITORS />
+    <NETWORKS>
+      <DESCRIPTION>lo</DESCRIPTION>
+      <IPADDRESS>127.0.0.1</IPADDRESS>
+      <IPMASK>255.0.0.0</IPMASK>
+      <IPSUBNET>127.0.0.0</IPSUBNET>
+      <MACADDR>00:00:00:00:00:00</MACADDR>
+      <SLAVES></SLAVES>
+      <STATUS>Up</STATUS>
+      <VIRTUALDEV>1</VIRTUALDEV>
+    </NETWORKS>
+    <NETWORKS>
+      <DESCRIPTION>lo</DESCRIPTION>
+      <IPADDRESS6>::1</IPADDRESS6>
+      <IPMASK6>fff0::</IPMASK6>
+      <IPSUBNET6>::</IPSUBNET6>
+      <MACADDR>00:00:00:00:00:00</MACADDR>
+      <SLAVES></SLAVES>
+      <STATUS>Up</STATUS>
+      <VIRTUALDEV>1</VIRTUALDEV>
+    </NETWORKS>
+    <NETWORKS>
+      <DESCRIPTION>eth0</DESCRIPTION>
+      <DRIVER>e1000</DRIVER>
+      <IPADDRESS>%%_ipaddr%%</IPADDRESS>
+      <IPMASK>255.255.255.0</IPMASK>
+      <IPSUBNET>%%_ipaddr%%</IPSUBNET>
+      <MACADDR>%%_mac%%</MACADDR>
+      <PCISLOT>0000:00:03.0</PCISLOT>
+      <SLAVES></SLAVES>
+      <STATUS>Up</STATUS>
+      <VIRTUALDEV>0</VIRTUALDEV>
+    </NETWORKS>
+    <OPERATINGSYSTEM>
+      <FULL_NAME>Debian GNU/Linux 7.2 (wheezy)</FULL_NAME>
+      <KERNEL_NAME>linux</KERNEL_NAME>
+      <KERNEL_VERSION>3.2.0-4-486</KERNEL_VERSION>
+      <NAME>Debian</NAME>
+      <VERSION>7.2</VERSION>
+    </OPERATINGSYSTEM>
+    <PROCESSES>
+      <CMD>init [2]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>1</PID>
+      <STARTED>2013-12-04 0:12</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>2280</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kthreadd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ksoftirqd/0]</CMD>
+      <CPUUSAGE>0.1</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>3</PID>
+      <STARTED>2013-12-04 3:14</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kworker/u:0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>5</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[watchdog/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>6</PID>
+      <STARTED>2013-12-04 0:06</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[cpuset]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>7</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[khelper]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kdevtmpfs]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>9</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[netns]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>10</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[sync_supers]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>11</PID>
+      <STARTED>2013-12-04 0:02</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[bdi-default]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>12</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kintegrityd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>13</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kblockd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>14</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[khungtaskd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>16</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kswapd0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>17</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ksmd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>18</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[fsnotify_mark]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>19</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[crypto]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>20</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[khubd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>82</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ata_sff]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>89</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[scsi_eh_0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>91</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[scsi_eh_1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>92</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kworker/u:2]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>94</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[scsi_eh_2]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>95</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[jbd2/sda1-8]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>126</PID>
+      <STARTED>2013-12-04 0:23</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ext4-dio-unwrit]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>127</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[flush-8:0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>138</PID>
+      <STARTED>2013-12-04 0:24</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>udevd --daemon</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>271</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>2620</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kpsmoused]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>359</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>udevd --daemon</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>677</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>2616</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>udevd --daemon</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>679</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>2616</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>dhclient -v -pf /run/dhclient.eth0.pid -lf /var/lib/dhcp/dhclient.eth0.leases eth0</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>1614</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>5180</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/rsyslogd -c5</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.3</MEM>
+      <PID>1819</PID>
+      <STARTED>2013-12-04 1:37</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>52500</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/acpid</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>1881</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>1876</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/apache2 -k start</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.3</MEM>
+      <PID>1917</PID>
+      <STARTED>2013-12-04 0:47</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>9824</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/bin/dbus-daemon --system</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2005</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>101</USER>
+      <VIRTUALMEMORY>3020</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/lib/postgresql/9.1/bin/postgres -D /var/lib/postgresql/9.1/main -c config_file=/etc/postgresql/9.1/main/postgresql.conf</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>2042</PID>
+      <STARTED>2013-12-04 0:34</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>46644</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: writer process</CMD>
+      <CPUUSAGE>0.1</CPUUSAGE>
+      <MEM>1.1</MEM>
+      <PID>2045</PID>
+      <STARTED>2013-12-04 4:13</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>46644</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: wal writer process</CMD>
+      <CPUUSAGE>0.1</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>2046</PID>
+      <STARTED>2013-12-04 3:48</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>46644</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: autovacuum launcher process</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>2047</PID>
+      <STARTED>2013-12-04 0:59</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>47196</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: stats collector process</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2048</PID>
+      <STARTED>2013-12-04 1:19</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>16988</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/opt/rudder/libexec/slapd -h ldap://127.0.0.1:389 -f /opt/rudder/etc/openldap/slapd.conf</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>4.4</MEM>
+      <PID>2142</PID>
+      <STARTED>2013-12-04 0:36</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>1239588</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/cron</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2215</PID>
+      <STARTED>2013-12-04 0:02</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>3836</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/lib/jvm/java-7-openjdk-i386/bin/java -server -Xms1024m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -Drudder.configFile=/opt/rudder/etc/rudder-web.properties -Drudder.authFile=/opt/rudder/etc/rudder-users.xml -Dinventoryweb.configFile=/opt/rudder/etc/inventory-web.properties -Dlogback.configurationFile=/opt/rudder/etc/logback.xml -Drun.mode=production -Djetty.logs=/var/log/rudder/webapp/ -Djetty.home=/opt/rudder/jetty7 -Djava.io.tmpdir=/tmp -jar /opt/rudder/jetty7/start.jar OPTIONS=Server --pre=etc/jetty-logging.xml --daemon</CMD>
+      <CPUUSAGE>4.1</CPUUSAGE>
+      <MEM>17.2</MEM>
+      <PID>2267</PID>
+      <STARTED>2013-12-04 96:57</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>1528984</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/sshd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2287</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>6464</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/bin/login --</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2339</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty1</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>2840</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/getty 38400 tty2</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2340</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty2</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>3780</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/getty 38400 tty3</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2341</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty3</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>3780</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/getty 38400 tty4</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2342</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty4</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>3780</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/getty 38400 tty5</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2343</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty5</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>3780</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/getty 38400 tty6</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2344</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty6</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>3780</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: rudder rudder 127.0.0.1(54605) idle</CMD>
+      <CPUUSAGE>0.1</CPUUSAGE>
+      <MEM>1.2</MEM>
+      <PID>2392</PID>
+      <STARTED>2013-12-04 4:36</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>48664</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: rudder rudder 127.0.0.1(54607) idle</CMD>
+      <CPUUSAGE>0.1</CPUUSAGE>
+      <MEM>1.2</MEM>
+      <PID>2409</PID>
+      <STARTED>2013-12-04 4:01</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>48672</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>postgres: rudder rudder ::1(49291) idle</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>1.2</MEM>
+      <PID>2457</PID>
+      <STARTED>2013-12-04 1:34</STARTED>
+      <TTY>?</TTY>
+      <USER>postgres</USER>
+      <VIRTUALMEMORY>48204</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>-bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>2586</PID>
+      <STARTED>2013-12-04 0:00</STARTED>
+      <TTY>tty1</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4704</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sshd: root@pts/0</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>2592</PID>
+      <STARTED>2013-12-04 0:09</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>9404</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>-bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>2594</PID>
+      <STARTED>2013-12-04 0:02</STARTED>
+      <TTY>pts/0</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4828</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/var/rudder/cfengine-community/bin/cf-serverd</CMD>
+      <CPUUSAGE>0.1</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>4215</PID>
+      <STARTED>2013-12-05 1:42</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>7828</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/var/rudder/cfengine-community/bin/cf-execd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>4249</PID>
+      <STARTED>2013-12-05 0:23</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>8800</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/apache2 -k start</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>6825</PID>
+      <STARTED>2013-12-05 0:00</STARTED>
+      <TTY>?</TTY>
+      <USER>www-data</USER>
+      <VIRTUALMEMORY>9400</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/apache2 -k start</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.5</MEM>
+      <PID>6836</PID>
+      <STARTED>2013-12-05 0:12</STARTED>
+      <TTY>?</TTY>
+      <USER>www-data</USER>
+      <VIRTUALMEMORY>234008</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/apache2 -k start</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>6899</PID>
+      <STARTED>2013-12-05 0:12</STARTED>
+      <TTY>?</TTY>
+      <USER>www-data</USER>
+      <VIRTUALMEMORY>233828</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kworker/0:1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8000</PID>
+      <STARTED>2013-12-06 00:17</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kworker/0:2]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8453</PID>
+      <STARTED>2013-12-06 00:32</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sh -c &quot;/var/rudder/cfengine-community/bin/cf-agent&quot; -f failsafe.cf &amp;&amp; &quot;/var/rudder/cfengine-community/bin/cf-agent&quot; -Dfrom_cfexecd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8769</PID>
+      <STARTED>2013-12-06 00:45</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>1932</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/var/rudder/cfengine-community/bin/cf-agent -Dfrom_cfexecd</CMD>
+      <CPUUSAGE>38.5</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>8780</PID>
+      <STARTED>2013-12-06 00:45</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>9616</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/bin/sh /opt/rudder/bin/run-inventory --local=/var/rudder/tmp/inventory --scan-homedirs</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8845</PID>
+      <STARTED>2013-12-06 00:45</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>1932</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/opt/rudder/bin/perl -I /opt/rudder/lib/perl5 /opt/rudder/bin/fusioninventory-agent --config=none --local=/var/rudder/tmp/inventory --scan-homedirs</CMD>
+      <CPUUSAGE>98.0</CPUUSAGE>
+      <MEM>1.2</MEM>
+      <PID>8846</PID>
+      <STARTED>2013-12-06 00:45</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>20408</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sh -c ps aux 2&gt;/dev/null</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8853</PID>
+      <STARTED>2013-12-06 00:45</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>1932</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>ps aux</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8854</PID>
+      <STARTED>2013-12-06 00:45</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>2816</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>screen</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>24113</PID>
+      <STARTED>2013-12-05 0:00</STARTED>
+      <TTY>pts/0</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4400</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>SCREEN</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>24114</PID>
+      <STARTED>2013-12-05 0:02</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4972</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/bin/bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>24116</PID>
+      <STARTED>2013-12-05 0:00</STARTED>
+      <TTY>pts/2</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4728</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/bin/bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>24472</PID>
+      <STARTED>2013-12-05 0:00</STARTED>
+      <TTY>pts/1</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4716</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/bin/bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.1</MEM>
+      <PID>27415</PID>
+      <STARTED>2013-12-05 0:00</STARTED>
+      <TTY>pts/3</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4716</VIRTUALMEMORY>
+    </PROCESSES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>displays information on ACPI devices</COMMENTS>
+      <FILESIZE>67</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>acpi</NAME>
+      <VERSION>1.6-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>scripts for handling base ACPI events such as the power button</COMMENTS>
+      <FILESIZE>66</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>acpi-support-base</NAME>
+      <VERSION>0.140-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Advanced Configuration and Power Interface event daemon</COMMENTS>
+      <FILESIZE>177</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>acpid</NAME>
+      <VERSION>1:2.0.16-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>add and remove users and groups</COMMENTS>
+      <FILESIZE>1066</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>adduser</NAME>
+      <VERSION>3.113+nmu3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache HTTP Server metapackage</COMMENTS>
+      <FILESIZE>29</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apache2</NAME>
+      <VERSION>2.2.22-13</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache HTTP Server - high speed threaded model</COMMENTS>
+      <FILESIZE>55</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apache2-mpm-worker</NAME>
+      <VERSION>2.2.22-13</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>utility programs for webservers</COMMENTS>
+      <FILESIZE>328</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apache2-utils</NAME>
+      <VERSION>2.2.22-13</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache HTTP Server common binary files</COMMENTS>
+      <FILESIZE>3416</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apache2.2-bin</NAME>
+      <VERSION>2.2.22-13</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache HTTP Server common files</COMMENTS>
+      <FILESIZE>782</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apache2.2-common</NAME>
+      <VERSION>2.2.22-13</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>commandline package manager</COMMENTS>
+      <FILESIZE>3210</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apt</NAME>
+      <VERSION>0.9.7.9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>package managment related utility programs</COMMENTS>
+      <FILESIZE>1283</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>apt-utils</NAME>
+      <VERSION>0.9.7.9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>terminal-based package manager</COMMENTS>
+      <FILESIZE>4602</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>aptitude</NAME>
+      <VERSION>0.6.8.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>architecture indepedent files for the aptitude package manager</COMMENTS>
+      <FILESIZE>9263</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>aptitude-common</NAME>
+      <VERSION>0.6.8.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Debian base system miscellaneous files</COMMENTS>
+      <FILESIZE>217</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>base-files</NAME>
+      <VERSION>7.1wheezy2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Debian base system master password and group files</COMMENTS>
+      <FILESIZE>164</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>base-passwd</NAME>
+      <VERSION>3.5.26</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU Bourne Again SHell</COMMENTS>
+      <FILESIZE>3902</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>bash</NAME>
+      <VERSION>4.2+dfsg-0.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU assembler, linker and binary utilities</COMMENTS>
+      <FILESIZE>13230</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>binutils</NAME>
+      <VERSION>2.22-8</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>collection of more utilities from FreeBSD</COMMENTS>
+      <FILESIZE>529</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>bsdmainutils</NAME>
+      <VERSION>9.0.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Basic utilities from 4.4BSD-Lite</COMMENTS>
+      <FILESIZE>180</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>bsdutils</NAME>
+      <VERSION>1:2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Tiny utilities for small and embedded systems</COMMENTS>
+      <FILESIZE>725</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>busybox</NAME>
+      <VERSION>1:1.20.0-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Common CA certificates</COMMENTS>
+      <FILESIZE>329</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ca-certificates</NAME>
+      <VERSION>20130119</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Common CA certificates (JKS keystore)</COMMENTS>
+      <FILESIZE>19</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ca-certificates-java</NAME>
+      <VERSION>20121112+nmu2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>console font and keymap setup program</COMMENTS>
+      <FILESIZE>461</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>console-setup</NAME>
+      <VERSION>1.88</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Linux specific part of console-setup</COMMENTS>
+      <FILESIZE>1042</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>console-setup-linux</NAME>
+      <VERSION>1.88</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU core utilities</COMMENTS>
+      <FILESIZE>14026</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>coreutils</NAME>
+      <VERSION>8.13-3.5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU cpio -- a program to manage archives of files</COMMENTS>
+      <FILESIZE>844</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>cpio</NAME>
+      <VERSION>2.11+dfsg-0.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU C preprocessor (cpp)</COMMENTS>
+      <FILESIZE>63</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>cpp</NAME>
+      <VERSION>4:4.7.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU C preprocessor</COMMENTS>
+      <FILESIZE>10899</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>cpp-4.6</NAME>
+      <VERSION>4.6.3-14</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU C preprocessor</COMMENTS>
+      <FILESIZE>12199</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>cpp-4.7</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>process scheduling daemon</COMMENTS>
+      <FILESIZE>298</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>cron</NAME>
+      <VERSION>3.0pl1-124</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>command line tool for transferring data with URL syntax</COMMENTS>
+      <FILESIZE>324</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>curl</NAME>
+      <VERSION>7.26.0-1+wheezy6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>POSIX-compliant shell</COMMENTS>
+      <FILESIZE>202</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dash</NAME>
+      <VERSION>0.5.7-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>common framework for packaging database applications</COMMENTS>
+      <FILESIZE>1180</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dbconfig-common</NAME>
+      <VERSION>1.8.47+nmu1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>simple interprocess messaging system (daemon and utilities)</COMMENTS>
+      <FILESIZE>980</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dbus</NAME>
+      <VERSION>1.6.8-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Debian configuration management system</COMMENTS>
+      <FILESIZE>625</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>debconf</NAME>
+      <VERSION>1.5.49</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>full internationalization support for debconf</COMMENTS>
+      <FILESIZE>1100</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>debconf-i18n</NAME>
+      <VERSION>1.5.49</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>GnuPG archive keys of the Debian archive</COMMENTS>
+      <FILESIZE>82</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>debian-archive-keyring</NAME>
+      <VERSION>2012.4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Miscellaneous utilities specific to Debian</COMMENTS>
+      <FILESIZE>212</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>debianutils</NAME>
+      <VERSION>4.3.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Common utilities for spelling dictionary tools</COMMENTS>
+      <FILESIZE>900</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dictionaries-common</NAME>
+      <VERSION>1.12.11</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>File comparison utilities</COMMENTS>
+      <FILESIZE>1102</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>diffutils</NAME>
+      <VERSION>1:3.2-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>hardware identification system</COMMENTS>
+      <FILESIZE>118</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>discover</NAME>
+      <VERSION>2.1.2-5.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Data lists for Discover hardware detection system</COMMENTS>
+      <FILESIZE>3820</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>discover-data</NAME>
+      <VERSION>2.2010.10.18</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Dynamic Kernel Module Support Framework</COMMENTS>
+      <FILESIZE>191</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dkms</NAME>
+      <VERSION>2.2.0.3-1.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SMBIOS/DMI table decoder</COMMENTS>
+      <FILESIZE>169</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dmidecode</NAME>
+      <VERSION>2.11-9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux Kernel Device Mapper userspace library</COMMENTS>
+      <FILESIZE>169</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dmsetup</NAME>
+      <VERSION>2:1.02.74-8</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Debian package management system</COMMENTS>
+      <FILESIZE>5957</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>dpkg</NAME>
+      <VERSION>1.16.12</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>ext2/ext3/ext4 file system libraries</COMMENTS>
+      <FILESIZE>415</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>e2fslibs</NAME>
+      <VERSION>1.42.5-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>ext2/ext3/ext4 file system utilities</COMMENTS>
+      <FILESIZE>2337</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>e2fsprogs</NAME>
+      <VERSION>1.42.5-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>ejects CDs and operates CD-Changers under Linux</COMMENTS>
+      <FILESIZE>330</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>eject</NAME>
+      <VERSION>2.1.5+deb1+cvs20081104-13</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>tool for simulating superuser privileges</COMMENTS>
+      <FILESIZE>303</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>fakeroot</NAME>
+      <VERSION>1.18.4-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Determines file type using &quot;magic&quot; numbers</COMMENTS>
+      <FILESIZE>104</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>file</NAME>
+      <VERSION>5.11-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>utilities for finding files--find, xargs</COMMENTS>
+      <FILESIZE>1615</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>findutils</NAME>
+      <VERSION>4.4.2-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>generic font configuration library - configuration</COMMENTS>
+      <FILESIZE>299</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>fontconfig-config</NAME>
+      <VERSION>2.9.0-7.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU C compiler</COMMENTS>
+      <FILESIZE>41</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gcc</NAME>
+      <VERSION>4:4.7.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU C compiler</COMMENTS>
+      <FILESIZE>15179</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gcc-4.6</NAME>
+      <VERSION>4.6.3-14</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GCC, the GNU Compiler Collection (base package)</COMMENTS>
+      <FILESIZE>195</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gcc-4.6-base</NAME>
+      <VERSION>4.6.3-14</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU C compiler</COMMENTS>
+      <FILESIZE>17427</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gcc-4.7</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GCC, the GNU Compiler Collection (base package)</COMMENTS>
+      <FILESIZE>197</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gcc-4.7-base</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU Internationalization utilities for the base system</COMMENTS>
+      <FILESIZE>865</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gettext-base</NAME>
+      <VERSION>0.18.1.1-9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>fast, scalable, distributed revision control system</COMMENTS>
+      <FILESIZE>13131</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>git</NAME>
+      <VERSION>1:1.7.10.4-1+wheezy1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>fast, scalable, distributed revision control system (obsolete)</COMMENTS>
+      <FILESIZE>21</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>git-core</NAME>
+      <VERSION>1:1.7.10.4-1+wheezy1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>fast, scalable, distributed revision control system (manual pages)</COMMENTS>
+      <FILESIZE>1105</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>git-man</NAME>
+      <VERSION>1:1.7.10.4-1+wheezy1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU privacy guard - a free PGP replacement</COMMENTS>
+      <FILESIZE>4608</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gnupg</NAME>
+      <VERSION>1.4.12-7+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU privacy guard - signature verification tool</COMMENTS>
+      <FILESIZE>396</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gpgv</NAME>
+      <VERSION>1.4.12-7+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU grep, egrep and fgrep</COMMENTS>
+      <FILESIZE>1392</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>grep</NAME>
+      <VERSION>2.12-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU troff text-formatting system (base system components)</COMMENTS>
+      <FILESIZE>2817</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>groff-base</NAME>
+      <VERSION>1.21-9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GRand Unified Bootloader (common files)</COMMENTS>
+      <FILESIZE>5082</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>grub-common</NAME>
+      <VERSION>1.99-27+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GRand Unified Bootloader, version 2 (PC/BIOS version)</COMMENTS>
+      <FILESIZE>477</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>grub-pc</NAME>
+      <VERSION>1.99-27+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GRand Unified Bootloader, version 2 (PC/BIOS binaries)</COMMENTS>
+      <FILESIZE>1787</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>grub-pc-bin</NAME>
+      <VERSION>1.99-27+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GRand Unified Bootloader (common files for version 2)</COMMENTS>
+      <FILESIZE>96</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>grub2-common</NAME>
+      <VERSION>1.99-27+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU compression utilities</COMMENTS>
+      <FILESIZE>232</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>gzip</NAME>
+      <VERSION>1.5-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>utility to set/show the host name or domain name</COMMENTS>
+      <FILESIZE>71</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>hostname</NAME>
+      <VERSION>3.11</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>American English dictionary for ispell (standard version)</COMMENTS>
+      <FILESIZE>244</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>iamerican</NAME>
+      <VERSION>3.3.02-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>British English dictionary for ispell (standard version)</COMMENTS>
+      <FILESIZE>244</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ibritish</NAME>
+      <VERSION>3.3.02-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Alternative JVM for OpenJDK, using JamVM</COMMENTS>
+      <FILESIZE>1578</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>icedtea-7-jre-jamvm</NAME>
+      <VERSION>7u25-2.3.10-1~deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Common files for British and American ispell dictionaries</COMMENTS>
+      <FILESIZE>86</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ienglish-common</NAME>
+      <VERSION>3.3.02-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>high level tools to configure network interfaces</COMMENTS>
+      <FILESIZE>196</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ifupdown</NAME>
+      <VERSION>0.7.8</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Standalone GNU Info documentation browser</COMMENTS>
+      <FILESIZE>359</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>info</NAME>
+      <VERSION>4.13a.dfsg.1-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>generic modular initramfs generator</COMMENTS>
+      <FILESIZE>323</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>initramfs-tools</NAME>
+      <VERSION>0.109.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>scripts for initializing and shutting down the system</COMMENTS>
+      <FILESIZE>288</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>initscripts</NAME>
+      <VERSION>2.88dsf-41+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>boot sequence organizer using LSB init.d script dependency information</COMMENTS>
+      <FILESIZE>182</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>insserv</NAME>
+      <VERSION>1.14.0-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Manage installed documentation in info format</COMMENTS>
+      <FILESIZE>212</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>install-info</NAME>
+      <VERSION>4.13a.dfsg.1-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>system installation report</COMMENTS>
+      <FILESIZE>74</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>installation-report</NAME>
+      <VERSION>2.49</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>networking and traffic control tools</COMMENTS>
+      <FILESIZE>973</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>iproute</NAME>
+      <VERSION>20120521-3+b3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>administration tools for packet filtering and NAT</COMMENTS>
+      <FILESIZE>1201</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>iptables</NAME>
+      <VERSION>1.4.14-3.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Tools to test the reachability of network hosts</COMMENTS>
+      <FILESIZE>148</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>iputils-ping</NAME>
+      <VERSION>3:20101006-1+b1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>ISC DHCP client</COMMENTS>
+      <FILESIZE>1884</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>isc-dhcp-client</NAME>
+      <VERSION>4.2.2.dfsg.1-5+deb70u6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>common files used by all the isc-dhcp* packages</COMMENTS>
+      <FILESIZE>1855</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>isc-dhcp-common</NAME>
+      <VERSION>4.2.2.dfsg.1-5+deb70u6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>International Ispell (an interactive spelling corrector)</COMMENTS>
+      <FILESIZE>335</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ispell</NAME>
+      <VERSION>3.3.02-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Base of all Java packages</COMMENTS>
+      <FILESIZE>242</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>java-common</NAME>
+      <VERSION>0.47</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux console font and keytable utilities</COMMENTS>
+      <FILESIZE>1364</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>kbd</NAME>
+      <VERSION>1.15.3-9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>system-wide keyboard preferences</COMMENTS>
+      <FILESIZE>2283</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>keyboard-configuration</NAME>
+      <VERSION>1.88</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>small utilities built with klibc for early boot</COMMENTS>
+      <FILESIZE>395</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>klibc-utils</NAME>
+      <VERSION>2.0.1-3.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>tools for managing Linux kernel modules</COMMENTS>
+      <FILESIZE>192</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>kmod</NAME>
+      <VERSION>9-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Internationalization support for MIT Kerberos</COMMENTS>
+      <FILESIZE>1514</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>krb5-locales</NAME>
+      <VERSION>1.10.1+dfsg-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>attempt to detect a laptop</COMMENTS>
+      <FILESIZE>20</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>laptop-detect</NAME>
+      <VERSION>0.13.7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>pager program similar to more</COMMENTS>
+      <FILESIZE>276</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>less</NAME>
+      <VERSION>444-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Access control list shared library</COMMENTS>
+      <FILESIZE>79</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libacl1</NAME>
+      <VERSION>2.2.51-8</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache Portable Runtime Library</COMMENTS>
+      <FILESIZE>262</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libapr1</NAME>
+      <VERSION>1.4.6-3+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache Portable Runtime Utility Library</COMMENTS>
+      <FILESIZE>234</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libaprutil1</NAME>
+      <VERSION>1.4.1-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache Portable Runtime Utility Library - SQLite3 Driver</COMMENTS>
+      <FILESIZE>62</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libaprutil1-dbd-sqlite3</NAME>
+      <VERSION>1.4.1-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apache Portable Runtime Utility Library - LDAP Driver</COMMENTS>
+      <FILESIZE>58</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libaprutil1-ldap</NAME>
+      <VERSION>1.4.1-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>deb package format runtime library</COMMENTS>
+      <FILESIZE>694</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libapt-inst1.5</NAME>
+      <VERSION>0.9.7.9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>package managment runtime library</COMMENTS>
+      <FILESIZE>2703</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libapt-pkg4.12</NAME>
+      <VERSION>0.9.7.9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU library to use fprintf and friends in C++</COMMENTS>
+      <FILESIZE>62</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libasprintf0c2</NAME>
+      <VERSION>0.18.1.1-9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Extended attribute shared library</COMMENTS>
+      <FILESIZE>60</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libattr1</NAME>
+      <VERSION>1:2.4.46-8</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Dynamic library for security auditing</COMMENTS>
+      <FILESIZE>187</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libaudit0</NAME>
+      <VERSION>1:1.7.18-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Avahi client library</COMMENTS>
+      <FILESIZE>134</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libavahi-client3</NAME>
+      <VERSION>0.6.31-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Avahi common data files</COMMENTS>
+      <FILESIZE>793</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libavahi-common-data</NAME>
+      <VERSION>0.6.31-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Avahi common library</COMMENTS>
+      <FILESIZE>119</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libavahi-common3</NAME>
+      <VERSION>0.6.31-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>block device id library</COMMENTS>
+      <FILESIZE>241</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libblkid1</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Boost.Iostreams Library</COMMENTS>
+      <FILESIZE>158</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libboost-iostreams1.49.0</NAME>
+      <VERSION>1.49.0-3.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>utility functions from BSD systems - shared library</COMMENTS>
+      <FILESIZE>140</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libbsd0</NAME>
+      <VERSION>0.4.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>high-quality block-sorting file compressor library - runtime</COMMENTS>
+      <FILESIZE>112</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libbz2-1.0</NAME>
+      <VERSION>1.0.6-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Embedded GNU C Library: Binaries</COMMENTS>
+      <FILESIZE>3091</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libc-bin</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Embedded GNU C Library: Development binaries</COMMENTS>
+      <FILESIZE>330</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libc-dev-bin</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Embedded GNU C Library: Shared libraries</COMMENTS>
+      <FILESIZE>8546</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libc6</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Embedded GNU C Library: Development Libraries and Header Files</COMMENTS>
+      <FILESIZE>17964</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libc6-dev</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Embedded GNU C Library: Shared libraries [i686 optimized]</COMMENTS>
+      <FILESIZE>2671</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libc6-i686</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>support for getting/setting POSIX.1e capabilities</COMMENTS>
+      <FILESIZE>53</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libcap2</NAME>
+      <VERSION>1:2.22-1.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>report the search path for a class&apos;s ISA tree</COMMENTS>
+      <FILESIZE>55</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libclass-isa-perl</NAME>
+      <VERSION>0.36-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>common error description library</COMMENTS>
+      <FILESIZE>95</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libcomerr2</NAME>
+      <VERSION>1.42.5-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Common UNIX Printing System(tm) - Core library</COMMENTS>
+      <FILESIZE>442</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libcups2</NAME>
+      <VERSION>1.5.3-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>easy-to-use client-side URL transfer library (OpenSSL flavour)</COMMENTS>
+      <FILESIZE>563</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libcurl3</NAME>
+      <VERSION>7.26.0-1+wheezy6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>easy-to-use client-side URL transfer library (GnuTLS flavour)</COMMENTS>
+      <FILESIZE>543</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libcurl3-gnutls</NAME>
+      <VERSION>7.26.0-1+wheezy6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>high-level terminal interface library for C++ (runtime files)</COMMENTS>
+      <FILESIZE>1426</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libcwidget3</NAME>
+      <VERSION>0.5.16-3.4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Berkeley v5.1 Database Libraries [runtime]</COMMENTS>
+      <FILESIZE>1655</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdb5.1</NAME>
+      <VERSION>5.1.29-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>simple interprocess messaging system (library)</COMMENTS>
+      <FILESIZE>395</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdbus-1-3</NAME>
+      <VERSION>1.6.8-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux Kernel Device Mapper userspace library</COMMENTS>
+      <FILESIZE>307</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdevmapper1.02.1</NAME>
+      <VERSION>2:1.02.74-8</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>hardware identification library</COMMENTS>
+      <FILESIZE>285</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdiscover2</NAME>
+      <VERSION>2.1.2-5.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Userspace interface to intel-specific kernel DRM services -- runtime</COMMENTS>
+      <FILESIZE>604</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdrm-intel1</NAME>
+      <VERSION>2.4.40-1~deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Userspace interface to nouveau-specific kernel DRM services -- runtime</COMMENTS>
+      <FILESIZE>501</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdrm-nouveau1a</NAME>
+      <VERSION>2.4.40-1~deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Userspace interface to radeon-specific kernel DRM services -- runtime</COMMENTS>
+      <FILESIZE>522</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdrm-radeon1</NAME>
+      <VERSION>2.4.40-1~deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Userspace interface to kernel DRM services -- runtime</COMMENTS>
+      <FILESIZE>524</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libdrm2</NAME>
+      <VERSION>2.4.40-1~deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>BSD editline and history libraries</COMMENTS>
+      <FILESIZE>169</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libedit2</NAME>
+      <VERSION>2.11-20080614-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>High-level library for managing Debian package information</COMMENTS>
+      <FILESIZE>625</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libept1.4.12</NAME>
+      <VERSION>1.0.9</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Perl module for error/exception handling in an OO-ish way</COMMENTS>
+      <FILESIZE>96</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>liberror-perl</NAME>
+      <VERSION>0.17-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>XML parsing C library - runtime library</COMMENTS>
+      <FILESIZE>380</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libexpat1</NAME>
+      <VERSION>2.1.0-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Foreign Function Interface library runtime</COMMENTS>
+      <FILESIZE>76</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libffi5</NAME>
+      <VERSION>3.0.10-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>generic font configuration library - runtime</COMMENTS>
+      <FILESIZE>430</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libfontconfig1</NAME>
+      <VERSION>2.9.0-7.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 font encoding library</COMMENTS>
+      <FILESIZE>67</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libfontenc1</NAME>
+      <VERSION>1:1.1.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>FreeType 2 font engine, shared library files</COMMENTS>
+      <FILESIZE>818</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libfreetype6</NAME>
+      <VERSION>2.4.9-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Filesystem in Userspace (library)</COMMENTS>
+      <FILESIZE>313</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libfuse2</NAME>
+      <VERSION>2.9.0-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GCC support library</COMMENTS>
+      <FILESIZE>145</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgcc1</NAME>
+      <VERSION>1:4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>LGPL Crypto library - runtime library</COMMENTS>
+      <FILESIZE>611</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgcrypt11</NAME>
+      <VERSION>1.5.0-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU dbm database routines (runtime version)</COMMENTS>
+      <FILESIZE>105</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgdbm3</NAME>
+      <VERSION>1.8.3-11</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>free implementation of the OpenGL API -- DRI modules</COMMENTS>
+      <FILESIZE>88963</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgl1-mesa-dri</NAME>
+      <VERSION>8.0.5-4+deb7u2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GLib library of C routines</COMMENTS>
+      <FILESIZE>3983</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libglib2.0-0</NAME>
+      <VERSION>2.33.12+really2.32.4-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Common files for GLib library</COMMENTS>
+      <FILESIZE>7655</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libglib2.0-data</NAME>
+      <VERSION>2.33.12+really2.32.4-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Multiprecision arithmetic library</COMMENTS>
+      <FILESIZE>533</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgmp10</NAME>
+      <VERSION>2:5.0.5+dfsg-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU TLS library - runtime library</COMMENTS>
+      <FILESIZE>1399</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgnutls26</NAME>
+      <VERSION>2.12.20-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GCC OpenMP (GOMP) support library</COMMENTS>
+      <FILESIZE>95</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgomp1</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>library for common error values and messages in GnuPG components</COMMENTS>
+      <FILESIZE>364</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgpg-error0</NAME>
+      <VERSION>1.10-3.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>MIT Kerberos runtime libraries - krb5 GSS-API Mechanism</COMMENTS>
+      <FILESIZE>329</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libgssapi-krb5-2</NAME>
+      <VERSION>1.10.1+dfsg-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 Inter-Client Exchange library</COMMENTS>
+      <FILESIZE>141</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libice6</NAME>
+      <VERSION>2:1.0.8-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU Libidn library, implementation of IETF IDN specifications</COMMENTS>
+      <FILESIZE>361</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libidn11</NAME>
+      <VERSION>1.25-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU Transactional Memory Library</COMMENTS>
+      <FILESIZE>145</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libitm1</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Independent JPEG Group&apos;s JPEG runtime library</COMMENTS>
+      <FILESIZE>278</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libjpeg8</NAME>
+      <VERSION>8d-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>MIT Kerberos runtime libraries - Crypto Library</COMMENTS>
+      <FILESIZE>240</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libk5crypto3</NAME>
+      <VERSION>1.10.1+dfsg-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux Key Management Utilities (library)</COMMENTS>
+      <FILESIZE>50</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libkeyutils1</NAME>
+      <VERSION>1.5.5-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>minimal libc subset for use with initramfs</COMMENTS>
+      <FILESIZE>133</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libklibc</NAME>
+      <VERSION>2.0.1-3.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>libkmod shared library</COMMENTS>
+      <FILESIZE>134</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libkmod2</NAME>
+      <VERSION>9-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>MIT Kerberos runtime libraries</COMMENTS>
+      <FILESIZE>972</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libkrb5-3</NAME>
+      <VERSION>1.10.1+dfsg-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>MIT Kerberos runtime libraries - Support library</COMMENTS>
+      <FILESIZE>114</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libkrb5support0</NAME>
+      <VERSION>1.10.1+dfsg-5+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Little CMS 2 color management library</COMMENTS>
+      <FILESIZE>343</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>liblcms2-2</NAME>
+      <VERSION>2.2+git20110628-2.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>OpenLDAP libraries</COMMENTS>
+      <FILESIZE>513</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libldap-2.4-2</NAME>
+      <VERSION>2.4.31-1+nmu2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>module using libc functions for internationalization in Perl</COMMENTS>
+      <FILESIZE>87</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>liblocale-gettext-perl</NAME>
+      <VERSION>1.05-7+b1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>A system independent dlopen wrapper for GNU libtool</COMMENTS>
+      <FILESIZE>392</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libltdl7</NAME>
+      <VERSION>2.4.2-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>XZ-format compression library</COMMENTS>
+      <FILESIZE>320</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>liblzma5</NAME>
+      <VERSION>5.1.1alpha+20120614-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>File type determination library using &quot;magic&quot; numbers</COMMENTS>
+      <FILESIZE>2443</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libmagic1</NAME>
+      <VERSION>5.11-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>block device id library</COMMENTS>
+      <FILESIZE>249</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libmount1</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>multiple precision complex floating-point library</COMMENTS>
+      <FILESIZE>120</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libmpc2</NAME>
+      <VERSION>0.9-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>multiple precision floating-point computation</COMMENTS>
+      <FILESIZE>760</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libmpfr4</NAME>
+      <VERSION>3.1.0-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>shared libraries for terminal handling</COMMENTS>
+      <FILESIZE>289</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libncurses5</NAME>
+      <VERSION>5.9-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>shared libraries for terminal handling (wide character support)</COMMENTS>
+      <FILESIZE>363</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libncursesw5</NAME>
+      <VERSION>5.9-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Not Erik&apos;s Windowing Toolkit - text mode windowing with slang</COMMENTS>
+      <FILESIZE>792</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libnewt0.52</NAME>
+      <VERSION>0.52.14-11.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Netfilter netlink library</COMMENTS>
+      <FILESIZE>56</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libnfnetlink0</NAME>
+      <VERSION>1.0.0-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>NetScape Portable Runtime Library</COMMENTS>
+      <FILESIZE>347</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libnspr4</NAME>
+      <VERSION>2:4.9.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Network Security Service libraries</COMMENTS>
+      <FILESIZE>3228</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libnss3</NAME>
+      <VERSION>2:3.14.5-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Library for loading and coordinating access to PKCS#11 modules - runtime</COMMENTS>
+      <FILESIZE>130</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libp11-kit0</NAME>
+      <VERSION>0.12-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Pluggable Authentication Modules for PAM</COMMENTS>
+      <FILESIZE>752</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpam-modules</NAME>
+      <VERSION>1.1.3-7.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Pluggable Authentication Modules for PAM - helper binaries</COMMENTS>
+      <FILESIZE>214</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpam-modules-bin</NAME>
+      <VERSION>1.1.3-7.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Runtime support for the PAM library</COMMENTS>
+      <FILESIZE>1116</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpam-runtime</NAME>
+      <VERSION>1.1.3-7.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Pluggable Authentication Modules library</COMMENTS>
+      <FILESIZE>240</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpam0g</NAME>
+      <VERSION>1.1.3-7.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux PCI Utilities (shared library)</COMMENTS>
+      <FILESIZE>110</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpci3</NAME>
+      <VERSION>1:3.1.9-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Generic PCI access library for X</COMMENTS>
+      <FILESIZE>102</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpciaccess0</NAME>
+      <VERSION>0.13.1-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Perl 5 Compatible Regular Expression Library - runtime files</COMMENTS>
+      <FILESIZE>432</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpcre3</NAME>
+      <VERSION>1:8.30-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Middleware to access a smart card using PC/SC (library)</COMMENTS>
+      <FILESIZE>111</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpcsclite1</NAME>
+      <VERSION>1.8.4-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>pipeline manipulation library</COMMENTS>
+      <FILESIZE>98</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpipeline1</NAME>
+      <VERSION>1.2.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>pixel-manipulation library for X and cairo</COMMENTS>
+      <FILESIZE>836</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpixman-1-0</NAME>
+      <VERSION>0.26.0-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>lib for parsing cmdline parameters</COMMENTS>
+      <FILESIZE>422</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpopt0</NAME>
+      <VERSION>1.16-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>PostgreSQL C client library</COMMENTS>
+      <FILESIZE>1004</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libpq5</NAME>
+      <VERSION>9.1.9-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>library for accessing process information from /proc</COMMENTS>
+      <FILESIZE>120</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libprocps0</NAME>
+      <VERSION>1:3.3.3-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GCC Quad-Precision Math Library</COMMENTS>
+      <FILESIZE>503</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libquadmath0</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU readline and history libraries, run-time libraries</COMMENTS>
+      <FILESIZE>366</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libreadline6</NAME>
+      <VERSION>6.2+dfsg-0.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>toolkit for RTMP streams (shared library)</COMMENTS>
+      <FILESIZE>144</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>librtmp0</NAME>
+      <VERSION>2.4+20111222.git4e06e21-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Cyrus SASL - authentication abstraction library</COMMENTS>
+      <FILESIZE>228</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsasl2-2</NAME>
+      <VERSION>2.1.25.dfsg1-6+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Cyrus SASL - pluggable authentication modules</COMMENTS>
+      <FILESIZE>258</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsasl2-modules</NAME>
+      <VERSION>2.1.25.dfsg1-6+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SELinux runtime shared libraries</COMMENTS>
+      <FILESIZE>204</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libselinux1</NAME>
+      <VERSION>2.1.9-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Common files for SELinux policy management libraries</COMMENTS>
+      <FILESIZE>63</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsemanage-common</NAME>
+      <VERSION>2.1.6-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SELinux policy management library</COMMENTS>
+      <FILESIZE>268</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsemanage1</NAME>
+      <VERSION>2.1.6-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SELinux library for manipulating binary security policies</COMMENTS>
+      <FILESIZE>321</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsepol1</NAME>
+      <VERSION>2.1.4-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>type-safe Signal Framework for C++ - runtime</COMMENTS>
+      <FILESIZE>83</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsigc++-2.0-0c2a</NAME>
+      <VERSION>2.2.10-0.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>S-Lang programming library - runtime version</COMMENTS>
+      <FILESIZE>1261</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libslang2</NAME>
+      <VERSION>2.2.4-15</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 Session Management library</COMMENTS>
+      <FILESIZE>79</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsm6</NAME>
+      <VERSION>2:1.2.1-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SQLite 3 shared library</COMMENTS>
+      <FILESIZE>824</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsqlite3-0</NAME>
+      <VERSION>3.7.13-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>command-line interface parsing library</COMMENTS>
+      <FILESIZE>103</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libss2</NAME>
+      <VERSION>1.42.5-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SSH2 client-side library</COMMENTS>
+      <FILESIZE>257</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libssh2-1</NAME>
+      <VERSION>1.4.2-1.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>SSL shared libraries</COMMENTS>
+      <FILESIZE>7036</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libssl1.0.0</NAME>
+      <VERSION>1.0.1e-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU Standard C++ Library v3</COMMENTS>
+      <FILESIZE>1168</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libstdc++6</NAME>
+      <VERSION>4.7.2-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>switch statement for Perl</COMMENTS>
+      <FILESIZE>88</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libswitch-perl</NAME>
+      <VERSION>2.16-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>systemd login utility library</COMMENTS>
+      <FILESIZE>84</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libsystemd-login0</NAME>
+      <VERSION>44-11+deb7u4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Manage ASN.1 structures (runtime)</COMMENTS>
+      <FILESIZE>134</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libtasn1-3</NAME>
+      <VERSION>2.13-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>get display widths of characters on the terminal</COMMENTS>
+      <FILESIZE>72</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libtext-charwidth-perl</NAME>
+      <VERSION>0.04-7+b1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>converts between character sets in Perl</COMMENTS>
+      <FILESIZE>82</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libtext-iconv-perl</NAME>
+      <VERSION>1.7-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>internationalized substitute of Text::Wrap</COMMENTS>
+      <FILESIZE>28</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libtext-wrapi18n-perl</NAME>
+      <VERSION>0.06-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>shared low-level terminfo library for terminal handling</COMMENTS>
+      <FILESIZE>404</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libtinfo5</NAME>
+      <VERSION>5.9-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Tokyo Cabinet Database Libraries [runtime]</COMMENTS>
+      <FILESIZE>701</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libtokyocabinet9</NAME>
+      <VERSION>1.4.47-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>libudev shared library</COMMENTS>
+      <FILESIZE>189</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libudev0</NAME>
+      <VERSION>175-7.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>userspace USB programming library</COMMENTS>
+      <FILESIZE>72</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libusb-0.1-4</NAME>
+      <VERSION>2:0.1.12-20+nmu1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>userspace USB programming library</COMMENTS>
+      <FILESIZE>107</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libusb-1.0-0</NAME>
+      <VERSION>2:1.0.11-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Micro string library: shared library</COMMENTS>
+      <FILESIZE>270</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libustr-1.0-1</NAME>
+      <VERSION>1.0.4-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Perl extension for using UUID interfaces as defined in e2fsprogs</COMMENTS>
+      <FILESIZE>61</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libuuid-perl</NAME>
+      <VERSION>0.02-5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Universally Unique ID library</COMMENTS>
+      <FILESIZE>110</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libuuid1</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Wietse Venema&apos;s TCP wrappers library</COMMENTS>
+      <FILESIZE>120</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libwrap0</NAME>
+      <VERSION>7.6.q-24</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 client-side library</COMMENTS>
+      <FILESIZE>1493</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libx11-6</NAME>
+      <VERSION>2:1.5.0-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>X11 client-side library</COMMENTS>
+      <FILESIZE>1574</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libx11-data</NAME>
+      <VERSION>2:1.5.0-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Search engine library</COMMENTS>
+      <FILESIZE>4296</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxapian22</NAME>
+      <VERSION>1.2.12-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 authorisation library</COMMENTS>
+      <FILESIZE>53</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxau6</NAME>
+      <VERSION>1:1.0.7-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 Athena Widget library</COMMENTS>
+      <FILESIZE>483</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxaw7</NAME>
+      <VERSION>2:1.0.10-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X C Binding</COMMENTS>
+      <FILESIZE>190</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxcb1</NAME>
+      <VERSION>1.8.1-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 Composite extension library</COMMENTS>
+      <FILESIZE>68</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxcomposite1</NAME>
+      <VERSION>1:0.4.3-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 damaged region extension library</COMMENTS>
+      <FILESIZE>68</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxdamage1</NAME>
+      <VERSION>1:1.1.3-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 Display Manager Control Protocol library</COMMENTS>
+      <FILESIZE>68</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxdmcp6</NAME>
+      <VERSION>1:1.1.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 miscellaneous extension library</COMMENTS>
+      <FILESIZE>135</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxext6</NAME>
+      <VERSION>2:1.3.1-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 miscellaneous &apos;fixes&apos; extension library</COMMENTS>
+      <FILESIZE>63</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxfixes3</NAME>
+      <VERSION>1:5.0-4+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 font rasterisation library</COMMENTS>
+      <FILESIZE>307</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxfont1</NAME>
+      <VERSION>1:1.4.5-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 keyboard file manipulation library</COMMENTS>
+      <FILESIZE>189</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxkbfile1</NAME>
+      <VERSION>1:1.0.8-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNOME XML library</COMMENTS>
+      <FILESIZE>1683</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxml2</NAME>
+      <VERSION>2.8.0+dfsg1-7+nmu2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 miscellaneous utility library</COMMENTS>
+      <FILESIZE>150</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxmu6</NAME>
+      <VERSION>2:1.1.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 miscellaneous micro-utility library</COMMENTS>
+      <FILESIZE>61</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxmuu1</NAME>
+      <VERSION>2:1.1.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 pixmap library</COMMENTS>
+      <FILESIZE>116</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxpm4</NAME>
+      <VERSION>1:3.5.10-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 RandR extension library</COMMENTS>
+      <FILESIZE>82</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxrandr2</NAME>
+      <VERSION>2:1.3.2-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X Rendering Extension client library</COMMENTS>
+      <FILESIZE>82</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxrender1</NAME>
+      <VERSION>1:0.9.7-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 toolkit intrinsics library</COMMENTS>
+      <FILESIZE>446</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>libxt6</NAME>
+      <VERSION>1:1.1.3-1+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Linux image base package</COMMENTS>
+      <FILESIZE>139</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-base</NAME>
+      <VERSION>3.5</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Header files for Linux 3.2.0-4-686-pae</COMMENTS>
+      <FILESIZE>8941</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-headers-3.2.0-4-686-pae</NAME>
+      <VERSION>3.2.51-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Common header files for Linux 3.2.0-4</COMMENTS>
+      <FILESIZE>17577</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-headers-3.2.0-4-common</NAME>
+      <VERSION>3.2.51-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Header files for Linux 686-pae configuration (meta-package)</COMMENTS>
+      <FILESIZE>28</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-headers-686-pae</NAME>
+      <VERSION>3.2+46</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux 3.2 for older PCs</COMMENTS>
+      <FILESIZE>78624</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-image-3.2.0-4-486</NAME>
+      <VERSION>3.2.51-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux for older PCs (meta-package)</COMMENTS>
+      <FILESIZE>37</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-image-486</NAME>
+      <VERSION>3.2+46</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Kbuild infrastructure for Linux 3.2</COMMENTS>
+      <FILESIZE>645</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-kbuild-3.2</NAME>
+      <VERSION>3.2.17-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux support headers for userspace development</COMMENTS>
+      <FILESIZE>2915</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>linux-libc-dev</NAME>
+      <VERSION>3.2.51-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Embedded GNU C Library: National Language (locale) data [support]</COMMENTS>
+      <FILESIZE>15118</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>locales</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>system login tools</COMMENTS>
+      <FILESIZE>2711</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>login</NAME>
+      <VERSION>1:4.1.5.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Log rotation utility</COMMENTS>
+      <FILESIZE>149</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>logrotate</NAME>
+      <VERSION>3.8.1-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Linux Standard Base 4.1 init script functionality</COMMENTS>
+      <FILESIZE>71</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>lsb-base</NAME>
+      <VERSION>4.1+Debian8+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Linux Standard Base version reporting utility</COMMENTS>
+      <FILESIZE>103</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>lsb-release</NAME>
+      <VERSION>4.1+Debian8+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>An utility for Directing compilation.</COMMENTS>
+      <FILESIZE>1139</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>make</NAME>
+      <VERSION>3.81-8.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>on-line manual pager</COMMENTS>
+      <FILESIZE>2210</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>man-db</NAME>
+      <VERSION>2.6.2-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Manual pages about using a GNU/Linux system</COMMENTS>
+      <FILESIZE>851</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>manpages</NAME>
+      <VERSION>3.44-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Manual pages about using GNU/Linux for development</COMMENTS>
+      <FILESIZE>1767</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>manpages-dev</NAME>
+      <VERSION>3.44-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>a pattern scanning and text processing language</COMMENTS>
+      <FILESIZE>187</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>mawk</NAME>
+      <VERSION>1.3.3-17</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>generates programs menu for all menu-aware applications</COMMENTS>
+      <FILESIZE>1752</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>menu</NAME>
+      <VERSION>2.1.46</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>MIME files &apos;mime.types&apos; &amp; &apos;mailcap&apos;, and support programs</COMMENTS>
+      <FILESIZE>192</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>mime-support</NAME>
+      <VERSION>3.52-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>transitional dummy package (module-init-tools to kmod)</COMMENTS>
+      <FILESIZE>31</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>module-init-tools</NAME>
+      <VERSION>9-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Tools for mounting and manipulating filesystems</COMMENTS>
+      <FILESIZE>401</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>mount</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Transitional package to ensure multiarch compatibility</COMMENTS>
+      <FILESIZE>179</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>multiarch-support</NAME>
+      <VERSION>2.13-38</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>small, friendly text editor inspired by Pico</COMMENTS>
+      <FILESIZE>1662</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>nano</NAME>
+      <VERSION>2.2.6-1+b1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>basic terminal type definitions</COMMENTS>
+      <FILESIZE>345</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ncurses-base</NAME>
+      <VERSION>5.9-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>terminal-related programs and man pages</COMMENTS>
+      <FILESIZE>491</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ncurses-bin</NAME>
+      <VERSION>5.9-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>additional terminal type definitions</COMMENTS>
+      <FILESIZE>2117</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ncurses-term</NAME>
+      <VERSION>5.9-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>The NET-3 networking toolkit</COMMENTS>
+      <FILESIZE>878</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>net-tools</NAME>
+      <VERSION>1.60-24.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Basic TCP/IP networking system</COMMENTS>
+      <FILESIZE>65</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>netbase</NAME>
+      <VERSION>5.0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>TCP/IP swiss army knife</COMMENTS>
+      <FILESIZE>152</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>netcat-traditional</NAME>
+      <VERSION>1.10-40</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>OpenJDK Java runtime, using Hotspot JIT (headless)</COMMENTS>
+      <FILESIZE>53821</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openjdk-7-jre-headless</NAME>
+      <VERSION>7u25-2.3.10-1~deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>OpenJDK Java runtime (architecture independent libraries)</COMMENTS>
+      <FILESIZE>6144</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openjdk-7-jre-lib</NAME>
+      <VERSION>7u25-2.3.10-1~deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>list of default blacklisted OpenSSH RSA and DSA keys</COMMENTS>
+      <FILESIZE>4064</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openssh-blacklist</NAME>
+      <VERSION>0.4.1+nmu1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>list of non-default blacklisted OpenSSH RSA and DSA keys</COMMENTS>
+      <FILESIZE>4070</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openssh-blacklist-extra</NAME>
+      <VERSION>0.4.1+nmu1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>secure shell (SSH) client, for secure access to remote machines</COMMENTS>
+      <FILESIZE>2339</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openssh-client</NAME>
+      <VERSION>1:6.0p1-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>secure shell (SSH) server, for secure access from remote machines</COMMENTS>
+      <FILESIZE>809</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openssh-server</NAME>
+      <VERSION>1:6.0p1-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Secure Socket Layer (SSL) binary and related cryptographic tools</COMMENTS>
+      <FILESIZE>1074</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>openssl</NAME>
+      <VERSION>1.0.1e-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>utility to detect other OSes on a set of drives</COMMENTS>
+      <FILESIZE>137</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>os-prober</NAME>
+      <VERSION>1.58</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>change and administer password and group data</COMMENTS>
+      <FILESIZE>2196</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>passwd</NAME>
+      <VERSION>1:4.1.5.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Apply a diff file to an original</COMMENTS>
+      <FILESIZE>226</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>patch</NAME>
+      <VERSION>2.6.1-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux PCI Utilities</COMMENTS>
+      <FILESIZE>951</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>pciutils</NAME>
+      <VERSION>1:3.1.9-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Larry Wall&apos;s Practical Extraction and Report Language</COMMENTS>
+      <FILESIZE>11284</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>perl</NAME>
+      <VERSION>5.14.2-21+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>minimal Perl system</COMMENTS>
+      <FILESIZE>4706</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>perl-base</NAME>
+      <VERSION>5.14.2-21+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Core Perl modules</COMMENTS>
+      <FILESIZE>14083</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>perl-modules</NAME>
+      <VERSION>5.14.2-21+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>object-relational SQL database (supported version)</COMMENTS>
+      <FILESIZE>65</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>postgresql</NAME>
+      <VERSION>9.1+134wheezy4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>object-relational SQL database, version 9.1 server</COMMENTS>
+      <FILESIZE>17015</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>postgresql-9.1</NAME>
+      <VERSION>9.1.9-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>front-end programs for PostgreSQL 9.1</COMMENTS>
+      <FILESIZE>4414</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>postgresql-client-9.1</NAME>
+      <VERSION>9.1.9-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>manager for multiple PostgreSQL client versions</COMMENTS>
+      <FILESIZE>155</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>postgresql-client-common</NAME>
+      <VERSION>134wheezy4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>PostgreSQL database-cluster manager</COMMENTS>
+      <FILESIZE>439</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>postgresql-common</NAME>
+      <VERSION>134wheezy4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>/proc file system utilities</COMMENTS>
+      <FILESIZE>566</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>procps</NAME>
+      <VERSION>1:3.3.3-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>interactive high-level object-oriented language (default version)</COMMENTS>
+      <FILESIZE>658</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>python</NAME>
+      <VERSION>2.7.3-4+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>minimal subset of the Python language (default version)</COMMENTS>
+      <FILESIZE>161</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>python-minimal</NAME>
+      <VERSION>2.7.3-4+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Interactive high-level object-oriented language (version 2.7)</COMMENTS>
+      <FILESIZE>8676</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>python2.7</NAME>
+      <VERSION>2.7.3-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Minimal subset of the Python language (version 2.7)</COMMENTS>
+      <FILESIZE>5246</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>python2.7-minimal</NAME>
+      <VERSION>2.7.3-6</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>GNU readline and history libraries, common files</COMMENTS>
+      <FILESIZE>80</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>readline-common</NAME>
+      <VERSION>6.2+dfsg-0.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>fast, versatile, remote (and local) file-copying tool</COMMENTS>
+      <FILESIZE>624</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rsync</NAME>
+      <VERSION>3.0.9-4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>reliable system and kernel logging daemon</COMMENTS>
+      <FILESIZE>1269</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rsyslog</NAME>
+      <VERSION>5.8.11-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>PostgreSQL output plugin for rsyslog</COMMENTS>
+      <FILESIZE>179</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rsyslog-pgsql</NAME>
+      <VERSION>5.8.11-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Configuration management and audit tool - agent</COMMENTS>
+      <FILESIZE>74827</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-agent</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Configuration management and audit tool - service to receive inventory data</COMMENTS>
+      <FILESIZE>32849</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-inventory-endpoint</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Configuration management and audit tool - OpenLDAP</COMMENTS>
+      <FILESIZE>5254</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-inventory-ldap</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Configuration management and audit tool - Jetty application server</COMMENTS>
+      <FILESIZE>48318</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-jetty</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Configuration management and audit tool - reports database</COMMENTS>
+      <FILESIZE>63</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-reports</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Configuration management and audit tool - root server base package</COMMENTS>
+      <FILESIZE>112</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-server-root</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Configuration management and audit tool - techniques</COMMENTS>
+      <FILESIZE>20190</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-techniques</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Configuration management and audit tool - webapp</COMMENTS>
+      <FILESIZE>64977</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>rudder-webapp</NAME>
+      <VERSION>2.8.1-wheezy0</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>terminal multiplexer with VT100/ANSI terminal emulation</COMMENTS>
+      <FILESIZE>941</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>screen</NAME>
+      <VERSION>4.1.0~20120320gitdb59704-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>The GNU sed stream editor</COMMENTS>
+      <FILESIZE>838</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>sed</NAME>
+      <VERSION>4.2.1-10</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Utilities for sensible alternative selection</COMMENTS>
+      <FILESIZE>107</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>sensible-utils</NAME>
+      <VERSION>0.0.7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>SGML infrastructure and SGML catalog file support</COMMENTS>
+      <FILESIZE>113</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>sgml-base</NAME>
+      <VERSION>1.26+nmu4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>FreeDesktop.org shared MIME database and spec</COMMENTS>
+      <FILESIZE>4087</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>shared-mime-info</NAME>
+      <VERSION>1.0-1+b1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>simple debconf wrapper for OpenSSL</COMMENTS>
+      <FILESIZE>101</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ssl-cert</NAME>
+      <VERSION>1.0.32</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>System-V-like runlevel change mechanism</COMMENTS>
+      <FILESIZE>296</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>sysv-rc</NAME>
+      <VERSION>2.88dsf-41+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>System-V-like init utilities</COMMENTS>
+      <FILESIZE>230</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>sysvinit</NAME>
+      <VERSION>2.88dsf-41+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>System-V-like utilities</COMMENTS>
+      <FILESIZE>218</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>sysvinit-utils</NAME>
+      <VERSION>2.88dsf-41+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>GNU version of the tar archiving utility</COMMENTS>
+      <FILESIZE>2461</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>tar</NAME>
+      <VERSION>1.26+dfsg-0.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>General English environment</COMMENTS>
+      <FILESIZE>21</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>task-english</NAME>
+      <VERSION>3.14.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Tool for selecting tasks for installation on Debian systems</COMMENTS>
+      <FILESIZE>714</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>tasksel</NAME>
+      <VERSION>3.14.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Official tasks used for installation of Debian systems</COMMENTS>
+      <FILESIZE>550</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>tasksel-data</NAME>
+      <VERSION>3.14.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Wietse Venema&apos;s TCP wrapper utilities</COMMENTS>
+      <FILESIZE>100</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>tcpd</NAME>
+      <VERSION>7.6.q-24</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Traces the route taken by packets over an IPv4/IPv6 network</COMMENTS>
+      <FILESIZE>165</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>traceroute</NAME>
+      <VERSION>1:2.0.18-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Vera font family derivate with additional characters</COMMENTS>
+      <FILESIZE>2804</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ttf-dejavu-core</NAME>
+      <VERSION>2.33-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>time zone and daylight-saving time data</COMMENTS>
+      <FILESIZE>1801</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>tzdata</NAME>
+      <VERSION>2013d-0wheezy1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>time zone and daylight-saving time data for use by java runtimes</COMMENTS>
+      <FILESIZE>373</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>tzdata-java</NAME>
+      <VERSION>2013d-0wheezy1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Update Configuration File: preserve user changes to config files.</COMMENTS>
+      <FILESIZE>230</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>ucf</NAME>
+      <VERSION>3.0025+nmu3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>/dev/ and hotplug management daemon</COMMENTS>
+      <FILESIZE>949</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>udev</NAME>
+      <VERSION>175-7.2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Linux USB utilities</COMMENTS>
+      <FILESIZE>681</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>usbutils</NAME>
+      <VERSION>1:005-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Miscellaneous system utilities</COMMENTS>
+      <FILESIZE>1526</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>util-linux</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Locales files for util-linux</COMMENTS>
+      <FILESIZE>4294</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>util-linux-locales</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>runtime components for the Universally Unique ID library</COMMENTS>
+      <FILESIZE>124</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>uuid-runtime</NAME>
+      <VERSION>2.20.1-5.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Vi IMproved - Common files</COMMENTS>
+      <FILESIZE>287</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>vim-common</NAME>
+      <VERSION>2:7.3.547-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Vi IMproved - enhanced vi editor - compact version</COMMENTS>
+      <FILESIZE>780</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>vim-tiny</NAME>
+      <VERSION>2:7.3.547-7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>x86 virtualization solution - guest addition module source for dkms</COMMENTS>
+      <FILESIZE>3284</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>virtualbox-guest-dkms</NAME>
+      <VERSION>4.1.18-dfsg-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>x86 virtualization solution - non-X11 guest utilities</COMMENTS>
+      <FILESIZE>1536</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>virtualbox-guest-utils</NAME>
+      <VERSION>4.1.18-dfsg-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>x86 virtualization solution - X11 guest utilities</COMMENTS>
+      <FILESIZE>4836</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>virtualbox-guest-x11</NAME>
+      <VERSION>4.1.18-dfsg-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>transitional package for virtualbox-guest-x11</COMMENTS>
+      <FILESIZE>118</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>virtualbox-ose-guest-x11</NAME>
+      <VERSION>4.1.18-dfsg-2+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>American English dictionary words for /usr/share/dict</COMMENTS>
+      <FILESIZE>990</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>wamerican</NAME>
+      <VERSION>7.1-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>retrieves files from the web</COMMENTS>
+      <FILESIZE>2170</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>wget</NAME>
+      <VERSION>1.13.4-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Displays user-friendly dialog boxes from shell scripts</COMMENTS>
+      <FILESIZE>82</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>whiptail</NAME>
+      <VERSION>0.52.14-11.1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>X Window System (X.Org) infrastructure</COMMENTS>
+      <FILESIZE>466</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>x11-common</NAME>
+      <VERSION>1:7.7+3~deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X11 XKB utilities</COMMENTS>
+      <FILESIZE>440</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>x11-xkb-utils</NAME>
+      <VERSION>7.7~1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X authentication utility</COMMENTS>
+      <FILESIZE>86</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xauth</NAME>
+      <VERSION>1:1.0.7-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>standard fonts for X</COMMENTS>
+      <FILESIZE>8280</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xfonts-base</NAME>
+      <VERSION>1:1.0.3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>Encodings for X.Org fonts</COMMENTS>
+      <FILESIZE>832</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xfonts-encodings</NAME>
+      <VERSION>1:1.0.4-1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>X Window System font utility programs</COMMENTS>
+      <FILESIZE>420</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xfonts-utils</NAME>
+      <VERSION>1:7.7~1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>X Keyboard Extension (XKB) configuration data</COMMENTS>
+      <FILESIZE>5403</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xkb-data</NAME>
+      <VERSION>2.5.1-3</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>XML infrastructure and XML catalog file support</COMMENTS>
+      <FILESIZE>188</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xml-core</NAME>
+      <VERSION>0.13+nmu2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>all</ARCH>
+      <COMMENTS>common files used by various X servers</COMMENTS>
+      <FILESIZE>1516</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xserver-common</NAME>
+      <VERSION>2:1.12.4-6+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>Xorg X server - core server</COMMENTS>
+      <FILESIZE>4125</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xserver-xorg-core</NAME>
+      <VERSION>2:1.12.4-6+deb7u1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>XZ-format compression utilities</COMMENTS>
+      <FILESIZE>474</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>xz-utils</NAME>
+      <VERSION>5.1.1alpha+20120614-2</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>i386</ARCH>
+      <COMMENTS>compression library - runtime</COMMENTS>
+      <FILESIZE>165</FILESIZE>
+      <FROM>deb</FROM>
+      <NAME>zlib1g</NAME>
+      <VERSION>1:1.2.7.dfsg-13</VERSION>
+    </SOFTWARES>
+    <SOUNDS>
+      <DESCRIPTION>rev 01</DESCRIPTION>
+      <MANUFACTURER>Intel Corporation 82801AA AC&apos;97 Audio Controller</MANUFACTURER>
+      <NAME>Multimedia audio controller</NAME>
+    </SOUNDS>
+    <STORAGES>
+      <DESCRIPTION>SATA</DESCRIPTION>
+      <FIRMWARE>10 </FIRMWARE>
+      <MANUFACTURER>VBOXHARDDISK   </MANUFACTURER>
+      <MODEL>VBOXHARDDISK   </MODEL>
+      <NAME>sda</NAME>
+      <SERIALNUMBER />  <TYPE>disk</TYPE>
+    </STORAGES>
+    <USERS>
+      <LOGIN>root</LOGIN>
+    </USERS>
+    <VERSIONCLIENT>FusionInventory-Agent_v2.2.2</VERSIONCLIENT>
+  </CONTENT>
+  <DEVICEID>%%_hostname%%-2013-12-02-16-45-27</DEVICEID>
+<UUID>%%_uuid%%</UUID>
+<USER>root</USER>
+<AGENTSNAME>
+<AGENTNAME>Community</AGENTNAME>
+</AGENTSNAME>
+<MACHINEID>3FE35B82-582E-4116-B399-196CC4C0DD54</MACHINEID>
+<CFKEY>-----BEGIN RSA PUBLIC KEY-----
+MIIBCAKCAQEAs1Qt+ALzyi3cXnAgfSuJ0wafSgCaQH5WOcS7wdqN5v187u7cxG8i
+iAwpYSoCXWC3yOGIo7BlGsodIgyvsLuuzo/cKVHGm9lSeyYApLPPV1w/4PPWBZ1p
+PnAufh98RT1OYuOELkF/0PuZrHcuVZM3l7tUovZFJZCWJ9Bi6YqtIGmegj2pym4F
+JD+nI4CweALwdwAuyasAnZYQ7JCfl+4wzKcKDhD8+lkXQm+tPFWbDTvXksNPADTb
++DUI7RHa8xXFiJHL+NzQcioIubmf7MLJRan1HEKdPljeYYaSnwdvSHfZNl2WTvCn
+WUNkzn6E50dW5vYRehF/dcu5X6dbMqS1hwIBIw==
+-----END RSA PUBLIC KEY-----</CFKEY>
+<HOSTNAME>%%_hostname%%</HOSTNAME>
+<PROCESSORS>
+	<PROCESSOR>
+		<VENDOR>GenuineIntel</VENDOR>
+		<FAMILY>6</FAMILY>
+		<MODEL>15</MODEL>
+		<NAME>Intel(R) Pentium(R) Dual  CPU  E2200  @ 2.20GHz</NAME>
+		<STEPPING>13</STEPPING>
+		<FREQUENCY>2200.245</FREQUENCY>
+	</PROCESSOR>
+</PROCESSORS>
+<POLICY_SERVER>root</POLICY_SERVER>
+
+  <QUERY>INVENTORY</QUERY>
+</REQUEST>
