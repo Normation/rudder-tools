@@ -1,0 +1,89 @@
+#!/bin/sh
+
+set -e
+
+# Pre-flight checks
+if [ -e /etc/SuSE-release ]; then
+  RSYSLOG_SERVICE=syslog
+else
+  RSYSLOG_SERVICE=rsyslog
+fi
+
+FREE_SPACE_ON_VAR=$(df -h /var | tail -1 | awk '{print $5}' | sed 's/%//')
+
+# Let's go
+echo "This script recovers a failed PostgreSQL database that has crashed due to a full disk condition."
+echo ""
+echo "WARNING: This script *WILL* wipe some reports in the main database, and backup the archived ones."
+echo "WARNING: It is advised to backup important data before running it."
+echo ""
+
+if [ "${FREE_SPACE_ON_VAR}" -gt 95 ]; then
+  echo "ERROR: Not enough free space on /var. Please leave at least 5% free space on /var to continue."
+  exit 1
+fi
+
+echo "Where do you want me to backup rudder archived reports ?: "
+
+read FOLDER
+
+echo ""
+echo "Backuping to ${FOLDER}. Press Y to continue or any key to abort."
+
+read CONFIRMATION
+
+if [ ! "${CONFIRMATION}" = "Y" ]; then
+  echo "Aborting."
+  exit 1
+fi
+
+LAST_WEEK=`date -d 'today - 1 week' '+%Y-%m-%d %H:%M:%S+0100'`
+
+echo "Stopping Rudder services..."
+service rudder-server-root stop >/dev/null 2>&1 || true
+
+# Disable Rudder
+touch /opt/rudder/etc/disable-agent
+
+echo "Restarting rsyslog with Rudder report storage disabled..."
+mv /etc/rsyslog.d/rudder.conf /root/rudder-syslog.tmp
+service ${RSYSLOG_SERVICE} restart
+
+echo "Starting PostgreSQL recovery..."
+
+# Restart postgresql
+/etc/init.d/postgresql restart
+
+# 1 - Remove any active report that has already been aggreged by the advanced reports plugin
+# 2 - Backup the archived reports
+# 3 - Wipe the archived reports table
+# 4 - Reindex all tables
+# 5 - VACUUM the database to reclaim free space
+psql -U rudder -h localhost rudder -c "DELETE FROM ruddersysevents WHERE executiontimestamp < '${LAST_WEEK}';"
+
+pg_dump -U rudder -h localhost -t archivedruddersysevents rudder | gzip > ${FOLDER}/archivedruddersysevents-`date "+%Y%m%d-%H%M%S"`.sql.gz
+
+psql -U rudder -h localhost rudder -c "TRUNCATE TABLE archivedruddersysevents;"
+
+psql -U rudder -h localhost rudder -c "REINDEX TABLE ruddersysevents;"
+psql -U rudder -h localhost rudder -c "REINDEX TABLE archivedruddersysevents;"
+
+psql -U rudder -h localhost rudder -c "VACUUM FULL;"
+
+echo "PostgreSQL recovery done. Changing archival configuration from 30/90 to 15/45..."
+
+# Change the archival / deletion policy for reports in Rudder to 15/45 instead of 30/90
+sed -i "s%\(rudder.batch.reportscleaner.archive.TTL\)=.*%\1=15%" /opt/rudder/etc/rudder-web.properties
+sed -i "s%\(rudder.batch.reportscleaner.delete.TTL\)=.*%\1=45%" /opt/rudder/etc/rudder-web.properties
+
+echo "Configuration edition done."
+
+echo "Restarting rsyslog with Rudder report storage enabled..."
+mv /root/rudder-syslog.tmp /etc/rsyslog.d/rudder.conf
+service ${RSYSLOG_SERVICE} restart
+
+echo "Starting Rudder services..."
+rm -f /opt/rudder/etc/disable-agent
+service rudder-server-root restart >/dev/null 2>&1 || true
+
+echo "All done. Rudder should be back online in a minute."
