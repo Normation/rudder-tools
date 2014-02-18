@@ -12,23 +12,23 @@
         <server host="localhost" port="80" type="tcp"></server> 
     </servers>
 	
-    <!-- Options -->
-    <options> 
-	<option name="file_server" id='hosts' value="/tmp/hosts"></option>
-    </options> 
-
-     <!-- Load leveling configuration -->
-    <load>
-        <arrivalphase phase="1" duration="30" unit="minute">
-            <users arrivalrate="10" unit="second"></users>
-        </arrivalphase>
-    </load>
-
    <!-- Target monitoring configuration -->
     <monitoring>
         <monitor host="rudder" type="snmp"/>
     </monitoring>
  
+     <!-- Load leveling configuration -->
+    <load>
+        <arrivalphase phase="1" duration="10" unit="minute">
+            <users arrivalrate="100" unit="minute"></users>
+        </arrivalphase>
+    </load>
+
+    <!-- Options -->
+    <options> 
+	<option name="file_server" id='hosts' value="/tmp/hosts"></option>
+    </options> 
+
     <!-- Tsung session configuration -->
     <sessions>
         <session name="scenario1" probability="100" type="ts_webdav">
