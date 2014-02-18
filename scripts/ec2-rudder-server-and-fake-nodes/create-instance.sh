@@ -31,6 +31,22 @@ IMAGE_ID=${UBUNTU_1210_64}
 INSTANCE_TYPE="m3.medium" # Currently 3.75 GiB of RAM + 1 x 4 GB SSD, try m3.large for more RAM/disk space
 # Configuration end
 
+TMPFILE=`mktemp`
+
+# Use a trap calling a function on error which stop the VM used.
+trap on_exit EXIT
+
+on_exit()
+{
+  EXIT_STATUS=$?
+  if [ ${EXIT_STATUS} -ne 0 ]; then
+    echo "ERROR: Creating the instance failed for some reason. Here is the output from the failed command:"
+    cat ${TMPFILE}
+  fi
+  rm -f ${TMPFILE}
+}
+
+
 # Get user data content
 USER_DATA=`./generate-mime-message ssh-keys:cloud-config install-script.sh:x-shellscript`
 
@@ -41,7 +57,14 @@ if ! euca-run-instances --version > /dev/null; then
 fi
 
 # Start a server
-INSTANCE_ID=`euca-run-instances --region ${REGION_ID} -t ${INSTANCE_TYPE} -g ${SECURITY_GROUP} --user-data "${USER_DATA}" ${IMAGE_ID} | grep INSTANCE | sed -r "s/^INSTANCE[\t ]*([a-z0-9-]+)[\t ]+.*$/\1/"`
+euca-run-instances --region ${REGION_ID} -t ${INSTANCE_TYPE} -g ${SECURITY_GROUP} --user-data "${USER_DATA}" ${IMAGE_ID} > "${TMPFILE}"
+INSTANCE_ID=`grep INSTANCE "${TMPFILE}" | sed -r "s/^INSTANCE[\t ]*([a-z0-9-]+)[\t ]+.*$/\1/"`
+
+# Weird bug
+echo "INSTANCE_ID=${INSTANCE_ID}"
+if [ "z${INSTANCE_ID}" == "z" ]; then
+  exit 2
+fi
 
 # Print out instance info
 echo "Instance started, ID is ${INSTANCE_ID}."

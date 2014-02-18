@@ -56,7 +56,6 @@ aptitude install -y htop iotop tsung libdata-uuid-perl
 
 # Get a sample inventory file and scripts to generate random hostnames/MACs
 cd /tmp
-#curl https://raw2.github.com/Normation/ldap-inventory/master/inventory-fusion/src/test/resources/fusion-report/centos-6-64-2011-09-22-12-02-27.ocs
 wget https://github.com/Normation/rudder-tools/raw/master/contrib/stress_suite/genhosts.pl
 wget https://github.com/Normation/rudder-tools/raw/master/contrib/stress_suite/inv.ocs
 wget https://github.com/Normation/rudder-tools/raw/master/contrib/stress_suite/tsung.xml
@@ -65,4 +64,5 @@ wget https://github.com/Normation/rudder-tools/raw/master/contrib/stress_suite/t
 perl /tmp/genhosts.pl > /tmp/hosts
 
 # Run tsung to load nodes into Rudder
+export HOME=/home/ubuntu
 tsung -f /tmp/tsung.xml start >> /tmp/log
