@@ -1,0 +1,5 @@
+#cloud-config
+
+# Adapt this to use your Launchpad account to import SSH keys to access the instance
+# This list adds SSH keys from the Rudder's dev team to your instance!
+#ssh_import_id: [jooooooon, charlesn, kegeruneku, fanf42, vince-mcbuche]
