@@ -10,7 +10,7 @@ use Data::Dumper;       # Builtin
 use Data::UUID;         # libdata-uuid-perl on Debian-like systems
 
 # Configuration begin
-my $count = 500;                            # Number of hosts to generate
+my $count = 1000;                           # Number of hosts to generate
 my $begin  = "172.16.0.1";                  # First IP address
 # Configuration end
 

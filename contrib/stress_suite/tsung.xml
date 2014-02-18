@@ -19,8 +19,8 @@
  
      <!-- Load leveling configuration -->
     <load>
-        <arrivalphase phase="1" duration="10" unit="minute">
-            <users arrivalrate="100" unit="minute"></users>
+        <arrivalphase phase="1" duration="5" unit="minute">
+            <users arrivalrate="200" unit="minute"></users>
         </arrivalphase>
     </load>
 
