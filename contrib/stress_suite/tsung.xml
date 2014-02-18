@@ -32,7 +32,7 @@
     <!-- Tsung session configuration -->
     <sessions>
         <session name="scenario1" probability="100" type="ts_webdav">
-		<setdynvars sourcetype="file" fileid="hosts" order="iter">
+		<setdynvars sourcetype="file" fileid="hosts" delimiter=";" order="iter">
 			<var name="id" />
 			<var name="uuid" />
 			<var name="hostname" />
