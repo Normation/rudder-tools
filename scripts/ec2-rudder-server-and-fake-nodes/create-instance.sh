@@ -52,7 +52,7 @@ USER_DATA=`./generate-mime-message ssh-keys:cloud-config install-script.sh:x-she
 
 # Make sure we have euca2ools
 if ! euca-run-instances --version > /dev/null; then
-  echo "Can't run euca-run-instances. Please install euca2ools (apt-get install euca2tools)"
+  echo "Can't run euca-run-instances. Please install euca2ools (apt-get install euca2ools)"
   exit 1
 fi
 
