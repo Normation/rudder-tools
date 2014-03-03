@@ -50,7 +50,13 @@ aptitude install -y rudder-inventory-ldap
 aptitude install -y rudder-server-root
 
 # Allow all connections to LDAP and PostgreSQL
-sed -i "s/^IP=.*$/IP=*/" /etc/default/slapd
+
+if [ -e /etc/default/rudder-slapd ]; then
+    sed -i "s/^IP=.*$/IP=*/" /etc/default/rudder-slapd
+else
+    sed -i "s/^IP=.*$/IP=*/" /etc/default/slapd
+fi
+
 echo "listen_addresses = '*'" >> /etc/postgresql/8.4/main/postgresql.conf
 echo "host    all         all         192.168.90.0/24       trust" >> /etc/postgresql/8.4/main/pg_hba.conf
 echo "host    all         all         10.94.94.0/24       trust" >> /etc/postgresql/8.4/main/pg_hba.conf
