@@ -97,7 +97,7 @@ do
         if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
 
         git merge --ff-only --log branches/rudder/2.9 >/dev/null 2>&1
-        if [ $? -ne 0 ]; then report_error ${i} "Merge 2.9 -> branches/rudder/2.10"; continue; fi
+        if [ $? -ne 0 ]; then report_error ${i} "Merge 2.9 -> 2.10"; continue; fi
 
         git push
         if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
