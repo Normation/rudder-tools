@@ -1,27 +1,35 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Name:         rudder-nodes.py 
-# Synopsis:     Get node details from Rudder api to spreadsheet
-# Requirements: xlwt Python module
+# Synopsis:     Get node details from Rudder api and export them to a spreadsheet
+# Requirements: requests and xlwt Python modules
 # Author:       Dennis Cabooter <Dennis.Cabooter@snow.nl>
 #
 
-# Imports
-import requests
+# Imports - builtins
+import os.path
 import json
-import xlwt
 import subprocess
 
-# Global vars
-api_url = "http://rudder.example.com/rudder/api"  # CHANGE THIS
+# Imports - external
+import requests
+import xlwt
+
+# Configuration - BEGIN
+api_url        = "https://rudder.example.com/rudder/api"
+api_token      = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+validate_https = False
+# Configuration - END
+
+# Global variables
 api_version = 2
-api_token = ""                                    # CHANGE THIS
-node_url = "%s/%s/nodes" % (api_url, api_version)
-headers = {"X-API-Token": api_token}  
-workbook = "/tmp/test.xls"
+node_url    = "%s/%s/nodes" % (api_url, api_version)
+headers     = {"X-API-Token": api_token}
+workbook    = "/tmp/test.xls"
 
 # Call API
-r = requests.get(node_url, headers=headers)
+r = requests.get(node_url, headers=headers, verify=validate_https)
 
 # Parse JSON
 j = json.loads(r.content)
@@ -39,7 +47,7 @@ sheet = wbk.add_sheet("Rudder nodes")
 style = xlwt.easyxf("font: bold on")
 
 # Write headers
-headers = {"Node", "Node id", "Operating system" , "Machine type"}
+headers = ["Node", "Machine type", "Operating system", "Node ID"]
 
 for index, header in enumerate(headers):
   # Indexing is zero based, row then column
@@ -52,15 +60,15 @@ row = 1
 for node in sorted(nodes):
   # Vars
   host_name = node["hostname"]
-  node_id = node["id"]
-  oper_sys = node["osName"] + " " + node["osVersion"]
   mach_type = node["machyneType"]
+  oper_sys  = node["osName"] + " " + node["osVersion"]
+  node_id   = node["id"]
 
   # Indexing is zero based, row then column
   sheet.write(row, 0, host_name)
-  sheet.write(row, 1, node_id)
+  sheet.write(row, 1, mach_type)
   sheet.write(row, 2, oper_sys)
-  sheet.write(row, 3, mach_type)
+  sheet.write(row, 3, node_id)
 
   # Increase row counter
   row += 1
