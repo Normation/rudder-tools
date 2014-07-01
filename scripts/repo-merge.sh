@@ -68,24 +68,13 @@ do
 	git clone ${CLONE_URL} >/dev/null 2>&1
 	if [ $? -ne 0 ]; then report_error ${i} "Clone"; continue; fi
 
-	# Then merge branch 2.6 with branch 2.9
-	cd ${TEMPDIR}/${i}
-	git checkout branches/rudder/2.6 >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout branches/rudder/2.9 >/dev/null 2>&1 && git pull >/dev/null 2>&1
-	if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
-
-	git merge --ff-only --log branches/rudder/2.6 >/dev/null 2>&1
-	if [ $? -ne 0 ]; then report_error ${i} "Merge 2.6 -> 2.9"; continue; fi
-
-	git push
-	if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
-
-        # Then merge branch 2.9 with branch 2.10
+        # Then merge branch 2.6 with branch 2.10
         cd ${TEMPDIR}/${i}
-        git checkout branches/rudder/2.9 >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout branches/rudder/2.10 >/dev/null 2>&1 && git pull >/dev/null 2>&1
+        git checkout branches/rudder/2.6 >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout branches/rudder/2.10 >/dev/null 2>&1 && git pull >/dev/null 2>&1
         if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
 
-        git merge --ff-only --log branches/rudder/2.9 >/dev/null 2>&1
-        if [ $? -ne 0 ]; then report_error ${i} "Merge 2.9 -> 2.10"; continue; fi
+        git merge --ff-only --log branches/rudder/2.6 >/dev/null 2>&1
+        if [ $? -ne 0 ]; then report_error ${i} "Merge 2.6 -> 2.10"; continue; fi
 
         git push
         if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
