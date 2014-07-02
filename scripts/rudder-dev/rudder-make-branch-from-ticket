@@ -70,6 +70,6 @@ print "git push <your repo name, eg origin> " + branch_name
 
 print ""
 print "Then, you should be able to initiate a Pull Request from:"
-print "https://github.com/<your github username>/<repo-name>/"
+print "https://github.com/Normation/<repo-name>/"
 
 # TODO: Automate creating the pull request and match the branch to PR against from the target version in the Redmine ticket
