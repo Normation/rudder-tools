@@ -19,7 +19,7 @@ def usage():
 
 def get_redmine_ticket(id):
   tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(id) + ".json")
-  return tickets_req.json['issue'] if tickets_req.status_code == requests.codes.ok else None
+  return tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
 
 # Check arguments
 if len(sys.argv) != 2:
