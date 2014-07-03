@@ -44,6 +44,8 @@ print "Done"
 info = {}
 info['type'] = ticket['tracker']['name']
 info['name'] = ticket['subject']
+if 'fixed_version' in ticket.keys():
+  info['version'] = ticket['fixed_version']['name']
 
 print "* Found " + info['type'] + " #" + str(ticket_id) + ": " + info['name']
 print "* URL: " + REDMINE_API_URL + "/issues/" + str(ticket_id)
@@ -54,6 +56,19 @@ if ticket['tracker'] in REDMINE_META_TRACKERS:
   print "Create an implementation ticket (or requalify this ticket if appropriate)."
   print "***** ERROR: This is a meta-ticket. Exiting."
   exit(3)
+
+# get current branch
+current_branch = os.popen("git status -sb --porcelain").read()
+current_branch = re.sub(r'^## (.*?)\n(.*\n)?$', r'\1', current_branch, flags=0)
+
+# checkout origin branch name for the patch
+if 'version' in info.keys():
+  original_version = re.sub(r'^(\d+\.\d+)\..*$', r'\1', info['version'], flags=0)
+  original_branch_name = "branches/rudder/" + original_version
+  print "* Must branch from '" + original_branch_name + "' and you are at '" + current_branch + "'"
+else:
+  print "* Target version not found, you are branching from ... '" + current_branch + "'"
+exit()
 
 # Build branch name
 branchified_ticket_name = re.sub("__+", "_", re.sub("[^" + string.ascii_letters + string.digits + "]", "_", info['name'].strip().lower())).strip("_")
