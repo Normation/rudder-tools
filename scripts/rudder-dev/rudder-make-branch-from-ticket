@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import sys
 import os
 import re
@@ -15,7 +16,7 @@ REDMINE_META_TRACKERS = [2, 3, 4]
 TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
 
 def usage():
-  print "Usage: rudder-make-branch-from-ticket <ticket number>"
+  print("Usage: rudder-make-branch-from-ticket <ticket number>")
 
 def get_redmine_ticket(id):
   tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(id) + ".json")
@@ -28,33 +29,33 @@ if len(sys.argv) != 2:
 
 ticket_id = sys.argv[1]
 
-print "Looking for Redmine ticket #" + str(ticket_id) + "... ",
+print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
 sys.stdout.flush() # to display previous unfinished line
 
 ticket = get_redmine_ticket(ticket_id)
 
 if not ticket:
-  print "Not found!"
-  print "***** ERROR: ticket not found. Exiting."
+  print("Not found!")
+  print("***** ERROR: ticket not found. Exiting.")
   exit(2)
 
-print "Done"
+print("Done")
 
 # Get ticket elements
 info = {}
 info['type'] = ticket['tracker']['name']
 info['name'] = ticket['subject']
-if 'fixed_version' in ticket.keys():
+if 'fixed_version' in list(ticket.keys()):
   info['version'] = ticket['fixed_version']['name']
 
-print "* Found " + info['type'] + " #" + str(ticket_id) + ": " + info['name']
-print "* URL: " + REDMINE_API_URL + "/issues/" + str(ticket_id)
+print("* Found " + info['type'] + " #" + str(ticket_id) + ": " + info['name'])
+print("* URL: " + REDMINE_API_URL + "/issues/" + str(ticket_id))
 
 # Check ticket type
 if ticket['tracker'] in REDMINE_META_TRACKERS:
-  print "This is a meta-ticket! You cannot make a pull request on this ticket."
-  print "Create an implementation ticket (or requalify this ticket if appropriate)."
-  print "***** ERROR: This is a meta-ticket. Exiting."
+  print("This is a meta-ticket! You cannot make a pull request on this ticket.")
+  print("Create an implementation ticket (or requalify this ticket if appropriate).")
+  print("***** ERROR: This is a meta-ticket. Exiting.")
   exit(3)
 
 # get current branch
@@ -62,29 +63,29 @@ current_branch = os.popen("git status -sb --porcelain").read()
 current_branch = re.sub(r'^## (.*?)\n(.*\n)?$', r'\1', current_branch, flags=0)
 
 # checkout origin branch name for the patch
-if 'version' in info.keys():
+if 'version' in list(info.keys()):
   original_version = re.sub(r'^(\d+\.\d+)\..*$', r'\1', info['version'], flags=0)
   original_branch_name = "branches/rudder/" + original_version
-  print "* Must branch from '" + original_branch_name + "' and you are at '" + current_branch + "'"
+  print("* Must branch from '" + original_branch_name + "' and you are at '" + current_branch + "'")
 else:
-  print "* Target version not found, you are branching from ... '" + current_branch + "'"
+  print("* Target version not found, you are branching from ... '" + current_branch + "'")
 
 # Build branch name
 branchified_ticket_name = re.sub("__+", "_", re.sub("[^" + string.ascii_letters + string.digits + "]", "_", info['name'].strip().lower())).strip("_")
 branch_name = TRACKER_NAME_MAPPING[info['type']] + "_" + str(ticket_id) + "/" + branchified_ticket_name
 
 # Create the branch
-print "Creating branch " + branch_name
+print("Creating branch " + branch_name)
 os.system("git checkout -b " + branch_name)
 
-print ""
-print "When you're ready, run something like this:"
-print "git commit -am \"Fixes #""" + str(ticket_id) + ": " + info['name'].replace("\"", "\\\"") + "\""
-print "git push <your repo name, eg origin> " + branch_name
+print("")
+print("When you're ready, run something like this:")
+print("git commit -am \"Fixes #""" + str(ticket_id) + ": " + info['name'].replace("\"", "\\\"") + "\"")
+print("git push <your repo name, eg origin> " + branch_name)
 
-print ""
-print "Then, you should be able to initiate a Pull Request from:"
-print "https://github.com/Normation/<repo-name>/"
+print("")
+print("Then, you should be able to initiate a Pull Request from:")
+print("https://github.com/Normation/<repo-name>/")
 
 # TODO: Automate creating the pull request and match the branch to PR against from the target version in the Redmine ticket
 # Like this :
