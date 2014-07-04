@@ -6,7 +6,14 @@ import re
 import string
 
 import requests # apt-get install python-requests
+try:
+  import configparser
+  config = configparser.ConfigParser()
+except ImportError:
+  import ConfigParser
+  config = ConfigParser.ConfigParser()
 
+CONFIG_FILE = "~/.rudder-dev"
 REDMINE_API_URL = "http://www.rudder-project.org/redmine"
 REDMINE_API_LIMIT = 100
 REDMINE_CLOSED_STATUSES = [5, 6, 16, 11]
@@ -14,12 +21,26 @@ REDMINE_META_TRACKERS = [2, 3, 4]
 
 TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
 
+
 def usage():
   print "Usage: rudder-make-branch-from-ticket <ticket number>"
 
 def get_redmine_ticket(id):
   tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(id) + ".json")
   return tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
+
+def get_config(item, default):
+  try:
+    return parser.get("default", item)
+  except :
+    # TODO print error and quit
+    return ""
+
+# Read configuration
+config.read(os.path.expanduser(CONFIG_FILE))
+GITHUB_USERNAME = get_config("username", "No 'username' entry in " + CONFIG_FILE)
+GITHUB_TOKEN = get_config("token", "No 'token' entry in " + CONFIG_FILE + " go to https://github.com/settings/tokens/new to make one")
+UPSTREAM_REPOSITORY = get_config("upstream", "No 'upstream' entry in " + CONFIG_FILE)
 
 # Check arguments
 if len(sys.argv) != 2:
