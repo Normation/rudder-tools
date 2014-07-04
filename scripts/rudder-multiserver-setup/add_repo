@@ -1,0 +1,37 @@
+if [ -z "$1" ] ; then
+	echo "Usage $0 <version>"
+	exit 1
+fi
+
+RUDDER_VERSION="$1"
+. detect_os.sh
+
+if [ "${OS}" = "AMI" ]; then
+  OS=RHEL
+  OSVERSION=6
+fi
+
+if [ $PM_NAME = "apt" ] ; then
+	# TODO ifneeded
+	apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 474A19E8
+
+	cat > /etc/apt/sources.list.d/rudder.list << EOF
+deb http://www.rudder-project.org/apt-${RUDDER_VERSION}/ $(lsb_release -cs) main
+EOF
+	apt-get update
+
+elif [ $PM_NAME = "yum" ] ; then
+	# TODO ifneeded
+
+	cat > /etc/yum.repos.d/rudder.repo << EOF
+[Rudder_${RUDDER_VERSION}]
+name=Rudder ${RUDDER_VERSION} Repository
+baseurl=http://www.rudder-project.org/rpm-${RUDDER_VERSION}/${OS}_${OSVERSION}/
+gpgcheck=1
+gpgkey=http://www.rudder-project.org/rpm-${RUDDER_VERSION}/${OS}_${OSVERSION}/repodata/repomd.xml.key
+EOF
+
+elif [ $PM_NAME = "zypper" ] ; then
+	zypper ar -n "Normation RPM Repositories" http://www.rudder-project.org/rpm-${RUDDER_VERSION}/${OS}_${OSVERSION}/ Normation
+	zypper up
+fi
