@@ -36,7 +36,7 @@ do
   mkdir -p ${i}
   chmod -R 1770 ${i}
   for group in apache www-data www; do
-    if getent group ${group} > /dev/null; then chown -R root:${group} /var/rudder/inventories/incoming; break; fi
+    if getent group ${group} > /dev/null; then chown -R root:${group} ${i}; break; fi
   done
 done
 
