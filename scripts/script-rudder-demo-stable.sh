@@ -67,6 +67,3 @@ cp /root/inventories/* /var/rudder/inventories/incoming/
 
 # Initialize Rudder
 /opt/rudder/bin/rudder-init.sh $SERVER_INSTANCE_HOST $DEMOSAMPLE $LDAPRESET $INITPRORESET ${ALLOWEDNETWORK[0]}
-
-# Replace cf-agent by harmless binary
-ln -sf /bin/true /var/rudder/cfengine-community/bin/cf-agent
