@@ -58,13 +58,6 @@ do
 	# Define the right clone URL according to the repo type
 	CLONE_URL="git@github.com:Normation/$i.git"
 
-	for repo in ${PROPRIETARY_REPOS}
-	do
-		if [ "z${i}" = "z${repo}" ]; then
-			CLONE_URL="ssh://git@git.normation.com:5190/$i.git"
-		fi
-	done
-
 	git clone ${CLONE_URL} >/dev/null 2>&1
 	if [ $? -ne 0 ]; then report_error ${i} "Clone"; continue; fi
 
