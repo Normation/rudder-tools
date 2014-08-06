@@ -2,50 +2,50 @@
 <!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd">
 <tsung loglevel="info" dumptraffic="protocol" version="1.0">
 
-     <!-- Client configuration (machine running Tsung) -->
-    <clients>
-        <client host="localhost" use_controller_vm="true"/>
-    </clients>
+  <!-- Client configuration (machine running Tsung) -->
+  <clients>
+    <client host="localhost" use_controller_vm="true"/>
+  </clients>
  
-    <!-- Server configuration (bench target) -->
-    <servers>
-        <server host="localhost" port="80" type="tcp"></server> 
-    </servers>
-	
+  <!-- Server configuration (bench target) -->
+  <servers>
+    <server host="localhost" port="80" type="tcp"></server> 
+  </servers>
+  
    <!-- Target monitoring configuration -->
-    <monitoring>
-        <monitor host="rudder" type="snmp"/>
-    </monitoring>
+  <monitoring>
+    <monitor host="rudder" type="snmp"/>
+  </monitoring>
  
-     <!-- Load leveling configuration -->
-    <load>
-        <arrivalphase phase="1" duration="5" unit="minute">
-            <users arrivalrate="200" unit="minute"></users>
-        </arrivalphase>
-    </load>
+   <!-- Load leveling configuration -->
+  <load>
+    <arrivalphase phase="1" duration="5" unit="minute">
+      <users arrivalrate="200" unit="minute"></users>
+    </arrivalphase>
+  </load>
 
-    <!-- Options -->
-    <options> 
-	<option name="file_server" id='hosts' value="/tmp/hosts"></option>
-    </options> 
+  <!-- Options -->
+  <options> 
+    <option name="file_server" id='hosts' value="/tmp/hosts"></option>
+  </options> 
 
-    <!-- Tsung session configuration -->
-    <sessions>
-        <session name="scenario1" probability="100" type="ts_webdav">
-		<setdynvars sourcetype="file" fileid="hosts" delimiter=";" order="iter">
-			<var name="id" />
-			<var name="uuid" />
-			<var name="hostname" />
-			<var name="ipaddr" />
-			<var name="mac" />
-			<var name="logdate" />
-		</setdynvars>
-		<request subst="true">
-			<http url="/inventories/%%_hostname%%%%_id%%-%%_uuid%%.ocs" version="1.1" contents_from_file="/tmp/inv.ocs" method='PUT'>
-				<www_authenticate userid="rudder" passwd="rudder"/>
-			</http>
-		</request>
-        </session>
-    </sessions>
+  <!-- Tsung session configuration -->
+  <sessions>
+    <session name="scenario1" probability="100" type="ts_webdav">
+      <setdynvars sourcetype="file" fileid="hosts" delimiter=";" order="iter">
+        <var name="id" />
+        <var name="uuid" />
+        <var name="hostname" />
+        <var name="ipaddr" />
+        <var name="mac" />
+        <var name="logdate" />
+      </setdynvars>
+      <request subst="true">
+        <http url="/inventories/%%_hostname%%%%_id%%-%%_uuid%%.ocs" version="1.1" contents_from_file="/tmp/inv.ocs" method='PUT'>
+          <www_authenticate userid="rudder" passwd="rudder"/>
+        </http>
+      </request>
+    </session>
+  </sessions>
 
 </tsung>

@@ -8,20 +8,20 @@ BRANCH_TO_BUILD="${1}"
 for i in ${REPOS}
 do
 
-	CLONE_URL="git@github.com:Normation/${i}.git"
+  CLONE_URL="git@github.com:Normation/${i}.git"
 
         # Clone repo
-	echo -n "Cloning ${i}..." 
+  echo -n "Cloning ${i}..." 
         git clone ${CLONE_URL} >/dev/null 2>&1
         echo " Done."
 
         cd ${i}
-	git checkout ${BRANCH_TO_BUILD} >/dev/null 2>&1
+  git checkout ${BRANCH_TO_BUILD} >/dev/null 2>&1
 
         # Building
-	echo -n "Building ${i}..." 
+  echo -n "Building ${i}..." 
         mvn clean install -Dmaven.test.skip=true >/dev/null 2>&1
-	echo " Done."
+  echo " Done."
 
-	cd ..
+  cd ..
 done

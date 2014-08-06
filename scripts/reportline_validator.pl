@@ -32,8 +32,8 @@ use warnings;
 
 if ( !defined($ARGV[0]) )
 {
-	print("You gave me nothing to examine!\n");
-	exit(1);
+  print("You gave me nothing to examine!\n");
+  exit(1);
 }
 
 # Variables init
@@ -46,28 +46,28 @@ chomp($report); # Suppress CR/LF
 if ( my ($regexp) = ( $report =~ m/@@(.*)@@(.*)@@(.*)@@(.*)@@(.*)@@(.*)@@(.*)@@(.*)\#\#(.*)@\#(.*)/ ) )
 {
 
-	my $state = $2;
-	my $crid = $3;
-	my $piid = $4; 
-	my $versionid = $5;
-	my $nodeid = $9;
+  my $state = $2;
+  my $crid = $3;
+  my $piid = $4; 
+  my $versionid = $5;
+  my $nodeid = $9;
 
-	print("\nI understand this report. Here is a summary of what I got:\n\n");
-	print("Policy: $1\nState: $state\n\nConfigurationRuleId: $3\nPolicyInstanceId: $4\nVersionId: $5\n\nComponent: $6\nKey: $7\nExecutionTimeStamp: $8\nNodeId: $9\n\nHumanReadableMessage: $10\n\n");
+  print("\nI understand this report. Here is a summary of what I got:\n\n");
+  print("Policy: $1\nState: $state\n\nConfigurationRuleId: $3\nPolicyInstanceId: $4\nVersionId: $5\n\nComponent: $6\nKey: $7\nExecutionTimeStamp: $8\nNodeId: $9\n\nHumanReadableMessage: $10\n\n");
 
-	if ( $state eq "log_trace" || $state eq "log_debug" || $state eq "log_info" || $state eq "log_warn" || $state eq "log_repaired" || $state eq "result_success" || $state eq "result_repaired" || $state eq "result_error" ) { print("."); } else { print("\nThe state part failed the validation: $state is not a valid state\n"); $validation = 1; }
+  if ( $state eq "log_trace" || $state eq "log_debug" || $state eq "log_info" || $state eq "log_warn" || $state eq "log_repaired" || $state eq "result_success" || $state eq "result_repaired" || $state eq "result_error" ) { print("."); } else { print("\nThe state part failed the validation: $state is not a valid state\n"); $validation = 1; }
 
-	if ( $crid =~ m/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ ) { print("."); } else { print("\nThe ConfigurationRuleId part failed the validation: $crid does not look like a valid UUID\n"); $validation = 1; }
+  if ( $crid =~ m/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ ) { print("."); } else { print("\nThe ConfigurationRuleId part failed the validation: $crid does not look like a valid UUID\n"); $validation = 1; }
 
-	if ( $piid =~ m/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ ) { print("."); } else { print("\nThe PolicyInstanceId part failed the validation: $piid does not look like a valid UUID\n"); $validation = 1; }
+  if ( $piid =~ m/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ ) { print("."); } else { print("\nThe PolicyInstanceId part failed the validation: $piid does not look like a valid UUID\n"); $validation = 1; }
 
-	if ( $versionid =~ m/^\d+$/ ) { print("."); } else { print("\nThe VersionId part failed the validation: $versionid does not look like a valid integer\n"); $validation = 1; }
+  if ( $versionid =~ m/^\d+$/ ) { print("."); } else { print("\nThe VersionId part failed the validation: $versionid does not look like a valid integer\n"); $validation = 1; }
 
-	if ( $nodeid =~ m/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ ) { print("."); } else { print("\nThe NodeId part failed the validation: $nodeid does not look like a valid UUID\n"); $validation = 1; }
+  if ( $nodeid =~ m/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ ) { print("."); } else { print("\nThe NodeId part failed the validation: $nodeid does not look like a valid UUID\n"); $validation = 1; }
 
-	if ( $validation eq 0 ) { print(" Validation : PASSED!\n"); } else { print(" Validation : FAILED...\n"); }
+  if ( $validation eq 0 ) { print(" Validation : PASSED!\n"); } else { print(" Validation : FAILED...\n"); }
 }
 else
 {
-	print("\nI do not understand this report !!! Please check it has the required number of rows and the required separators.\n");
+  print("\nI do not understand this report !!! Please check it has the required number of rows and the required separators.\n");
 }

@@ -25,16 +25,16 @@ import simplejson
 # - The URL to connect to Rudder
 # - The API token key
 def main(url, token):
-	# Open connection to Rudder
-	req = urllib2.Request(url, None, {'X-API-Token':token})
-	opener = urllib2.build_opener()
-	f = opener.open(req)
+  # Open connection to Rudder
+  req = urllib2.Request(url, None, {'X-API-Token':token})
+  opener = urllib2.build_opener()
+  f = opener.open(req)
 
-	# Load returned content in a JSON object
-	json = simplejson.load(f)
+  # Load returned content in a JSON object
+  json = simplejson.load(f)
 
-	# Print the prettified JSON output
-	print simplejson.dumps(json, sort_keys=True, indent=4 * ' ')
+  # Print the prettified JSON output
+  print simplejson.dumps(json, sort_keys=True, indent=4 * ' ')
 
 # Program start
 if __name__ == "__main__":
