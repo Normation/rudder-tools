@@ -22,8 +22,7 @@
 
 # Set up the repos that will have to be handled
 
-export OPENSOURCE_REPOS="rudder-techniques rudder-packages rudder rudder-plugin-helloworld rudder-parent-pom rudder-commons ldap-inventory scala-ldap cf-clerk rudder-doc"
-export PROPRIETARY_REPOS="packaging"
+export REPOS="rudder-techniques rudder-packages rudder rudder-plugin-helloworld rudder-parent-pom rudder-commons ldap-inventory scala-ldap cf-clerk rudder-doc packaging"
 export TEMPDIR=`mktemp -d`
 export FINAL_REPORT="Hello, this is the automatic repository merging script here.\n\n"
 export EMAIL_RECIPIENT="rudder@normation.com"
@@ -43,56 +42,71 @@ function report_error {
 	export ERROR_SPOTTED=1
 }
 
+# merge_repo() will merge a SRC_BRANCH_NAME into TARGET_BRANCH_NAME
+# Parameters:
+#   REPO_PATH:          Repository to be merged
+#   SRC_BRANCH_NAME:    Name of lower branch to be merged (i.e '2.10')
+#   TARGET_BRANCH_NAME: Name of higher branch to merge (i.e '2.11')
+function merge_repo {
+  # Set variables for function which will determine the complete name of branch
+  local SRC_BRANCH=branches/rudder/${SRC_BRANCH_NAME}
+  if [ "z${TARGET_BRANCH_NAME}" != "zmaster" ];then
+    local TARGET_BRANCH=branches/rudder/${TARGET_BRANCH_NAME}
+  else
+    local TARGET_BRANCH=${TARGET_BRANCH_NAME}
+  fi
+
+  echo "REPO_PATH:          ${REPO_PATH}"
+  echo "SRC_BRANCH_NAME:    ${SRC_BRANCH_NAME}"
+  echo "SRC_BRANCH:         ${SRC_BRANCH}"
+  echo "TARGET_BRANCH_NAME: ${TARGET_BRANCH_NAME}"
+  echo "TARGET_BRANCH:      ${TARGET_BRANCH}"
+
+  # Update both branches
+  cd ${REPO_PATH}
+  git checkout ${SRC_BRANCH} >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout ${TARGET_BRANCH} >/dev/null 2>&1 && git pull >/dev/null 2>&1
+  if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
+
+  # Merge with fast-forward the lower branch into the higher branch
+  git merge --ff-only --log ${SRC_BRANCH} >/dev/null 2>&1
+  if [ $? -ne 0 ]; then report_error ${i} "Merge ${SRC_BRANCH_NAME} -> ${TARGET_BRANCH_NAME}"; continue; fi
+
+  # Then push the result
+  git push
+  if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
+}
+
 echo "Automatic merge engaged at $(date +%T). Now cloning the following repos in $TEMPDIR:"
 echo ""
-echo "Open source: $OPENSOURCE_REPOS"
-echo "Proprietary: $PROPRIETARY_REPOS"
+echo "Repositories: $REPOS"
 echo ""
 echo "Here we go !!!"
 echo ""
 
-for i in $OPENSOURCE_REPOS $PROPRIETARY_REPOS
+# For each repositories, do merge of each branches
+for i in $REPOS
 do
 
 	cd $TEMPDIR
-	# Define the right clone URL according to the repo type
-	CLONE_URL="git@github.com:Normation/$i.git"
-
-	git clone ${CLONE_URL} >/dev/null 2>&1
+    # Get repository to merge
+	git clone git@github.com:Normation/$i.git >/dev/null 2>&1
 	if [ $? -ne 0 ]; then report_error ${i} "Clone"; continue; fi
+    REPO_PATH="${TEMPDIR}/${i}"
 
-        # Then merge branch 2.6 with branch 2.10
-        cd ${TEMPDIR}/${i}
-        git checkout branches/rudder/2.6 >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout branches/rudder/2.10 >/dev/null 2>&1 && git pull >/dev/null 2>&1
-        if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
-
-        git merge --ff-only --log branches/rudder/2.6 >/dev/null 2>&1
-        if [ $? -ne 0 ]; then report_error ${i} "Merge 2.6 -> 2.10"; continue; fi
-
-        git push
-        if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
+    # Then merge branch 2.6 with branch 2.10
+    SRC_BRANCH_NAME="2.6"
+    TARGET_BRANCH_NAME="2.10"
+    merge_repo
 
 	# Then merge branch 2.10 with branch 2.11
-	cd ${TEMPDIR}/${i}
-	git checkout branches/rudder/2.10 >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout branches/rudder/2.11 >/dev/null 2>&1 && git pull >/dev/null 2>&1
-	if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
-
-	git merge --ff-only --log branches/rudder/2.10 >/dev/null 2>&1
-	if [ $? -ne 0 ]; then report_error ${i} "Merge 2.10 -> 2.11"; continue; fi
-
-	git push
-	if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
+    SRC_BRANCH_NAME="2.10"
+    TARGET_BRANCH_NAME="2.11"
+    merge_repo
 
 	# Then merge branch 2.11 with branch master
-	cd ${TEMPDIR}/${i}
-	git checkout branches/rudder/2.11 >/dev/null 2>&1 && git pull >/dev/null 2>&1 && git checkout master >/dev/null 2>&1 && git pull >/dev/null 2>&1
-	if [ $? -ne 0 ]; then report_error ${i} "Checkout/Pull"; continue; fi
-
-	git merge --ff-only --log branches/rudder/2.11 >/dev/null 2>&1
-	if [ $? -ne 0 ]; then report_error ${i} "Merge 2.11 -> master"; continue; fi
-
-	git push
-	if [ $? -ne 0 ]; then report_error ${i} "Push"; continue; fi
+    SRC_BRANCH_NAME="2.11"
+    TARGET_BRANCH_NAME="master"
+    merge_repo
 
 done
 
