@@ -1,5 +1,7 @@
 #!/bin/bash
 
+RUDDER_WEB="$1"
+
 # add repository
 ./add_repo 2.11-nightly
 
@@ -29,7 +31,7 @@ sed  -i "s/JAVA_MAXPERMSIZE=.*/JAVA_MAXPERMSIZE=128/" /opt/rudder/etc/rudder-jet
 service rudder-jetty restart
 
 # Set the policy server to be server 4 (rudder-webapp)
-echo "rudder-web" > /var/rudder/cfengine-community/policy_server.dat
+echo "$RUDDER_WEB" > /var/rudder/cfengine-community/policy_server.dat
 service rudder-agent restart
 
 # If you're using a firewall, allow the following incoming connections to this server:

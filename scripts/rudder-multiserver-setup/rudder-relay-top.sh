@@ -1,5 +1,7 @@
 #!/bin/bash
 
+RUDDER_WEB="$1"
+
 # add repository
 ./add_repo 2.11-nightly
 
@@ -120,7 +122,7 @@ elif [ "$OS" = "SLES" ] ; then
 fi
 
 # Set the policy server to be server 4 (rudder-web)
-echo "rudder-web" > /var/rudder/cfengine-community/policy_server.dat
+echo "$RUDDER_WEB" > /var/rudder/cfengine-community/policy_server.dat
 service rudder-agent restart
 
 # Store the UUID of this node for later user
