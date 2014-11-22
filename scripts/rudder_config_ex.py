@@ -7,29 +7,43 @@
 import sys, json, requests
 import pprint
 import argparse
+import ldap
 
 
 nodes  = {}
 groups = {}
+group_categories = {}
 hostnames  = []
 
 #baseurl = 'https://localhost/rudder/api/latest'
 
 
-token = {}
-url = {}
-head = {}
+token    = {}
+url      = {}
+head     = {}
+ldaphost = {}
+ldapuser = {}
+ldappass = {}
 
-token['source'] = "api-key1"
+
+ldaphost['source'] = "localhost"
+ldapuser['source'] = "cn=manager,cn=rudder-configuration"
+ldappass['source'] = "XXXXXXXXXXXXXXXXXXXX"
+
+
 url['source']   = 'https://localhost/rudder/api/latest'
 url['dest']     = 'https://target/rudder/api/latest'
-token['dest']   = "api-key2"
+
+token['source'] = "SOURCE_API_KEY"
+token['dest']   = "DEST_API_KEY"
+
 head['source'] = {
      "X-API-Token"  : token['source'],
 }
 head['dest'] = {
      "X-API-Token"  : token['dest'],
 }
+
 
 def get_all_directives(server):
 	geturl = url[server] + '/directives'
@@ -101,6 +115,56 @@ def request(server, method, url, params = {}, body = {}):
 
     return resp.json()
 
+
+def connect_ldap(server):
+    try:
+        l = ldap.open(ldaphost[server])
+        l.protocol_version = ldap.VERSION3
+        # Any errors will throw an ldap.LDAPError exception 
+        # or related exception so you can ignore the result
+        l.simple_bind(ldapuser[server], ldappass[server])
+    except ldap.LDAPError, e:
+        print e
+        # handle error however you like
+    return l
+
+
+
+def search_ldap_info(server, cat_type):
+
+    categories = {
+        "techniques" : ( 
+            "techniqueCategoryId=Active Techniques,ou=Rudder,cn=rudder-configuration", 
+            "(objectClass=activeTechnique)" ),
+        "groups"     : ( 
+            "groupCategoryId=GroupRoot,ou=Rudder,cn=rudder-configuration", 
+            "(&(objectClass=nodeGroup)(isSystem=FALSE))"),
+            #"(objectClass=nodeGroup)"),
+        "rules"      : (  
+            "ruleCategoryId=rootRuleCategory,ou=Rudder,cn=rudder-configuration",
+            "(objectClass=ruleCategory)"),
+        }
+
+    l = connect_ldap("source")
+    searchScope = ldap.SCOPE_SUBTREE
+    # None heisst "alles"
+    retrieveAttributes = None
+    
+    try:
+        ldap_result_id = l.search(categories[cat_type][0], searchScope, categories[cat_type][1], retrieveAttributes)
+        result_set = []
+        while 1:
+                result_type, result_data = l.result(ldap_result_id, 0)
+                if (result_data == []):
+                        break
+                else:
+                        if result_type == ldap.RES_SEARCH_ENTRY:
+                                result_set.append(result_data)
+        return(result_set)
+    except ldap.LDAPError, e:
+        print e
+
+
 def directive_create(server, directive):
 	# @TODO: There is currently a bug in Rudder that prevents it
 	# from handling JSON in the body of a HTTP PUT request to create
@@ -135,11 +199,23 @@ def group_create(server, group):
 	# (not as a Python dict!)
         group_query_json = json.dumps(group['query'])
 	group['query'] = group_query_json
+
+        print group_create.keys()
 	
 	# @TODO: For now, we assign all groups to the root category.
 	# We need to synchronize group categories too, once the Rudder
 	# API allows this.
-	group_create['nodeGroupCategory'] = "GroupRoot"
+        cn = group_create['displayName']
+        #print group_create['nodeGroupId']
+        #print idmap_source['groups'].keys()
+        #print idmap_source['groups'][u'%s' % cn]
+	#group_create['nodeGroupCategory'] = cId
+#+	group_create['nodeGroupCategory'] = "GroupRoot"
+        
+#        print group_categories.keys()
+	group_create['nodeGroupCategory'] = group_categories[group_create['id']]
+
+        #pprint.pprint(( group_create ))
 
 	put_request(server, url[server]+'/groups', group_create)
 
@@ -174,13 +250,33 @@ def find_missing_objects(a, b):
 			missing_objects.append(a_object)
 	return missing_objects
 
+
+
+def get_group_catids(server): 
+
+     d = search_ldap_info('source', "groups")
+
+     for obj in d:
+         ids = obj[0][0]
+         dn = ids.split(",")
+         cn = obj[0][1]['cn'][0]
+         nodeGroupId = dn[0].split("=")[1]
+         groupCategoryId = dn[1].split("=")[1]
+         group_categories[nodeGroupId] = groupCategoryId
+     
+
+
 # Fetch a list of all objects from both servers
 source = {}
-dest = {}
+dest = {} 
+idmap_source = {}
 
 for type in ['directives', 'groups', 'rules']:
-	source[type] = get_all_objecttype('source', type)
-	dest[type]   = get_all_objecttype('dest', type)
+	source[type]       = get_all_objecttype('source', type)
+	dest[type]         = get_all_objecttype('dest', type)
+
+get_group_catids('source')
+
 
 # Step 1 of the sync: Sync all existing Directives, Groups, Rules from source and create/update in destination
 for type in ['directives', 'groups', 'rules']:
@@ -191,6 +287,11 @@ for type in ['directives', 'groups', 'rules']:
 	for source_object in source[type]:
 
 		# @TODO: We currently don't exclude system items, maybe we should
+
+                # attempt to do that for groups:
+
+                if type == "groups" and source_object['displayName'].startswith("All nodes managed by"):
+                    continue
 
 		if source_object in missing:
 			print type + " ID " + source_object['id'] + " does not exist in destination, creating it..."
