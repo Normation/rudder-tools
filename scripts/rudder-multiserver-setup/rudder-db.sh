@@ -8,16 +8,16 @@
 # This is copied from http://www.rudder-project.org/rudder-doc-2.11/rudder-doc.html#relay-servers
 if [ "$OS" = "RHEL" ] ; then
         $PM_COMMAND rudder-agent rudder-reports postgresql-client
-	PG_CONF=/var/lib/pgsql/data
+  PG_CONF=/var/lib/pgsql/data
 elif [ "$OS" = "UBUNTU" -o "$OS" = "DEBIAN" ] ; then
         $PM_COMMAND rudder-agent rudder-reports postgresql-client
         echo "Now fix the bug on /var/lib/dpkg/info/rudder-agent.postinst"
         echo "Then run aptitude install"
         bash -i
-	PG_CONF=/etc/postgresql/*/main
+  PG_CONF=/etc/postgresql/*/main
 elif [ "$OS" = "SLES" ] ; then
         $PM_COMMAND rudder-agent rudder-reports postgresql-client
-	PG_CONF=/var/lib/pgsql/data
+  PG_CONF=/var/lib/pgsql/data
 fi
 
 # Allow all internal connections to PostgreSQL
