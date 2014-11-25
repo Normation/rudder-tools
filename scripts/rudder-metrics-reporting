@@ -1,0 +1,245 @@
+#!/usr/bin/python
+
+from __future__ import print_function
+#####################################################################################
+# Copyright 2014 Normation SAS
+#####################################################################################
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, Version 3.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#####################################################################################
+
+RUDDER_URL = "https://feedback.rudder-project.org/stats"
+RUDDER_URL = "http://localhost/stats"
+UUID_FILE = "/opt/rudder/etc/uuid.root"
+
+
+from subprocess import Popen, PIPE
+from tempfile import NamedTemporaryFile
+from optparse import OptionParser
+import sys
+import json
+import re
+import os
+import uuid
+
+#
+# Goal:
+# -----
+# This tool allows to display some interstings stats
+# about the use of Rudder regarding database usage.
+# Display the number of directive compoenents,
+# directives, rules, nodes, reports by day,
+# postgres database size...
+#
+
+#
+# Usage:
+# ------
+# just chmod +x the script and execute it on a rudder server.
+#
+
+# Things to add (TODO)
+# - Promises generation time 
+# - Number of relays (role special)
+# - Number of directive per technique/version (tableua)
+# - Number of ncf/custom technique (50_technique + comparer liste usr/)
+# - Number of custom generic method (30_generic)
+# - exec 2.6 / copier depuis ncf 
+
+def metrics():
+  data = { }
+
+  # find uuid, or generate it
+  data["uuid"] = get_uuid()
+
+  # Metrics from postgresql
+  # -----------------------
+
+  # Number of expected reports (components*directives*nodes)
+  sql = "select sum(nbnodes* cardinality) from (select count(nodeid) as nbnodes, pkid, cardinality from expectedreports exp join expectedreportsnodes nodes on exp.nodejoinkey = nodes.nodejoinkey where enddate is null group by pkid, cardinality) as T;"
+  data["expected_report_count"] = psql(sql)
+  
+  # Number of rules
+  sql = "select count(distinct(ruleid)) from expectedreports where enddate is null;"
+  data["rule_count"] = psql(sql)
+  
+  # Number of directives
+  sql = "select count(distinct(directiveid)) from expectedreports where enddate is null;"
+  data["directive_count"] = psql(sql)
+  
+  # Number of nodes
+  sql = "select count(*) from nodes where endtime is null;"
+  data["nodes_count"] = psql(sql)
+  
+  # Number of reports for one day
+  sql = "select count(*) from ruddersysevents where executiontimestamp >= (now() - interval '1 day');"
+  data["report_count_last_day"] = psql(sql)
+  
+  # Report database size
+  sql = "select pg_size_pretty(pg_total_relation_size('ruddersysevents')) as size;"
+  data["report_db_size"] = psql(sql)
+  
+  # Number of lines in reports table
+  sql = "select reltuples from pg_class where relname = 'ruddersysevents';"
+  data["report_line_count"] = psql(sql)
+  
+  # Full database size
+  sql = "select pg_size_pretty(pg_catalog.pg_database_size('rudder'));"
+  data["db_size"] = psql(sql)
+
+  # Metrics from ldap
+  # -----------------
+
+  # Number of global parameters
+  query = "objectClass=parameter"
+  data["parameter_count"] = ldap_count(query)
+
+  # Agent schedule frequency
+  data["agent_run_interval"] = rudder_property("agent_run_interval")
+
+  # Change request activated ?
+  data["rudder_workflow_enabled"] = rudder_property("rudder_workflow_enabled")
+
+  # Audit log activated ?
+  data["audit_log_enabled"] = rudder_property("rudder_ui_changeMessage_enabled")
+
+  # OS
+  data["os_name"] = ldap_attribute("ou=Nodes,ou=Accepted Inventories,ou=Inventories,cn=rudder-configuration",
+                                   "nodeId=root",
+                                   "osName")
+  # OS version
+  data["os_version"] = ldap_attribute("ou=Nodes,ou=Accepted Inventories,ou=Inventories,cn=rudder-configuration",
+                                      "nodeId=root",
+                                      "osVersion")             
+
+  # Other metrics
+  # -------------
+
+  # archive.TTL, delete.TTL and frequency
+  try:
+    with open("/opt/rudder/etc/rudder-web.properties") as file:
+      for line in file:
+        match = re.match('rudder\.batch\.reportscleaner\.(.*?)\s*=\s*(.*)', line.strip())
+        if match is not None:
+          if match.group(1) == "archive.TTL":
+            data["reportscleaner_archive_ttl"] = match.group(2)
+          if match.group(1) == "delete.TTL":
+            data["reportscleaner_delete_ttl"] = match.group(2)
+          if match.group(1) == "frequency":
+            data["reportscleaner_frequency"] = match.group(2)
+  except Exception as e:
+    pass
+  
+  # Installation date
+  cmd="find /opt/rudder/bin/ -type f -exec stat -c \"%Z %n\" {} \; | sort -n | head -n1 | awk '{print $2}' | xargs -r stat -c \"%z\""
+  data["installation_date"] = command(["/bin/sh", "-c", cmd]).strip()
+
+  # Rudder version
+  cmd="[ -x /usr/bin/dpkg ] && dpkg-query -W rudder-server-root || rpm -q rudder-server-root"
+  data["package_version"] = command(["/bin/sh", "-c", cmd]).strip()
+
+  return json.dumps(data, indent=2)
+
+ 
+# Sub-commands
+# ------------
+
+# find existing uuid or create it
+def get_uuid():
+  try:
+    with open(UUID_FILE) as file:
+      uuid_data = file.read().strip()
+  except IOError as e:
+    with open(UUID_FILE, "w") as file:
+      uuid_data = str(uuid.uuid4())
+      file.write(uuid_data+"\n")
+  return uuid_data
+
+# Run a command and exit on error
+def command(args):
+  try:
+    process = Popen(args, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = process.communicate()
+    retcode = process.poll()
+    if options.debug is not None:
+      print(stderr, file=sys.stderr, end="")
+    if retcode:
+      return "command_error"
+    return stdout
+  except Exception as e:
+    if options.debug is not None:
+      print(e)
+    return "command_error"
+
+# Run a SQL command and exit on error
+def psql(query):
+  cmd = "psql -U rudder -h localhost -t -c"
+  return command(cmd.split() + [ query ]).strip()
+
+# Run an ldap command and count results
+def ldap_count(query):
+  cmd = "ldapsearch -x -z0 -b ou=Rudder,cn=rudder-configuration"
+  result = command(cmd.split() + [ query, 'dn' ]).strip()
+  match = re.search("\n# numEntries: (\d+)", result)
+  if match:
+    return match.group(1)
+  else:
+    return "ldap_count_error"
+
+# Run an ldap command and get an attribute value
+def ldap_attribute(base, filter, attribute):
+  cmd = "ldapsearch -x -z0"
+  result = command(cmd.split() + [ "-b", base, filter, attribute ]).strip()
+  match = re.search("\n"+attribute+": (.+)\n", result)
+  if match:
+    return match.group(1)
+  else:
+    return "ldap_attribute_error"
+
+
+# Get a rudder property from ldap
+def rudder_property(property_name):
+  return ldap_attribute("ou=Application Properties,cn=rudder-configuration", "propertyName="+property_name, "propertyValue")
+
+# Main method
+if __name__ == "__main__":
+  # TODO when we don't support python 2.6 anymore (rhel 6), use argparse instead
+  usage = "usage: %prog [-s] [-v] [-d] [-h]"
+  parser = OptionParser(usage)
+  parser.add_option("-v", "--verbose", dest="verbose", action="store_true", help="Show collected metrics")
+  parser.add_option("-d", "--debug", dest="debug", action="store_true", help="Show errors when collecting")
+  parser.add_option("-s", "--send", dest="send", action="store_true", help="Send metrics to rudder project")
+  (options, args) = parser.parse_args()
+
+  if options.verbose is None and options.send is None and options.debug is None:
+    parser.print_help()
+    exit()
+
+  data = metrics()
+  if options.verbose is not None:
+    print(data)
+
+  if options.send is not None:
+    with NamedTemporaryFile(delete=False) as file:
+      file.write(data)
+      file.close()
+    
+      # python has broken https support, flaky http libs and requests is not by default
+      # -> use curl
+      curl = ["curl", RUDDER_URL, "-f", "-d", "@"+file.name, "-H", "Content-Type: application/json;charset=utf-8"]
+      if options.debug is None:
+        curl.append("-s")
+      command(curl)
+      os.remove(file.name)
+  
