@@ -13,9 +13,9 @@ Usage:
     rudder-dev technique <version> <comment>
     rudder-dev commit [<trigraph> [<PR_message>]]
     rudder-dev rebase
+    rudder-dev merge all
     rudder-dev merge <first_branch> <next_branch>
     rudder-dev merge <first_branch>
-    rudder-dev merge all
 
 CLONE
     Call it when you want to work on a new repository.
