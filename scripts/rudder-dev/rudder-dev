@@ -515,8 +515,8 @@ def pull(version=None):
       shell("git checkout " + branch, "Checkouting " + branch)
 
   # Pull
-  branch_detail = os.popen("git status --porcelain --branch | head -n1").read().strip()
-  if re.match('## .*?\\.\\.\\.' + UPSTREAM_REPOSITORY + '/.*', branch_detail):
+  branch_detail = os.popen("git rev-parse --abbrev-ref --symbolic-full-name @{u}").read().strip()
+  if re.match(UPSTREAM_REPOSITORY + '/.*', branch_detail):
     shell("git pull --ff-only", "Pulling on " + branch_detail)
   else:
     print("Your branch is not based on the same " + UPSTREAM_REPOSITORY + " branch")
