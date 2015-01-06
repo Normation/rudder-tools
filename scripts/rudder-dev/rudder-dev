@@ -84,6 +84,7 @@ import pprint
 import webbrowser
 import locale
 import time
+import json
 from subprocess import Popen,PIPE
 
 import requests # apt-get install python-requests
@@ -177,7 +178,7 @@ def get_ticket_info(ticket_id):
   info['id'] = ticket_id
   info['type'] = ticket['tracker']['name']
   info['name'] = ticket['subject']
-  match = re.match(r'~alpha\d+', ticket['fixed_version']['name'])
+  match = re.search(r'~alpha\d+', ticket['fixed_version']['name'])
   if match:
     info['version'] = 'master'
   else:
@@ -195,13 +196,16 @@ def get_ticket_info(ticket_id):
 
 
 # Change ticket state to technical review
-def ticket_to_TR(ticket_id, user_id, pr_url, note=''):
+def ticket_to_TR(ticket_id, user_id, pr_url, message=None):
+  note = "PR " + pr_url
+  if message is not None:
+    note += "\n" + message
   if REDMINE_ROLE == 'developer':
     ticket_info = { 
             'issue': {
                 'status_id': PENDING_TR_CODE,
                 'assigned_to_id': user_id,
-                'notes': "PR " + pr_url + "\n" + note,
+                'notes': note,
                 'custom_fields': [
                     { 'id': CUSTOM_FIELD_PR, 'value': pr_url },
                 ]
@@ -210,11 +214,12 @@ def ticket_to_TR(ticket_id, user_id, pr_url, note=''):
   else:
     ticket_info = {
             'issue': {
-                'notes': "PR " + pr_url + "\n" + note,
+                'notes': note,
             }
         }
   url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
-  ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, json=ticket_info )
+  ticket_json = json.dumps(ticket_info)
+  ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 200:
     print("Ticket Update error: " + ret.reason)
     print(ret.text)
@@ -461,11 +466,10 @@ def commit(trigraph=None, message=None):
     if REDMINE_TOKEN is not None:
       if REDMINE_ROLE == 'developer':
         user = ask_username(trigraph)
-        print("Updating ticket #" + str(info['id']) + " and giving it to " + user)
       else:
         user = None
-        print("Updating ticket #" + str(info['id']))
-      ticket_to_TR(info['id'], user, line, note)
+      print("Updating ticket #" + str(info['id']))
+      ticket_to_TR(info['id'], user, line, message)
       print("Ticket updated: " + REDMINE_API_URL + "/issues/" + info['id'])
     else:
       print("You can now update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
