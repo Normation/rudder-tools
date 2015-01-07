@@ -16,6 +16,13 @@ Usage:
     rudder-dev merge all
     rudder-dev merge <first_branch> <next_branch>
     rudder-dev merge <first_branch>
+    rudder-dev <smart_arg> [<PR_message>]
+
+SMART
+    <smart_arg> is a shortcut for other commands
+    - if it is a number > 100, it is guessed to be a ticket_id -> branch
+    - if it is a x.y or master, it is guessed to be a branch -> pull
+    - if it is a caps TLA, it is guessed to be a trigraph -> commit
 
 CLONE
     Call it when you want to work on a new repository.
@@ -80,11 +87,11 @@ import sys
 import os
 import re
 import string
-import pprint
 import webbrowser
 import locale
 import time
 import json
+from pprint import pprint
 from subprocess import Popen,PIPE
 
 import requests # apt-get install python-requests
@@ -144,7 +151,7 @@ def get_ticket_info(ticket_id):
   # Find ticket in redmine
   print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
   sys.stdout.flush() # to display previous unfinished line
-  tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json")
+  tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' })
   ticket = tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
   if not ticket:
     print("Not found!")
@@ -566,6 +573,19 @@ def merge_all():
 if __name__ == "__main__":
   arguments = docopt.docopt(__doc__)
   read_configuration()
+  # smart argument
+  smart = arguments['<smart_arg>']
+  if smart:
+    if re.match(r'^\d{2,5}$', smart):
+      arguments['branch'] = True
+      arguments['<ticket_id>'] = smart
+    elif re.match(r'^\d\.\d+$|^master$', smart):
+      arguments['pull'] = True
+      arguments['<branch>'] = smart
+    elif re.match(r'^[A-Z]{3}$', smart):
+      arguments['commit'] = True
+      arguments['<trigraph>'] = smart
+  # standard arguments
   if arguments['clone']:
     clone(arguments['<repository>'])
   elif arguments['pull']:
