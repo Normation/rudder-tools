@@ -553,7 +553,7 @@ def merge(old, new):
   pull(old)
   pull(new)
   shell("git merge " + branch_from_version(old), "Merging " + old + " into " + new)
-  shell("git push " + UPSTREAM_REPOSITORY + branch_from_version(new))
+  shell("git push " + UPSTREAM_REPOSITORY + " " +branch_from_version(new))
 
 # Merge remote branch automatically guessing the next one
 def merge_to_next(old):
