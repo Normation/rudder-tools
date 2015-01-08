@@ -110,6 +110,7 @@ except ImportError:
 ALL_BRANCHES = [ "2.10", "2.11", "3.0", "master" ] 
 CONFIG_FILE = "~/.rudder-dev"
 HUB_CONFIG_FILE = "~/.config/hub"
+REDMINE_ALT_API_URL = "https://redmine.normation.com/"
 REDMINE_API_URL = "http://www.rudder-project.org/redmine"
 REDMINE_API_LIMIT = 100
 REDMINE_CLOSED_STATUSES = [5, 6, 16, 11]
@@ -306,6 +307,7 @@ def read_configuration():
 #github_cmd = hub
 ## Redmine personal access token, (create one here http://www.rudder-project.org/redmine/my/account)
 #redmine_token = 
+#redmine_alt_token = 
 ## Redmine role level (can be 'reporter' for comment only or 'developer' if you can modify a ticket content)
 #redmine_role = reporter
 """)
@@ -319,6 +321,7 @@ def read_configuration():
   OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + CONFIG_FILE)
   GITHUB_CMD = get_config("github_cmd", None)
   REDMINE_TOKEN = get_config("redmine_token", None)
+  REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
   REDMINE_ROLE = get_config("redmine_role", None)
   if REDMINE_ROLE != 'developer':
     REDMINE_ROLE = 'reporter'
@@ -576,7 +579,7 @@ if __name__ == "__main__":
   # smart argument
   smart = arguments['<smart_arg>']
   if smart:
-    if re.match(r'^\d{2,5}$', smart):
+    if re.match(r'^i?\d{2,5}$', smart):
       arguments['branch'] = True
       arguments['<ticket_id>'] = smart
     elif re.match(r'^\d\.\d+$|^master$', smart):
@@ -591,7 +594,13 @@ if __name__ == "__main__":
   elif arguments['pull']:
     pull(arguments['<branch>'])
   elif arguments['branch']:
-    branch(arguments['<ticket_id>'])
+    ticket = arguments['<ticket_id>']
+    match = re.match(r'i(\d+)', ticket)
+    if match:
+      ticket = match.group(1)
+      REDMINE_TOKEN = REDMINE_ALT_TOKEN
+      REDMINE_API_URL = REDMINE_ALT_API_URL
+    branch(ticket)
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['commit']:
