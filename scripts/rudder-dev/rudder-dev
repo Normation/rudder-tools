@@ -16,6 +16,7 @@ Usage:
     rudder-dev merge all
     rudder-dev merge <first_branch> <next_branch>
     rudder-dev merge <first_branch>
+    rudder-dev find <command>
     rudder-dev <smart_arg> [<PR_message>]
 
 SMART
@@ -80,6 +81,11 @@ MERGE (need commit rights)
     If the merge fail, please make adjustments, commit and rerun this command
     ex: rudder-dev merge 3.0 master
 
+FIND (find the first version a command works)
+    - for each branch version
+    - checkout branch
+    - run command
+    - find when it returns 0
 """
 
 from __future__ import print_function
@@ -128,7 +134,7 @@ CUSTOM_FIELD_PR = 3
 
 # Run a command in a shell like a script would do
 # And inform the user of its execution
-def shell(command, comment=None, keep_output=False):
+def shell(command, comment=None, keep_output=False, fail_exit=True):
   if comment is not None:
     print(comment)
   print(" $ " + command)
@@ -141,10 +147,14 @@ def shell(command, comment=None, keep_output=False):
     process = Popen(command, shell=True)
     retcode = process.wait()
     output = None
-  if retcode != 0:
+  if fail_exit and retcode != 0:
     print("*** COMMAND ERROR " + str(retcode))
     exit(1)
-  return output
+  if keep_output:
+    return output
+  if not fail_exit:
+    return retcode
+  return None
 
 
 # Get informations about a ticket from redmine
@@ -421,7 +431,7 @@ def branch(ticket_id):
   
   print("")
   print("# Now you can edit files")
-  print("# When you're ready, add them with git")
+  print("# When you're ready, add them with git add")
   print("# Then type:")
   print(os.path.basename(sys.argv[0]) + " commit")
   print("")
@@ -595,6 +605,7 @@ def merge(old, new):
   shell("git merge " + branch_from_version(old), "Merging " + old + " into " + new)
   shell("git push " + UPSTREAM_REPOSITORY + " " +branch_from_version(new))
 
+
 # Merge remote branch automatically guessing the next one
 def merge_to_next(old):
   new = None
@@ -607,10 +618,25 @@ def merge_to_next(old):
     exit(9)
   merge(old, new)
 
+
 # Merge all breanches to next one
 def merge_all():
   for branch in ALL_BRANCHES[:-1]:
     merge_to_next(branch)
+
+
+# Run a command on all branches
+def find(command):
+  status = {}
+  for branch in ALL_BRANCHES:
+    pull(branch)
+    status[branch] = shell(command, fail_exit=False)
+  print("---")
+  for branch in ALL_BRANCHES:
+    ok = "OK" if status[branch] == 0 else "ERR"
+    print("%6s: %3s (%d)" % (branch, ok, status[branch]))
+  print("---")
+
 
 # Main loop
 if __name__ == "__main__":
@@ -655,4 +681,6 @@ if __name__ == "__main__":
         merge_to_next(arguments['<first_branch>'])
       else:
         merge(arguments['<first_branch>'], arguments['<next_branch>'])
+  elif arguments['find']:
+    find(arguments['<command>'])
 
