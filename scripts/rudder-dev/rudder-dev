@@ -43,6 +43,7 @@ BRANCH
     Call it before working on a bug.
     - find and check the ticket from redmine
     - create a branch with the proper name in your repository
+    - set the ticket status to "in progress"
     ex: rudder-dev branch 1234
     ex: rudder-dev branch '#1234'
 
@@ -118,6 +119,7 @@ REDMINE_META_TRACKERS = [2, 3, 4]
 
 TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
 PENDING_TR_CODE = 3
+IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
 
 
@@ -239,6 +241,12 @@ def get_normation_users():
   users = requests.get(REDMINE_API_URL + "/users.json?name=normation.com", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   user_list = [ u for u in users.json()['users'] if u['mail'].endswith("normation.com") ]
   return user_list
+
+
+# get current redmine user
+def get_redmine_uid():
+  user = requests.get(REDMINE_API_URL + "/users/current.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  return user.json()['user']['id']
 
 
 # Ask for a user using its trigraph
@@ -419,6 +427,27 @@ def branch(ticket_id):
   branch_name = branch_from_ticket(info)
   shell("git checkout -b " + branch_name, "Creating branch " + branch_name)
   
+  # set ticket status to "in progress"
+  if REDMINE_TOKEN is not None:
+    if REDMINE_ROLE == 'developer':
+      print("Changing status of ticket #" + str(info['id']) + " to \"In progress\"")
+      user_id = get_redmine_uid()
+      ticket_info = {
+              'issue': {
+                  'status_id': IN_PROGRESS_CODE,
+                  'assigned_to_id': user_id,
+              }
+      }
+      url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
+      ticket_json = json.dumps(ticket_info)
+      ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+      if ret.status_code != 200:
+        print("Ticket Update error: " + ret.reason)
+        print(ret.text)
+        exit(3)
+    else:
+      print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + info['id'])
+
   print("")
   print("# Now you can edit files")
   print("# When you're ready, add them with git")
