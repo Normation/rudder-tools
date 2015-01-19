@@ -188,7 +188,7 @@ def get_ticket_info(ticket_id):
   info['id'] = ticket_id
   info['type'] = ticket['tracker']['name']
   info['name'] = ticket['subject']
-  match = re.search(r'~alpha\d+', ticket['fixed_version']['name'])
+  match = re.search(r'~alpha\d+|^Initial release$', ticket['fixed_version']['name'])
   if match:
     info['version'] = 'master'
   else:
