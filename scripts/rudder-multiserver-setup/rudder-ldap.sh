@@ -22,7 +22,8 @@ sed -i "s/^IP=.*$/IP=*/" /etc/default/rudder-slapd
 service rudder-slapd restart
 
 # Make jetty listen on all interfaces
-sed  -i "s/\(-Dfile.encoding=UTF-8\)/\1\n-Djetty.host=0.0.0.0/" /etc/default/rudder-jetty
+grep -q "-Djetty.host=0.0.0.0" /opt/rudder/etc/rudder-jetty.conf || echo 'JAVA_OPTIONS="-Djetty.host=0.0.0.0"' >> /opt/rudder/etc/rudder-jetty.conf
+
 # Change memory limits in /opt/rudder/etc/rudder-jetty.conf
 sed  -i "s/JAVA_XMX=.*/JAVA_XMX=384/" /opt/rudder/etc/rudder-jetty.conf
 sed  -i "s/JAVA_MAXPERMSIZE=.*/JAVA_MAXPERMSIZE=128/" /opt/rudder/etc/rudder-jetty.conf
