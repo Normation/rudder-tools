@@ -19,6 +19,7 @@ Usage:
     rudder-dev [-f|--force] merge <first_branch> <next_branch>
     rudder-dev [-f|--force] merge <first_branch>
     rudder-dev [-f|--force] find <command>
+    rudder-dev [-f|--force] cleanup [--closed-only] [-n|--dry-run]
     rudder-dev [-f|--force] <smart_arg> [<PR_message>]
 
 SMART
@@ -103,6 +104,15 @@ FIND (find the first version a command works)
     - checkout branch
     - run command
     - find when it returns 0
+
+CLEANUP (cleanup your repository
+    - for each branch in local repository
+    - if ticket is closed
+    - if branch's commit are pushed upstream
+    - remove local and remote branch
+    With --closed, closed tickets that have un unmerged commits are asked to the user
+    ex: git cleanup
+
 """
 
 from __future__ import print_function
@@ -130,7 +140,7 @@ except ImportError:
 
 ## GLOBAL VARIABLES
 
-ALL_BRANCHES = [ "2.10", "2.11", "3.0", "master" ] 
+ALL_BRANCHES = [ "2.10", "2.11", "3.0", "master" ]
 CONFIG_FILE = "~/.rudder-dev"
 HUB_CONFIG_FILE = "~/.config/hub"
 REDMINE_ALT_API_URL = "https://redmine.normation.com/"
@@ -143,6 +153,7 @@ TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'I
 PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
+
 
 
 
@@ -175,6 +186,28 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     return retcode
   return None
 
+
+# Get the version included in a ticket
+def get_version(ticket, error_fail=True):
+  if 'fixed_version' not in ticket:
+    if error_fail:
+      print("***** BUG: Can't extract version from #" + str(ticket['id']))
+      exit(2)
+    else:
+      return None
+  match = re.search(r'~alpha\d+|^Initial release$', ticket['fixed_version']['name'])
+  if match:
+    return 'master'
+  else:
+    match = re.match(r'\d+\.\d+', ticket['fixed_version']['name'])
+    if match:
+      return match.group(0)
+    elif error_fail:
+      print("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
+      exit(2)
+    else:
+      return None
+ 
 
 # Get informations about a ticket from redmine
 def get_ticket_info(ticket_id):
@@ -219,16 +252,7 @@ def get_ticket_info(ticket_id):
   info['id'] = ticket_id
   info['type'] = ticket['tracker']['name']
   info['name'] = ticket['subject']
-  match = re.search(r'~alpha\d+|^Initial release$', ticket['fixed_version']['name'])
-  if match:
-    info['version'] = 'master'
-  else:
-    match = re.match(r'\d+\.\d+', ticket['fixed_version']['name'])
-    if match:
-      info['version'] = match.group(0)
-    else:
-      print("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
-      exit(2)
+  info['version'] = get_version(ticket)
   if 'custom_fields' in ticket:
     for field in ticket['custom_fields']:
       if field['id'] == CUSTOM_FIELD_PR:
@@ -729,6 +753,58 @@ def find(command):
   print("---")
 
 
+# cleanup branches
+def cleanup(ask=False, dry = False):
+  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching " + UPSTREAM_REPOSITORY,)
+  pull('master') # necessary to avoid removal errors
+  branch_process = Popen("git branch --no-color --no-column", shell=True, stdout=PIPE)
+  branch_list = branch_process.stdout.read()
+  for branch in branch_list.split('\n'):
+    m = re.match(r'^\s*((?:bug|dev|int|impl|ust|UST)_(\d+)/.*)\s*$', branch)
+    if m:
+      branch=m.group(1)
+      ticket_id = m.group(2)
+      print("#" + ticket_id + ": ", end='')
+      tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' })
+      remove = False
+
+      # guess if we should remove the branch
+      if tickets_req.status_code == requests.codes.ok:
+        ticket = tickets_req.json()['issue']
+        if ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
+          print("closed ", end='')
+          version = get_version(ticket, False)
+          should_ask = False
+          if version is not None:
+            if version == 'master':
+              upstream = UPSTREAM_REPOSITORY + "/master"
+            else:
+              upstream = UPSTREAM_REPOSITORY + '/branches/rudder/' + version
+            cherry_process = Popen("git cherry " + upstream + " " + branch + " 2>/dev/null", shell=True, stdout=PIPE)
+            cherry_list = cherry_process.stdout.read()
+            if cherry_process.wait() == 0 and cherry_list == "":
+              remove = True
+            else:
+              should_ask = True
+          else:
+            should_ask = True
+          if ask and should_ask:
+            print(" but not clean, " + REDMINE_API_URL + "/issues/" + ticket_id)
+            print("Do you want to remove it ? [y/N]", end='')
+            sys.stdout.flush() # to display previous unfinished line
+            answer = sys.stdin.readline().strip().upper()
+            if answer.upper() == "Y":
+              remove = True
+      
+      if remove:
+        print("removing: " + branch)
+        if not dry:
+          shell("git branch -d " + branch, "Deleting local " + branch)
+          shell("git push " + OWN_REPOSITORY + " --delete " + branch, "Deleting remote " + branch)
+      else:
+        print("keeping: " + branch)
+
+
 # Main loop
 if __name__ == "__main__":
   arguments = docopt.docopt(__doc__)
@@ -790,4 +866,6 @@ if __name__ == "__main__":
         merge(arguments['<first_branch>'], arguments['<next_branch>'])
   elif arguments['find']:
     find(arguments['<command>'])
+  elif arguments['cleanup']:
+    cleanup(arguments['--closed-only'], arguments['-n'] or arguments['--dry-run'])
 
