@@ -6,6 +6,7 @@
 
 import sys, json, requests
 import pprint
+import ordereddict
 import argparse
 import ldap
 
@@ -13,6 +14,7 @@ import ldap
 nodes  = {}
 groups = {}
 group_categories = {}
+rule_categories = {}
 hostnames  = []
 
 #baseurl = 'https://localhost/rudder/api/latest'
@@ -28,14 +30,14 @@ ldappass = {}
 
 ldaphost['source'] = "localhost"
 ldapuser['source'] = "cn=manager,cn=rudder-configuration"
-ldappass['source'] = "XXXXXXXXXXXXXXXXXXXX"
+ldappass['source'] = "XXXXXXXXXXXX"
 
 
 url['source']   = 'https://localhost/rudder/api/latest'
-url['dest']     = 'https://target/rudder/api/latest'
+url['dest']     = 'https://XXXXXXXXXXXX/rudder/api/latest'
 
-token['source'] = "SOURCE_API_KEY"
-token['dest']   = "DEST_API_KEY"
+token['source'] = "XXXXXXXXXXXX"
+token['dest']   = "XXXXXXXXXXXX"
 
 head['source'] = {
      "X-API-Token"  : token['source'],
@@ -84,12 +86,20 @@ def request(server, method, url, params = {}, body = {}):
 	# Sanitize booleans because Python's "True" is not supported
 	# by Rudder's API which expects "true" (same for False/false)
 	for key, value in params.iteritems():
+                #print key, value
 		if isinstance(value, bool):
 			params[key] = str(value).lower()
 
 	for key, value in body.iteritems():
+                #print key, value
 		if isinstance(value, bool):
 			body[key] = str(value).lower()
+
+        #print "request:------params"
+        #print params
+        #print "request:------body"
+        #print body
+
 
         resp = requests.request(method, url=url, params=params, data=body, verify=False, headers=head[server])
     except requests.exceptions.RequestException as e:
@@ -140,9 +150,10 @@ def search_ldap_info(server, cat_type):
             "groupCategoryId=GroupRoot,ou=Rudder,cn=rudder-configuration", 
             "(&(objectClass=nodeGroup)(isSystem=FALSE))"),
             #"(objectClass=nodeGroup)"),
+        # respective Rule Categories are stored in the rule
         "rules"      : (  
-            "ruleCategoryId=rootRuleCategory,ou=Rudder,cn=rudder-configuration",
-            "(objectClass=ruleCategory)"),
+            "ou=Rules,ou=Rudder,cn=rudder-configuration",
+            "(objectClass=rule)"),
         }
 
     l = connect_ldap("source")
@@ -177,6 +188,7 @@ def directive_create(server, directive):
 	directive_create = directive
         parameters_json = json.dumps(directive['parameters'])
 	del directive_create['parameters']
+        print "directive needs to be created", directive_create
 
 	put_request(server, url[server]+'/directives', directive_create)
 	post_request(server, url[server]+'/directives/'+directive_create['id'], {'parameters': parameters_json })
@@ -191,6 +203,10 @@ def directive_delete(server, directive_id):
 def group_create(server, group):
 	# Make a local copy
 	group_create = group
+        
+        # Field names differ in read and write...
+        group_create[u'dynamic'] = group_create['isDynamic']
+	del group_create['isDynamic']
 
 	# We never include node IDs when creating a group
 	del group_create['nodeIds']
@@ -200,35 +216,71 @@ def group_create(server, group):
         group_query_json = json.dumps(group['query'])
 	group['query'] = group_query_json
 
-        print group_create.keys()
-	
-	# @TODO: For now, we assign all groups to the root category.
-	# We need to synchronize group categories too, once the Rudder
-	# API allows this.
-        cn = group_create['displayName']
-        #print group_create['nodeGroupId']
-        #print idmap_source['groups'].keys()
-        #print idmap_source['groups'][u'%s' % cn]
-	#group_create['nodeGroupCategory'] = cId
-#+	group_create['nodeGroupCategory'] = "GroupRoot"
-        
-#        print group_categories.keys()
-	group_create['nodeGroupCategory'] = group_categories[group_create['id']]
+	# @TODO
+	# We need to synchronize group categories too, since they are 
+        # referred by the groups. Right now they come from LDAP.
+        # LDAP Code can be removed  once the Rudder API allows this.
 
-        #pprint.pprint(( group_create ))
+        cn = group_create['displayName']
+	group_create[u'category'] = unicode(group_categories[group_create['id']])
 
 	put_request(server, url[server]+'/groups', group_create)
+
+
+def rule_create(server, rule):
+
+        rule_create = rule
+        parameters_json = json.dumps(rule['targets'])
+        del rule_create['targets']
+
+	# A rule can be in one or more groups. Those are stored as in the "tag" LDAP field of the group
+        # Right now I'm unsure how to set them on creation.
+        cat_id = rule_categories[rule['id']]
+
+
+        # Rudder API needs a certain order in the python dict upload.
+        # We need to use ordered dict to enforce
+        hax = ( ("id",          rule['id']),
+                (u"tag",   unicode(cat_id)),
+                ("displayName", rule['displayName']) )
+        for k, v in rule.iteritems():
+            hax += ((k, v),)
+
+        hax = ordereddict.OrderedDict(hax)
+
+        #pprint.pprint(hax)
+
+
+        #targets = rule_create['targets']
+        print "Rule:..."
+        #pprint.pprint(rule_create)
+        #if len(rule_create['targets']) > 0:
+        #    print "Includes..."
+        #    includes = rule_create['targets'][0]['include']
+        #    print "Excludes..."
+        #    excludes = rule_create['targets'][0]['exclude']
+
+
+        put_request(server, url[server]+'/rules', rule_create)
+        post_request(server, url[server]+'/rules/'+rule['id'], {'parameters': parameters_json })
+        #post_request(server, url[server]+'/rules', hax)
+
+
 
 def create_object(server, type, object):
 	if type == 'directives':
 		directive_create(server, object)
 	elif type == 'groups':
 		group_create(server, object)
+        elif type == 'rules':
+                rule_create(server, object)
 	else:
 		put_request(server, url[server]+'/'+type, object)
 
 def update_object(server, type, object):
-	print "TODO: implement update method!"
+	#print "TODO: implement update method!"
+        print "Warning: Updates are disabled"
+	return
 	#post_request(server, url[server]+'/'+type+'/'+object['id'], object)
 
 def delete_object(server, type, object_id):
@@ -264,6 +316,23 @@ def get_group_catids(server):
          groupCategoryId = dn[1].split("=")[1]
          group_categories[nodeGroupId] = groupCategoryId
      
+def get_rule_catids(server):
+
+     d = search_ldap_info('source', "rules")
+
+     for obj in d:
+         cn, data = obj[0]
+         if data[u'isSystem'][0] == u'TRUE':
+             print "skipping system rule"
+             continue
+         # {'objectClass': ['ruleCategory', 'top'], 'isSystem': ['FALSE'], 'cn': ['ABCCat'], 'ruleCategoryId': ['36015e75-c828-47da-9738-f33c2dc0ed1a']}
+         ruleName        = data['cn'][0]
+         ruleId          = data['ruleId'][0]
+         ruleCategoryId  = data['tag'][0]
+         rule_categories[ruleId] = ruleCategoryId
+
+             
+
 
 
 # Fetch a list of all objects from both servers
@@ -276,6 +345,7 @@ for type in ['directives', 'groups', 'rules']:
 	dest[type]         = get_all_objecttype('dest', type)
 
 get_group_catids('source')
+get_rule_catids('source')
 
 
 # Step 1 of the sync: Sync all existing Directives, Groups, Rules from source and create/update in destination
@@ -289,8 +359,7 @@ for type in ['directives', 'groups', 'rules']:
 		# @TODO: We currently don't exclude system items, maybe we should
 
                 # attempt to do that for groups:
-
-                if type == "groups" and source_object['displayName'].startswith("All nodes managed by"):
+                if type == "groups" and source_object[u'displayName'].startswith("All nodes managed by"):
                     continue
 
 		if source_object in missing:
@@ -311,6 +380,7 @@ for type in reversed(['directives', 'groups', 'rules']):
 
 
 sys.exit(1)
+
 for d in dest['directives']:
 	# Check if this directive exists in source
 	exists = False
