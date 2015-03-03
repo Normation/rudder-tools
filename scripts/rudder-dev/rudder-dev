@@ -636,6 +636,9 @@ def rebase(comment=None):
   info = ticket_from_branch(current_branch)
   master_branch = branch_from_version(info['version'])
 
+  # fetch before rebasing
+  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+
   # interactive rebase
   shell("git rebase -i " + UPSTREAM_REPOSITORY + "/" + master_branch, "Rebasing")
 
