@@ -825,6 +825,9 @@ if __name__ == "__main__":
     elif re.match(r'^[A-Z]{3}$', smart):
       arguments['commit'] = True
       arguments['<trigraph>'] = smart
+    else:
+      print("Error, unknown <smartarg> " + smart)
+      exit(10)
 
   # check repository and get common info
   branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
