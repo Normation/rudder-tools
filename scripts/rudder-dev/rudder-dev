@@ -440,7 +440,7 @@ def remote_repo():
 # add a message to a given pull-request on github
 def update_pr(pr_url, comment):
   # Validate PR url
-  match = re.match(r'^http.*/(\d+)$', pr_url)
+  match = re.match(r'^http.*/(\d+)(/files|/commits)?$', pr_url)
   if match:
     pr_id = match.group(1)
   else:
