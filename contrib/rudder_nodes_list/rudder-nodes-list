@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Name:         rudder-nodes.py 
+# Name:         rudder-nodes-list
 # Synopsis:     Get node details from Rudder api and export them to a spreadsheet
 # Requirements: requests and xlwt Python modules
-# Author:       Dennis Cabooter <Dennis.Cabooter@snow.nl>
+# Authors:      Dennis Cabooter <Dennis.Cabooter@snow.nl>
+#               Matthieu Cerda <matthieu.cerda@normation.com>
 #
 
 # Imports - builtins
@@ -23,19 +24,33 @@ validate_https = False
 # Configuration - END
 
 # Global variables
-api_version = 2
+api_version = "latest"
 node_url    = "%s/%s/nodes" % (api_url, api_version)
 headers     = {"X-API-Token": api_token}
-workbook    = "/tmp/test.xls"
+workbook    = "/tmp/rudder-nodes-list.xls"
 
-# Call API
-r = requests.get(node_url, headers=headers, verify=validate_https)
+# Call the API to get the complete list of nodes
+request = requests.get(node_url, headers=headers, verify=validate_https)
+nodes   = json.loads(request.content)["data"]["nodes"]
 
-# Parse JSON
-j = json.loads(r.content)
+# Output how many nodes we are working on
+print("INFO: Analyzing " + str(len(nodes)) + " nodes.")
 
-# Define nodes
-nodes = j["data"]["nodes"]
+# Prepare a dict() to store UUID -> Rudder agent version
+rudder_versions = dict()
+
+# For each node
+for node in sorted(nodes):
+
+  # Store the node inventory
+  inventory_request = requests.get(node_url + "/" + node['id'] + "?include=full", headers=headers, verify=validate_https)
+  node_inventory    = json.loads(inventory_request.content)["data"]["nodes"][0]
+
+  # For each software installed on the node
+  for software in node_inventory["software"]:
+    if software['name'] == "rudder-agent":
+      # The software is rudder-agent, store the version
+      rudder_versions[node['id']] = software['version']
 
 # Initialize Workbook object 
 wbk = xlwt.Workbook()
@@ -47,7 +62,7 @@ sheet = wbk.add_sheet("Rudder nodes")
 style = xlwt.easyxf("font: bold on")
 
 # Write headers
-headers = ["Node", "Machine type", "Operating system", "Node ID"]
+headers = ["Node", "Machine type", "Operating system", "Agent version", "Node ID"]
 
 for index, header in enumerate(headers):
   # Indexing is zero based, row then column
@@ -59,16 +74,18 @@ row = 1
 # Loop nodes
 for node in sorted(nodes):
   # Vars
-  host_name = node["hostname"]
-  mach_type = node["machyneType"]
-  oper_sys  = node["osName"] + " " + node["osVersion"]
-  node_id   = node["id"]
+  node_id        = node["id"]
+  host_name      = node["hostname"]
+  mach_type      = node["machineType"]
+  oper_sys       = node["osName"] + " " + node["osVersion"]
+  rudder_version = rudder_versions[node_id]
 
   # Indexing is zero based, row then column
   sheet.write(row, 0, host_name)
   sheet.write(row, 1, mach_type)
   sheet.write(row, 2, oper_sys)
-  sheet.write(row, 3, node_id)
+  sheet.write(row, 3, rudder_version)
+  sheet.write(row, 4, node_id)
 
   # Increase row counter
   row += 1
@@ -77,4 +94,7 @@ for node in sorted(nodes):
 wbk.save(workbook)
 
 # Execute libreoffice
-subprocess.call(["libreoffice", "--minimized", workbook])
+try:
+  subprocess.call(["libreoffice", "--minimized", workbook])
+except OSError:
+  print("Unable to find LibreOffice. please open " + workbook + " to get the results.")
