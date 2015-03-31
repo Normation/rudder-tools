@@ -195,7 +195,7 @@ def get_version(ticket, error_fail=True):
       exit(2)
     else:
       return None
-  match = re.search(r'~alpha\d+|^Initial release$', ticket['fixed_version']['name'])
+  match = re.search(r'^master$|~alpha\d+|^Initial release$', ticket['fixed_version']['name'])
   if match:
     return 'master'
   else:
@@ -497,7 +497,8 @@ def insert_line(filename, regex, text):
 ###
 
 # Create a branch from a ticket id
-def branch(ticket_id):
+def create_branch(ticket_id):
+  global current_branch
   if ticket_id.startswith('#'):
     ticket_id = ticket_id[1:]
   # get ticket info
@@ -512,6 +513,7 @@ def branch(ticket_id):
   # Create the branch
   branch_name = branch_from_ticket(info)
   shell("git checkout -b " + branch_name, "Creating branch " + branch_name)
+  current_branch = branch_name
   
   # set ticket status to "in progress"
   if REDMINE_TOKEN is not None:
@@ -674,6 +676,7 @@ def rebase(comment=None):
 
 # ckeckout version, pull
 def pull(version=None):
+  global current_branch
   if version is not None:
     if version == 'master':
       branch = version
@@ -681,8 +684,8 @@ def pull(version=None):
       branch = 'branches/rudder/' + version
 
     # branch if needed
-    banch_status = os.popen("git branch --list " + branch).read().strip()
-    if banch_status == "":
+    branch_status = os.popen("git branch --list " + branch).read().strip()
+    if branch_status == "":
       shell("git fetch " + UPSTREAM_REPOSITORY, "Local branch doesn't exist, fetching from " + UPSTREAM_REPOSITORY)
       remote_branch_status = os.popen("git branch --list --remote " + UPSTREAM_REPOSITORY + "/" + branch)
       if remote_branch_status == "":
@@ -693,6 +696,7 @@ def pull(version=None):
     # checkout if needed
     if branch != current_branch:
       shell("git checkout " + branch, "Checkouting " + branch)
+    current_branch = branch
 
   # Pull
   branch_detail = os.popen("git rev-parse --abbrev-ref --symbolic-full-name @{u}").read().strip()
@@ -851,7 +855,7 @@ if __name__ == "__main__":
       ticket = match.group(1)
       REDMINE_TOKEN = REDMINE_ALT_TOKEN
       REDMINE_API_URL = REDMINE_ALT_API_URL
-    branch(ticket)
+    create_branch(ticket)
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['wip']:
