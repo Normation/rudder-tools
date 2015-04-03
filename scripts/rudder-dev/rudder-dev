@@ -19,7 +19,7 @@ Usage:
     rudder-dev [-f|--force] merge <first_branch> <next_branch>
     rudder-dev [-f|--force] merge <first_branch>
     rudder-dev [-f|--force] find <command>
-    rudder-dev [-f|--force] cleanup [--closed-only] [-n|--dry-run]
+    rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] <smart_arg> [<PR_message>]
 
 SMART
@@ -104,13 +104,15 @@ FIND (find the first version a command works)
     - checkout branch
     - run command
     - find when it returns 0
+    ex: rudder-dev find 'grep bugfix path/file.cf'
 
 CLEANUP (cleanup your repository
     - for each branch in local repository
     - if ticket is closed
     - if branch's commit are pushed upstream
     - remove local and remote branch
-    With --closed, closed tickets that have un unmerged commits are asked to the user
+    With --more, include more branch that are not strictly clean, such as 
+      closed tickets that have un unmerged commits are asked to the user
     ex: git cleanup
 
 """
@@ -761,7 +763,7 @@ def find(command):
 
 
 # cleanup branches
-def cleanup(ask=False, dry = False):
+def cleanup(more=False, dry=False):
   shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching " + UPSTREAM_REPOSITORY,)
   pull('master') # necessary to avoid removal errors
   branch_process = Popen("git branch --no-color --no-column", shell=True, stdout=PIPE)
@@ -778,8 +780,9 @@ def cleanup(ask=False, dry = False):
       # guess if we should remove the branch
       if tickets_req.status_code == requests.codes.ok:
         ticket = tickets_req.json()['issue']
+        # The ticket is closed -> probably
         if ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
-          print("closed ", end='')
+          print("ticket closed, ", end='')
           version = get_version(ticket, False)
           should_ask = False
           if version is not None:
@@ -790,18 +793,25 @@ def cleanup(ask=False, dry = False):
             cherry_process = Popen("git cherry " + upstream + " " + branch + " 2>/dev/null", shell=True, stdout=PIPE)
             cherry_list = cherry_process.stdout.read()
             if cherry_process.wait() == 0 and cherry_list == "":
+              # Everything is merged -> YES
+              print("commits merged upstream, ", end='')
               remove = True
             else:
+              # Some commits mays not have been merged -> Ask the user
+              print("some commits not merged upstream, ", end='')
               should_ask = True
           else:
+            # Can't find upstream branch -> ask the user
+            print("can't check upstream branch from ticket, ", end='')
             should_ask = True
-          if ask and should_ask:
-            print(" but not clean, " + REDMINE_API_URL + "/issues/" + ticket_id)
+          if more and should_ask:
+            print(REDMINE_API_URL + "/issues/" + ticket_id)
             print("Do you want to remove it ? [y/N]", end='')
             sys.stdout.flush() # to display previous unfinished line
             answer = sys.stdin.readline().strip().upper()
             if answer.upper() == "Y":
               remove = True
+        # The ticket is open -> NO
       
       if remove:
         print("removing: " + branch)
@@ -877,5 +887,5 @@ if __name__ == "__main__":
   elif arguments['find']:
     find(arguments['<command>'])
   elif arguments['cleanup']:
-    cleanup(arguments['--closed-only'], arguments['-n'] or arguments['--dry-run'])
+    cleanup(arguments['--more'], arguments['-n'] or arguments['--dry-run'])
 
