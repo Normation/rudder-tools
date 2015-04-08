@@ -216,7 +216,8 @@ def get_ticket_info(ticket_id):
   # Find ticket in redmine
   print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
   sys.stdout.flush() # to display previous unfinished line
-  tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' })
+  tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json?include=journals", 
+                             headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' })
   ticket = tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
   if not ticket:
     print("Not found!")
@@ -259,6 +260,15 @@ def get_ticket_info(ticket_id):
     for field in ticket['custom_fields']:
       if field['id'] == CUSTOM_FIELD_PR and 'value' in field:
         info['pr'] = field['value']
+
+  # Get ticket's last assignment
+  if 'journals' in ticket:
+    for journal in ticket['journals']:
+      if 'details' in journal:
+        for detail in journal['details']:
+          if detail['name'] == 'assigned_to_id':
+            info['last_assignee'] = detail['old_value']
+
   return info
 
 
@@ -654,6 +664,10 @@ def amend(comment=None):
   # commit over last commit and push
   commit_push(current_branch, '', True)
 
+  # reassign ticket
+  if 'last_assignee' in info:
+    ticket_to_TR(info['id'], info['last_assignee'], info['pr'])
+
   # Message on PR
   update_pr(info['pr'], comment)
   print("Done, you can see the PR here: " + info['pr']) 
@@ -672,6 +686,12 @@ def rebase(comment=None):
 
   # if OK: continue
   shell("git push --force " + OWN_REPOSITORY + " " + branch)
+
+  # reassign ticket
+  if 'last_assignee' in info:
+    ticket_to_TR(info['id'], info['last_assignee'], info['pr'])
+
+  # Message on PR
   update_pr(info['pr'], comment)
   print("Done, you can see the PR here: " + info['pr']) 
 
