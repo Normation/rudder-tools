@@ -257,7 +257,7 @@ def get_ticket_info(ticket_id):
   info['version'] = get_version(ticket)
   if 'custom_fields' in ticket:
     for field in ticket['custom_fields']:
-      if field['id'] == CUSTOM_FIELD_PR:
+      if field['id'] == CUSTOM_FIELD_PR and 'value' in field:
         info['pr'] = field['value']
   return info
 
