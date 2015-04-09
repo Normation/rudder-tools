@@ -149,9 +149,11 @@ REDMINE_ALT_API_URL = "https://redmine.normation.com/"
 REDMINE_API_URL = "https://www.rudder-project.org/redmine"
 REDMINE_API_LIMIT = 100
 REDMINE_CLOSED_STATUSES = [5, 6, 16, 11]
-REDMINE_META_TRACKERS = [2, 3, 4]
+REDMINE_META_TRACKERS = [3]
 
-TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
+# Keeping old version for reference
+#TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
+TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch' }
 PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
@@ -229,9 +231,8 @@ def get_ticket_info(ticket_id):
   
   # Check ticket type
   if ticket['tracker'] in REDMINE_META_TRACKERS:
-    print("This is a meta-ticket! You cannot make a pull request on this ticket.")
-    print("Create an implementation ticket (or requalify this ticket if appropriate).")
-    print("***** ERROR: This is a meta-ticket. Exiting.")
+    print("This is a quetsion ticket! You cannot make a pull request on this ticket.")
+    print("***** ERROR: This is a question ticket. Exiting.")
     if not force:
       exit(2)
 
