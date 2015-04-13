@@ -262,39 +262,50 @@ def get_ticket_info(ticket_id):
       if field['id'] == CUSTOM_FIELD_PR and 'value' in field:
         info['pr'] = field['value']
 
-  # Get ticket's last assignment
+  # Get ticket's last assignment besides me
+  my_id = get_redmine_uid()
   if 'journals' in ticket:
     for journal in ticket['journals']:
       if 'details' in journal:
         for detail in journal['details']:
-          if detail['name'] == 'assigned_to_id':
-            info['last_assignee'] = detail['old_value']
+          if detail['name'] == 'assigned_to_id' and 'old_value' in detail:
+            if int(detail['old_value']) != my_id:
+              info['last_assignee'] = int(detail['old_value'])
 
   return info
 
 
 # Change ticket state to technical review
-def ticket_to_TR(ticket_id, user_id, pr_url, message=None):
-  note = "PR " + pr_url
+def ticket_to_TR(ticket_id, user_id, pr_url=None, message=None):
+  note = None
+  if pr_url is not None:
+    note = "PR " + pr_url
   if message is not None:
-    note += "\n" + message
+    if note is None:
+      note = message
+    else:
+      note += "\n" + message
   if REDMINE_ROLE == 'developer':
     ticket_info = { 
             'issue': {
                 'status_id': PENDING_TR_CODE,
                 'assigned_to_id': user_id,
-                'notes': note,
-                'custom_fields': [
-                    { 'id': CUSTOM_FIELD_PR, 'value': pr_url },
-                ]
             }
         }
+    if note is not None:
+      ticket_info['issue']['notes'] = note
+    if pr_url is not None:
+      ticket_info['issue']['custom_fields'] = [ { 'id': CUSTOM_FIELD_PR, 'value': pr_url } ]
   else:
-    ticket_info = {
-            'issue': {
+    if note is None:
+      return
+    else:
+      ticket_info = {
+              'issue': {
                 'notes': note,
-            }
-        }
+              }
+          }
+  
   url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
   ticket_json = json.dumps(ticket_info)
   ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
@@ -667,7 +678,7 @@ def amend(comment=None):
 
   # reassign ticket
   if 'last_assignee' in info:
-    ticket_to_TR(info['id'], info['last_assignee'], info['pr'])
+    ticket_to_TR(info['id'], info['last_assignee'])
 
   # Message on PR
   update_pr(info['pr'], comment)
@@ -690,7 +701,7 @@ def rebase(comment=None):
 
   # reassign ticket
   if 'last_assignee' in info:
-    ticket_to_TR(info['id'], info['last_assignee'], info['pr'])
+    ticket_to_TR(info['id'], info['last_assignee'])
 
   # Message on PR
   update_pr(info['pr'], comment)
