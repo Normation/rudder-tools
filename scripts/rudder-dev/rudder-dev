@@ -142,7 +142,7 @@ except ImportError:
 
 ## GLOBAL VARIABLES
 
-ALL_BRANCHES = [ "2.10", "2.11", "3.0", "master" ]
+ALL_BRANCHES = [ "2.10", "2.11", "3.0", "3.1", "master" ]
 CONFIG_FILE = "~/.rudder-dev"
 HUB_CONFIG_FILE = "~/.config/hub"
 REDMINE_ALT_API_URL = "https://redmine.normation.com/"
@@ -157,7 +157,6 @@ TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arc
 PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
-
 
 
 
