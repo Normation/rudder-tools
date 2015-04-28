@@ -15,6 +15,7 @@ Usage:
     rudder-dev [-f|--force] commit [<trigraph> [<PR_comment>]]
     rudder-dev [-f|--force] amend [<PR_comment>]
     rudder-dev [-f|--force] rebase [<PR_comment>]
+    rudder-dev [-f|--force] retarget
     rudder-dev [-f|--force] merge all
     rudder-dev [-f|--force] merge <first_branch> <next_branch>
     rudder-dev [-f|--force] merge <first_branch>
@@ -89,6 +90,14 @@ REBASE
     - add a comment to the PR to signal the change
     ex: rudder-dev rebase "@reviewer pr updated"
 
+RETARGET
+    - if the ticket's version has changed, continue
+    - rebase to ticket's NRM branch
+    - close current PR
+    - create new PR
+    - update ticket
+    ex: rudder-dev retarget
+
 MERGE (needs commit rights)
     Call it when you want to merge manually.
     "merge all" and "merge <first_branch>" are only valid within Rudder versioned repositories
@@ -157,6 +166,7 @@ TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arc
 PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
+
 
 
 
@@ -275,7 +285,8 @@ def get_ticket_info(ticket_id):
 
 
 # Change ticket state to technical review
-def ticket_to_TR(ticket_id, user_id, pr_url=None, message=None):
+def ticket_to_TR(ticket_id, user_id=None, pr_url=None, message=None):
+  # Create note content
   note = None
   if pr_url is not None:
     note = "PR " + pr_url
@@ -284,18 +295,23 @@ def ticket_to_TR(ticket_id, user_id, pr_url=None, message=None):
       note = message
     else:
       note += "\n" + message
+
   if REDMINE_ROLE == 'developer':
+    # fill ticket data with developer available content
     ticket_info = { 
             'issue': {
                 'status_id': PENDING_TR_CODE,
-                'assigned_to_id': user_id,
             }
         }
+    if user_id is not None:
+      ticket_info['issue']['assigned_to_id'] = user_id
     if note is not None:
       ticket_info['issue']['notes'] = note
     if pr_url is not None:
       ticket_info['issue']['custom_fields'] = [ { 'id': CUSTOM_FIELD_PR, 'value': pr_url } ]
+
   else:
+    # just append the note to ticket
     if note is None:
       return
     else:
@@ -305,6 +321,7 @@ def ticket_to_TR(ticket_id, user_id, pr_url=None, message=None):
               }
           }
   
+  # call the api
   url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
   ticket_json = json.dumps(ticket_info)
   ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
@@ -460,8 +477,8 @@ def remote_repo():
   exit(10)
 
 
-# add a message to a given pull-request on github
-def update_pr(pr_url, comment):
+# query github
+def github_request(pr_url, api_url, post_data=None):
   # Validate PR url
   match = re.match(r'^http.*/(\d+)(/files|/commits)?$', pr_url)
   if match:
@@ -470,17 +487,74 @@ def update_pr(pr_url, comment):
     print("Can't find pull-request ID, you should warn the reviewer that you updated the pull-request")
     return False
 
+  # get connection info
   token = get_hub_token()
   repo = remote_repo()
+  url = api_url.format(repo=repo, pr_id=pr_id)
+
+  # make query
+  if post_data is not None:
+    ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data )
+  else:
+    ret = requests.get(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' })
+
+  # process output
+  if ret.status_code < 200 or ret.status_code >= 300:
+    print("Github query error " + ret.reason)
+    print(ret.text)
+    if not force:
+      exit(12)
+
+  # return GET result
+  if post_data is None:
+    return ret.json()
+ 
+
+# create a new PR
+def create_pr(master_branch, ticket_id, title, message):
+  if GITHUB_CMD is not None:
+    hub_cmd = GITHUB_CMD + " pull-request -F - -b Normation:" + master_branch + " << EOF\n"
+    hub_cmd += "Fixes #" + str(ticket_id) + ": " + title + "\n\n"
+    hub_cmd += "http://www.rudder-project.org/redmine/issues/" + str(ticket_id)
+    if message is not None:
+      hub_cmd += "\n\n" + message
+    hub_cmd += "\nEOF\n"
+    return shell(hub_cmd, "Creating PR ... ", True).strip()
+  else:
+    print("You can now create a pull request from here https://github.com/Normation/<repo-name>/")
+    print("And then update the ticket here " + REDMINE_API_URL + "/issues/" + ticket_id)
+    return None
+
+
+# add a message to a given pull-request on github
+def update_pr(pr_url, comment):
   message = "PR updated"
   if comment is not None:
     message += "\n" + comment
   issue = '{ "body": "' + message + '" }'
-  url = "https://api.github.com/repos/Normation/" + repo + "/issues/" + str(pr_id) + "/comments"
-  ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=issue )
-  if ret.status_code < 200 or ret.status_code >= 300:
-    pprint(ret)
+  url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
+  github_request(pr_url, url, issue)
 
+
+# close a given pull-request on github
+def close_pr(pr_url, comment):
+  # Add comment on the closing reason
+  issue = '{ "body": "' + comment + '" }'
+  url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
+  github_request(pr_url, url, issue)
+  
+  # close the PR
+  issue = '{ "state": "closed" }'
+  url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
+  github_request(pr_url, url, issue)
+
+
+# get PR upstream branch
+def get_pr_upstream(pr_url):
+  url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
+  pr = github_request(pr_url, url)
+  return pr['base']['ref']
+  
 
 # Commit and push, if needed squash WIP and force push
 def commit_push(branch, message, force_amend=False):
@@ -643,29 +717,20 @@ def commit(trigraph=None, message=None):
   # commit and push
   commit_push(current_branch, "Fixes #" + str(info['id']) + ": " + info['name'].replace("\"", "\\\""))
 
-  if GITHUB_CMD is not None:
-    hub_cmd = GITHUB_CMD + " pull-request -F - -b Normation:" + master_branch + " << EOF\n"
-    hub_cmd += "Fixes #" + str(info['id']) + ": " + info['name'].replace("\"", "\\\"") + "\n\n"
-    hub_cmd += "http://www.rudder-project.org/redmine/issues/" + str(info['id']) 
-    if message is not None:
-      hub_cmd += "\n\n" + message
-    hub_cmd += "\nEOF\n"
-    line = shell(hub_cmd, "Creating PR ... ", True).strip()
+  # create PR
+  pr_url = create_pr(master_branch, info['id'], info['name'].replace("\"", "\\\""), message)
 
-    if REDMINE_TOKEN is not None:
-      if REDMINE_ROLE == 'developer':
-        user = ask_username(trigraph)
-      else:
-        user = None
-      print("Updating ticket #" + str(info['id']))
-      ticket_to_TR(info['id'], user, line, message)
-      print("Ticket updated: " + REDMINE_API_URL + "/issues/" + info['id'])
+  # update ticket
+  if REDMINE_TOKEN is not None and pr_url is not None:
+    if REDMINE_ROLE == 'developer':
+      user = ask_username(trigraph)
     else:
-      print("You can now update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
-
+      user = None
+    print("Updating ticket #" + str(info['id']))
+    ticket_to_TR(info['id'], user, pr_url, message)
+    print("Ticket updated: " + REDMINE_API_URL + "/issues/" + info['id'])
   else:
-    print("You can now create a pull request from here https://github.com/Normation/<repo-name>/")
-    print("And then update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
+    print("You can now update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
 
 
 # amend commit, push -f, comment PR
@@ -696,7 +761,7 @@ def rebase(comment=None):
   shell("git rebase -i " + UPSTREAM_REPOSITORY + "/" + master_branch, "Rebasing")
 
   # if OK: continue
-  shell("git push --force " + OWN_REPOSITORY + " " + branch)
+  shell("git push --force " + OWN_REPOSITORY + " " + current_branch)
 
   # reassign ticket
   if 'last_assignee' in info:
@@ -705,6 +770,38 @@ def rebase(comment=None):
   # Message on PR
   update_pr(info['pr'], comment)
   print("Done, you can see the PR here: " + info['pr']) 
+
+
+# close PR, rebase, push -f, create PR, update ticket
+def retarget():
+  info = ticket_from_branch(current_branch)
+  ticket_branch = branch_from_version(info['version'])
+
+  upstream_branch = get_pr_upstream(info['pr'])
+  if ticket_branch == upstream_branch:
+    print("Ticket branch and PR branch match (" + upstream_branch + "), no need to retarget!")
+    return
+
+  # fetch before rebasing
+  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+
+  # interactive rebase
+  shell("git rebase -i " + UPSTREAM_REPOSITORY + "/" + ticket_branch, "Rebasing")
+
+  # if OK: continue
+  shell("git push --force " + OWN_REPOSITORY + " " + current_branch)
+
+  # create new PR 
+  pr_url = create_pr(ticket_branch, info['id'], info['name'].replace("\"", "\\\""), "Replacing previous PR: " +  info['pr'])
+
+  # close old PR
+  close_pr(info['pr'], "PR replaced by " + pr_url)
+
+  # update ticket
+  user = None
+  if 'last_assignee' in info:
+    user = info['last_assignee']
+  ticket_to_TR(info['id'], user, pr_url)
 
 
 # ckeckout version, pull
@@ -907,6 +1004,8 @@ if __name__ == "__main__":
     amend(arguments['<PR_comment>'])
   elif arguments['rebase']:
     rebase(arguments['<PR_comment>'])
+  elif arguments['retarget']:
+    retarget()
   elif arguments['merge']:
     if arguments['all']:
       merge_all()
