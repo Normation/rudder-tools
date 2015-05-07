@@ -46,6 +46,7 @@ PULL
 
 BRANCH
     Call it before working on a bug.
+    - if the branch already exist, just checkout it
     - find and check the ticket from redmine
     - create a branch with the proper name in your repository
     - set the ticket status to "in progress"
@@ -395,6 +396,16 @@ def branch_from_ticket(info):
   return branch_name
 
 
+# Find an existing branch for a ticket id
+def branch_from_ticket_id(ticket_id):
+  for line in os.popen("git branch --list"):
+    match = re.search(r'\s(\w+_' + str(ticket_id) + r'/.*?)\n', line)
+    if match:
+      return match.group(1)
+  return None
+
+
+# Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration():
   global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_CMD, REDMINE_TOKEN, REDMINE_ROLE
 
@@ -598,6 +609,12 @@ def create_branch(ticket_id):
   global current_branch
   if ticket_id.startswith('#'):
     ticket_id = ticket_id[1:]
+
+  existing_branch = branch_from_ticket_id(ticket_id)
+  if existing_branch is not None:
+    shell("git checkout " + existing_branch, "Found existing branch, checkouting " + existing_branch)
+    return
+
   # get ticket info
   info = get_ticket_info(ticket_id)
   print("* Found " + info['type'] + " #" + str(info['id']) + ": " + info['name'])
