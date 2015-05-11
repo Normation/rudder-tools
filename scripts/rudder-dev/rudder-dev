@@ -15,7 +15,7 @@ Usage:
     rudder-dev [-f|--force] commit [<trigraph> [<PR_comment>]]
     rudder-dev [-f|--force] amend [<PR_comment>]
     rudder-dev [-f|--force] rebase [<PR_comment>]
-    rudder-dev [-f|--force] retarget
+    rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] merge all
     rudder-dev [-f|--force] merge <first_branch> <next_branch>
     rudder-dev [-f|--force] merge <first_branch>
@@ -92,6 +92,7 @@ REBASE
     ex: rudder-dev rebase "@reviewer pr updated"
 
 RETARGET
+    - if a version is provided, update the ticket with it
     - if the ticket's version has changed, continue
     - rebase to ticket's NRM branch
     - close current PR
@@ -267,6 +268,7 @@ def get_ticket_info(ticket_id):
   info['type'] = ticket['tracker']['name']
   info['name'] = ticket['subject']
   info['version'] = get_version(ticket)
+  info['project_id'] = ticket['project']['id']
   if 'custom_fields' in ticket:
     for field in ticket['custom_fields']:
       if field['id'] == CUSTOM_FIELD_PR and 'value' in field:
@@ -283,6 +285,32 @@ def get_ticket_info(ticket_id):
               info['last_assignee'] = int(detail['old_value'])
 
   return info
+
+
+# Change a ticket version to the closest version available
+def update_ticket_version(info, version):
+  if REDMINE_ROLE != 'developer':
+    print("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
+    exit(13)
+
+  # list all versions
+  versions = requests.get(REDMINE_API_URL + "/projects/" + str(info['project_id']) + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  # keep versions that match and that are still open
+  valid_versions = [ v for v in versions.json()['versions'] if v['status'] == 'open' and v['name'].startswith(version) ]
+  # there should only only, but in doubt keep the last one
+  final_version = valid_versions[-1]
+
+  # set the version
+  ticket_info = { 'issue': { 'fixed_version_id': final_version['id'] } }
+  url = REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
+  ticket_json = json.dumps(ticket_info)
+  ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+  if ret.status_code != 200:
+    print("Ticket Update error: " + ret.reason)
+    print(ret.text)
+    if not force:
+      exit(3)
+  info['version'] = get_version( { 'fixed_version': final_version } )
 
 
 # Change ticket state to technical review
@@ -790,8 +818,15 @@ def rebase(comment=None):
 
 
 # close PR, rebase, push -f, create PR, update ticket
-def retarget():
+def retarget(version=None):
   info = ticket_from_branch(current_branch)
+
+  # update ticket if required
+  if version is not None:
+    print("Changing target version in the ticket to " + version)
+    update_ticket_version(info, version)
+    print("New version " + info['version'])
+
   ticket_branch = branch_from_version(info['version'])
 
   upstream_branch = get_pr_upstream(info['pr'])
@@ -1022,7 +1057,7 @@ if __name__ == "__main__":
   elif arguments['rebase']:
     rebase(arguments['<PR_comment>'])
   elif arguments['retarget']:
-    retarget()
+    retarget(arguments['<target_version>'])
   elif arguments['merge']:
     if arguments['all']:
       merge_all()
