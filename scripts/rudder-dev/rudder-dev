@@ -16,9 +16,9 @@ Usage:
     rudder-dev [-f|--force] amend [<PR_comment>]
     rudder-dev [-f|--force] rebase [<PR_comment>]
     rudder-dev [-f|--force] retarget [<target_version>]
-    rudder-dev [-f|--force] merge all
-    rudder-dev [-f|--force] merge <first_branch> <next_branch>
-    rudder-dev [-f|--force] merge <first_branch>
+    rudder-dev [-f|--force] merge all [-s <strategy>]
+    rudder-dev [-f|--force] merge <first_branch> [-s <strategy>]
+    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] <smart_arg> [<PR_message>]
@@ -903,15 +903,18 @@ def clone(name):
 
 
 # Merge remote branch
-def merge(old, new):
+def merge(old, new, strategy=None):
   pull(old)
   pull(new)
-  shell("git merge " + branch_from_version(old), "Merging " + old + " into " + new)
+  opts = ""
+  if strategy is not None:
+    opts = " -s " + strategy
+  shell("git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
   shell("git push " + UPSTREAM_REPOSITORY + " " +branch_from_version(new))
 
 
 # Merge remote branch automatically guessing the next one
-def merge_to_next(old):
+def merge_to_next(old, strategy=None):
   new = None
   for idx, branch in enumerate(ALL_BRANCHES):
     if old == branch:
@@ -920,13 +923,13 @@ def merge_to_next(old):
   if new is None:
     print("Don't know how to merge " + old)
     exit(9)
-  merge(old, new)
+  merge(old, new, strategy)
 
 
 # Merge all breanches to next one
-def merge_all():
+def merge_all(strategy=None):
   for branch in ALL_BRANCHES[:-1]:
-    merge_to_next(branch)
+    merge_to_next(branch, strategy)
 
 
 # Run a command on all branches
@@ -1060,12 +1063,12 @@ if __name__ == "__main__":
     retarget(arguments['<target_version>'])
   elif arguments['merge']:
     if arguments['all']:
-      merge_all()
+      merge_all(arguments['<strategy>'])
     else:
       if arguments['<next_branch>'] is None:
-        merge_to_next(arguments['<first_branch>'])
+        merge_to_next(arguments['<first_branch>'], arguments['<strategy>'])
       else:
-        merge(arguments['<first_branch>'], arguments['<next_branch>'])
+        merge(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'])
   elif arguments['find']:
     find(arguments['<command>'])
   elif arguments['cleanup']:
