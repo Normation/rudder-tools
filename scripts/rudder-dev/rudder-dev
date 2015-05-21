@@ -1026,15 +1026,16 @@ if __name__ == "__main__":
       print("Error, unknown <smartarg> " + smart)
       exit(10)
 
-  # check repository and get common info
-  branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
-  current_branch = branch_process.stdout.read().strip()
-  if branch_process.poll() != 0:
-    print("***** ERROR: This is not a git directory")
-    exit(11)
-
   # Force argument is a global variables
   force = arguments['-f'] or arguments['--force']
+
+  if not arguments['clone']: # this is the only exception
+    # check repository and get common info
+    branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
+    current_branch = branch_process.stdout.read().strip()
+    if branch_process.poll() != 0:
+      print("***** ERROR: This is not a git directory")
+      exit(11)
 
   # standard arguments
   if arguments['clone']:
