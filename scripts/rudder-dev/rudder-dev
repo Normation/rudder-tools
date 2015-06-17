@@ -16,6 +16,7 @@ Usage:
     rudder-dev [-f|--force] amend [<PR_comment>]
     rudder-dev [-f|--force] rebase [<PR_comment>]
     rudder-dev [-f|--force] retarget [<target_version>]
+    rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] merge all [-s <strategy>]
     rudder-dev [-f|--force] merge <first_branch> [-s <strategy>]
     rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>]
@@ -99,6 +100,13 @@ RETARGET
     - create new PR
     - update ticket
     ex: rudder-dev retarget
+
+TAKEOVER
+    - if the ticket has no pull-request, abandon
+    - checkout upstream branch into local repository
+    - rename it if needed
+    - update the ticket's status
+    ex: rudder-dev takeover 1234
 
 MERGE (needs commit rights)
     Call it when you want to merge manually.
@@ -374,6 +382,33 @@ def ticket_to_TR(ticket_id, user_id=None, pr_url=None, message=None):
       exit(3)
 
 
+# change the ticket state to In progress
+def ticket_to_in_progress(ticket_id, message=None):
+  # set ticket status to "in progress"
+  if REDMINE_TOKEN is not None:
+    if REDMINE_ROLE == 'developer':
+      print("Changing status of ticket #" + str(ticket_id) + " to \"In progress\"")
+      user_id = get_redmine_uid()
+      ticket_info = {
+              'issue': {
+                  'status_id': IN_PROGRESS_CODE,
+                  'assigned_to_id': user_id,
+              }
+      }
+      if message is not None:
+        ticket_info['issue']['notes'] = message
+      url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
+      ticket_json = json.dumps(ticket_info)
+      ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+      if ret.status_code != 200:
+        print("Ticket Update error: " + ret.reason)
+        print(ret.text)
+        if not force:
+          exit(3)
+    else:
+      print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + str(ticket_id))
+
+
 # Get Normations users from redmine (users that can review)
 def get_normation_users():
   users = requests.get(REDMINE_API_URL + "/users.json?name=normation.com", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
@@ -616,6 +651,13 @@ def get_pr_upstream(pr_url):
   return pr['base']['ref']
   
 
+# get PR source informations
+def get_pr_source(pr_url):
+  url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
+  pr = github_request(pr_url, url)
+  return (pr['head']['repo']['git_url'], pr['head']['ref'])
+
+
 # Commit and push, if needed squash WIP and force push
 def commit_push(branch, message, force_amend=False):
   wip = os.popen("git log --grep \"^Work in progress\" HEAD^..").read().strip()
@@ -678,27 +720,8 @@ def create_branch(ticket_id, internal):
   shell("git checkout -b " + branch_name, "Creating branch " + branch_name)
   current_branch = branch_name
   
-  # set ticket status to "in progress"
-  if REDMINE_TOKEN is not None:
-    if REDMINE_ROLE == 'developer':
-      print("Changing status of ticket #" + str(info['id']) + " to \"In progress\"")
-      user_id = get_redmine_uid()
-      ticket_info = {
-              'issue': {
-                  'status_id': IN_PROGRESS_CODE,
-                  'assigned_to_id': user_id,
-              }
-      }
-      url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
-      ticket_json = json.dumps(ticket_info)
-      ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-      if ret.status_code != 200:
-        print("Ticket Update error: " + ret.reason)
-        print(ret.text)
-        if not force:
-          exit(3)
-    else:
-      print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + info['id'])
+  # Set ticket's status
+  ticket_to_in_progress(ticket_id)
 
   print("")
   print("# Now you can edit files")
@@ -923,6 +946,55 @@ def clone(name):
       print("Then type: git remote add " + OWN_REPOSITORY + " git@github.com:<github_id>/" + name + ".git")
 
 
+# takevover a ticket with an existing PR
+def takeover(ticket_id, internal):
+  global current_branch
+  if ticket_id.startswith('#'):
+    ticket_id = ticket_id[1:]
+
+  existing_branch = branch_from_ticket_id(ticket_id, internal)
+  if existing_branch is not None:
+    print("***** ERROR: Can't take over a ticket with a matching branch already existing in your repository")
+    exit(12)
+
+  # get ticket info
+  info = get_ticket_info(ticket_id, internal)
+  if 'pr' not in info:
+    print("Don't take over a ticket without a pull-request")
+    print("Simply use rudder-dev branch instead")
+    exit(12)
+  print("* Found " + info['type'] + " #" + str(info['id']) + ": " + info['name'])
+  print("* Target: " + info['version'])
+  print("* URL: " + REDMINE_API_URL + "/issues/" + str(info['id']))
+
+  # Look for branch and ckeckout its last version
+  pull(info['version'])
+
+  # look for PR 
+  (repo, remote_branch) = get_pr_source(info['pr'])
+
+  # fetch remote branch
+  branch_name = branch_from_ticket(info)
+  shell("git fetch " + repo + " " + remote_branch + ":" + branch_name, "Fetching branch from remote " + repo)
+  current_branch = branch_name
+
+  # checkout the new branch
+  shell("git checkout " + current_branch, "Checkouting the new branch " + current_branch)
+
+  # same workflow as work in progress (but with an existing commit)
+  commit_push(current_branch, "Work in progress", True)
+
+  # Set ticket's status
+  ticket_to_in_progress(ticket_id, "I'm taking over this ticket!")
+
+  print("")
+  print("# Now you can edit files")
+  print("# When you're ready, add them with git add")
+  print("# Then type:")
+  print(os.path.basename(sys.argv[0]) + " commit")
+  print("")
+
+
 # Merge remote branch
 def merge(old, new, strategy=None):
   pull(old)
@@ -1078,6 +1150,9 @@ if __name__ == "__main__":
     rebase(arguments['<PR_comment>'])
   elif arguments['retarget']:
     retarget(arguments['<target_version>'])
+  elif arguments['takeover']:
+    (ticket, internal) = parse_ticket_id(arguments['<ticket_id>'])
+    takeover(ticket, internal)
   elif arguments['merge']:
     if arguments['all']:
       merge_all(arguments['<strategy>'])
