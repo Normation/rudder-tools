@@ -28,6 +28,7 @@ def main():
   # Global vars
   api_url = "https://rudder.example.com/rudder/api" # CHANGE THIS
   api_token = "" # CHANGE THIS
+  nodes_url = "%s/latest/nodes" % (api_url)
   headers = {"X-API-Token": api_token, "Content-type": "application/json"}  
 
   # Parse options
@@ -37,7 +38,6 @@ def main():
   values = options["--value"]
 
   # Get from API
-  nodes_url = "%s/latest/nodes" % (api_url)
   r = requests.get(nodes_url, headers=headers, verify=False)
 
   # Parse JSON
