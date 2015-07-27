@@ -249,7 +249,7 @@ def get_version(ticket, error_fail=True):
   if match:
     return 'master'
   else:
-    match = re.match(r'\d+\.\d+', ticket['fixed_version']['name'])
+    match = re.match(r'\d+\.\w\d*', ticket['fixed_version']['name'])
     if match:
       return match.group(0)
     elif error_fail:
