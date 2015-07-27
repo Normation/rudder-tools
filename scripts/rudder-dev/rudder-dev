@@ -9,12 +9,12 @@ Usage:
     rudder-dev -h|--help
     rudder-dev [-f|--force] clone <repository>
     rudder-dev [-f|--force] pull [<branch>]
-    rudder-dev [-f|--force] branch <ticket_id>
+    rudder-dev [-f|--force] branch <ticket_id> [--base=<ticket_id>]
     rudder-dev [-f|--force] technique <version> <comment>
     rudder-dev [-f|--force] wip
     rudder-dev [-f|--force] commit [<trigraph> [<PR_comment>]]
     rudder-dev [-f|--force] amend [<PR_comment>]
-    rudder-dev [-f|--force] rebase [<PR_comment>]
+    rudder-dev [-f|--force] rebase [--base=<ticket_id>] [<PR_comment>]
     rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] merge all [-s <strategy>]
@@ -22,7 +22,7 @@ Usage:
     rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
-    rudder-dev [-f|--force] <smart_arg> [<PR_message>]
+    rudder-dev [-f|--force] <smart_arg> [<PR_message>] [--base=<ticket_id>]
 
 SMART
     <smart_arg> is a shortcut for other commands
@@ -51,8 +51,9 @@ BRANCH
     - find and check the ticket from redmine
     - create a branch with the proper name in your repository
     - set the ticket status to "in progress"
+    - if --base is given, use the PR from the base ticket as the origin branch
     ex: rudder-dev branch 1234
-    ex: rudder-dev branch '#1234'
+    ex: rudder-dev branch '#1234' --base 1233
 
 TECHNIQUE
     Call it after branching and before working on a new technique version.
@@ -90,7 +91,9 @@ REBASE
     - interactive rebase on NRM branch
     - if rebase has worked, push to OWN
     - add a comment to the PR to signal the change
+    - if --base is given, use the PR from the base ticket as the origin branch
     ex: rudder-dev rebase "@reviewer pr updated"
+    ex: rudder-dev rebase --base 1234
 
 RETARGET
     - if a version is provided, update the ticket with it
@@ -147,6 +150,7 @@ import time
 import json
 from pprint import pprint
 from subprocess import Popen,PIPE
+from tempfile import NamedTemporaryFile
 
 import requests # apt-get install python-requests
 import docopt # apt-get install python-docopt
@@ -221,6 +225,8 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
 
 def parse_ticket_id(ticket_id):
   global REDMINE_TOKEN, REDMINE_API_URL
+  if ticket_id.startswith('#'):
+    ticket_id = ticket_id[1:]
   internal = False
   match = re.match(r'i(\d+)', ticket_id)
   if match:
@@ -716,6 +722,24 @@ def insert_line(filename, regex, text):
     fd.truncate()
     fd.writelines(content)
 
+# fetch a branch from a PR given in a ticket
+def fetch_branch_from_ticket(ticket):
+  # extract ticket info
+  (ticket_id, internal) = parse_ticket_id(ticket)
+  info = get_ticket_info(ticket_id, internal)
+  if 'pr' not in info:
+    print("There is no PR in this ticket " + ticket)
+    exit(15)
+
+  # look for PR
+  (repo, remote_branch) = get_pr_source(info['pr'])
+
+  # fetch remote branch
+  branch_name = branch_from_ticket(info)
+  shell("git fetch " + repo + " " + remote_branch + ":" + branch_name, "Fetching branch from remote " + repo)
+
+  return branch_name
+
 
 ###
 ### MAIN methods 
@@ -723,10 +747,9 @@ def insert_line(filename, regex, text):
 ###
 
 # Create a branch from a ticket id
-def create_branch(ticket_id, internal):
+def create_branch(ticket, base=None):
   global current_branch
-  if ticket_id.startswith('#'):
-    ticket_id = ticket_id[1:]
+  (ticket_id, internal) = parse_ticket_id(ticket)
 
   existing_branch = branch_from_ticket_id(ticket_id, internal)
   if existing_branch is not None:
@@ -739,13 +762,19 @@ def create_branch(ticket_id, internal):
   print("* Target: " + info['version'])
   print("* URL: " + REDMINE_API_URL + "/issues/" + str(info['id']))
 
-  # Look for branch and ckeckout its last version
-  pull(info['version'])
+  # manage the original branch
+  if base is not None:
+    # fetch base branch
+    branch_name = fetch_branch_from_ticket(base)
+    # checkout the new branch
+    shell("git checkout " + branch_name, "Checkouting the base branch " + branch_name)
+  else:
+    # Look for release branch and ckeckout its last version
+    pull(info['version'])
 
   # Create the branch
-  branch_name = branch_from_ticket(info)
-  shell("git checkout -b " + branch_name, "Creating branch " + branch_name)
-  current_branch = branch_name
+  current_branch = branch_from_ticket(info)
+  shell("git checkout -b " + current_branch, "Creating branch " + current_branch)
   
   # Set ticket's status
   ticket_to_in_progress(ticket_id)
@@ -866,15 +895,26 @@ def amend(comment=None):
 
 
 # rebase, push -f, comment PR
-def rebase(comment=None):
+def rebase(comment=None, base=None):
   info = ticket_from_branch(current_branch)
-  master_branch = branch_from_version(info['version'])
 
   # fetch before rebasing
-  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+  if base is not None:
+    branch_name = fetch_branch_from_ticket(base)
+  else:
+    shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+    origin_branch = branch_from_version(info['version'])
+    branch_name = UPSTREAM_REPOSITORY + "/" + origin_branch
 
-  # interactive rebase
-  shell("git rebase -i " + UPSTREAM_REPOSITORY + "/" + master_branch, "Rebasing")
+  # First rebase without commits from source branch (they could have been force pushed)
+  with NamedTemporaryFile() as tmpscript:
+    tmpscript.write("""#!/bin/sh
+perl -i -ne "print unless s/^Fixes #(?!%ticket)s)//" "$1"
+""" % { "ticket": info['id']})
+    shell("EDITOR=" + tmpscript.name + " rebase -i " + branch_name, "First rebase to remove parent commits")
+
+  # Then interactive rebase
+  shell("git rebase -i " + branch_name, "Rebasing")
 
   # if OK: continue
   shell("git push --force " + OWN_REPOSITORY + " " + current_branch)
@@ -971,39 +1011,19 @@ def clone(name):
 
 
 # takevover a ticket with an existing PR
-def takeover(ticket_id, internal):
+def takeover(ticket):
   global current_branch
-  if ticket_id.startswith('#'):
-    ticket_id = ticket_id[1:]
 
   existing_branch = branch_from_ticket_id(ticket_id, internal)
   if existing_branch is not None:
     print("***** ERROR: Can't take over a ticket with a matching branch already existing in your repository")
     exit(12)
 
-  # get ticket info
-  info = get_ticket_info(ticket_id, internal)
-  if 'pr' not in info:
-    print("Don't take over a ticket without a pull-request")
-    print("Simply use rudder-dev branch instead")
-    exit(12)
-  print("* Found " + info['type'] + " #" + str(info['id']) + ": " + info['name'])
-  print("* Target: " + info['version'])
-  print("* URL: " + REDMINE_API_URL + "/issues/" + str(info['id']))
-
-  # Look for branch and ckeckout its last version
-  pull(info['version'])
-
-  # look for PR 
-  (repo, remote_branch) = get_pr_source(info['pr'])
-
-  # fetch remote branch
-  branch_name = branch_from_ticket(info)
-  shell("git fetch " + repo + " " + remote_branch + ":" + branch_name, "Fetching branch from remote " + repo)
-  current_branch = branch_name
+  # fetch base branch
+  current_branch = fetch_branch_from_ticket(ticket)
 
   # checkout the new branch
-  shell("git checkout " + current_branch, "Checkouting the new branch " + current_branch)
+  shell("git checkout " + current_branch, "Checkouting the base branch " + current_branch)
 
   # same workflow as work in progress (but with an existing commit)
   commit_push(current_branch, "Work in progress", True)
@@ -1170,8 +1190,7 @@ if __name__ == "__main__":
   elif arguments['pull']:
     pull(arguments['<branch>'])
   elif arguments['branch']:
-    (ticket, internal) = parse_ticket_id(arguments['<ticket_id>'])
-    create_branch(ticket, internal)
+    create_branch(arguments['<ticket_id>'], arguments['--base'])
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['wip']:
@@ -1181,12 +1200,11 @@ if __name__ == "__main__":
   elif arguments['amend']:
     amend(arguments['<PR_comment>'])
   elif arguments['rebase']:
-    rebase(arguments['<PR_comment>'])
+    rebase(arguments['<PR_comment>'], arguments['--base'])
   elif arguments['retarget']:
     retarget(arguments['<target_version>'])
   elif arguments['takeover']:
-    (ticket, internal) = parse_ticket_id(arguments['<ticket_id>'])
-    takeover(ticket, internal)
+    takeover(arguments['<ticket_id>'])
   elif arguments['merge']:
     if arguments['all']:
       merge_all(arguments['<strategy>'])
