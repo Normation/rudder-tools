@@ -161,7 +161,15 @@ except ImportError:
 
 ## GLOBAL VARIABLES
 
-ALL_BRANCHES = [ "2.10", "2.11", "3.0", "3.1", "master" ]
+LIFECYCLES = { "rudder": { "detection": r'\s+remotes/NRM/branches/rudder/',
+                           "format": "branches/rudder/{}",
+                           "versions": [ "2.10", "2.11", "3.0", "3.1", "master" ]
+                         },
+               "ncf": { "detection": r'\s+remotes/NRM/v\d\.',
+                        "format": "v{}",
+                        "versions": [ "0.x", "master" ]
+                      },
+             }
 CONFIG_FILE = "~/.rudder-dev"
 HUB_CONFIG_FILE = "~/.config/hub"
 REDMINE_ALT_API_URL = "https://redmine.normation.com"
@@ -178,7 +186,8 @@ IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
 
 
-
+# Filled by get_lifecycle
+current_lifecycle = None
 
 ###
 ###  Internal functions
@@ -457,11 +466,29 @@ def ticket_from_branch(branch):
     exit(4)
 
 
+# Get the current lifecycle
+def get_lifecycle():
+  global current_lifecycle
+  if current_lifecycle is not None:
+    return current_lifecycle
+  current_lifecycle = "master_only"
+  for line in os.popen("git branch --list -a"):
+    for lifecycle, data in LIFECYCLES.items():
+      if re.match(data["detection"], line):
+        current_lifecycle = lifecycle
+  return current_lifecycle
+
+  
 # Get branch name from version
 def branch_from_version(version):
-  branch_name = version
-  if version != 'master':
-    branch_name = "branches/rudder/" + version
+  # detect lifecycle and base ne name on it
+  lifecycle = get_lifecycle()
+  if lifecycle == "master_only":
+    branch_name = "master"
+  elif version == "master":
+    branch_name = "master"
+  else:
+    branch_name = LIFECYCLES[lifecycle]['format'].format(version)
   return branch_name
 
 
@@ -904,10 +931,7 @@ def retarget(version=None):
 def pull(version=None):
   global current_branch
   if version is not None:
-    if version == 'master':
-      branch = version
-    else:
-      branch = 'branches/rudder/' + version
+    branch = branch_from_version(version)
 
     # branch if needed
     branch_status = os.popen("git branch --list " + branch).read().strip()
@@ -1003,16 +1027,21 @@ def merge(old, new, strategy=None):
   if strategy is not None:
     opts = " -s " + strategy
   shell("git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
-  shell("git push " + UPSTREAM_REPOSITORY + " " +branch_from_version(new))
+  shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new))
 
 
 # Merge remote branch automatically guessing the next one
 def merge_to_next(old, strategy=None):
+  lifecycle = get_lifecycle()
+  if lifecycle not in LIFECYCLES:
+    print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
+    exit(1)
+  all_versions = LIFECYCLES[lifecycle]['versions']
   new = None
-  for idx, branch in enumerate(ALL_BRANCHES):
-    if old == branch:
-      if idx < len(ALL_BRANCHES):
-        new = ALL_BRANCHES[idx+1]
+  for idx, version in enumerate(all_versions):
+    if old == version:
+      if idx < len(all_versions)-1:
+        new = all_versions[idx+1]
   if new is None:
     print("Don't know how to merge " + old)
     exit(9)
@@ -1021,18 +1050,26 @@ def merge_to_next(old, strategy=None):
 
 # Merge all breanches to next one
 def merge_all(strategy=None):
-  for branch in ALL_BRANCHES[:-1]:
+  lifecycle = get_lifecycle()
+  if lifecycle not in LIFECYCLES:
+    print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
+    exit(1)
+  for branch in LIFECYCLES[lifecycle]['versions'][:-1]:
     merge_to_next(branch, strategy)
 
 
 # Run a command on all branches
 def find(command):
+  lifecycle = get_lifecycle()
+  if lifecycle not in LIFECYCLES:
+    print("I don't know how to look for branches in a repository based on a '" + lifecycle + "' lifecycle")
+    exit(1)
   status = {}
-  for branch in ALL_BRANCHES:
+  for branch in LIFECYCLES[lifecycle]['versions']:
     pull(branch)
     status[branch] = shell(command, fail_exit=False)
   print("---")
-  for branch in ALL_BRANCHES:
+  for branch in LIFECYCLES[lifecycle]['versions']:
     ok = "OK" if status[branch] == 0 else "ERR"
     print("%6s: %3s (%d)" % (branch, ok, status[branch]))
   print("---")
@@ -1062,10 +1099,7 @@ def cleanup(more=False, dry=False):
           version = get_version(ticket, False)
           should_ask = False
           if version is not None:
-            if version == 'master':
-              upstream = UPSTREAM_REPOSITORY + "/master"
-            else:
-              upstream = UPSTREAM_REPOSITORY + '/branches/rudder/' + version
+            upstream = UPSTREAM_REPOSITORY + '/' + branch_from_version(version)
             cherry_process = Popen("git cherry " + upstream + " " + branch + " 2>/dev/null", shell=True, stdout=PIPE)
             cherry_list = cherry_process.stdout.read()
             if cherry_process.wait() == 0 and cherry_list == "":
