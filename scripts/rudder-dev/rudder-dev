@@ -152,8 +152,8 @@ from pprint import pprint
 from subprocess import Popen,PIPE
 from tempfile import NamedTemporaryFile
 
-import requests # apt-get install python-requests
-import docopt # apt-get install python-docopt
+import requests # apt-get install python-requests || pip install requests
+import docopt # apt-get install python-docopt || pip install docopt
 
 try:
   import configparser
@@ -536,6 +536,7 @@ def read_configuration():
 ## Name of personal upstream repository on your local git (BPF, origin, ...)
 #own_upstream =
 ## Command for github cli (uncomment if installed), install from https://github.com/github/hub or https://github.com/github/hub/releases
+## Or, on Mac OS, if using Homebrew, brew install hub
 #github_cmd = hub
 ## Redmine personal access token, (create one here http://www.rudder-project.org/redmine/my/account)
 #redmine_token = 
@@ -651,6 +652,7 @@ def create_pr(master_branch, ticket_id, title, message):
   else:
     print("You can now create a pull request from here https://github.com/Normation/<repo-name>/")
     print("And then update the ticket here " + REDMINE_API_URL + "/issues/" + ticket_id)
+    print("This tool can automatically create a pull request for you if you install the GitHub CLI tool. See " + CONFIG_FILE + " for details")
     return None
 
 
