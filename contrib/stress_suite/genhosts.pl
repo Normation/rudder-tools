@@ -35,7 +35,7 @@ sub GenMAC {
 for (my $i = 0; $i < $count; $i++, $ip++) {
   my $uuid = $ug->create();
   my $uuid_str   = $ug->to_string( $uuid );
-  my $hostname = "RDR-TST-RandHost" . $i;
+  my $hostname = "RDR-TST-RandHost" . $i . ".rudder.local";
   my $mac = GenMAC();
   my $logdate = strftime "%F %H:%M:%S", localtime;
   
