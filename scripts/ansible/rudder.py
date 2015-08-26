@@ -5,13 +5,13 @@ Rudder external inventory script
 =================================
 
 Generates inventory that Ansible can understand by making API request to
-a Rudder server.
+a Rudder server. This script is compatible with Rudder 2.10 or later.
 
-The output JSON includes all your Rudder groups, containing the hostnames of 
-their nodes. Groups and nodes have a variable called rudder_id, which is the
-Rudder internal id of the item, allowing to identify them uniquely. Hosts
-variables also include your node properties, which are key => value properties
-set by the API and specific to each node.
+The output JSON includes all your Rudder groups, containing the hostnames of
+their nodes. Groups and nodes have a variable called rudder_group_id and
+rudder_node_id, which is the Rudder internal id of the item, allowing to identify
+them uniquely. Hosts variables also include your node properties, which are
+key => value properties set by the API and specific to each node.
 
 This script assumes there is an rudder.ini file alongside it. To specify a
 different path to rudder.ini, define the RUDDER_INI_PATH environment variable:
@@ -20,7 +20,7 @@ different path to rudder.ini, define the RUDDER_INI_PATH environment variable:
 
 You have to configure your Rudder server information, either in rudder.ini or
 by overriding it with environment variables:
-    
+
     export RUDDER_API_VERSION='latest'
     export RUDDER_API_TOKEN='my_token'
     export RUDDER_API_URI='https://rudder.local/rudder/api'
@@ -47,10 +47,11 @@ try:
 except ImportError:
     import simplejson as json
 
+
 class RudderInventory(object):
     def __init__(self):
         ''' Main execution path '''
-        
+
         # Empty inventory by default
         self.inventory = {}
 
@@ -87,15 +88,15 @@ class RudderInventory(object):
         rudder_default_ini_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'rudder.ini')
         rudder_ini_path = os.path.expanduser(os.path.expandvars(os.environ.get('RUDDER_INI_PATH', rudder_default_ini_path)))
         config.read(rudder_ini_path)
-        
+
         self.token = os.environ.get('RUDDER_API_TOKEN', config.get('rudder', 'token'))
         self.version = os.environ.get('RUDDER_API_VERSION', config.get('rudder', 'version'))
         self.uri = os.environ.get('RUDDER_API_URI', config.get('rudder', 'uri'))
-        
+
         self.disable_ssl_validation = config.getboolean('rudder', 'disable_ssl_certificate_validation')
         self.group_name = config.get('rudder', 'group_name')
         self.fail_if_name_collision = config.getboolean('rudder', 'fail_if_name_collision')
-        
+
         self.cache_path = config.get('rudder', 'cache_path')
         self.cache_max_age = config.getint('rudder', 'cache_max_age')
 
@@ -104,15 +105,15 @@ class RudderInventory(object):
 
         parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on Rudder inventory')
         parser.add_argument('--list', action='store_true', default=True,
-                           help='List instances (default: True)')
+                            help='List instances (default: True)')
         parser.add_argument('--host', action='store',
-                           help='Get all the variables about a specific instance')
+                            help='Get all the variables about a specific instance')
         parser.add_argument('--refresh-cache', action='store_true', default=False,
                             help='Force refresh of cache by making API requests to Rudder (default: False - use cache files)')
         self.args = parser.parse_args()
 
     def is_cache_valid(self):
-        """ Determines if the cache files have expired, or if it is still valid """
+        ''' Determines if the cache files have expired, or if it is still valid '''
 
         if os.path.isfile(self.cache_path):
             mod_time = os.path.getmtime(self.cache_path)
@@ -123,14 +124,18 @@ class RudderInventory(object):
         return False
 
     def load_cache(self):
-        """ Reads the cache from the cache file sets self.cache """
+        ''' Reads the cache from the cache file sets self.cache '''
 
         cache = open(self.cache_path, 'r')
         json_cache = cache.read()
-        self.inventory = json.loads(json_cache)
+
+        try:
+            self.inventory = json.loads(json_cache)
+        except ValueError, e:
+            self.fail_with_error('Could not parse JSON response from local cache', 'parsing local cache')
 
     def write_cache(self):
-        """ Writes data in JSON format to a file """
+        ''' Writes data in JSON format to a file '''
 
         json_data = self.json_format_dict(self.inventory, True)
         cache = open(self.cache_path, 'w')
@@ -138,20 +143,25 @@ class RudderInventory(object):
         cache.close()
 
     def get_nodes(self):
-        ''' Get the nodes list from Rudder '''
+        ''' Gets the nodes list from Rudder '''
 
         path = '/nodes?select=nodeAndPolicyServer'
         result = self.api_call(path)
 
         nodes = {}
 
-        for node in result['data']["nodes"]:
-            nodes[node['id']] = {"hostname": node["hostname"], "properties": node["properties"]}
+        for node in result['data']['nodes']:
+            nodes[node['id']] = {}
+            nodes[node['id']]['hostname'] = node['hostname']
+            if 'properties' in node:
+                nodes[node['id']]['properties'] = node['properties']
+            else:
+                nodes[node['id']]['properties'] = []
 
         return nodes
 
     def get_groups(self):
-        ''' Get the groups list from Rudder '''
+        ''' Gets the groups list from Rudder '''
 
         path = '/groups'
         result = self.api_call(path)
@@ -159,7 +169,7 @@ class RudderInventory(object):
         groups = {}
 
         for group in result['data']['groups']:
-            groups[group['id']] = {"hosts": group["nodeIds"], "name": self.to_safe(group[self.group_name])}
+            groups[group['id']] = {'hosts': group['nodeIds'], 'name': self.to_safe(group[self.group_name])}
 
         return groups
 
@@ -174,78 +184,78 @@ class RudderInventory(object):
         for group in groups:
             # Check for name collision
             if self.fail_if_name_collision:
-                if groups[group]["name"] in inventory:
-                    self.fail_with_error("Name collision on groups: '%s' appears twice" % groups[group]["name"], "creating groups")
+                if groups[group]['name'] in inventory:
+                    self.fail_with_error('Name collision on groups: "%s" appears twice' % groups[group]['name'], 'creating groups')
             # Add group to inventory
-            inventory[groups[group]["name"]] = {}
-            inventory[groups[group]["name"]]["hosts"] = []
-            inventory[groups[group]["name"]]["vars"] = {}
-            inventory[groups[group]["name"]]["vars"]["rudder_id"] = group
-            for node in groups[group]["hosts"]:
+            inventory[groups[group]['name']] = {}
+            inventory[groups[group]['name']]['hosts'] = []
+            inventory[groups[group]['name']]['vars'] = {}
+            inventory[groups[group]['name']]['vars']['rudder_group_id'] = group
+            for node in groups[group]['hosts']:
                 # Add node to group
-                inventory[groups[group]["name"]]["hosts"].append(nodes[node]["hostname"])
+                inventory[groups[group]['name']]['hosts'].append(nodes[node]['hostname'])
 
         properties = {}
 
-        for node in groups[group]["hosts"]:
+        for node in nodes:
             # Check for name collision
             if self.fail_if_name_collision:
-                if nodes[node]["hostname"] in properties:
-                    self.fail_with_error("Name collision on hosts: '%s' appears twice" % nodes[node]["hostname"], "creating hosts")
+                if nodes[node]['hostname'] in properties:
+                    self.fail_with_error('Name collision on hosts: "%s" appears twice' % nodes[node]['hostname'], 'creating hosts')
             # Add node properties to inventory
-            properties[nodes[node]["hostname"]] = {}
-            properties[nodes[node]["hostname"]]["rudder_id"] = node
-            for node_property in nodes[node]["properties"]:
-                properties[nodes[node]["hostname"]][self.to_safe(node_property["name"])] = node_property["value"]
+            properties[nodes[node]['hostname']] = {}
+            properties[nodes[node]['hostname']]['rudder_node_id'] = node
+            for node_property in nodes[node]['properties']:
+                properties[nodes[node]['hostname']][self.to_safe(node_property['name'])] = node_property['value']
 
-        inventory["_meta"] = {}
-        inventory["_meta"]["hostvars"] = properties
+        inventory['_meta'] = {}
+        inventory['_meta']['hostvars'] = properties
 
         self.inventory = inventory
-        
+
         if self.cache_max_age > 0:
             self.write_cache()
 
     def get_list_info(self):
-        ''' Get inventory information from local cache '''
+        ''' Gets inventory information from local cache '''
 
         return self.inventory
 
     def get_host_info(self, hostname):
-        ''' Get information about a specific host from local cache '''
+        ''' Gets information about a specific host from local cache '''
 
-        if self.inventory["_meta"]["hostvars"][hostname]:
-            return self.inventory["_meta"]["hostvars"][hostname]
+        if hostname in self.inventory['_meta']['hostvars']:
+            return self.inventory['_meta']['hostvars'][hostname]
         else:
             return {}
 
     def api_call(self, path):
-        ''' Perform an API request '''
+        ''' Performs an API request '''
 
         headers = {
             'X-API-Token': self.token,
-            "X-API-Version": self.version,
-            "Content-Type": "application/json;charset=utf-8"
+            'X-API-Version': self.version,
+            'Content-Type': 'application/json;charset=utf-8'
         }
-        
+
         target = urlparse(self.uri + path)
         method = 'GET'
         body = ''
-        
+
         try:
             response, content = self.conn.request(target.geturl(), method, body, headers)
         except:
-            self.fail_with_error("Error connecting to Rudder server")
-        
+            self.fail_with_error('Error connecting to Rudder server')
+
         try:
             data = json.loads(content)
         except ValueError, e:
-            self.fail_with_error("Could not parse JSON response from Rudder API")
+            self.fail_with_error('Could not parse JSON response from Rudder API', 'reading API response')
 
         return data
 
     def fail_with_error(self, err_msg, err_operation=None):
-        ''' Log an error to std err for ansible-playbook to consume and exit '''
+        ''' Logs an error to std err for ansible-playbook to consume and exit '''
         if err_operation:
             err_msg = 'ERROR: "{err_msg}", while: {err_operation}'.format(
                 err_msg=err_msg, err_operation=err_operation)
@@ -265,7 +275,7 @@ class RudderInventory(object):
         ''' Converts 'bad' characters in a string to underscores so they can be
         used as Ansible variable names '''
 
-        return re.sub("[^A-Za-z0-9\_]", "_", word)
+        return re.sub('[^A-Za-z0-9\_]', '_', word)
 
 # Run the script
 RudderInventory()
