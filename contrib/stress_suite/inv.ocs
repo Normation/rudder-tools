@@ -304,6 +304,7 @@
     </NETWORKS>
     <OPERATINGSYSTEM>
       <FULL_NAME>Debian GNU/Linux 7.2 (wheezy)</FULL_NAME>
+      <FQDN>%%_hostname%%</FQDN>
       <KERNEL_NAME>linux</KERNEL_NAME>
       <KERNEL_VERSION>3.2.0-4-486</KERNEL_VERSION>
       <NAME>Debian</NAME>
