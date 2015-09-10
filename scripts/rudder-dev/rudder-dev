@@ -1056,12 +1056,11 @@ def merge(old, new, strategy=None, automatic=False):
   pull(old)
   pull(new)
   opts = ""
-  editor = ""
   if strategy is not None:
     opts = " -s " + strategy
   if automatic:
-    editor = "EDITOR=cat "
-  shell(editor + "git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
+    opts += " --no-edit "
+  shell("git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
   shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new))
 
 
