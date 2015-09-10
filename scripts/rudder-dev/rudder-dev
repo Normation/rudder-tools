@@ -17,9 +17,9 @@ Usage:
     rudder-dev [-f|--force] rebase [--base=<ticket_id>] [<PR_comment>]
     rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] takeover <ticket_id>
-    rudder-dev [-f|--force] merge all [-s <strategy>]
-    rudder-dev [-f|--force] merge <first_branch> [-s <strategy>]
-    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>]
+    rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic]
+    rudder-dev [-f|--force] merge <first_branch> [-s <strategy>] [-a|--automatic]
+    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] <smart_arg> [<PR_message>] [--base=<ticket_id>]
@@ -1052,18 +1052,21 @@ def takeover(ticket):
 
 
 # Merge remote branch
-def merge(old, new, strategy=None):
+def merge(old, new, strategy=None, automatic=False):
   pull(old)
   pull(new)
   opts = ""
+  editor = ""
   if strategy is not None:
     opts = " -s " + strategy
-  shell("git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
+  if automatic:
+    editor = "EDITOR=cat "
+  shell(editor + "git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
   shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new))
 
 
 # Merge remote branch automatically guessing the next one
-def merge_to_next(old, strategy=None):
+def merge_to_next(old, strategy=None, automatic=False):
   lifecycle = get_lifecycle()
   if lifecycle not in LIFECYCLES:
     print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
@@ -1077,17 +1080,17 @@ def merge_to_next(old, strategy=None):
   if new is None:
     print("Don't know how to merge " + old)
     exit(9)
-  merge(old, new, strategy)
+  merge(old, new, strategy, automatic)
 
 
 # Merge all breanches to next one
-def merge_all(strategy=None):
+def merge_all(strategy=None, automatic=False):
   lifecycle = get_lifecycle()
   if lifecycle not in LIFECYCLES:
     print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
   for branch in LIFECYCLES[lifecycle]['versions'][:-1]:
-    merge_to_next(branch, strategy)
+    merge_to_next(branch, strategy, automatic)
 
 
 # Run a command on all branches
@@ -1219,12 +1222,12 @@ if __name__ == "__main__":
     takeover(arguments['<ticket_id>'])
   elif arguments['merge']:
     if arguments['all']:
-      merge_all(arguments['<strategy>'])
+      merge_all(arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
     else:
       if arguments['<next_branch>'] is None:
-        merge_to_next(arguments['<first_branch>'], arguments['<strategy>'])
+        merge_to_next(arguments['<first_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
       else:
-        merge(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'])
+        merge(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
   elif arguments['find']:
     find(arguments['<command>'])
   elif arguments['cleanup']:
