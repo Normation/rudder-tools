@@ -52,6 +52,7 @@ BRANCH
     - create a branch with the proper name in your repository
     - set the ticket status to "in progress"
     - if --base is given, use the PR from the base ticket as the origin branch
+    - --base can also be a local branch name
     ex: rudder-dev branch 1234
     ex: rudder-dev branch '#1234' --base 1233
 
@@ -92,6 +93,7 @@ REBASE
     - if rebase has worked, push to OWN
     - add a comment to the PR to signal the change
     - if --base is given, use the PR from the base ticket as the origin branch
+    - --base can also be a local branch name
     ex: rudder-dev rebase "@reviewer pr updated"
     ex: rudder-dev rebase --base 1234
 
@@ -766,8 +768,11 @@ def create_branch(ticket, base=None):
 
   # manage the original branch
   if base is not None:
-    # fetch base branch
-    branch_name = fetch_branch_from_ticket(base)
+    if re.match(r'^.\d*$', base):
+      # fetch base branch
+      branch_name = fetch_branch_from_ticket(base)
+    else:
+      branch_name = base
     # checkout the new branch
     shell("git checkout " + branch_name, "Checkouting the base branch " + branch_name)
   else:
@@ -902,18 +907,23 @@ def rebase(comment=None, base=None):
 
   # fetch before rebasing
   if base is not None:
-    branch_name = fetch_branch_from_ticket(base)
+    if re.match(r'^.\d*$', base):
+      # fetch base branch
+      branch_name = fetch_branch_from_ticket(base)
+    else:
+      branch_name = base
   else:
     shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
     origin_branch = branch_from_version(info['version'])
     branch_name = UPSTREAM_REPOSITORY + "/" + origin_branch
 
   # First rebase without commits from source branch (they could have been force pushed)
-  with NamedTemporaryFile() as tmpscript:
-    tmpscript.write("""#!/bin/sh
+  if not re.match(r'^.\d*$', base):
+    with NamedTemporaryFile() as tmpscript:
+      tmpscript.write("""#!/bin/sh
 perl -i -ne "print unless s/^Fixes #(?!%ticket)s)//" "$1"
 """ % { "ticket": info['id']})
-    shell("EDITOR=" + tmpscript.name + " rebase -i " + branch_name, "First rebase to remove parent commits")
+      shell("EDITOR=" + tmpscript.name + " rebase -i " + branch_name, "First rebase to remove parent commits")
 
   # Then interactive rebase
   shell("git rebase -i " + branch_name, "Rebasing")
