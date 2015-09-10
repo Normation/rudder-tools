@@ -740,7 +740,7 @@ def fetch_branch_from_ticket(ticket):
 
   # fetch remote branch
   branch_name = branch_from_ticket(info)
-  shell("git fetch " + repo + " " + remote_branch + ":" + branch_name, "Fetching branch from remote " + repo)
+  shell("git fetch --update-head-ok " + repo + " " + remote_branch + ":" + branch_name, "Fetching branch from remote " + repo)
 
   return branch_name
 
