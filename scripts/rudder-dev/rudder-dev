@@ -1194,8 +1194,8 @@ if __name__ == "__main__":
     # check repository and get common info
     branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
     current_branch = branch_process.stdout.read().strip()
-    if branch_process.poll() != 0:
-      print("***** ERROR: This is not a git directory")
+    if branch_process.wait() != 0:
+      print("***** ERROR: Unable to get the current git branch name, this directory is probably not a git repository")
       exit(11)
 
   # standard arguments
