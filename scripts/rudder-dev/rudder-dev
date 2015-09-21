@@ -7,7 +7,7 @@ You need a configuration file, if you don't have one, the tool will create one f
 
 Usage:
     rudder-dev -h|--help
-    rudder-dev [-f|--force] clone <repository>
+    rudder-dev [-f|--force] clone <repository> [--fork]
     rudder-dev [-f|--force] pull [<branch>]
     rudder-dev [-f|--force] branch <ticket_id> [--base=<ticket_id>]
     rudder-dev [-f|--force] technique <version> <comment>
@@ -32,7 +32,7 @@ SMART
 
 CLONE
     Call it when you want to work on a new repository.
-    - fork the repository from Normation
+    - fork the repository from Normation if --fork is given
     - clone it
     - setup both remote repository in git
     ex: rudder-dev clone rudder-techniques
@@ -74,6 +74,7 @@ WIP
 
 COMMIT
     Call it after working on a branch.
+    - fork the repository if it has not yet been forked
     - commit current work (no -a, you need to git add)
     - push the branch to your github repository
     - make a pull-request to Normation's repository
@@ -526,7 +527,7 @@ def branch_from_ticket_id(ticket_id, internal):
 
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration():
-  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_CMD, REDMINE_TOKEN, REDMINE_ALT_TOKEN, REDMINE_ROLE
+  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_USER, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN, REDMINE_ROLE
 
   # Detect missing configuration
   if not os.path.isfile(os.path.expanduser(CONFIG_FILE)):
@@ -537,9 +538,11 @@ def read_configuration():
 #nrm_upstream = NRM
 ## Name of personal upstream repository on your local git (BPF, origin, ...)
 #own_upstream =
-## Command for github cli (uncomment if installed), install from https://github.com/github/hub or https://github.com/github/hub/releases
-## Or, on Mac OS, if using Homebrew, brew install hub
-#github_cmd = hub
+## If github cli is installed, rudder-dev will read hub's configuration file to get the user's github token
+## If github cli is not installed, you should uncomment these 2 lines to manually provide this information
+# github_user = 
+## To manage your tokens, click here https://github.com/settings/tokens
+# github_token = 
 ## Redmine personal access token, (create one here http://www.rudder-project.org/redmine/my/account)
 #redmine_token = 
 #redmine_alt_token = 
@@ -554,7 +557,8 @@ def read_configuration():
   config.read(os.path.expanduser(CONFIG_FILE))
   UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + CONFIG_FILE)
   OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + CONFIG_FILE)
-  GITHUB_CMD = get_config("github_cmd", None)
+  GITHUB_USER = get_config("github_user", None)
+  GITHUB_TOKEN = get_config("github_token", None)
   REDMINE_TOKEN = get_config("redmine_token", None)
   REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
   REDMINE_ROLE = get_config("redmine_role", None)
@@ -576,6 +580,8 @@ def get_config(item, error):
 
 # Get github user as used by the hub command
 def get_hub_user():
+  if GITHUB_USER is not None:
+    return GITHUB_USER
   if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
     with open(os.path.expanduser(HUB_CONFIG_FILE)) as f:
       for line in f:
@@ -588,6 +594,8 @@ def get_hub_user():
 
 # Get github token as used by the hub command
 def get_hub_token():
+  if GITHUB_TOKEN is not None:
+    return GITHUB_TOKEN
   if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
     with open(os.path.expanduser(HUB_CONFIG_FILE)) as f:
       for line in f:
@@ -609,19 +617,26 @@ def remote_repo():
 
 
 # query github
-def github_request(pr_url, api_url, post_data=None):
-  # Validate PR url
-  match = re.match(r'^http.*/(\d+)(/files|/commits)?$', pr_url)
-  if match:
-    pr_id = match.group(1)
-  else:
-    print("Can't find pull-request ID, you should warn the reviewer that you updated the pull-request")
-    return False
+def github_request(api_url, comment, pr_url=None, post_data=None):
+  pr_id = None
+  if pr_url is not None:
+    # Validate PR url
+    match = re.match(r'^http.*/(\d+)(/files|/commits)?$', pr_url)
+    if match:
+      pr_id = match.group(1)
+    else:
+      print("Can't find pull-request ID, you should warn the reviewer that you updated the pull-request")
+      return False
 
   # get connection info
   token = get_hub_token()
   repo = remote_repo()
   url = api_url.format(repo=repo, pr_id=pr_id)
+
+  # Say what we are doing
+  if comment is not None:
+    print(comment)
+    print(" > " + url)
 
   # make query
   if post_data is not None:
@@ -636,26 +651,22 @@ def github_request(pr_url, api_url, post_data=None):
     if not force:
       exit(12)
 
-  # return GET result
-  if post_data is None:
-    return ret.json()
+  # return result
+  return ret.json()
  
 
 # create a new PR
 def create_pr(master_branch, ticket_id, title, message):
-  if GITHUB_CMD is not None:
-    hub_cmd = GITHUB_CMD + " pull-request -F - -b Normation:" + master_branch + " << EOF\n"
-    hub_cmd += "Fixes #" + str(ticket_id) + ": " + title + "\n\n"
-    hub_cmd += REDMINE_API_URL + "/issues/" + str(ticket_id)
-    if message is not None:
-      hub_cmd += "\n\n" + message
-    hub_cmd += "\nEOF\n"
-    return shell(hub_cmd, "Creating PR ... ", True).strip()
-  else:
-    print("You can now create a pull request from here https://github.com/Normation/<repo-name>/")
-    print("And then update the ticket here " + REDMINE_API_URL + "/issues/" + ticket_id)
-    print("This tool can automatically create a pull request for you if you install the GitHub CLI tool. See " + CONFIG_FILE + " for details")
-    return None
+  url = "https://api.github.com/repos/Normation/{repo}/pulls"
+  user = get_hub_user()
+
+  pr = '{ "title": ' + json.dumps('Fixes #' + str(ticket_id) + ": " + title) + '",'
+  if message is not None:
+    pr += ' "body": ' + json.dumps(message) + ','
+  pr += ' "head": "' + user + ':' + current_branch + '",'
+  pr += ' "base": "Normation:' + master_branch + '" }'
+  result = github_request(url, "Creating PR ...", pr_url=None, post_data=pr)
+  return result['url']
 
 
 # add a message to a given pull-request on github
@@ -665,7 +676,7 @@ def update_pr(pr_url, comment):
     message += "\n" + comment
   issue = '{ "body": "' + message + '" }'
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
-  github_request(pr_url, url, issue)
+  github_request(url, "Updating PR ...", pr_url, issue)
 
 
 # close a given pull-request on github
@@ -673,32 +684,36 @@ def close_pr(pr_url, comment):
   # Add comment on the closing reason
   issue = '{ "body": "' + comment + '" }'
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
-  github_request(pr_url, url, issue)
+  github_request(url, "Commenting PR ...", pr_url, issue)
   
   # close the PR
   issue = '{ "state": "closed" }'
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
-  github_request(pr_url, url, issue)
+  github_request(url, "Closing PR ...", pr_url, issue)
 
 
 # get PR upstream branch
 def get_pr_upstream(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
-  pr = github_request(pr_url, url)
+  pr = github_request(url, None, pr_url)
   return pr['base']['ref']
   
 
 # get PR source informations
 def get_pr_source(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
-  pr = github_request(pr_url, url)
+  pr = github_request(url, None, pr_url)
   return (pr['head']['repo']['git_url'], pr['head']['ref'])
 
 
 # Commit and push, if needed squash WIP and force push
 def commit_push(branch, message, force_amend=False):
-  wip = os.popen("git log --grep \"^Work in progress\" HEAD^..").read().strip()
+  # Fork if needed
+  if github_fork():
+    # github fork is asynchronous but pretty fast, this should be sufficient
+    time.sleep(2)
 
+  wip = os.popen("git log --grep \"^Work in progress\" HEAD^..").read().strip()
   commit_cmd = "git commit"
   if message != '':
     commit_cmd += " -m \"" + message + "\""
@@ -744,6 +759,26 @@ def fetch_branch_from_ticket(ticket):
 
   return branch_name
 
+
+def github_fork():
+  # we don't need to fork if the remote is known
+  remotes = os.popen("git remote show").read()
+  if re.match('^'+OWN_REPOSITORY+"\n", remotes, flags=re.MULTILINE):
+    return False
+
+  # fork the report if not already forked
+  remote_url = ""
+  user = get_hub_user()
+  remote = remote_repo()
+  fork_needed = os.popen("git ls-remote git://github.com/" + user + "/" + remote + ".git HEAD > /dev/null 2>/dev/null; echo $?").read().strip()
+  if fork_needed != "0":
+    github_request("https://api.github.com/repos/Normation/{repo}/forks", "Forking repository ...", pr_url=None, post_data="")
+
+  # Add the remote repository to the local list
+  shell("git remote add " + OWN_REPOSITORY + " git@github.com:" + user + "/" + remote + ".git", "Adding own remote repository")
+
+  # Tell if we forked or not
+  return fork_needed != "0"
 
 ###
 ### MAIN methods 
@@ -1010,16 +1045,11 @@ def pull(version=None):
 
 
 # clone from NRM, fork, add OWN, set-upstream
-def clone(name):
-    shell("git clone --origin " + UPSTREAM_REPOSITORY + " git@github.com:Normation/" + name + ".git", "Cloning Normation repository")
+def clone(name, fork=False):
+  shell("git clone --origin " + UPSTREAM_REPOSITORY + " git@github.com:Normation/" + name + ".git", "Cloning Normation repository")
+  if fork:
     os.chdir(name)
-    if GITHUB_CMD is not None:
-      shell(GITHUB_CMD + " fork", "Forking Normation repository")
-      user = get_hub_user()
-      shell("git remote rename " + user + " " + OWN_REPOSITORY)
-    else:
-      print("No github command, clone the repository manually")
-      print("Then type: git remote add " + OWN_REPOSITORY + " git@github.com:<github_id>/" + name + ".git")
+    github_fork()
 
 
 # takevover a ticket with an existing PR
@@ -1200,7 +1230,7 @@ if __name__ == "__main__":
 
   # standard arguments
   if arguments['clone']:
-    clone(arguments['<repository>'])
+    clone(arguments['<repository>'], arguments['--fork'])
   elif arguments['pull']:
     pull(arguments['<branch>'])
   elif arguments['branch']:
