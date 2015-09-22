@@ -519,7 +519,7 @@ def branch_from_ticket_id(ticket_id, internal):
       ticket = 'i'+str(ticket_id)
     else:
       ticket = str(ticket_id)
-    match = re.search(r'\s(\w+_' + ticket + r'/.*?)\n', line)
+    match = re.search(r'^\*?\s*(\w+_' + ticket + r'/.*?)\n', line)
     if match:
       return match.group(1)
   return None
@@ -738,6 +738,7 @@ def insert_line(filename, regex, text):
     fd.truncate()
     fd.writelines(content)
 
+
 # fetch a branch from a PR given in a ticket
 def fetch_branch_from_ticket(ticket):
   # extract ticket info
@@ -777,6 +778,55 @@ def github_fork():
   # Tell if we forked or not
   return fork_needed != "0"
 
+
+# Find if there is work in progress and stash it
+stashed=False
+def stash():
+  global stashed
+  # count number of change
+  change_count = os.popen("git status --porcelain --untracked-files=no | wc -l").read().strip()
+  if change_count != "0":
+    # stash them
+    shell("git stash save --keep-index", "Stashing current work")
+    stashed = True
+
+
+# Find if there is stashed work and unstash it
+unstashed=False
+def unstash():
+  global unstashed
+
+  # get current branch (the global variable may not be accurate in flight)
+  branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
+  this_branch = branch_process.stdout.read().strip()
+
+  # do not unstash if we are on an origin branch since you should not work directly on them
+  remote_process = Popen("git ls-remote -h " + UPSTREAM_REPOSITORY + " " + this_branch + " | wc -l", shell=True, stdout=PIPE)
+  remote_count = remote_process.stdout.read().strip()
+  if remote_count != "0":
+    return
+
+  # list available stashes
+  stash_process = Popen("git stash list", shell=True, stdout=PIPE)
+  for line in stash_process.stdout.readlines():
+    # parse
+    match = re.match(r'^(stash@{.*?}): WIP on (.*?):.*', line)
+    if match:
+      # match with current branch
+      if match.group(2) == this_branch:
+        #unstash it
+        shell("git stash pop --index '" + match.group(1) + "'" , "Unstashing previous work")
+        unstashed=True
+
+
+# Tell the user if some stash command happened
+def stash_info():
+  if stashed:
+    print("Some work in progress has been found, I stashed it before running the commands, to retrieve it use git stash pop")
+  if unstashed:
+    print("Previous work in progress has been found in the stash, I unstashed it, to hide it, use git stash save")
+
+
 ###
 ### MAIN methods 
 ###   branch, commit, rebase, clone, pull
@@ -814,7 +864,7 @@ def create_branch(ticket, base=None):
   # Create the branch
   current_branch = branch_from_ticket(info)
   shell("git checkout -b " + current_branch, "Creating branch " + current_branch)
-  
+
   # Set ticket's status
   ticket_to_in_progress(ticket_id)
 
@@ -928,9 +978,10 @@ def amend(comment=None):
   if 'last_assignee' in info:
     ticket_to_TR(info['id'], info['last_assignee'])
 
-  # Message on PR
-  update_pr(info['pr'], comment)
-  print("Done, you can see the PR here: " + info['pr']) 
+  # Message on PR if there is one
+  if info['pr'] != '':
+    update_pr(info['pr'], comment)
+    print("Done, you can see the PR here: " + info['pr']) 
 
 
 # rebase, push -f, comment PR
@@ -940,22 +991,28 @@ def rebase(comment=None, base=None):
   # fetch before rebasing
   if base is not None:
     if re.match(r'^.\d*$', base):
-      # fetch base branch
+      # base branch from ticket id
       branch_name = fetch_branch_from_ticket(base)
     else:
+      # base branch from branch name
       branch_name = base
   else:
+    # base branch from upstream repository
     shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
     origin_branch = branch_from_version(info['version'])
     branch_name = UPSTREAM_REPOSITORY + "/" + origin_branch
 
-  # First rebase without commits from source branch (they could have been force pushed)
-  if not re.match(r'^.\d*$', base):
-    with NamedTemporaryFile() as tmpscript:
-      tmpscript.write("""#!/bin/sh
-perl -i -ne "print unless s/^Fixes #(?!%ticket)s)//" "$1"
+  # First rebase without commits from source branch
+  # This is necessary because we may have modified the original commit and force pushed it
+  with NamedTemporaryFile(delete=False) as tmpscript:
+    tmpscript.write("""#!/bin/sh
+perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
 """ % { "ticket": info['id']})
-      shell("EDITOR=" + tmpscript.name + " rebase -i " + branch_name, "First rebase to remove parent commits")
+    os.system("chmod +x " + tmpscript.name)
+    # If it fails, let the interactive rebase try to fix it
+    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits", fail_exit=False)
+    os.unlink(tmpscript.name)
+
 
   # Then interactive rebase
   shell("git rebase -i " + branch_name, "Rebasing")
@@ -967,9 +1024,10 @@ perl -i -ne "print unless s/^Fixes #(?!%ticket)s)//" "$1"
   if 'last_assignee' in info:
     ticket_to_TR(info['id'], info['last_assignee'])
 
-  # Message on PR
-  update_pr(info['pr'], comment)
-  print("Done, you can see the PR here: " + info['pr']) 
+  # Message on PR if there is one
+  if info['pr'] != '':
+    update_pr(info['pr'], comment)
+    print("Done, you can see the PR here: " + info['pr'])
 
 
 # close PR, rebase, push -f, create PR, update ticket
@@ -1204,7 +1262,7 @@ if __name__ == "__main__":
     if re.match(r'^i?\d{2,5}$', smart):
       arguments['branch'] = True
       arguments['<ticket_id>'] = smart
-    elif re.match(r'^\d\.\d+$|^master$', smart):
+    elif re.match(r'^\d\.(\d+|x)$|^master$', smart):
       arguments['pull'] = True
       arguments['<branch>'] = smart
     elif re.match(r'^[A-Z]{3}$', smart):
@@ -1229,9 +1287,15 @@ if __name__ == "__main__":
   if arguments['clone']:
     clone(arguments['<repository>'], arguments['--fork'])
   elif arguments['pull']:
+    stash()
     pull(arguments['<branch>'])
+    unstash()
+    stash_info()
   elif arguments['branch']:
+    stash()
     create_branch(arguments['<ticket_id>'], arguments['--base'])
+    unstash()
+    stash_info()
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['wip']:
@@ -1247,6 +1311,8 @@ if __name__ == "__main__":
   elif arguments['takeover']:
     takeover(arguments['<ticket_id>'])
   elif arguments['merge']:
+    stash()
+    before_merge_branch = current_branch
     if arguments['all']:
       merge_all(arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
     else:
@@ -1254,6 +1320,8 @@ if __name__ == "__main__":
         merge_to_next(arguments['<first_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
       else:
         merge(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
+    shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
+    unstash()
   elif arguments['find']:
     find(arguments['<command>'])
   elif arguments['cleanup']:
