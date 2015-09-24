@@ -151,6 +151,7 @@ import webbrowser
 import locale
 import time
 import json
+from distutils.version import LooseVersion
 from pprint import pprint
 from subprocess import Popen,PIPE
 from tempfile import NamedTemporaryFile
@@ -168,13 +169,11 @@ except ImportError:
 
 ## GLOBAL VARIABLES
 
-LIFECYCLES = { "rudder": { "detection": r'\s+remotes/NRM/branches/rudder/',
+LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/NRM/branches/rudder/(.*)',
                            "format": "branches/rudder/{}",
-                           "versions": [ "2.10", "2.11", "3.0", "3.1", "master" ]
                          },
-               "ncf": { "detection": r'\s+remotes/NRM/v\d\.',
+               "ncf": { "detection": r'^\*?\s+remotes/NRM/v(\d\..*)',
                         "format": "v{}",
-                        "versions": [ "0.x", "master" ]
                       },
              }
 CONFIG_FILE = "~/.rudder-dev"
@@ -192,9 +191,6 @@ PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
 
-
-# Filled by get_lifecycle
-current_lifecycle = None
 
 ###
 ###  Internal functions
@@ -475,6 +471,7 @@ def ticket_from_branch(branch):
     exit(4)
 
 
+current_lifecycle = None
 # Get the current lifecycle
 def get_lifecycle():
   global current_lifecycle
@@ -487,7 +484,45 @@ def get_lifecycle():
         current_lifecycle = lifecycle
   return current_lifecycle
 
+
+version_lists = None
+# get the version list for a given project
+def get_versions(project):
+  global version_lists
+  if version_lists is not None:
+    return version_lists
+
+  # list all versions in git
+  git_version_list = []
+  for line in os.popen("git branch --list -a"):
+    for data in LIFECYCLES.values():
+      m = re.match(data["detection"], line)
+      if m:
+        git_version_list.append(m.group(1))
+
+  # list all versions using redmine
+  versions = requests.get(REDMINE_API_URL + "/projects/" + project + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  redminde_version_list = []
+  for version in versions.json()['versions']:
+    if version['status'] != 'open':
+      continue
+    m = re.match(r'^(\d+\.\d+)\..*', version['name'])
+    if m:
+      v = m.group(1)
+    else:
+      v = version['name']
+    if v in git_version_list:
+      redmine_version_list.append(v)
   
+  # add master, keep unique name and sort
+  redmine_version_list.append('master')
+  unique = list(set(version_list))
+  unique.sort(key=LooseVersion)
+
+  version_lists = unique
+  return version_lists
+
+
 # Get branch name from version
 def branch_from_version(version):
   # detect lifecycle and base ne name on it
@@ -1155,7 +1190,7 @@ def merge_to_next(old, strategy=None, automatic=False):
   if lifecycle not in LIFECYCLES:
     print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
-  all_versions = LIFECYCLES[lifecycle]['versions']
+  all_versions = get_versions(lifecycle)
   new = None
   for idx, version in enumerate(all_versions):
     if old == version:
@@ -1173,7 +1208,7 @@ def merge_all(strategy=None, automatic=False):
   if lifecycle not in LIFECYCLES:
     print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
-  for branch in LIFECYCLES[lifecycle]['versions'][:-1]:
+  for branch in get_versions(lifecycle)[:-1]:
     merge_to_next(branch, strategy, automatic)
 
 
@@ -1184,11 +1219,11 @@ def find(command):
     print("I don't know how to look for branches in a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
   status = {}
-  for branch in LIFECYCLES[lifecycle]['versions']:
+  for branch in get_versions(lifecycle):
     pull(branch)
     status[branch] = shell(command, fail_exit=False)
   print("---")
-  for branch in LIFECYCLES[lifecycle]['versions']:
+  for branch in  get_versions(lifecycle):
     ok = "OK" if status[branch] == 0 else "ERR"
     print("%6s: %3s (%d)" % (branch, ok, status[branch]))
   print("---")
