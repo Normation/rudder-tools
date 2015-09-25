@@ -177,6 +177,7 @@ LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/NRM/branches/rudder/(.*
                       },
              }
 CONFIG_FILE = "~/.rudder-dev"
+CACHE_FILE = "~/.rudder-dev.cache"
 HUB_CONFIG_FILE = "~/.config/hub"
 REDMINE_ALT_API_URL = "https://redmine.normation.com"
 REDMINE_API_URL = "https://www.rudder-project.org/redmine"
@@ -423,41 +424,62 @@ def ticket_to_in_progress(ticket_id, message=None):
       print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + str(ticket_id))
 
 
-# Get Normations users from redmine (users that can review)
-def get_normation_users():
-  users = requests.get(REDMINE_API_URL + "/users.json?name=normation.com", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
-  user_list = [ u for u in users.json()['users'] if u['mail'].endswith("normation.com") ]
-  return user_list
-
-
 # get current redmine user
 def get_redmine_uid():
   user = requests.get(REDMINE_API_URL + "/users/current.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   return user.json()['user']['id']
 
 
+# update normation user list cache
+def update_nrm_users(project_id):
+  # read existing cahe if there is one
+  filename = os.path.expanduser(CACHE_FILE)
+  if os.path.isfile(filename):
+    with open(filename) as fd:
+      users = json.load(fd)
+  else:
+    users = { 'nrm_users': {} }
+  # just update it otherwise we would have only project specific data in it
+  user_list = requests.get(REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  for user in user_list.json()['memberships']:
+    id = user['user']['id']
+    user_data = requests.get(REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+    user_detail = user_data.json()['user']
+    if user_detail['mail'].endswith("normation.com"):
+      trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
+      users['nrm_users'][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
+  with open(filename, "w") as fd:
+    json.dump(users, fd)
+
+
+# get users ad trigraph for normation users
+def get_nrm_users(project_id):
+  filename = os.path.expanduser(CACHE_FILE)
+  if not os.path.isfile(filename):
+    update_nrm_users(project_id)
+  with open(filename) as fd:
+    users = json.load(fd)
+  return users['nrm_users']
+
+
 # Ask for a user using its trigraph
-def ask_username(trigraph=None):
-  # List Normation users
-  users = get_normation_users()
-  user_ids = {}
-  for user in users:
-    tri = user['firstname'][0] + user['lastname'][0] + user['lastname'][1]
-    tri = tri.upper()
-    user_ids[tri] = user['id']
+def ask_username(project_id, trigraph):
+  # List Normation users and index by trigraph
+  user_ids = get_nrm_users(project_id)
 
   # Ask for trigraph of user until found
   if trigraph is not None:
     trigraph = trigraph.upper()
   while trigraph not in user_ids:
     print("Assign to ?")
-    for user in users:
-      tri = user['firstname'][0] + user['lastname'][0] + user['lastname'][1]
-      print("  " + tri + ". " + user['firstname'] + " " + user['lastname'])
-    print("Enter trigraph: ", end='')
+    for user in user_ids.values():
+      print("  " + user['trigraph'] + ". " + user['firstname'] + " " + user['lastname'])
+    print("Enter trigraph (or 'r' to reload user list): ", end='')
     sys.stdout.flush() # to display previous unfinished line
     trigraph = sys.stdin.readline().strip().upper()
-  return user_ids[trigraph]
+    if trigraph == 'R':
+      update_nrm_users(project_id)
+  return user_ids[trigraph]['id']
 
 
 # Find a ticket id in a branch name
@@ -992,7 +1014,7 @@ def commit(trigraph=None, message=None):
   # update ticket
   if REDMINE_TOKEN is not None and pr_url is not None:
     if REDMINE_ROLE == 'developer':
-      user = ask_username(trigraph)
+      user = ask_username(info['project_id'], trigraph)
     else:
       user = None
     print("Updating ticket #" + str(info['id']))
