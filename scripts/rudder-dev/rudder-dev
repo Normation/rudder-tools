@@ -584,7 +584,7 @@ def branch_from_ticket_id(ticket_id, internal):
 
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration():
-  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_CMD, REDMINE_TOKEN, REDMINE_ALT_TOKEN, REDMINE_ROLE
+  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_USER, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN, REDMINE_ROLE
 
   # Detect missing configuration
   if not os.path.isfile(os.path.expanduser(CONFIG_FILE)):
@@ -595,9 +595,11 @@ def read_configuration():
 #nrm_upstream = NRM
 ## Name of personal upstream repository on your local git (BPF, origin, ...)
 #own_upstream =
-## Command for github cli (uncomment if installed), install from https://github.com/github/hub or https://github.com/github/hub/releases
-## Or, on Mac OS, if using Homebrew, brew install hub
-#github_cmd = hub
+## If github cli is installed, rudder-dev will read hub's configuration file to get the user's github token
+## If github cli is not installed, you should uncomment these 2 lines to manually provide this information
+# github_user = 
+## To manage your tokens, click here https://github.com/settings/tokens
+# github_token = 
 ## Redmine personal access token, (create one here http://www.rudder-project.org/redmine/my/account)
 #redmine_token = 
 #redmine_alt_token = 
@@ -612,7 +614,8 @@ def read_configuration():
   config.read(os.path.expanduser(CONFIG_FILE))
   UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + CONFIG_FILE)
   OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + CONFIG_FILE)
-  GITHUB_CMD = get_config("github_cmd", None)
+  GITHUB_USER = get_config("github_user", None)
+  GITHUB_TOKEN = get_config("github_token", None)
   REDMINE_TOKEN = get_config("redmine_token", None)
   REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
   REDMINE_ROLE = get_config("redmine_role", None)
@@ -633,7 +636,9 @@ def get_config(item, error):
 
 
 # Get github user as used by the hub command
-def get_hub_user():
+def get_github_user():
+  if GITHUB_USER is not None:
+    return GITHUB_USER
   if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
     with open(os.path.expanduser(HUB_CONFIG_FILE)) as f:
       for line in f:
@@ -645,7 +650,9 @@ def get_hub_user():
 
 
 # Get github token as used by the hub command
-def get_hub_token():
+def get_github_token():
+  if GITHUB_TOKEN is not None:
+    return GITHUB_TOKEN
   if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
     with open(os.path.expanduser(HUB_CONFIG_FILE)) as f:
       for line in f:
@@ -679,7 +686,7 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
       return False
 
   # get connection info
-  token = get_hub_token()
+  token = get_github_token()
   repo = remote_repo()
   url = api_url.format(repo=repo, pr_id=pr_id)
 
@@ -701,26 +708,24 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
     if not force:
       exit(12)
 
-  # return GET result
-  if post_data is None:
-    return ret.json()
+  # return result
+  return ret.json()
  
 
 # create a new PR
 def create_pr(master_branch, ticket_id, title, message):
-  if GITHUB_CMD is not None:
-    hub_cmd = GITHUB_CMD + " pull-request -F - -b Normation:" + master_branch + " << EOF\n"
-    hub_cmd += "Fixes #" + str(ticket_id) + ": " + title + "\n\n"
-    hub_cmd += REDMINE_API_URL + "/issues/" + str(ticket_id)
-    if message is not None:
-      hub_cmd += "\n\n" + message
-    hub_cmd += "\nEOF\n"
-    return shell(hub_cmd, "Creating PR ... ", True).strip()
-  else:
-    print("You can now create a pull request from here https://github.com/Normation/<repo-name>/")
-    print("And then update the ticket here " + REDMINE_API_URL + "/issues/" + ticket_id)
-    print("This tool can automatically create a pull request for you if you install the GitHub CLI tool. See " + CONFIG_FILE + " for details")
-    return None
+  url = "https://api.github.com/repos/Normation/{repo}/pulls"
+  user = get_github_user()
+  body = REDMINE_API_URL + "/issues/" + str(ticket_id)
+  if message is not None:
+    body += "\n\n" + message + "\n"
+
+  pr = '{ "title": ' + json.dumps('Fixes #' + str(ticket_id) + ": " + title) + ','
+  pr += ' "body": ' + json.dumps(body) + ','
+  pr += ' "head": "' + user + ':' + current_branch + '",'
+  pr += ' "base": "' + master_branch + '" }'
+  result = github_request(url, "Creating PR ...", pr_url=None, post_data=pr)
+  return result['html_url']
 
 
 # add a message to a given pull-request on github
@@ -823,7 +828,7 @@ def github_fork():
 
   # fork the report if not already forked
   remote_url = ""
-  user = get_hub_user()
+  user = get_github_user()
   remote = remote_repo()
   fork_needed = os.popen("git ls-remote git://github.com/" + user + "/" + remote + ".git HEAD > /dev/null 2>/dev/null; echo $?").read().strip()
   if fork_needed != "0":
