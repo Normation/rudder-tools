@@ -705,7 +705,7 @@ def create_pr(master_branch, ticket_id, title, message):
 def update_pr(pr_url, comment):
   message = "PR updated"
   if comment is not None:
-    message += "\n" + comment
+    message += "\\n" + comment
   issue = '{ "body": "' + message + '" }'
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
   github_request(url, "Updating PR ...", pr_url, issue)
@@ -1007,7 +1007,7 @@ def amend(comment=None):
   info = ticket_from_branch(current_branch)
   
   # commit over last commit and push
-  commit_push(current_branch, '', True)
+  commit_push(current_branch, "Fixes #" + str(info['id']) + ": " + info['name'].replace("\"", "\\\""), True)
 
   # reassign ticket
   if 'last_assignee' in info:
@@ -1033,7 +1033,7 @@ def rebase(comment=None, base=None):
       branch_name = base
   else:
     # base branch from upstream repository
-    shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+    shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
     origin_branch = branch_from_version(info['version'])
     branch_name = UPSTREAM_REPOSITORY + "/" + origin_branch
 
