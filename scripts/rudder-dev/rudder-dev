@@ -507,12 +507,12 @@ def get_lifecycle():
   return current_lifecycle
 
 
-version_lists = None
+version_list = None
 # get the version list for a given project
 def get_versions(project):
-  global version_lists
-  if version_lists is not None:
-    return version_lists
+  global version_list
+  if version_list is not None:
+    return version_list
 
   # list all versions in git
   git_version_list = []
@@ -524,7 +524,7 @@ def get_versions(project):
 
   # list all versions using redmine
   versions = requests.get(REDMINE_API_URL + "/projects/" + project + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
-  redminde_version_list = []
+  redmine_version_list = []
   for version in versions.json()['versions']:
     if version['status'] != 'open':
       continue
@@ -538,11 +538,10 @@ def get_versions(project):
   
   # add master, keep unique name and sort
   redmine_version_list.append('master')
-  unique = list(set(version_list))
-  unique.sort(key=LooseVersion)
+  version_list = list(set(redmine_version_list))
+  version_list.sort(key=LooseVersion)
 
-  version_lists = unique
-  return version_lists
+  return version_list
 
 
 # Get branch name from version
