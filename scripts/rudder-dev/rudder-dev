@@ -332,8 +332,12 @@ def can_modify_issues(project_id):
   global REDMINE_CAN_MODIFY
   if REDMINE_CAN_MODIFY is not None:
     return REDMINE_CAN_MODIFY
+<<<<<<< HEAD
   data = requests.get(REDMINE_API_URL + "/users/current.json?include=memberships", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   user = data.json()
+=======
+  user = requests.get(REDMINE_API_URL + "/users/current.json?include=memberships", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+>>>>>>> 31c71b6... Fixes #7298: rudder should automatically guess my redmine role
   for membership in user['user']['memberships']:
     if membership['project']['id'] == project_id:
       for role in membership['roles']:
