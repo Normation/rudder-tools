@@ -590,20 +590,19 @@ def read_configuration():
     with open(os.path.expanduser(CONFIG_FILE), 'a') as cfile:
       cfile.write("""[default]
 ## Uncomment and set your own values
-## Name of normation upstream repository on your local git (NRM, origin, ...)
+## Your prefered name for Normation upstream repository on your local git (NRM, origin, ...)
 #nrm_upstream = NRM
-## Name of personal upstream repository on your local git (BPF, origin, ...)
+## Your prefered name for personal upstream repository on your local git (ABC, origin, ...)
 #own_upstream =
 ## If github cli is installed, rudder-dev will read hub's configuration file to get the user's github token
-## If github cli is not installed, you should uncomment these 2 lines to manually provide this information
-# github_user = 
-## To manage your tokens, click here https://github.com/settings/tokens
+## Otherwise, yo manage your tokens, click here https://github.com/settings/tokens (click "Generate new token")
 # github_token = 
-## Redmine personal access token, (create one here http://www.rudder-project.org/redmine/my/account)
+## Redmine personal access token, get yours here http://www.rudder-project.org/redmine/my/account (under "API access key")
 #redmine_token = 
+## For Normation people only
 #redmine_alt_token = 
-## Redmine role level (can be 'reporter' for comment only or 'developer' if you can modify a ticket content)
-#redmine_role = reporter
+## Redmine role level 'reporter'=comment only, 'developer'=you can modify a ticket content, use reporter if you don't know
+redmine_role = reporter
 """)
     print(CONFIG_FILE + " doesn't exist !")
     print("I made a sample one, please fill it")
@@ -613,7 +612,6 @@ def read_configuration():
   config.read(os.path.expanduser(CONFIG_FILE))
   UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + CONFIG_FILE)
   OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + CONFIG_FILE)
-  GITHUB_USER = get_config("github_user", None)
   GITHUB_TOKEN = get_config("github_token", None)
   REDMINE_TOKEN = get_config("redmine_token", None)
   REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
@@ -636,20 +634,16 @@ def get_config(item, error):
 
 # Get github user as used by the hub command
 def get_github_user():
-  if GITHUB_USER is not None:
-    return GITHUB_USER
-  if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
-    with open(os.path.expanduser(HUB_CONFIG_FILE)) as f:
-      for line in f:
-        match = re.search(r'user: (\w+)', line)
-        if match:
-          return match.group(1)
-  print("Github user not found")
-  exit(6)
+  user_data=github_request("https://api.github.com/users", None)
+  if 'login' in user_data:
+    return user_data['login']
+  else:
+    print("Github user not found")
+    exit(6)
 
 
 # Get github token as used by the hub command
-def get_github_token():
+def get_github_token(can_fail=False):
   if GITHUB_TOKEN is not None:
     return GITHUB_TOKEN
   if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
@@ -658,8 +652,11 @@ def get_github_token():
         match = re.search(r'oauth_token: (\w+)', line)
         if match:
           return match.group(1)
-  print("Github user not found")
-  exit(6)
+  if can_fail:
+    return None
+  else:
+    print("Github user not found")
+    exit(6)
 
 
 # Find remote repository name from current directory
@@ -1162,7 +1159,12 @@ def pull(version=None):
 
 # clone from NRM, fork, add OWN, set-upstream
 def clone(name, fork=False):
-  shell("git clone --origin " + UPSTREAM_REPOSITORY + " git@github.com:Normation/" + name + ".git", "Cloning Normation repository")
+  token = get_github_token(can_fail=True)
+  if token is None:
+    url = "git@github.com:Normation/"
+  else:
+    url = "https://github.com/Normation/"
+  shell("git clone --origin " + UPSTREAM_REPOSITORY + " " + url + name + ".git", "Cloning Normation repository")
   if fork:
     os.chdir(name)
     github_fork()
