@@ -1,0 +1,232 @@
+#!/bin/bash
+
+REPO_LIST="rudder ncf rudder-packages rudder-agent rudder-techniques ldap-inventory cf-clerk rudder-commons scala-ldap rudder-parent-pom rudder-tests rudder-api-client rudder-doc"
+
+if type curl 2> /dev/null >/dev/null
+  GET="curl -s -H 'Content-Type: application/json' -H"
+  GET_FILE="curl -s -o"
+else
+  GET="wget -O - -q --header 'Content-Type: application/json' --header"
+  GET_FILE="wget -q -O"
+fi
+
+# 1. We need the git binary
+if type git 2> /dev/null >/dev/null
+  echo "1. You already Have git, wonderful!"
+else
+  echo "1. You don't have git, trying to install it"
+  if ! type apt-get 2> /dev/null >/dev/null; then
+    sudo apt-get install git
+  elif type yum 2> /dev/null >/dev/null; then
+    sudo yum install git
+  elif type zypper 2> /dev/null >/dev/null; then
+    sudo zypper install git
+  else
+    echo "Cannot find your package manager"
+    false
+  fi
+  if [ $? -ne 0 ]; then
+    echo "Could not install git, you have to install it by yourself"
+  fi
+fi
+
+# 2. We need a github account
+# detect existing token from configuration
+if [ -e ~/.rudder-dev ]; then
+  github_token=$(grep -E '^[[:space:]]*github_token[[:space:]]*=[[:space:]]*[^[:space:]]' ~/.rudder-dev | sed 's/.*=[[:space:]]*//')
+fi
+# detect existing token from github cli
+if [ "${github_token}" = "" ] && [ -e ~/.config/hub ]; then
+  github_token=$(grep -E '^[[:space:]]*oauth_token:[[:space:]]*[^[:space:]]' ~/.config/hub | sed 's/.*:[[:space:]]*//')
+fi
+# else ask for existing token
+if [ "${github_token}" != "" ]; then
+  echo "2. Found your github token, great!"
+else
+  echo "2. What is your github account?"
+  echo " If you don't have an account, create one at https://github.com/join"
+  echo " If you have an account but no token, go to https://github.com/settings/tokens and click 'Generate new token'."
+  echo -n " What is your token? (leave empty to skip using github): "
+  read github_token
+fi
+
+if [ "${github_token}" != "" ]; then
+  github_user=$(${GET} "Authorization: token ${github_token}" https://api.github.com/user | grep '"login":' | sed 's/.*"login":.*"\(.*\)".*/\1/')
+  if ${GET} "Authorization: token ${github_token}" https://api.github.com/users/peckpeck/keys | grep '"key":' >/dev/null
+  then
+    echo "2.1. I found your SSH key on github!"
+  else
+    echo "2.1. I can't find your SSH key in github!"
+    echo " You should go to https://github.com/settings/ssh and add it there."
+    echo -n " Type return when you're done. "
+    read a
+  fi
+fi
+
+# 3. we need a redmine account
+if [ -e ~/.rudder-dev ]; then
+  redmine_token=$(grep -E '^[[:space:]]*redmine_token[[:space:]]*=[[:space:]]*[^[:space:]]' ~/.rudder-dev | sed 's/.*=[[:space:]]*//')
+fi
+if [ "${redmine_token}" != "" ]; then
+  echo "3. Found your redmine token, great!"
+else
+  echo "3. What is your redmine token ?"
+  echo " If you don't have an account, create one at http://www.rudder-project.org/redmine/my/account"
+  echo " If you have an account, go to http://www.rudder-project.org/redmine/my/account and clik on 'display' under 'API access key'"
+  echo -n " What is your token? (leave empty to skip using redmine): "
+  read redmine_token
+fi
+
+# 4. Repository naming
+if [ -e ~/.rudder-dev ]; then
+  nrm_upstream=$(grep -E '^[[:space:]]*nrm_upstream[[:space:]]*=[[:space:]]*[^[:space:]]' ~/.rudder-dev | sed 's/.*=[[:space:]]*//')
+  own_upstream=$(grep -E '^[[:space:]]*own_upstream[[:space:]]*=[[:space:]]*[^[:space:]]' ~/.rudder-dev | sed 's/.*=[[:space:]]*//')
+fi
+if [ "${own_upstream}" != "" ]; then
+  echo "4. Found remote repositories naming scheme ${nrm_upstream}->Normation ${own_upstream}->yours, good!"
+else
+  tla=$(echo ${USER:0:3} | tr '[a-z]' '[A-Z]')
+  echo "4. Remote repositories are created and used regularly by rudder-dev, it needs to know how they are named"
+  echo " You can choose among different naming schemes (Personaly I prefer using TLA everywhere)."
+  echo " Which one do you prefer? (in the form <Normation's repository> / <your repository>)"
+  echo " 1. NRM / origin"
+  echo " 2. NRM / ${tla}"
+  echo " 3. origin / ${tla}"
+  echo " 4. NRM / ${USER}"
+  echo " 5. origin / ${USER}"
+  echo -n " Please choose a number or directly type a scheme like XXX / YYY: "
+  read a b c
+  case "${a}" in
+    1)
+      nrm_upstream="NRM"
+      own_upstream="origin"
+      ;;
+    2)
+      nrm_upstream="NRM"
+      own_upstream="${tla}"
+      ;;
+    3)
+      nrm_upstream="origin"
+      own_upstream="${tla}"
+      ;;
+    4)
+      nrm_upstream="NRM"
+      own_upstream="${USER}"
+      ;;
+    5)
+      nrm_upstream="origin"
+      own_upstream="${USER}"
+      ;;
+    *)
+      nrm_upstream="${a}"
+      if [ "${b}" = "/" ]; then
+        own_upstream="${c}"
+      else
+        own_upstream="$b"
+      fi 
+      ;;
+  esac
+  echo " Using ${nrm_upstream}->Normation ${own_upstream}->yours"
+fi
+
+# 5. Install rudder-dev
+if type rudder-dev >/dev/null 2>/dev/null; then
+  echo "5. Found rudder-dev in your path, very good!"
+else
+  echo "5. You don't have rudder-dev in your path"
+  echo " Do you want to install it in /usr/local (needs sudo) or in ~/bin (no sudo) or somewhere else?"
+  while [ ! -d "${rudder_dev_path}" ]
+  do
+    echo -n " Type your prefered path [/usr/local]: "
+    read rudder_dev_path
+    if [ "${rudder_dev_path}" = "" ]; then
+      rudder_dev_path="/usr/local"
+    fi
+    [ ! -d "${rudder_dev_path}" ] && echo "This is not a directory!"
+  done
+  [ ! -w "${rudder_dev_path}" ] && sudo_prefix="sudo"
+  ${sudo_prefix} ${GET_FILE} "${rudder_dev_path}/rudder-dev" "https://raw.githubusercontent.com/Normation/rudder-tools/master/scripts/rudder-dev/rudder-dev"
+  ${sudo_prefix} chmod +x "${rudder_dev_path}/rudder-dev"
+  if type rudder-dev >/dev/null 2>/dev/null; then
+    if [ -e ~/.bashrc ]
+      echo " ${rudder_dev_path} is not in your path, adding it to ~/.bashrc"
+      echo "export PATH=\$PATH:${rudder_dev_path}" >> ~/.bashrc
+    fi
+    echo " ${rudder_dev_path} was not in your path, please consider adding there lines to your prefered shell rcfile:"
+    echo "PATH=\$PATH:${rudder_dev_path}"
+    echo "export PATH"
+  fi
+fi
+# 5.1 rudder-dev configuration
+echo -n "5.1. Now let's edit your configuration file... "
+if [ ! -e ~/.rudder-dev ]; then
+  # this will create ~/.rudder-dev and exit
+  ${rudder_dev_path}/rudder-dev wip
+fi
+sed -i "s/^.*nrm_upstream[[:space:]]*=.*/nrm_upstream = ${nrm_upstream}/" ~/.rudder-dev
+sed -i "s/^.*own_upstream[[:space:]]*=.*/own_upstream = ${own_upstream}/" ~/.rudder-dev
+sed -i "s/^.*github_token[[:space:]]*=.*/github_token = ${github_token}/" ~/.rudder-dev
+sed -i "s/^.*redmine_token[[:space:]]*=.*/redmine_token = ${redmine_token}/" ~/.rudder-dev
+echo "done."
+
+# 6. workspace
+echo "6. Where will you work with Rudder sources?"
+echo " I suggest you to use a dedicated directory to work. I usually use ~/Rudder for this."
+echo -n " Please type a path or 's' to skip this step [~/Rudder] "
+read workspace
+if [ "${workspace}" != "s" ]; then
+  [ "${workspace}" = "" ] && workspace=~/Rudder
+  mkdir -p "${workspace}"
+  cd "${workspace}"
+  echo "6.1. Do you know which repository you will work on?"
+  echo " If you don't know, just let me clone all our repos so you can search easily for files everywhere"
+  echo -n " Repository to clone [all] "
+  read repository
+  if [ "${repository}" = "all" ] || [ "${repository}" = "" ];
+    for repo in ${REPO_LIST}
+    do
+      ${rudder_dev_path}/rudder-dev clone "${repo}"
+    done
+  else
+    ${rudder_dev_path}/rudder-dev clone "${repository}"
+  fi
+fi
+
+# 7. Tutorial
+echo "7. We're all done."
+cat <<EOF
+
+ Remember that whenever you're stuck, rudder-dev has an inline help: rudder-dev --help
+
+ The basic workflow when you work with rudder-dev is the following:
+ - First you find the issue number you want to work on in redmine http://www.rudder-project.org/redmine/projects/rudder/issues
+   -> let's say 1234
+ - Then you need to find on which repository to work 
+   -> let's say rudder-techniques
+ - Go to the directory containing this directory
+   -> cd ~/Rudder/rudder-techniques
+ - Create your working branch based on the issue informations
+   -> rudder-dev 1234
+   -> this will pull the right source branch, create a new branch and update the issue
+ - Work on the issue
+   -> let's say vi LICENSE
+ - Tell git you finished working
+   -> git add LICENSE
+ - Create a pull-request
+   -> rudder-dev commit
+   -> this will commit, push, create a pull request, and update the issue with this information
+
+ This should be enough, now someone will review your pull-request and probably merge it.
+ In this case you have nothing else to do.
+ But in case you need to do some corrections:
+ - Edit your file according to remarks on the PR
+   -> let's say vi LICENSE
+ - Tell git you finished working
+   -> git add LICENSE
+ - Update the pull request
+   -> rudder-dev amend
+
+EOF
+
+echo "Goodbye!"
+
