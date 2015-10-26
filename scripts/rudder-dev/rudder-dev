@@ -459,7 +459,7 @@ def update_nrm_users(project_id):
     with open(filename) as fd:
       users = json.load(fd)
   else:
-    users = { 'nrm_users': {} }
+    users = { REDMINE_API_URL: {} }
   # just update it otherwise we would have only project specific data in it
   user_list = requests.get(REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   for user in user_list.json()['memberships']:
@@ -468,7 +468,7 @@ def update_nrm_users(project_id):
     user_detail = user_data.json()['user']
     if user_detail['mail'].endswith("normation.com"):
       trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
-      users['nrm_users'][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
+      users[REDMINE_API_URL][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
   with open(filename, "w") as fd:
     json.dump(users, fd)
 
@@ -480,7 +480,7 @@ def get_nrm_users(project_id):
     update_nrm_users(project_id)
   with open(filename) as fd:
     users = json.load(fd)
-  return users['nrm_users']
+  return users[REDMINE_API_URL]
 
 
 # Ask for a user using its trigraph
