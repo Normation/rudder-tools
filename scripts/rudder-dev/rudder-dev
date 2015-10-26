@@ -182,15 +182,17 @@ HUB_CONFIG_FILE = "~/.config/hub"
 REDMINE_ALT_API_URL = "https://redmine.normation.com"
 REDMINE_API_URL = "https://www.rudder-project.org/redmine"
 REDMINE_API_LIMIT = 100
-REDMINE_CLOSED_STATUSES = [5, 6, 16, 11]
+REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
 REDMINE_META_TRACKERS = [3]
+ACCESS_ROLE_LIST = [ 3, 4, 5, 7, 8, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager
 
 # Keeping old version for reference
 #TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
-TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch' }
+TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'PBM', 'Incident': 'INC' }
 PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
+ALT_CUSTOM_FIELD_PR = 1
 
 
 ###
@@ -233,6 +235,7 @@ def parse_ticket_id(ticket_id):
     ticket_id = match.group(1)
     REDMINE_TOKEN = REDMINE_ALT_TOKEN
     REDMINE_API_URL = REDMINE_ALT_API_URL
+    CUSTOM_FIELD_PR = ALT_CUSTOM_FIELD_PR
     internal = True
   return (ticket_id, internal)
 
@@ -277,7 +280,7 @@ def get_ticket_info(ticket_id, internal=False):
   
   # Check ticket type
   if ticket['tracker'] in REDMINE_META_TRACKERS:
-    print("This is a quetsion ticket! You cannot make a pull request on this ticket.")
+    print("This is a question ticket! You cannot make a pull request on this ticket.")
     print("***** ERROR: This is a question ticket. Exiting.")
     if not force:
       exit(2)
@@ -323,9 +326,27 @@ def get_ticket_info(ticket_id, internal=False):
   return info
 
 
+# Return true if the current user can modify an issue in the given project
+REDMINE_CAN_MODIFY=None
+def can_modify_issues(project_id):
+  global REDMINE_CAN_MODIFY
+  if REDMINE_CAN_MODIFY is not None:
+    return REDMINE_CAN_MODIFY
+  data = requests.get(REDMINE_API_URL + "/users/current.json?include=memberships", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  user = data.json()
+  for membership in user['user']['memberships']:
+    if membership['project']['id'] == project_id:
+      for role in membership['roles']:
+        if role['id'] in ACCESS_ROLE_LIST:
+          REDMINE_CAN_MODIFY = True
+          return True
+  REDMINE_CAN_MODIFY = False
+  return False
+
+
 # Change a ticket version to the closest version available
 def update_ticket_version(info, version):
-  if REDMINE_ROLE != 'developer':
+  if can_modify_issues(info['project_id']):
     print("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
     exit(13)
 
@@ -350,7 +371,7 @@ def update_ticket_version(info, version):
 
 
 # Change ticket state to technical review
-def ticket_to_TR(ticket_id, user_id=None, pr_url=None, message=None):
+def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
   # Create note content
   note = None
   if pr_url is not None:
@@ -361,7 +382,7 @@ def ticket_to_TR(ticket_id, user_id=None, pr_url=None, message=None):
     else:
       note += "\n" + message
 
-  if REDMINE_ROLE == 'developer':
+  if can_modify_issues(info['project_id']):
     # fill ticket data with developer available content
     ticket_info = { 
             'issue': {
@@ -387,7 +408,7 @@ def ticket_to_TR(ticket_id, user_id=None, pr_url=None, message=None):
           }
   
   # call the api
-  url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
+  url = REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
   ticket_json = json.dumps(ticket_info)
   ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 200:
@@ -398,11 +419,11 @@ def ticket_to_TR(ticket_id, user_id=None, pr_url=None, message=None):
 
 
 # change the ticket state to In progress
-def ticket_to_in_progress(ticket_id, message=None):
+def ticket_to_in_progress(info, message=None):
   # set ticket status to "in progress"
   if REDMINE_TOKEN is not None:
-    if REDMINE_ROLE == 'developer':
-      print("Changing status of ticket #" + str(ticket_id) + " to \"In progress\"")
+    if can_modify_issues(info['project_id']):
+      print("Changing status of ticket #" + str(info['id']) + " to \"In progress\"")
       user_id = get_redmine_uid()
       ticket_info = {
               'issue': {
@@ -412,7 +433,7 @@ def ticket_to_in_progress(ticket_id, message=None):
       }
       if message is not None:
         ticket_info['issue']['notes'] = message
-      url = REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json"
+      url = REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
       ticket_json = json.dumps(ticket_info)
       ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
       if ret.status_code != 200:
@@ -421,7 +442,7 @@ def ticket_to_in_progress(ticket_id, message=None):
         if not force:
           exit(3)
     else:
-      print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + str(ticket_id))
+      print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + str(info['id']))
 
 
 # get current redmine user
@@ -474,11 +495,14 @@ def ask_username(project_id, trigraph):
     print("Assign to ?")
     for user in user_ids.values():
       print("  " + user['trigraph'] + ". " + user['firstname'] + " " + user['lastname'])
-    print("Enter trigraph (or 'r' to reload user list): ", end='')
+    print("  NON. No one")
+    print("Enter trigraph (or 'r' to reload user list, 'n' for ): ", end='')
     sys.stdout.flush() # to display previous unfinished line
     trigraph = sys.stdin.readline().strip().upper()
     if trigraph == 'R':
       update_nrm_users(project_id)
+    if trigraph == 'NON':
+      return None
   return user_ids[trigraph]['id']
 
 
@@ -583,7 +607,7 @@ def branch_from_ticket_id(ticket_id, internal):
 
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration():
-  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_USER, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN, REDMINE_ROLE
+  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN
 
   # Detect missing configuration
   if not os.path.isfile(os.path.expanduser(CONFIG_FILE)):
@@ -601,8 +625,6 @@ def read_configuration():
 #redmine_token = 
 ## For Normation people only
 #redmine_alt_token = 
-## Redmine role level 'reporter'=comment only, 'developer'=you can modify a ticket content, use reporter if you don't know
-redmine_role = reporter
 """)
     print(CONFIG_FILE + " doesn't exist !")
     print("I made a sample one, please fill it")
@@ -615,9 +637,6 @@ redmine_role = reporter
   GITHUB_TOKEN = get_config("github_token", None)
   REDMINE_TOKEN = get_config("redmine_token", None)
   REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
-  REDMINE_ROLE = get_config("redmine_role", None)
-  if REDMINE_ROLE != 'developer':
-    REDMINE_ROLE = 'reporter'
 
 
 # Get a configuration item from current configuration file
@@ -693,7 +712,9 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
 
   # make query
   if post_data is not None:
-    ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data )
+    if sys.version_info[0] == 2:
+      post_data = post_data.encode('utf-8')
+    ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data)
   else:
     ret = requests.get(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' })
 
@@ -924,7 +945,7 @@ def create_branch(ticket, base=None):
   shell("git checkout -b " + current_branch, "Creating branch " + current_branch)
 
   # Set ticket's status
-  ticket_to_in_progress(ticket_id)
+  ticket_to_in_progress(info)
 
   print("")
   print("# Now you can edit files")
@@ -1014,15 +1035,16 @@ def commit(trigraph=None, message=None):
 
   # update ticket
   if REDMINE_TOKEN is not None and pr_url is not None:
-    if REDMINE_ROLE == 'developer':
+    if can_modify_issues(info['project_id']):
       user = ask_username(info['project_id'], trigraph)
     else:
       user = None
     print("Updating ticket #" + str(info['id']))
-    ticket_to_TR(info['id'], user, pr_url, message)
+    ticket_to_TR(info, user, pr_url, message)
     print("Ticket updated: " + REDMINE_API_URL + "/issues/" + info['id'])
   else:
     print("You can now update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
+  print("PR URL: " + pr_url)
 
 
 # amend commit, push -f, comment PR
@@ -1034,7 +1056,7 @@ def amend(comment=None):
 
   # reassign ticket
   if 'last_assignee' in info:
-    ticket_to_TR(info['id'], info['last_assignee'])
+    ticket_to_TR(info, info['last_assignee'])
 
   # Message on PR if there is one
   if info['pr'] != '':
@@ -1080,7 +1102,7 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
 
   # reassign ticket
   if 'last_assignee' in info:
-    ticket_to_TR(info['id'], info['last_assignee'])
+    ticket_to_TR(info, info['last_assignee'])
 
   # Message on PR if there is one
   if info['pr'] != '':
@@ -1124,7 +1146,7 @@ def retarget(version=None):
   user = None
   if 'last_assignee' in info:
     user = info['last_assignee']
-  ticket_to_TR(info['id'], user, pr_url)
+  ticket_to_TR(info, user, pr_url)
 
 
 # ckeckout version, pull
@@ -1173,7 +1195,7 @@ def clone(name, fork=False):
 # takevover a ticket with an existing PR
 def takeover(ticket):
   global current_branch
-
+  (ticket_id, internal) = parse_ticket_id(ticket)
   existing_branch = branch_from_ticket_id(ticket_id, internal)
   if existing_branch is not None:
     print("***** ERROR: Can't take over a ticket with a matching branch already existing in your repository")
@@ -1189,7 +1211,8 @@ def takeover(ticket):
   commit_push(current_branch, "Work in progress", True)
 
   # Set ticket's status
-  ticket_to_in_progress(ticket_id, "I'm taking over this ticket!")
+  info = get_ticket_info(ticket_id, internal)
+  ticket_to_in_progress(info, "I'm taking over this ticket!")
 
   print("")
   print("# Now you can edit files")
