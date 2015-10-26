@@ -634,7 +634,7 @@ def get_config(item, error):
 
 # Get github user as used by the hub command
 def get_github_user():
-  user_data=github_request("https://api.github.com/users", None)
+  user_data=github_request("https://api.github.com/user", None)
   if 'login' in user_data:
     return user_data['login']
   else:
