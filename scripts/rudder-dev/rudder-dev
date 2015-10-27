@@ -169,10 +169,10 @@ except ImportError:
 
 ## GLOBAL VARIABLES
 
-LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/NRM/branches/rudder/(.*)',
+LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                            "format": "branches/rudder/{}",
                          },
-               "ncf": { "detection": r'^\*?\s+remotes/NRM/v(\d\..*)',
+               "ncf": { "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
                         "format": "v{}",
                       },
              }
@@ -526,7 +526,7 @@ def get_lifecycle():
   current_lifecycle = "master_only"
   for line in os.popen("git branch --list -a"):
     for lifecycle, data in LIFECYCLES.items():
-      if re.match(data["detection"], line):
+      if re.match(data["detection"].format(UPSTREAM_REPOSITORY), line):
         current_lifecycle = lifecycle
   return current_lifecycle
 
@@ -542,7 +542,7 @@ def get_versions(project):
   git_version_list = []
   for line in os.popen("git branch --list -a"):
     for data in LIFECYCLES.values():
-      m = re.match(data["detection"], line)
+      m = re.match(data["detection"].format(UPSTREAM_REPOSITORY), line)
       if m:
         git_version_list.append(m.group(1))
 
@@ -1032,6 +1032,7 @@ def commit(trigraph=None, message=None):
 
   # create PR
   pr_url = create_pr(master_branch, info['id'], info['name'].replace("\"", "\\\""), message)
+  print("PR URL: " + pr_url)
 
   # update ticket
   if REDMINE_TOKEN is not None and pr_url is not None:
@@ -1044,7 +1045,6 @@ def commit(trigraph=None, message=None):
     print("Ticket updated: " + REDMINE_API_URL + "/issues/" + info['id'])
   else:
     print("You can now update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
-  print("PR URL: " + pr_url)
 
 
 # amend commit, push -f, comment PR
