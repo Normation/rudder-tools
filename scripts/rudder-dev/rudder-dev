@@ -204,25 +204,28 @@ ALT_CUSTOM_FIELD_PR = 1
 def shell(command, comment=None, keep_output=False, fail_exit=True):
   if comment is not None:
     print(comment)
-  print(" $ " + command)
+    print(" $ " + command)
   if keep_output:
     process = Popen(command, stdout=PIPE, shell=True)
     output, error = process.communicate()
-    print(output)
     retcode = process.poll()
   else: # keep tty management and thus colors
     process = Popen(command, shell=True)
     retcode = process.wait()
     output = None
   if fail_exit and retcode != 0:
+    if comment is None:
+      print(command)
     print("*** COMMAND ERROR " + str(retcode))
     if not force:
       exit(1)
   if keep_output:
-    return output
+    if sys.version_info[0] != 2:
+      output = output.decode("utf-8")
   if not fail_exit:
-    return retcode
-  return None
+    return (retcode, output)
+  else:
+    return output
 
 
 def parse_ticket_id(ticket_id):
@@ -682,7 +685,7 @@ def get_github_token(can_fail=False):
 
 # Find remote repository name from current directory
 def remote_repo():
-  value = os.popen("git remote -v").read().strip()
+  value = shell("git remote -v", keep_output=True).strip()
   match = re.search(r'git@github.com:Normation/(.*?).git', value)
   if match:
     return match.group(1)
@@ -791,7 +794,7 @@ def commit_push(branch, message, force_amend=False):
     # github fork is asynchronous but pretty fast, this should be sufficient
     time.sleep(2)
 
-  wip = os.popen("git log --grep \"^Work in progress\" HEAD^..").read().strip()
+  wip = shell("git log --grep \"^Work in progress\" HEAD^..", keep_output=True).strip()
   commit_cmd = "git commit"
   if message != '':
     commit_cmd += " -m \"" + message + "\""
@@ -841,7 +844,7 @@ def fetch_branch_from_ticket(ticket):
 
 def github_fork():
   # we don't need to fork if the remote is known
-  remotes = os.popen("git remote show").read()
+  remotes = shell("git remote show", keep_output=True).strip()
   if re.match('^'+OWN_REPOSITORY+"\n", remotes, flags=re.MULTILINE):
     return False
 
@@ -849,7 +852,7 @@ def github_fork():
   remote_url = ""
   user = get_github_user()
   remote = remote_repo()
-  fork_needed = os.popen("git ls-remote git://github.com/" + user + "/" + remote + ".git HEAD > /dev/null 2>/dev/null; echo $?").read().strip()
+  fork_needed = shell("git ls-remote git://github.com/" + user + "/" + remote + ".git HEAD > /dev/null 2>/dev/null; echo $?", keep_output=True).strip()
   if fork_needed != "0":
     github_request("https://api.github.com/repos/Normation/{repo}/forks", "Forking repository ...", pr_url=None, post_data="")
 
@@ -865,7 +868,7 @@ stashed=False
 def stash():
   global stashed
   # count number of change
-  change_count = os.popen("git status --porcelain --untracked-files=no | wc -l").read().strip()
+  change_count = shell("git status --porcelain --untracked-files=no | wc -l", keep_output=True).strip()
   if change_count != "0":
     # stash them
     shell("git stash save --keep-index", "Stashing current work")
@@ -878,18 +881,16 @@ def unstash():
   global unstashed
 
   # get current branch (the global variable may not be accurate in flight)
-  branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
-  this_branch = branch_process.stdout.read().strip()
+  this_branch = shell("git rev-parse --abbrev-ref HEAD", keep_output=True).strip()
 
   # do not unstash if we are on an origin branch since you should not work directly on them
-  remote_process = Popen("git ls-remote -h " + UPSTREAM_REPOSITORY + " " + this_branch + " | wc -l", shell=True, stdout=PIPE)
-  remote_count = remote_process.stdout.read().strip()
+  remote_count = shell("git ls-remote -h " + UPSTREAM_REPOSITORY + " " + this_branch + " | wc -l", keep_output=True).strip()
   if remote_count != "0":
     return
 
   # list available stashes
-  stash_process = Popen("git stash list", shell=True, stdout=PIPE)
-  for line in stash_process.stdout.readlines():
+  stash_output = shell("git stash list", keep_output=True)
+  for line in stash_output.splitlines():
     # parse
     match = re.match(r'^(stash@{.*?}): WIP on (.*?):.*', line)
     if match:
@@ -970,7 +971,7 @@ def technique(version, message):
   if not os.path.isfile(script):
     print("***** ERROR: You must be in rudder-technique repository")
     exit(7)
-  last_version = os.popen(script + " -ld .").read().strip()
+  last_version = shell(script + " -ld .", keep_output=True).strip()
   match = re.match(r'\./(\d+\.\d+)', last_version)
   if not match:
     print("***** ERROR: There must be at least one version of the technique in the current directory")
@@ -999,8 +1000,8 @@ def technique(version, message):
   l = locale.setlocale(locale.LC_ALL, 'C')
   date = time.strftime("%c")
   locale.setlocale(locale.LC_ALL, l)
-  user = os.popen("git config --get user.name").read().strip()
-  mail = os.popen("git config --get user.email").read().strip()
+  user = shell("git config --get user.name", keep_output=True).strip()
+  mail = shell("git config --get user.email", keep_output=True).strip()
   changelog = " -- " + user + " <" + mail + "> " + date + "\n"
   changelog += "  * Version " + version + "\n"
   changelog += "  ** " + message + "\n"
@@ -1087,9 +1088,10 @@ def rebase(comment=None, base=None):
   # First rebase without commits from source branch
   # This is necessary because we may have modified the original commit and force pushed it
   with NamedTemporaryFile(delete=False) as tmpscript:
-    tmpscript.write("""#!/bin/sh
+    script = """#!/bin/sh
 perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
-""" % { "ticket": info['id']})
+""" % { "ticket": info['id']}
+    tmpscript.write(script.encode("utf-8"))
     os.system("chmod +x " + tmpscript.name)
     # If it fails, let the interactive rebase try to fix it
     shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits", fail_exit=False)
@@ -1100,7 +1102,7 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
   shell("git rebase -i " + branch_name, "Rebasing")
 
   # if OK: continue
-  shell("git push --force " + OWN_REPOSITORY + " " + current_branch)
+  shell("git push --force " + OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
   # reassign ticket
   if 'last_assignee' in info:
@@ -1136,7 +1138,7 @@ def retarget(version=None):
   shell("git rebase -i " + UPSTREAM_REPOSITORY + "/" + ticket_branch, "Rebasing")
 
   # if OK: continue
-  shell("git push --force " + OWN_REPOSITORY + " " + current_branch)
+  shell("git push --force " + OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
   # create new PR 
   pr_url = create_pr(ticket_branch, info['id'], info['name'].replace("\"", "\\\""), "Replacing previous PR: " +  info['pr'])
@@ -1158,7 +1160,7 @@ def pull(version=None):
     branch = branch_from_version(version)
 
     # branch if needed
-    branch_status = os.popen("git branch --list " + branch).read().strip()
+    branch_status = shell("git branch --list " + branch, keep_output=True).strip()
     if branch_status == "":
       shell("git fetch " + UPSTREAM_REPOSITORY, "Local branch doesn't exist, fetching from " + UPSTREAM_REPOSITORY)
       remote_branch_status = os.popen("git branch --list --remote " + UPSTREAM_REPOSITORY + "/" + branch)
@@ -1173,7 +1175,7 @@ def pull(version=None):
     current_branch = branch
 
   # Pull
-  branch_detail = os.popen("git rev-parse --abbrev-ref --symbolic-full-name @{u}").read().strip()
+  branch_detail = shell("git rev-parse --abbrev-ref --symbolic-full-name @{u}", keep_output=True).strip()
   if re.match(UPSTREAM_REPOSITORY + '/.*', branch_detail):
     shell("git pull --ff-only", "Pulling on " + branch_detail)
   else:
@@ -1234,7 +1236,7 @@ def merge(old, new, strategy=None, automatic=False):
   if automatic:
     opts += " --no-edit "
   shell("git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
-  shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new))
+  shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
 
 
 # Merge remote branch automatically guessing the next one
@@ -1274,7 +1276,7 @@ def find(command):
   status = {}
   for branch in get_versions(lifecycle):
     pull(branch)
-    status[branch] = shell(command, fail_exit=False)
+    (status[branch], x) = shell(command, "Running your command", fail_exit=False)
   print("---")
   for branch in  get_versions(lifecycle):
     ok = "OK" if status[branch] == 0 else "ERR"
@@ -1284,11 +1286,10 @@ def find(command):
 
 # cleanup branches
 def cleanup(more=False, dry=False):
-  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching " + UPSTREAM_REPOSITORY,)
+  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching " + UPSTREAM_REPOSITORY)
   pull('master') # necessary to avoid removal errors
-  branch_process = Popen("git branch --no-color --no-column", shell=True, stdout=PIPE)
-  branch_list = branch_process.stdout.read()
-  for branch in branch_list.split('\n'):
+  branch_list = shell("git branch --no-color --no-column", keep_output=True)
+  for branch in branch_list.splitlines():
     m = re.match(r'^\s*((?:bug|dev|int|impl|ust|UST)_(\d+)/.*)\s*$', branch)
     if m:
       branch=m.group(1)
@@ -1307,9 +1308,8 @@ def cleanup(more=False, dry=False):
           should_ask = False
           if version is not None:
             upstream = UPSTREAM_REPOSITORY + '/' + branch_from_version(version)
-            cherry_process = Popen("git cherry " + upstream + " " + branch + " 2>/dev/null", shell=True, stdout=PIPE)
-            cherry_list = cherry_process.stdout.read()
-            if cherry_process.wait() == 0 and cherry_list == "":
+            (code, cherry_list) = shell("git cherry " + upstream + " " + branch + " 2>/dev/null", keep_output=True, fail_exit=False)
+            if code == 0 and cherry_list == "":
               # Everything is merged -> YES
               print("commits merged upstream, ", end='')
               remove = True
@@ -1365,9 +1365,9 @@ if __name__ == "__main__":
 
   if not arguments['clone']: # this is the only exception
     # check repository and get common info
-    branch_process = Popen("git rev-parse --abbrev-ref HEAD", shell=True, stdout=PIPE)
-    current_branch = branch_process.stdout.read().strip()
-    if branch_process.wait() != 0:
+    (code, current_branch) = shell("git rev-parse --abbrev-ref HEAD", keep_output=True, fail_exit=False)
+    current_branch = current_branch.strip()
+    if code != 0:
       print("***** ERROR: Unable to get the current git branch name, this directory is probably not a git repository")
       exit(11)
 
