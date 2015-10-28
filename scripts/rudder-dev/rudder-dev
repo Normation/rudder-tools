@@ -226,7 +226,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
 
 
 def parse_ticket_id(ticket_id):
-  global REDMINE_TOKEN, REDMINE_API_URL
+  global REDMINE_TOKEN, REDMINE_API_URL, CUSTOM_FIELD_PR
   if ticket_id.startswith('#'):
     ticket_id = ticket_id[1:]
   internal = False
@@ -825,7 +825,7 @@ def fetch_branch_from_ticket(ticket):
   # extract ticket info
   (ticket_id, internal) = parse_ticket_id(ticket)
   info = get_ticket_info(ticket_id, internal)
-  if 'pr' not in info:
+  if 'pr' not in info or info['pr'] == '':
     print("There is no PR in this ticket " + ticket)
     exit(15)
 
@@ -1061,7 +1061,7 @@ def amend(comment=None):
     ticket_to_TR(info, info['last_assignee'])
 
   # Message on PR if there is one
-  if info['pr'] != '':
+  if 'pr' in info and info['pr'] != '':
     update_pr(info['pr'], comment)
     print("Done, you can see the PR here: " + info['pr']) 
 
@@ -1107,7 +1107,7 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
     ticket_to_TR(info, info['last_assignee'])
 
   # Message on PR if there is one
-  if info['pr'] != '':
+  if 'pr' in info and info['pr'] != '':
     update_pr(info['pr'], comment)
     print("Done, you can see the PR here: " + info['pr'])
 
