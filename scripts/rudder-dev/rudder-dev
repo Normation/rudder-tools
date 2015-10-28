@@ -459,7 +459,9 @@ def update_nrm_users(project_id):
     with open(filename) as fd:
       users = json.load(fd)
   else:
-    users = { REDMINE_API_URL: {} }
+    users = { }
+  if REDMINE_API_URL not in users:
+    users[REDMINE_API_URL] = {}
   # just update it otherwise we would have only project specific data in it
   user_list = requests.get(REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   for user in user_list.json()['memberships']:
