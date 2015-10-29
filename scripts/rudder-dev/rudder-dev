@@ -845,7 +845,7 @@ def fetch_branch_from_ticket(ticket):
 def github_fork():
   # we don't need to fork if the remote is known
   remotes = shell("git remote show", keep_output=True).strip()
-  if re.match('^'+OWN_REPOSITORY+"\n", remotes, flags=re.MULTILINE):
+  if re.search('^'+OWN_REPOSITORY+"$", remotes, flags=re.MULTILINE):
     return False
 
   # fork the report if not already forked
