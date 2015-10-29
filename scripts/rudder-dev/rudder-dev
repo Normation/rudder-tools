@@ -454,7 +454,7 @@ def get_redmine_uid():
   return user.json()['user']['id']
 
 
-# update normation user list cache
+# update normation user list cache and return updated user list
 def update_nrm_users(project_id):
   # read existing cahe if there is one
   filename = os.path.expanduser(CACHE_FILE)
@@ -476,17 +476,20 @@ def update_nrm_users(project_id):
       users[REDMINE_API_URL][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
   with open(filename, "w") as fd:
     json.dump(users, fd)
-
+  return users
 
 # get users ad trigraph for normation users
 def get_nrm_users(project_id):
+  users = {}
   filename = os.path.expanduser(CACHE_FILE)
   if not os.path.isfile(filename):
-    update_nrm_users(project_id)
-  with open(filename) as fd:
-    users = json.load(fd)
+    users = update_nrm_users(project_id)
+  else:
+    with open(filename) as fd:
+      users = json.load(fd)
+    if not REDMINE_API_URL in users:
+      users = update_nrm_users(project_id)
   return users[REDMINE_API_URL]
-
 
 # Ask for a user using its trigraph
 def ask_username(project_id, trigraph):
