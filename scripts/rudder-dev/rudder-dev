@@ -787,7 +787,7 @@ def get_pr_upstream(pr_url):
 def get_pr_source(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
   pr = github_request(url, None, pr_url)
-  return (pr['head']['repo']['git_url'], pr['head']['ref'])
+  return (pr['head']['repo']['ssh_url'], pr['head']['ref'])
 
 
 # Commit and push, if needed squash WIP and force push
