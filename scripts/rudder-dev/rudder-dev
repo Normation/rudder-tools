@@ -17,6 +17,7 @@ Usage:
     rudder-dev [-f|--force] rebase [--base=<ticket_id>] [<PR_comment>]
     rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] takeover <ticket_id>
+    rudder-dev [-f|--force] revert <ticket_id> [--retarget]
     rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic]
     rudder-dev [-f|--force] merge <first_branch> [-s <strategy>] [-a|--automatic]
     rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic]
@@ -113,6 +114,15 @@ TAKEOVER
     - rename it if needed
     - update the ticket's status
     ex: rudder-dev takeover 1234
+
+REVERT
+    - If the ticket has no pull-request, abandon
+    - If retarget, ensure we have everything merged
+    - Find merge commit of pull request
+    - Revert pull request merge commit
+    - if retarget, merge it to next branch with ours strategy (keep changes in next branch)
+    ex: rudder-dev revert 1234
+
 
 MERGE (needs commit rights)
     Call it when you want to merge manually.
@@ -266,7 +276,7 @@ def get_version(ticket, error_fail=True):
  
 
 # Get informations about a ticket from redmine
-def get_ticket_info(ticket_id, internal=False):
+def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   # Find ticket in redmine
   print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
   sys.stdout.flush() # to display previous unfinished line
@@ -289,7 +299,7 @@ def get_ticket_info(ticket_id, internal=False):
       exit(2)
 
   # Check ticket status
-  if ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
+  if must_be_open and ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
     print("This ticket is closed! You cannot make a pull request on this ticket.")
     print("***** ERROR: Closed ticket. Exiting.")
     if not force:
@@ -789,6 +799,16 @@ def get_pr_source(pr_url):
   pr = github_request(url, None, pr_url)
   return (pr['head']['repo']['git_url'], pr['head']['ref'])
 
+# get PR merge commit
+def get_pr_merge_commit(pr_url):
+  url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/events"
+  pr_events = github_request(url, None, pr_url)
+  pr_merged = [ pr for pr in pr_events if pr["event"] == "merged" ]
+  if len(pr_merged) != 1: 
+    print("Can't find merge commit for pull request")
+    exit(12)
+  return pr_merged[0]['commit_id']
+
 
 # Commit and push, if needed squash WIP and force push
 def commit_push(branch, message, force_amend=False):
@@ -1269,6 +1289,31 @@ def merge_all(strategy=None, automatic=False):
   for branch in get_versions(lifecycle)[:-1]:
     merge_to_next(branch, strategy, automatic)
 
+# Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
+def revert(ticket, retarget = False):
+  (ticket_id, internal) = parse_ticket_id(ticket)
+  info = get_ticket_info(ticket_id, internal, False)
+
+  # Find merge commit id
+  if 'pr' in info and info['pr'] != '':
+    commit = get_pr_merge_commit(info['pr'])
+  else:
+    print("There is no pull request linked to that issue, abort reverting")
+    exit(1)
+
+  pull(info['version'])
+  # If we retarget a change, we want only this change to be reverted, so ensure we have already merged the branch correctly
+  if retarget: 
+    merge_to_next(info['version'])
+  
+  # Reverting
+  shell("git revert -m1 " + commit, "Reverting issue #" + info["id"] + ":" + info["name"]+ ", commit: " + commit  )
+  shell("git push " + UPSTREAM_REPOSITORY, "Updating " + UPSTREAM_REPOSITORY)
+
+  # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version 
+  if retarget: 
+    merge_to_next(info['version'], "ours")
+
 
 # Run a command on all branches
 def find(command):
@@ -1401,6 +1446,8 @@ if __name__ == "__main__":
     retarget(arguments['<target_version>'])
   elif arguments['takeover']:
     takeover(arguments['<ticket_id>'])
+  elif arguments['revert']:
+    revert(arguments['<ticket_id>'], arguments['--retarget'])
   elif arguments['merge']:
     stash()
     before_merge_branch = current_branch
