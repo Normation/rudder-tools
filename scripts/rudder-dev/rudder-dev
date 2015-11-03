@@ -532,6 +532,8 @@ def get_lifecycle():
   if current_lifecycle is not None:
     return current_lifecycle
   current_lifecycle = "master_only"
+  # Update branches so get new branches from UPSTREA
+  shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
   for line in os.popen("git branch --list -a"):
     for lifecycle, data in LIFECYCLES.items():
       if re.match(data["detection"].format(UPSTREAM_REPOSITORY), line):
