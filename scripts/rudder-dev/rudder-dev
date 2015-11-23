@@ -194,7 +194,7 @@ REDMINE_API_URL = "https://www.rudder-project.org/redmine"
 REDMINE_API_LIMIT = 100
 REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
 REDMINE_META_TRACKERS = [3]
-ACCESS_ROLE_LIST = [ 3, 4, 5, 7, 8, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager
+ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager, 6=Consultant, 9=Integrator
 
 # Keeping old version for reference
 #TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
@@ -359,7 +359,7 @@ def can_modify_issues(project_id):
 
 # Change a ticket version to the closest version available
 def update_ticket_version(info, version):
-  if can_modify_issues(info['project_id']):
+  if not can_modify_issues(info['project_id']):
     print("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
     exit(13)
 
@@ -1090,6 +1090,8 @@ def amend(comment=None):
   if 'pr' in info and info['pr'] != '':
     update_pr(info['pr'], comment)
     print("Done, you can see the PR here: " + info['pr']) 
+  else:
+    print("No PR found.")
 
 
 # rebase, push -f, comment PR
