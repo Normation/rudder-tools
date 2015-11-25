@@ -1,0 +1,213 @@
+#!/usr/bin/env python
+# coding: utf8
+
+"""
+Dashboard for Rudder developpers.
+
+This tool shares its configuration file with rudder-dev.
+
+Usage:
+    rudder-dashboard
+"""
+
+from __future__ import print_function
+import json
+import os
+import re
+import dateutil.parser
+from time import time
+from datetime import tzinfo, timedelta, datetime
+from pprint import pprint
+from urllib import urlencode
+
+import requests # apt-get install python-requests || pip install requests
+import docopt # apt-get install python-docopt || pip install docopt
+
+try:
+  import configparser
+  config = configparser.ConfigParser()
+except ImportError:
+  import ConfigParser
+  config = ConfigParser.ConfigParser()
+        
+CONFIG_FILE = "~/.rudder-dev"
+
+MAX_DAYS = 7 
+
+GITHUB_URL = "https://api.github.com"
+REDMINE_API_URL = "https://www.rudder-project.org/redmine"
+REDMINE_ALT_API_URL = "https://redmine.normation.com"
+REDMINE_MY_ID = "me"
+REDMINE_ALT_MY_ID = "me"
+
+
+# Read rudder configuration from ~/.rudder-dev
+def read_configuration():
+  global GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN
+
+  # Detect missing configuration
+  if not os.path.isfile(os.path.expanduser(CONFIG_FILE)):
+    print(CONFIG_FILE + " doesn't exist !")
+    exit(5)
+
+  # Read configuration
+  config.read(os.path.expanduser(CONFIG_FILE))
+  GITHUB_TOKEN = get_config("github_token", None)
+  REDMINE_TOKEN = get_config("redmine_token", None)
+  REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
+
+
+# Get a configuration item from current configuration file
+def get_config(item, error):
+  try:
+    return config.get("default", item)
+  except:
+    if error is None:
+      return None
+    else:
+      print(error)
+      exit(5)
+
+
+def get_issues(args, limit, internal=False):
+  global REDMINE_URL
+  if internal:
+    REDMINE_URL = REDMINE_ALT_API_URL
+    token = REDMINE_ALT_TOKEN
+  else:
+    REDMINE_URL = REDMINE_API_URL
+    token = REDMINE_TOKEN
+  query = urlencode(args)
+  tickets_req = requests.get(REDMINE_URL + "/issues.json?limit=" + str(limit) + "&" + query,
+                             headers = {'X-Redmine-API-Key': token, 'Content-Type': 'application/json' })
+  if tickets_req.status_code != requests.codes.ok:
+      return None
+  return tickets_req.json()
+
+
+def get_issues_list(args, internal=False):
+  issues = get_issues(args, 100, internal)
+  return [ { "label": i['subject'], "url": REDMINE_URL+"/issues/"+str(i['id']) } 
+           for i in issues['issues'] ]
+
+
+def get_issues_count(args, internal=False):
+  issues = get_issues(args, 1, internal)
+  return issues['total_count']
+
+
+def format_full(name, items):
+  if len(items) == 0:
+    print(name + ": 0  Good!")
+  else:
+    count = len(items)
+    if count >=100:
+      print(name + ": " + str(len(items)) + " (or more)")
+    else:
+      print(name + ": " + str(len(items)))
+    for i in items:
+      print("  " + i['url'] + " " + i['label'])
+
+
+def format_count(name, count, url):
+  print(name + ": " + str(count) + " ")
+  #print("  " + url)
+
+
+def get_hub(query):
+  if re.match(r'^https:.*', query):
+    url = query
+  else:
+    url = GITHUB_URL + query
+  ret = requests.get(url, headers = {'Authorization': 'token ' + GITHUB_TOKEN, 'Content-Type': 'application/json' })
+  return ret.json()
+
+
+def my_prs():
+  pulls = get_hub('/orgs/Normation/issues?filter=created')
+  # p['title'], p['pull_request']['html_url'], p['pull_request']['url']
+  return [ get_hub(p['pull_request']['url']) for p in pulls if 'pull_request' in p ]
+
+
+ZERO = timedelta(0)
+class UTC(tzinfo):
+  def utcoffset(self, dt):
+    return ZERO
+  def tzname(self, dt):
+    return "UTC"
+  def dst(self, dt):
+    return ZERO
+
+utc = UTC()
+def date_diff(date1):
+  d1 = dateutil.parser.parse(date1)
+  d2 = datetime.now(utc)
+  return (d2-d1).days
+
+
+if __name__ == "__main__":
+  read_configuration()
+# PERSONAL overview
+  # My TR + FR
+  tr = get_issues_list({"assigned_to_id": REDMINE_MY_ID, "status_id": "3|10"})
+  tr.extend( get_issues_list({"assigned_to_id": REDMINE_ALT_MY_ID, "status_id": "3|10"}, True) )
+  format_full("My reviews", tr)
+  
+  # My PR
+  pulls = my_prs()
+  unmergeable = [ { "label": p['title'], "url": p['html_url']} for p in pulls if not p['mergeable'] ]
+  format_full("My unmergeable PR", unmergeable)
+
+  old = [ {"label": p['title'], "url": p['html_url']} for p in pulls if date_diff(p['updated_at']) > MAX_DAYS ]
+  format_full("My old PR without update", old)
+
+  # My bugs
+  bugs = get_issues_count({"assigned_to_id": REDMINE_MY_ID, "tracker_id": "1", "status_id": "1|9|4"})
+  bugs += get_issues_count({"assigned_to_id": REDMINE_ALT_MY_ID, "tracker_id": "1", "status_id": "1|8|2|9|7|4"}, True)
+  format_count("My bugs", bugs, "")
+
+# NORMATION overview
+  # Assigned issues
+  assigned = get_issues_count({"assigned_to_id": "*", "status_id": "1|9|4"})
+  format_count("Assigned Issues", assigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+
+  # Unassigned issues
+  unassigned = get_issues_count({"assigned_to_id": "!*", "status_id": "1|9|4"})
+  format_count("Unassigned Issues", unassigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+
+  # Issues assigned to an extern
+  internal = get_issues_count({"assigned_to_id": "196|170|5|6|192|9|4|146|34", "status_id": "1|9|4"})
+  format_count("Issues not assigned to Normation", assigned-internal, "")
+
+  # Assigned bugs
+  assigned = get_issues_count({"tracker_id": "1", "assigned_to_id": "*", "status_id": "1|9|4"})
+  format_count("Assigned Bugs", assigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+
+  # Unassigned bugs
+  unassigned = get_issues_count({"tracker_id": "1", "assigned_to_id": "!*", "status_id": "1|9|4"})
+  format_count("Unassigned Bugs", unassigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+
+#  # PR waiting pas le même résultat -> Bug ?
+#  # https://github.com/issues?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+user%3ANormation+
+#  pulls = get_hub('/orgs/Normation/issues?filter=all')
+#  count = 0
+#  for pull in pulls:
+#    if 'pull_request' in pull:
+#      count +=1
+#  print("Waiting PR: " + str(count))
+  exit(1)
+
+# NORMATION details
+# ticket affecté a ou créé par un extérieur
+ # sans modif depuis plus de 1 semaine
+
+# bug affecté a un intérieur
+ # sans modif depuis plus de 1 mois
+
+# ticket en discussion ou en TR 
+ # sans modif depuis plus de 1 semaine
+
+# ticket sans catégorie
+
+# PR vers normation sans modif depuis 1 semaine
+# PR vrs normation non mergeables
