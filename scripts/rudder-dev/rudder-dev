@@ -1139,6 +1139,8 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
   if 'pr' in info and info['pr'] != '':
     update_pr(info['pr'], comment)
     print("Done, you can see the PR here: " + info['pr'])
+  else:
+    print("No PR found.")
 
 
 # close PR, rebase, push -f, create PR, update ticket
@@ -1180,6 +1182,7 @@ def retarget(version=None):
     if 'last_assignee' in info:
       user = info['last_assignee']
     ticket_to_TR(info, user, pr_url)
+    print("New PR URL: " + pr_url)
 
 
 # ckeckout version, pull
