@@ -226,7 +226,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
   if fail_exit and retcode != 0:
     if comment is None:
       print(command)
-    print("*** COMMAND ERROR " + str(retcode))
+    logfail("*** COMMAND ERROR " + str(retcode))
     if not force:
       exit(1)
   if keep_output:
@@ -236,6 +236,10 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     return (retcode, output)
   else:
     return output
+
+
+def logfail(message):
+  print(ERROR_TPL.format(message))
 
 
 def parse_ticket_id(ticket_id):
@@ -257,7 +261,7 @@ def parse_ticket_id(ticket_id):
 def get_version(ticket, error_fail=True):
   if 'fixed_version' not in ticket:
     if error_fail:
-      print("***** BUG: Can't extract version from #" + str(ticket['id']))
+      logfail("***** BUG: Can't extract version from #" + str(ticket['id']))
       exit(2)
     else:
       return None
@@ -269,7 +273,7 @@ def get_version(ticket, error_fail=True):
     if match:
       return match.group(0)
     elif error_fail:
-      print("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
+      logfail("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
       exit(2)
     else:
       return None
@@ -285,7 +289,7 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   ticket = tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
   if not ticket:
     print("Not found!")
-    print("***** ERROR: ticket not found. Exiting.")
+    logfail("***** ERROR: ticket not found. Exiting.")
     if not force:
       exit(2)
   else:
@@ -294,20 +298,20 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   # Check ticket type
   if ticket['tracker'] in REDMINE_META_TRACKERS:
     print("This is a question ticket! You cannot make a pull request on this ticket.")
-    print("***** ERROR: This is a question ticket. Exiting.")
+    logfail("***** ERROR: This is a question ticket. Exiting.")
     if not force:
       exit(2)
 
   # Check ticket status
   if must_be_open and ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
     print("This ticket is closed! You cannot make a pull request on this ticket.")
-    print("***** ERROR: Closed ticket. Exiting.")
+    logfail("***** ERROR: Closed ticket. Exiting.")
     if not force:
       exit(2)
 
   if 'fixed_version' not in ticket:
     print("This ticket has no target version! I can't make a branch against its repository.")
-    print("***** ERROR: Missing target version. Exiting.")
+    logfail("***** ERROR: Missing target version. Exiting.")
     if not force:
       exit(2)
 
@@ -360,7 +364,7 @@ def can_modify_issues(project_id):
 # Change a ticket version to the closest version available
 def update_ticket_version(info, version):
   if not can_modify_issues(info['project_id']):
-    print("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
+    logfail("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
     exit(13)
 
   # list all versions
@@ -376,7 +380,7 @@ def update_ticket_version(info, version):
   ticket_json = json.dumps(ticket_info)
   ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 200:
-    print("Ticket Update error: " + ret.reason)
+    logfail("Ticket Update error: " + ret.reason)
     print(ret.text)
     if not force:
       exit(3)
@@ -425,7 +429,7 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
   ticket_json = json.dumps(ticket_info)
   ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 200:
-    print("Ticket Update error: " + ret.reason)
+    logfail("Ticket Update error: " + ret.reason)
     print(ret.text)
     if not force:
       exit(3)
@@ -450,7 +454,7 @@ def ticket_to_in_progress(info, message=None):
       ticket_json = json.dumps(ticket_info)
       ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
       if ret.status_code != 200:
-        print("Ticket Update error: " + ret.reason)
+        logfail("Ticket Update error: " + ret.reason)
         print(ret.text)
         if not force:
           exit(3)
@@ -531,7 +535,7 @@ def ticket_from_branch(branch):
     (ticket_id, internal) = parse_ticket_id(match.group(1))
     return get_ticket_info(ticket_id, internal)
   else:
-    print("***** ERROR: This is not a ticket branch: " + branch)
+    logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
 
 
@@ -627,7 +631,7 @@ def branch_from_ticket_id(ticket_id, internal):
 
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration():
-  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN
+  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN, ERROR_TPL
 
   # Detect missing configuration
   if not os.path.isfile(os.path.expanduser(CONFIG_FILE)):
@@ -645,9 +649,12 @@ def read_configuration():
 #redmine_token = 
 ## For Normation people only
 #redmine_alt_token = 
+## For colorblind or dumb terminal change ansicode here (ref: http://pueblo.sourceforge.net/doc/manual/ansi_color_codes.html)
+## Do no forget to add keeep {} to have the text content
+#error_tpl = \\033[1;31m{}\\033[0m
 """)
     print(CONFIG_FILE + " doesn't exist !")
-    print("I made a sample one, please fill it")
+    logfail("I made a sample one, please fill it")
     exit(5)
   
   # Read configuration
@@ -657,6 +664,11 @@ def read_configuration():
   GITHUB_TOKEN = get_config("github_token", None)
   REDMINE_TOKEN = get_config("redmine_token", None)
   REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
+  ERROR_TPL = get_config("error_tpl", None)
+  if ERROR_TPL is None:
+    ERROR_TPL = "\\033[1;31m{}\\033[0m"
+  # replace \\Oxx characters by their octal equivalent
+  ERROR_TPL = re.sub(r'(\\0\d+)', lambda x: chr(int(x.group(0)[1:],8)), ERROR_TPL)
 
 
 # Get a configuration item from current configuration file
@@ -667,7 +679,7 @@ def get_config(item, error):
     if error is None:
       return None
     else:
-      print(error)
+      logfail(error)
       exit(5)
 
 
@@ -677,7 +689,7 @@ def get_github_user():
   if 'login' in user_data:
     return user_data['login']
   else:
-    print("Github user not found")
+    logfail("Github user not found")
     exit(6)
 
 
@@ -694,7 +706,7 @@ def get_github_token(can_fail=False):
   if can_fail:
     return None
   else:
-    print("Github user not found")
+    logfail("Github user not found")
     exit(6)
 
 
@@ -704,7 +716,7 @@ def remote_repo():
   match = re.search(r'git@github.com:Normation/(.*?).git', value)
   if match:
     return match.group(1)
-  print("Can't find remote repository")
+  logfail("Can't find remote repository")
   exit(10)
 
 
@@ -740,7 +752,7 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
 
   # process output
   if ret.status_code < 200 or ret.status_code >= 300:
-    print("Github query error " + ret.reason)
+    logfail("Github query error " + ret.reason)
     print(ret.text)
     if not force:
       exit(12)
@@ -807,7 +819,7 @@ def get_pr_merge_commit(pr_url):
   pr_events = github_request(url, None, pr_url)
   pr_merged = [ pr for pr in pr_events if pr["event"] == "merged" ]
   if len(pr_merged) != 1: 
-    print("Can't find merge commit for pull request")
+    logfail("Can't find merge commit for pull request")
     exit(12)
   return pr_merged[0]['commit_id']
 
@@ -854,7 +866,7 @@ def fetch_branch_from_ticket(ticket):
   (ticket_id, internal) = parse_ticket_id(ticket)
   info = get_ticket_info(ticket_id, internal)
   if 'pr' not in info or info['pr'] == '':
-    print("There is no PR in this ticket " + ticket)
+    logfail("There is no PR in this ticket " + ticket)
     exit(15)
 
   # look for PR
@@ -989,24 +1001,24 @@ def technique(version, message):
   cwd = os.getcwd()
   match = re.match(r'(.*)/techniques/.*', cwd)
   if not re.match(r'.*/techniques/.*', cwd):
-    print("***** ERROR: You must be in a technique directory")
+    logfail("***** ERROR: You must be in a technique directory")
     exit(7)
   basedir = match.group(1)
   script = basedir + '/scripts/technique-files'
   if not os.path.isfile(script):
-    print("***** ERROR: You must be in rudder-technique repository")
+    logfail("***** ERROR: You must be in rudder-technique repository")
     exit(7)
   last_version = shell(script + " -ld .", keep_output=True).strip()
   match = re.match(r'\./(\d+\.\d+)', last_version)
   if not match:
-    print("***** ERROR: There must be at least one version of the technique in the current directory")
+    logfail("***** ERROR: There must be at least one version of the technique in the current directory")
     exit(7)
   last_version = match.group(1)
 
   # check next version
   match = re.match(r'\d+\.\d+', version)
   if not match:
-    print("***** ERROR: Version must be of the form x.y")
+    logfail("***** ERROR: Version must be of the form x.y")
     exit(7)
   
   # check branch info
@@ -1045,7 +1057,7 @@ def wip():
   # must be on a working branch
   match = re.match(r'[a-z]+_(i?)(\d+)/.*', current_branch)
   if not match:
-    print("***** ERROR: This is not a ticket branch: " + branch)
+    logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
   commit_push(current_branch, "Work in progress")
 
@@ -1197,7 +1209,7 @@ def pull(version=None):
       shell("git fetch " + UPSTREAM_REPOSITORY, "Local branch doesn't exist, fetching from " + UPSTREAM_REPOSITORY)
       remote_branch_status = os.popen("git branch --list --remote " + UPSTREAM_REPOSITORY + "/" + branch)
       if remote_branch_status == "":
-        print("No such branch on " + UPSTREAM_REPOSITORY + ": " + branch + ", Aborting ...")
+        logfail("No such branch on " + UPSTREAM_REPOSITORY + ": " + branch + ", Aborting ...")
         exit(8)
       shell("git branch --track " + branch + " " + UPSTREAM_REPOSITORY + "/" + branch, "Creating local branch")
 
@@ -1211,7 +1223,7 @@ def pull(version=None):
   if re.match(UPSTREAM_REPOSITORY + '/.*', branch_detail):
     shell("git pull --ff-only", "Pulling on " + branch_detail)
   else:
-    print("Your branch is not based on the same " + UPSTREAM_REPOSITORY + " branch")
+    logfail("Your branch is not based on the same " + UPSTREAM_REPOSITORY + " branch")
     exit(8)
 
 
@@ -1234,7 +1246,7 @@ def takeover(ticket):
   (ticket_id, internal) = parse_ticket_id(ticket)
   existing_branch = branch_from_ticket_id(ticket_id, internal)
   if existing_branch is not None:
-    print("***** ERROR: Can't take over a ticket with a matching branch already existing in your repository")
+    logfail("***** ERROR: Can't take over a ticket with a matching branch already existing in your repository")
     exit(12)
 
   # fetch base branch
@@ -1275,7 +1287,7 @@ def merge(old, new, strategy=None, automatic=False):
 def merge_to_next(old, strategy=None, automatic=False):
   lifecycle = get_lifecycle()
   if lifecycle not in LIFECYCLES:
-    print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
+    logfail("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
   all_versions = get_versions(lifecycle)
   new = None
@@ -1284,7 +1296,7 @@ def merge_to_next(old, strategy=None, automatic=False):
       if idx < len(all_versions)-1:
         new = all_versions[idx+1]
   if new is None:
-    print("Don't know how to merge " + old)
+    logfail("Don't know how to merge " + old)
     exit(9)
   merge(old, new, strategy, automatic)
 
@@ -1293,7 +1305,7 @@ def merge_to_next(old, strategy=None, automatic=False):
 def merge_all(strategy=None, automatic=False):
   lifecycle = get_lifecycle()
   if lifecycle not in LIFECYCLES:
-    print("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
+    logfail("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
   for branch in get_versions(lifecycle)[:-1]:
     merge_to_next(branch, strategy, automatic)
@@ -1307,7 +1319,7 @@ def revert(ticket, retarget = False):
   if 'pr' in info and info['pr'] != '':
     commit = get_pr_merge_commit(info['pr'])
   else:
-    print("There is no pull request linked to that issue, abort reverting")
+    logfail("There is no pull request linked to that issue, abort reverting")
     exit(1)
 
   pull(info['version'])
@@ -1328,7 +1340,7 @@ def revert(ticket, retarget = False):
 def find(command):
   lifecycle = get_lifecycle()
   if lifecycle not in LIFECYCLES:
-    print("I don't know how to look for branches in a repository based on a '" + lifecycle + "' lifecycle")
+    logfail("I don't know how to look for branches in a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
   status = {}
   for branch in get_versions(lifecycle):
@@ -1414,7 +1426,7 @@ if __name__ == "__main__":
       arguments['commit'] = True
       arguments['<trigraph>'] = smart
     else:
-      print("Error, unknown <smartarg> " + smart)
+      logfail("Error, unknown <smartarg> " + smart)
       exit(10)
 
   # Force argument is a global variables
@@ -1425,7 +1437,7 @@ if __name__ == "__main__":
     (code, current_branch) = shell("git rev-parse --abbrev-ref HEAD", keep_output=True, fail_exit=False)
     current_branch = current_branch.strip()
     if code != 0:
-      print("***** ERROR: Unable to get the current git branch name, this directory is probably not a git repository")
+      logfail("***** ERROR: Unable to get the current git branch name, this directory is probably not a git repository")
       exit(11)
 
   # standard arguments
