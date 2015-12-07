@@ -40,6 +40,25 @@ REDMINE_ALT_API_URL = "https://redmine.normation.com"
 REDMINE_MY_ID = "me"
 REDMINE_ALT_MY_ID = "me"
 
+REDMINE = {}
+REDMINE['default'] = { "url": "https://www.rudder-project.org/redmine",
+                       "id": "me",
+                       "token": "",
+                       "status_review": "3|10", # 3=TR, 10=FR
+                       "status_todo": "1|9|4", # 1=New, 9=In Progess, 4=Discussion
+                       "priority_max": "7", # 7=1
+                       "tracker_bug": "1",
+                       "users_normation": "196|170|5|6|192|9|4|146|34",
+                     }
+REDMINE['alt'] =     { "url": "https://redmine.normation.com",
+                       "id": "me",
+                       "token": "",
+                       "status_review": "3|10", # 3=TR, 10=FR
+                       "status_todo": "1|8|2|9|4", # 1=New, 8=Qualified, 2=To be started, 9=In Progess, 4=Discussion
+                       "priority_max": "7", # 7=1
+                       "tracker_bug": "1",
+                       "users_normation": "*",
+                     }
 
 # Read rudder configuration from ~/.rudder-dev
 def read_configuration():
@@ -129,6 +148,31 @@ def my_prs():
   return [ get_hub(p['pull_request']['url']) for p in pulls if 'pull_request' in p ]
 
 
+def get_redmine_info(redmine, key):
+  if key in REDMINE[redmine]:
+    return REDMINE[redmine][key]
+  return key
+
+def filter_instance(issue_filter, redmine='default'):
+  new_filter = {}
+  for key,value in issue_filter.items():
+    new_filter[key] = get_redmine_info(redmine, value)
+  return new_filter
+
+def format_issues(text, issue_filter, view="count", url=""):
+  if view == "count":
+    count = get_issues_count(filter_instance(issue_filter))
+    count += get_issues_count(filter_instance(issue_filter, 'alt'), True)
+    format_count(text, count, url)
+  elif view == "full":
+    issues = get_issues_list(filter_instance(issue_filter))
+    issues.extend( get_issues_list(filter_instance(issue_filter, 'alt'), True) )
+    format_full(text, issues)
+  else:
+    print("BUG: unknown view type " + view)
+    exit(127)
+
+
 ZERO = timedelta(0)
 class UTC(tzinfo):
   def utcoffset(self, dt):
@@ -149,9 +193,7 @@ if __name__ == "__main__":
   read_configuration()
 # PERSONAL overview
   # My TR + FR
-  tr = get_issues_list({"assigned_to_id": REDMINE_MY_ID, "status_id": "3|10"})
-  tr.extend( get_issues_list({"assigned_to_id": REDMINE_ALT_MY_ID, "status_id": "3|10"}, True) )
-  format_full("My reviews", tr)
+  format_issues("My reviews", {"assigned_to_id": "id", "status_id": "status_review"}, "full")
   
   # My PR
   pulls = my_prs()
@@ -161,31 +203,31 @@ if __name__ == "__main__":
   old = [ {"label": p['title'], "url": p['html_url']} for p in pulls if date_diff(p['updated_at']) > MAX_DAYS ]
   format_full("My old PR without update", old)
 
+  # My issues with priority 1
+  format_issues("My high priority issues", {"assigned_to_id": "id", "status_id": "status_todo", "priority_id": "priority_max"})
+
   # My bugs
-  bugs = get_issues_count({"assigned_to_id": REDMINE_MY_ID, "tracker_id": "1", "status_id": "1|9|4"})
-  bugs += get_issues_count({"assigned_to_id": REDMINE_ALT_MY_ID, "tracker_id": "1", "status_id": "1|8|2|9|7|4"}, True)
-  format_count("My bugs", bugs, "")
+  format_issues("My bugs", {"assigned_to_id": "id", "tracker_id": "tracker_bug", "status_id": "status_todo"})
 
 # NORMATION overview
   # Assigned issues
-  assigned = get_issues_count({"assigned_to_id": "*", "status_id": "1|9|4"})
-  format_count("Assigned Issues", assigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+  format_issues("Assigned Issues", {"assigned_to_id": "*", "status_id": "status_review"}, "count",
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
 
   # Unassigned issues
-  unassigned = get_issues_count({"assigned_to_id": "!*", "status_id": "1|9|4"})
-  format_count("Unassigned Issues", unassigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+  format_issues("Unassigned Issues", {"assigned_to_id": "!*", "status_id": "status_review"}, "count",
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
 
   # Issues assigned to an extern
-  internal = get_issues_count({"assigned_to_id": "196|170|5|6|192|9|4|146|34", "status_id": "1|9|4"})
-  format_count("Issues not assigned to Normation", assigned-internal, "")
+  format_issues("Issues not assigned to Normation", {"assigned_to_id": "users_normation", "status_id": "status_todo"}, "count")
 
   # Assigned bugs
-  assigned = get_issues_count({"tracker_id": "1", "assigned_to_id": "*", "status_id": "1|9|4"})
-  format_count("Assigned Bugs", assigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+  format_issues("Assigned Bugs", {"assigned_to_id": "*", "tracker_id": "tracker_bug", "status_id": "status_todo"}, "count",
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
 
   # Unassigned bugs
-  unassigned = get_issues_count({"tracker_id": "1", "assigned_to_id": "!*", "status_id": "1|9|4"})
-  format_count("Unassigned Bugs", unassigned, "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+  format_issues("Unassigned Bugs", {"assigned_to_id": "!*", "tracker_id": "tracker_bug", "status_id": "status_todo"}, "count",
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
 
 #  # PR waiting pas le même résultat -> Bug ?
 #  # https://github.com/issues?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+user%3ANormation+
@@ -195,7 +237,6 @@ if __name__ == "__main__":
 #    if 'pull_request' in pull:
 #      count +=1
 #  print("Waiting PR: " + str(count))
-  exit(1)
 
 # NORMATION details
 # ticket affecté a ou créé par un extérieur
