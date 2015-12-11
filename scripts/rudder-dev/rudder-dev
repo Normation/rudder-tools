@@ -198,7 +198,7 @@ ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master
 
 # Keeping old version for reference
 #TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
-TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'PBM', 'Incident': 'INC' }
+TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
 PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
@@ -530,7 +530,7 @@ def ask_username(project_id, trigraph):
 
 # Find a ticket id in a branch name
 def ticket_from_branch(branch):
-  match = re.match(r'[a-z]+_(i?\d+)/.*', branch)
+  match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
   if match:
     (ticket_id, internal) = parse_ticket_id(match.group(1))
     return get_ticket_info(ticket_id, internal)
@@ -1055,7 +1055,7 @@ def technique(version, message):
 # commit, push
 def wip():
   # must be on a working branch
-  match = re.match(r'[a-z]+_(i?)(\d+)/.*', current_branch)
+  match = re.match(r'[A-Za-z]+_(i?)(\d+)/.*', current_branch)
   if not match:
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
