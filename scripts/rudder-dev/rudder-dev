@@ -23,6 +23,7 @@ Usage:
     rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
+    rudder-dev [-f|--force] update
     rudder-dev [-f|--force] <smart_arg> [<PR_message>] [--base=<ticket_id>]
 
 SMART
@@ -150,6 +151,10 @@ CLEANUP (cleanup your repository
       closed tickets that have un unmerged commits are asked to the user
     ex: git cleanup
 
+UPDATE rudder-dev
+    - download last version from http://www.rudder-project.org/tools/rudder-dev
+    - replace current rudder-dev with it
+    - use sudo if needed
 """
 
 from __future__ import print_function
@@ -178,6 +183,8 @@ except ImportError:
 
 
 ## GLOBAL VARIABLES
+RUDDER_DEV_ORIGIN = "http://www.rudder-project.org/tools/rudder-dev"
+WARN_FOR_UPDATE_AFTER = 15 # days
 
 LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                            "format": "branches/rudder/{}",
@@ -1408,6 +1415,46 @@ def cleanup(more=False, dry=False):
         print("keeping: " + branch)
 
 
+def update():
+  my_path = os.path.abspath(__file__)
+  with open(my_path, 'r') as fd:
+    my_text = fd.read()
+
+  data = requests.get(RUDDER_DEV_ORIGIN)
+  if data.status_code != requests.codes.ok:
+    logfail("Cannot get last version of rudder-dev sorry!")
+    exit(14)
+  new_text = data.text
+
+  # No update needed
+  if my_text == new_text:
+    print("No update needed!")
+    (code, x) = shell("touch '" + my_path + "'", "Trying touch to avoid warnings", fail_exit=False)
+    if code != 0:
+      shell("sudo touch '" + my_path + "'", "Trying sudo touch to avoid warnings")
+    exit(0)
+
+  # Try to update rudder-dev with our access rights
+  try:
+    with open(my_path, 'w') as fd:
+      fd.write(new_text)
+  except Exception as e:
+    # Try with sudo instead
+    shell("cat <<'EOF' | sudo tee '" + my_path + "' > /dev/null \n" + new_text + "\nEOF\n")
+
+  print("rudder-dev has been updated, well done!")
+
+
+def check_update():
+  my_path = os.path.abspath(__file__)
+  # mtime = last modification = content changed
+  ctime = os.path.getmtime(my_path)
+  days_ago = (time.time() - ctime) / 60 / 60 / 24
+  if days_ago > WARN_FOR_UPDATE_AFTER:
+    print("Your version of rudder-dev is old and probably needs an update, please run 'rudder-dev update'")
+  # else everything is up to date
+
+
 # Main loop
 if __name__ == "__main__":
   arguments = docopt.docopt(__doc__)
@@ -1439,6 +1486,9 @@ if __name__ == "__main__":
     if code != 0:
       logfail("***** ERROR: Unable to get the current git branch name, this directory is probably not a git repository")
       exit(11)
+
+  # check if update is needed
+  check_update()
 
   # standard arguments
   if arguments['clone']:
@@ -1485,4 +1535,6 @@ if __name__ == "__main__":
     find(arguments['<command>'])
   elif arguments['cleanup']:
     cleanup(arguments['--more'], arguments['-n'] or arguments['--dry-run'])
+  elif arguments['update']:
+    update()
 
