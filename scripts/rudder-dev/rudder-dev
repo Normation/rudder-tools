@@ -152,7 +152,7 @@ CLEANUP (cleanup your repository
     ex: git cleanup
 
 UPDATE rudder-dev
-    - download last version from http://www.rudder-project.org/tools/rudder-dev
+    - download last version from https://www.rudder-project.org/tools/rudder-dev
     - replace current rudder-dev with it
     - use sudo if needed
 """
@@ -183,7 +183,7 @@ except ImportError:
 
 
 ## GLOBAL VARIABLES
-RUDDER_DEV_ORIGIN = "http://www.rudder-project.org/tools/rudder-dev"
+RUDDER_DEV_ORIGIN = "https://www.rudder-project.org/tools/rudder-dev"
 WARN_FOR_UPDATE_AFTER = 15 # days
 
 LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
