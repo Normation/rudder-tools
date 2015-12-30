@@ -1,0 +1,52 @@
+# List operating systems properties
+
+debian = { 
+  aliases = [ ]
+  package-format = "dpkg"
+}
+
+ubuntu = {
+  aliases = [ ]
+  package-format = "dpkg"
+}
+
+rhel = {
+  aliases = [ "redhat", "centos" ]
+  package-format = "rpm"
+}
+
+fedora = {
+  aliases = [ ]
+  package-format = "rpm"
+}
+
+sles = {
+  aliases = [ "suse" ]
+  package-format = "rpm"
+}
+
+aix = {
+  aliases = [ ]
+  package-format = "rpm"
+}
+
+windows = {
+  aliases = [ ]
+  package-format = ""
+}
+
+android = {
+  aliases = [ ]
+  package-format = ""
+}
+
+freebsd = {
+  aliases = [ ]
+  package-format = ""
+}
+
+solaris = {
+  aliases = [ "sunos" ]
+  package-format = "pkg"
+}
+

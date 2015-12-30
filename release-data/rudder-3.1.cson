@@ -1,0 +1,57 @@
+# Release data file
+
+release = "3.1"
+
+# Supported architecture for each distribution
+architectures = { 
+                  "debian-5":     [ "i386", "amd64" ],
+                  "debian-6":     [ "i386", "amd64" ],
+                  "debian-7":     [ "i386", "amd64" ],
+                  "debian-8":     [ "i386", "amd64" ],
+                  "ubuntu-10.04": [ "i386", "amd64" ],
+                  "ubuntu-12.04": [ "i386", "amd64" ],
+                  "ubuntu-12.10": [ "i386", "amd64" ],
+                  "ubuntu-14.04": [ "i386", "amd64" ],
+                  "fedora-18":    [ "i386", "amd64" ],
+                  "rhel-3":       [ "i386", "amd64" ],
+                  "rhel-5":       [ "i386", "amd64" ],
+                  "rhel-6":       [ "i386", "amd64" ],
+                  "rhel-7":       [ "amd64" ],
+                  "sles-10sp3":   [ "i386", "amd64" ],
+                  "sles-11"   :   [ "i386", "amd64" ],
+                  "sles-12"   :   [ "amd64" ],
+                  "aix-5":        [ "ppc" ],
+                }
+
+# Roles are package groups
+roles = { 
+          "debian-5":     [ "agent-allinone", "agent-thin", "relay" ],
+          "debian-6":     [ "agent-allinone", "agent-thin", "relay" ],
+          "debian-7":     [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "debian-8":     [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "ubuntu-10.04": [ "agent-allinone", "agent-thin", "relay" ],
+          "ubuntu-12.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "ubuntu-12.10": [ "agent-allinone", "agent-thin", "relay" ],
+          "ubuntu-14.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "fedora-18":    [ "agent-allinone", "agent-thin", "relay" ],
+          "rhel-3":       [ "agent-allinone", "agent-thin", "relay" ],
+          "rhel-5":       [ "agent-allinone", "agent-thin", "relay" ],
+          "rhel-6":       [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "rhel-7":       [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "sles-10sp3":   [ "agent-allinone", "agent-thin", "relay" ],
+          "sles-11":      [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "sles-12":      [ "agent-allinone", "agent-thin", "relay" ],
+          "aix-5":        [ "agent-allinone", "agent-thin", "relay" ],
+        }
+
+# Packages that are built
+packages = { 
+             "agent-allinone": [ "rudder-agent" ],
+             "agent-thin":     [ "rudder-agent-thin" ],
+             "relay":          [ "rudder-server-relay" ],
+             "server":         [ "rudder-inventory-ldap", "rudder-inventory-endpoint", "rudder-jetty", "rudder-reports", "rudder-server-root", "rudder-webapp", "rudder-techniques", "ncf", "ncf-api-virtualenv" ],
+           }
+
+# Packages that are architecture dependant (others are independant)
+arch-dependant-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap" ]
+
