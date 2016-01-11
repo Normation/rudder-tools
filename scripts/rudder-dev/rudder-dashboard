@@ -159,14 +159,20 @@ def filter_instance(issue_filter, redmine='default'):
     new_filter[key] = get_redmine_info(redmine, value)
   return new_filter
 
-def format_issues(text, issue_filter, view="count", url=""):
+def format_issues(text, issue_filter, view="count", url="", redmine="all"):
   if view == "count":
-    count = get_issues_count(filter_instance(issue_filter))
-    count += get_issues_count(filter_instance(issue_filter, 'alt'), True)
+    count = 0
+    if redmine == "all" or redmine == "external":
+      count += get_issues_count(filter_instance(issue_filter))
+    if redmine == "all" or redmine == "internal":
+      count += get_issues_count(filter_instance(issue_filter, 'alt'), True)
     format_count(text, count, url)
   elif view == "full":
-    issues = get_issues_list(filter_instance(issue_filter))
-    issues.extend( get_issues_list(filter_instance(issue_filter, 'alt'), True) )
+    issues = []
+    if redmine == "all" or redmine == "external":
+      issues.extend( get_issues_list(filter_instance(issue_filter)) )
+    if redmine == "all" or redmine == "internal":
+      issues.extend( get_issues_list(filter_instance(issue_filter, 'alt'), True) )
     format_full(text, issues)
   else:
     print("BUG: unknown view type " + view)
@@ -210,6 +216,9 @@ if __name__ == "__main__":
   format_issues("My bugs", {"assigned_to_id": "id", "tracker_id": "tracker_bug", "status_id": "status_todo"})
 
 # NORMATION overview
+  # Quick and important
+  format_issues("Quick and important", {"status_id": "status_todo", "tags": "Quick and important"}, "full", redmine="external")
+
   # Assigned issues
   format_issues("Assigned Issues", {"assigned_to_id": "*", "status_id": "status_review"}, "count",
                 "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
