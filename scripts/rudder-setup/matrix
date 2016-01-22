@@ -1,0 +1,14 @@
+agent;2.11;debian;[5,7]
+agent;2.11;windows;[2000,2008]
+agent;2.11;rhel;3
+agent;2.11;rhel;[5,6]
+agent;2.11;suse;10_SP3
+agent;2.11;suse;11
+agent;2.11;ubuntu;10.04
+agent;2.11;ubuntu;12.04
+agent;2.11;ubuntu;12.10
+server;2.11;debian;[6,7]
+server;2.11;rhel;6
+server;2.11;suse;11_SP1
+server;2.11;ubuntu;[12.04-12.10]
+
