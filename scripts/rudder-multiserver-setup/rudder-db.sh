@@ -1,5 +1,8 @@
 #!/bin/bash
 
+RUDDER_WEB="$1"
+NETWORK="$2"
+
 # add repository
 ./add_repo 2.11-nightly
 
@@ -22,7 +25,7 @@ fi
 
 # Allow all internal connections to PostgreSQL
 echo "listen_addresses = '*'" >> $PG_CONF/postgresql.conf
-echo "host    all         all         10.0.0.0/8       trust" >> $PG_CONF/pg_hba.conf
+echo "host    all         all         $NETWORK       trust" >> $PG_CONF/pg_hba.conf
 service postgresql restart 
 
 # Disable rsyslog remote listening
@@ -32,7 +35,7 @@ rm -f /etc/rsyslog.d/pgsql.conf
 service rsyslog restart
 
 # Set the policy server to be server 4 (rudder-webapp)
-echo "rudder-web" > /var/rudder/cfengine-community/policy_server.dat
+echo "$RUDDER_WEB" > /var/rudder/cfengine-community/policy_server.dat
 service rudder-agent restart
 
 # If you're using a firewall, allow the following incoming connections to this server:
