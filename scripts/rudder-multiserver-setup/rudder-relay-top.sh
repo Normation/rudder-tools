@@ -1,26 +1,31 @@
 #!/bin/bash
 
+if [ -z "$1" ]
+then
+  echo "Usage $0 <RUDDER_SERVER_NAME>"
+  exit 1
+fi
+RUDDER_WEB="$1"
+
 # add repository
 ./add_repo 2.11-nightly
 
 . detect_os.sh
 
 # This is copied from http://www.rudder-project.org/rudder-doc-2.11/rudder-doc.html#relay-servers
-if [ "$OS" = "RHEL" ] ; then
-  $PM_COMMAND rudder-agent httpd rsyslog
-elif [ "$OS" = "UBUNTU" -o "$OS" = "DEBIAN" ] ; then
-  $PM_COMMAND rudder-agent apache2 apache2-utils rsyslog
-  echo "Now fix the bug on /var/lib/dpkg/info/rudder-agent.postinst" 
-  echo "Then run aptitude install" 
-  bash -i
+if [ "${OS}" = "RHEL" ] ; then
+  ${PM_COMMAND} rudder-agent httpd rsyslog
+elif [ "${OS}" = "UBUNTU" -o "${OS}" = "DEBIAN" ] ; then
+  ${PM_COMMAND} rudder-agent apache2 apache2-utils rsyslog
+  A2_VERSION=`apachectl -v | head -n1  | sed -s 's/Server version: Apache\/\([0-9]\+\.[0-9]\+\)\..*/\1/'`
   a2enmod dav dav_fs
-  if [ "$A2_VERSION" = 2.4 ] ; then
+  if [ "${A2_VERSION}" = "2.4" ] ; then
     a2dissite 000-default
   else
     a2dissite default
   fi
-elif [ "$OS" = "SLES" ] ; then
-  $PM_COMMAND install apache2 rsyslog
+elif [ "${OS}" = "SLES" ] ; then
+  ${PM_COMMAND} install apache2 rsyslog
   a2enmod dav dav_fs
 fi
 A2_VERSION=`apachectl -v | head -n1  | sed -s 's/Server version: Apache\/\([0-9]\+\.[0-9]\+\)\..*/\1/'`
@@ -47,19 +52,19 @@ done
 
 touch /opt/rudder/etc/rudder-networks.conf
 
-if [ "$OS" = "RHEL" ] ; then
+if [ "${OS}" = "RHEL" ] ; then
   vhost_file=/etc/httpd/conf.d/rudder-default.conf
-elif [ "$OS" = "UBUNTU" -o "$OS" = "DEBIAN" ] ; then
-  if [ "$A2_VERSION" = 2.4 ] ; then
+elif [ "${OS}" = "UBUNTU" -o "${OS}" = "DEBIAN" ] ; then
+  if [ "${A2_VERSION}" = "2.4" ] ; then
     vhost_file=/etc/apache2/sites-enabled/rudder-default.conf
   else
     vhost_file=/etc/apache2/sites-enabled/rudder-default
   fi
-elif [ "$OS" = "SLES" ] ; then
+elif [ "${OS}" = "SLES" ] ; then
   vhost_file=/etc/apache2/vhosts.d/rudder-default.conf
 fi
 
-cat > "$vhost_file" << EOF
+cat > "${vhost_file}" << EOF
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         # Expose the server UUID through http
@@ -110,22 +115,22 @@ cat > "$vhost_file" << EOF
 </VirtualHost>
 EOF
 
-if [ "$OS" = "RHEL" ] ; then
+if [ "${OS}" = "RHEL" ] ; then
   service httpd restart
-elif [ "$OS" = "UBUNTU" -o "$OS" = "DEBIAN" ] ; then
+elif [ "${OS}" = "UBUNTU" -o "${OS}" = "DEBIAN" ] ; then
   a2ensite rudder-default
   service apache2 restart
-elif [ "$OS" = "SLES" ] ; then
+elif [ "${OS}" = "SLES" ] ; then
   service apache2 restart
 fi
 
 # Set the policy server to be server 4 (rudder-web)
-echo "rudder-web" > /var/rudder/cfengine-community/policy_server.dat
+echo "${RUDDER_WEB}" > /var/rudder/cfengine-community/policy_server.dat
 service rudder-agent restart
 
 # Store the UUID of this node for later user
 FRONT_UUID=$(cat /opt/rudder/etc/uuid.hive)
-echo "FRONT_UUID=$FRONT_UUID" 
+echo "FRONT_UUID=${FRONT_UUID}" 
 
 # If you're using a firewall, allow the following incoming connections to this server:
 # - TCP port 80: all managed nodes
