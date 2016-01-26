@@ -59,7 +59,6 @@ EOF
   /opt/rudder/bin/rudder-init.sh ${SERVER_HOSTNAME} ${DEMOSAMPLE} ${LDAPRESET} ${INITPRORESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
   echo "Done."
 
-  service_cmd rudder-jetty restart
 }
 
 upgrade_server() {

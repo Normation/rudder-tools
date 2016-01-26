@@ -63,8 +63,8 @@ EOF
     # Add SuSE repo
     rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xADAB3BD36F07D355"
     zypper removerepo Rudder || true
-    zypper --non-interactive --no-gpg-checks addrepo -n "Rudder repository" "${URL_BASE}" Rudder || true
-    zypper --non-interactive --no-gpg-checks refresh
+    zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}" Rudder || true
+    zypper --non-interactive refresh
     return 0
   elif [ "${PM}" = "pkg" ]
   then
