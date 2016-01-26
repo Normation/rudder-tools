@@ -63,11 +63,11 @@ setup_relay() {
 
   if is_version_valid "${RUDDER_VERSION}" "[3.0 3.10]"; then
     ${PM_INSTALL} rudder-server-relay
+    rudder agent inventory
   else
     setup_relay_old
   fi
 
-  rudder agent inventory
 }
 
 upgrade_relay() {
