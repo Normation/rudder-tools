@@ -838,7 +838,11 @@ def commit_push(branch, message, force_amend=False):
     # github fork is asynchronous but pretty fast, this should be sufficient
     time.sleep(2)
 
-  wip = shell("git log --grep \"^Work in progress\" HEAD^..", keep_output=True).strip()
+  (code, wip) = shell("git log --grep \"^Work in progress\" HEAD^..", keep_output=True, fail_exit=False)
+  if code == 0:
+    wip = wip.strip()
+  else:
+    wip = ''
   commit_cmd = "git commit"
   if message != '':
     commit_cmd += " -m \"" + message + "\""
