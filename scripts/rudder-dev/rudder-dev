@@ -747,7 +747,7 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
   # Say what we are doing
   if comment is not None:
     print(comment)
-    print(" > " + url)
+    print(" $ api-call [...] " + url)
 
   # make query
   if post_data is not None:
