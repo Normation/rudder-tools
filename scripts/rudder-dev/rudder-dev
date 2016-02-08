@@ -11,6 +11,7 @@ Usage:
     rudder-dev [-f|--force] pull [<branch>]
     rudder-dev [-f|--force] branch <ticket_id> [--base=<ticket_id>]
     rudder-dev [-f|--force] technique <version> <comment>
+    rudder-dev [-f|--force] subtask [<next_branch>] [--title=<new_title>]
     rudder-dev [-f|--force] wip
     rudder-dev [-f|--force] commit [<trigraph> [<PR_comment>]]
     rudder-dev [-f|--force] amend [<PR_comment>]
@@ -66,6 +67,16 @@ TECHNIQUE
     - create a commit for this new version
     ex: cd techniques/applications/apacheServer
         rudder-dev technique 4.0 "Add a new option"
+
+SUBTASK
+    Call it after commiting a patch and you want a different patch on the next version.
+    Or if you want to extend a feature from one branch in a new branch.
+    For example, after a ncf v0.x patch you want to amend it in ncf v1
+    - create a new ticket that is the child copy of the current one
+    - set the new ticket version to next_version (or guess it) and change title if needed
+    - call rudder-dev branch on the new ticket with a base branch from the old ticket
+    - propose modifications for logs in the modified files (ncf v1 specific)
+    ex: rudder-dev sub <version>
 
 WIP
     Commit a work in progress to keep it for later
@@ -332,6 +343,14 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   info['version'] = get_version(ticket)
   info['project_id'] = ticket['project']['id']
   info['internal'] = internal
+  info['tracker_id'] = ticket['tracker']['id']
+  info['priority_id'] = ticket['priority']['id']
+  info['subject'] = ticket['subject']
+  info['description'] = ticket['description']
+  if 'category' in ticket:
+    info['category_id'] = ticket['category']['id']
+  if 'is_private' in ticket:
+    info['is_private'] = ticket['is_private']
   if 'custom_fields' in ticket:
     for field in ticket['custom_fields']:
       if field['id'] == CUSTOM_FIELD_PR and 'value' in field:
@@ -348,6 +367,26 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
               info['last_assignee'] = int(detail['old_value'])
 
   return info
+
+
+# clone a ticket in redmine making the new one a child of the original
+def clone_ticket(info, version, new_title):
+  new_info = {}
+  for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
+    if i in info:
+      new_info[i] = info[i]
+  new_info['parent_issue_id'] = info['id']
+  if new_title is not None:
+    new_info['subject'] = new_title
+  all_versions_id = get_versions(info['project_id'])[1]
+  new_info['fixed_version_id'] = all_versions_id[version]
+  ticket_json = json.dumps({ 'issue': new_info })
+  ret = requests.post(REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+  if ret.status_code != 201:
+    logfail("Ticket clone error: " + ret.reason)
+    if not force:
+      exit(3)
+  return ret.json()['issue']
 
 
 # Return true if the current user can modify an issue in the given project
@@ -563,11 +602,12 @@ def get_lifecycle():
 
 
 version_list = None
+version_dict = None
 # get the version list for a given project
 def get_versions(project):
-  global version_list
+  global version_list, version_dict
   if version_list is not None:
-    return version_list
+    return (version_list, version_dict)
 
   # list all versions in git
   git_version_list = []
@@ -580,6 +620,7 @@ def get_versions(project):
   # list all versions using redmine
   versions = requests.get(REDMINE_API_URL + "/projects/" + project + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   redmine_version_list = []
+  version_dict = {}
   for version in versions.json()['versions']:
     if version['status'] != 'open':
       continue
@@ -588,15 +629,33 @@ def get_versions(project):
       v = m.group(1)
     else:
       v = version['name']
-    if v in git_version_list:
+    if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
+      version_dict[v] = version['id']
   
   # add master, keep unique name and sort
-  redmine_version_list.append('master')
   version_list = list(set(redmine_version_list))
   version_list.sort(key=LooseVersion)
 
-  return version_list
+  return (version_list, version_dict)
+
+
+# get the version after old
+def get_next_version(old):
+  lifecycle = get_lifecycle()
+  if lifecycle not in LIFECYCLES:
+    logfail("I don't know how to find the next version based on a '" + lifecycle + "' lifecycle")
+    exit(1)
+  all_versions = get_versions(lifecycle)[0]
+  new = None
+  for idx, version in enumerate(all_versions):
+    if old == version:
+      if idx < len(all_versions)-1:
+        new = all_versions[idx+1]
+  if new is None:
+    logfail("Don't know how to find the version after " + old)
+    exit(9)
+  return new
 
 
 # Get branch name from version
@@ -1063,6 +1122,41 @@ def technique(version, message):
   shell(commit_cmd, "Commiting")
 
 
+# clone ticket, change version, branch, helper
+def subtask(next_version, new_title):
+  # make a clone child ticket with next version
+  info = ticket_from_branch(current_branch)
+  if next_version is None:
+    next_version = get_next_version(info['version'])
+  print("Next version will be " + str(next_version))
+  print("Cloning ticket #" + str(info['id']))
+  ticket = clone_ticket(info, next_version, new_title)
+  print(" > ticket #" + str(ticket['id']) + " created " + REDMINE_API_URL + "/issues/" + str(info['id']))
+
+  # test merge status
+  pull(next_version)
+  logs = shell("git log --no-merges '--grep=Fixes #" + str(info['id']) + "' --oneline", "Looking for ticket commit in " + next_version, keep_output=True)
+  print(logs)
+  print(len(logs))
+
+  # rudder-dev branch
+  if info['internal']:
+    ticket_id = 'i'+str(ticket['id'])
+  else:
+    ticket_id = str(ticket['id'])
+
+  # if branch has been merged, just do a regular branch
+  if len(logs) != 0:
+    create_branch(ticket_id)
+  # if branch has not been merged, base the ticket on the original
+  else:
+    create_branch(ticket_id, current_branch)
+  
+    # rebase to next_version
+    next_branch = branch_from_version(next_version)
+    shell("git rebase -i " + next_branch, "Rebasing to " + next_version)
+
+ 
 # commit, push
 def wip():
   # must be on a working branch
@@ -1296,19 +1390,7 @@ def merge(old, new, strategy=None, automatic=False):
 
 # Merge remote branch automatically guessing the next one
 def merge_to_next(old, strategy=None, automatic=False):
-  lifecycle = get_lifecycle()
-  if lifecycle not in LIFECYCLES:
-    logfail("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
-    exit(1)
-  all_versions = get_versions(lifecycle)
-  new = None
-  for idx, version in enumerate(all_versions):
-    if old == version:
-      if idx < len(all_versions)-1:
-        new = all_versions[idx+1]
-  if new is None:
-    logfail("Don't know how to merge " + old)
-    exit(9)
+  new = get_next_version(old)
   merge(old, new, strategy, automatic)
 
 
@@ -1318,7 +1400,7 @@ def merge_all(strategy=None, automatic=False):
   if lifecycle not in LIFECYCLES:
     logfail("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
-  for branch in get_versions(lifecycle)[:-1]:
+  for branch in get_versions(lifecycle)[0][:-1]:
     merge_to_next(branch, strategy, automatic)
 
 # Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
@@ -1354,11 +1436,11 @@ def find(command):
     logfail("I don't know how to look for branches in a repository based on a '" + lifecycle + "' lifecycle")
     exit(1)
   status = {}
-  for branch in get_versions(lifecycle):
+  for branch in get_versions(lifecycle)[0]:
     pull(branch)
     (status[branch], x) = shell(command, "Running your command", fail_exit=False)
   print("---")
-  for branch in  get_versions(lifecycle):
+  for branch in  get_versions(lifecycle)[0]:
     ok = "OK" if status[branch] == 0 else "ERR"
     print("%6s: %3s (%d)" % (branch, ok, status[branch]))
   print("---")
@@ -1509,6 +1591,8 @@ if __name__ == "__main__":
     stash_info()
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
+  elif arguments['subtask']:
+    subtask(arguments['<next_branch>'], arguments['<new_title>'])
   elif arguments['wip']:
     wip()
   elif arguments['commit']:
