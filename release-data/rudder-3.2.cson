@@ -55,3 +55,7 @@ packages = {
 # Packages that are architecture dependant (others are independant)
 arch-dependant-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap" ]
 
+# Internal components versions
+components = {
+               "cfengine": "3.7.1",
+             }
