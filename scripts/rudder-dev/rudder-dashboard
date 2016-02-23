@@ -106,7 +106,13 @@ def get_issues(args, limit, internal=False):
 
 def get_issues_list(args, internal=False):
   issues = get_issues(args, 100, internal)
-  return [ { "label": i['subject'], "url": REDMINE_URL+"/issues/"+str(i['id']) } 
+  # extract PR
+  for i in issues['issues']:
+    if 'custom_fields' in i:
+      for field in i['custom_fields']:
+        if field['name'] == 'Pull Request':
+          i['PR'] = field['value']
+  return [ { "label": i['subject'], "url": REDMINE_URL+"/issues/"+str(i['id']), "PR": i['PR'] or None } 
            for i in issues['issues'] ]
 
 
@@ -167,13 +173,16 @@ def format_issues(text, issue_filter, view="count", url="", redmine="all"):
     if redmine == "all" or redmine == "internal":
       count += get_issues_count(filter_instance(issue_filter, 'alt'), True)
     format_count(text, count, url)
-  elif view == "full":
+  elif view == "full" or view == "full-pr":
     issues = []
     if redmine == "all" or redmine == "external":
       issues.extend( get_issues_list(filter_instance(issue_filter)) )
     if redmine == "all" or redmine == "internal":
       issues.extend( get_issues_list(filter_instance(issue_filter, 'alt'), True) )
-    format_full(text, issues)
+    if view == "full":
+      format_full(text, issues)
+    if view == "full-pr":
+      format_full(text, [ { "label": i['label'], "url": i['PR']} for i in issues ])
   else:
     print("BUG: unknown view type " + view)
     exit(127)
@@ -199,11 +208,11 @@ if __name__ == "__main__":
   read_configuration()
 # PERSONAL overview
   # My TR + FR
-  format_issues("My reviews", {"assigned_to_id": "id", "status_id": "status_review"}, "full")
+  format_issues("My reviews", {"assigned_to_id": "id", "status_id": "status_review"}, "full-pr")
   
   # My PR
   pulls = my_prs()
-  unmergeable = [ { "label": p['title'], "url": p['html_url']} for p in pulls if not p['mergeable'] ]
+  unmergeable = [ { "label": p['title'], "url": p['html_url']} for p in pulls if p['mergeable'] == False]
   format_full("My unmergeable PR", unmergeable)
 
   old = [ {"label": p['title'], "url": p['html_url']} for p in pulls if date_diff(p['updated_at']) > MAX_DAYS ]
