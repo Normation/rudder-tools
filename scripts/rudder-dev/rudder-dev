@@ -606,7 +606,7 @@ def get_lifecycle():
   current_lifecycle = "master_only"
   # Update branches so get new branches from UPSTREA
   shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
-  for line in os.popen("git branch --list -a"):
+  for line in os.popen("git branch --no-color --list -a"):
     for lifecycle, data in LIFECYCLES.items():
       if re.match(data["detection"].format(UPSTREAM_REPOSITORY), line):
         current_lifecycle = lifecycle
@@ -623,7 +623,7 @@ def get_versions(project):
 
   # list all versions in git
   git_version_list = []
-  for line in os.popen("git branch --list -a"):
+  for line in os.popen("git branch --no-color --list -a"):
     for data in LIFECYCLES.values():
       m = re.match(data["detection"].format(UPSTREAM_REPOSITORY), line)
       if m:
@@ -696,7 +696,7 @@ def branch_from_ticket(info):
 
 # Find an existing branch for a ticket id
 def branch_from_ticket_id(ticket_id, internal):
-  for line in os.popen("git branch --list"):
+  for line in os.popen("git branch --no-color --list"):
     if internal:
       ticket = 'i'+str(ticket_id)
     else:
@@ -1327,7 +1327,7 @@ def pull(version=None):
     branch_status = shell("git branch --list " + branch, keep_output=True).strip()
     if branch_status == "":
       shell("git fetch " + UPSTREAM_REPOSITORY, "Local branch doesn't exist, fetching from " + UPSTREAM_REPOSITORY)
-      remote_branch_status = os.popen("git branch --list --remote " + UPSTREAM_REPOSITORY + "/" + branch)
+      remote_branch_status = os.popen("git branch --no-color --list --remote " + UPSTREAM_REPOSITORY + "/" + branch)
       if remote_branch_status == "":
         logfail("No such branch on " + UPSTREAM_REPOSITORY + ": " + branch + ", Aborting ...")
         exit(8)
