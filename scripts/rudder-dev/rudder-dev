@@ -11,7 +11,7 @@ Usage:
     rudder-dev [-f|--force] pull [<branch>]
     rudder-dev [-f|--force] branch <ticket_id> [--base=<ticket_id>]
     rudder-dev [-f|--force] technique <version> <comment>
-    rudder-dev [-f|--force] subtask [<next_branch>] [--title=<new_title>]
+    rudder-dev [-f|--force] subtask [<next_branch>] [--title=<new_title>] [--bug]
     rudder-dev [-f|--force] wip
     rudder-dev [-f|--force] commit [<trigraph> [<PR_comment>]]
     rudder-dev [-f|--force] amend [<PR_comment>]
@@ -71,11 +71,12 @@ TECHNIQUE
 SUBTASK
     Call it after commiting a patch and you want a different patch on the next version.
     Or if you want to extend a feature from one branch in a new branch.
+    Or if just discovered a bug in a PR that was just merdged.
     For example, after a ncf v0.x patch you want to amend it in ncf v1
-    - create a new ticket that is the child copy of the current one
-    - set the new ticket version to next_version (or guess it) and change title if needed
+    - create a new ticket that is the child copy of the current one (set its tracker to Bug if --bug)
+    - set the new ticket version to next_version (or guess it) and change title if needed (but noy with --bug)
     - call rudder-dev branch on the new ticket with a base branch from the old ticket
-    - propose modifications for logs in the modified files (ncf v1 specific)
+    - suggest modifications for logs in the modified files (ncf v1 specific)
     ex: rudder-dev sub <version>
 
 WIP
@@ -103,6 +104,7 @@ AMEND
     ex: rudder-dev amend "@reviewer pr updated"
 
 REBASE
+    Call it when a PR is not mergeable anymore
     - interactive rebase on NRM branch
     - if rebase has worked, push to OWN
     - add a comment to the PR to signal the change
@@ -112,6 +114,7 @@ REBASE
     ex: rudder-dev rebase --base 1234
 
 RETARGET
+    Call it when you started on the wrong version, to change the base branch
     - if a version is provided, update the ticket with it
     - if the ticket's version has changed, continue
     - rebase to ticket's NRM branch
@@ -121,6 +124,7 @@ RETARGET
     ex: rudder-dev retarget
 
 TAKEOVER
+    Call it when someone else has started a work you want to continue
     - if the ticket has no pull-request, abandon
     - checkout upstream branch into local repository
     - rename it if needed
@@ -128,6 +132,7 @@ TAKEOVER
     ex: rudder-dev takeover 1234
 
 REVERT
+    Call it when a PR has been merged but you don't want it
     - If the ticket has no pull-request, abandon
     - If retarget, ensure we have everything merged
     - Find merge commit of pull request
@@ -135,9 +140,8 @@ REVERT
     - if retarget, merge it to next branch with ours strategy (keep changes in next branch)
     ex: rudder-dev revert 1234
 
-
-MERGE (needs commit rights)
-    Call it when you want to merge manually.
+MERGE
+    Call it when you want to merge different branches (needs commit rights)
     "merge all" and "merge <first_branch>" are only valid within Rudder versioned repositories
     - checkout an pull last version
     - checkout an pull new version
@@ -146,14 +150,16 @@ MERGE (needs commit rights)
     If the merge fail, please make adjustments, commit and rerun this command
     ex: rudder-dev merge 3.0 master
 
-FIND (find the first version a command works)
+FIND
+    Call it to search thing within active branches
     - for each branch version
     - checkout branch
     - run command
     - find when it returns 0
     ex: rudder-dev find 'grep bugfix path/file.cf'
 
-CLEANUP (cleanup your repository
+CLEANUP
+    Call it when your local repository becomes messy
     - for each branch in local repository
     - if ticket is closed
     - if branch's commit are pushed upstream
@@ -162,10 +168,12 @@ CLEANUP (cleanup your repository
       closed tickets that have un unmerged commits are asked to the user
     ex: git cleanup
 
-UPDATE rudder-dev
+UPDATE
+    Call it when you want the last version of rudder-dev
     - download last version from https://www.rudder-project.org/tools/rudder-dev
     - replace current rudder-dev with it
     - use sudo if needed
+
 """
 
 from __future__ import print_function
@@ -221,6 +229,7 @@ PENDING_TR_CODE = 3
 IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
 ALT_CUSTOM_FIELD_PR = 1
+BUG_TACKER_ID = 1
 
 
 ###
@@ -370,15 +379,18 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
 
 
 # clone a ticket in redmine making the new one a child of the original
-def clone_ticket(info, version, new_title):
+def clone_ticket(info, version, new_title, bug=False):
   new_info = {}
   for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
     if i in info:
       new_info[i] = info[i]
   new_info['parent_issue_id'] = info['id']
+  if bug:
+    new_info['tracker_id'] = BUG_TACKER_ID
+    new_info['description'] = "There was a bug in the resolution of #" + str(info['id'])
   if new_title is not None:
     new_info['subject'] = new_title
-  all_versions_id = get_versions(info['project_id'])[1]
+  all_versions_id = get_versions(str(info['project_id']))[1]
   new_info['fixed_version_id'] = all_versions_id[version]
   ticket_json = json.dumps({ 'issue': new_info })
   ret = requests.post(REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
@@ -575,11 +587,11 @@ def ask_username(project_id, trigraph):
 
 
 # Find a ticket id in a branch name
-def ticket_from_branch(branch):
+def ticket_from_branch(branch, must_be_open=True):
   match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
   if match:
     (ticket_id, internal) = parse_ticket_id(match.group(1))
-    return get_ticket_info(ticket_id, internal)
+    return get_ticket_info(ticket_id, internal, must_be_open)
   else:
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
@@ -1123,15 +1135,18 @@ def technique(version, message):
 
 
 # clone ticket, change version, branch, helper
-def subtask(next_version, new_title):
+def subtask(next_version, new_title, bug=False):
   # make a clone child ticket with next version
-  info = ticket_from_branch(current_branch)
+  info = ticket_from_branch(current_branch, False)
   if next_version is None:
-    next_version = get_next_version(info['version'])
+    if bug:
+      next_version = info['version']
+    else:
+      next_version = get_next_version(info['version'])
   print("Next version will be " + str(next_version))
   print("Cloning ticket #" + str(info['id']))
-  ticket = clone_ticket(info, next_version, new_title)
-  print(" > ticket #" + str(ticket['id']) + " created " + REDMINE_API_URL + "/issues/" + str(info['id']))
+  ticket = clone_ticket(info, next_version, new_title, bug)
+  print(" > ticket #" + str(ticket['id']) + " created " + REDMINE_API_URL + "/issues/" + str(ticket['id']))
 
   # test merge status
   pull(next_version)
@@ -1592,7 +1607,7 @@ if __name__ == "__main__":
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['subtask']:
-    subtask(arguments['<next_branch>'], arguments['<new_title>'])
+    subtask(arguments['<next_branch>'], arguments['--title'], arguments['--bug'])
   elif arguments['wip']:
     wip()
   elif arguments['commit']:
