@@ -205,19 +205,22 @@ except ImportError:
 RUDDER_DEV_ORIGIN = "https://www.rudder-project.org/tools/rudder-dev"
 WARN_FOR_UPDATE_AFTER = 15 # days
 
-LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
-                           "format": "branches/rudder/{}",
-                           "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master|.*~alpha\d+', r'master') ],
-                         },
-               "ncf": { "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
-                        "format": "v{}",
-                        "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master', r'master') ],
-                      },
-               "master_only": { "detection": r'(.*)',
-                                "format": "master",
-                                "redmine_version": [ (r'.*', r'master') ],
-                              },
-             }
+LIFECYCLES = [ { "name": "rudder",
+                 "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
+                 "format": "branches/rudder/{}",
+                 "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master|.*~alpha\d+', r'master') ],
+               },
+               { "name": "ncf",
+                 "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
+                 "format": "v{}",
+                 "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master', r'master') ],
+               },
+               { "name" : "master_only",
+                 "detection": r'(.*)',
+                 "format": "master",
+                 "redmine_version": [ (r'.*', r'master') ],
+               },
+             ]
 CONFIG_FILE = "~/.rudder-dev"
 CACHE_FILE = "~/.rudder-dev.cache"
 HUB_CONFIG_FILE = "~/.config/hub"
@@ -274,7 +277,6 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
 def logfail(message):
   print(ERROR_TPL.format(message))
 
-
 def parse_ticket_id(ticket_id):
   global REDMINE_TOKEN, REDMINE_API_URL, CUSTOM_FIELD_PR
   if ticket_id.startswith('#'):
@@ -298,7 +300,7 @@ def get_version(ticket, error_fail=True):
       exit(2)
     else:
       return None
-  detector = LIFECYCLES[get_lifecycle()]['redmine_version']
+  detector = get_lifecycle()['redmine_version']
   for k,v in detector:
     if re.match(k, ticket['fixed_version']['name']):
       return re.sub(k, v, ticket['fixed_version']['name'])
@@ -393,7 +395,7 @@ def clone_ticket(info, version, new_title, bug=False):
     new_info['description'] = "There was a bug in the resolution of #" + str(info['id'])
   if new_title is not None:
     new_info['subject'] = new_title
-  all_versions_id = get_versions(str(info['project_id']))[1]
+  all_versions_id = get_versions()[1]
   new_info['fixed_version_id'] = all_versions_id[version]
   ticket_json = json.dumps({ 'issue': new_info })
   ret = requests.post(REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
@@ -606,13 +608,12 @@ def get_lifecycle():
   global current_lifecycle
   if current_lifecycle is not None:
     return current_lifecycle
-  current_lifecycle = "master_only"
   # Update branches so get new branches from UPSTREA
   shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
   lines = os.popen("git branch --no-color --list -a").readlines()
-  for lifecycle, data in LIFECYCLES.items():
+  for lifecycle in LIFECYCLES:
     for line in lines:
-      if re.match(data["detection"].format(UPSTREAM_REPOSITORY), line):
+      if re.match(lifecycle["detection"].format(UPSTREAM_REPOSITORY), line):
         current_lifecycle = lifecycle
         return current_lifecycle
   return current_lifecycle
@@ -621,7 +622,7 @@ def get_lifecycle():
 version_list = None
 version_dict = None
 # get the version list for a given project
-def get_versions(project):
+def get_versions():
   global version_list, version_dict
   if version_list is not None:
     return (version_list, version_dict)
@@ -630,24 +631,22 @@ def get_versions(project):
   lifecycle = get_lifecycle()
   git_version_list = []
   for line in os.popen("git branch --no-color --list -a"):
-    m = re.match(LIFECYCLES[lifecycle]["detection"].format(UPSTREAM_REPOSITORY), line)
+    m = re.match(lifecycle["detection"].format(UPSTREAM_REPOSITORY), line)
     if m:
       git_version_list.append(m.group(1))
 
   # list all versions using redmine
-  versions = requests.get(REDMINE_API_URL + "/projects/" + project + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  versions = requests.get(REDMINE_API_URL + "/projects/" + lifecycle['name'] + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   redmine_version_list = []
   version_dict = {}
   for version in versions.json()['versions']:
     if version['status'] != 'open':
       continue
-    detector = LIFECYCLES[get_lifecycle()]['redmine_version']
+    detector = lifecycle['redmine_version']
     v = None
     for k,val in detector:
-      print("Matching :" + k + " / " + version['name'])
       if re.match(k, version['name']):
         v = re.sub(k, val, version['name'])
-    pprint(v)
     if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
@@ -661,11 +660,7 @@ def get_versions(project):
 
 # get the version after old
 def get_next_version(old):
-  lifecycle = get_lifecycle()
-  if lifecycle not in LIFECYCLES:
-    logfail("I don't know how to find the next version based on a '" + lifecycle + "' lifecycle")
-    exit(1)
-  all_versions = get_versions(lifecycle)[0]
+  all_versions = get_versions()[0]
   new = None
   for idx, version in enumerate(all_versions):
     if old == version:
@@ -681,8 +676,10 @@ def get_next_version(old):
 def branch_from_version(version):
   # detect lifecycle and base ne name on it
   lifecycle = get_lifecycle()
-  branch_name = LIFECYCLES[lifecycle]['format'].format(version)
-  return branch_name
+  if version == "master":
+    return version
+  else:
+    return lifecycle['format'].format(version)
 
 
 # Calculate branch name from a ticket
@@ -1413,11 +1410,7 @@ def merge_to_next(old, strategy=None, automatic=False):
 
 # Merge all breanches to next one
 def merge_all(strategy=None, automatic=False):
-  lifecycle = get_lifecycle()
-  if lifecycle not in LIFECYCLES:
-    logfail("I don't know how to merge a repository based on a '" + lifecycle + "' lifecycle")
-    exit(1)
-  for branch in get_versions(lifecycle)[0][:-1]:
+  for branch in get_versions()[0][:-1]:
     merge_to_next(branch, strategy, automatic)
 
 # Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
@@ -1448,16 +1441,12 @@ def revert(ticket, retarget = False):
 
 # Run a command on all branches
 def find(command):
-  lifecycle = get_lifecycle()
-  if lifecycle not in LIFECYCLES:
-    logfail("I don't know how to look for branches in a repository based on a '" + lifecycle + "' lifecycle")
-    exit(1)
   status = {}
-  for branch in get_versions(lifecycle)[0]:
+  for branch in get_versions()[0]:
     pull(branch)
     (status[branch], x) = shell(command, "Running your command", fail_exit=False)
   print("---")
-  for branch in  get_versions(lifecycle)[0]:
+  for branch in  get_versions()[0]:
     ok = "OK" if status[branch] == 0 else "ERR"
     print("%6s: %3s (%d)" % (branch, ok, status[branch]))
   print("---")
