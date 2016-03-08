@@ -207,10 +207,16 @@ WARN_FOR_UPDATE_AFTER = 15 # days
 
 LIFECYCLES = { "rudder": { "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                            "format": "branches/rudder/{}",
+                           "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master|.*~alpha\d+', r'master') ],
                          },
                "ncf": { "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
                         "format": "v{}",
+                        "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master', r'master') ],
                       },
+               "master_only": { "detection": r'(.*)',
+                                "format": "master",
+                                "redmine_version": [ (r'.*', r'master') ],
+                              },
              }
 CONFIG_FILE = "~/.rudder-dev"
 CACHE_FILE = "~/.rudder-dev.cache"
@@ -292,18 +298,15 @@ def get_version(ticket, error_fail=True):
       exit(2)
     else:
       return None
-  match = re.search(r'^master$|~alpha\d+|^Initial release$', ticket['fixed_version']['name'])
-  if match:
-    return 'master'
+  detector = LIFECYCLES[get_lifecycle()]['redmine_version']
+  for k,v in detector:
+    if re.match(k, ticket['fixed_version']['name']):
+      return re.sub(k, v, ticket['fixed_version']['name'])
+  if error_fail:
+    logfail("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
+    exit(2)
   else:
-    match = re.match(r'\d+\.\w\d*', ticket['fixed_version']['name'])
-    if match:
-      return match.group(0)
-    elif error_fail:
-      logfail("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
-      exit(2)
-    else:
-      return None
+    return None
  
 
 # Get informations about a ticket from redmine
@@ -606,10 +609,12 @@ def get_lifecycle():
   current_lifecycle = "master_only"
   # Update branches so get new branches from UPSTREA
   shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
-  for line in os.popen("git branch --no-color --list -a"):
-    for lifecycle, data in LIFECYCLES.items():
+  lines = os.popen("git branch --no-color --list -a").readlines()
+  for lifecycle, data in LIFECYCLES.items():
+    for line in lines:
       if re.match(data["detection"].format(UPSTREAM_REPOSITORY), line):
         current_lifecycle = lifecycle
+        return current_lifecycle
   return current_lifecycle
 
 
@@ -622,12 +627,12 @@ def get_versions(project):
     return (version_list, version_dict)
 
   # list all versions in git
+  lifecycle = get_lifecycle()
   git_version_list = []
   for line in os.popen("git branch --no-color --list -a"):
-    for data in LIFECYCLES.values():
-      m = re.match(data["detection"].format(UPSTREAM_REPOSITORY), line)
-      if m:
-        git_version_list.append(m.group(1))
+    m = re.match(LIFECYCLES[lifecycle]["detection"].format(UPSTREAM_REPOSITORY), line)
+    if m:
+      git_version_list.append(m.group(1))
 
   # list all versions using redmine
   versions = requests.get(REDMINE_API_URL + "/projects/" + project + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
@@ -636,11 +641,13 @@ def get_versions(project):
   for version in versions.json()['versions']:
     if version['status'] != 'open':
       continue
-    m = re.match(r'^(\d+\.\d+)\..*', version['name'])
-    if m:
-      v = m.group(1)
-    else:
-      v = version['name']
+    detector = LIFECYCLES[get_lifecycle()]['redmine_version']
+    v = None
+    for k,val in detector:
+      print("Matching :" + k + " / " + version['name'])
+      if re.match(k, version['name']):
+        v = re.sub(k, val, version['name'])
+    pprint(v)
     if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
@@ -674,12 +681,7 @@ def get_next_version(old):
 def branch_from_version(version):
   # detect lifecycle and base ne name on it
   lifecycle = get_lifecycle()
-  if lifecycle == "master_only":
-    branch_name = "master"
-  elif version == "master":
-    branch_name = "master"
-  else:
-    branch_name = LIFECYCLES[lifecycle]['format'].format(version)
+  branch_name = LIFECYCLES[lifecycle]['format'].format(version)
   return branch_name
 
 
