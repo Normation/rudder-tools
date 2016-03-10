@@ -208,12 +208,12 @@ WARN_FOR_UPDATE_AFTER = 15 # days
 LIFECYCLES = [ { "name": "rudder",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                  "format": "branches/rudder/{}",
-                 "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master|.*~alpha\d+', r'master') ],
+                 "redmine_version": [ (r'master|.*~alpha\d+', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
                },
                { "name": "ncf",
                  "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
                  "format": "v{}",
-                 "redmine_version": [ (r'(\d+\.\w\d*).*', r'\1'), (r'master', r'master') ],
+                 "redmine_version": [ (r'master', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
                },
                { "name" : "master_only",
                  "detection": r'(.*)',
@@ -647,6 +647,7 @@ def get_versions():
     for k,val in detector:
       if re.match(k, version['name']):
         v = re.sub(k, val, version['name'])
+        break
     if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
