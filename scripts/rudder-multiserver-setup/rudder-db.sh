@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # add repository
-./add_repo 2.11-nightly
+./add_repo 3.1
 
 . detect_os.sh
 
