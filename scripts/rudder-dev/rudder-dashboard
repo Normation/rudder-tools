@@ -182,7 +182,7 @@ def format_issues(text, issue_filter, view="count", url="", redmine="all"):
     if view == "full":
       format_full(text, issues)
     if view == "full-pr":
-      format_full(text, [ { "label": i['label'], "url": i['PR']} for i in issues ])
+      format_full(text, [ { "label": i['label'], "url": i['PR'] or i["url"]} for i in issues ])
   else:
     print("BUG: unknown view type " + view)
     exit(127)
