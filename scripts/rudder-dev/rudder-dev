@@ -20,8 +20,9 @@ Usage:
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] revert <ticket_id> [--retarget]
     rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic]
-    rudder-dev [-f|--force] merge <first_branch> [-s <strategy>] [-a|--automatic]
-    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id> [-s <strategy>] [-a|--automatic]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id> <next_branch> [-s <strategy>] [-a|--automatic]
+    rudder-dev [-f|--force] merge [-s <strategy>] [-a|--automatic]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] update
@@ -41,7 +42,7 @@ CLONE
     ex: rudder-dev clone rudder-techniques
     
 PULL
-    Call it to make sure you are on a branch and up to date
+    Call it to make sure you are on a branch and up to date.
     - create the branch with remote tracking if it doesn't exist
     - checkout the branch if specified
     - update the current branch
@@ -72,7 +73,7 @@ SUBTASK
     Call it after commiting a patch and you want a different patch on the next version.
     Or if you want to extend a feature from one branch in a new branch.
     Or if just discovered a bug in a PR that was just merdged.
-    For example, after a ncf v0.x patch you want to amend it in ncf v1
+    For example, after a ncf v0.x patch you want to amend it in ncf v1.
     - create a new ticket that is the child copy of the current one (set its tracker to Bug if --bug)
     - set the new ticket version to next_version (or guess it) and change title if needed (but noy with --bug)
     - call rudder-dev branch on the new ticket with a base branch from the old ticket
@@ -80,8 +81,8 @@ SUBTASK
     ex: rudder-dev sub <version>
 
 WIP
-    Commit a work in progress to keep it for later
-    Later call to rudder-dev commit will merge wip with the final commit
+    Commit a work in progress to keep it for later.
+    Later call to rudder-dev commit will merge wip with the final commit.
     - commit with a sample "Work in progress" message
     - push on matching branch on own repository
     ex: rudder-dev wip
@@ -104,7 +105,7 @@ AMEND
     ex: rudder-dev amend "@reviewer pr updated"
 
 REBASE
-    Call it when a PR is not mergeable anymore
+    Call it when a PR is not mergeable anymore.
     - interactive rebase on NRM branch
     - if rebase has worked, push to OWN
     - add a comment to the PR to signal the change
@@ -114,7 +115,7 @@ REBASE
     ex: rudder-dev rebase --base 1234
 
 RETARGET
-    Call it when you started on the wrong version, to change the base branch
+    Call it when you started on the wrong version, to change the base branch.
     - if a version is provided, update the ticket with it
     - if the ticket's version has changed, continue
     - rebase to ticket's NRM branch
@@ -124,7 +125,7 @@ RETARGET
     ex: rudder-dev retarget
 
 TAKEOVER
-    Call it when someone else has started a work you want to continue
+    Call it when someone else has started a work you want to continue.
     - if the ticket has no pull-request, abandon
     - checkout upstream branch into local repository
     - rename it if needed
@@ -132,7 +133,7 @@ TAKEOVER
     ex: rudder-dev takeover 1234
 
 REVERT
-    Call it when a PR has been merged but you don't want it
+    Call it when a PR has been merged but you don't want it.
     - If the ticket has no pull-request, abandon
     - If retarget, ensure we have everything merged
     - Find merge commit of pull request
@@ -142,16 +143,22 @@ REVERT
 
 MERGE
     Call it when you want to merge different branches (needs commit rights)
-    "merge all" and "merge <first_branch>" are only valid within Rudder versioned repositories
-    - checkout an pull last version
+    or when you want to merge a Pull-Request.
+    "merge all" and "merge <first_branch>" are only valid within Rudder versioned repositories.
+    Use --automatic to automatically validate merge comment.
+    - detect the ticket id from current branch if there is no parameter 
+    - checkout an pull last version or the PR branch for a given ticket
     - checkout an pull new version
     - merge both
     - push result to Normation's repository
-    If the merge fail, please make adjustments, commit and rerun this command
+    - if we are merging a ticket or 'all', continue merging to next version
+    If the merge fails, please make adjustments, commit and rerun this command.
     ex: rudder-dev merge 3.0 master
+    ex: rudder-dev merge all
+    ex: rudder-dev merge 1234
 
 FIND
-    Call it to search thing within active branches
+    Call it to search thing within active branches.
     - for each branch version
     - checkout branch
     - run command
@@ -159,17 +166,17 @@ FIND
     ex: rudder-dev find 'grep bugfix path/file.cf'
 
 CLEANUP
-    Call it when your local repository becomes messy
+    Call it when your local repository becomes messy.
     - for each branch in local repository
     - if ticket is closed
     - if branch's commit are pushed upstream
     - remove local and remote branch
     With --more, include more branch that are not strictly clean, such as 
-      closed tickets that have un unmerged commits are asked to the user
+      closed tickets that have un unmerged commits are asked to the user.
     ex: git cleanup
 
 UPDATE
-    Call it when you want the last version of rudder-dev
+    Call it when you want the last version of rudder-dev.
     - download last version from https://www.rudder-project.org/tools/rudder-dev
     - replace current rudder-dev with it
     - use sudo if needed
@@ -239,6 +246,138 @@ IN_PROGRESS_CODE = 9
 CUSTOM_FIELD_PR = 3
 ALT_CUSTOM_FIELD_PR = 1
 BUG_TACKER_ID = 1
+PR_VALIDATED_LABEL = "Ready for merge"
+
+
+###
+### Classes to put in a separate library
+###
+
+# Redmine related
+
+class Issue:
+  """Class to hold informations about a single issue"""
+  def __init__(self, name, must_be_open=True):
+    """name is a string like: 1234 or i1234"""
+    self.name = name
+    self.must_be_open = must_be_open
+    self.info = None
+    if name.startswith('#'):
+      name = name [1:]
+    is_internal = re.match(r'i(\d+)', name)
+    if is_internal:
+      self.id = int(is_internal.group(1))
+      self.token = REDMINE_ALT_TOKEN
+      self.api_url = REDMINE_ALT_API_URL
+      self.custom_field_pr = ALT_CUSTOM_FIELD_PR
+      self.internal = True
+    else:
+      self.id = int(name)
+      self.token = REDMINE_TOKEN
+      self.api_url = REDMINE_API_URL
+      self.custom_field_pr = CUSTOM_FIELD_PR
+      self.internal = False
+
+  def __getitem__(self, key):
+    """Make Issue behave like a dict"""
+    if self.info is None:
+      self.get_info()
+    if key not in self.info:
+      return None
+    return self.info[key]
+
+  def get_info(self):
+    """Get issue informations from redmine"""
+    # Find issue in redmine
+    print("Looking for Redmine ticket #" + self.name + "... ", end=' ')
+    sys.stdout.flush() # to display previous unfinished line
+    issues_req = requests.get(self.api_url + "/issues/" + str(self.id) + ".json?include=journals", 
+                              headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' })
+    issue = issues_req.json()['issue'] if issues_req.status_code == requests.codes.ok else None
+    if not issue:
+      print("Not found!")
+      logfail("***** ERROR: ticket not found. Exiting.")
+      if not force:
+        exit(2)
+    else:
+      print("Done")
+    
+    # Check ticket type
+    if issue['tracker'] in REDMINE_META_TRACKERS:
+      print("This is a question ticket! You cannot make a pull request on this ticket.")
+      logfail("***** ERROR: This is a question ticket. Exiting.")
+      if not force:
+        exit(2)
+  
+    # Check ticket status
+    if self.must_be_open and issue['status']['id'] in REDMINE_CLOSED_STATUSES:
+      print("This ticket is closed! You cannot make a pull request on this ticket.")
+      logfail("***** ERROR: Closed ticket. Exiting.")
+      if not force:
+        exit(2)
+  
+    if 'fixed_version' not in issue:
+      print("This ticket has no target version! I can't make a branch against its repository.")
+      logfail("***** ERROR: Missing target version. Exiting.")
+      if not force:
+        exit(2)
+  
+    self.data = issue
+
+    # Get ticket elements
+    info = {}
+    info['type'] = issue['tracker']['name']
+    info['name'] = issue['subject']
+    info['version'] = get_version(issue)
+    info['project_id'] = issue['project']['id']
+    info['tracker_id'] = issue['tracker']['id']
+    info['priority_id'] = issue['priority']['id']
+    info['subject'] = issue['subject']
+    info['description'] = issue['description']
+    info['private'] = 'is_private' in issue and issue['is_private']
+    if 'category' in issue:
+      info['category_id'] = issue['category']['id']
+    if 'is_private' in issue:
+      info['is_private'] = issue['is_private']
+    if 'custom_fields' in issue:
+      for field in issue['custom_fields']:
+        if field['id'] == self.custom_field_pr and 'value' in field:
+          info['pr'] = field['value']
+  
+    # Get ticket's last assignment besides me
+    my_id = get_redmine_uid()
+    if 'journals' in issue:
+      for journal in issue['journals']:
+        if 'details' in journal:
+          for detail in journal['details']:
+            if detail['name'] == 'assigned_to_id' and 'old_value' in detail:
+              if int(detail['old_value']) != my_id:
+                info['last_assignee'] = int(detail['old_value'])
+  
+    self.info = info
+    return info
+
+def issue_from_branch(branch):
+  """Create issue object from given branch"""
+  match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
+  if match:
+    return Issue(match.group(1))
+  else:
+    logfail("***** ERROR: This is not a ticket branch: " + branch)
+    exit(4)
+
+# Github related
+class PR:
+  """A Pull Request"""
+  def __init__(self, url):
+    self.url = url
+
+  def is_labeled(self, label):
+    """Tell if the pull request is labeled with label"""
+    url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/labels"
+    label_list = github_request(url, None, self.url)
+    labels = [x['name'] for x in label_list]
+    return label in labels
 
 
 ###
@@ -312,6 +451,7 @@ def get_version(ticket, error_fail=True):
  
 
 # Get informations about a ticket from redmine
+# Deprecated, use Issue()['field']
 def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   # Find ticket in redmine
   print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
@@ -864,8 +1004,8 @@ def create_pr(master_branch, info, message):
 
 
 # add a message to a given pull-request on github
-def update_pr(pr_url, comment):
-  message = "PR updated"
+def update_pr(pr_url, info, comment):
+  message = info
   if comment is not None:
     message += "\\n" + comment
   issue = '{ "body": "' + message + '" }'
@@ -892,7 +1032,6 @@ def get_pr_upstream(pr_url):
   pr = github_request(url, None, pr_url)
   return pr['base']['ref']
   
-
 # get PR source informations
 def get_pr_source(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
@@ -1159,8 +1298,6 @@ def subtask(next_version, new_title, bug=False):
   # test merge status
   pull(next_version)
   logs = shell("git log --no-merges '--grep=Fixes #" + str(info['id']) + "' --oneline", "Looking for ticket commit in " + next_version, keep_output=True)
-  print(logs)
-  print(len(logs))
 
   # rudder-dev branch
   if info['internal']:
@@ -1236,7 +1373,7 @@ def amend(comment=None):
 
   # Message on PR if there is one
   if 'pr' in info and info['pr'] != '':
-    update_pr(info['pr'], comment)
+    update_pr(info['pr'], "Commit modified", comment)
     print("Done, you can see the PR here: " + info['pr']) 
   else:
     print("No PR found.")
@@ -1285,7 +1422,7 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
 
   # Message on PR if there is one
   if 'pr' in info and info['pr'] != '':
-    update_pr(info['pr'], comment)
+    update_pr(info['pr'], "PR rebased", comment)
     print("Done, you can see the PR here: " + info['pr'])
   else:
     print("No PR found.")
@@ -1406,29 +1543,62 @@ def takeover(ticket):
   print("")
 
 
-# Merge remote branch
-def merge(old, new, strategy=None, automatic=False):
+# Merge remote version
+def merge_version(old, new, strategy=None, automatic=False):
   pull(old)
+  branch = branch_from_version(old)
+  merge_branch(branch, new, strategy, automatic, old)
+
+# Merge remote branch
+def merge_branch(old, new, strategy=None, automatic=False, name=""):
   pull(new)
   opts = ""
   if strategy is not None:
     opts = " -s " + strategy
   if automatic:
     opts += " --no-edit "
-  shell("git merge " + branch_from_version(old) + opts, "Merging " + old + " into " + new)
+  shell("git merge " + old + opts, "Merging " + name + " into " + new)
   shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
 
 
-# Merge remote branch automatically guessing the next one
+# Merge remote version automatically guessing the next one
 def merge_to_next(old, strategy=None, automatic=False):
   new = get_next_version(old)
-  merge(old, new, strategy, automatic)
+  merge_version(old, new, strategy, automatic)
 
 
-# Merge all breanches to next one
+# Merge all versions to next one
 def merge_all(strategy=None, automatic=False):
-  for branch in get_versions()[0][:-1]:
-    merge_to_next(branch, strategy, automatic)
+  for version in get_versions()[0][:-1]:
+    merge_to_next(version, strategy, automatic)
+
+# Merge given issue to given branch
+def merge_issue(issue_name=None, version=None, strategy=None, automatic=False):
+  # get issue info
+  if issue_name is None:
+    issue = issue_from_branch(current_branch)
+  else:
+    issue = Issue(issue_name)
+  
+  # PR must be validated
+  pr = PR(issue['pr'])
+  if not pr.is_labeled(PR_VALIDATED_LABEL):
+    print("This PR is not labeled '" + PR_VALIDATED_LABEL + "' You should not merge it.")
+    logfail("***** ERROR: PR is not validated. Exiting.")
+    if not force:
+      exit(15)
+
+  # get merge info
+  pr_branch = fetch_branch_from_ticket(issue.name)
+  if version is None:
+    version = issue['version']
+  # regular merge
+  merge_branch(pr_branch, version, strategy, automatic, issue.name)
+  # upmerge
+  last_version = get_versions()[0][-1]
+  while version != last_version:
+    merge_to_next(version, strategy, automatic)
+    version = get_next_version(version)
 
 # Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
 def revert(ticket, retarget = False):
@@ -1635,11 +1805,18 @@ if __name__ == "__main__":
     before_merge_branch = current_branch
     if arguments['all']:
       merge_all(arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
-    else:
-      if arguments['<next_branch>'] is None:
-        merge_to_next(arguments['<first_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
+    elif arguments['<first_branch/ticket_id>'] is None:
+      merge_issue(strategy=arguments['<strategy>'], automatic=arguments['-a'] or arguments['--automatic'])
+    elif arguments['<next_branch>'] is None:
+      if re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id>']): # 3+ digits -> ticket_id, otherwise it's a branch
+        merge_issue(issue_name=arguments['<first_branch/ticket_id>'], strategy=arguments['<strategy>'], automatic=arguments['-a'] or arguments['--automatic'])
       else:
-        merge(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
+        merge_to_next(arguments['<first_branch/ticket_id>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
+    else:
+      if re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id>']): # 3+ digits -> ticket_id, otherwise it's a branch
+        merge_issue(arguments['<first_branch/ticket_id>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
+      else:
+        merge_version(arguments['<first_branch/ticket_id>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
     shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
     unstash()
   elif arguments['find']:
