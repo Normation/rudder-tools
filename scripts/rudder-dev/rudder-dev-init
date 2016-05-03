@@ -2,7 +2,7 @@
 
 REPO_LIST="rudder ncf rudder-packages rudder-agent rudder-techniques ldap-inventory cf-clerk rudder-commons scala-ldap rudder-parent-pom rudder-tests rudder-api-client rudder-doc"
 
-if type curl 2> /dev/null >/dev/null
+if type curl 2> /dev/null >/dev/null; then
   GET="curl -s -H 'Content-Type: application/json' -H"
   GET_FILE="curl -s -o"
 else
@@ -11,7 +11,7 @@ else
 fi
 
 # 1. We need the git binary
-if type git 2> /dev/null >/dev/null
+if type git 2> /dev/null >/dev/null; then
   echo "1. You already Have git, wonderful!"
 else
   echo "1. You don't have git, trying to install it"
@@ -148,7 +148,7 @@ else
   ${sudo_prefix} ${GET_FILE} "${rudder_dev_path}/rudder-dev" "https://raw.githubusercontent.com/Normation/rudder-tools/master/scripts/rudder-dev/rudder-dev"
   ${sudo_prefix} chmod +x "${rudder_dev_path}/rudder-dev"
   if type rudder-dev >/dev/null 2>/dev/null; then
-    if [ -e ~/.bashrc ]
+    if [ -e ~/.bashrc ]; then
       echo " ${rudder_dev_path} is not in your path, adding it to ~/.bashrc"
       echo "export PATH=\$PATH:${rudder_dev_path}" >> ~/.bashrc
     fi
@@ -182,7 +182,7 @@ if [ "${workspace}" != "s" ]; then
   echo " If you don't know, just let me clone all our repos so you can search easily for files everywhere"
   echo -n " Repository to clone [all] "
   read repository
-  if [ "${repository}" = "all" ] || [ "${repository}" = "" ];
+  if [ "${repository}" = "all" ] || [ "${repository}" = "" ]; then
     for repo in ${REPO_LIST}
     do
       ${rudder_dev_path}/rudder-dev clone "${repo}"
