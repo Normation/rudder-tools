@@ -549,7 +549,7 @@ def update_nrm_users(project_id):
     id = user['user']['id']
     user_data = requests.get(REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
     user_detail = user_data.json()['user']
-    if user_detail['mail'].endswith("normation.com"):
+    if 'mail' in user_detail and user_detail['mail'].endswith("normation.com"):
       trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
       users[REDMINE_API_URL][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
   with open(filename, "w") as fd:
