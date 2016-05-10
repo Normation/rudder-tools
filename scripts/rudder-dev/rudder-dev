@@ -1411,6 +1411,7 @@ def rebase(comment=None, base=None):
 perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
 """ % { "ticket": info['id']}
     tmpscript.write(script.encode("utf-8"))
+    tmpscript.close()
     os.system("chmod +x " + tmpscript.name)
     # If it fails, let the interactive rebase try to fix it
     shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits", fail_exit=False)
