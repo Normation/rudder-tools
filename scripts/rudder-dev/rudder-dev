@@ -248,6 +248,9 @@ ALT_CUSTOM_FIELD_PR = 1
 BUG_TACKER_ID = 1
 PR_VALIDATED_LABEL = "Ready for merge"
 
+# Default error template
+ERROR_TPL = "\033[1;31m{}\033[0m"
+
 
 ###
 ### Classes to put in a separate library
