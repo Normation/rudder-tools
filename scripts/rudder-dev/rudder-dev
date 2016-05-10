@@ -19,10 +19,10 @@ Usage:
     rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] revert <ticket_id> [--retarget]
-    rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic]
-    rudder-dev [-f|--force] merge <first_branch/ticket_id> [-s <strategy>] [-a|--automatic]
-    rudder-dev [-f|--force] merge <first_branch/ticket_id> <next_branch> [-s <strategy>] [-a|--automatic]
-    rudder-dev [-f|--force] merge [-s <strategy>] [-a|--automatic]
+    rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic] [-t|--test]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id> [-s <strategy>] [-a|--automatic] [-t|--test]
+    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic] [-t|--test]
+    rudder-dev [-f|--force] merge [-s <strategy>] [-a|--automatic] [-t|--test]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] update
@@ -284,14 +284,20 @@ class Issue:
 
   def __getitem__(self, key):
     """Make Issue behave like a dict"""
-    if self.info is None:
-      self.get_info()
+    self._get_info()
     if key not in self.info:
       return None
     return self.info[key]
 
-  def get_info(self):
+  def __contains__(self, key):
+    """Make Issue behave like a dict"""
+    self._get_info()
+    return key in self.info
+
+  def _get_info(self):
     """Get issue informations from redmine"""
+    if self.info is not None:
+      return self.info
     # Find issue in redmine
     print("Looking for Redmine ticket #" + self.name + "... ", end=' ')
     sys.stdout.flush() # to display previous unfinished line
@@ -361,6 +367,19 @@ class Issue:
     self.info = info
     return info
 
+  def branch_name(self):
+    """Create a branch name base on this issue"""
+    branchified_name = re.sub("__+", "_", re.sub("[^" + string.ascii_letters + string.digits + "]", "_", self['name'].strip().lower())).strip("_")
+    if self.internal:
+      id = 'i' + str(self.id)
+    else:
+      id = str(self.id)
+    if info['private']:
+      branch_name = TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/_"
+    else:
+      branch_name = TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
+    return branch_name
+
 def issue_from_branch(branch):
   """Create issue object from given branch"""
   match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
@@ -383,7 +402,20 @@ class PR:
     labels = [x['name'] for x in label_list]
     return label in labels
 
+  def _request_pr(self):
+    if self.info is not None:
+      return
+    url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
+    self.info = github_request(url, None, self.url)
 
+  def repo(self):
+    self._request_pr()
+    return self.info['head']['repo']['ssh_url']
+
+  def remote_branch(self):
+    self._request_pr()
+    return self.info['head']['ref']
+  
 ###
 ###  Internal functions
 ### 
@@ -832,6 +864,7 @@ def branch_from_version(version):
 
 
 # Calculate branch name from a ticket
+# Deprecated: use issue.branch_name()
 def branch_from_ticket(info):
   branchified_ticket_name = re.sub("__+", "_", re.sub("[^" + string.ascii_letters + string.digits + "]", "_", info['name'].strip().lower())).strip("_")
   if info['internal']:
@@ -1040,6 +1073,7 @@ def get_pr_upstream(pr_url):
   return pr['base']['ref']
   
 # get PR source informations
+# Deprecated: use PR.repo() and PR.remote_branch()
 def get_pr_source(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
   pr = github_request(url, None, pr_url)
@@ -1096,6 +1130,14 @@ def insert_line(filename, regex, text):
     fd.writelines(content)
 
 
+# fetch a branch from a PR given in an Issue
+def fetch_branch_from_issue(issue):
+  if 'pr' not in issue or issue['pr'] == '':
+    logfail("There is no PR in this issue " + issue.name)
+    exit(15)
+  pr = PR(issue['pr'])
+  shell("git fetch --update-head-ok " + pr.repo() + " " + pr.remote_branch() + ":" + issue.branch_name(), "Fetching branch from remote " + pr.repo())
+  
 # fetch a branch from a PR given in a ticket
 def fetch_branch_from_ticket(ticket):
   # extract ticket info
@@ -1556,36 +1598,48 @@ def takeover(ticket):
 
 
 # Merge remote version
-def merge_version(old, new, strategy=None, automatic=False):
+first_merge=True
+def merge_version(old, new, strategy=None, automatic=False, test=False):
   pull(old)
   branch = branch_from_version(old)
-  merge_branch(branch, new, strategy, automatic, old)
+  if test and not first_merge:
+    test_branch = old + "_test"
+    shell("git checkout " + test_branch)
+    branch = test_branch
+  merge_branch(branch, new, strategy, automatic, old, test)
 
 # Merge remote branch
-def merge_branch(old, new, strategy=None, automatic=False, name=""):
+def merge_branch(old, new, strategy=None, automatic=False, name="", test=False):
+  global first_merge
   pull(new)
   opts = ""
   if strategy is not None:
     opts = " -s " + strategy
   if automatic:
     opts += " --no-edit "
+  if test:
+    test_branch = new + "_test"
+    shell("git checkout -d " + test_branch + " 2>/dev/null || true")
+    shell("git checkout -b " + test_branch)
   shell("git merge " + old + opts, "Merging " + name + " into " + new)
-  shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
+  first_merge = False
+  if not Test:
+    shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
 
 
 # Merge remote version automatically guessing the next one
-def merge_to_next(old, strategy=None, automatic=False):
+def merge_to_next(old, strategy=None, automatic=False, test=False):
   new = get_next_version(old)
-  merge_version(old, new, strategy, automatic)
+  merge_version(old, new, strategy, automatic, test)
 
 
 # Merge all versions to next one
-def merge_all(strategy=None, automatic=False):
+def merge_all(strategy=None, automatic=False, test=False):
   for version in get_versions()[0][:-1]:
-    merge_to_next(version, strategy, automatic)
+    merge_to_next(version, strategy, automatic, test)
 
 # Merge given issue to given branch
-def merge_issue(issue_name=None, version=None, strategy=None, automatic=False):
+def merge_issue(issue_name=None, strategy=None, automatic=False, test=False):
   # get issue info
   if issue_name is None:
     issue = issue_from_branch(current_branch)
@@ -1601,15 +1655,14 @@ def merge_issue(issue_name=None, version=None, strategy=None, automatic=False):
       exit(15)
 
   # get merge info
-  pr_branch = fetch_branch_from_ticket(issue.name)
-  if version is None:
-    version = issue['version']
+  pr_branch = fetch_branch_from_issue(issue)
+  version = issue['version']
   # regular merge
-  merge_branch(pr_branch, version, strategy, automatic, issue.name)
+  merge_branch(pr_branch, version, strategy, automatic, issue.name, test)
   # upmerge
   last_version = get_versions()[0][-1]
   while version != last_version:
-    merge_to_next(version, strategy, automatic)
+    merge_to_next(version, strategy, automatic, test)
     version = get_next_version(version)
 
 # Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
@@ -1815,20 +1868,18 @@ if __name__ == "__main__":
   elif arguments['merge']:
     stash()
     before_merge_branch = current_branch
-    if arguments['all']:
-      merge_all(arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
-    elif arguments['<first_branch/ticket_id>'] is None:
-      merge_issue(strategy=arguments['<strategy>'], automatic=arguments['-a'] or arguments['--automatic'])
-    elif arguments['<next_branch>'] is None:
-      if re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id>']): # 3+ digits -> ticket_id, otherwise it's a branch
-        merge_issue(issue_name=arguments['<first_branch/ticket_id>'], strategy=arguments['<strategy>'], automatic=arguments['-a'] or arguments['--automatic'])
-      else:
-        merge_to_next(arguments['<first_branch/ticket_id>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
-    else:
-      if re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id>']): # 3+ digits -> ticket_id, otherwise it's a branch
-        merge_issue(arguments['<first_branch/ticket_id>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
-      else:
-        merge_version(arguments['<first_branch/ticket_id>'], arguments['<next_branch>'], arguments['<strategy>'], arguments['-a'] or arguments['--automatic'])
+    automatic = arguments['-a'] or arguments['--automatic']
+    test = arguments['-t'] or arguments['--test']
+    if arguments['all']: # rudder-dev merge all
+      merge_all(arguments['<strategy>'], automatic, test)
+    elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
+      merge_version(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], automatic, test)
+    elif arguments['<first_branch/ticket_id>'] is None: # rudder-dev merge
+      merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test)
+    elif re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id>']): # 3+ digits -> ticket_id: rudder-dev merge ticket_id
+      merge_issue(arguments['<first_branch/ticket_id>'], arguments['<strategy>'], automatic, test)
+    else: # rudder-dev merge first
+      merge_to_next(arguments['<first_branch/ticket_id>'], arguments['<strategy>'], automatic, test)
     shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
     unstash()
   elif arguments['find']:
