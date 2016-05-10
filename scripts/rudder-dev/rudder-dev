@@ -75,7 +75,8 @@ SUBTASK
     Or if just discovered a bug in a PR that was just merdged.
     For example, after a ncf v0.x patch you want to amend it in ncf v1.
     - create a new ticket that is the child copy of the current one (set its tracker to Bug if --bug)
-    - set the new ticket version to next_version (or guess it) and change title if needed (but noy with --bug)
+    - set the new ticket version to next_version (but not with --bug)
+    - replace the issue's title if needed (if the new title starts with '+', extend the existing title)
     - call rudder-dev branch on the new ticket with a base branch from the old ticket
     - suggest modifications for logs in the modified files (ncf v1 specific)
     ex: rudder-dev sub <version>
@@ -538,7 +539,10 @@ def clone_ticket(info, version, new_title, bug=False):
     new_info['tracker_id'] = BUG_TACKER_ID
     new_info['description'] = "There was a bug in the resolution of #" + str(info['id'])
   if new_title is not None:
-    new_info['subject'] = new_title
+    if new_title.startswith('+'):
+      new_info['subject'] += new_title.replace('+', ' ', 1)
+    else:
+      new_info['subject'] = new_title
   all_versions_id = get_versions()[1]
   new_info['fixed_version_id'] = all_versions_id[version]
   ticket_json = json.dumps({ 'issue': new_info })
