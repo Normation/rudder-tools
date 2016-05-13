@@ -802,8 +802,15 @@ def get_versions():
   
   # add master, keep unique name and sort
   version_list = list(set(redmine_version_list))
-  version_list.sort(key=LooseVersion)
-
+  try:
+    version_list.sort(key=LooseVersion)
+  except TypeError as e:
+    import distutils.version
+    filename = distutils.version.__file__
+    logfail("You are using python 3 with an unpatched LooseVersion, merge functions won't work")
+    logfail("You need to patch " + filename + " with http://bugs.python.org/file25808/14894.patch to make it work")
+    logfail("Sorry for the inconvenience")
+    exit(16)
   return (version_list, version_dict)
 
 
