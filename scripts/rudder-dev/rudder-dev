@@ -723,7 +723,7 @@ def update_nrm_users(project_id):
   if REDMINE_API_URL not in users:
     users[REDMINE_API_URL] = {}
   # just update it otherwise we would have only project specific data in it
-  user_list = requests.get(REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  user_list = requests.get(REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json?limit=100", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
   for user in user_list.json()['memberships']:
     id = user['user']['id']
     user_data = requests.get(REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
@@ -765,7 +765,7 @@ def ask_username(project_id, trigraph):
     sys.stdout.flush() # to display previous unfinished line
     trigraph = sys.stdin.readline().strip().upper()
     if trigraph == 'R':
-      update_nrm_users(project_id)
+      user_ids = update_nrm_users(project_id)[REDMINE_API_URL]
     if trigraph == 'NON':
       return None
   return user_ids[trigraph]['id']
