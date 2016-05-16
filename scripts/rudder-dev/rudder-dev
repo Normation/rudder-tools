@@ -1647,7 +1647,7 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False):
     shell("git checkout -b " + test_branch)
   shell("git merge " + old + opts, "Merging " + name + " into " + new)
   first_merge = False
-  if not Test:
+  if not test:
     shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
 
 
