@@ -1047,7 +1047,19 @@ def create_pr(master_branch, info, message):
   pr += ' "head": "' + user + ':' + current_branch + '",'
   pr += ' "base": "' + master_branch + '" }'
   result = github_request(url, "Creating PR ...", pr_url=None, post_data=pr)
-  return result['html_url']
+
+  if 'html_url' in result:
+    return result['html_url']
+  elif 'errors' in result and 'message' in result['errors'][0]:
+    error_message = result['errors'][0]['message']
+    logfail("Error occured in create PR: " + error_message)
+  else:
+    logfail("Unkown error occured in create PR")
+
+  if not force:
+    exit(16)
+  else:
+    return None
 
 
 # add a message to a given pull-request on github
@@ -1418,10 +1430,10 @@ def commit(trigraph=None, message=None):
 
   # create PR
   pr_url = create_pr(master_branch, info, message)
-  print("PR URL: " + pr_url)
+  print("PR URL: " + str(pr_url))
 
   # update ticket
-  if REDMINE_TOKEN is not None and pr_url is not None:
+  if REDMINE_TOKEN is not None:
     if can_modify_issues(info['project_id']):
       user = ask_username(info['project_id'], trigraph)
     else:
@@ -1537,15 +1549,16 @@ def retarget(version=None):
     # create new PR 
     pr_url = create_pr(ticket_branch, info, "Replacing previous PR: " +  info['pr'])
 
-    # close old PR
-    close_pr(info['pr'], "PR replaced by " + pr_url)
+    if pr_url:
+      # close old PR
+      close_pr(info['pr'], "PR replaced by " + pr_url)
 
-    # update ticket
-    user = None
-    if 'last_assignee' in info:
-      user = info['last_assignee']
-    ticket_to_TR(info, user, pr_url)
-    print("New PR URL: " + pr_url)
+      # update ticket
+      user = None
+      if 'last_assignee' in info:
+        user = info['last_assignee']
+      ticket_to_TR(info, user, pr_url)
+      print("New PR URL: " + pr_url)
 
 
 # ckeckout version, pull
