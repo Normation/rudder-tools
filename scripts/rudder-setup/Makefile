@@ -9,5 +9,5 @@ ncf-setup: ncf-setup-src.sh *.sh
 	chmod +x $@
 
 clean:
-	rm -f rudder-setup
+	rm -f rudder-setup ncf-setup
 

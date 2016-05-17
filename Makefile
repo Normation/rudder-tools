@@ -6,7 +6,7 @@ all: $(PUBLISH)
 
 scripts/rudder-dev/rudder-dev:
 	# Put commands to build rudder-dev single file here
-	touch $@
+	cd scripts/rudder-dev && $(MAKE) rudder-dev
 
 scripts/rudder-setup/rudder-setup:
 	cd scripts/rudder-setup && $(MAKE) rudder-setup
