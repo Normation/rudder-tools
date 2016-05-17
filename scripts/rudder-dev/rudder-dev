@@ -1360,7 +1360,7 @@ def subtask(next_version, new_title, base=None, bug=False):
     info = ticket_from_branch(current_branch, False)
   else:
     (ticket_id, internal) = parse_ticket_id(base)
-    info = get_ticket_info(ticket_id, internal)
+    info = get_ticket_info(ticket_id, internal, False)
   if next_version is None:
     if bug:
       next_version = info['version']
