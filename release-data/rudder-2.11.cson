@@ -2,6 +2,11 @@
 
 release = "2.11"
 
+released = true
+
+# Has this version had Long-Term Support (LTS)?
+lts = true
+
 # Supported architecture for each distribution
 architectures = { 
                   "debian-5":     [ "i386", "amd64" ],
