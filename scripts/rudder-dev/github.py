@@ -24,6 +24,10 @@ class PR:
     self._request_pr()
     return self.info['head']['ref']
 
+  def base_branch(self):
+    self._request_pr()
+    return self.info['base']['ref']
+
 
 # Get github user as used by the hub command
 def get_github_user():

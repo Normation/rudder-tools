@@ -20,7 +20,7 @@ Usage:
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] revert <ticket_id> [--retarget]
     rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic] [-t|--test]
-    rudder-dev [-f|--force] merge <first_branch/ticket_id> [-s <strategy>] [-a|--automatic] [-t|--test]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [-s <strategy>] [-a|--automatic] [-t|--test]
     rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic] [-t|--test]
     rudder-dev [-f|--force] merge [-s <strategy>] [-a|--automatic] [-t|--test]
     rudder-dev [-f|--force] find <command>
@@ -665,12 +665,25 @@ def get_next_version(old):
 
 # Get branch name from version
 def branch_from_version(version):
-  # detect lifecycle and base ne name on it
+  # detect lifecycle and base the name on it
   lifecycle = get_lifecycle()
   if version == "master":
     return version
   else:
     return lifecycle['format'].format(version)
+
+
+# Get a version from a branch name
+def version_from_branch(branch):
+  # detect lifecycle and extract the name
+  lifecycle = get_lifecycle()
+  if branch == "master":
+    return branch
+  else:
+    m = re.match(lifecycle["format"].format('(.*)'), branch)
+    if m:
+      return m.group(1)
+  return None
 
 
 # Calculate branch name from a ticket
@@ -830,14 +843,22 @@ def insert_line(filename, regex, text):
     fd.writelines(content)
 
 
+# fetch a branch from a PR
+def fetch_branch_from_pr(pr):
+  branch_name = pr.remote_branch()
+  shell("git fetch --update-head-ok " + pr.repo() + " " + branch_name + ":" + branch_name, "Fetching branch from remote " + pr.repo())
+  return branch_name
+
+
 # fetch a branch from a PR given in an Issue
 def fetch_branch_from_issue(issue):
   if 'pr' not in issue or issue['pr'] == '':
     logfail("There is no PR in this issue " + issue.name)
     exit(15)
   pr = PR(issue['pr'])
-  shell("git fetch --update-head-ok " + pr.repo() + " " + pr.remote_branch() + ":" + issue.branch_name(), "Fetching branch from remote " + pr.repo())
-  
+  return fetch_branch_from_pr(pr)
+
+
 # fetch a branch from a PR given in a ticket
 def fetch_branch_from_ticket(ticket):
   # extract ticket info
@@ -1356,7 +1377,7 @@ def merge_all(strategy=None, automatic=False, test=False):
   for version in get_versions()[0][:-1]:
     merge_to_next(version, strategy, automatic, test)
 
-# Merge given issue to given branch
+# Merge given issue into its target branch and upmerge
 def merge_issue(issue_name=None, strategy=None, automatic=False, test=False):
   # get issue info
   if issue_name is None:
@@ -1364,8 +1385,16 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False):
   else:
     issue = Issue(issue_name)
   
+  if 'pr' not in issue or issue['pr'] == '':
+    logfail("There is no PR in this issue " + issue.name)
+    exit(15)
+  merge_pr(issue['pr'], strategy, automatic, test)
+
+
+# Merge given PR into its target branch and upmerge
+def merge_pr(pr_url, strategy=None, automatic=False, test=False):
+  pr = PR(pr_url)
   # PR must be validated
-  pr = PR(issue['pr'])
   if not pr.is_labeled(PR_VALIDATED_LABEL):
     print("This PR is not labeled '" + PR_VALIDATED_LABEL + "' You should not merge it.")
     logfail("***** ERROR: PR is not validated. Exiting.")
@@ -1373,8 +1402,11 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False):
       exit(15)
 
   # get merge info
-  pr_branch = fetch_branch_from_issue(issue)
-  version = issue['version']
+  pr_branch = fetch_branch_from_pr(pr)
+  version = version_from_branch(pr.base_branch())
+  if version is None:
+    logfail("**** ERROR: cannot guess version of branch " + pr.base_branch() + " Exiting.")
+    exit(15)
   # regular merge
   merge_branch(pr_branch, version, strategy, automatic, issue.name, test)
   # upmerge
@@ -1382,6 +1414,7 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False):
   while version != last_version:
     merge_to_next(version, strategy, automatic, test)
     version = get_next_version(version)
+
 
 # Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
 def revert(ticket, retarget = False):
@@ -1592,12 +1625,14 @@ if __name__ == "__main__":
       merge_all(arguments['<strategy>'], automatic, test)
     elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
       merge_version(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], automatic, test)
-    elif arguments['<first_branch/ticket_id>'] is None: # rudder-dev merge
+    elif arguments['<first_branch/ticket_id/pr_url>'] is None: # rudder-dev merge
       merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test)
-    elif re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id>']): # 3+ digits -> ticket_id: rudder-dev merge ticket_id
-      merge_issue(arguments['<first_branch/ticket_id>'], arguments['<strategy>'], automatic, test)
+    elif re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id/pr_url>']): # 3+ digits -> ticket_id: rudder-dev merge ticket_id
+      merge_issue(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test)
+    elif re.match(r'^https?://', arguments['<first_branch/ticket_id/pr_url>']): # starts with http:// -> pr_url: rudder-dev merge pr
+      merge_pr(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test)
     else: # rudder-dev merge first
-      merge_to_next(arguments['<first_branch/ticket_id>'], arguments['<strategy>'], automatic, test)
+      merge_to_next(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test)
     shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
     unstash()
   elif arguments['find']:
