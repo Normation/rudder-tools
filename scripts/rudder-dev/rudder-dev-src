@@ -1408,7 +1408,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False):
     logfail("**** ERROR: cannot guess version of branch " + pr.base_branch() + " Exiting.")
     exit(15)
   # regular merge
-  merge_branch(pr_branch, version, strategy, automatic, issue.name, test)
+  merge_branch(pr_branch, version, strategy, automatic, pr.repo()+":"+pr.remote_branch(), test)
   # upmerge
   last_version = get_versions()[0][-1]
   while version != last_version:
