@@ -2,6 +2,7 @@ class PR:
   """A Pull Request"""
   def __init__(self, url):
     self.url = url
+    self.info = None
 
   def is_labeled(self, label):
     """Tell if the pull request is labeled with label"""
