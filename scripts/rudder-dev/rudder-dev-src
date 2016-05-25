@@ -1505,7 +1505,7 @@ def cleanup(more=False, dry=False):
         print("removing: " + branch)
         if not dry:
           shell("git branch -d " + branch, "Deleting local " + branch)
-          shell("git push " + OWN_REPOSITORY + " --delete " + branch, "Deleting remote " + branch)
+          shell("git push " + OWN_REPOSITORY + " --delete " + branch, "Deleting remote " + branch, fail_exit=False)
       else:
         print("keeping: " + branch)
 
