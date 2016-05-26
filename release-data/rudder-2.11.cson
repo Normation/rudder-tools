@@ -57,4 +57,5 @@ arch-dependant-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-invento
 # Internal components versions
 components = {
                "cfengine": "3.6",
+               "ncf": "v0.x",
              }
