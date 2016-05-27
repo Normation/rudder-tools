@@ -591,8 +591,8 @@ def get_lifecycle():
   global current_lifecycle
   if current_lifecycle is not None:
     return current_lifecycle
-  # Update branches so get new branches from UPSTREA
-  shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+  # Update branches so get new branches from UPSTREAM
+  shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY + " to detect lifecycle")
   lines = os.popen("git branch --no-color --list -a").readlines()
   for lifecycle in LIFECYCLES:
     for line in lines:
@@ -1198,7 +1198,7 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
     tmpscript.close()
     os.system("chmod +x " + tmpscript.name)
     # If it fails, let the interactive rebase try to fix it
-    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits", fail_exit=False)
+    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + info['id'] + "\" lines)", fail_exit=False)
     os.unlink(tmpscript.name)
 
 
