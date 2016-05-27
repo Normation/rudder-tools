@@ -735,7 +735,7 @@ def create_pr(master_branch, info, message):
   if info['private']:
     title = ''
   else:
-    title = info['name'].replace("\"", "\\\"")
+    title = info['name']
   pr = '{ "title": ' + json.dumps('Fixes #' + str(info['id']) + ": " + title) + ','
   pr += ' "body": ' + json.dumps(body) + ','
   pr += ' "head": "' + user + ':' + current_branch + '",'
