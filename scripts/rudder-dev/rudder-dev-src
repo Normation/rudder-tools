@@ -612,6 +612,8 @@ def get_versions():
 
   # list all versions in git
   lifecycle = get_lifecycle()
+  if lifecycle['name'] == 'master_only':
+    return (['master'], {}) # clone/subtask will fail but everythong else will work
   git_version_list = []
   for line in os.popen("git branch --no-color --list -a"):
     m = re.match(lifecycle["detection"].format(UPSTREAM_REPOSITORY), line)
@@ -846,7 +848,8 @@ def insert_line(filename, regex, text):
 # fetch a branch from a PR
 def fetch_branch_from_pr(pr):
   branch_name = pr.remote_branch()
-  shell("git fetch --update-head-ok " + pr.repo() + " " + branch_name + ":" + branch_name, "Fetching branch from remote " + pr.repo())
+  # PR can be rebased, force fetch the branch
+  shell("git fetch --update-head-ok " + pr.repo() + " +" + branch_name + ":" + branch_name + "_pr", "Fetching branch from remote " + pr.repo())
   return branch_name
 
 
@@ -1345,17 +1348,19 @@ def takeover(ticket):
 # Merge remote version
 first_merge=True
 def merge_version(old, new, strategy=None, automatic=False, test=False):
+  global current_branch
   pull(old)
   branch = branch_from_version(old)
   if test and not first_merge:
     test_branch = old + "_test"
     shell("git checkout " + test_branch)
     branch = test_branch
+    current_branch = test_branch
   merge_branch(branch, new, strategy, automatic, old, test)
 
 # Merge remote branch
 def merge_branch(old, new, strategy=None, automatic=False, name="", test=False):
-  global first_merge
+  global first_merge, current_branch
   pull(new)
   opts = ""
   if strategy is not None:
@@ -1364,8 +1369,9 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False):
     opts += " --no-edit "
   if test:
     test_branch = new + "_test"
-    shell("git checkout -d " + test_branch + " 2>/dev/null || true")
+    shell("git branch -D " + test_branch + " 2>/dev/null || true")
     shell("git checkout -b " + test_branch)
+    current_branch = test_branch
   shell("git merge " + old + opts, "Merging " + name + " into " + new)
   first_merge = False
   if not test:
