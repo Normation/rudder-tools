@@ -913,12 +913,9 @@ def stash():
 
 # Find if there is stashed work and unstash it
 unstashed=False
+not_unstashed=False
 def unstash():
-  global unstashed
-
-  # only unstash things we have stashed
-  if not stashed:
-    return
+  global unstashed,not_unstashed
 
   # get current branch (the global variable may not be accurate in flight)
   this_branch = shell("git rev-parse --abbrev-ref HEAD", keep_output=True).strip()
@@ -936,9 +933,15 @@ def unstash():
     if match:
       # match with current branch
       if match.group(2) == this_branch:
-        #unstash it
+        # only unstash things we have stashed
+        if not stashed:
+          not_unstashed=True
+          return
+        # unstash it
         shell("git stash pop --index '" + match.group(1) + "'" , "Unstashing previous work")
         unstashed=True
+        # unstash only once
+        return
 
 
 # Tell the user if some stash command happened
@@ -947,6 +950,9 @@ def stash_info():
     print("Some work in progress has been found, " + ERROR_TPL.format("I stashed it") + " before running the commands, to retrieve it use git stash pop")
   if unstashed:
     print("Previous work in progress has been found in the stash, " + ERROR_TPL.format("I unstashed it") + ", to hide it again, use git stash save")
+
+  if not_unstashed:
+    print("Previous work in progress has been found in the stash, " + ERROR_TPL.format("I left it stashed") + ", to unstash it, use git stash pop")
 
 
 ###
