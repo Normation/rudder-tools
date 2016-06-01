@@ -1,3 +1,7 @@
+# trick to make fake import compatible with regular import
+if 'Config' not in vars():
+  from common import *  
+    
 class Issue:
   """Class to hold informations about a single issue"""
   def __init__(self, name, must_be_open=True):
@@ -10,15 +14,15 @@ class Issue:
     is_internal = re.match(r'i(\d+)', name)
     if is_internal:
       self.id = int(is_internal.group(1))
-      self.token = REDMINE_ALT_TOKEN
-      self.api_url = REDMINE_ALT_API_URL
-      self.custom_field_pr = ALT_CUSTOM_FIELD_PR
+      self.token = Config.REDMINE_ALT_TOKEN
+      self.api_url = Config.REDMINE_ALT_API_URL
+      self.custom_field_pr = Config.ALT_CUSTOM_FIELD_PR
       self.internal = True
     else:
       self.id = int(name)
-      self.token = REDMINE_TOKEN
-      self.api_url = REDMINE_API_URL
-      self.custom_field_pr = CUSTOM_FIELD_PR
+      self.token = Config.REDMINE_TOKEN
+      self.api_url = Config.REDMINE_API_URL
+      self.custom_field_pr = Config.CUSTOM_FIELD_PR
       self.internal = False
 
   def __getitem__(self, key):
@@ -52,14 +56,14 @@ class Issue:
       print("Done")
 
     # Check ticket type
-    if issue['tracker'] in REDMINE_META_TRACKERS:
+    if issue['tracker'] in Config.REDMINE_META_TRACKERS:
       print("This is a question ticket! You cannot make a pull request on this ticket.")
       logfail("***** ERROR: This is a question ticket. Exiting.")
       if not force:
         exit(2)
 
     # Check ticket status
-    if self.must_be_open and issue['status']['id'] in REDMINE_CLOSED_STATUSES:
+    if self.must_be_open and issue['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
       print("This ticket is closed! You cannot make a pull request on this ticket.")
       logfail("***** ERROR: Closed ticket. Exiting.")
       if not force:
@@ -114,9 +118,9 @@ class Issue:
     else:
       id = str(self.id)
     if info['private']:
-      branch_name = TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/_"
+      branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/_"
     else:
-      branch_name = TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
+      branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
     return branch_name
 
 def issue_from_branch(branch):

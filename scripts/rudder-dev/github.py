@@ -1,3 +1,7 @@
+# trick to make fake import compatible with regular import
+if 'Config' not in vars():
+  from common import *
+      
 class PR:
   """A Pull Request"""
   def __init__(self, url):
@@ -42,10 +46,10 @@ def get_github_user():
 
 # Get github token as used by the hub command
 def get_github_token(can_fail=False):
-  if GITHUB_TOKEN is not None:
-    return GITHUB_TOKEN
-  if os.path.isfile(os.path.expanduser(HUB_CONFIG_FILE)):
-    with open(os.path.expanduser(HUB_CONFIG_FILE)) as f:
+  if Config.GITHUB_TOKEN is not None:
+    return Config.GITHUB_TOKEN
+  if os.path.isfile(os.path.expanduser(Config.HUB_CONFIG_FILE)):
+    with open(os.path.expanduser(Config.HUB_CONFIG_FILE)) as f:
       for line in f:
         match = re.search(r'oauth_token: (\w+)', line)
         if match:
@@ -70,7 +74,6 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
       return False
 
   # get connection info
-  token = get_github_token()
   repo = remote_repo()
   url = api_url.format(repo=repo, pr_id=pr_id)
 
@@ -79,6 +82,10 @@ def github_request(api_url, comment, pr_url=None, post_data=None):
     print(comment)
     print(" $ api-call [...] " + url)
 
+  return github_call(url, post_data)
+
+def github_call(url, post_data=None):
+  token = get_github_token()
   # make query
   if post_data is not None:
     if sys.version_info[0] == 2:

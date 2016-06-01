@@ -212,10 +212,10 @@ from redmine import * # fake import
 
 
 ## GLOBAL VARIABLES
-RUDDER_DEV_ORIGIN = "https://www.rudder-project.org/tools/rudder-dev"
-WARN_FOR_UPDATE_AFTER = 15 # days
+Config.RUDDER_DEV_ORIGIN = "https://www.rudder-project.org/tools/rudder-dev"
+Config.WARN_FOR_UPDATE_AFTER = 15 # days
 
-LIFECYCLES = [ { "name": "rudder",
+Config.LIFECYCLES = [ { "name": "rudder",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                  "format": "branches/rudder/{}",
                  "redmine_version": [ (r'master|.*~alpha\d+', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
@@ -231,24 +231,24 @@ LIFECYCLES = [ { "name": "rudder",
                  "redmine_version": [ (r'.*', r'master') ],
                },
              ]
-CACHE_FILE = "~/.rudder-dev.cache"
-HUB_CONFIG_FILE = "~/.config/hub"
-REDMINE_ALT_API_URL = "https://redmine.normation.com"
-REDMINE_API_URL = "https://www.rudder-project.org/redmine"
-REDMINE_API_LIMIT = 100
-REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
-REDMINE_META_TRACKERS = [3]
-ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager, 6=Consultant, 9=Integrator
+Config.CACHE_FILE = "~/.rudder-dev.cache"
+Config.HUB_CONFIG_FILE = "~/.config/hub"
+Config.REDMINE_ALT_API_URL = "https://redmine.normation.com"
+Config.REDMINE_API_URL = "https://www.rudder-project.org/redmine"
+Config.REDMINE_API_LIMIT = 100
+Config.REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
+Config.REDMINE_META_TRACKERS = [3]
+Config.ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager, 6=Consultant, 9=Integrator
 
 # Keeping old version for reference
 #TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
-TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
-PENDING_TR_CODE = 3
-IN_PROGRESS_CODE = 9
-CUSTOM_FIELD_PR = 3
-ALT_CUSTOM_FIELD_PR = 1
-BUG_TACKER_ID = 1
-PR_VALIDATED_LABEL = "Ready for merge"
+Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
+Config.PENDING_TR_CODE = 3
+Config.IN_PROGRESS_CODE = 9
+Config.CUSTOM_FIELD_PR = 3
+Config.ALT_CUSTOM_FIELD_PR = 1
+Config.BUG_TACKER_ID = 1
+Config.PR_VALIDATED_LABEL = "Ready for merge"
 
 
 ###
@@ -256,16 +256,15 @@ PR_VALIDATED_LABEL = "Ready for merge"
 ### 
 
 def parse_ticket_id(ticket_id):
-  global REDMINE_TOKEN, REDMINE_API_URL, CUSTOM_FIELD_PR
   if ticket_id.startswith('#'):
     ticket_id = ticket_id[1:]
   internal = False
   match = re.match(r'i(\d+)', ticket_id)
   if match:
     ticket_id = match.group(1)
-    REDMINE_TOKEN = REDMINE_ALT_TOKEN
-    REDMINE_API_URL = REDMINE_ALT_API_URL
-    CUSTOM_FIELD_PR = ALT_CUSTOM_FIELD_PR
+    Config.REDMINE_TOKEN = Config.REDMINE_ALT_TOKEN
+    Config.REDMINE_API_URL = Config.REDMINE_ALT_API_URL
+    Config.CUSTOM_FIELD_PR = Config.ALT_CUSTOM_FIELD_PR
     internal = True
   return (ticket_id, internal)
 
@@ -295,8 +294,8 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   # Find ticket in redmine
   print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
   sys.stdout.flush() # to display previous unfinished line
-  tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json?include=journals", 
-                             headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' })
+  tickets_req = requests.get(Config.REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json?include=journals", 
+                             headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' })
   ticket = tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
   if not ticket:
     print("Not found!")
@@ -307,14 +306,14 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
     print("Done")
   
   # Check ticket type
-  if ticket['tracker'] in REDMINE_META_TRACKERS:
+  if ticket['tracker'] in Config.REDMINE_META_TRACKERS:
     print("This is a question ticket! You cannot make a pull request on this ticket.")
     logfail("***** ERROR: This is a question ticket. Exiting.")
     if not force:
       exit(2)
 
   # Check ticket status
-  if must_be_open and ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
+  if must_be_open and ticket['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
     print("This ticket is closed! You cannot make a pull request on this ticket.")
     logfail("***** ERROR: Closed ticket. Exiting.")
     if not force:
@@ -347,7 +346,7 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
     info['is_private'] = ticket['is_private']
   if 'custom_fields' in ticket:
     for field in ticket['custom_fields']:
-      if field['id'] == CUSTOM_FIELD_PR and 'value' in field:
+      if field['id'] == Config.CUSTOM_FIELD_PR and 'value' in field:
         info['pr'] = field['value']
 
   # Get ticket's last assignment besides me
@@ -371,7 +370,7 @@ def clone_ticket(info, version, new_title, bug=False):
       new_info[i] = info[i]
   new_info['parent_issue_id'] = info['id']
   if bug:
-    new_info['tracker_id'] = BUG_TACKER_ID
+    new_info['tracker_id'] = Config.BUG_TACKER_ID
     new_info['description'] = "There was a bug in the resolution of #" + str(info['id'])
   if new_title is not None:
     if new_title.startswith('+'):
@@ -381,7 +380,7 @@ def clone_ticket(info, version, new_title, bug=False):
   all_versions_id = get_versions()[1]
   new_info['fixed_version_id'] = all_versions_id[version]
   ticket_json = json.dumps({ 'issue': new_info })
-  ret = requests.post(REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+  ret = requests.post(Config.REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 201:
     logfail("Ticket clone error: " + ret.reason)
     if not force:
@@ -390,20 +389,19 @@ def clone_ticket(info, version, new_title, bug=False):
 
 
 # Return true if the current user can modify an issue in the given project
-REDMINE_CAN_MODIFY=None
+Config.REDMINE_CAN_MODIFY=None
 def can_modify_issues(project_id):
-  global REDMINE_CAN_MODIFY
-  if REDMINE_CAN_MODIFY is not None:
-    return REDMINE_CAN_MODIFY
-  data = requests.get(REDMINE_API_URL + "/users/current.json?include=memberships", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  if Config.REDMINE_CAN_MODIFY is not None:
+    return Config.REDMINE_CAN_MODIFY
+  data = requests.get(Config.REDMINE_API_URL + "/users/current.json?include=memberships", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
   user = data.json()
   for membership in user['user']['memberships']:
     if membership['project']['id'] == project_id:
       for role in membership['roles']:
-        if role['id'] in ACCESS_ROLE_LIST:
-          REDMINE_CAN_MODIFY = True
+        if role['id'] in Config.ACCESS_ROLE_LIST:
+          Config.REDMINE_CAN_MODIFY = True
           return True
-  REDMINE_CAN_MODIFY = False
+  Config.REDMINE_CAN_MODIFY = False
   return False
 
 
@@ -414,7 +412,7 @@ def update_ticket_version(info, version):
     exit(13)
 
   # list all versions
-  versions = requests.get(REDMINE_API_URL + "/projects/" + str(info['project_id']) + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  versions = requests.get(Config.REDMINE_API_URL + "/projects/" + str(info['project_id']) + "/versions.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
   # keep versions that match and that are still open
   valid_versions = [ v for v in versions.json()['versions'] if v['status'] == 'open' and v['name'].startswith(version) ]
   # there should only only, but in doubt keep the last one
@@ -422,9 +420,9 @@ def update_ticket_version(info, version):
 
   # set the version
   ticket_info = { 'issue': { 'fixed_version_id': final_version['id'] } }
-  url = REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
+  url = Config.REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
   ticket_json = json.dumps(ticket_info)
-  ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+  ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 200:
     logfail("Ticket Update error: " + ret.reason)
     print(ret.text)
@@ -449,7 +447,7 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
     # fill ticket data with developer available content
     ticket_info = { 
             'issue': {
-                'status_id': PENDING_TR_CODE,
+                'status_id': Config.PENDING_TR_CODE,
             }
         }
     if user_id is not None:
@@ -457,7 +455,7 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
     if note is not None:
       ticket_info['issue']['notes'] = note
     if pr_url is not None:
-      ticket_info['issue']['custom_fields'] = [ { 'id': CUSTOM_FIELD_PR, 'value': pr_url } ]
+      ticket_info['issue']['custom_fields'] = [ { 'id': Config.CUSTOM_FIELD_PR, 'value': pr_url } ]
 
   else:
     # just append the note to ticket
@@ -471,9 +469,9 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
           }
   
   # call the api
-  url = REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
+  url = Config.REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
   ticket_json = json.dumps(ticket_info)
-  ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+  ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 200:
     logfail("Ticket Update error: " + ret.reason)
     print(ret.text)
@@ -484,56 +482,56 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
 # change the ticket state to In progress
 def ticket_to_in_progress(info, message=None):
   # set ticket status to "in progress"
-  if REDMINE_TOKEN is not None:
+  if Config.REDMINE_TOKEN is not None:
     if can_modify_issues(info['project_id']):
       print("Changing status of ticket #" + str(info['id']) + " to \"In progress\"")
       user_id = get_redmine_uid()
       ticket_info = {
               'issue': {
-                  'status_id': IN_PROGRESS_CODE,
+                  'status_id': Config.IN_PROGRESS_CODE,
                   'assigned_to_id': user_id,
               }
       }
       if message is not None:
         ticket_info['issue']['notes'] = message
-      url = REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
+      url = Config.REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
       ticket_json = json.dumps(ticket_info)
-      ret = requests.put(url, headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+      ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
       if ret.status_code != 200:
         logfail("Ticket Update error: " + ret.reason)
         print(ret.text)
         if not force:
           exit(3)
     else:
-      print("You should update the ticket status here " + REDMINE_API_URL + "/issues/" + str(info['id']))
+      print("You should update the ticket status here " + Config.REDMINE_API_URL + "/issues/" + str(info['id']))
 
 
 # get current redmine user
 def get_redmine_uid():
-  user = requests.get(REDMINE_API_URL + "/users/current.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  user = requests.get(Config.REDMINE_API_URL + "/users/current.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
   return user.json()['user']['id']
 
 
 # update normation user list cache and return updated user list
 def update_nrm_users(project_id):
   # read existing cahe if there is one
-  filename = os.path.expanduser(CACHE_FILE)
+  filename = os.path.expanduser(Config.CACHE_FILE)
   if os.path.isfile(filename):
     with open(filename) as fd:
       users = json.load(fd)
   else:
     users = { }
-  if REDMINE_API_URL not in users:
-    users[REDMINE_API_URL] = {}
+  if Config.REDMINE_API_URL not in users:
+    users[Config.REDMINE_API_URL] = {}
   # just update it otherwise we would have only project specific data in it
-  user_list = requests.get(REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json?limit=100", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  user_list = requests.get(Config.REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json?limit=100", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
   for user in user_list.json()['memberships']:
     id = user['user']['id']
-    user_data = requests.get(REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+    user_data = requests.get(Config.REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
     user_detail = user_data.json()['user']
     if 'mail' in user_detail and user_detail['mail'].endswith("normation.com"):
       trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
-      users[REDMINE_API_URL][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
+      users[Config.REDMINE_API_URL][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
   with open(filename, "w") as fd:
     json.dump(users, fd)
   return users
@@ -541,15 +539,15 @@ def update_nrm_users(project_id):
 # get users ad trigraph for normation users
 def get_nrm_users(project_id):
   users = {}
-  filename = os.path.expanduser(CACHE_FILE)
+  filename = os.path.expanduser(Config.CACHE_FILE)
   if not os.path.isfile(filename):
     users = update_nrm_users(project_id)
   else:
     with open(filename) as fd:
       users = json.load(fd)
-    if not REDMINE_API_URL in users:
+    if not Config.REDMINE_API_URL in users:
       users = update_nrm_users(project_id)
-  return users[REDMINE_API_URL]
+  return users[Config.REDMINE_API_URL]
 
 # Ask for a user using its trigraph
 def ask_username(project_id, trigraph):
@@ -568,7 +566,7 @@ def ask_username(project_id, trigraph):
     sys.stdout.flush() # to display previous unfinished line
     trigraph = sys.stdin.readline().strip().upper()
     if trigraph == 'R':
-      user_ids = update_nrm_users(project_id)[REDMINE_API_URL]
+      user_ids = update_nrm_users(project_id)[Config.REDMINE_API_URL]
     if trigraph == 'NON':
       return None
   return user_ids[trigraph]['id']
@@ -592,11 +590,11 @@ def get_lifecycle():
   if current_lifecycle is not None:
     return current_lifecycle
   # Update branches so get new branches from UPSTREAM
-  shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY + " to detect lifecycle")
+  shell("git fetch --force " + Config.UPSTREAM_REPOSITORY, "Fetching upstream " + Config.UPSTREAM_REPOSITORY + " to detect lifecycle")
   lines = os.popen("git branch --no-color --list -a").readlines()
-  for lifecycle in LIFECYCLES:
+  for lifecycle in Config.LIFECYCLES:
     for line in lines:
-      if re.match(lifecycle["detection"].format(UPSTREAM_REPOSITORY), line):
+      if re.match(lifecycle["detection"].format(Config.UPSTREAM_REPOSITORY), line):
         current_lifecycle = lifecycle
         return current_lifecycle
   return current_lifecycle
@@ -614,12 +612,12 @@ def get_versions():
   lifecycle = get_lifecycle()
   git_version_list = []
   for line in os.popen("git branch --no-color --list -a"):
-    m = re.match(lifecycle["detection"].format(UPSTREAM_REPOSITORY), line)
+    m = re.match(lifecycle["detection"].format(Config.UPSTREAM_REPOSITORY), line)
     if m:
       git_version_list.append(m.group(1))
 
   # list all versions using redmine
-  versions = requests.get(REDMINE_API_URL + "/projects/" + lifecycle['name'] + "/versions.json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN } )
+  versions = requests.get(Config.REDMINE_API_URL + "/projects/" + lifecycle['name'] + "/versions.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
   redmine_version_list = []
   version_dict = {}
   for version in versions.json()['versions']:
@@ -695,9 +693,9 @@ def branch_from_ticket(info):
   else:
     id = str(info['id'])
   if info['private']:
-    branch_name = TRACKER_NAME_MAPPING[info['type']] + "_" + id + "/_"
+    branch_name = Config.TRACKER_NAME_MAPPING[info['type']] + "_" + id + "/_"
   else:
-    branch_name = TRACKER_NAME_MAPPING[info['type']] + "_" + id + "/" + branchified_ticket_name
+    branch_name = Config.TRACKER_NAME_MAPPING[info['type']] + "_" + id + "/" + branchified_ticket_name
   return branch_name
 
 
@@ -728,7 +726,7 @@ def remote_repo():
 def create_pr(master_branch, info, message):
   url = "https://api.github.com/repos/Normation/{repo}/pulls"
   user = get_github_user()
-  body = REDMINE_API_URL + "/issues/" + str(info['id'])
+  body = Config.REDMINE_API_URL + "/issues/" + str(info['id'])
   if message is not None:
     body += "\n\n" + message + "\n"
 
@@ -824,10 +822,10 @@ def commit_push(branch, message, force_amend=False):
 
   # Should we check the need for rebasing before pushing ?
 
-  push_cmd = "git push " + OWN_REPOSITORY + " " + branch
+  push_cmd = "git push " + Config.OWN_REPOSITORY + " " + branch
   if force_amend or wip != "":
     push_cmd += " --force"
-  shell(push_cmd, "Pushing to " + OWN_REPOSITORY + " ... ")
+  shell(push_cmd, "Pushing to " + Config.OWN_REPOSITORY + " ... ")
 
 
 # insert a line in a file after a regex has matched
@@ -881,7 +879,7 @@ def fetch_branch_from_ticket(ticket):
 def github_fork():
   # we don't need to fork if the remote is known
   remotes = shell("git remote show", keep_output=True).strip()
-  if re.search('^'+OWN_REPOSITORY+"$", remotes, flags=re.MULTILINE):
+  if re.search('^'+Config.OWN_REPOSITORY+"$", remotes, flags=re.MULTILINE):
     return False
 
   # fork the report if not already forked
@@ -893,7 +891,7 @@ def github_fork():
     github_request("https://api.github.com/repos/Normation/{repo}/forks", "Forking repository ...", pr_url=None, post_data="")
 
   # Add the remote repository to the local list
-  shell("git remote add " + OWN_REPOSITORY + " git@github.com:" + user + "/" + remote + ".git", "Adding own remote repository")
+  shell("git remote add " + Config.OWN_REPOSITORY + " git@github.com:" + user + "/" + remote + ".git", "Adding own remote repository")
 
   # Tell if we forked or not
   return fork_needed != "0"
@@ -921,7 +919,7 @@ def unstash():
   this_branch = shell("git rev-parse --abbrev-ref HEAD", keep_output=True).strip()
 
   # do not unstash if we are on an origin branch since you should not work directly on them
-  remote_count = shell("git ls-remote -h " + UPSTREAM_REPOSITORY + " " + this_branch + " | wc -l", keep_output=True).strip()
+  remote_count = shell("git ls-remote -h " + Config.UPSTREAM_REPOSITORY + " " + this_branch + " | wc -l", keep_output=True).strip()
   if remote_count != "0":
     return
 
@@ -947,9 +945,9 @@ def unstash():
 # Tell the user if some stash command happened
 def stash_info():
   if stashed:
-    print("Some work in progress has been found, " + ERROR_TPL.format("I stashed it") + " before running the commands, to retrieve it use git stash pop")
+    print("Some work in progress has been found, " + Config.ERROR_TPL.format("I stashed it") + " before running the commands, to retrieve it use git stash pop")
   if unstashed:
-    print("Previous work in progress has been found in the stash, " + ERROR_TPL.format("I unstashed it") + ", to hide it again, use git stash save")
+    print("Previous work in progress has been found in the stash, " + Config.ERROR_TPL.format("I unstashed it") + ", to hide it again, use git stash save")
 
   if not_unstashed:
     print("Previous work in progress has been found in the stash, " + ERROR_TPL.format("I left it stashed") + ", to unstash it, use git stash pop")
@@ -974,7 +972,7 @@ def create_branch(ticket, base=None):
   info = get_ticket_info(ticket_id, internal)
   print("* Found " + info['type'] + " #" + str(info['id']) + ": " + info['name'])
   print("* Target: " + info['version'])
-  print("* URL: " + REDMINE_API_URL + "/issues/" + str(info['id']))
+  print("* URL: " + Config.REDMINE_API_URL + "/issues/" + str(info['id']))
 
   # manage the original branch
   if base is not None:
@@ -1090,7 +1088,7 @@ def subtask(next_version, new_title, base=None, bug=False):
   print("Next version will be " + str(next_version))
   print("Cloning ticket #" + str(info['id']))
   ticket = clone_ticket(info, next_version, new_title, bug)
-  print(" > ticket #" + str(ticket['id']) + " created " + REDMINE_API_URL + "/issues/" + str(ticket['id']))
+  print(" > ticket #" + str(ticket['id']) + " created " + Config.REDMINE_API_URL + "/issues/" + str(ticket['id']))
 
   # test merge status
   pull(next_version)
@@ -1141,16 +1139,16 @@ def commit(trigraph=None, message=None):
   print("PR URL: " + str(pr_url))
 
   # update ticket
-  if REDMINE_TOKEN is not None:
+  if Config.REDMINE_TOKEN is not None:
     if can_modify_issues(info['project_id']):
       user = ask_username(info['project_id'], trigraph)
     else:
       user = None
     print("Updating ticket #" + str(info['id']))
     ticket_to_TR(info, user, pr_url, message)
-    print("Ticket updated: " + REDMINE_API_URL + "/issues/" + info['id'])
+    print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + info['id'])
   else:
-    print("You can now update the ticket here " + REDMINE_API_URL + "/issues/" + info['id'])
+    print("You can now update the ticket here " + Config.REDMINE_API_URL + "/issues/" + info['id'])
 
 
 # amend commit, push -f, comment PR
@@ -1190,9 +1188,9 @@ def rebase(comment=None, base=None):
       branch_name = base
   else:
     # base branch from upstream repository
-    shell("git fetch --force " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+    shell("git fetch --force " + Config.UPSTREAM_REPOSITORY, "Fetching upstream " + Config.UPSTREAM_REPOSITORY)
     origin_branch = branch_from_version(info['version'])
-    branch_name = UPSTREAM_REPOSITORY + "/" + origin_branch
+    branch_name = Config.UPSTREAM_REPOSITORY + "/" + origin_branch
 
   # First rebase without commits from source branch
   # This is necessary because we may have modified the original commit and force pushed it
@@ -1212,7 +1210,7 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
   shell("git rebase -i " + branch_name, "Rebasing")
 
   # if OK: continue
-  shell("git push --force " + OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
+  shell("git push --force " + Config.OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
   # reassign ticket
   if 'last_assignee' in info:
@@ -1245,14 +1243,14 @@ def retarget(version=None):
       return
 
   # fetch before rebasing
-  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching upstream " + UPSTREAM_REPOSITORY)
+  shell("git fetch " + Config.UPSTREAM_REPOSITORY, "Fetching upstream " + Config.UPSTREAM_REPOSITORY)
 
   # interactive rebase
-  shell("git rebase -i " + UPSTREAM_REPOSITORY + "/" + ticket_branch, "Rebasing")
+  shell("git rebase -i " + Config.UPSTREAM_REPOSITORY + "/" + ticket_branch, "Rebasing")
 
   if 'pr' in info and info['pr'] != '':
     # if OK: continue
-    shell("git push --force " + OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
+    shell("git push --force " + Config.OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
     # create new PR 
     pr_url = create_pr(ticket_branch, info, "Replacing previous PR: " +  info['pr'])
@@ -1278,12 +1276,12 @@ def pull(version=None):
     # branch if needed
     branch_status = shell("git branch --list " + branch, keep_output=True).strip()
     if branch_status == "":
-      shell("git fetch " + UPSTREAM_REPOSITORY, "Local branch doesn't exist, fetching from " + UPSTREAM_REPOSITORY)
-      remote_branch_status = os.popen("git branch --no-color --list --remote " + UPSTREAM_REPOSITORY + "/" + branch)
+      shell("git fetch " + Config.UPSTREAM_REPOSITORY, "Local branch doesn't exist, fetching from " + Config.UPSTREAM_REPOSITORY)
+      remote_branch_status = os.popen("git branch --no-color --list --remote " + Config.UPSTREAM_REPOSITORY + "/" + branch)
       if remote_branch_status == "":
-        logfail("No such branch on " + UPSTREAM_REPOSITORY + ": " + branch + ", Aborting ...")
+        logfail("No such branch on " + Config.UPSTREAM_REPOSITORY + ": " + branch + ", Aborting ...")
         exit(8)
-      shell("git branch --track " + branch + " " + UPSTREAM_REPOSITORY + "/" + branch, "Creating local branch")
+      shell("git branch --track " + branch + " " + Config.UPSTREAM_REPOSITORY + "/" + branch, "Creating local branch")
 
     # checkout if needed
     if branch != current_branch:
@@ -1292,10 +1290,10 @@ def pull(version=None):
 
   # Pull
   branch_detail = shell("git rev-parse --abbrev-ref --symbolic-full-name @{u}", keep_output=True).strip()
-  if re.match(UPSTREAM_REPOSITORY + '/.*', branch_detail):
+  if re.match(Config.UPSTREAM_REPOSITORY + '/.*', branch_detail):
     shell("git pull --ff-only", "Pulling on " + branch_detail)
   else:
-    logfail("Your branch is not based on the same " + UPSTREAM_REPOSITORY + " branch")
+    logfail("Your branch is not based on the same " + Config.UPSTREAM_REPOSITORY + " branch")
     exit(8)
 
 
@@ -1306,7 +1304,7 @@ def clone(name, fork=False):
     url = "git@github.com:Normation/"
   else:
     url = "https://github.com/Normation/"
-  shell("git clone --origin " + UPSTREAM_REPOSITORY + " " + url + name + ".git", "Cloning Normation repository")
+  shell("git clone --origin " + Config.UPSTREAM_REPOSITORY + " " + url + name + ".git", "Cloning Normation repository")
   if fork:
     os.chdir(name)
     github_fork()
@@ -1369,7 +1367,7 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False):
   shell("git merge " + old + opts, "Merging " + name + " into " + new)
   first_merge = False
   if not test:
-    shell("git push " + UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
+    shell("git push " + Config.UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
 
 
 # Merge remote version automatically guessing the next one
@@ -1401,8 +1399,8 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False):
 def merge_pr(pr_url, strategy=None, automatic=False, test=False):
   pr = PR(pr_url)
   # PR must be validated
-  if not pr.is_labeled(PR_VALIDATED_LABEL):
-    print("This PR is not labeled '" + PR_VALIDATED_LABEL + "' You should not merge it.")
+  if not pr.is_labeled(Config.PR_VALIDATED_LABEL):
+    print("This PR is not labeled '" + Config.PR_VALIDATED_LABEL + "' You should not merge it.")
     logfail("***** ERROR: PR is not validated. Exiting.")
     if not force:
       exit(15)
@@ -1441,7 +1439,7 @@ def revert(ticket, retarget = False):
   
   # Reverting
   shell("git revert -m1 " + commit, "Reverting issue #" + info["id"] + ":" + info["name"]+ ", commit: " + commit  )
-  shell("git push " + UPSTREAM_REPOSITORY, "Updating " + UPSTREAM_REPOSITORY)
+  shell("git push " + Config.UPSTREAM_REPOSITORY, "Updating " + Config.UPSTREAM_REPOSITORY)
 
   # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version 
   if retarget: 
@@ -1463,7 +1461,7 @@ def find(command):
 
 # cleanup branches
 def cleanup(more=False, dry=False):
-  shell("git fetch " + UPSTREAM_REPOSITORY, "Fetching " + UPSTREAM_REPOSITORY)
+  shell("git fetch " + Config.UPSTREAM_REPOSITORY, "Fetching " + Config.UPSTREAM_REPOSITORY)
   pull('master') # necessary to avoid removal errors
   branch_list = shell("git branch --no-color --no-column", keep_output=True)
   for branch in branch_list.splitlines():
@@ -1472,19 +1470,19 @@ def cleanup(more=False, dry=False):
       branch=m.group(1)
       ticket_id = m.group(2)
       print("#" + ticket_id + ": ", end='')
-      tickets_req = requests.get(REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json", headers = {'X-Redmine-API-Key': REDMINE_TOKEN, 'Content-Type': 'application/json' })
+      tickets_req = requests.get(Config.REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' })
       remove = False
 
       # guess if we should remove the branch
       if tickets_req.status_code == requests.codes.ok:
         ticket = tickets_req.json()['issue']
         # The ticket is closed -> probably
-        if ticket['status']['id'] in REDMINE_CLOSED_STATUSES:
+        if ticket['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
           print("ticket closed, ", end='')
           version = get_version(ticket, False)
           should_ask = False
           if version is not None:
-            upstream = UPSTREAM_REPOSITORY + '/' + branch_from_version(version)
+            upstream = Config.UPSTREAM_REPOSITORY + '/' + branch_from_version(version)
             (code, cherry_list) = shell("git cherry " + upstream + " " + branch + " 2>/dev/null", keep_output=True, fail_exit=False)
             if code == 0 and cherry_list == "":
               # Everything is merged -> YES
@@ -1499,7 +1497,7 @@ def cleanup(more=False, dry=False):
             print("can't check upstream branch from ticket, ", end='')
             should_ask = True
           if more and should_ask:
-            print(REDMINE_API_URL + "/issues/" + ticket_id)
+            print(Config.REDMINE_API_URL + "/issues/" + ticket_id)
             print("Do you want to remove it ? [y/N]", end='')
             sys.stdout.flush() # to display previous unfinished line
             answer = sys.stdin.readline().strip().upper()
@@ -1511,7 +1509,7 @@ def cleanup(more=False, dry=False):
         print("removing: " + branch)
         if not dry:
           shell("git branch -d " + branch, "Deleting local " + branch)
-          shell("git push " + OWN_REPOSITORY + " --delete " + branch, "Deleting remote " + branch, fail_exit=False)
+          shell("git push " + Config.OWN_REPOSITORY + " --delete " + branch, "Deleting remote " + branch, fail_exit=False)
       else:
         print("keeping: " + branch)
 
@@ -1521,7 +1519,7 @@ def update():
   with open(my_path, 'r') as fd:
     my_text = fd.read()
 
-  data = requests.get(RUDDER_DEV_ORIGIN)
+  data = requests.get(Config.RUDDER_DEV_ORIGIN)
   if data.status_code != requests.codes.ok:
     logfail("Cannot get last version of rudder-dev sorry!")
     exit(14)
@@ -1551,7 +1549,7 @@ def check_update():
   # mtime = last modification = content changed
   ctime = os.path.getmtime(my_path)
   days_ago = (time.time() - ctime) / 60 / 60 / 24
-  if days_ago > WARN_FOR_UPDATE_AFTER:
+  if days_ago > Config.WARN_FOR_UPDATE_AFTER:
     print("Your version of rudder-dev is old and probably needs an update, please run 'rudder-dev update'")
   # else everything is up to date
 

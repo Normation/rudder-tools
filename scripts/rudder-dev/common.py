@@ -1,3 +1,7 @@
+import os
+import re
+from pprint import pprint
+
 try:
   import configparser
   config = configparser.ConfigParser()
@@ -5,11 +9,14 @@ except ImportError:
   import ConfigParser
   config = ConfigParser.ConfigParser()
 
-## GLOBAL VARIABLES
-CONFIG_FILE = "~/.rudder-dev"
 
-# Default error template
-ERROR_TPL = "\033[1;31m{}\033[0m"
+
+class Config:
+  """Pseudo class used to share global configuration"""
+  # Other values are read from this file by read_configuration()
+  CONFIG_FILE = "~/.rudder-dev"
+  # Default error template
+  ERROR_TPL = "\033[1;31m{}\033[0m"
 
 
 ###
@@ -46,15 +53,13 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
 
 
 def logfail(message):
-  print(ERROR_TPL.format(message))
+  print(Config.ERROR_TPL.format(message))
 
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration():
-  global UPSTREAM_REPOSITORY, OWN_REPOSITORY, GITHUB_TOKEN, REDMINE_TOKEN, REDMINE_ALT_TOKEN, ERROR_TPL
-
   # Detect missing configuration
-  if not os.path.isfile(os.path.expanduser(CONFIG_FILE)):
-    with open(os.path.expanduser(CONFIG_FILE), 'a') as cfile:
+  if not os.path.isfile(os.path.expanduser(Config.CONFIG_FILE)):
+    with open(os.path.expanduser(Config.CONFIG_FILE), 'a') as cfile:
       cfile.write("""[default]
 ## Uncomment and set your own values
 ## Your prefered name for Normation upstream repository on your local git (NRM, origin, ...)
@@ -72,22 +77,22 @@ def read_configuration():
 ## Do no forget to add keeep {} to have the text content
 #error_tpl = \\033[1;31m{}\\033[0m
 """)
-    print(CONFIG_FILE + " doesn't exist !")
+    print(Config.CONFIG_FILE + " doesn't exist !")
     logfail("I made a sample one, please fill it")
     exit(5)
   
   # Read configuration
-  config.read(os.path.expanduser(CONFIG_FILE))
-  UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + CONFIG_FILE)
-  OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + CONFIG_FILE)
-  GITHUB_TOKEN = get_config("github_token", None)
-  REDMINE_TOKEN = get_config("redmine_token", None)
-  REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
-  ERROR_TPL = get_config("error_tpl", None)
-  if ERROR_TPL is None:
-    ERROR_TPL = "\\033[1;31m{}\\033[0m"
+  config.read(os.path.expanduser(Config.CONFIG_FILE))
+  Config.UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + Config.CONFIG_FILE)
+  Config.OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + Config.CONFIG_FILE)
+  Config.GITHUB_TOKEN = get_config("github_token", None)
+  Config.REDMINE_TOKEN = get_config("redmine_token", None)
+  Config.REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
+  Config.ERROR_TPL = get_config("error_tpl", None)
+  if Config.ERROR_TPL is None:
+    Config.ERROR_TPL = "\\033[1;31m{}\\033[0m"
   # replace \\Oxx characters by their octal equivalent
-  ERROR_TPL = re.sub(r'(\\0\d+)', lambda x: chr(int(x.group(0)[1:],8)), ERROR_TPL)
+  Config.ERROR_TPL = re.sub(r'(\\0\d+)', lambda x: chr(int(x.group(0)[1:],8)), Config.ERROR_TPL)
 
 
 # Get a configuration item from current configuration file
