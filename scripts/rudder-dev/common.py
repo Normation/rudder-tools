@@ -1,5 +1,6 @@
 import os
 import re
+from subprocess import Popen,PIPE
 from pprint import pprint
 
 try:
@@ -56,7 +57,7 @@ def logfail(message):
   print(Config.ERROR_TPL.format(message))
 
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
-def read_configuration():
+def read_configuration(section=None):
   # Detect missing configuration
   if not os.path.isfile(os.path.expanduser(Config.CONFIG_FILE)):
     with open(os.path.expanduser(Config.CONFIG_FILE), 'a') as cfile:
@@ -81,23 +82,32 @@ def read_configuration():
     logfail("I made a sample one, please fill it")
     exit(5)
   
-  # Read configuration
-  config.read(os.path.expanduser(Config.CONFIG_FILE))
-  Config.UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + Config.CONFIG_FILE)
-  Config.OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + Config.CONFIG_FILE)
-  Config.GITHUB_TOKEN = get_config("github_token", None)
-  Config.REDMINE_TOKEN = get_config("redmine_token", None)
-  Config.REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None)
-  Config.ERROR_TPL = get_config("error_tpl", None)
+  # Read ERROR_TPL first since it can be used just after
+  Config.ERROR_TPL = get_config("error_tpl", None, section)
   if Config.ERROR_TPL is None:
     Config.ERROR_TPL = "\\033[1;31m{}\\033[0m"
   # replace \\Oxx characters by their octal equivalent
   Config.ERROR_TPL = re.sub(r'(\\0\d+)', lambda x: chr(int(x.group(0)[1:],8)), Config.ERROR_TPL)
 
+  # Read configuration
+  config.read(os.path.expanduser(Config.CONFIG_FILE))
+  Config.UPSTREAM_REPOSITORY = get_config("nrm_upstream", "No 'nrm_upstream' entry in " + Config.CONFIG_FILE, section)
+  Config.OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + Config.CONFIG_FILE, section)
+  Config.GITHUB_TOKEN = get_config("github_token", None, section)
+  Config.REDMINE_TOKEN = get_config("redmine_token", None, section)
+  Config.REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None, section)
+
 
 # Get a configuration item from current configuration file
-def get_config(item, error):
+def get_config(item, error, section):
   try:
+    # try [section] first
+    if section is not None:
+      try:
+        return config.get(section, item)
+      except:
+        pass
+    # use [default] otherwise
     return config.get("default", item)
   except:
     if error is None:

@@ -2,6 +2,22 @@
 if 'Config' not in vars():
   from common import *  
     
+Config.REDMINE_ALT_API_URL = "https://redmine.normation.com"
+Config.REDMINE_API_URL = "https://www.rudder-project.org/redmine"
+Config.REDMINE_API_LIMIT = 100
+Config.REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
+Config.REDMINE_META_TRACKERS = [3]
+Config.ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager, 6=Consultant, 9=Integrator
+
+# Keeping old version for reference
+#TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
+Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
+Config.PENDING_TR_CODE = 3
+Config.IN_PROGRESS_CODE = 9
+Config.CUSTOM_FIELD_PR = 3
+Config.ALT_CUSTOM_FIELD_PR = 1
+Config.BUG_TACKER_ID = 1
+
 class Issue:
   """Class to hold informations about a single issue"""
   def __init__(self, name, must_be_open=True):

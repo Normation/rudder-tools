@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+# coding: utf8
+
+"""
+Pull-request quality tool.
+
+You need a configuration file, if you don't have one, the tool will create one for you at first run.
+
+Usage:
+        qa -h|--help
+        qa merge all
+        qa merge <repo> 
+"""
+
+from __future__ import print_function
+
+import os
+from common import *
+from github import *
+
+import docopt # apt-get install python-docopt || pip install docopt
+from pprint import pprint
+
+def clean_repo(repo):
+  redirect = ""
+  if Config.LOGLEVEL == "error":
+    redirect = " >/dev/null"
+  # check master directory
+  directory = Config.WORKING_DIRECTORY
+  if not os.path.isdir(directory):
+    logfail("Master directory doesn't exist, exiting")
+    exit(1)
+  # check working directory
+  directory = directory + "/" + repo
+  if not os.path.isdir(directory):
+    os.chdir(Config.WORKING_DIRECTORY)
+    shell("rudder-dev clone "+repo+redirect, "Cloning ncf in a temporary directory")
+  # cleanup working directory
+  os.chdir(directory)
+  shell("git reset --hard"+redirect, "Cleanup working directory")
+
+
+def repo_merge(repo):
+  redirect = ""
+  if Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error":
+    redirect = " > /dev/null 2>/dev/null"
+  api_url = "https://api.github.com/repos/Normation/{repo}/issues?labels="+Config.PR_VALIDATED_LABEL
+  url = api_url.format(repo=repo)
+  data = github_call(url)
+  for pr_info in data:
+    labels = [l['name'] for l in pr_info['labels']]
+    if Config.BOT_CANNOT_MERGE in labels:
+      continue
+    clean_repo(repo)
+    pr = PR(pr_info['html_url'])
+    command = "rudder-dev merge " + pr_info['html_url'] + " --automatic"
+    (code, output) = shell(command + " --test" + redirect, "Trying to merge PR " + pr_info['html_url'], fail_exit=False)
+    if code != 0:
+      # PR must be manually merged
+      comment="""This PR is not mergeable to upper versions.
+Since it is "Ready for merge" you must merge it by yourself using the following command:
+rudder-dev merge """ + pr_info['html_url'] + """
+-- Your faithful QA"""
+      pr.comment(comment)
+      pr.label(Config.BOT_CANNOT_MERGE)
+    else:
+      # PR can be automatically merged
+      pr=PR(pr_info['html_url'])
+      shell(command + redirect, "Automatically merging PR " + pr_info['html_url'])
+      pr.comment("""I merge and upmerged your PR automatically -- Your faithful QA""")
+
+
+def repo_merge_all():
+  for repo in Config.REPOSITORIES:
+    repo_merge(repo)
+
+
+if __name__ == "__main__":
+  arguments = docopt.docopt(__doc__)
+  section = "quality-assistant"
+  read_configuration(section)
+  # qa specific configuration
+  Config.WORKING_DIRECTORY = get_config("working_directory", "No 'working_directory' entry in " + Config.CONFIG_FILE, section)
+  Config.LOGLEVEL = get_config("loglevel", "No 'loglevel' entry in " + Config.CONFIG_FILE, section) # verbose, info, error
+
+  if arguments['merge'] and arguments['all']:
+    repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
+    Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
+    repo_merge_all()
+  elif arguments['merge']:
+    repo = arguments['<repo>']
+    repo_merge(repo)
+
