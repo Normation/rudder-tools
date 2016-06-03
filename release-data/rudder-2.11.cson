@@ -4,6 +4,9 @@ release = "2.11"
 
 released = true
 
+# Is this version currently supported?
+supported = true
+
 # Has this version had Long-Term Support (LTS)?
 lts = true
 

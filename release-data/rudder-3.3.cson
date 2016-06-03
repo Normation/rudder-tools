@@ -4,6 +4,9 @@ release = "3.3"
 
 released = false
 
+# Is this version currently supported?
+supported = false
+
 # Has this version had Long-Term Support (LTS)?
 lts = false
 
