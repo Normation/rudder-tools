@@ -30,7 +30,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     print(comment)
     print(" $ " + command)
   if keep_output:
-    process = Popen(command, stdout=PIPE, shell=True)
+    process = Popen(command, stdout=PIPE, shell=True, universal_newlines=True)
     output, error = process.communicate()
     retcode = process.poll()
   else: # keep tty management and thus colors
@@ -43,9 +43,6 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     logfail("*** COMMAND ERROR " + str(retcode))
     if not force:
       exit(1)
-  if keep_output:
-    if sys.version_info[0] != 2:
-      output = output.decode("utf-8")
   if not fail_exit:
     return (retcode, output)
   else:
