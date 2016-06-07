@@ -65,3 +65,9 @@ components = {
                "cfengine": "3.6",
                "ncf": "v0.x",
              }
+
+# Agent versions you can use with this version's server
+compatible-agents = [ "2.10", "2.11", "3.0", "3.1" ]
+
+# Versions you can upgrade from directly
+supported-upgrade = [ "2.10", "2.11" ]
