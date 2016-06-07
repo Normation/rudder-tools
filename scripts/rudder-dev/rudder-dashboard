@@ -18,11 +18,14 @@ import dateutil.parser
 from time import time
 from datetime import tzinfo, timedelta, datetime
 from pprint import pprint
-from urllib import urlencode
 
 import requests # apt-get install python-requests || pip install requests
 import docopt # apt-get install python-docopt || pip install docopt
 
+try: # python 2 / 3
+  from urllib import urlencode
+except ImportError:
+  from urllib.parse import urlencode
 try:
   import configparser
   config = configparser.ConfigParser()
