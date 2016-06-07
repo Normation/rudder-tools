@@ -829,7 +829,7 @@ def fetch_branch_from_pr(pr):
   branch_name = pr.remote_branch()
   # PR can be rebased, force fetch the branch
   shell("git fetch --update-head-ok " + pr.repo() + " +" + branch_name + ":" + branch_name + "_pr", "Fetching branch from remote " + pr.repo())
-  return branch_name
+  return branch_name + "_pr"
 
 
 # fetch a branch from a PR given in an Issue
