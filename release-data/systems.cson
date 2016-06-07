@@ -3,50 +3,60 @@
 debian = { 
   aliases = [ ]
   package-format = "dpkg"
+  name = "Debian"
 }
 
 ubuntu = {
   aliases = [ ]
   package-format = "dpkg"
+  name = "Ubuntu"
 }
 
 rhel = {
   aliases = [ "redhat", "centos" ]
   package-format = "rpm"
+  name = "Red Hat Entreprise Linux / CentOS"
 }
 
 fedora = {
   aliases = [ ]
   package-format = "rpm"
+  name = "Fedora"
 }
 
 sles = {
   aliases = [ "suse" ]
   package-format = "rpm"
+  name = "SUSE Linux Enterprise Server"
 }
 
 aix = {
   aliases = [ ]
   package-format = "rpm"
+  name = "AIX"
 }
 
 windows = {
   aliases = [ ]
   package-format = ""
+  name = "Windows"
 }
 
 android = {
   aliases = [ ]
   package-format = ""
+  name = "Android"
 }
 
 freebsd = {
   aliases = [ ]
   package-format = ""
+  name = "FreeBSD"
 }
 
 solaris = {
   aliases = [ "sunos" ]
   package-format = "pkg"
+  name = "Solaris"
 }
 
