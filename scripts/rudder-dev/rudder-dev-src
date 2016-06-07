@@ -1104,6 +1104,11 @@ def wip():
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
   commit_push(current_branch, "Work in progress")
+  url = "https://github.com/{user}/{repo}/commit/{commit}"
+  user = get_github_user()
+  repo = remote_repo()
+  commit = shell("git rev-parse HEAD", keep_output=True).strip()
+  print("You can find the commit here: " + url.format(user=user, repo=repo, commit=commit))
 
 
 # Commit, push, create pull-request, update ticket
