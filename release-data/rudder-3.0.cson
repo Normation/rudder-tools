@@ -7,8 +7,11 @@ released = true
 # Is this version currently supported?
 supported = true
 
+# 16th February 2015
+release-date = "2015-02-16"
+
 # 10th June 2016
-eol = "2016-06-10"
+eol-date = "2016-06-10"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
