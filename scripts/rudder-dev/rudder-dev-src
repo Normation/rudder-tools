@@ -990,11 +990,12 @@ def create_branch(ticket, base=None):
 def technique(version, message):
   # check current directory
   cwd = os.getcwd()
-  match = re.match(r'(.*)/techniques/.*', cwd)
+  match = re.match(r'(.*)/techniques/(.*)', cwd)
   if not re.match(r'.*/techniques/.*', cwd):
     logfail("***** ERROR: You must be in a technique directory")
     exit(7)
   basedir = match.group(1)
+  techniquedir = match.group(2)
   script = basedir + '/scripts/technique-files'
   if not os.path.isfile(script):
     logfail("***** ERROR: You must be in rudder-technique repository")
@@ -1025,9 +1026,8 @@ def technique(version, message):
   shell("git add " + last_version + "/metadata.xml", "Adding deprecated info to old version")
 
   # changelog
-  l = locale.setlocale(locale.LC_ALL, 'C')
+  locale.setlocale(locale.LC_TIME, 'C')
   date = time.strftime("%c")
-  locale.setlocale(locale.LC_ALL, l)
   user = shell("git config --get user.name", keep_output=True).strip()
   mail = shell("git config --get user.email", keep_output=True).strip()
   changelog = " -- " + user + " <" + mail + "> " + date + "\n"
@@ -1035,6 +1035,12 @@ def technique(version, message):
   changelog += "  ** " + message + "\n"
   with open(version + "/changelog", "a") as fd:
     fd.write(changelog)
+
+  # maintained technique list
+  insert_line(basedir + "/maintained-techniques",
+              techniquedir + "/" + last_version,
+              techniquedir + "/" + version)
+  shell("git add " + basedir + "/maintained-techniques", "Adding maintained-techniques")
 
   # commit
   shell("git add " + version, "Adding next version")
