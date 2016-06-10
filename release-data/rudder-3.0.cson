@@ -5,7 +5,7 @@ release = "3.0"
 released = true
 
 # Is this version currently supported?
-supported = true
+supported = false
 
 # 16th February 2015
 release-date = "2015-02-16"
