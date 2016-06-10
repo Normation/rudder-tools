@@ -7,9 +7,9 @@ Pull-request quality tool.
 You need a configuration file, if you don't have one, the tool will create one for you at first run.
 
 Usage:
-        qa -h|--help
-        qa merge all
-        qa merge <repo> 
+        quality-assistant -h|--help
+        quality-assistant merge all
+        quality-assistant merge <repo> 
 """
 
 from __future__ import print_function

@@ -19,7 +19,7 @@ class PR:
     match = re.search(r'.*?://.*?/(.*?)/(.*?)/pull/(\d+)', url)
     if match:
       self.id = match.group(3)
-      self.repo = match.group(2)
+      self.repo_name = match.group(2)
       self.upstream = match.group(1)
     else:
       raise ValueError("BUG: not a valid PR URL")
@@ -27,7 +27,7 @@ class PR:
   def is_labeled(self, label):
     """Tell if the pull request is labeled with label"""
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/labels"
-    label_list = github_request(url, None, self.url, repo=self.repo)
+    label_list = github_request(url, None, self.url, repo=self.repo_name)
     labels = [x['name'] for x in label_list]
     return label in labels
 
@@ -35,7 +35,7 @@ class PR:
     if self.info is not None:
       return
     url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
-    self.info = github_request(url, None, self.url, repo=self.repo)
+    self.info = github_request(url, None, self.url, repo=self.repo_name)
 
   def repo(self):
     self._request_pr()
@@ -52,12 +52,12 @@ class PR:
   def comment(self, comment):
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
     data = { "body": comment }
-    github_request(url, "Posting comment", self.url, json.dumps(data), repo=self.repo)
+    github_request(url, "Posting comment", self.url, json.dumps(data), repo=self.repo_name)
 
   def label(self, label):
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/labels"
     data = [ label ]
-    github_request(url, "Changing label", self.url, json.dumps(data), repo=self.repo)
+    github_request(url, "Changing label", self.url, json.dumps(data), repo=self.repo_name)
 
 
 # Get github user as used by the hub command
