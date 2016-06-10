@@ -66,7 +66,7 @@ class Issue:
     if not issue:
       print("Not found!")
       logfail("***** ERROR: ticket not found. Exiting.")
-      if not force:
+      if not Config.force:
         exit(2)
     else:
       print("Done")
@@ -75,20 +75,20 @@ class Issue:
     if issue['tracker'] in Config.REDMINE_META_TRACKERS:
       print("This is a question ticket! You cannot make a pull request on this ticket.")
       logfail("***** ERROR: This is a question ticket. Exiting.")
-      if not force:
+      if not Config.force:
         exit(2)
 
     # Check ticket status
     if self.must_be_open and issue['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
       print("This ticket is closed! You cannot make a pull request on this ticket.")
       logfail("***** ERROR: Closed ticket. Exiting.")
-      if not force:
+      if not Config.force:
         exit(2)
 
     if 'fixed_version' not in issue:
       print("This ticket has no target version! I can't make a branch against its repository.")
       logfail("***** ERROR: Missing target version. Exiting.")
-      if not force:
+      if not Config.force:
         exit(2)
 
     self.data = issue

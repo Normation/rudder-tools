@@ -281,7 +281,7 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   if not ticket:
     print("Not found!")
     logfail("***** ERROR: ticket not found. Exiting.")
-    if not force:
+    if not Config.force:
       exit(2)
   else:
     print("Done")
@@ -290,20 +290,20 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   if ticket['tracker'] in Config.REDMINE_META_TRACKERS:
     print("This is a question ticket! You cannot make a pull request on this ticket.")
     logfail("***** ERROR: This is a question ticket. Exiting.")
-    if not force:
+    if not Config.force:
       exit(2)
 
   # Check ticket status
   if must_be_open and ticket['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
     print("This ticket is closed! You cannot make a pull request on this ticket.")
     logfail("***** ERROR: Closed ticket. Exiting.")
-    if not force:
+    if not Config.force:
       exit(2)
 
   if 'fixed_version' not in ticket:
     print("This ticket has no target version! I can't make a branch against its repository.")
     logfail("***** ERROR: Missing target version. Exiting.")
-    if not force:
+    if not Config.force:
       exit(2)
 
   # TODO check assignment ? project ?
@@ -364,7 +364,7 @@ def clone_ticket(info, version, new_title, bug=False):
   ret = requests.post(Config.REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 201:
     logfail("Ticket clone error: " + ret.reason)
-    if not force:
+    if not Config.force:
       exit(3)
   return ret.json()['issue']
 
@@ -407,7 +407,7 @@ def update_ticket_version(info, version):
   if ret.status_code != 200:
     logfail("Ticket Update error: " + ret.reason)
     print(ret.text)
-    if not force:
+    if not Config.force:
       exit(3)
   info['version'] = get_version( { 'fixed_version': final_version } )
 
@@ -456,7 +456,7 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
   if ret.status_code != 200:
     logfail("Ticket Update error: " + ret.reason)
     print(ret.text)
-    if not force:
+    if not Config.force:
       exit(3)
 
 
@@ -481,7 +481,7 @@ def ticket_to_in_progress(info, message=None):
       if ret.status_code != 200:
         logfail("Ticket Update error: " + ret.reason)
         print(ret.text)
-        if not force:
+        if not Config.force:
           exit(3)
     else:
       print("You should update the ticket status here " + Config.REDMINE_API_URL + "/issues/" + str(info['id']))
@@ -731,7 +731,7 @@ def create_pr(master_branch, info, message):
   else:
     logfail("Unkown error occured in create PR")
 
-  if not force:
+  if not Config.force:
     exit(16)
   else:
     return None
@@ -1400,7 +1400,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False):
   if not pr.is_labeled(Config.PR_VALIDATED_LABEL):
     print("This PR is not labeled '" + Config.PR_VALIDATED_LABEL + "' You should not merge it.")
     logfail("***** ERROR: PR is not validated. Exiting.")
-    if not force:
+    if not Config.force:
       exit(15)
 
   # get merge info
@@ -1574,7 +1574,7 @@ if __name__ == "__main__":
       exit(10)
 
   # Force argument is a global variables
-  force = arguments['-f'] or arguments['--force']
+  Config.force = arguments['-f'] or arguments['--force']
 
   if not arguments['clone']: # this is the only exception
     # check repository and get common info
