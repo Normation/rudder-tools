@@ -125,7 +125,7 @@ def github_call(url, post_data=None):
   if ret.status_code < 200 or ret.status_code >= 300:
     logfail("Github query error " + ret.reason)
     print(ret.text)
-    if not force:
+    if not Config.force:
       exit(12)
 
   # return result

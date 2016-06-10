@@ -16,8 +16,10 @@ class Config:
   """Pseudo class used to share global configuration"""
   # Other values are read from this file by read_configuration()
   CONFIG_FILE = "~/.rudder-dev"
-  # Default error template
+  # Default error template (needed by config file parsing)
   ERROR_TPL = "\033[1;31m{}\033[0m"
+  # Default force mode (needed because not necessary set)
+  force = False
 
 
 ###
@@ -42,7 +44,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     if comment is None:
       print(command)
     logfail("*** COMMAND ERROR " + str(retcode))
-    if not force:
+    if not Config.force:
       exit(1)
   if not fail_exit:
     return (retcode, output)
