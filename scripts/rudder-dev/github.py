@@ -16,7 +16,7 @@ class PR:
   def __init__(self, url):
     self.url = url
     self.info = None
-    match = re.search(r'.*?://.*?/(.*?)/(.*?)/pull/(\d+)(?:.*)?', url)
+    match = re.search(r'.*?://.*?/(.*?)/(.*?)/pull/(\d+)', url)
     if match:
       self.id = match.group(3)
       self.repo = match.group(2)
