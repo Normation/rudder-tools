@@ -9,7 +9,9 @@ if 'Config' not in vars():
       
 Config.HUB_CONFIG_FILE = "~/.config/hub"
 Config.PR_VALIDATED_LABEL = "Ready for merge"
-Config.BOT_CANNOT_MERGE = "qa: Can't merge"
+Config.PR_VALIDATED_COLOR = "0e8a16"
+Config.BOT_CANNOT_MERGE_LABEL = "qa: Can't merge"
+Config.BOT_CANNOT_MERGE_COLOR = "ededed"
 
 class PR:
   """A Pull Request"""
@@ -111,22 +113,29 @@ def github_request(api_url, comment, pr_url=None, post_data=None, repo=None):
 
   return github_call(url, post_data)
 
-def github_call(url, post_data=None):
+def github_call(url, post_data=None, patch_data=None, fail_ok=False):
   token = get_github_token()
   # make query
   if post_data is not None:
     if sys.version_info[0] == 2:
       post_data = post_data.encode('utf-8')
     ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data)
+  elif patch_data is not None:
+    if sys.version_info[0] == 2:
+      patch_data = patch_data.encode('utf-8')
+    ret = requests.patch(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=patch_data)
   else:
     ret = requests.get(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' })
 
   # process output
   if ret.status_code < 200 or ret.status_code >= 300:
-    logfail("Github query error " + ret.reason)
-    print(ret.text)
-    if not Config.force:
-      exit(12)
+    if fail_ok:
+      return None
+    else:
+      logfail("Github query error " + ret.reason)
+      print(ret.text)
+      if not force:
+        exit(12)
 
   # return result
   return ret.json()

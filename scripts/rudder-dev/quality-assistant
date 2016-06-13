@@ -9,7 +9,9 @@ You need a configuration file, if you don't have one, the tool will create one f
 Usage:
         quality-assistant -h|--help
         quality-assistant merge all
-        quality-assistant merge <repo> 
+        quality-assistant merge <repo>
+        quality-assistant autolabel all
+        quality-assistant autolabel <repo>
 """
 
 from __future__ import print_function
@@ -20,6 +22,7 @@ from github import *
 
 import docopt # apt-get install python-docopt || pip install docopt
 from pprint import pprint
+
 
 def clean_repo(repo):
   redirect = ""
@@ -49,7 +52,7 @@ def repo_merge(repo):
   data = github_call(url)
   for pr_info in data:
     labels = [l['name'] for l in pr_info['labels']]
-    if Config.BOT_CANNOT_MERGE in labels:
+    if Config.BOT_CANNOT_MERGE_LABEL in labels:
       continue
     clean_repo(repo)
     pr = PR(pr_info['html_url'])
@@ -62,7 +65,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
 rudder-dev merge """ + pr_info['html_url'] + """
 -- Your faithful QA"""
       pr.comment(comment)
-      pr.label(Config.BOT_CANNOT_MERGE)
+      pr.label(Config.BOT_CANNOT_MERGE_LABEL)
     else:
       # PR can be automatically merged
       pr=PR(pr_info['html_url'])
@@ -73,6 +76,32 @@ rudder-dev merge """ + pr_info['html_url'] + """
 def repo_merge_all():
   for repo in Config.REPOSITORIES:
     repo_merge(repo)
+
+
+def manage_label(repo, name, color):
+  get_url = "https://api.github.com/repos/Normation/{repo}/labels/{name}".format(repo=repo, name=name)
+  label = github_call(get_url, fail_ok=True)
+  if label is None:
+    # no such label, create it
+    create_url = "https://api.github.com/repos/Normation/{repo}/labels".format(repo=repo)
+    data = '{"name": "' + name + '", "color": "' + color + '" }'
+    print("- Creating label: " + name)
+    github_call(create_url, post_data=data)
+  else:
+    # check label color
+    if label['color'] != color:
+      data = '{"name": "' + name + '", "color": "' + color + '" }'
+      print("- Updating color of label: " + name)
+      github_call(get_url, patch_data=data)
+
+def autolabel(repo):
+  manage_label(repo, Config.BOT_CANNOT_MERGE_LABEL, Config.BOT_CANNOT_MERGE_COLOR)
+  manage_label(repo, Config.PR_VALIDATED_LABEL, Config.PR_VALIDATED_COLOR)
+
+def autolabel_all():
+  for repo in Config.REPOSITORIES:
+    print("Repo: " + repo)
+    autolabel(repo)
 
 
 if __name__ == "__main__":
@@ -88,6 +117,11 @@ if __name__ == "__main__":
     Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
     repo_merge_all()
   elif arguments['merge']:
-    repo = arguments['<repo>']
-    repo_merge(repo)
+    repo_merge(arguments['<repo>'])
+  elif arguments['autolabel'] and arguments['all']:
+    repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
+    Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
+    autolabel_all()
+  elif arguments['autolabel']:
+    autolabel(arguments['<repo>'])
 
