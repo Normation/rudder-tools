@@ -53,6 +53,24 @@ class Issue:
     self._get_info()
     return key in self.info
 
+  def _get_version(self, issue_info, error_fail=True):
+    """Extract a friendly version from an issue information"""
+    if 'fixed_version' not in issue_info:
+      if error_fail:
+        logfail("***** BUG: Can't extract version from #" + self.name)
+        exit(2)
+      else:
+        return None
+    detector = get_lifecycle()['redmine_version']
+    for k,v in detector:
+      if re.match(k, issue_info['fixed_version']['name']):
+        return (issue_info['fixed_version']['id'], re.sub(k, v, issue_info['fixed_version']['name']))
+    if error_fail:
+      logfail("***** BUG: Can't extract version from " + issue_info['fixed_version']['name'] + " in #" + self.name)
+      exit(2)
+    else:
+      return None
+
   def _get_info(self):
     """Get issue informations from redmine"""
     if self.info is not None:
@@ -97,7 +115,7 @@ class Issue:
     info = {}
     info['type'] = issue['tracker']['name']
     info['name'] = issue['subject']
-    info['version'] = get_version(issue)
+    (info['version_id'],info['version']) = self._get_version(issue)
     info['project_id'] = issue['project']['id']
     info['tracker_id'] = issue['tracker']['id']
     info['priority_id'] = issue['priority']['id']

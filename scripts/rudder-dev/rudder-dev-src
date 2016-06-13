@@ -251,6 +251,7 @@ def parse_ticket_id(ticket_id):
 
 
 # Get the version included in a ticket
+# Deprecated, use Issue['version'] or Issue._get_version()
 def get_version(ticket, error_fail=True):
   if 'fixed_version' not in ticket:
     if error_fail:
@@ -344,22 +345,21 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
 
 
 # clone a ticket in redmine making the new one a child of the original
-def clone_ticket(info, version, new_title, bug=False):
+def clone_ticket(issue, version_id, new_title, bug=False):
   new_info = {}
   for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
-    if i in info:
-      new_info[i] = info[i]
-  new_info['parent_issue_id'] = info['id']
+    if i in issue:
+      new_info[i] = issue[i]
+  new_info['parent_issue_id'] = issue['id']
   if bug:
     new_info['tracker_id'] = Config.BUG_TACKER_ID
-    new_info['description'] = "There was a bug in the resolution of #" + str(info['id'])
+    new_info['description'] = "There was a bug in the resolution of #" + issue.name
   if new_title is not None:
     if new_title.startswith('+'):
       new_info['subject'] += new_title.replace('+', ' ', 1)
     else:
       new_info['subject'] = new_title
-  all_versions_id = get_versions()[1]
-  new_info['fixed_version_id'] = all_versions_id[version]
+  new_info['fixed_version_id'] = version_id
   ticket_json = json.dumps({ 'issue': new_info })
   ret = requests.post(Config.REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
   if ret.status_code != 201:
@@ -554,11 +554,22 @@ def ask_username(project_id, trigraph):
 
 
 # Find a ticket id in a branch name
+# Deprecated: use issue_from_branch
 def ticket_from_branch(branch, must_be_open=True):
   match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
   if match:
     (ticket_id, internal) = parse_ticket_id(match.group(1))
     return get_ticket_info(ticket_id, internal, must_be_open)
+  else:
+    logfail("***** ERROR: This is not a ticket branch: " + branch)
+    exit(4)
+
+
+# Get an issue object from a branch name
+def issue_from_branch(branch, must_be_open=True):
+  match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
+  if match:
+    return Issue(match.group(1), must_be_open)
   else:
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
@@ -592,7 +603,7 @@ def get_versions():
   # list all versions in git
   lifecycle = get_lifecycle()
   if lifecycle['name'] == 'master_only':
-    return (['master'], {}) # clone/subtask will fail but everythong else will work
+    return (['master'], {}) # unknown version id wince master can match many versions
   git_version_list = []
   for line in os.popen("git branch --no-color --list -a"):
     m = re.match(lifecycle["detection"].format(Config.UPSTREAM_REPOSITORY), line)
@@ -1053,21 +1064,20 @@ def technique(version, message):
 def subtask(next_version, new_title, base=None, bug=False):
   # make a clone child ticket with next version
   if base is None:
-    info = ticket_from_branch(current_branch, False)
+    issue = issue_from_branch(current_branch, False)
   else:
-    (ticket_id, internal) = parse_ticket_id(base)
-    info = get_ticket_info(ticket_id, internal, False)
+    issue = Issue(base, False)
   if next_version is None:
     if bug:
-      next_version = info['version']
+      next_version_id = issue['version_id']
     else:
-      next_version = get_next_version(info['version'])
+      next_version = get_next_version(issue['version'])
       all_versions = get_versions()[0]
       answer = ""
       while answer not in all_versions:
         print("You didn't specify --bug nor a specific version")
         print("I assume that you are writing a patch for merging into next version")
-        print("Current version: " + info['version'] + " Next version? ", end="")
+        print("Current version: " + issue['version'] + " Next version? ", end="")
         print(all_versions, end="")
         print(" (default " + next_version + "): ", end="")
         sys.stdout.flush() # to display previous unfinished line
@@ -1075,10 +1085,11 @@ def subtask(next_version, new_title, base=None, bug=False):
         if answer == "":
           answer = next_version
       next_version = answer
+      next_version_id = get_versions()[1][next_version]
   print("Next version will be " + str(next_version))
-  print("Cloning ticket #" + str(info['id']))
-  ticket = clone_ticket(info, next_version, new_title, bug)
-  print(" > ticket #" + str(ticket['id']) + " created " + Config.REDMINE_API_URL + "/issues/" + str(ticket['id']))
+  print("Cloning ticket #" + issue.name)
+  ticket = clone_ticket(issue, next_version_id, new_title, bug)
+  print(" > ticket #" + issue.name + " created " + Config.REDMINE_API_URL + "/issues/" + str(ticket['id']))
 
   # test merge status
   pull(next_version)
