@@ -59,7 +59,7 @@ def repo_merge(repo):
       # PR must be manually merged
       comment="""This PR is not mergeable to upper versions.
 Since it is "Ready for merge" you must merge it by yourself using the following command:
-rudder-dev merge """ + pr_info['html_url'] + """
+`rudder-dev merge """ + pr_info['html_url'] + """`
 -- Your faithful QA"""
       pr.comment(comment)
       pr.label(Config.BOT_CANNOT_MERGE)
