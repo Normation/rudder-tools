@@ -70,7 +70,6 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
       # PR can be automatically merged
       pr=PR(pr_info['html_url'])
       shell(command + redirect, "Automatically merging PR " + pr_info['html_url'])
-      pr.comment("""I merge and upmerged your PR automatically -- Your faithful QA""")
 
 
 def repo_merge_all():
