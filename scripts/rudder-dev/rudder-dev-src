@@ -350,7 +350,7 @@ def clone_ticket(issue, version_id, new_title, bug=False):
   for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
     if i in issue:
       new_info[i] = issue[i]
-  new_info['parent_issue_id'] = issue['id']
+  new_info['parent_issue_id'] = issue.id
   if bug:
     new_info['tracker_id'] = Config.BUG_TACKER_ID
     new_info['description'] = "There was a bug in the resolution of #" + issue.name
@@ -1069,6 +1069,7 @@ def subtask(next_version, new_title, base=None, bug=False):
     issue = Issue(base, False)
   if next_version is None:
     if bug:
+      next_version = issue['version']
       next_version_id = issue['version_id']
     else:
       next_version = get_next_version(issue['version'])
@@ -1089,11 +1090,11 @@ def subtask(next_version, new_title, base=None, bug=False):
   print("Next version will be " + str(next_version))
   print("Cloning ticket #" + issue.name)
   ticket = clone_ticket(issue, next_version_id, new_title, bug)
-  print(" > ticket #" + issue.name + " created " + Config.REDMINE_API_URL + "/issues/" + str(ticket['id']))
+  print(" > ticket #" + str(ticket['id']) + " created " + Config.REDMINE_API_URL + "/issues/" + str(ticket['id']))
 
   # test merge status
   pull(next_version)
-  logs = shell("git log --no-merges '--grep=Fixes #" + str(info['id']) + "' --oneline", "Looking for ticket commit in " + next_version, keep_output=True)
+  logs = shell("git log --no-merges '--grep=Fixes #" + str(issue.id) + "' --oneline", "Looking for ticket commit in " + next_version, keep_output=True)
 
   # rudder-dev branch
   if info['internal']:
