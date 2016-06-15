@@ -134,7 +134,7 @@ def github_call(url, post_data=None, patch_data=None, fail_ok=False):
     else:
       logfail("Github query error " + ret.reason)
       print(ret.text)
-      if not force:
+      if not Config.force:
         exit(12)
 
   # return result
