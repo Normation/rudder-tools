@@ -23,6 +23,17 @@ from github import *
 import docopt # apt-get install python-docopt || pip install docopt
 from pprint import pprint
 
+try:
+  import urllib3
+  urllib3.disable_warnings()
+except:
+  pass
+
+try:
+  requests.packages.urllib3.disable_warnings()
+except:
+  pass
+
 
 def clean_repo(repo):
   redirect = ""
