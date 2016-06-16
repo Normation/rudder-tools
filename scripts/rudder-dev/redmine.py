@@ -151,11 +151,53 @@ class Issue:
       id = 'i' + str(self.id)
     else:
       id = str(self.id)
-    if info['private']:
+    if self['private']:
       branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/_"
     else:
       branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
     return branch_name
+
+  # Change ticket state and comment it
+  def update(self, user_id=None, pr_url=None, message=None, status=None):
+    # Create note content
+    note = None
+    if pr_url is not None:
+      note = "PR " + pr_url
+    if message is not None:
+      if note is None:
+        note = message
+      else:
+        note += "\n" + message
+  
+    ticket_info = { 'issue': {} }
+    if can_modify_issues(self['project_id']):
+      # fill ticket data with developer available content
+      if status is not None:
+        ticket_info['issue']['status_id'] = status
+      if user_id is not None:
+        ticket_info['issue']['assigned_to_id'] = user_id
+      if note is not None:
+        ticket_info['issue']['notes'] = note
+      if pr_url is not None:
+        ticket_info['issue']['custom_fields'] = [ { 'id': Config.CUSTOM_FIELD_PR, 'value': pr_url } ]
+  
+    else:
+      # just append the note to ticket, if any
+      if note is None:
+        return
+      else:
+        ticket_info['issue']['notes'] = note
+  
+    # call the api
+    url = Config.REDMINE_API_URL + "/issues/" + str(self.id) + ".json"
+    ticket_json = json.dumps(ticket_info)
+    ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+    if ret.status_code != 200:
+      logfail("Ticket Update error: " + ret.reason)
+      print(ret.text)
+      if not Config.force:
+        exit(3)
+
 
 def issue_from_branch(branch):
   """Create issue object from given branch"""
