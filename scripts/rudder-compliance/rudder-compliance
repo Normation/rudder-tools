@@ -1,0 +1,216 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Name:         rudder-compliance
+# Synopsis:     Get compliance output Rules and Directives
+# Requirements: requests Python module
+# Author:       Matthieu Cerda <matthieu.cerda@normation.com>
+#
+
+# Imports - builtins
+import argparse
+import json
+import csv
+import sys
+
+# Imports - external
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning, InsecurePlatformWarning, SNIMissingWarning
+
+# Configuration - BEGIN
+api_version    = "latest"
+api_url        = "https://rudder.example.com/rudder/api"
+api_token      = "dTxvl4eL8p3YqvwefVbaJLdy8DyEt7Vw"
+validate_https = False
+# Configuration - END
+
+# Global variables
+headers                      = {"X-API-Token": api_token}
+compliance_url               = "%s/%s/compliance/rules" % (api_url, api_version)
+directives_url               = "%s/%s/directives" % (api_url, api_version)
+rules_url                    = "%s/%s/rules" % (api_url, api_version)
+csv_file                     = "/tmp/compliance.csv"
+
+def write_to_csv(file, entries):
+
+    with open(file, 'wb') as csvfile:
+        csv_output = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for entry in entries:
+            csv_output.writerow(entry)
+
+def id_to_name(rules, rule):
+
+    name = 'Unknown'
+
+    for i in rules:
+        if i['id'] == rule:
+            name = i['displayName']
+
+    return name
+
+def directives_compliance(compliance_in, wanted_directives, csv_output):
+
+    # Call the API to get the complete list of directive definitions
+    request    = requests.get(directives_url, headers=headers, verify=validate_https)
+    directives = json.loads(request.content)["data"]["directives"]
+
+    # Call the API to get the complete list of rule definitions
+    request           = requests.get(rules_url, headers=headers, verify=validate_https)
+    rules             = json.loads(request.content)["data"]["rules"]
+
+    directives_compliance_input  = []
+    directives_compliance_output = {}
+
+    csv_content = [ [ 'rule_id', 'directive_id', 'compliance' ] ]
+
+    if len(wanted_directives) != 0:
+        # Store directives matching the wanted ones in directives_compliance_input
+        for directive in directives:
+            if directive['id'] in wanted_directives:
+                directives_compliance_input.append(directive)
+    else:
+        # Filter active rules: remove disabled ones
+        for directive in directives:
+
+            if not directive['isEnabled']:
+                continue
+
+            directives_compliance_input.append(directive)
+
+    # Store result in directives_compliance_output
+    for compliance in sorted(compliance_in):
+
+        rule = compliance['id']
+
+        for directive in compliance['directives']:
+
+            for wantedir in directives_compliance_input:
+
+                if directive['id'] == wantedir['id']:
+
+                    if not rule in directives_compliance_output:
+                        directives_compliance_output[rule] = {}
+
+                    directives_compliance_output[rule][directive['id']] = directive['compliance']
+
+    # Human-readable output
+    for i in sorted(directives_compliance_output):
+        rule_name = id_to_name(rules, i)
+        print '* Rule ' + rule_name
+        for j in directives_compliance_output[i]:
+            directive_name       = id_to_name(directives, j)
+            directive_compliance = directives_compliance_output[i][j]
+
+            print '** ' + directive_name + ': ' + str(directive_compliance) + '%'
+
+            csv_content.append([ i, j, directive_compliance ])
+
+        print ''
+
+    # CSV output
+    if csv_output != None:
+        write_to_csv(csv_output, csv_content)
+
+def rules_compliance(compliance_in, wanted_rules, csv_output):
+
+    # Call the API to get the complete list of rule definitions
+    request           = requests.get(rules_url, headers=headers, verify=validate_https)
+    rules             = json.loads(request.content)["data"]["rules"]
+
+    rules_compliance_input  = []
+    rules_compliance_output = []
+
+    csv_content = [ [ 'rule_id', 'compliance' ] ]
+
+    if len(wanted_rules) != 0:
+        # Store rules matching the wanted ones in rules_compliance_input
+        for rule in rules:
+            if rule['id'] in wanted_rules:
+                rules_compliance_input.append(rule)
+    else:
+        # Filter active rules: remove disabled ones
+        for rule in rules:
+
+            if not rule['enabled']:
+                continue
+
+            rules_compliance_input.append(rule)
+
+    # Store result in rules_compliance_output
+    for rule in sorted(rules_compliance_input):
+
+        id         = rule['id']
+        name       = rule['displayName']
+        compliance = 'NaN'
+
+        for rule_compliance in compliance_in:
+            if rule_compliance['id'] == rule['id']:
+                compliance = rule_compliance['compliance']
+
+        rules_compliance_output.append([id, compliance])
+
+    # Human-readable output
+    for i in rules_compliance_output:
+        print "* Rule " + id_to_name(rules, i[0]) + ": " + str(i[1]) + '%'
+
+    # CSV output
+    if csv_output != None:
+        csv_content += rules_compliance_output
+        write_to_csv(csv_output, csv_content)
+
+if __name__ == "__main__":
+
+    # Parse arguments
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     description="""\
+Get the compliance of Directives or Rules, and optionnally output it in the CSV format.
+
+Example: %(prog)s --csv /tmp/rules.csv --rules : Will output all the rules compliance to stdout and /tmp/rules.csv
+""")
+
+    parser.add_argument('-c', '--csv', nargs='?', help='Output to a CSV file (defaults to ' + csv_file + ')' )
+    parser.add_argument('-d', '--directives', nargs='*', help='get directives compliance')
+    parser.add_argument('-r', '--rules', nargs='*', help='get rules compliance')
+    args = vars(parser.parse_args())
+
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(1)
+
+    # Disable warnings about using self-signed certificates
+    #  deprecated Python versions
+    # if certificate validation has been disabled.
+    if not validate_https:
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+    # Those might be desirable on old Python versions (SLES 11, EL 6, ...)
+    #requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
+    #requests.packages.urllib3.disable_warnings(SNIMissingWarning)
+
+    # Override the default CSV file if needed
+    if args['csv'] != None:
+        if len(args['csv']) >= 1:
+            csv_file = args['csv']
+    else:
+        csv_file = None
+
+    # Call the API to get the complete list of rule compliances
+    request        = requests.get(compliance_url + "?level=2", headers=headers, verify=validate_https)
+    compliance_in  = json.loads(request.content)["data"]["rules"]
+    compliance_out = []
+
+    # If Directive compliance was asked for
+    if args['directives'] != None:
+        directives_compliance(compliance_in, args['directives'], csv_file)
+
+    # Or if Rule compliance was asked for
+    elif args['rules'] != None:
+        rules_compliance(compliance_in, args['rules'], csv_file)
+
+    # If neither has matched, offer some help and exit
+    else:
+        parser.print_help()
+        print '\nERROR: At least one compliance type must be asked for.'
+        sys.exit(1)
+
+    sys.exit(0)
