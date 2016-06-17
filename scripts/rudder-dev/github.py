@@ -61,6 +61,10 @@ class PR:
     data = [ label ]
     github_request(url, "Changing label", self.url, json.dumps(data), repo=self.repo_name)
 
+  def unlabel(self, label):
+    url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/labels/"+label
+    github_request(url, "Removinging label", self.url, json.dumps(data), repo=self.repo_name, method="DELETE")
+
 
 # Get github user as used by the hub command
 def get_github_user():
@@ -90,7 +94,7 @@ def get_github_token(can_fail=False):
 
 
 # query github
-def github_request(api_url, comment, pr_url=None, post_data=None, repo=None):
+def github_request(api_url, comment, pr_url=None, post_data=None, repo=None, method=None):
   pr_id = None
   if pr_url is not None:
     # Validate PR url
@@ -111,21 +115,28 @@ def github_request(api_url, comment, pr_url=None, post_data=None, repo=None):
     print(comment)
     print(" $ api-call [...] " + url)
 
-  return github_call(url, post_data)
+  return github_call(url, post_data, method=method)
 
-def github_call(url, post_data=None, patch_data=None, fail_ok=False):
+def github_call(url, post_data=None, fail_ok=False, method=None):
   token = get_github_token()
   # make query
   if post_data is not None:
     if sys.version_info[0] == 2:
       post_data = post_data.encode('utf-8')
-    ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data)
-  elif patch_data is not None:
-    if sys.version_info[0] == 2:
-      patch_data = patch_data.encode('utf-8')
-    ret = requests.patch(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=patch_data)
-  else:
+    if method is None or method == "POST":
+      ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data)
+    elif method == "PATCH":
+      ret = requests.patch(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data)
+    else:
+      print("Unknown method call with data in github_call " + method)
+      exit(1)
+  elif method is None or method == "GET":
     ret = requests.get(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' })
+  elif method == "DELETE":
+    ret = requests.delete(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' })
+  else:
+    print("Unknown method call in github_call " + method)
+    exit(1)
 
   # process output
   if ret.status_code < 200 or ret.status_code >= 300:

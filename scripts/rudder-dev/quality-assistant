@@ -102,7 +102,7 @@ def manage_label(repo, name, color):
     if label['color'] != color:
       data = '{"name": "' + name + '", "color": "' + color + '" }'
       print("- Updating color of label: " + name)
-      github_call(get_url, patch_data=data)
+      github_call(get_url, post_data=data, method="PATCH")
 
 def autolabel(repo):
   manage_label(repo, Config.BOT_CANNOT_MERGE_LABEL, Config.BOT_CANNOT_MERGE_COLOR)

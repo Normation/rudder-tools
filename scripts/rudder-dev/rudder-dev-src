@@ -946,7 +946,7 @@ def stash_info():
     print("Previous work in progress has been found in the stash, " + Config.ERROR_TPL.format("I unstashed it") + ", to hide it again, use git stash save")
 
   if not_unstashed:
-    print("Previous work in progress has been found in the stash, " + ERROR_TPL.format("I left it stashed") + ", to unstash it, use git stash pop")
+    print("Previous work in progress has been found in the stash, " + Config.ERROR_TPL.format("I left it stashed") + ", to unstash it, use git stash pop")
 
 
 ###
@@ -1098,7 +1098,7 @@ def subtask(next_version, new_title, base=None, bug=False):
   logs = shell("git log --no-merges '--grep=Fixes #" + str(issue.id) + "' --oneline", "Looking for ticket commit in " + next_version, keep_output=True)
 
   # rudder-dev branch
-  if info['internal']:
+  if issue.internal:
     ticket_id = 'i'+str(ticket['id'])
   else:
     ticket_id = str(ticket['id'])
@@ -1161,31 +1161,43 @@ def commit(trigraph=None, message=None):
 
 # amend commit, push -f, comment PR
 def amend(comment=None):
-  info = ticket_from_branch(current_branch)
+  issue = issue_from_branch(current_branch)
+
+  # Remove labels to avoid a direct merge by quality-assistant
+  if 'pr' in issue and isue['pr'] != '':
+    pr = PR(issue['pr'])
+    pr.unlabel(Config.PR_VALIDATED_LABEL)
+    pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
   
   # commit over last commit and push
-  if info['private']:
+  if issue['private']:
     title = ''
   else:
-    title = info['name'].replace("\"", "\\\"")
-  commit_push(current_branch, "Fixes #" + str(info['id']) + ": " + title, True)
+    title = issue['name'].replace("\"", "\\\"")
+  commit_push(current_branch, "Fixes #" + str(issue.id) + ": " + title, True)
 
   # reassign ticket
-  if 'last_assignee' in info:
-    ticket_to_TR(info, info['last_assignee'])
+  if 'last_assignee' in issue:
+    issue.update(user_id=issue['last_assignee'])
 
   # Message on PR if there is one
-  if 'pr' in info and info['pr'] != '':
-    update_pr(info['pr'], "Commit modified", comment)
-    print("Done, you can see the PR here: " + info['pr']) 
+  if 'pr' in issue and isue['pr'] != '':
+    update_pr(issue['pr'], "Commit modified", comment)
+    print("Done, you can see the PR here: " + issue['pr']) 
   else:
     print("No PR found.")
 
 
 # rebase, push -f, comment PR
 def rebase(comment=None, base=None):
-  info = ticket_from_branch(current_branch)
+  issue = issue_from_branch(current_branch)
 
+  # Remove labels to avoid a direct merge by quality-assistant
+  if 'pr' in issue and issue['pr'] != '':
+    pr = PR(issue['pr'])
+    pr.unlabel(Config.PR_VALIDATED_LABEL)
+    pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
+  
   # fetch before rebasing
   if base is not None:
     if re.match(r'^.\d*$', base):
@@ -1197,7 +1209,7 @@ def rebase(comment=None, base=None):
   else:
     # base branch from upstream repository
     shell("git fetch --force " + Config.UPSTREAM_REPOSITORY, "Fetching upstream " + Config.UPSTREAM_REPOSITORY)
-    origin_branch = branch_from_version(info['version'])
+    origin_branch = branch_from_version(issue['version'])
     branch_name = Config.UPSTREAM_REPOSITORY + "/" + origin_branch
 
   # First rebase without commits from source branch
@@ -1205,12 +1217,12 @@ def rebase(comment=None, base=None):
   with NamedTemporaryFile(delete=False) as tmpscript:
     script = """#!/bin/sh
 perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
-""" % { "ticket": info['id']}
+""" % { "ticket": issue['id']}
     tmpscript.write(script.encode("utf-8"))
     tmpscript.close()
     os.system("chmod +x " + tmpscript.name)
     # If it fails, let the interactive rebase try to fix it
-    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + info['id'] + "\" lines)", fail_exit=False)
+    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + issue['id'] + "\" lines)", fail_exit=False)
     os.unlink(tmpscript.name)
 
 
@@ -1221,13 +1233,13 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
   shell("git push --force " + Config.OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
   # reassign ticket
-  if 'last_assignee' in info:
-    ticket_to_TR(info, info['last_assignee'])
+  if 'last_assignee' in issue:
+    issue.update(user_id=issue['last_assignee'])
 
   # Message on PR if there is one
-  if 'pr' in info and info['pr'] != '':
-    update_pr(info['pr'], "PR rebased", comment)
-    print("Done, you can see the PR here: " + info['pr'])
+  if 'pr' in issue and issue['pr'] != '':
+    update_pr(issue['pr'], "PR rebased", comment)
+    print("Done, you can see the PR here: " + issue['pr'])
   else:
     print("No PR found.")
 
