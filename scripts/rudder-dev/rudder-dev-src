@@ -1164,7 +1164,7 @@ def amend(comment=None):
   issue = issue_from_branch(current_branch)
 
   # Remove labels to avoid a direct merge by quality-assistant
-  if 'pr' in issue and isue['pr'] != '':
+  if 'pr' in issue and issue['pr'] != '':
     pr = PR(issue['pr'])
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
@@ -1181,7 +1181,7 @@ def amend(comment=None):
     issue.update(user_id=issue['last_assignee'])
 
   # Message on PR if there is one
-  if 'pr' in issue and isue['pr'] != '':
+  if 'pr' in issue and issue['pr'] != '':
     update_pr(issue['pr'], "Commit modified", comment)
     print("Done, you can see the PR here: " + issue['pr']) 
   else:

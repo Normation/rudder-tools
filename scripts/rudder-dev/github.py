@@ -62,8 +62,12 @@ class PR:
     github_request(url, "Changing label", self.url, json.dumps(data), repo=self.repo_name)
 
   def unlabel(self, label):
-    url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/labels/"+label
-    github_request(url, "Removinging label", self.url, json.dumps(data), repo=self.repo_name, method="DELETE")
+    # We need to check if the label exists before removing it
+    get_labels_url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/labels"
+    existing_labels = github_request(get_labels_url, "Getting labels", self.url, None, self.repo_name, "GET")
+    if label in [ lab["name"] for lab in existing_labels]:
+      remove_label_url = get_labels_url+"/"+label
+      github_request(remove_label_url, "Removing label", self.url, None, self.repo_name, "DELETE")
 
 
 # Get github user as used by the hub command
