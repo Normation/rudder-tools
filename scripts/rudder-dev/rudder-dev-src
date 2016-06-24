@@ -1217,12 +1217,12 @@ def rebase(comment=None, base=None):
   with NamedTemporaryFile(delete=False) as tmpscript:
     script = """#!/bin/sh
 perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
-""" % { "ticket": issue['id']}
+""" % { "ticket": str(issue.id)}
     tmpscript.write(script.encode("utf-8"))
     tmpscript.close()
     os.system("chmod +x " + tmpscript.name)
     # If it fails, let the interactive rebase try to fix it
-    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + issue['id'] + "\" lines)", fail_exit=False)
+    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + str(issue.id) + "\" lines)", fail_exit=False)
     os.unlink(tmpscript.name)
 
 
