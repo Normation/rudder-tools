@@ -151,10 +151,17 @@ def get_hub(query):
   return ret.json()
 
 
+# extend issue with info on PR since github does return
+# all data available in any of the queries
+def pr_info(issue):
+  info = get_hub(issue['pull_request']['url'])
+  issue.update(info)
+  return issue
+
 def my_prs():
   pulls = get_hub('/orgs/Normation/issues?filter=created')
   # p['title'], p['pull_request']['html_url'], p['pull_request']['url']
-  return [ get_hub(p['pull_request']['url']) for p in pulls if 'pull_request' in p ]
+  return [ pr_info(p) for p in pulls if 'pull_request' in p ]
 
 
 def get_redmine_info(redmine, key):
@@ -215,6 +222,12 @@ if __name__ == "__main__":
   
   # My PR
   pulls = my_prs()
+  self_merge = [ { "label": p['title'], "url": p['html_url']}
+                 for p in pulls
+                 if 'labels' in p and "qa: Can't merge" in map(lambda x:x['name'], p['labels'])
+               ]
+  format_full("My need merging PR", self_merge)
+
   unmergeable = [ { "label": p['title'], "url": p['html_url']} for p in pulls if p['mergeable'] == False]
   format_full("My unmergeable PR", unmergeable)
 
