@@ -462,6 +462,7 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
 
 
 # change the ticket state to In progress
+# Deprecated: use Issue.ticket_to_in_progress()
 def ticket_to_in_progress(info, message=None):
   # set ticket status to "in progress"
   if Config.REDMINE_TOKEN is not None:
@@ -965,10 +966,22 @@ def create_branch(ticket, base=None):
     return
 
   # get ticket info
-  info = get_ticket_info(ticket_id, internal)
-  print("* Found " + info['type'] + " #" + str(info['id']) + ": " + info['name'])
-  print("* Target: " + info['version'])
-  print("* URL: " + Config.REDMINE_API_URL + "/issues/" + str(info['id']))
+  issue = Issue(base)
+  print("* Found " + issue['type'] + " #" + str(issue.id) + ": " + issue['name'])
+  print("* Target: " + issue['version'])
+  print("* URL: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
+
+  # Detect an existing PR
+  if 'pr' in Issue:
+    print("Warning, a pull request already exists for this issue!")
+    print("Do you want to create a new branch from scratch or take over existing code?")
+    print("Type 'c' to create or 't' to takeover [c]:", end='')
+    sys.stdout.flush() # to display previous unfinished line
+    choice = sys.stdin.readline().strip().upper()
+    if choice == "T":
+      takeover(ticket)
+      return
+    # else continue
 
   # manage the original branch
   if base is not None:
@@ -981,14 +994,14 @@ def create_branch(ticket, base=None):
     shell("git checkout " + branch_name, "Checkouting the base branch " + branch_name)
   else:
     # Look for release branch and ckeckout its last version
-    pull(info['version'])
+    pull(issue['version'])
 
   # Create the branch
-  current_branch = branch_from_ticket(info)
+  current_branch = issue.branch_name()
   shell("git checkout -b " + current_branch, "Creating branch " + current_branch)
 
   # Set ticket's status
-  ticket_to_in_progress(info)
+  issue.ticket_to_in_progress()
 
   print("")
   print("# Now you can edit files")

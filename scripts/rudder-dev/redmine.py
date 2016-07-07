@@ -157,8 +157,8 @@ class Issue:
       branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
     return branch_name
 
-  # Change ticket state and comment it
   def update(self, user_id=None, pr_url=None, message=None, status=None):
+    """Change ticket state and comment it"""
     # Create note content
     note = None
     if pr_url is not None:
@@ -197,6 +197,32 @@ class Issue:
       print(ret.text)
       if not Config.force:
         exit(3)
+
+  def ticket_to_in_progress(self, message=None):
+    """Change the ticket state to In progress"""
+    if Config.REDMINE_TOKEN is not None:
+      if can_modify_issues(self['project_id']):
+        print("Changing status of ticket #" + str(self.id) + " to \"In progress\"")
+        user_id = get_redmine_uid()
+        ticket_info = {
+                'issue': {
+                    'status_id': Config.IN_PROGRESS_CODE,
+                    'assigned_to_id': user_id,
+                }
+        }
+        if message is not None:
+          ticket_info['issue']['notes'] = message
+        url = Config.REDMINE_API_URL + "/issues/" + str(issue.id) + ".json"
+        ticket_json = json.dumps(ticket_info)
+        ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
+        if ret.status_code != 200:
+          logfail("Ticket Update error: " + ret.reason)
+          print(ret.text)
+          if not Config.force:
+            exit(3)
+      else:
+        print("You should update the ticket status here " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
+
 
 
 def issue_from_branch(branch):
