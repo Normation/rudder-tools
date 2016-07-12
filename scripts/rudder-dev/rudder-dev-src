@@ -966,7 +966,7 @@ def create_branch(ticket, base=None):
     return
 
   # get ticket info
-  issue = Issue(base)
+  issue = Issue(ticket)
   print("* Found " + issue['type'] + " #" + str(issue.id) + ": " + issue['name'])
   print("* Target: " + issue['version'])
   print("* URL: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))

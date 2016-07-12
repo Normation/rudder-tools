@@ -128,7 +128,7 @@ class Issue:
       info['is_private'] = issue['is_private']
     if 'custom_fields' in issue:
       for field in issue['custom_fields']:
-        if field['id'] == self.custom_field_pr and 'value' in field:
+        if field['id'] == self.custom_field_pr and 'value' in field and field['value'] is not None and field['value'] != '':
           info['pr'] = field['value']
 
     # Get ticket's last assignment besides me
@@ -137,7 +137,7 @@ class Issue:
       for journal in issue['journals']:
         if 'details' in journal:
           for detail in journal['details']:
-            if detail['name'] == 'assigned_to_id' and 'old_value' in detail:
+            if detail['name'] == 'assigned_to_id' and 'old_value' in detail and detail['old_value'] is not None and detail['old_value'] != '':
               if int(detail['old_value']) != my_id:
                 info['last_assignee'] = int(detail['old_value'])
 
@@ -212,7 +212,7 @@ class Issue:
         }
         if message is not None:
           ticket_info['issue']['notes'] = message
-        url = Config.REDMINE_API_URL + "/issues/" + str(issue.id) + ".json"
+        url = Config.REDMINE_API_URL + "/issues/" + str(self.id) + ".json"
         ticket_json = json.dumps(ticket_info)
         ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
         if ret.status_code != 200:
