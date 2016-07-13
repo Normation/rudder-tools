@@ -972,7 +972,7 @@ def create_branch(ticket, base=None):
   print("* URL: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
 
   # Detect an existing PR
-  if 'pr' in Issue:
+  if 'pr' in issue:
     print("Warning, a pull request already exists for this issue!")
     print("Do you want to create a new branch from scratch or take over existing code?")
     print("Type 'c' to create or 't' to takeover [c]:", end='')
