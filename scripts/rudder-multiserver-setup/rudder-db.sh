@@ -20,9 +20,6 @@ if [ "${OS}" = "RHEL" ] ; then
   PG_CONF=/var/lib/pgsql/data
 elif [ "${OS}" = "UBUNTU" -o "${OS}" = "DEBIAN" ] ; then
         ${PM_COMMAND} rudder-agent rudder-reports postgresql-client
-        echo "Now fix the bug on /var/lib/dpkg/info/rudder-agent.postinst"
-        echo "Then run aptitude install"
-        bash -i
   PG_CONF=/etc/postgresql/*/main
 elif [ "${OS}" = "SLES" ] ; then
         ${PM_COMMAND} rudder-agent rudder-reports postgresql-client
