@@ -147,6 +147,8 @@ MERGE
     or when you want to merge a Pull-Request.
     "merge all" and "merge <first_branch>" are only valid within Rudder versioned repositories.
     Use --automatic to automatically validate merge comment.
+    There is a special strategy call upto_XXX where XXX is a version number.
+    When we reach this version, use -s ours to avoid upmerging to later branches.
     - detect the ticket id from current branch if there is no parameter 
     - checkout an pull last version or the PR branch for a given ticket
     - checkout an pull new version
@@ -157,6 +159,7 @@ MERGE
     ex: rudder-dev merge 3.0 master
     ex: rudder-dev merge all
     ex: rudder-dev merge 1234
+    ex: rudder-dev merge https://github.com/Normation/ncf/pull/388 -s upto_3.1
 
 FIND
     Call it to search thing within active branches.
@@ -1392,7 +1395,14 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False):
   pull(new)
   opts = ""
   if strategy is not None:
-    opts = " -s " + strategy
+    if strategy.startswith("upto_"):
+      match = re.match(r'upto_(.*)', strategy)
+      # Use "ours" strategy if are jut after the limit
+      if old == match.group(1):
+        opts = " -s ours"
+      # no need for option otherwise: either we are before -> default option, or we are after and there should be nothing to merge
+    else:
+      opts = " -s " + strategy
   if automatic:
     opts += " --no-edit "
   if test:
