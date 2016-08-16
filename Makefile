@@ -1,5 +1,5 @@
 # List all single files that must be published here
-PUBLISH := scripts/rudder-dev/rudder-dev scripts/rudder-setup/rudder-setup scripts/rudder-setup/ncf-setup
+PUBLISH := scripts/rudder-dev/rudder-dev scripts/rudder-setup/rudder-setup scripts/rudder-setup/ncf-setup scripts/technique-files
 
 # This target will be called when we want to build everything
 all: $(PUBLISH)
