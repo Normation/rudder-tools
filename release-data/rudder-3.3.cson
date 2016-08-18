@@ -24,7 +24,8 @@ architectures = {
                   "rhel-3":       [ "i386", "amd64" ],
                   "rhel-5":       [ "i386", "amd64" ],
                   "rhel-6":       [ "i386", "amd64" ],
-                  "rhel-7":       [ "amd64" ],
+                  # The i386 version is there for CentOS 32bit
+                  "rhel-7":       [ "i386", "amd64" ],
                   "sles-10sp3":   [ "i386", "amd64" ],
                   "sles-11"   :   [ "i386", "amd64" ],
                   "sles-12"   :   [ "amd64" ],
