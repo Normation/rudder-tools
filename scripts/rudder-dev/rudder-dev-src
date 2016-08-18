@@ -843,6 +843,13 @@ def insert_line(filename, regex, text):
 # fetch a branch from a PR
 def fetch_branch_from_pr(pr):
   branch_name = pr.remote_branch()
+  # compare remote_branch/repo_name with upstream/repo_name
+  remote_url = os.popen("git ls-remote --get-url " + Config.UPSTREAM_REPOSITORY)
+  match = re.match(r'.*/([^/]+)\.git$', remote_url)
+  if pr.repo_name != match.group(1):
+    logfail("The repository of this PR doesn't match your current repository name")
+    if not Config.force:
+      exit(17)
   # PR can be rebased, force fetch the branch
   shell("git fetch --update-head-ok " + pr.repo() + " +" + branch_name + ":" + branch_name + "_pr", "Fetching branch from remote " + pr.repo())
   return branch_name + "_pr"
@@ -858,6 +865,7 @@ def fetch_branch_from_issue(issue):
 
 
 # fetch a branch from a PR given in a ticket
+# Deprecated: use fetch_branch_from_issue
 def fetch_branch_from_ticket(ticket):
   # extract ticket info
   (ticket_id, internal) = parse_ticket_id(ticket)
