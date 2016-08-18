@@ -844,7 +844,7 @@ def insert_line(filename, regex, text):
 def fetch_branch_from_pr(pr):
   branch_name = pr.remote_branch()
   # compare remote_branch/repo_name with upstream/repo_name
-  remote_url = os.popen("git ls-remote --get-url " + Config.UPSTREAM_REPOSITORY)
+  remote_url = os.popen("git ls-remote --get-url " + Config.UPSTREAM_REPOSITORY).readline()
   match = re.match(r'.*/([^/]+)\.git$', remote_url)
   if pr.repo_name != match.group(1):
     logfail("The repository of this PR doesn't match your current repository name")
@@ -1645,7 +1645,7 @@ if __name__ == "__main__":
 
   if not arguments['clone']: # this is the only exception
     # check repository and get common info
-    (code, current_branch) = shell("git rev-parse --abbrev-ref HEAD", keep_output=True, fail_exit=False)
+    (code, current_branch, error) = shell("git rev-parse --abbrev-ref HEAD", keep_output=True, fail_exit=False)
     current_branch = current_branch.strip()
     if code != 0:
       logfail("***** ERROR: Unable to get the current git branch name, this directory is probably not a git repository")
