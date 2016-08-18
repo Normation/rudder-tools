@@ -67,13 +67,21 @@ def repo_merge(repo):
       continue
     clean_repo(repo)
     pr = PR(pr_info['html_url'])
-    command = "rudder-dev merge " + pr_info['html_url'] + " --automatic"
-    (code, output) = shell(command + " --test" + redirect, "Trying to merge PR " + pr_info['html_url'], fail_exit=False)
-    if code != 0:
+    command = "rudder-dev merge " + pr_info['html_url'] + " --automatic --run-tests"
+    (code, output, stderr) = shell(command + " --test" + redirect, "Trying to merge PR " + pr_info['html_url'], fail_exit=False, keep_output=True)
+    if code == 127:
+      comment="""This PR breaks tests
+""" + stderr + """
+You should run ./merge-test on your code to make sure it work first.
+Removing the """ + Config.PR_VALIDATED_LABEL + """ tag
+-- Your faithful QA"""
+      pr.comment(comment)
+      pr.unlabel(Config.PR_VALIDATED_LABEL)
+    elif code != 0:
       # PR must be manually merged
       comment="""This PR is not mergeable to upper versions.
 Since it is "Ready for merge" you must merge it by yourself using the following command:
-`rudder-dev merge """ + pr_info['html_url'] + """`
+`rudder-dev merge """ + pr_info['html_url'] + """ --run-tests`
 -- Your faithful QA"""
       pr.comment(comment)
       pr.label(Config.BOT_CANNOT_MERGE_LABEL)

@@ -40,6 +40,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     process = Popen(command, shell=True)
     retcode = process.wait()
     output = None
+    error = None
   if fail_exit and retcode != 0:
     if comment is None:
       print(command)
@@ -47,7 +48,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True):
     if not Config.force:
       exit(1)
   if not fail_exit:
-    return (retcode, output)
+    return (retcode, output, error)
   else:
     return output
 
