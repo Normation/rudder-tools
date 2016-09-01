@@ -10,6 +10,9 @@ supported = false
 # Has this version had Long-Term Support (LTS)?
 lts = false
 
+# Branch used in Rudder repositories
+branch = "master"
+
 # Supported architecture for each distribution
 architectures = { 
                   "debian-5":     [ "i386", "amd64" ],
