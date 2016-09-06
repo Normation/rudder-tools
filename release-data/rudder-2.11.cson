@@ -16,6 +16,9 @@ eol-date = "2016-09-10"
 # Has this version had Long-Term Support (LTS)?
 lts = true
 
+# Branch used in Rudder repositories
+branch = "branches/rudder/2.11"
+
 # Supported architecture for each distribution
 architectures = { 
                   "debian-5":     [ "i386", "amd64" ],

@@ -13,6 +13,9 @@ release-date = "2015-07-09"
 # Has this version had Long-Term Support (LTS)?
 lts = true
 
+# Branch used in Rudder repositories
+branch = "branches/rudder/3.1"
+
 # Supported architecture for each distribution
 architectures = { 
                   "debian-5":     [ "i386", "amd64" ],
