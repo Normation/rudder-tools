@@ -55,9 +55,6 @@ def clean_repo(repo):
 
 
 def repo_merge(repo):
-  redirect = ""
-  if Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error":
-    redirect = " > /dev/null 2>/dev/null"
   api_url = "https://api.github.com/repos/Normation/{repo}/issues?labels="+Config.PR_VALIDATED_LABEL
   url = api_url.format(repo=repo)
   data = github_call(url)
@@ -65,30 +62,40 @@ def repo_merge(repo):
     labels = [l['name'] for l in pr_info['labels']]
     if Config.BOT_CANNOT_MERGE_LABEL in labels:
       continue
-    clean_repo(repo)
-    pr = PR(pr_info['html_url'])
-    command = "rudder-dev merge " + pr_info['html_url'] + " --automatic --run-tests"
-    (code, output, stderr) = shell(command + " --test" + redirect, "Trying to merge PR " + pr_info['html_url'], fail_exit=False, keep_output=True)
-    if code == 127:
-      comment="""This PR breaks tests
-""" + stderr + """
-You should run ./merge-test on your code to make sure it work first.
-Removing the """ + Config.PR_VALIDATED_LABEL + """ tag
+    pr_merge(repo, pr_info['html_url'])
+
+
+def pr_merge(repo, url):
+  redirect = ""
+  if Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error":
+    redirect = " > /dev/null 2>/dev/null"
+  clean_repo(repo)
+  pr = PR(url)
+  command = "rudder-dev merge " + url + " --automatic"
+  (code, output, stderr) = shell(command + " --test" + redirect, "Trying to merge PR " + url, fail_exit=False, keep_output=True)
+  if code == 127:
+    # extract 15 first lines of (error then output) to limit comment size
+    msg = "\n".join((stderr+"\n"+output).split()[:15])
+    comment="""This PR breaks """ + Config.QA_TEST + """
+```
+""" + msg + """
+```
+You should run ./""" + Config.QA_TEST + """ in your repository to make sure it works.
+After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
 -- Your faithful QA"""
-      pr.comment(comment)
-      pr.unlabel(Config.PR_VALIDATED_LABEL)
-    elif code != 0:
-      # PR must be manually merged
-      comment="""This PR is not mergeable to upper versions.
+    pr.comment(comment)
+    pr.unlabel(Config.PR_VALIDATED_LABEL)
+  elif code != 0:
+    # PR must be manually merged
+    comment="""This PR is not mergeable to upper versions.
 Since it is "Ready for merge" you must merge it by yourself using the following command:
-`rudder-dev merge """ + pr_info['html_url'] + """ --run-tests`
+`rudder-dev merge """ + url + """`
 -- Your faithful QA"""
-      pr.comment(comment)
-      pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    else:
-      # PR can be automatically merged
-      pr=PR(pr_info['html_url'])
-      shell(command + redirect, "Automatically merging PR " + pr_info['html_url'])
+    pr.comment(comment)
+    pr.label(Config.BOT_CANNOT_MERGE_LABEL)
+  else:
+    # PR can be automatically merged
+    shell(command + redirect, "Automatically merging PR " + url)
 
 
 def repo_merge_all():

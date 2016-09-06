@@ -20,6 +20,8 @@ class Config:
   ERROR_TPL = "\033[1;31m{}\033[0m"
   # Default force mode (needed because not necessary set)
   force = False
+  # Common config
+  QA_TEST = "qa-test"
 
 
 ###

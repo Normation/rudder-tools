@@ -19,10 +19,10 @@ Usage:
     rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] revert <ticket_id> [--retarget]
-    rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic] [-t|--test] [-r|--run-tests]
-    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [-s <strategy>] [-a|--automatic] [-t|--test] [-r|--run-tests]
-    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic] [-t|--test] [-r|--run-tests]
-    rudder-dev [-f|--force] merge [-s <strategy>] [-a|--automatic] [-t|--test] [-r|--run-tests]
+    rudder-dev [-f|--force] merge all [-s <strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [-s <strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s <strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge [-s <strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] update
@@ -1386,7 +1386,7 @@ def takeover(ticket):
 
 # Merge remote version
 first_merge=True
-def merge_version(old, new, strategy=None, automatic=False, test=False, run_tests=False):
+def merge_version(old, new, strategy=None, automatic=False, test=False, run_tests=True):
   global current_branch
   pull(old)
   branch = branch_from_version(old)
@@ -1398,7 +1398,7 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
   merge_branch(branch, new, strategy, automatic, old, test, run_tests)
 
 # Merge remote branch
-def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, run_tests=False):
+def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, run_tests=True):
   global first_merge, current_branch
   pull(new)
   opts = ""
@@ -1420,31 +1420,31 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, 
     current_branch = test_branch
   shell("git merge " + old + opts, "Merging " + name + " into " + new)
   # run merge tests if there are some
-  toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
-  if os.path.isfile(toplevel+"/merge-test"):
-    (code, output, err) = shell('cd "' + toplevel + '" && ./merge-test', "Running merge tests", fail_exit=False)
-    if code != 0: 
-      # signal a test error to the caller with a specific error code
-      print("Test error after merging to " + new, file=sys.stderr)
-      exit(127)
+  if run_tests:
+    toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
+    if os.path.isfile(toplevel+"/"+Config.QA_TEST):
+      (code, x, y) = shell('cd "' + toplevel + '" && ./' + Config.QA_TEST + " --merge", "Running merge tests", fail_exit=False)
+      if code != 0:
+        # signal a test error to the caller with a specific error code
+        exit(127)
   first_merge = False
   if not test:
     shell("git push " + Config.UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
 
 
 # Merge remote version automatically guessing the next one
-def merge_to_next(old, strategy=None, automatic=False, test=False, run_tests=False):
+def merge_to_next(old, strategy=None, automatic=False, test=False, run_tests=True):
   new = get_next_version(old)
   merge_version(old, new, strategy, automatic, test, run_tests)
 
 
 # Merge all versions to next one
-def merge_all(strategy=None, automatic=False, test=False, run_tests=False):
+def merge_all(strategy=None, automatic=False, test=False, run_tests=True):
   for version in get_versions()[0][:-1]:
     merge_to_next(version, strategy, automatic, test, run_tests)
 
 # Merge given issue into its target branch and upmerge
-def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run_tests=False):
+def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run_tests=True):
   # get issue info
   if issue_name is None:
     issue = issue_from_branch(current_branch)
@@ -1458,7 +1458,7 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run
 
 
 # Merge given PR into its target branch and upmerge
-def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=False):
+def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True):
   pr = PR(pr_url)
   # PR must be validated
   if not pr.is_labeled(Config.PR_VALIDATED_LABEL):
@@ -1690,7 +1690,7 @@ if __name__ == "__main__":
     before_merge_branch = current_branch
     automatic = arguments['-a'] or arguments['--automatic']
     test = arguments['-t'] or arguments['--test']
-    run_tests = arguments['-r'] or arguments['--run-tests']
+    run_tests = not ( arguments['-n'] or arguments['--no-qa-tests'] )
     if arguments['all']: # rudder-dev merge all
       merge_all(arguments['<strategy>'], automatic, test, run_tests)
     elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
