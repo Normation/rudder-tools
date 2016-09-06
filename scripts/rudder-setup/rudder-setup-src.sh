@@ -14,11 +14,6 @@ usage() {
 
 # Include: lib.sh
 
-MATRIX=`cat <<'EOF'
-# Include: matrix
-EOF
-`
-
 # Include: detect-os.sh
 
 # Include: version-test.sh
@@ -56,28 +51,34 @@ case "${COMMAND}" in
     add_repo
     ;;
   "setup-agent")
+    rudder_compatibility_check "agent-allinone"
     add_repo
     setup_agent
     ;;
   "setup-relay")
+    rudder_compatibility_check "relay"
     add_repo
     setup_agent
     setup_relay
     ;;
   "setup-server")
+    rudder_compatibility_check "server"
     add_repo
     setup_server
     ;;
   "upgrade-agent")
+    rudder_compatibility_check "agent-allinone"
     add_repo
     upgrade_agent
     ;;
   "upgrade-relay")
+    rudder_compatibility_check "relay"
     add_repo
     upgrade_agent
     upgrade_relay
     ;;
   "upgrade-server")
+    rudder_compatibility_check "server"
     add_repo
     upgrade_server
     ;;
