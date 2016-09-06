@@ -2,16 +2,15 @@
 # Setup ncf for a local usage #
 ###############################
 get_cfengine_url() {
+  VERSION="$1"
   if [ "${PM}" = "apt" ]
   then
     ARCH=$(dpkg --print-architecture)
-    if is_version_valid "$1" "3.7"; then echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community_3.7.1-1_${ARCH}.deb"; fi
-    if is_version_valid "$1" "3.6"; then echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community_3.6.6-1_${ARCH}.deb"; fi
+    echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community_${VERSION}-1_${ARCH}.deb"
   elif [ "${PM}" = "yum" ] || [ "${PM}" = "zypper" ]
   then
     ARCH=$(arch)
-    if is_version_valid "$1" "3.7"; then echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community-3.7.1-1.${ARCH}.rpm"; fi
-    if is_version_valid "$1" "3.6"; then echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community-3.6.6-1.${ARCH}.rpm"; fi
+    echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community-${VERSION}-1.${ARCH}.rpm"
   fi
 }
 
@@ -20,7 +19,6 @@ setup_ncf() {
   # setup cfengine
 
   # cfengine from ci
-  echo "${CFENGINE_VERSION}" | grep "^ci" >/dev/null && USE_CI=yes
   if echo "${CFENGINE_VERSION}" | grep "rudder" >/dev/null
   then
     # cfengine from Rudder
