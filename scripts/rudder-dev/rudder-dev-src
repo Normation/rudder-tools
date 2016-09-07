@@ -1112,6 +1112,8 @@ def subtask(next_version, new_title, base=None, bug=False):
           answer = next_version
       next_version = answer
       next_version_id = get_versions()[1][next_version]
+  else:
+    next_version_id = get_versions()[1][next_version]
   print("Next version will be " + str(next_version))
   print("Cloning ticket #" + issue.name)
   ticket = clone_ticket(issue, next_version_id, new_title, bug)
