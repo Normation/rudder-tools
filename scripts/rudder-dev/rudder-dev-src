@@ -1692,7 +1692,7 @@ if __name__ == "__main__":
     before_merge_branch = current_branch
     automatic = arguments['-a'] or arguments['--automatic']
     test = arguments['-t'] or arguments['--test']
-    run_tests = not ( arguments['-n'] or arguments['--no-qa-tests'] )
+    run_tests = not ( arguments['-n'] or arguments['--no-qa-test'] )
     if arguments['all']: # rudder-dev merge all
       merge_all(arguments['<strategy>'], automatic, test, run_tests)
     elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
