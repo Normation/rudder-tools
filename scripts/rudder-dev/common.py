@@ -30,12 +30,20 @@ class Config:
 
 # Run a command in a shell like a script would do
 # And inform the user of its execution
-def shell(command, comment=None, keep_output=False, fail_exit=True):
+def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=False):
   if comment is not None:
     print(comment)
     print(" $ " + command)
-  if keep_output:
-    process = Popen(command, stdout=PIPE, shell=True, universal_newlines=True)
+  if keep_output or keep_error:
+    if keep_output:
+      keep_out = PIPE
+    else:
+      keep_out = None
+    if keep_error:
+      keep_err = PIPE
+    else:
+      keep_err = None
+    process = Popen(command, stdout=keep_out, stderr=keep_err, shell=True, universal_newlines=True)
     output, error = process.communicate()
     retcode = process.poll()
   else: # keep tty management and thus colors

@@ -72,7 +72,7 @@ def pr_merge(repo, url):
   clean_repo(repo)
   pr = PR(url)
   command = "rudder-dev merge " + url + " --automatic"
-  (code, output, stderr) = shell(command + " --test" + redirect, "Trying to merge PR " + url, fail_exit=False, keep_output=True)
+  (code, output, stderr) = shell(command + " --test" + redirect, "Trying to merge PR " + url, fail_exit=False, keep_output=True, keep_error=True)
   if code == 127:
     # extract 15 first lines of (error then output) to limit comment size
     msg = "\n".join((stderr+"\n"+output).split()[:15])
