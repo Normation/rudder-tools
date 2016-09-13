@@ -74,10 +74,11 @@ def pr_merge(repo, url):
   command = "rudder-dev merge " + url + " --automatic"
   (code, output, stderr) = shell(command + " --test", "Trying to merge PR " + url, fail_exit=False, keep_output=True, keep_error=True)
   if not (Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error"):
-    print(stderr+"\n"+output)
+    print(output+"\n"+stderr)
   if code == 127:
     # extract 15 first lines of (error then output) to limit comment size
-    msg = "\n".join((stderr+"\n"+output).split()[:15])
+    lines = (output+"\n"+stderr).split('\n')
+    msg = "\n".join(lines[:5]) + "\n[...]\n" + "\n".join(lines[-10:]) 
     comment="""This PR breaks """ + Config.QA_TEST + """
 ```
 """ + msg + """
