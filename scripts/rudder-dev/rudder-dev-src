@@ -19,10 +19,10 @@ Usage:
     rudder-dev [-f|--force] retarget [<target_version>]
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] revert <ticket_id> [--retarget]
-    rudder-dev [-f|--force] merge all [-s=<strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
-    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [-s=<strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
-    rudder-dev [-f|--force] merge <first_branch> <next_branch> [-s=<strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
-    rudder-dev [-f|--force] merge [-s=<strategy>] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge all [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge <first_branch> <next_branch> [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] update
@@ -1696,17 +1696,17 @@ if __name__ == "__main__":
     test = arguments['-t'] or arguments['--test']
     run_tests = not ( arguments['-n'] or arguments['--no-qa-test'] )
     if arguments['all']: # rudder-dev merge all
-      merge_all(arguments['-s'], automatic, test, run_tests)
+      merge_all(arguments['<strategy>'], automatic, test, run_tests)
     elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
-      merge_version(arguments['<first_branch>'], arguments['<next_branch>'], arguments['-s'], automatic, test, run_tests)
+      merge_version(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], automatic, test, run_tests)
     elif arguments['<first_branch/ticket_id/pr_url>'] is None: # rudder-dev merge
-      merge_issue(strategy=arguments['-s'], automatic=automatic, test=test, run_tests=run_tests)
+      merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test, run_tests=run_tests)
     elif re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id/pr_url>']): # 3+ digits -> ticket_id: rudder-dev merge ticket_id
-      merge_issue(arguments['<first_branch/ticket_id/pr_url>'], arguments['-s'], automatic, test, run_tests)
+      merge_issue(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests)
     elif re.match(r'^https?://', arguments['<first_branch/ticket_id/pr_url>']): # starts with http:// -> pr_url: rudder-dev merge pr
-      merge_pr(arguments['<first_branch/ticket_id/pr_url>'], arguments['-s'], automatic, test, run_tests)
+      merge_pr(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests)
     else: # rudder-dev merge first
-      merge_to_next(arguments['<first_branch/ticket_id/pr_url>'], arguments['-s'], automatic, test)
+      merge_to_next(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test)
     shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
     unstash()
   elif arguments['find']:
