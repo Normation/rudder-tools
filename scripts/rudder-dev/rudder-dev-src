@@ -1465,7 +1465,7 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run
 def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True):
   pr = PR(pr_url)
   # PR must be validated
-  if not pr.is_labeled(Config.PR_VALIDATED_LABEL):
+  if not test and not pr.is_labeled(Config.PR_VALIDATED_LABEL):
     print("This PR is not labeled '" + Config.PR_VALIDATED_LABEL + "' You should not merge it.")
     logfail("***** ERROR: PR is not validated. Exiting.")
     if not Config.force:
