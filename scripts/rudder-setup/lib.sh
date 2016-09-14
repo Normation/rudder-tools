@@ -61,7 +61,7 @@ which() {
 # get a remote url content using the first available method
 get() {
   WGET="wget -q -O"
-  CURL="curl -s -o"
+  CURL="curl -s -f -o"
   if type curl >/dev/null 2>/dev/null
   then
     ${CURL} "$@"

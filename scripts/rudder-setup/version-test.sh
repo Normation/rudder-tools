@@ -1,17 +1,6 @@
 
-# matrix file format
-# ruddersetup;rudder-version-spec;os;os-version-spec
-# ruddersetup = agent / server / multiserver
-# os = debian / fedora / ...
 # version-spec = 5 / 5.1 / 5.1.5 / 5.1-rc3 / [5 7] / [5.1 7] / [5.1 *] / ... # [A B] means between A and B (A and B included)
-# '*' are allowed on all columns
 #
-# see version_spec() for more details on version specification
-# 
-# suggested additions : exception(not supported) | hack(script fu) | comment
-#| RUDDER_SETUP | RUDDER_VERSION | OS | OS_VERSION | # exception(not supported) | hack(script fu) | comment
-#
-
 
 # A component is a version element, components are separated by '.'
 # echo the version component number $id (Nth component)
@@ -202,53 +191,28 @@ version_spec() {
 }
 
 
-# Return true if parameters are compatible with rudder compatibility matrix
-# Parameters (RUDDER, RUDDER_VERSION, OS, OS_VERSION)
-# RUDDER : agent / server / multiserver
-is_compatible() {
-  $local RUDDER="$1"
-  $local RUDDER_VERSION="$2"
-  $local OS="$3"
-  $local OS_VERSION="$3"
+rudder_is_compatible() {
+  $local ROLE="$1"
+  $local MAJOR_VERSION=$(echo "$2"| cut -f 1-2 -d .)
+  $local OS=$(echo "$3"|tr 'A-Z' 'a-z')
+  $local OS_VERSION=$(echo "$4"| cut -f 1 -d .)
 
-  $local EXIT=1
-
-  $local IFS_OLD="$IFS"
-  IFS=";$IFS"
-  echo "${MATRIX}" | while read rudder rudder_version os os_version
-  do
-    # check rudderr setup
-    if [ "${rudder}" != "*" ] && [ "${rudder}" != "${RUDDER}" ]
-    then
-      break
-    fi
-    # check rudder version
-    if [ "${rudder_version}" != "*" ]
-    then
-      if ! is_version_ok "${RUDDER_VERSION}" "${rudder_version}"
-      then
-        break
-      fi
-   fi
-    # check OS
-    if [ "${os}" != "*" ] && [ "${os}" != "${OS}" ]
-    then
-      break
-    fi
-    # check OS version
-    if [ "${os_version}" != "*" ]
-    then
-      if ! is_version_ok "${OS_VERSION}" "${os_version}"
-      then
-        break
-      fi
-    fi
- 
-    EXIT=0
-
-  done
-  IFS="$IFS_OLD"
-
-  return ${EXIT}
+  if get - "http://www.rudder-project.org/release-info/rudder/versions/${MAJOR_VERSION}/os/${OS}-${OS_VERSION}/roles" | grep "${ROLE}" >/dev/null
+  then
+    return 0
+  else
+    return 1
+  fi
 }
 
+rudder_compatibility_check() {
+  $local ROLE="$1"
+  [ "${UNSUPPORTED}" = "y" ] && return
+  if ! rudder_is_compatible "${ROLE}" "${RUDDER_VERSION}" "${OS_COMPATIBLE}" "${OS_VERSION}"
+  then
+    echo "Your installation: Rudder ${RUDDER_VERSION} ${ROLE} for ${OS_COMPATIBLE} - ${OS_VERSION} is not supported."
+    echo "Aborting."
+    echo "export UNSUPPORTED=y to remove this check"
+    exit 1
+  fi
+}
