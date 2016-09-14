@@ -73,17 +73,19 @@ def pr_merge(repo, url):
   pr = PR(url)
   command = "rudder-dev merge " + url + " --automatic"
   (code, output, stderr) = shell(command + " --test", "Trying to merge PR " + url, fail_exit=False, keep_output=True, keep_error=True)
+  log = "-- stdout -- \n" + output + "\n-- stderr --\n" + stderr
   if not (Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error"):
-    print(output+"\n"+stderr)
+    print(log)
   if code == 127:
     # extract 15 first lines of (error then output) to limit comment size
-    lines = (output+"\n"+stderr).split('\n')
-    msg = "\n".join(lines[:5]) + "\n[...]\n" + "\n".join(lines[-10:]) 
+    lines = (log).split('\n')
+    msg = "\n" . join(lines[:5]) + "\n[...]\n" + "\n".join(lines[-10:]) 
     comment="""This PR breaks """ + Config.QA_TEST + """
 ```
 """ + msg + """
 ```
 You should run ./""" + Config.QA_TEST + """ in your repository to make sure it works.
+You can also run `rudder-dev merge """ + url + """ --test` to test with upmerging.
 After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
 -- Your faithful QA"""
     pr.comment(comment)
