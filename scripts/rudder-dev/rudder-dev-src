@@ -1425,6 +1425,8 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, 
   if run_tests:
     toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
     if os.path.isfile(toplevel+"/"+Config.QA_TEST):
+      # cleanup the repo before tests
+      shell("git clean", "Cleanup repository")
       (code, x, y) = shell('cd "' + toplevel + '" && ./' + Config.QA_TEST + " --merge", "Running merge tests", fail_exit=False)
       if code != 0:
         # signal a test error to the caller with a specific error code
