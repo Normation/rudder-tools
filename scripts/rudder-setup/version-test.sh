@@ -193,7 +193,8 @@ version_spec() {
 
 rudder_is_compatible() {
   $local ROLE="$1"
-  $local MAJOR_VERSION=$(echo "$2"| cut -f 1-2 -d .)
+  # Remove the -suffix and only keep major version
+  $local MAJOR_VERSION=$(echo "$2"| cut -d '-' -f 1 | cut -f 1-2 -d .)
   $local OS=$(echo "$3"|tr 'A-Z' 'a-z')
   $local OS_VERSION=$(echo "$4"| cut -f 1 -d .)
 
