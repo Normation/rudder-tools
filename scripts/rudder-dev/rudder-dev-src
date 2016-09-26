@@ -814,7 +814,8 @@ def commit_push(branch, message, force_amend=False):
     wip = ''
   commit_cmd = "git commit"
   if message != '':
-    commit_cmd += " -m \"" + message + "\""
+    # replace ' with '"'"', which will be replaced by the shell
+    commit_cmd += " -m '" + message.replace("'", "'\"'\"'") + "'"
   if force_amend or wip != "":
     commit_cmd += " --amend --no-edit"
   shell(commit_cmd, "Commiting")
