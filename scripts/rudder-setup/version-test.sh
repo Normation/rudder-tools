@@ -198,7 +198,7 @@ rudder_is_compatible() {
   $local OS=$(echo "$3"|tr 'A-Z' 'a-z')
   $local OS_VERSION=$(echo "$4"| cut -f 1 -d . | cut -d '-' -f 1)
 
-  if get - "http://www.rudder-project.org/release-info/rudder/versions/${MAJOR_VERSION}/os/${OS}-${OS_VERSION}/roles" | grep "${ROLE}" >/dev/null
+  if get - "https://www.rudder-project.org/release-info/rudder/versions/${MAJOR_VERSION}/os/${OS}-${OS_VERSION}/roles" | grep "${ROLE}" >/dev/null
   then
     return 0
   else
