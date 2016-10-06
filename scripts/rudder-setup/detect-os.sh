@@ -56,6 +56,12 @@ detect_os() {
     PM_LOCAL_INSTALL="eval yes | pkgadd -d"
   fi
 
+  # install lsb_release if required
+  #################################
+
+  if [ -e /etc/debian_version ]; then
+    ${PM_INSTALL} lsb-release
+  fi
 
   # detect os and version
   #######################

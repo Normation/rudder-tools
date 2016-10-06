@@ -40,7 +40,7 @@ add_repo() {
     # Debian / Ubuntu like
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 474A19E8
     cat > /etc/apt/sources.list.d/rudder.list << EOF
-deb ${URL_BASE} $(lsb_release -cs) main
+deb ${URL_BASE} ${OS_CODENAME} main
 EOF
     apt-get update
     return 0
