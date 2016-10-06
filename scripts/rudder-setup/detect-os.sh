@@ -27,7 +27,7 @@ detect_os() {
   PM_INSTALL="echo Your package manager is not yet supported"
   PM_UPGRADE="echo Your package manager is not yet supported"
   PM_LOCAL_INSTALL="echo Your package manager is not yet supported for local install"
-  
+
   # detect package manager
   ########################
   # TODO macports, homebrew, portage
@@ -59,7 +59,7 @@ detect_os() {
 
   # detect os and version
   #######################
-  
+
   if [ "$(uname -s)" = "AIX" ]; then
     OS_NAME="AIX"
     # Format: Major.Minor (Ex: 5.3)
@@ -72,11 +72,12 @@ detect_os() {
   elif exists lsb_release; then
     OS_NAME=`lsb_release -is`
     OS_VERSION=`lsb_release -rs`
+    OS_CODENAME=`lsb_release -cs`
 
-  # manual detection adapted from FusionInventory lib/FusionInventory/Agent/Task/Inventory/Linux/Distro/NonLSB.pm 
+  # manual detection adapted from FusionInventory lib/FusionInventory/Agent/Task/Inventory/Linux/Distro/NonLSB.pm
   elif release_file  'VMWare' '/etc/vmware-release' '.*\([0-9.]\+\).*'; then true
   elif release_file  'ArchLinux' '/etc/arch-release' '\(.*\)'; then true
-  elif release_file  'Debian' '/etc/debian_version' '\(.*\)'; then 
+  elif release_file  'Debian' '/etc/debian_version' '\(.*\)'; then
     if [  "${OS_VERSION}" = "jessie/sid" ]; then OS_VERSION=7; fi
   elif release_file  'Fedora' '/etc/fedora-release' '.*release \([0-9.]\+\)'; then true
   elif release_file  'Gentoo' '/etc/gentoo-release' '\(.*\)'; then true
@@ -88,7 +89,7 @@ detect_os() {
   elif release_file  'RedHat' '/etc/redhat-release' '.*release \([0-9.]\+\).*'; then true
   elif release_file  'Slackware' '/etc/slackware-version' '.*Slackware \(.*\).*'; then true
   elif release_file  'Trustix' '/etc/trustix-release' '.*release \([0-9.]\+\).*'; then true
-  elif release_file  'SuSE' '/etc/SuSE-release' 'VERSION *= *\([0-9.]\+\).*'; then 
+  elif release_file  'SuSE' '/etc/SuSE-release' 'VERSION *= *\([0-9.]\+\).*'; then
     OS_VERSION="${OS_VERSION}-`sed -n '/PATCHLEVEL/s/PATCHLEVEL *= *\([0-9.]\+\).*/\1/p' /etc/SuSE-release`"
   elif release_file  'Amazon' '/etc/system-release-cpe' '[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):.*'; then true
   fi
@@ -101,12 +102,12 @@ detect_os() {
     RedHat) OS_COMPATIBLE="RHEL" ;;
     Oracle) OS_COMPATIBLE="RHEL" ;;
     CentOS) OS_COMPATIBLE="RHEL" ;;
-    Amazon) OS_COMPATIBLE="RHEL" 
+    Amazon) OS_COMPATIBLE="RHEL"
             OS_COMPATIBLE_VERSION=6;;
     SuSE)   OS_COMPATIBLE="SLES" ;;
     "SUSE LINUX")   OS_COMPATIBLE="SLES" ;;
   esac
-  
+
   export OS_NAME OS_COMPATIBLE OS_VERSION OS_COMPATIBLE_VERSION PM PM_INSTALL
 }
 
