@@ -15,6 +15,7 @@ import json
 import os
 import re
 import dateutil.parser
+import sys
 from time import time
 from datetime import tzinfo, timedelta, datetime
 from pprint import pprint
@@ -62,6 +63,7 @@ REDMINE['alt'] =     { "url": "https://redmine.normation.com",
                        "tracker_bug": "1",
                        "users_normation": "*",
                      }
+REQUEST_TIMEOUT=2
 
 # Read rudder configuration from ~/.rudder-dev
 def read_configuration():
@@ -100,8 +102,12 @@ def get_issues(args, limit, internal=False):
     REDMINE_URL = REDMINE_API_URL
     token = REDMINE_TOKEN
   query = urlencode(args)
-  tickets_req = requests.get(REDMINE_URL + "/issues.json?limit=" + str(limit) + "&" + query,
-                             headers = {'X-Redmine-API-Key': token, 'Content-Type': 'application/json' })
+  try:
+    tickets_req = requests.get(REDMINE_URL + "/issues.json?limit=" + str(limit) + "&" + query, timeout=REQUEST_TIMEOUT,
+                               headers = {'X-Redmine-API-Key': token, 'Content-Type': 'application/json' })
+  except requests.exceptions.Timeout:
+    print("Timout connecting to " + REDMINE_URL, file=sys.stderr)
+    return {'issues': []}
   if tickets_req.status_code != requests.codes.ok:
       return None
   return tickets_req.json()
@@ -147,7 +153,11 @@ def get_hub(query):
     url = query
   else:
     url = GITHUB_URL + query
-  ret = requests.get(url, headers = {'Authorization': 'token ' + GITHUB_TOKEN, 'Content-Type': 'application/json' })
+  try:
+    ret = requests.get(url, headers = {'Authorization': 'token ' + GITHUB_TOKEN, 'Content-Type': 'application/json' }, timeout=REQUEST_TIMEOUT)
+  except requests.exceptions.Timeout:
+    print("Timout connecting to " + GITHUB_URL, file=sys.stderr)
+    return {}
   return ret.json()
 
 
