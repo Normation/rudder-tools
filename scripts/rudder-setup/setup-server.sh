@@ -23,13 +23,18 @@ setup_server() {
   # echo "Sorry your System is not supported by Rudder Server !"
   # exit 5
 
-  $local SERVER_HOSTNAME=`hostname`
-  $local DEMOSAMPLE="no"
   $local LDAPRESET="yes"
-  $local INITPRORESET="yes"
 
-  # TODO detect
-  [ -z "${ALLOWEDNETWORK}" ] && $local ALLOWEDNETWORK='127.0.0.1/24'
+  # 4.0 has autodetect support, older releases don't
+  if [ -z "${ALLOWEDNETWORK}" ]
+  then
+    if is_version_valid "${RUDDER_VERSION}" "[4.0 *]"
+    then
+      $local ALLOWEDNETWORK='auto'
+    else
+      $local ALLOWEDNETWORK='127.0.0.1/24'
+    fi
+  fi
 
   # Debian with Sun's JRE
   if [ "${PM}" = "apt" ]
@@ -56,7 +61,7 @@ EOF
 
   # Initialize Rudder
   echo -n "Running rudder-init.sh..."
-  /opt/rudder/bin/rudder-init.sh ${SERVER_HOSTNAME} ${DEMOSAMPLE} ${LDAPRESET} ${INITPRORESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
+  /opt/rudder/bin/rudder-init.sh ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
   echo "Done."
 
 }
