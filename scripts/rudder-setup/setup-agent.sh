@@ -61,7 +61,7 @@ upgrade_agent() {
 
 setup_relay() {
 
-  if is_version_valid "${RUDDER_VERSION}" "[3.0 3.10]"; then
+  if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"; then
     ${PM_INSTALL} rudder-server-relay
     rudder agent inventory
   else
@@ -72,7 +72,7 @@ setup_relay() {
 
 upgrade_relay() {
 
-  if is_version_valid "${RUDDER_VERSION}" "[3.0 3.10]"; then
+  if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"; then
     # Upgrade via package manager only
     if [ -z "${PM}" ]
     then
