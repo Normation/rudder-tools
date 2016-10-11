@@ -9,6 +9,9 @@ Config.REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=res
 Config.REDMINE_META_TRACKERS = [3]
 Config.ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager, 6=Consultant, 9=Integrator
 
+Config.REDMINE_NRM_GROUP = 314
+Config.REDMINE_ALT_NRM_GROUP = 36
+
 # Keeping old version for reference
 #TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
 Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
@@ -17,6 +20,7 @@ Config.IN_PROGRESS_CODE = 9
 Config.CUSTOM_FIELD_PR = 3
 Config.ALT_CUSTOM_FIELD_PR = 1
 Config.BUG_TACKER_ID = 1
+Config.PENDING_MERGE_CODE = 12
 
 class Issue:
   """Class to hold informations about a single issue"""
@@ -40,6 +44,7 @@ class Issue:
       self.api_url = Config.REDMINE_API_URL
       self.custom_field_pr = Config.CUSTOM_FIELD_PR
       self.internal = False
+    self.server = Redmine(self.internal)
 
   def __getitem__(self, key):
     """Make Issue behave like a dict"""
@@ -157,6 +162,32 @@ class Issue:
       branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
     return branch_name
 
+  # Beware, we don't update in memory status, throw away 'self' after calling this
+  def _update_issue(self, change, message=None, alt_message=None):
+    """Change the ticket content if possible"""
+    if Config.REDMINE_TOKEN is None:
+      return False
+    # prepare info
+    if self.server.can_modify_issues(self['project_id']):
+      info = { 'issue': change }
+      if message is not None:
+        info['issue']['notes'] = message
+    else:
+      if alt_message is None:
+        print("Cannot update the issue, you should update it manually status here " + self.api_url + "/issues/" + str(issue.id))
+        return False
+      info = { 'issue': { 'notes': alt_message } }
+
+    # send info
+    url = self.api_url + "/issues/" + str(self.id) + ".json"
+    ret = requests.put(url, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data=json.dumps(info) )
+    if ret.status_code != 200:
+      logfail("Issue Update error: " + ret.reason)
+      print(ret.text)
+      if not Config.force:
+        exit(3)
+    return True
+
   def update(self, user_id=None, pr_url=None, message=None, status=None):
     """Change ticket state and comment it"""
     # Create note content
@@ -169,60 +200,71 @@ class Issue:
       else:
         note += "\n" + message
   
-    ticket_info = { 'issue': {} }
-    if can_modify_issues(self['project_id']):
-      # fill ticket data with developer available content
-      if status is not None:
-        ticket_info['issue']['status_id'] = status
-      if user_id is not None:
-        ticket_info['issue']['assigned_to_id'] = user_id
-      if note is not None:
-        ticket_info['issue']['notes'] = note
-      if pr_url is not None:
-        ticket_info['issue']['custom_fields'] = [ { 'id': Config.CUSTOM_FIELD_PR, 'value': pr_url } ]
+    change = {}
+    # fill ticket data with developer available content
+    if status is not None:
+      change['status_id'] = status
+    if user_id is not None:
+      change['assigned_to_id'] = user_id
+    if note is not None:
+      change['notes'] = note
+    if pr_url is not None:
+      change['custom_fields'] = [ { 'id': self.custom_field_pr, 'value': pr_url } ]
   
-    else:
-      # just append the note to ticket, if any
-      if note is None:
-        return
-      else:
-        ticket_info['issue']['notes'] = note
-  
-    # call the api
-    url = Config.REDMINE_API_URL + "/issues/" + str(self.id) + ".json"
-    ticket_json = json.dumps(ticket_info)
-    ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-    if ret.status_code != 200:
-      logfail("Ticket Update error: " + ret.reason)
-      print(ret.text)
-      if not Config.force:
-        exit(3)
+    self._update_issue(change, message, message)
 
-  def ticket_to_in_progress(self, message=None):
+  def to_in_progress(self, message=None):
     """Change the ticket state to In progress"""
+    change = {
+            'status_id': Config.IN_PROGRESS_CODE,
+            }
     if Config.REDMINE_TOKEN is not None:
-      if can_modify_issues(self['project_id']):
-        print("Changing status of ticket #" + str(self.id) + " to \"In progress\"")
-        user_id = get_redmine_uid()
-        ticket_info = {
-                'issue': {
-                    'status_id': Config.IN_PROGRESS_CODE,
-                    'assigned_to_id': user_id,
-                }
-        }
-        if message is not None:
-          ticket_info['issue']['notes'] = message
-        url = Config.REDMINE_API_URL + "/issues/" + str(self.id) + ".json"
-        ticket_json = json.dumps(ticket_info)
-        ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-        if ret.status_code != 200:
-          logfail("Ticket Update error: " + ret.reason)
-          print(ret.text)
-          if not Config.force:
-            exit(3)
-      else:
-        print("You should update the ticket status here " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
+      change['assigned_to_id'] = get_redmine_uid()
+    self._update_issue(change, message)
 
+  def to_penging_merge(self, assign_to, message=None):
+    """Change the ticket state to pending_merge"""
+    change = {
+            'status_id': Config.PENDING_MERGE_CODE, ## TODO define
+            'assigned_to_id': assign_to,
+            }
+    self._update_issue(change, message)
+
+
+class Redmine:
+  """Class to query a redmine server"""
+  def __init__(self, internal):
+    self.internal = internal
+    self.can_modify = None
+    if internal:
+      self.token = Config.REDMINE_ALT_TOKEN
+      self.api_url = Config.REDMINE_ALT_API_URL
+      self.nrm_group = Config.REDMINE_NRM_GROUP
+    else:
+      self.token = Config.REDMINE_TOKEN
+      self.api_url = Config.REDMINE_API_URL
+      self.nrm_group = Config.REDMINE_ALT_NRM_GROUP
+
+  def _query(self, query):
+    data = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token } )
+    return data.json()
+
+  # Return true if the current user can modify an issue in the given project
+  def can_modify_issues(self, project_id):
+    if self.can_modify is not None:
+      return self.can_modify
+    user = self._query("/users/current.json?include=memberships")
+    for membership in user['user']['memberships']:
+      if membership['project']['id'] == project_id:
+        for role in membership['roles']:
+          if role['id'] in Config.ACCESS_ROLE_LIST:
+            self.can_modify = True
+            return True
+    self.can_modify = False
+    return False
+  
+  def list_nrm_users():
+    return self.query("/users.json?group_id=" + self.nrm_group)
 
 
 def issue_from_branch(branch):
