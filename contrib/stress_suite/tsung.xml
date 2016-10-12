@@ -9,7 +9,7 @@
  
   <!-- Server configuration (bench target) -->
   <servers>
-    <server host="localhost" port="80" type="tcp"></server> 
+    <server host="localhost" port="443" type="tcp"></server> 
   </servers>
   
    <!-- Target monitoring configuration -->
