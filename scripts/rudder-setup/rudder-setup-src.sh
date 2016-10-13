@@ -9,11 +9,13 @@ usage() {
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
   echo ""
-  echo "  rudder_version : x.y or x.y.z or x.y-nightly or ci/x.y"
-  echo "       x.y:   the last x.y release (ex: 3.2)"
-  echo "       x.y.z: the exact x.y.z release (ex: 3.2.1)"
+  echo "  rudder_version : x.y or x.y.z or x.y-nightly or ci/x.y or lts or latest"
+  echo "       x.y:    the last x.y release (ex: 3.2)"
+  echo "       x.y.z:  the exact x.y.z release (ex: 3.2.1)"
   echo "       x.y-nightly: the last public x.y nightly build (ex: 3.2-nightly)"
   echo "       ci/x.y: the last private x.y nightly build (ex: ci/3.2)"
+  echo "       lts:    the last long term support version"
+  echo "       latest: the last stable version"
   exit 1
 }
 # GOTO bottom for main()
@@ -39,7 +41,7 @@ usage() {
 setlocal || re_exec "$@"
 
 COMMAND="$1"
-RUDDER_VERSION="$2"
+RUDDER_VERSION=`rudder_real_version "$2"`
 SERVER="$3"
 
 PREFIX=$(echo "${RUDDER_VERSION}" | cut -f 1 -d "/")

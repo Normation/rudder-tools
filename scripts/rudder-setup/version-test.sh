@@ -222,3 +222,13 @@ rudder_compatibility_check() {
     exit 1
   fi
 }
+
+rudder_real_version() {
+  $local version=`echo "$1" | tr '[A-Z]' '[a-z]'`
+  if [ "${version}" = "lts" ] || [ "${version}" = "latest" ]
+  then
+    get - "https://www.rudder-project.org/release-info/rudder/versions/${version}"
+  else
+    echo "${version}"
+  fi
+}
