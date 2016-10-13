@@ -51,6 +51,14 @@ class PR:
     self._request_pr()
     return self.info['base']['ref']
 
+  def author(self):
+    self._request_pr()
+    return self.info['user']['login']
+
+  def title(self):
+    self._request_pr()
+    return self.info['title']
+
   def comment(self, comment):
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
     data = { "body": comment }

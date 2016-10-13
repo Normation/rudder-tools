@@ -373,6 +373,7 @@ def clone_ticket(issue, version_id, new_title, bug=False):
 
 
 # Return true if the current user can modify an issue in the given project
+# Deprecated, use Redmine.can_modify_issues()
 Config.REDMINE_CAN_MODIFY=None
 def can_modify_issues(project_id):
   if Config.REDMINE_CAN_MODIFY is not None:
@@ -462,34 +463,6 @@ def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
     print(ret.text)
     if not Config.force:
       exit(3)
-
-
-# change the ticket state to In progress
-# Deprecated: use Issue.ticket_to_in_progress()
-def ticket_to_in_progress(info, message=None):
-  # set ticket status to "in progress"
-  if Config.REDMINE_TOKEN is not None:
-    if can_modify_issues(info['project_id']):
-      print("Changing status of ticket #" + str(info['id']) + " to \"In progress\"")
-      user_id = get_redmine_uid()
-      ticket_info = {
-              'issue': {
-                  'status_id': Config.IN_PROGRESS_CODE,
-                  'assigned_to_id': user_id,
-              }
-      }
-      if message is not None:
-        ticket_info['issue']['notes'] = message
-      url = Config.REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
-      ticket_json = json.dumps(ticket_info)
-      ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-      if ret.status_code != 200:
-        logfail("Ticket Update error: " + ret.reason)
-        print(ret.text)
-        if not Config.force:
-          exit(3)
-    else:
-      print("You should update the ticket status here " + Config.REDMINE_API_URL + "/issues/" + str(info['id']))
 
 
 # get current redmine user
@@ -1013,7 +986,7 @@ def create_branch(ticket, base=None):
   shell("git checkout -b " + current_branch, "Creating branch " + current_branch)
 
   # Set ticket's status
-  issue.ticket_to_in_progress()
+  issue.to_in_progress()
 
   print("")
   print("# Now you can edit files")
@@ -1360,6 +1333,8 @@ def clone(name, fork=False):
 # takevover a ticket with an existing PR
 def takeover(ticket):
   global current_branch
+  issue = Issue(ticket)
+
   (ticket_id, internal) = parse_ticket_id(ticket)
   existing_branch = branch_from_ticket_id(ticket_id, internal)
   if existing_branch is not None:
@@ -1367,7 +1342,7 @@ def takeover(ticket):
     exit(12)
 
   # fetch base branch
-  current_branch = fetch_branch_from_ticket(ticket)
+  current_branch = fetch_branch_from_issue(issue)
 
   # checkout the new branch
   shell("git checkout " + current_branch, "Checkouting the base branch " + current_branch)
@@ -1376,8 +1351,7 @@ def takeover(ticket):
   commit_push(current_branch, "Work in progress", True)
 
   # Set ticket's status
-  info = get_ticket_info(ticket_id, internal)
-  ticket_to_in_progress(info, "I'm taking over this ticket!")
+  issue.to_in_progress(info, "I'm taking over this ticket!")
 
   print("")
   print("# Now you can edit files")
