@@ -107,7 +107,7 @@ def get_issues(args, limit, internal=False):
                                headers = {'X-Redmine-API-Key': token, 'Content-Type': 'application/json' })
   except requests.exceptions.Timeout:
     print("Timout connecting to " + REDMINE_URL, file=sys.stderr)
-    return {'issues': []}
+    return {'issues': [], 'total_count': 0}
   if tickets_req.status_code != requests.codes.ok:
       return None
   return tickets_req.json()
