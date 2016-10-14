@@ -21,6 +21,7 @@ Config.CUSTOM_FIELD_PR = 3
 Config.ALT_CUSTOM_FIELD_PR = 1
 Config.BUG_TACKER_ID = 1
 Config.PENDING_MERGE_CODE = 12
+Config.DISCUSSION_CODE = 4
 
 class Issue:
   """Class to hold informations about a single issue"""
@@ -222,10 +223,10 @@ class Issue:
       change['assigned_to_id'] = get_redmine_uid()
     self._update_issue(change, message)
 
-  def to_penging_merge(self, assign_to, message=None):
+  def to_status(self, status, assign_to, message=None):
     """Change the ticket state to pending_merge"""
     change = {
-            'status_id': Config.PENDING_MERGE_CODE, ## TODO define
+            'status_id': status,
             'assigned_to_id': assign_to,
             }
     self._update_issue(change, message)

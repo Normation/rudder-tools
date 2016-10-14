@@ -1148,7 +1148,7 @@ def amend(comment=None):
 
   # reassign ticket
   if 'last_assignee' in issue:
-    issue.update(user_id=issue['last_assignee'])
+    issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
 
   # Message on PR if there is one
   if 'pr' in issue and issue['pr'] != '':

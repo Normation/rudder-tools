@@ -65,6 +65,24 @@ def repo_merge(repo):
     pr_merge(repo, pr_info['html_url'])
 
 
+def reassign(title, status):
+  # find issue matching PR title
+  match=re.match(r'^Fixes #(\d+)', title)
+  if match:
+    issue_id = match.group(1)
+    issue = Issue(issue_id)
+    # find user matching the author in redmine
+    for user in issue.server.list_nrm_users():
+      if "custom_fields" in user:
+        for field in user["custom_fields"]:
+          if field["name"] == "GitHub":
+            if "value" in field:
+              if field["value"] == pr.author():
+                uid = user ["id"]
+    if uid != -1:
+      issue.to_status(status, uid)
+ 
+
 def pr_merge(repo, url):
   redirect = ""
   if Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error":
@@ -90,6 +108,7 @@ After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
 -- Your faithful QA"""
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
+    reassign(Config.DISCUSSION_CODE)
   elif code != 0:
     # PR must be manually merged
     comment="""This PR is not mergeable to upper versions.
@@ -98,23 +117,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
 -- Your faithful QA"""
     pr.comment(comment)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    # find issue id in PR title ...
-    match=re.match(r'^Fixes #(\d+)', pr.title())
-    if match:
-      issue_id = match.group(1)
-      issue = Issue(issue_id)
-      # find user matching the author in redmine
-      uid=-1
-      for user in issue.server.list_nrm_users():
-        if "custom_fields" in user:
-          for field in user["custom_fields"]:
-            if field["name"] == "GitHub":
-              if "value" in field:
-                if field["value"] == pr.author():
-                  uid = user ["id"]
-      # reassign issue if we can
-      if uid != -1:
-        issue.assign_to(uid)
+    reassign(Config.PENDING_MERGE_CODE)
   else:
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)
