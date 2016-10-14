@@ -347,31 +347,6 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
   return info
 
 
-# clone a ticket in redmine making the new one a child of the original
-def clone_ticket(issue, version_id, new_title, bug=False):
-  new_info = {}
-  for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
-    if i in issue:
-      new_info[i] = issue[i]
-  new_info['parent_issue_id'] = issue.id
-  if bug:
-    new_info['tracker_id'] = Config.BUG_TACKER_ID
-    new_info['description'] = "There was a bug in the resolution of #" + issue.name
-  if new_title is not None:
-    if new_title.startswith('+'):
-      new_info['subject'] += new_title.replace('+', ' ', 1)
-    else:
-      new_info['subject'] = new_title
-  new_info['fixed_version_id'] = version_id
-  ticket_json = json.dumps({ 'issue': new_info })
-  ret = requests.post(Config.REDMINE_API_URL + "/issues.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-  if ret.status_code != 201:
-    logfail("Ticket clone error: " + ret.reason)
-    if not Config.force:
-      exit(3)
-  return ret.json()['issue']
-
-
 # Return true if the current user can modify an issue in the given project
 # Deprecated, use Redmine.can_modify_issues()
 Config.REDMINE_CAN_MODIFY=None
@@ -1090,25 +1065,20 @@ def subtask(next_version, new_title, base=None, bug=False):
     next_version_id = get_versions()[1][next_version]
   print("Next version will be " + str(next_version))
   print("Cloning ticket #" + issue.name)
-  ticket = clone_ticket(issue, next_version_id, new_title, bug)
-  print(" > ticket #" + str(ticket['id']) + " created " + Config.REDMINE_API_URL + "/issues/" + str(ticket['id']))
+  new_issue = issue.clone(next_version_id, new_title, bug)
+  print(" > ticket #" + str(new_issue.id) + " created " + Config.REDMINE_API_URL + "/issues/" + str(new_issue.id))
 
   # test merge status
   pull(next_version)
   logs = shell("git log --no-merges '--grep=Fixes #" + str(issue.id) + "' --oneline", "Looking for ticket commit in " + next_version, keep_output=True)
 
   # rudder-dev branch
-  if issue.internal:
-    ticket_id = 'i'+str(ticket['id'])
-  else:
-    ticket_id = str(ticket['id'])
-
   # if branch has been merged, just do a regular branch
   if len(logs) != 0:
-    create_branch(ticket_id)
+    create_branch(new_issue.name)
   # if branch has not been merged, base the ticket on the original
   else:
-    create_branch(ticket_id, current_branch)
+    create_branch(new_issue.name, current_branch)
   
     # rebase to next_version
     next_branch = branch_from_version(next_version)

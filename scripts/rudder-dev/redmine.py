@@ -26,11 +26,11 @@ class Issue:
   """Class to hold informations about a single issue"""
   def __init__(self, name, must_be_open=True):
     """name is a string like: 1234 or i1234"""
-    self.name = name
     self.must_be_open = must_be_open
     self.info = None
     if name.startswith('#'):
       name = name [1:]
+    self.name = name
     is_internal = re.match(r'i(\d+)', name)
     if is_internal:
       self.id = int(is_internal.group(1))
@@ -229,6 +229,34 @@ class Issue:
             'assigned_to_id': assign_to,
             }
     self._update_issue(change, message)
+
+  def clone(self, version_id, new_title, bug=False):
+    """Clone this issue making the new one a child of this one"""
+    new_info = {}
+    for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
+      if i in self.info:
+        new_info[i] = self.info[i]
+    new_info['parent_issue_id'] = self.id
+    if bug:
+      new_info['tracker_id'] = Config.BUG_TACKER_ID
+      new_info['description'] = "There was a bug in the resolution of #" + str(self.id)
+    if new_title is not None:
+      if new_title.startswith('+'):
+        new_info['subject'] += new_title.replace('+', ' ', 1)
+      else:
+        new_info['subject'] = new_title
+    new_info['fixed_version_id'] = version_id
+    ticket_json = json.dumps({ 'issue': new_info })
+    ret = requests.post(self.api_url + "/issues.json", headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data=ticket_json )
+    if ret.status_code != 201:
+      logfail("Ticket clone error: " + ret.reason)
+      if not Config.force:
+        exit(3)
+    if self.internal:
+      new_id = 'i' + str(ret.json()['issue']['id'])
+    else:
+      new_id = str(ret.json()['issue']['id'])
+    return Issue(new_id)
 
 
 class Redmine:
