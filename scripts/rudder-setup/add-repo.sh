@@ -28,7 +28,10 @@ add_repo() {
     $local URL_BASE="http://www.rudder-project.org/${REPO_TYPE}-${RUDDER_VERSION}"
   fi
 
-  if [ "${PM}" = "yum" ] || [ "${PM}" = "zypper" ]
+  if [ "${PM}" = "yum" ]
+  then
+    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_\$releasever/"
+  elif [ "${PM}" = "zypper" ]
   then
     $local OSVERSION=`echo "${OS_COMPATIBLE_VERSION}" | sed 's/[^0-9].*//'`
     URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OSVERSION}/"
