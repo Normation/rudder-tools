@@ -3925,6 +3925,25 @@
       <LOGIN>root</LOGIN>
     </USERS>
     <VERSIONCLIENT>FusionInventory-Agent_v2.2.2</VERSIONCLIENT>
+    <RUDDER>
+      <AGENT>
+        <AGENT_NAME>cfengine-community</AGENT_NAME>
+        <CFENGINE_KEY>-----BEGIN RSA PUBLIC KEY-----
+MIIBCAKCAQEAs1Qt+ALzyi3cXnAgfSuJ0wafSgCaQH5WOcS7wdqN5v187u7cxG8i
+iAwpYSoCXWC3yOGIo7BlGsodIgyvsLuuzo/cKVHGm9lSeyYApLPPV1w/4PPWBZ1p
+PnAufh98RT1OYuOELkF/0PuZrHcuVZM3l7tUovZFJZCWJ9Bi6YqtIGmegj2pym4F
+JD+nI4CweALwdwAuyasAnZYQ7JCfl+4wzKcKDhD8+lkXQm+tPFWbDTvXksNPADTb
++DUI7RHa8xXFiJHL+NzQcioIubmf7MLJRan1HEKdPljeYYaSnwdvSHfZNl2WTvCn
+WUNkzn6E50dW5vYRehF/dcu5X6dbMqS1hwIBIw==
+-----END RSA PUBLIC KEY-----
+        </CFENGINE_KEY>
+        <OWNER>root</OWNER>
+        <POLICY_SERVER_HOSTNAME>127.0.0.1</POLICY_SERVER_HOSTNAME>
+        <POLICY_SERVER_UUID>root</POLICY_SERVER_UUID>
+        <HOSTNAME>%%_hostname%%</HOSTNAME>
+      </AGENT>
+      <UUID>%%_uuid%%</UUID>
+    </RUDDER>
   </CONTENT>
   <DEVICEID>%%_hostname%%-2013-12-02-16-45-27</DEVICEID>
 <UUID>%%_uuid%%</UUID>
