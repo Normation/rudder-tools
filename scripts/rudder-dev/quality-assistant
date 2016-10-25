@@ -8,17 +8,31 @@ You need a configuration file, if you don't have one, the tool will create one f
 
 Usage:
         quality-assistant -h|--help
-        quality-assistant merge all
-        quality-assistant merge <repo>
+        quality-assistant merge all [--alt-dir]
+        quality-assistant merge <repo> [--alt-dir]
         quality-assistant autolabel all
         quality-assistant autolabel <repo>
+Options:
+        alt-dir : after waiting on a lock, use alternate directory instead of failing
+
+        merge <repo>: merge all PR that are tagged "Ready for merge" for theis repo
+
+        merge all: do a merge on all known repositories
+
+        autolabel <repo>: create mandatory labels on github for this repo
+
+        autolabel all: create labels on github for all known repositories
+
 """
 
 from __future__ import print_function
 
 import os
+import shutil
+import time
 from common import *
 from github import *
+from tempfile import *
 
 import docopt # apt-get install python-docopt || pip install docopt
 from pprint import pprint
@@ -35,26 +49,56 @@ except:
   pass
 
 
-def clean_repo(repo):
+def clean_repo(repo, alt_dir):
   redirect = ""
   if Config.LOGLEVEL == "error":
     redirect = " >/dev/null"
+
   # check master directory
-  directory = Config.WORKING_DIRECTORY
-  if not os.path.isdir(directory):
+  workdir = Config.WORKING_DIRECTORY
+  if not os.path.isdir(workdir):
     logfail("Master directory doesn't exist, exiting")
     exit(1)
+
   # check working directory
-  directory = directory + "/" + repo
+  directory = workdir + "/" + repo
   if not os.path.isdir(directory):
-    os.chdir(Config.WORKING_DIRECTORY)
-    shell("rudder-dev clone "+repo+redirect, "Cloning ncf in a temporary directory")
+    os.chdir(workdir)
+    shell("rudder-dev clone "+repo+redirect, "Cloning "+repo+" in the master directory")
+
+  # check lock
+  lockfile = directory + "/qa.lock"
+  wait = Config.LOCK_TIMEOUT
+  while wait > 0:
+    if os.path.isfile(lockfile):
+      print("Lock present, remaining wait time : " + str(wait) + "s")
+      w = min(wait,5) # recheck lock every 5s
+      time.sleep(w)
+      wait -= 5
+    else:
+      break
+  if os.path.isfile(lockfile):
+    if alt_dir:
+      # since working directory is just a cache to speedup git, we can just create another one if needed
+      workdir = mkdtemp()
+      directory = workdir + "/" + repo
+      lockfile = directory + "/qa.lock"
+      os.chdir(workdir)
+      shell("rudder-dev clone "+repo+redirect, "Cloning "+repo+" in a temporary directory")
+    else:
+      print("Lockfile " + lockfile + " is present, stoping")
+      exit(1)
+
+  open(lockfile, 'a').close()
+  
   # cleanup working directory
   os.chdir(directory)
-  shell("git reset --hard"+redirect, "Cleanup working directory")
+  shell("git clean -f -d -e qa.lock"+redirect, "Cleanup working directory")
+  shell("git reset --hard"+redirect, "Reset working directory")
+  return workdir
 
 
-def repo_merge(repo):
+def repo_merge(repo, alt_dir):
   api_url = "https://api.github.com/repos/Normation/{repo}/issues?labels="+Config.PR_VALIDATED_LABEL
   url = api_url.format(repo=repo)
   data = github_call(url)
@@ -62,7 +106,7 @@ def repo_merge(repo):
     labels = [l['name'] for l in pr_info['labels']]
     if Config.BOT_CANNOT_MERGE_LABEL in labels:
       continue
-    pr_merge(repo, pr_info['html_url'])
+    pr_merge(repo, pr_info['html_url'], alt_dir)
 
 
 def reassign(title, status):
@@ -83,11 +127,11 @@ def reassign(title, status):
       issue.to_status(status, uid)
  
 
-def pr_merge(repo, url):
+def pr_merge(repo, url, alt_dir):
   redirect = ""
   if Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error":
     redirect = " > /dev/null 2>/dev/null"
-  clean_repo(repo)
+  workdir = clean_repo(repo, alt_dir)
   pr = PR(url)
   command = "rudder-dev merge " + url + " --automatic"
   (code, output, stderr) = shell(command + " --test", "Trying to merge PR " + url, fail_exit=False, keep_output=True, keep_error=True)
@@ -122,10 +166,17 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)
 
+  if workdir == Config.WORKING_DIRECTORY:
+    # keep cache and remove lockfile 
+    os.remove(workdir + "/" + repo + "/qa.lock")
+  else:
+    # remove everything temporary
+    shutil.rmtree(workdir)
 
-def repo_merge_all():
+
+def repo_merge_all(alt_dir):
   for repo in Config.REPOSITORIES:
-    repo_merge(repo)
+    repo_merge(repo, alt_dir)
 
 
 def manage_label(repo, name, color):
@@ -161,13 +212,18 @@ if __name__ == "__main__":
   # qa specific configuration
   Config.WORKING_DIRECTORY = get_config("working_directory", "No 'working_directory' entry in " + Config.CONFIG_FILE, section)
   Config.LOGLEVEL = get_config("loglevel", "No 'loglevel' entry in " + Config.CONFIG_FILE, section) # verbose, info, error
+  Config.LOCK_TIMEOUT = get_config("lock_timeout", None, section)
+  if Config.LOCK_TIMEOUT is None:
+    # use a value long enough to wait for a normal run (including tests) if don't use alt_dir
+    # use a value that correspond to the overhead of cloning, checkouting and removing when using alt_dir
+    Config.LOCK_TIMEOUT = 60
 
   if arguments['merge'] and arguments['all']:
     repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
     Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
-    repo_merge_all()
+    repo_merge_all(arguments['--alt-dir'])
   elif arguments['merge']:
-    repo_merge(arguments['<repo>'])
+    repo_merge(arguments['<repo>'], arguments['--alt-dir'])
   elif arguments['autolabel'] and arguments['all']:
     repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
     Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
