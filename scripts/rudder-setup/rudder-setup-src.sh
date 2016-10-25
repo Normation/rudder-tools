@@ -51,6 +51,12 @@ then
   RUDDER_VERSION=$(echo "${RUDDER_VERSION}" | cut -f 2 -d "/")
 fi
 
+if [ $(whoami) != "root" ]
+then
+  echo "You need to be root to run rudder-setup"
+  usage
+  exit 1
+fi
 
 detect_os
 

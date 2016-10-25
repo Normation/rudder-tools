@@ -60,7 +60,11 @@ detect_os() {
   #################################
 
   if [ -e /etc/debian_version ]; then
-    ${PM_INSTALL} lsb-release
+    if ! dpkg -l lsb-release > /dev/null 2>/dev/null
+    then
+      echo "lsb-release is needed to detect debian derivative, installing it."
+      ${PM_INSTALL} lsb-release
+    fi
   fi
 
   # detect os and version
