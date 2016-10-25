@@ -84,6 +84,8 @@ def read_configuration(section=None):
 #redmine_token = 
 ## For Normation people only
 #redmine_alt_token = 
+## Set to 'https' if you don't have ssh access to github, 'ssh' is the default
+#remote_protocol = ssh
 ## For colorblind or dumb terminal change ansicode here (ref: http://pueblo.sourceforge.net/doc/manual/ansi_color_codes.html)
 ## Do no forget to add keeep {} to have the text content
 #error_tpl = \\033[1;31m{}\\033[0m
@@ -106,6 +108,9 @@ def read_configuration(section=None):
   Config.GITHUB_TOKEN = get_config("github_token", None, section)
   Config.REDMINE_TOKEN = get_config("redmine_token", None, section)
   Config.REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None, section)
+  Config.REMOTE_PROTOCOL = get_config("remote_protocol", None, section)
+  if Config.REMOTE_PROTOCOL is None:
+    Config.REMOTE_PROTOCOL = "ssh"
 
 
 # Get a configuration item from current configuration file

@@ -665,6 +665,9 @@ def remote_repo():
   match = re.search(r'git@github.com:Normation/(.*?).git', value)
   if match:
     return match.group(1)
+  match = re.search(r'https://github.com/Normation/(.*?)(/|.git)', value)
+  if match:
+    return match.group(1)
   logfail("Can't find remote repository")
   exit(10)
 
@@ -840,15 +843,18 @@ def github_fork():
     return False
 
   # fork the report if not already forked
-  remote_url = ""
+  if Config.REMOTE_PROTOCOL == 'ssh':
+    base_url = "git@github.com:"
+  else:
+    base_url = "https://github.com/"
   user = get_github_user()
   remote = remote_repo()
-  fork_needed = shell("git ls-remote git://github.com/" + user + "/" + remote + ".git HEAD > /dev/null 2>/dev/null; echo $?", keep_output=True).strip()
+  fork_needed = shell("git ls-remote " + base_url + user + "/" + remote + ".git HEAD > /dev/null 2>/dev/null; echo $?", keep_output=True).strip()
   if fork_needed != "0":
     github_request("https://api.github.com/repos/Normation/{repo}/forks", "Forking repository ...", pr_url=None, post_data="")
 
   # Add the remote repository to the local list
-  shell("git remote add " + Config.OWN_REPOSITORY + " git@github.com:" + user + "/" + remote + ".git", "Adding own remote repository")
+  shell("git remote add " + Config.OWN_REPOSITORY + " " + base_url + user + "/" + remote + ".git", "Adding own remote repository")
 
   # Tell if we forked or not
   return fork_needed != "0"
@@ -1290,7 +1296,7 @@ def pull(version=None):
 # clone from NRM, fork, add OWN, set-upstream
 def clone(name, fork=False):
   token = get_github_token(can_fail=True)
-  if token is not None:
+  if token is not None and Config.REMOTE_PROTOCOL == 'ssh':
     url = "git@github.com:Normation/"
   else:
     url = "https://github.com/Normation/"
