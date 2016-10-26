@@ -26,6 +26,7 @@ Usage:
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] update
+    rudder-dev [-f|--force] blame <file> [--before=<commit_id>] [--changed-after=<commit_id>] [--long]
     rudder-dev [-f|--force] <smart_arg> [<PR_message>] [--base=<ticket_id>]
 
 SMART
@@ -185,6 +186,14 @@ UPDATE
     - replace current rudder-dev with it
     - use sudo if needed
 
+BLAME
+    Call it to find when a line has been modified
+    - run git blame on the file
+    - reformat output to be shorter and add redmine issue id
+    - stop before a specific commit with --before
+    - add issue description if --long is provided
+    - find lines changed after a commit id with --changed-after (useful to find deleted lines)
+    - changed after and before are incompatible
 """
 
 from __future__ import print_function
@@ -1574,6 +1583,56 @@ def check_update():
   # else everything is up to date
 
 
+def blame(filename, long_format, before_commit, changed_from):
+  commit_opt = ""
+  if before_commit is not None:
+    commit_opt = before_commit + "^1"
+  reverse_opt = ""
+  if changed_from is not None:
+    reverse_opt = "--reverse " + changed_from + "..HEAD"
+    # get ordered list of commit id
+    commits = shell("git log --oneline --abbrev=7", keep_output=True) # abbrev used is +1 in git blame !!
+    commit_list = commits.split("\n")
+    commit_list = [ x.split(' ',1)[0] for x in commit_list ] 
+  blame = shell("git blame -s -w --abbrev=6 " + reverse_opt + " " + filename + " " + commit_opt, "Blaming file " + filename, keep_output=True)
+  output = ""
+  for line in blame.split('\n'):
+    # extract commit id
+    match = re.search(r'([0-9a-f]+?) (.*)', line)
+    if match:
+      commit_id = match.group(1)
+      if changed_from is not None:
+        # in reverse mode, git returns the previous commit, so replace it with the next one
+        commit_index = commit_list.index(commit_id)
+        if commit_index == 0:
+          # we are on the last commit, so the line has never been changed
+          log = "never"
+          commit_id = "never"
+        else:
+          commit_id = commit_list[commit_list.index(commit_id)-1]
+          log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
+      else:
+        log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
+      # format the log line and add it to the blame 
+      if long_format:
+        output += "%-65.65s %s\n" % (log, match.group(2))
+      else:
+        m = re.search(r'^([0-9a-f]+?) (Fixes|Merge|Ref).*?(\d{4,})', log)
+        if m:
+          logtype = ""
+          if m.group(2) == "Fixes":
+            logtype = "F"
+          if m.group(2) == "Ref":
+            logtype = "R"
+          if m.group(2) == "Merge":
+            logtype = "M"
+          logline = m.group(1) + " " + logtype + " #" + m.group(3)
+        else:
+          logline = commit_id
+        output += "%-15.15s %s\n" % (logline, match.group(2))
+  print(output)
+
+
 # Main loop
 if __name__ == "__main__":
   arguments = docopt.docopt(__doc__)
@@ -1666,4 +1725,6 @@ if __name__ == "__main__":
     cleanup(arguments['--more'], arguments['-n'] or arguments['--dry-run'])
   elif arguments['update']:
     update()
+  elif arguments['blame']:
+    blame(arguments['<file>'], arguments['--long'], arguments['--before'], arguments['--changed-after'])
 
