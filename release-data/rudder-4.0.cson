@@ -2,7 +2,8 @@
 
 release = "4.0"
 
-released = false
+# Status of the release (alpha, beta, rc, final)
+release-status = "rc"
 
 # Is this version currently supported?
 supported = false
