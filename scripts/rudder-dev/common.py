@@ -22,6 +22,8 @@ class Config:
   force = False
   # Common config
   QA_TEST = "qa-test"
+  # Cache file where we put temporary data
+  CACHE_FILE = "~/.rudder-dev.cache"
 
 
 ###
@@ -113,8 +115,8 @@ def read_configuration(section=None):
     Config.REMOTE_PROTOCOL = "ssh"
 
 
-# Get a configuration item from current configuration file
 def get_config(item, error, section):
+  """ Get a configuration item from current configuration file """
   try:
     # try [section] first
     if section is not None:
@@ -130,4 +132,37 @@ def get_config(item, error, section):
     else:
       logfail(error)
       exit(5)
+
+def get_cache_info(key, subkey = None):
+  """ Get a value from the cache file """
+  data = {}
+  filename = os.path.expanduser(Config.CACHE_FILE)
+  if not os.path.isfile(filename):
+    return None
+  with open(filename) as fd:
+    data = json.load(fd)
+  if not key in data:
+    return None
+  if subkey is None:
+    return data[key]
+  if subkey not in data[key]:
+    return None
+  return data[key][subkey]
+
+def set_cache_info(key, value, subkey=None):
+  """ Set a value into the cache file """
+  filename = os.path.expanduser(Config.CACHE_FILE)
+  if os.path.isfile(filename):
+    with open(filename) as fd:
+      data = json.load(fd)
+  else:
+    data = { }
+  if subkey is None:
+    data[key] = value
+  else:
+    if key not in data:
+      data[key] = { }
+    data[key][subkey] = value
+  with open(filename, "w") as fd:
+    json.dump(data, fd)
 
