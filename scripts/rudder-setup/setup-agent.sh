@@ -38,8 +38,16 @@ setup_agent() {
   # TODO rhel5 only
   #${PM_INSTALL} pcre openssl db4-devel
 
-  # TODO rudder < 2.11 only
-  echo "${SERVER}.rudder.local" > /var/rudder/cfengine-community/policy_server.dat
+  if [ -n "${SERVER}" ]
+  then
+    echo "${SERVER}" > /var/rudder/cfengine-community/policy_server.dat
+    if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"
+    then
+      rudder agent inventory
+    else
+      cf-agent -K -D force_inventory -b doInventory
+    fi
+  fi
 
   service_cmd rudder-agent start
 
