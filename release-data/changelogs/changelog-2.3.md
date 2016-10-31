@@ -1,0 +1,782 @@
+# Change logs for Rudder 2.3.\* "IceBreaker" versions
+
+Rudder 2.3.0 was initially released on 11th October 2011. Since then,
+maintenance releases have been and will be regularly released. Rudder's
+versioning policy is to release only minor changes, essentially bug
+fixes in maintenance releases.
+
+As of 14th December 2012, Rudder 2.3 is **no longer the most recent
+stable release** of Rudder. We recommend that all users upgrade to
+[Rudder 2.4](System/Documentation:ChangeLog24). Rudder 2.3 will continue
+to receive security corrections and bug fixes for 6 months, that is
+until **14th June 2013**.
+
+This branch is codenamed "IceBreaker".
+
+This page provides a summary of changes for each
+version.
+
+## Rudder 2.3.13 (2013-06-06)
+
+### Bug fixes
+
+#### Inventory (webapp, Fusion)
+
+  - When a node has two intefaces with the same IP, it does not appear
+    as pending node in Rudder WebUI
+    and can't be accepted
+    ([\#3626](http://www.rudder-project.org/redmine/issues/3626))
+
+#### Miscellaneous
+
+  - Cron on RHEL/CentOS nodes was restarted at every execution of
+    CFEngine
+    ([\#3609](http://www.rudder-project.org/redmine/issues/3609))
+  - The file tools/generate-map.sh to generate the documentation does
+    not work with bash
+    ([\#3579](http://www.rudder-project.org/redmine/issues/3579))
+  - If rsyslog is installed after another syslog, rsyslog is never used
+    on SLES and reports will never be caught by Rudder server
+    ([\#3569](http://www.rudder-project.org/redmine/issues/3569))
+
+#### Webapp - Display, home page
+
+  - Various Fixes
+    ([\#3373](http://www.rudder-project.org/redmine/issues/3373))
+
+#### Policy Templates
+
+  - Policy Template "Generic Variable Definition": The regexp to check
+    variable name doesn't work
+    ([\#3599](http://www.rudder-project.org/redmine/issues/3599))
+  - Policy Template "Download a file from the shared folder": Posthook
+    reports is missing if the copy fails
+    ([\#3583](http://www.rudder-project.org/redmine/issues/3583))
+  - When using rsyslog with a version \> 5.7.1 on the server, some
+    reports may be dropped, leading to
+    \[NoAnswer](NoAnswer)\
+    on the server
+    ([\#3604](http://www.rudder-project.org/redmine/issues/3604))
+  - Policy Template "Download a file from the shared folder": When error
+    happens some logs are duplicated
+    ([\#3582](http://www.rudder-project.org/redmine/issues/3582))
+  - Policy Template "Download A File": The inputs of the Technique are
+    not checked by regexp to prevent wrong URL or destination format
+    ([\#3539](http://www.rudder-project.org/redmine/issues/3539))
+
+#### Architecture - Dependencies
+
+  - Rudder is not building with maven2
+    ([\#3637](http://www.rudder-project.org/redmine/issues/3637))
+  - Not specifying maven default repos lead to inconsistency in download
+   
+[\#3598](http://www.rudder-project.org/redmine/issues/3598))
+
+#### Webapp - Node management
+
+  - No tooltip on Group page for Statis/Dynamic
+    ([\#3597](http://www.rudder-project.org/redmine/issues/3597))
+
+### Contributors
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Dennis Cabooter
+
+### Release notes
+
+This is the final maintenance release of the "old stable" 2.3 branch. 
+We recommend that any installations still using 2.3.\* be upgraded as
+soon as possible to Rudder 2.6.\* (latest version) - or for those of you
+seeking higher guarantees of stability, Rudder 2.4.\* (stable version).
+
+## Rudder 2.3.12 (2013-05-03)
+
+### Bug fixes
+
+#### Agent
+
+  - Fix errors when stopping Rudder agent daemon with the init script if
+    its pid file is empty
+    ([\#3457](http://www.rudder-project.org/redmine/issues/3457))
+
+#### Core
+
+  - Simplify contributions with an IDE by adding source jar with maven
+    compilation
+    ([\#3400](http://www.rudder-project.org/redmine/issues/3400))
+
+#### UI
+
+  - Prevent Chrome browser to fail to display the loading page after too
+    many reload
+    ([\#2401](http://www.rudder-project.org/redmine/issues/2401))
+
+#### System integration
+
+  - Fix Rudder status check and send of inventories which failed if a
+    proxy was defined in the environment
+    ([\#3383](http://www.rudder-project.org/redmine/issues/3383)
+    ([\#3401](http://www.rudder-project.org/redmine/issues/3401))
+
+#### Policy Templates
+
+  - Improve CFEngine performances
+    ([\#3424](http://www.rudder-project.org/redmine/issues/3424)
+    ([\#3439](http://www.rudder-project.org/redmine/issues/3439)
+    ([\#3444](http://www.rudder-project.org/redmine/issues/3444)
+    ([\#3454](http://www.rudder-project.org/redmine/issues/3454)
+    ([\#3463](http://www.rudder-project.org/redmine/issues/3463)
+    ([\#3485](http://www.rudder-project.org/redmine/issues/3485))
+  - Technique "Process management": version 1.1 was not functionnal
+    ([\#2801](http://www.rudder-project.org/redmine/issues/2801))
+  - All Techniques: Permit CFEngine to edit files of 1MB
+    ([\#3385](http://www.rudder-project.org/redmine/issues/3385))
+  - PT "Cron daemon configuration":Fix the cron binary path checked for
+    Ubuntu to prevent to restart it every CFEngine execution
+    ([\#3438](http://www.rudder-project.org/redmine/issues/3438))
+  - PT "APT package manager configuration": Handle Ubuntu 12.04 and
+    later ([\#3375](http://www.rudder-project.org/redmine/issues/3375))
+  - PT "Time settings": Fix errors if /etc/localtime is a symbolic link
+    ([\#3437](http://www.rudder-project.org/redmine/issues/3437))
+  - PT "Package management for Debian / Ubuntu / APT systems": Support
+    "allow untrusted" (optionnally)
+    ([\#3396](http://www.rudder-project.org/redmine/issues/3396))
+  - PT "Download a file": Fix reports
+    ([\#3346](http://www.rudder-project.org/redmine/issues/3346))
+
+### Contributors
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Dennis Cabooter
+  - [François Bayart aka A-Kaser](https://twitter.com/frbayart) (Look a
+    box)
+
+### Release notes
+
+This is a maintenance release, part of the "old stable" 2.3 branch. You
+are invited if using this branch to upgrade to 2.6 as soon as possible
+to enjoy the latest features with a still stable and more polished
+version. 
+See our FAQ for details, on
+http://www.rudder-project.org/foswiki/FAQ/#What_is_the_versioning_policy_63.
+2.3.\* versions will be maintained until June 2013.
+
+ 
+
+## Rudder 2.3.11 (2013-04-02)
+
+### Bug fixes
+
+#### Logging
+
+  - When a deployment fails, there are no log in the application log
+    telling so
+    ([\#3333](http://www.rudder-project.org/redmine/issues/3333))
+
+#### Webapp - Config management pane
+
+  - Using parametrized variables based on Rules values fails
+    ([\#3332](http://www.rudder-project.org/redmine/issues/3332))
+  - System Rules/Directives/Groups can be cloned/deleted/disabled
+    ([\#3286](http://www.rudder-project.org/redmine/issues/3286))
+
+#### Webapp - Node management pane
+
+  - Node query with OR and regexp doesn't OR the result
+    ([\#3340](http://www.rudder-project.org/redmine/issues/3340))
+
+#### Policy Templates
+
+  - sudoParameters produces an invalid sudoers file when command is
+    specified
+    ([\#3324](http://www.rudder-project.org/redmine/issues/3324))
+  - sudoParameters technique may insert env\_reset setting multiple
+    times ([\#3323](http://www.rudder-project.org/redmine/issues/3323))
+  - checkGenericFileContent should also execute a posthook command after
+    line deletion or replacement
+    ([\#3322](http://www.rudder-project.org/redmine/issues/3322))
+  - \!ManageFileAndFolder: No reporting for the creation component are
+    made when deleting files
+    ([\#3246](http://www.rudder-project.org/redmine/issues/3246))
+  - Policy templates 'Zypper Package Manager Configuration' and 'RUG /
+    \!YaST package manager configuration (ZMD)': Broken Reporting when
+    configuration more than one repository which should not be added
+    ([\#3170](http://www.rudder-project.org/redmine/issues/3170))
+  - The filePermissions Policy template can not load large permlists
+    ([\#3257](http://www.rudder-project.org/redmine/issues/3257))
+  - Apache 2 HTTP Server: receiving unexpected reports for component
+    "SELinux context"
+    ([\#2837](http://www.rudder-project.org/redmine/issues/2837))
+  - Re-creation of the \!OpenSSH startup scripts failed on Debian/Ubuntu
+    in the \!OpenSSH server Policy template
+    ([\#3368](http://www.rudder-project.org/redmine/issues/3368))
+
+#### Documentation
+
+  - Rudder installation doc says that we should use "main contrib
+    non-free" APT components on Debian and should be "main" only
+    ([\#3344](http://www.rudder-project.org/redmine/issues/3344))
+
+### Release notes
+
+This is a maintenance release, part of the "old stable" 2.3 branch. You
+are invited if using this branch to upgrade to 2.4 as soon as possible
+to enjoy the latest features with a still stable and more polished
+version. 
+See our FAQ for details, on
+http://www.rudder-project.org/foswiki/FAQ/#What_is_the_versioning_policy_63.
+2.3.\* versions will be maintained until June 2013.
+
+## Rudder 2.3.10 (2013-03-14)
+
+### Changes
+
+#### Policy Templates
+
+  - PT "Package management for Debian / Ubuntu / APT systems": Enable
+    the user to specify a package version
+    ([\#3147](http://www.rudder-project.org/redmine/issues/3147))
+  - PT "Enforce a file content": Add possibility to enforce content of
+    files only at creation
+    ([\#3196](http://www.rudder-project.org/redmine/issues/3196))
+  - PT "Set File Permissions": Add possibility to define setuid and
+    setgid
+    ([\#3115](http://www.rudder-project.org/redmine/issues/3115))
+  - PT "Enforce a file content": Add a warning about quotes which should
+    be escaped to be used
+    ([\#2887](http://www.rudder-project.org/redmine/issues/2887))
+
+### Bug fixes
+
+#### Agent
+
+  - Prevent Rudder to try to remove essential packages on outdated
+    systems
+    ([\#2949](http://www.rudder-project.org/redmine/issues/2949))
+  - Prevent rudder-agent package to try to control /var/cfengine/inputs
+    ([\#3180](http://www.rudder-project.org/redmine/issues/3180))
+
+#### Core
+
+  - Remove CFEngine connection limit which could lead to all the
+    Directives using Generic Variable to be in error if an error occured
+    with a Directive based on "Download from a shared folder"
+    ([\#3052](http://www.rudder-project.org/redmine/issues/3052))
+  - Remove 64 characters limitation of the reporting keys due to rsyslog
+    ([\#3158](http://www.rudder-project.org/redmine/issues/3158))
+  - Fix errors due to duplicated software entries in inventory when
+    trying to save the node
+    ([\#3127](http://www.rudder-project.org/redmine/issues/3127))
+  - Fix invalid reporting values when using backslash ("\\") in
+    component key values
+    ([\#3160](http://www.rudder-project.org/redmine/issues/3160))
+  - Fix Rudder machine ID when inventory does not contain any machine ID
+    ([\#3202](http://www.rudder-project.org/redmine/issues/3202))
+  - Prevent from starting a a deployment when nothing is modified in
+    Directive/Rule/Group
+    ([\#3191](http://www.rudder-project.org/redmine/issues/3191))
+
+#### UI
+
+  - Fix list of category in the "new group" popup which displayed a
+    category list in a randomize order without hierarchy
+    ([\#3175](http://www.rudder-project.org/redmine/issues/3175))
+
+#### System integration
+
+  - Fix invalid syslog-ng source used by Rudder on Debian machines
+    ([\#3020](http://www.rudder-project.org/redmine/issues/3020))
+
+#### Policy Templates
+
+  - PT "Enforce a file content": Fix add of unexpanded variable when
+    "Content add" is empty
+    ([\#3069](http://www.rudder-project.org/redmine/issues/3069))
+  - PT "OpenSSH Server": Fix value "Don't change" of the parameter
+    "Adress family used by sshd" which brake ssh configuration
+    ([\#2987](http://www.rudder-project.org/redmine/issues/2987))
+  - PT "OpenSSH Server": Fix [OpenSSH](OpenSSH) installation on
+    ([SuSE](SuSE) machines which couldn't be installed with zypper
+    ([\#3104](http://www.rudder-project.org/redmine/issues/3104))
+  - PT "User Management": Prevent from creating user on a system without
+    home. ([\#2549](http://www.rudder-project.org/redmine/issues/2549))
+  - PT "User Management": Fix Technique which redefined password of the
+    user when "Check password only" was chosen
+    ([\#2552](http://www.rudder-project.org/redmine/issues/2552))
+  - PT "Manage files and folders": Fix the add of symlinks when symlink,
+    file or folder already exist with the same path
+    ([\#3113](http://www.rudder-project.org/redmine/issues/3113))
+  - PT "Package management for Debian / Ubuntu / APT systems": Add
+    reporting for this Technique when applied on a None Debian system
+    ([\#2794](http://www.rudder-project.org/redmine/issues/2794))
+  - PT "Apache 2 HTTP Server": Fix incomplete and invalid reporting
+    ([\#3025](http://www.rudder-project.org/redmine/issues/3025))
+  - PT "Apache 2 HTTP Server": Fix invalid reporring with unexpanded
+    variable $(apache\_modules)
+    ([\#3044](http://www.rudder-project.org/redmine/issues/3044))
+  - PT "Apache 2 HTTP Server": Fix installation of modules
+    ([\#3062](http://www.rudder-project.org/redmine/issues/3062))
+  - PT "Manage files and folders": Fix improper reporting when dealing
+    with non existent file we don't wish to create
+    ([\#3131](http://www.rudder-project.org/redmine/issues/3131))
+  - PT "Enforce a file content": Fix invalid reporting when there is no
+    content to add
+    ([\#3140](http://www.rudder-project.org/redmine/issues/3140))
+  - PT "Apache 2 HTTP Server": Fix description about Compatibility
+    ([\#2545](http://www.rudder-project.org/redmine/issues/2545))
+
+### Release notes
+
+This is a maintenance release, part of the "old stable" 2.3 branch. You
+are invited if using this branch to upgrade to 2.4 as soon as possible
+to enjoy the latest features with a still stable and more polished
+version. 
+See our FAQ for details, on
+http://www.rudder-project.org/foswiki/FAQ/#What_is_the_versioning_policy_63.
+2.3.\* versions will be maintained until June 2013.
+
+## Rudder 2.3.9 (2012-12-04)
+
+### Bug fixes
+
+  - Fix timestamp format in agent logs generated by the "failsafe"
+    mechanism (\#2994)
+  - Fix Enter button to validate the popup from the creation of a new
+    Directive (\#2816)
+  - Fix Enter button to validate the Edit Directive form (\#2814)
+  - Prevent to create a group of nodes which couldn't contain anything
+    if the button 'Update' has never been used (\#2798)
+  - Fix acceptance of inventories if using a strict umask on system of
+    Rudder server (\#2767)
+  - Add more informations in the webapp log file when trying to load
+    Policy Templates fails (\#2633)
+  - Fix reports which were not received in Rudder if backslash was used
+    in some Policy Instances variables (\#2582)
+  - Fix wrong type of CPU Speed (float instead of integer) attribute in
+    LDAP which lead to not have information about it on nodes and
+    prevent to make search filter about it (\#2560)
+  - The popup with the Policy Instances list on the Configuration Rules
+    page doesn't allow for more than 10 PIs (\#2772)
+  - Fix options to sort compliance percentages in Configuration Rules
+    Management screen (\#2497)
+  - Various Bug Fixes (\#2810, \#2651)
+
+### Packaging
+
+  - Prevent logrotate.d/rudder to be silently replaced and potentially
+    remove user configuration about Rudder log files. (\#2872)
+  - Prevent logback.xml to be silently replaced and potentially remove
+    user configuration about Rudder log files. (\#2857)
+  - Fix broken upgrade of rudder-cfengine-community from a version
+    earlier than 2.3.8 (\#2733)
+  - Prevent cfengine-community package to start cf-agent before to have
+    its promises (\#2731)
+  - Fix error during the first installation of Rudder if
+    rudder-inventory-ldap package is not installed before rudder-jetty
+    (\#2730)
+  - Fix rudder-jetty package which couldn't be installed on SLES 32 bits
+    (\#2563)
+
+### Policy Templates
+
+Please note that the Policy Templates repository is maintained
+independently of Rudder minor releases (ie, 2.3.6, 2.3.7, etc). Changes
+are listed here for convenience only, and it is recommended to keep
+track of changes directly in the \<a
+href="https://github.com/normation/rudder-techniques/"
+target="\_top"\>GitHub repository\.
+
+  - PT "SSH keys distribution": Add possibility to take into account
+    network users (special thanks to Michael Gliwinski\!) (\#2944)
+  - PT "Job Scheduler": Job was never launched if start time was between
+    0:00 and 9:00 AM (\#2940)
+  - PT "Enforce a file content": Fix the version 2.0 which didn't
+    generated a valid CFEngine code (\#3022)
+  - PT "Apache 2 HTTP Server": Apache 2 package was never installed on
+    Debian or SLES 11 (\#3023)
+  - PT "Package management for Debian / Ubuntu / APT systems": Prevent
+    Rudder from non interactive installation failures with APT if a
+    configuration file has been modified (\#2946)
+  - PT "Enforce a file content": Add possibility to create or not the
+    file we want to modify (\#2945)
+  - PT "Apache 2 HTTP Server": didn't return reports when Apache was
+    successfully installed (\#2608)
+  - PT "User management": PT could set a fullname of the user only at
+    the creation (\#2558)
+  - PT "User Management": PT didn't send error report when checking a
+    user fails (\#2557)
+  - PT "User Management": PT could set the user password if the password
+    field was filled and the action to do was to only check the User
+    (\#2552)
+  - PT "Set the permissions of files": Values for Owner and Group were
+    mandatories even if our choice was to not modify them (\#2471)
+  - PT "Time Settings": Was not able to install NTP package on
+    RHEL/CentOS (\#2384)
+  - Various PT Fixes (\#2556, \#2853)
+
+### Contributors
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make Rudder a better tool:
+
+  - [François Bayart aka A-Kaser](https://twitter.com/frbayart) (Look a
+    box)
+  - Michael Gliwinski (Henderson Group)
+  - Ade Bradshaw
+  - [Gonéri Le Bouder](https://twitter.com/goneri) (Teclib)
+
+## Rudder 2.3.8 (2012-07-05)
+
+### Bug fixes
+
+  - \#2576: Activating "trace" log level caused Rudder to fail during
+    deployment
+  - \#2560: Could not search for nodes based on their CPU speed
+  - \#2375: Don't give read permissions on generated promise files on
+    the Rudder server
+  - Various improvements for Windows support (\#2516, \#2499, \#2496)
+  - Various UI improvements (\#2620, \#2483, \#2466)
+  - Various system policy templates improvements (\#2579)
+  - Various build environment improvements (\#2605)
+
+### Documentation
+
+  - \#2527: Added a procedure to change default passwords in a Rudder
+    server installation
+    (http://www.rudder-project.org/rudder-doc-2.3/rudder-doc.html\#password-management)
+  - \#2523: Document how to upgrade Policy Template library
+    (http://www.rudder-project.org/rudder-doc-2.3/rudder-doc.html\#_policy_template_upgrade)
+
+### Packaging
+
+  - \#2559: Reduce default verbosity for LDAP log level, to avoid huge
+    logs
+  - Various packaging improvements (\#2568, \#2534)
+
+### Policy Templates
+
+Please note that the Policy Templates repository is maintained
+independently of Rudder minor releases (ie, 2.3.6, 2.3.7, etc). Changes
+are listed here for convenience only, and it is recommended to keep
+track of changes directly in the [GitHub
+repository](https://github.com/normation/rudder-techniques/).
+
+  - \#2564: PT "Enforce a file content": Multi-line text was inserted
+    with extra tabs
+  - \#2478: PT "Package management for Debian / Ubuntu / APT systems":
+    Options for apt-get and aptitude have been changed to avoid them
+    asking questions during silent installs
+  - \#2457: PT "Manage files and folders": Age criteria was ignored when
+    deleting one file or directory only (not on a subtree)
+  - \#2394: PT "Hosts management": Base template used when asked to
+    reset the entier /etc/hosts file contents is now configurable in the
+    UI
+  - Various fixes in reporting, variable definition and descriptions
+    (\#2614, \#2606, \#2600, \#2555, \#2553, \#2488, \#2485)
+  - Various fixes for Windows compatibility (\#2562, \#2561, \#2554,
+    \#2498)
+
+### Contibutors
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make Rudder a better tool:
+
+  - [François Bayart aka A-Kaser](https://twitter.com/frbayart)
+  - [Jean Rémond](https://twitter.com/jean_remond_)
+  - Michael Gliwinski
+
+## Rudder 2.3.7 (2012-05-18)
+
+Note: Version 2.3.7 was tagged, but not released (due to an upstream
+project breaking download links). All changes are included in the 2.3.8
+release.
+
+### Bug fixes
+
+  - \#2464: Configuration Rules based on dynamic groups with criteria
+    matching the "Network interfaces \> IP address" would not be
+    displayed in the list of Configuration Rules to be applied to new
+    nodes (in the "Accept new nodes" page)
+  - \#2456: Policy Instances included in Configuration Rules with
+    several Policy Instances could be applied even when they were
+    disabled
+  - \#2444: Web application now gracefully reconnects to the database if
+    connection was lost
+  - \#2425: Configuring Policy Instances with several identical values
+    (for multi-valued sections) would cause reporting errors, so exact
+    duplicates are now silently dropped
+  - \#2419: Add support for Policy Instances with CFEngine variables in
+    them (ie, "$") when they are used as reporting keys in
+    Policy Templates
+  - \#2403: Fix the default query for new groups to ensure it's valid
+  - \#2398: Ensure expected reports are counted *exactly* to avoid a
+    case where compliance was 0% when it should have been 100%
+  - \#2368: Improve audit trail for object names in the database
+  - \#2289: Fix the hello-world sample plugin to generate a single JAR
+    to ease including it in an existing Rudder server
+  - \#2258: Changes to policy server settings were not all displayed in
+    the Event Log in the UI
+  - \#2254: Fix default apache configuration to deny read access to the
+    incoming [WebDAV](WebDAV) directory where nodes send their
+    inventories (POST method only)
+  - \#2234: Clarify error message returned by the inventory endpoint
+    when receiving a request that it can't handle
+  - Various documentation improvements (\#2476, \#2461, \#2408, \#2407,
+    \#1746, \#1624)
+  - Various UI improvements (\#2468, \#2463, \#2458, \#2433, \#2430,
+    \#2404, \#2400, \#2169, \#2156)
+  - Various system policy templates improvements (\#2413)
+  - Various build environment improvements (\#2459, \#2383, \#2245,
+    \#2242)
+
+### Packaging
+
+  - \#2380, \#2455, \#2371: rudder-agent and rudder-cfengine-community
+    now depend on the right package to install dmidecode on SLES and
+    RHEL
+  - \#2379: Rudder root server's logrotate script could rotate the
+    /etc/init.d/apache2 file on SLES
+  - \#2447, \#2269: [VirtualHost](VirtualHost) file installed for Apache
+    and inventory endpoint configuration file
+    (/opt/rudder/etc/inventory-web.properties) were not considered a
+    configuration file by packaging, and local changes could be
+    overwritten on upgrade
+  - \#2288: Fix service dependencies so that all Rudder servevr
+    components start in the right order on system boot
+  - \#2142, \#2440: rudder-server-root init script was missing on SLES
+  - Various packaging improvements (\#2475, \#2390, \#2385, \#2345,
+    \#2335, \#2326, \#2291, \#2272)
+
+### Policy Templates
+
+Please note that the Policy Templates repository is maintained
+independently of Rudder minor releases (ie, 2.3.6, 2.3.7, etc). Changes
+are listed here for convenience only, and it is recommended to keep
+track of changes directly in the [GitHub
+repository](https://github.com/normation/rudder-techniques/).
+
+  - \#2470: PT "Download a file from the shared folder": Add an option
+    to choose the method to check if a copy is required (MD5 hash,
+    mtime, ctime, etc)
+  - \#2454: PT "Job scheduler": Fix handling multiple jobs in the same
+    Policy Instance
+  - \#2417, \#2218: PT "Enforce a file content": Fix version 2.1 which
+    regressed to being single-valued, thus breaking existing
+    configurations
+  - \#2410: PT "Name resolution": Add a field to configure options in
+    resolv.conf
+  - \#2409: PT "Name resolution": Fix search suffix application (one
+    line instead of multiple lines)
+  - \#2391: PT "Manage files and folders": Deleting files older than X
+    days could delete files created during the agent run (ie, less than
+    a minute old)
+  - \#2387: PT "Host settings": Clean up any conflicting lines defining
+    an identical hostname to the one defined in Rudder
+  - \#2297: PT "Download a file from the shared folder": Add a post-hook
+    section to enable running a command after a file is copied
+  - \#2140: PT "Enforce a file content": Add the possibility to delete
+    or replace a line using a regexp
+  - \#2465: PT "Enforce a file content": Enforcing *full* content of a
+    file is no longer mandatory
+  - \#2170: PT "MOTD configuration": Validate that MOTD content does not
+    contain double quotes that would break CFEngine generated promises
+  - Various fixes in reporting, variable definition and descriptions
+    \#2481, \#2467, \#2435, \#2416, \#2393, \#2374, \#2343, \#2225,
+    \#1905)
+
+### Contibutors
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make Rudder a better tool:
+
+  - Alexandre Valembois aka VAlu
+  - [François Bayart aka A-Kaser](https://twitter.com/frbayart)
+  - [Jean Rémond](https://twitter.com/jean_remond_)
+  - [Olivier Li Kiang Cheong aka lkco](http://lkco.gezen.fr/)
+
+## Rudder 2.3.6 (2012-01-26)
+
+### Bug fixes
+
+  - \#2194: Logs for inventory endpoint now use the original filename
+    instead of the constant "file"
+  - Various packaging improvements (\#2147, \#2177)
+
+### Policy Templates
+
+  - New Policy Template "Job Scheduler": this PT enables running a given
+    task at random times over a period (for example, between 2 and 6 AM)
+    across a group of nodes
+  - \#1926: "
+  - \#2200: "Services management" PT did not correctly setup services to
+    start automatically on boot on Debian systems
+  - \#2154: "
+  - \#2189: "
+  - \#2140: "
+  - \#2146: Two PT categories had the same name (security) causing some
+    display issues
+
+## Rudder 2.3.5 (2011-12-14)
+
+### Bug fixes
+
+  - \#2111: Adding several allowed networks in the rudder-init.sh script
+    failed
+  - \#2091: Error in search with two "regex" match and a "or"
+    composition
+  - \#2121: Refactored some database access code to be thread-safe
+  - \#1973: Clarified name of popup in "Accept new nodes" screen
+  - Various packaging improvements (\#2112, \#2043)
+
+### Policy Templates
+
+  - New Policy Template to run a "tripwire" check on files and folders,
+    and report errors if contents changed: "Monitor a file or directory
+    content" PT (\#2055)
+  - \#2113, \#2131, \#2024: "Cron management" PT now supports a much
+    wider range of manual time specifications
+  - \#2090: "Manage files and folders" PT: now warns when trying to set
+    permissions on a link
+  - \#2129: "Fstab configuration" PT: we can now delete lines based on
+    the destination (ie, /tmp, instead of /dev/sda7)
+  - \#2124: "Fstab configuration" PT no longer modifies commented lines
+    that match standard line format
+  - \#2127: "Services management" PT: services were not correctly
+    disabled from starting on boot if they were configured with
+    non-standard runlevels, on SLES 10
+  - \#2116: "Download a file from the shared folder" PT didn't set
+    owner, group and permissions as expected
+
+## Rudder 2.3.4 (2011-23-11)
+
+### Changes
+
+  - \#2066: All backup copies of edited/copied files are now stored in a
+    single directory, /var/rudder/modified-files
+
+### Bug fixes
+
+  - \#2088: File permissions enforced conflicted with permissions on
+    files copied from server, causing many useless repairs ("Rudder
+    system policy: basic setup (common)" PT)
+  - \#2087, \#2067: Erroneous reporting in some cases when updating
+    policy on nodes ("Rudder system policy: basic setup (common)" PT)
+  - \#2080: Packaging didn't include logrotate configuration for
+    rudder-server-root in RPM packages
+  - Various packaging improvements (\#2016, \#2039, \#2044, \#2065,
+    \#2072, \#2079)
+
+### Policy Templates
+
+  - New Policy Template: "Generic CFengine variable definition" allows
+    to define values for different hosts, and reuse them in other Policy
+    Instances
+  - \#2089: "Manage files and folders" PT reported an error when it
+    succeeds when trying to create a directory that already exists
+  - \#2042: "Fstab configuration" PT can now also delete lines aswell as
+    creating or altering them
+  - \#2069: "Fstab configuration" PT didn't support several spaces as a
+    field separator
+  - \#2046: "RUG / \!YaST package manager configuration (ZMD)" PT:
+    reporting was broken when a repository is given but no edition is
+    required
+  - \#2045: "Time settings" PT: reporting was broken on SLES 10
+  - \#1904: "Apache 2 HTTP server" PT now uses correct reporting format
+  - Several fixes on "Download a file from the shared folder" PT
+    (\#2081, \#2085)
+
+## Rudder 2.3.3 (2011-11-15)
+
+### Changes
+
+  - \#2035: We now enforce file permissions of 600 on policy files on
+    all managed nodes ("Rudder system policy: basic setup (common)" PT)
+  - \#2015: Broken Configuration Rules are no longer hidden in the web
+    interface
+
+### Bug fixes
+
+  - \#1960: On the "New node management" page, we cannot close the
+    inventory of a node
+  - \#2026, \#2036: Default value not taken into account in sub-sections
+    of multivalued sections for newly created Policy Instances
+  - Various packaging improvements
+
+### Policy Templates
+
+  - \#2022: "Manage files and folders" PT: Add the possibility to define
+    a file selection pattern
+  - \#2021, \#2034: "Manage files and folders" PT :Add the possibility
+    to delete or clean a directory/file with a time constraint
+  - \#2033: "User management" PT: Make the name and password fields
+    optional
+  - \#2032: "Enforce a file content" PT: Add the possibility to specify
+    the user/group/mode manually or to let CFengine set them
+    automatically
+  - \#2030: "Package management for RHEL / [CentOS](CentOS) /
+    ([SuSE](SuSE) / RPM systems" now checks that the ZMD process is
+    running on SLES 10
+  - \#2023: "Cron daemon configuration" PT: Manual frequency didn't
+    allow asterisk "\*"
+  - \#2019: "RUG / \!YaST package manager configuration (ZMD)" PT: Add
+    proxy related options
+
+## Rudder 2.3.2 (2011-11-09)
+
+### Changes
+
+  - \#1997, \#2006, \#2013: Moved the Policy Templates directory from
+    /var/rudder/policy-templates to
+    /var/rudder/configuration-repository/policy-templates. This allows
+    to store other configuration information under
+    /var/rudder/configuration-repository.
+  - \#1997, \#1999, \#2000, \#2001: Add a feature to share files from
+    the Rudder server to nodes, via a shared directory:
+    /var/rudder/configuration-repository/shared-files
+  - \#1981: Change the size of the textarea in the Policy Instance
+    Editor to make it bigger
+
+### Bug fixes
+
+  - \#1986: Variables in subsection of a multi-valued section are not
+    saved
+  - \#1959: Inventories moved to "received" even if the
+    inventory-endpoint returns an error code (and similar preventive bug
+    fix for other curl invocations: \#1961)
+  - \#1930: Remove a dead link
+
+### Policy Templates
+
+Many Policy Templates were added and improved in this version of Rudder.
+Here follows a list of Policy Templates added or changed, full details
+are available in the bugtracker.
+
+  - Services Management (\#1927, \#1985, \#1993, \#1994)
+  - Package management for RHEL / [CentOS](CentOS) / [SuSE](SuSE) / RPM
+    systems (\#1976)
+  - Zypper package manager configuration (\#2005)
+  - RUG / \!YaST package manager configuration (ZMD) (\#1987, \#1989,
+    \#1995)
+  - Cron daemon configuration (\#1990)
+  - Fstab configuration (\#1956, \#1967, \#1979, \#1980)
+  - \!OpenSSH server (\#1937)
+  - User management (\#1952)
+  - Manage files and folders (\#1966, \#1968, \#1975, \#1992, \#1996,
+    \#2007)
+  - Enforce a file content (\#1965, \#1970, \#1982)
+
+## Rudder 2.3.1 (2011-10-31)
+
+### Bug fixes
+
+  - \#1934: Corrupted display when adding multiple instances to Policy
+    Instances
+  - \#1940: Postgresql error at Rudder installation
+  - Various packaging improvements
+
