@@ -34,6 +34,7 @@ SMART
     - if it is a number > 100, it is guessed to be a ticket_id -> branch
     - if it is a x.y or master, it is guessed to be a branch -> pull
     - if it is a caps TLA, it is guessed to be a trigraph -> commit
+    - if it is '-', checkout the last branch we where working on
 
 CLONE
     Call it when you want to work on a new repository.
@@ -242,7 +243,6 @@ Config.LIFECYCLES = [ { "name": "rudder",
                  "redmine_version": [ (r'.*', r'master') ],
                },
              ]
-Config.CACHE_FILE = "~/.rudder-dev.cache"
 
 ###
 ###  Internal functions
@@ -457,15 +457,9 @@ def get_redmine_uid():
 
 # update normation user list cache and return updated user list
 def update_nrm_users(project_id):
-  # read existing cahe if there is one
-  filename = os.path.expanduser(Config.CACHE_FILE)
-  if os.path.isfile(filename):
-    with open(filename) as fd:
-      users = json.load(fd)
-  else:
-    users = { }
-  if Config.REDMINE_API_URL not in users:
-    users[Config.REDMINE_API_URL] = {}
+  users = get_cache_info(Config.REDMINE_API_URL)
+  if users is None:
+    users = {}
   # just update it otherwise we would have only project specific data in it
   user_list = requests.get(Config.REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json?limit=100", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
   for user in user_list.json()['memberships']:
@@ -474,23 +468,16 @@ def update_nrm_users(project_id):
     user_detail = user_data.json()['user']
     if 'mail' in user_detail and user_detail['mail'].endswith("normation.com"):
       trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
-      users[Config.REDMINE_API_URL][trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
-  with open(filename, "w") as fd:
-    json.dump(users, fd)
+      users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
+  set_cache_info(Config.REDMINE_API_URL, users)
   return users
 
 # get users ad trigraph for normation users
 def get_nrm_users(project_id):
-  users = {}
-  filename = os.path.expanduser(Config.CACHE_FILE)
-  if not os.path.isfile(filename):
-    users = update_nrm_users(project_id)
-  else:
-    with open(filename) as fd:
-      users = json.load(fd)
-    if not Config.REDMINE_API_URL in users:
-      users = update_nrm_users(project_id)
-  return users[Config.REDMINE_API_URL]
+  users = get_cache_info(Config.REDMINE_API_URL)
+  if users is None:
+    return update_nrm_users(project_id)
+  return users
 
 # Ask for a user using its trigraph
 def ask_username(project_id, trigraph):
@@ -879,6 +866,9 @@ def stash():
     # stash them
     shell("git stash save --keep-index", "Stashing current work")
     stashed = True
+  # If we stash, it means we are going to checkout
+  # Store global current_branch for use by rudder-dev -
+  set_cache_info("last_branch", current_branch, remote_repo())
 
 
 # Find if there is stashed work and unstash it
@@ -1640,8 +1630,11 @@ if __name__ == "__main__":
 
   # smart argument
   smart = arguments['<smart_arg>']
+  arguments['back'] = False
   if smart:
-    if re.match(r'^i?\d{2,5}$', smart):
+    if smart == '-':
+      arguments['back'] = True
+    elif re.match(r'^i?\d{2,5}$', smart):
       arguments['branch'] = True
       arguments['<ticket_id>'] = smart
     elif re.match(r'^\d\.(\d+|x)$|^master$', smart):
@@ -1669,7 +1662,16 @@ if __name__ == "__main__":
   check_update()
 
   # standard arguments
-  if arguments['clone']:
+  if arguments['back']:
+    last_branch = get_cache_info("last_branch", remote_repo())
+    if last_branch is None:
+      logfail("***** ERROR: No last branch recorded.")
+      exit(16)
+    stash()
+    shell("git checkout " + last_branch)
+    stashed=True # automatically unstash previous work
+    unstash()
+  elif arguments['clone']:
     clone(arguments['<repository_name>'], arguments['--fork'])
   elif arguments['pull']:
     stash()
@@ -1696,7 +1698,10 @@ if __name__ == "__main__":
   elif arguments['retarget']:
     retarget(arguments['<target_version>'])
   elif arguments['takeover']:
+    stash()
     takeover(arguments['<ticket_id>'])
+    unstash()
+    stash_info()
   elif arguments['revert']:
     revert(arguments['<ticket_id>'], arguments['--retarget'])
   elif arguments['merge']:
