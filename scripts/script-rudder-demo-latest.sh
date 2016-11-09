@@ -38,10 +38,7 @@ DEBIAN_VERSION='wheezy'
 POSTGRESQL_VERSION='9.1'
 
 ## RUDDER-INIT SETTINGS
-SERVER_INSTANCE_HOST='demo-latest.rudder-project.org'
-DEMOSAMPLE='no'
 LDAPRESET='yes'
-INITPRORESET='yes'
 ALLOWEDNETWORK[0]='192.168.0.0/24'
 
 # Installation
@@ -77,7 +74,7 @@ echo "host    all         all         10.94.94.0/24       trust" >> /etc/postgre
 service postgresql restart
 
 ## 8 - Initialize Rudder
-/opt/rudder/bin/rudder-init ${SERVER_INSTANCE_HOST} ${DEMOSAMPLE} ${LDAPRESET} ${INITPRORESET} ${ALLOWEDNETWORK[0]}
+/opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK[0]}
 
 ### Check that Rudder it is running OK, giving it some time to settle
 TIMEOUT=0
@@ -94,8 +91,8 @@ done
 git clone --depth=1 https://github.com/Normation/ldap-inventory.git
 cp ldap-inventory/inventory-fusion/src/test/resources/fusion-report/* /var/rudder/inventories/incoming/
 
-### Trigger a cf-agent run to insert the inventories
-/var/rudder/cfengine-community/bin/cf-agent -K >/dev/null 2>&1
+### Trigger an agent run to insert the inventories
+rudder agent run >/dev/null 2>&1
 
 ## 10 - The end
 echo "Demo installation complete."
