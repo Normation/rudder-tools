@@ -251,17 +251,10 @@ class Issue:
       else:
         new_info['subject'] = new_title
     new_info['fixed_version_id'] = version_id
-    ticket_json = json.dumps({ 'issue': new_info })
-    ret = requests.post(self.api_url + "/issues.json", headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data=ticket_json )
-    if ret.status_code != 201:
-      logfail("Ticket clone error: " + ret.reason)
-      if not Config.force:
-        exit(3)
-    if self.internal:
-      new_id = 'i' + str(ret.json()['issue']['id'])
-    else:
-      new_id = str(ret.json()['issue']['id'])
-    return Issue(new_id)
+    return self.server._create_issue(ticket_json)
+
+  def url(self):
+    return self.api_url+"/issues/"+str(self.id)
 
 
 class Redmine:
@@ -278,15 +271,37 @@ class Redmine:
       self.api_url = Config.REDMINE_API_URL
       self.nrm_group = Config.REDMINE_NRM_GROUP
 
-  def _query(self, query):
-    data = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token } )
-    return data.json()
+  def _query(self, query, post_data=None):
+    if post_data is None:
+      ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token })
+    else:
+      ret = requests.post(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = post_data)
+    return ret
+
+  def create_issue(self, project_id, subject, description, tracker_id, version_id):
+    new_info = { 'project_id': project_id, 'description': description, 'subject': subject, 
+                 'fixed_version_id': version_id, 'tracker_id': tracker_id }
+    return self._create_issue(new_info)
+
+  def _create_issue(self, new_info):
+    ticket_json = json.dumps({ 'issue': new_info })
+    pprint(ticket_json)
+    ret = self._query("/issues.json", ticket_json)
+    if ret.status_code != 201:
+      logfail("Issue creation error: " + ret.reason + "\n" + ret.text)
+      if not Config.force:
+        exit(3)
+    if self.internal:
+      new_id = 'i' + str(ret.json()['issue']['id'])
+    else:
+      new_id = str(ret.json()['issue']['id'])
+    return Issue(new_id)
 
   # Return true if the current user can modify an issue in the given project
   def can_modify_issues(self, project_id):
     if self.can_modify is not None:
       return self.can_modify
-    user = self._query("/users/current.json?include=memberships")
+    user = self._query("/users/current.json?include=memberships").json()
     for membership in user['user']['memberships']:
       if membership['project']['id'] == project_id:
         for role in membership['roles']:
