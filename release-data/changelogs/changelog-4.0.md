@@ -1,6 +1,6 @@
 # Change logs for Rudder 4.0.\* versions
 
-Rudder 4.0 will be the next major version of Rudder.
+Rudder 4.0 is currently the **latest** version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
@@ -43,13 +43,63 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
     AIX 5-6-7**
 
-**Release notes**
+## Rudder 4.0.0 (2016-11-10)
 
-This software is in "release candidate" status but we have tested it and
-believe it to be free of any critical bug. The use on production systems
-is not encouraged at this time and is at your own risk. However, we do
-encourage testing, and welcome all and any feedback\! If no major bugs
-are found, a "final" release of 4.0.0 will be released by November 4th.
+### Changes
+
+#### Web - UI & UX
+
+  - Too large fields in directive form ([\#9619](http://www.rudder-project.org/redmine/issues/9619))
+  - Allow overriding the policy mode by default ([\#9605](http://www.rudder-project.org/redmine/issues/9605))
+  - Filter rules by application in the directive page ([\#9256](http://www.rudder-project.org/redmine/issues/9256))
+
+#### Documentation
+
+  - Update Github Readme for Rudder 4.0 and up ([\#9647](http://www.rudder-project.org/redmine/issues/9647))
+  - Update doc for the new server-node protocol ([\#9638](http://www.rudder-project.org/redmine/issues/9638))
+
+#### Techniques
+
+  - Deprecate old package management techniques ([\#9607](http://www.rudder-project.org/redmine/issues/9607))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Can not click on Audit button in Settings ([\#9655](http://www.rudder-project.org/redmine/issues/9655))
+  - Fixed: Link to settings from node preferences doesn't work ([\#9642](http://www.rudder-project.org/redmine/issues/9642))
+  - Fixed: Some tables still have 10 entries by default ([\#9606](http://www.rudder-project.org/redmine/issues/9606))
+  - Fixed: There is a request to fonts.googleapi.com ([\#9604](http://www.rudder-project.org/redmine/issues/9604))
+  - Fixed: We cannot add group exception in rules settings ([\#9603](http://www.rudder-project.org/redmine/issues/9603))
+  - Fixed: In rules list, the category column is as wide as the name column ([\#9601](http://www.rudder-project.org/redmine/issues/9601))
+  - Fixed: There is a cursor under Global compliance details in the home page ([\#9600](http://www.rudder-project.org/redmine/issues/9600))
+  - Fixed: The technique tree does not reach the bottom of the screen ([\#9599](http://www.rudder-project.org/redmine/issues/9599))
+  - Fixed: "Applying" appears like "no report" in "nodes by overall compliance" ([\#9579](http://www.rudder-project.org/redmine/issues/9579))
+
+#### Initial promises & sys tech
+
+  - Fixed: Do not report on report file creation because it is always repaired ([\#9577](http://www.rudder-project.org/redmine/issues/9577))
+  - Fixed: Add an EndRun report to Rudder abort handler ([\#9571](http://www.rudder-project.org/redmine/issues/9571))
+
+#### Web - Maintenance
+
+  - Fixed: Changing policy mode in the setting screen spams the webapp log ([\#9611](http://www.rudder-project.org/redmine/issues/9611))
+
+#### Agent
+
+  - Fixed: Typo in rudder agent stop output ([\#9617](http://www.rudder-project.org/redmine/issues/9617))
+
+#### Web - Compliance & node report
+
+  - Fixed: Bad constraint in table nodeConfigurations ([\#9646](http://www.rudder-project.org/redmine/issues/9646))
+  - Fixed: Null pointer exception when changing policy mode on the Directive screen ([\#9610](http://www.rudder-project.org/redmine/issues/9610))
+  - Fixed: If i override compliance on a node to "audit", it is still shows "enforce" in its details ([\#9593](http://www.rudder-project.org/redmine/issues/9593))
+
+### Release notes
+
+This version of Rudder is a final release. We have tested it thoroughly
+and believe it to be free of any major bugs. This version is now the
+latest version of Rudder (lastest ESR is still 3.1).
 
 ## Rudder 4.0.0~rc5 (2016-10-26)
 
@@ -83,6 +133,12 @@ are found, a "final" release of 4.0.0 will be released by November 4th.
     ([\#8444](http://www.rudder-project.org/redmine/issues/8444))
 
 ### Release notes
+
+This software is in "release candidate" status but we have tested it and
+believe it to be free of any critical bug. The use on production systems
+is not encouraged at this time and is at your own risk. However, we do
+encourage testing, and welcome all and any feedback\! If no major bugs
+are found, a "final" release of 4.0.0 will be released by November 4th.
 
 ## Rudder 4.0.0~rc4 (2016-10-26)
 
