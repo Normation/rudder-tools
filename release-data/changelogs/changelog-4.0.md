@@ -17,6 +17,10 @@ and rc versions are listed below for convenience.
   - Settings API
   - Rudder agent status command
   - Performance improved (compliance, policy generation are faster)
+  - New file copy protocol
+
+A blog post explaining these features is
+available here: https://www.normation.com/en/blog/2016/11/11/rudder-4-0/
 
 **Installing, upgrading and testing**
 
