@@ -11,6 +11,9 @@ supported = true
 # 22th January 2016
 release-date = "2016-01-22"
 
+# 10th February 2017
+eol-date = "2017-02-10"
+
 # Has this version had Long-Term Support (LTS)?
 lts = false
 
