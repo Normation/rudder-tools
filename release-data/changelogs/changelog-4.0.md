@@ -28,7 +28,7 @@ available here: https://www.normation.com/en/blog/2016/11/11/rudder-4-0/
     https://www.rudder-project.org/doc-4.0/_install_rudder_server.html
   - Upgrade docs:
     https://www.rudder-project.org/doc-4.0/_upgrade_rudder.html
-  - Download links:
+  - Download links: https://www.rudder-project.org/site/get-rudder/downloads/
 
 We also recommend using the [Rudder
 Vagrant](https://github.com/Normation/rudder-vagrant) config if you want
