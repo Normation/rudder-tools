@@ -1591,18 +1591,21 @@ def blame(filename, long_format, before_commit, changed_from):
     match = re.search(r'([0-9a-f]+?) (.*)', line)
     if match:
       commit_id = match.group(1)
-      if changed_from is not None:
-        # in reverse mode, git returns the previous commit, so replace it with the next one
-        commit_index = commit_list.index(commit_id)
-        if commit_index == 0:
-          # we are on the last commit, so the line has never been changed
-          log = "never"
-          commit_id = "never"
-        else:
-          commit_id = commit_list[commit_list.index(commit_id)-1]
-          log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
+      if commit_id == "0000000":
+        log = "new"
       else:
-        log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
+        if changed_from is not None:
+          # in reverse mode, git returns the previous commit, so replace it with the next one
+          commit_index = commit_list.index(commit_id)
+          if commit_index == 0:
+            # we are on the last commit, so the line has never been changed
+            log = "never"
+            commit_id = "never"
+          else:
+            commit_id = commit_list[commit_list.index(commit_id)-1]
+            log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
+        else:
+          log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
       # format the log line and add it to the blame 
       if long_format:
         output += "%-65.65s %s\n" % (log, match.group(2))
