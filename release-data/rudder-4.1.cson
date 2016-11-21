@@ -1,15 +1,12 @@
 # Release data file
 
-release = "4.0"
+release = "4.1"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "final"
+release-status = "alpha"
 
 # Is this version currently supported?
-supported = true
-
-# 10th November 2016
-release-date = "2016-11-10"
+supported = false
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
