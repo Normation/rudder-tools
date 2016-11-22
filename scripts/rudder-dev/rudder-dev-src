@@ -1358,7 +1358,7 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, 
     if strategy.startswith("upto_"):
       match = re.match(r'upto_(.*)', strategy)
       # Use "ours" strategy if are jut after the limit
-      if old == match.group(1):
+      if old == branch_from_version(match.group(1)):
         opts = " -s ours"
       # no need for option otherwise: either we are before -> default option, or we are after and there should be nothing to merge
     else:
