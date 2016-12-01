@@ -109,24 +109,31 @@ def get_issues(args, limit, internal=False):
     print("Timout connecting to " + REDMINE_URL, file=sys.stderr)
     return {'issues': [], 'total_count': 0}
   if tickets_req.status_code != requests.codes.ok:
-      return None
+    print("Warning: could not access " + REDMINE_URL)
+    return None
   return tickets_req.json()
 
 
 def get_issues_list(args, internal=False):
   issues = get_issues(args, 100, internal)
+  if issues is None:
+    return []
   # extract PR
   for i in issues['issues']:
     if 'custom_fields' in i:
       for field in i['custom_fields']:
-        if field['name'] == 'Pull Request':
+        if field['name'] == 'Pull Request' and 'value' in field:
           i['PR'] = field['value']
-  return [ { "label": i['subject'], "url": REDMINE_URL+"/issues/"+str(i['id']), "PR": i['PR'] or None } 
+    if 'PR' not in i:
+      i['PR'] = None
+  return [ { "label": i['subject'], "url": REDMINE_URL+"/issues/"+str(i['id']), "PR": i['PR'] } 
            for i in issues['issues'] ]
 
 
 def get_issues_count(args, internal=False):
   issues = get_issues(args, 1, internal)
+  if issues is None:
+    return 0
   return issues['total_count']
 
 
