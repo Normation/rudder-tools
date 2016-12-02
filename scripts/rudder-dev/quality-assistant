@@ -32,6 +32,7 @@ import shutil
 import time
 from common import *
 from github import *
+from redmine import *
 from tempfile import *
 
 import docopt # apt-get install python-docopt || pip install docopt
