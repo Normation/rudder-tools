@@ -59,6 +59,14 @@ class PR:
     self._request_pr()
     return self.info['title']
 
+  def _commits(self):
+    self._request_pr()
+    self.commits = github_call(self.info['commits_url'])
+
+  def commits_titles(self):
+    self._commits()
+    return [ x['commit']['message'] for x in self.commits ]
+
   def comment(self, comment):
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
     data = { "body": comment }

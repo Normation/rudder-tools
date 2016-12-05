@@ -1,4 +1,5 @@
 from __future__ import print_function
+import requests
 
 # trick to make fake import compatible with regular import
 if 'Config' not in vars():
@@ -294,8 +295,8 @@ class Redmine:
     self.can_modify = False
     return False
   
-  def list_nrm_users():
-    return self.query("/users.json?group_id=" + self.nrm_group)
+  def list_nrm_users(self):
+    return self._query("/users.json?group_id=" + str(self.nrm_group))
 
 
 def issue_from_branch(branch):

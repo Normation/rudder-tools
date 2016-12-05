@@ -8,10 +8,10 @@ You need a configuration file, if you don't have one, the tool will create one f
 
 Usage:
         quality-assistant -h|--help
-        quality-assistant merge all [--alt-dir]
-        quality-assistant merge <repo> [--alt-dir]
-        quality-assistant autolabel all
-        quality-assistant autolabel <repo>
+        quality-assistant merge all [--alt-dir] [-d|--debug] [-f|--force]
+        quality-assistant merge <repo> [--alt-dir] [-d|--debug] [-f|--force]
+        quality-assistant autolabel all [-d|--debug] [-f|--force]
+        quality-assistant autolabel <repo> [-d|--debug] [-f|--force]
 Options:
         alt-dir : after waiting on a lock, use alternate directory instead of failing
 
@@ -105,27 +105,29 @@ def repo_merge(repo, alt_dir):
   data = github_call(url)
   for pr_info in data:
     labels = [l['name'] for l in pr_info['labels']]
-    if Config.BOT_CANNOT_MERGE_LABEL in labels:
+    if Config.BOT_CANNOT_MERGE_LABEL in labels and not Config.force:
       continue
     pr_merge(repo, pr_info['html_url'], alt_dir)
 
 
-def reassign(title, status):
-  # find issue matching PR title
-  match=re.match(r'^Fixes #(\d+)', title)
-  if match:
-    issue_id = match.group(1)
-    issue = Issue(issue_id)
-    # find user matching the author in redmine
-    for user in issue.server.list_nrm_users():
-      if "custom_fields" in user:
-        for field in user["custom_fields"]:
-          if field["name"] == "GitHub":
-            if "value" in field:
-              if field["value"] == pr.author():
-                uid = user ["id"]
-    if uid != -1:
-      issue.to_status(status, uid)
+def reassign(pr, status):
+  for title in  pr.commits_titles():
+    # find issue matching PR title
+    match=re.match(r'^Fixes #(\d+)', title)
+    if match:
+      issue_id = match.group(1)
+      issue = Issue(issue_id)
+      # find user matching the author in redmine
+      for user in issue.server.list_nrm_users():
+        if "custom_fields" in user:
+          for field in user["custom_fields"]:
+            if field["name"] == "GitHub":
+              if "value" in field:
+                if field["value"] == pr.author():
+                  uid = user ["id"]
+      if uid != -1:
+        issue.to_status(status, uid)
+        return
  
 
 def pr_merge(repo, url, alt_dir):
@@ -153,7 +155,7 @@ After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
 -- Your faithful QA"""
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
-    reassign(Config.DISCUSSION_CODE)
+    reassign(pr, Config.DISCUSSION_CODE)
   elif code != 0:
     # PR must be manually merged
     comment="""This PR is not mergeable to upper versions.
@@ -162,7 +164,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
 -- Your faithful QA"""
     pr.comment(comment)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    reassign(Config.PENDING_MERGE_CODE)
+    reassign(pr, Config.PENDING_MERGE_CODE)
   else:
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)
@@ -219,6 +221,9 @@ if __name__ == "__main__":
     # use a value that correspond to the overhead of cloning, checkouting and removing when using alt_dir
     Config.LOCK_TIMEOUT = 60
 
+  if arguments['-d'] or arguments['--debug']:
+    Config.LOGLEVEL = "debug"
+  Config.force = arguments['-f'] or arguments['--force']
   if arguments['merge'] and arguments['all']:
     repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
     Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
