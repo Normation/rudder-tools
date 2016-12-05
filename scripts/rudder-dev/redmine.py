@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 # trick to make fake import compatible with regular import
 if 'Config' not in vars():
   from common import *  
