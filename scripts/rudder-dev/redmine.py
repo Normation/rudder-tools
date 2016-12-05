@@ -1,4 +1,5 @@
 from __future__ import print_function
+import sys
 import requests
 
 # trick to make fake import compatible with regular import
@@ -271,11 +272,11 @@ class Redmine:
     if internal:
       self.token = Config.REDMINE_ALT_TOKEN
       self.api_url = Config.REDMINE_ALT_API_URL
-      self.nrm_group = Config.REDMINE_NRM_GROUP
+      self.nrm_group = Config.REDMINE_ALT_NRM_GROUP
     else:
       self.token = Config.REDMINE_TOKEN
       self.api_url = Config.REDMINE_API_URL
-      self.nrm_group = Config.REDMINE_ALT_NRM_GROUP
+      self.nrm_group = Config.REDMINE_NRM_GROUP
 
   def _query(self, query):
     data = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token } )
@@ -296,7 +297,7 @@ class Redmine:
     return False
   
   def list_nrm_users(self):
-    return self._query("/users.json?group_id=" + str(self.nrm_group))
+    return self._query("/users.json?group_id=" + str(self.nrm_group))['users']
 
 
 def issue_from_branch(branch):

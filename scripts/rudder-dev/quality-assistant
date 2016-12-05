@@ -106,6 +106,8 @@ def repo_merge(repo, alt_dir):
   for pr_info in data:
     labels = [l['name'] for l in pr_info['labels']]
     if Config.BOT_CANNOT_MERGE_LABEL in labels and not Config.force:
+      if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+        print("Skipping " + pr_info['html_url'] + " : marked as can't merge")
       continue
     pr_merge(repo, pr_info['html_url'], alt_dir)
 
@@ -117,6 +119,7 @@ def reassign(pr, status):
     if match:
       issue_id = match.group(1)
       issue = Issue(issue_id)
+      uid = -1
       # find user matching the author in redmine
       for user in issue.server.list_nrm_users():
         if "custom_fields" in user:
@@ -155,7 +158,9 @@ After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
 -- Your faithful QA"""
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
-    reassign(pr, Config.DISCUSSION_CODE)
+    # Reassign needs redmine.py Issue object which needs get_lifecycle, but it should not
+    # Re-enable after next refactoring
+    #reassign(pr, Config.DISCUSSION_CODE)
   elif code != 0:
     # PR must be manually merged
     comment="""This PR is not mergeable to upper versions.
@@ -164,7 +169,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
 -- Your faithful QA"""
     pr.comment(comment)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    reassign(pr, Config.PENDING_MERGE_CODE)
+    #reassign(pr, Config.PENDING_MERGE_CODE)
   else:
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)
