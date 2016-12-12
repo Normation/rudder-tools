@@ -47,6 +47,141 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
     AIX 5-6-7**
 
+## Rudder 4.0.1 (2016-12-12)
+
+### Changes
+
+#### Agent
+
+  - Warn the user when he tries to use long arguments with rudder agent ([\#9658](http://www.rudder-project.org/redmine/issues/9658))
+  - Make rudder agent reinit warn the user ([\#8106](http://www.rudder-project.org/redmine/issues/8106))
+
+#### Web - Nodes & inventories
+
+  - On agent, check inventory before sending it to Rudder server ([\#8127](http://www.rudder-project.org/redmine/issues/8127))
+
+#### System integration
+
+  - Rudder error pages should not change transport ([\#9637](http://www.rudder-project.org/redmine/issues/9637))
+
+#### Architecture - Internal libs
+
+  - Add basic infrastructure to test REST API ([\#9201](http://www.rudder-project.org/redmine/issues/9201))
+
+#### Documentation
+
+  - Move techniques reference doc to the manual ([\#9586](http://www.rudder-project.org/redmine/issues/9586))
+  - Make rudder-doc gitignore more complete ([\#9570](http://www.rudder-project.org/redmine/issues/9570))
+  - Build final doc for releases in rc status ([\#9564](http://www.rudder-project.org/redmine/issues/9564))
+  - Use $releasever in upgrade section for RHEL ([\#9439](http://www.rudder-project.org/redmine/issues/9439))
+  - Update documentation to have version independant repo ([\#9422](http://www.rudder-project.org/redmine/issues/9422))
+  - Use release info to get ncf version to use in doc ([\#9393](http://www.rudder-project.org/redmine/issues/9393))
+  - Add Rudder high level diagram on Readme ([\#9672](http://www.rudder-project.org/redmine/issues/9672))
+
+### Bug fixes
+
+#### Web - Config management
+
+  - Fixed: Node properties update doesn't invalidate node configuration hash ([\#9402](http://www.rudder-project.org/redmine/issues/9402))
+
+#### Web - UI & UX
+
+  - Fixed: Degraded style of text areas in directive forms ([\#9703](http://www.rudder-project.org/redmine/issues/9703))
+  - Fixed: Missing top of eventLog datetime picker on small screen  ([\#9267](http://www.rudder-project.org/redmine/issues/9267))
+  - Fixed: If an event logs contains long lines it is not displayed properly ([\#5963](http://www.rudder-project.org/redmine/issues/5963))
+  - Fixed: Rounded corner inside status menu ([\#9681](http://www.rudder-project.org/redmine/issues/9681))
+  - Fixed: Pop-up bottom is rounded, but top is not ([\#9657](http://www.rudder-project.org/redmine/issues/9657))
+  - Fixed: Login page broken when window is widened ([\#9656](http://www.rudder-project.org/redmine/issues/9656))
+  - Fixed: Display disabled rules with a tag in place is grey italic ([\#9492](http://www.rudder-project.org/redmine/issues/9492))
+  - Fixed: Error message when failing to accept a new node is hard to find ([\#9436](http://www.rudder-project.org/redmine/issues/9436))
+  - Fixed: An horizontal scrollbar appears on the dashboard when hovering over the right graph ([\#9429](http://www.rudder-project.org/redmine/issues/9429))
+
+#### Web - Compliance & node report
+
+  - Fixed: When applying same directive in different rule, reporting is broken ([\#9743](http://www.rudder-project.org/redmine/issues/9743))
+
+#### Web - Nodes & inventories
+
+  - Fixed: No server inventory in web interface if /etc/hosts is not correctly configured ([\#9744](http://www.rudder-project.org/redmine/issues/9744))
+
+##### Agent
+
+  - Fixed: Improve error messages in "rudder agent update" ([\#9726](http://www.rudder-project.org/redmine/issues/9726))
+  - Fixed: Fusioninventory is not tracked by check-rudder-health ([\#9622](http://www.rudder-project.org/redmine/issues/9622))
+  - Fixed: Typo in rudder agent run failure message ([\#9618](http://www.rudder-project.org/redmine/issues/9618))
+  - Fixed: Virtual machine detected as physical ([\#9496](http://www.rudder-project.org/redmine/issues/9496))
+  - Fixed: Some QEMU systems are wrongly detected as physical system ([\#9335](http://www.rudder-project.org/redmine/issues/9335))
+  - Fixed: Agent capabilities should be per agent, and not per node ([\#9359](http://www.rudder-project.org/redmine/issues/9359))
+  
+##### Techniques
+
+  - Fixed: Allow to only install a specific version in apt and rpm techniques. ([\#9761](http://www.rudder-project.org/redmine/issues/9761))
+  - Fixed: Wrong warn log report in ssh techniques on sles >= 11 ([\#9317](http://www.rudder-project.org/redmine/issues/9317))
+
+### API
+
+  - Fixed: API allows to create duplicate UUIDs at group creation ([\#9742](http://www.rudder-project.org/redmine/issues/9742))
+  - Fixed: Creating an empty group with no search criteria messes up GUI ([\#9741](http://www.rudder-project.org/redmine/issues/9741))
+  - Fixed: Setting nodeProperty over API does fail on bad key order ([\#9326](http://www.rudder-project.org/redmine/issues/9326))
+  - Fixed: Rudder API timeouts when passing wrong parameters ([\#7134](http://www.rudder-project.org/redmine/issues/7134))
+
+### Documentation
+
+  - Fixed: Bad plugin installation info on doc ([\#9721](http://www.rudder-project.org/redmine/issues/9721))
+  - Fixed: Bad file indicated in Java memory config chapter ([\#9628](http://www.rudder-project.org/redmine/issues/9628))
+  - Fixed: Manual is broken because of some new syntax in ncf doc ([\#9621](http://www.rudder-project.org/redmine/issues/9621))
+  - Fixed: Wiki documentation broken URL ([\#9608](http://www.rudder-project.org/redmine/issues/9608))
+  - Fixed: Mention port 80 in manual ([\#9567](http://www.rudder-project.org/redmine/issues/9567))
+  - Fixed: API Documentation: Delete node shows example of accept node ([\#9368](http://www.rudder-project.org/redmine/issues/9368))
+  - Fixed: Cleanup node properties documentation ([\#9253](http://www.rudder-project.org/redmine/issues/9253))
+  - Fixed: Rudder API doc is invalid for getting the list of pending nodes ([\#7973](http://www.rudder-project.org/redmine/issues/7973))
+
+#### Packaging
+
+  - Fixed: On Ubuntu 16.04, openjdk 9 is installed by default, and not recognized as a compatible version ([\#9613](http://www.rudder-project.org/redmine/issues/9613))
+  - Fixed: fusion agent fail to build on ubuntu 16 ([\#9556](http://www.rudder-project.org/redmine/issues/9556))
+  - Fixed: ncf initialization seems to be repaired conctinuously ([\#9464](http://www.rudder-project.org/redmine/issues/9464))
+
+#### Initial promises & sys tech
+
+  - Fixed: Script that validate inventory is not correctly called on Windows ([\#9764](http://www.rudder-project.org/redmine/issues/9764))
+  - Fixed: Error on inventory of policy servers:  Error when parsing an <RUDDER><AGENT> entry, that agent will be ignored. <- could not parse policy server id (tag POLICY_SERVER_UUID) from specific inventory ([\#9327](http://www.rudder-project.org/redmine/issues/9327))
+  - Fixed: Explain in the reports of system techniques that we do not need to manage the cron service on AIX ([\#9235](http://www.rudder-project.org/redmine/issues/9235))
+  - Fixed: Multiple errors "The postgresql process was not running and has been restarted" ([\#9182](http://www.rudder-project.org/redmine/issues/9182))
+  - Fixed: No reports when agent cannot update its promises ([\#9751](http://www.rudder-project.org/redmine/issues/9751))
+  - Fixed: The locks are removed every 10 minutes by check-rudder-agent when there is no promise update ([\#9626](http://www.rudder-project.org/redmine/issues/9626))
+  - Fixed: Error message when restarting rudder-agent during relay install ([\#9216](http://www.rudder-project.org/redmine/issues/9216))
+  - Fixed: No answer with common / update ([\#8155](http://www.rudder-project.org/redmine/issues/8155))
+  - Fixed: A cfengine enterprise agent fails to connect to rudder server in cfengine 3.7, because there is no agentallconnects ([\#9716](http://www.rudder-project.org/redmine/issues/9716))
+  - Fixed: Broken node.env variable in 4.0 ([\#9691](http://www.rudder-project.org/redmine/issues/9691))
+
+#### System integration
+
+  - Fixed: rudder-upgrade should use the database name from the webapp configuration ([\#9749](http://www.rudder-project.org/redmine/issues/9749))
+  - Fixed: Add a warning comment for password change in rudder-web.properties ([\#9685](http://www.rudder-project.org/redmine/issues/9685))
+  - Fixed: Compressing the ldap backup hangs if would require to overwrite it ([\#9630](http://www.rudder-project.org/redmine/issues/9630))
+  - Fixed: Firefox stalls after TLS handshake on self signed certificate ([\#9566](http://www.rudder-project.org/redmine/issues/9566))
+  - Fixed: The API alive check may hang forever ([\#9561](http://www.rudder-project.org/redmine/issues/9561))
+  - Fixed: Missing logger information for quicksearch in logback.xml ([\#9406](http://www.rudder-project.org/redmine/issues/9406))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Alexandre Anriot
+  - Alexander Brunhirl
+  - Florian Heigl
+  - Janos Mattyasovszky
+  - Dmitry Svyatogorov
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. The current "esr"
+release is 3.1.\*. When we release a new version of Rudder, it has been
+ thoroughly tested, and we consider the release enterprise-ready for
+deployment
+
 ## Rudder 4.0.0 (2016-11-10)
 
 ### Changes
