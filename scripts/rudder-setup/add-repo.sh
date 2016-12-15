@@ -41,7 +41,7 @@ add_repo() {
   if [ "${PM}" = "apt" ]
   then
     # Debian / Ubuntu like
-    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 474A19E8
+    wget --quiet -O- "https://www.rudder-project.org/apt-repos/rudder_apt_key.pub" | apt-key add -
     cat > /etc/apt/sources.list.d/rudder.list << EOF
 deb ${URL_BASE} ${OS_CODENAME} main
 EOF
@@ -56,15 +56,15 @@ EOF
 name=Rudder ${RUDDER_VERSION} Repository
 baseurl=${URL_BASE}
 gpgcheck=1
-gpgkey=${URL_BASE}repodata/repomd.xml.key
+gpgkey=https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub
 EOF
-    rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xADAB3BD36F07D355"
+    rpm --import "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
     return 0
 
   elif [ "${PM}" = "zypper" ]
   then
     # Add SuSE repo
-    rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xADAB3BD36F07D355"
+    rpm --import "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
     zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}" Rudder || true
     zypper --non-interactive refresh
