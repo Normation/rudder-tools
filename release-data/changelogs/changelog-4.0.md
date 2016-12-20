@@ -47,6 +47,61 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
     AIX 5-6-7**
 
+
+## Rudder 4.0.2 (2016-12-20)
+
+### Changes
+
+#### Documentation
+
+  - Document the Audit mode ([\#9668](http://www.rudder-project.org/redmine/issues/9668))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Broken login page css on latest Chrome version ([\#9778](http://www.rudder-project.org/redmine/issues/9778))
+  - Fixed: Shared files input does not appear on in directives form ([\#9804](http://www.rudder-project.org/redmine/issues/9804))
+  - Fixed: Change request link is too small ([\#6142](http://www.rudder-project.org/redmine/issues/6142))
+
+#### Web - Config management
+
+  - Fixed: Error when displaying Rules when a rule is applying a directive that does not exists anymore ([\#9802](http://www.rudder-project.org/redmine/issues/9802))
+  - Fixed: Error when accessing change request ([\#9790](http://www.rudder-project.org/redmine/issues/9790))
+
+#### Agent
+
+  - Fixed: Broken CFEngine patch in 4.0 branch ([\#9809](http://www.rudder-project.org/redmine/issues/9809))
+  - Fixed: Grep error when running the agent ([\#9799](http://www.rudder-project.org/redmine/issues/9799))
+
+#### Documentation
+
+  - Fixed: Missing "default =" word in node properties expansion documention ([\#9800](http://www.rudder-project.org/redmine/issues/9800))
+
+#### Server components
+
+  - Fixed: Rudder's LDAP server configuration does not allow to query the monitor DB ([\#9818](http://www.rudder-project.org/redmine/issues/9818))
+
+#### Techniques
+
+  - Fixed: Malformed .gz inventory breaks upload process ([\#9794](http://www.rudder-project.org/redmine/issues/9794))
+  
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Alexandre Anriot
+  - Janos Mattyasovszky
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. The current "esr"
+release is 3.1.\*. When we release a new version of Rudder, it has been
+ thoroughly tested, and we consider the release enterprise-ready for
+deployment
+
+
 ## Rudder 4.0.1 (2016-12-12)
 
 ### Changes
