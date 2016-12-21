@@ -42,7 +42,7 @@ architectures = {
 
 # Roles are package groups
 roles = { 
-          "debian-5":     [ "agent-allinone", "agent-thin", "relay" ],
+          "debian-5":     [ "agent-allinone", "relay" ],
           "debian-6":     [ "agent-allinone", "agent-thin", "relay" ],
           "debian-7":     [ "agent-allinone", "agent-thin", "relay", "server" ],
           "debian-8":     [ "agent-allinone", "agent-thin", "relay", "server" ],
@@ -52,14 +52,14 @@ roles = {
           "ubuntu-14.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
           "ubuntu-16.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
           "fedora-18":    [ "agent-allinone", "agent-thin", "relay" ],
-          "rhel-3":       [ "agent-allinone", "agent-thin", "relay" ],
+          "rhel-3":       [ "agent-allinone", "relay" ],
           "rhel-5":       [ "agent-allinone", "agent-thin", "relay" ],
           "rhel-6":       [ "agent-allinone", "agent-thin", "relay", "server" ],
           "rhel-7":       [ "agent-allinone", "agent-thin", "relay", "server" ],
-          "sles-10sp3":   [ "agent-allinone", "agent-thin", "relay" ],
+          "sles-10sp3":   [ "agent-allinone", "relay" ],
           "sles-11":      [ "agent-allinone", "agent-thin", "relay", "server" ],
           "sles-12":      [ "agent-allinone", "agent-thin", "relay" ],
-          "aix-5":        [ "agent-allinone", "agent-thin", "relay" ],
+          "aix-5":        [ "agent-allinone" ],
         }
 
 # Packages that are built
