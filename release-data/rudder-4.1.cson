@@ -64,8 +64,8 @@ packages = {
              "server":         [ "rudder-inventory-ldap", "rudder-inventory-endpoint", "rudder-jetty", "rudder-reports", "rudder-server-root", "rudder-webapp", "rudder-techniques", "ncf", "ncf-api-virtualenv" ],
            }
 
-# Packages that are architecture dependant (others are independant)
-arch-dependant-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap" ]
+# Packages that are architecture dependent (others are independent)
+arch-dependent-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap" ]
 
 # Internal components versions
 components = {
