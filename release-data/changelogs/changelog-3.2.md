@@ -1,7 +1,9 @@
 # Change logs for Rudder 3.2.\* versions
 
-Rudder 3.2 is currently the **latest** version of Rudder. This version
-is named "**Caravel**".
+Rudder 3.2 is currently the **old-latest** version of Rudder. This version
+is named "**Caravel**". Since 4.0 version release, we sheduled end
+of life date of 3.2 branch on 10th February 2017. Until then we will provide
+bug fixes for this version.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
