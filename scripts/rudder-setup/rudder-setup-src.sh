@@ -43,6 +43,18 @@ usage() {
 # MAIN #
 ########
 
+preinst_check() {
+  $local ROLE="$1"
+  if [ "${ROLE}" = "server" ]
+  then
+    if ! getent hosts `hostname` > /dev/null
+    then
+      echo "Your hostname cannot be resolved, this is mandatory for Rudder server to work !"
+      exit 1
+    fi
+  fi
+}
+
 setlocal || re_exec "$@"
 
 COMMAND="$1"
@@ -71,17 +83,20 @@ case "${COMMAND}" in
     ;;
   "setup-agent")
     rudder_compatibility_check "agent-allinone"
+    preinst_check "agent-allinone"
     add_repo
     setup_agent
     ;;
   "setup-relay")
     rudder_compatibility_check "relay"
+    preinst_check "relay"
     add_repo
     setup_agent
     setup_relay
     ;;
   "setup-server")
     rudder_compatibility_check "server"
+    preinst_check "server"
     add_repo
     setup_server
     ;;
