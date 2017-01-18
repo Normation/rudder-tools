@@ -10,6 +10,7 @@ Usage:
     rudder-dev [-f|--force] clone <repository_name> [--fork]
     rudder-dev [-f|--force] pull [<branch>]
     rudder-dev [-f|--force] branch <ticket_id> [--base=<ticket_id>]
+    rudder-dev [-f|--force] quickfix <pr_url/file> [<subject>|<trigraph>] [--merge]
     rudder-dev [-f|--force] technique <version> <comment>
     rudder-dev [-f|--force] subtask [<next_branch>] [--base=<ticket_id>] [--title=<new_title>] [--bug]
     rudder-dev [-f|--force] wip
@@ -61,6 +62,24 @@ BRANCH
     - --base can also be a local branch name
     ex: rudder-dev branch 1234
     ex: rudder-dev branch '#1234' --base 1233
+
+QUICKFIX
+    Call it when you or someone made a quick fix.
+    If a quick fix PR is already opened:
+    - open an issue of type bug with subject
+    - takeover existing PR
+    - close existing PR and link the new one
+    - merge if needed
+    If the fix is in a local file:
+    - check that the diff is small
+    - find the first branch having the problem
+    - open an issue of type bug with subject
+    - call rudder-dev branch on the issue
+    - patch the file
+    - commit with git
+    - call rudder dev commit
+    ex: rudder-dev quickfix README "Typo in readme"
+    ex: rudder-dev quickfix https://github.com/Normation/ncf/pull/486 --merge
 
 TECHNIQUE
     Call it after branching and before working on a new technique version.
@@ -228,11 +247,13 @@ Config.RUDDER_DEV_ORIGIN = "https://www.rudder-project.org/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 15 # days
 
 Config.LIFECYCLES = [ { "name": "rudder",
+                 "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                  "format": "branches/rudder/{}",
                  "redmine_version": [ (r'master|.*~alpha\d+', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
                },
                { "name": "ncf",
+                 "project_id": "41",
                  "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
                  "format": "v{}",
                  "redmine_version": [ (r'master', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
@@ -791,6 +812,11 @@ def insert_line(filename, regex, text):
 # fetch a branch from a PR
 def fetch_branch_from_pr(pr):
   branch_name = pr.remote_branch()
+  fetch_branch_from_pr_as(pr, branch_name + "_pr")
+  return branch_name + "_pr"
+
+def fetch_branch_from_pr_as(pr, new_name):
+  branch_name = pr.remote_branch()
   # compare remote_branch/repo_name with upstream/repo_name
   remote_url = os.popen("git ls-remote --get-url " + Config.UPSTREAM_REPOSITORY).readline()
   match = re.match(r'.*/([^/]+)\.git$', remote_url)
@@ -799,8 +825,7 @@ def fetch_branch_from_pr(pr):
     if not Config.force:
       exit(17)
   # PR can be rebased, force fetch the branch
-  shell("git fetch --update-head-ok " + pr.repo() + " +" + branch_name + ":" + branch_name + "_pr", "Fetching branch from remote " + pr.repo())
-  return branch_name + "_pr"
+  shell("git fetch --update-head-ok " + pr.repo() + " +" + branch_name + ":" + new_name, "Fetching branch from remote " + pr.repo())
 
 
 # fetch a branch from a PR given in an Issue
@@ -809,7 +834,9 @@ def fetch_branch_from_issue(issue):
     logfail("There is no PR in this issue " + issue.name)
     exit(15)
   pr = PR(issue['pr'])
-  return fetch_branch_from_pr(pr)
+  new_name = issue.branch_name()
+  fetch_branch_from_pr_as(pr, new_name)
+  return new_name
 
 
 # fetch a branch from a PR given in a ticket
@@ -1105,6 +1132,48 @@ def wip():
   print("You can find the commit here: " + commit_url)
 
 
+# open a quickfix issue then and link it
+def quick_fix_pr(pr_url, trigraph=None, merge=False):
+  # find PR
+  pr = PR(pr_url)
+  # get infos
+  title = pr.title()
+  version = version_from_branch(pr.base_branch())
+  version_id = get_versions()[1][version]
+  lifecycle = get_lifecycle()
+  if 'project_id' not in lifecycle:
+    logfail("Cannot guess redmine project, cannot open an issue")
+    exit(3)
+  project_id = lifecycle['project_id']
+  # open issue
+  server = Redmine(False)
+  issue = server.create_issue(project_id, title, "Automatically opened by rudder-dev", Config.BUG_TACKER_ID, version_id)
+  print("Opened issue #" + str(issue.id))
+  # set pr url
+  issue.update(pr_url=pr_url)
+  # add issue to pr
+  pr.comment(issue.url());
+  # Take over the issue
+  takeover(issue.name)
+  # commit
+  if merge and trigraph is None:
+    trigraph = "BPE" # or anywone willing to needlessly receive a mail
+  commit(trigraph)
+  # close original pr
+  new_issue = Issue(issue.name) # same as the other one but updated
+  pr.close("Superseded by " + new_issue['pr'])
+  # merge
+  if merge:
+    new_pr = PR(new_issue['pr'])
+    new_pr.label(Config.PR_VALIDATED_LABEL)
+
+
+# open a type issue then and resolve it
+def quick_fix_local(filename, subject, trigraph=None):
+  print("Local fix not yet implemented")
+  exit(1)
+
+
 # Commit, push, create pull-request, update ticket
 def commit(trigraph=None, message=None):
   info = ticket_from_branch(current_branch)
@@ -1326,7 +1395,7 @@ def takeover(ticket):
   commit_push(current_branch, "Work in progress", True)
 
   # Set ticket's status
-  issue.to_in_progress(info, "I'm taking over this ticket!")
+  issue.to_in_progress("I'm taking over this issue!")
 
   print("")
   print("# Now you can edit files")
@@ -1686,6 +1755,19 @@ if __name__ == "__main__":
     create_branch(arguments['<ticket_id>'], arguments['--base'])
     unstash()
     stash_info()
+  elif arguments['quickfix']:
+    arg = arguments['<pr_url/file>']
+    if arg.startswith("http"):
+      # subject / trigraph is for documentation, docopt makes no difference
+      if arguments['<trigraph>'] is not None:
+        logfail("You must not pass subject for an existing PR fix")
+        exit(3)
+      quick_fix_pr(arg, arguments['<subject>'], arguments['--merge'])
+    else:
+      if arguments['--merge']:
+        logfail("You cannot merge your own quickfix")
+        exit(3)
+      quick_fix_local(arg, arguments['<subject>'], arguments['<trigraph>'])
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['subtask']:

@@ -67,6 +67,10 @@ class PR:
     self._commits()
     return [ x['commit']['message'] for x in self.commits ]
 
+  def url(self):
+    self._request_pr()
+    return self.info['html_url']
+
   def comment(self, comment):
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
     data = { "body": comment }
@@ -84,6 +88,13 @@ class PR:
     if label in [ lab["name"] for lab in existing_labels]:
       remove_label_url = get_labels_url+"/"+label
       github_request(remove_label_url, "Removing label", self.url, None, self.repo_name, "DELETE")
+
+  def close(self, message=None):
+    if message is not None:
+      self.comment(message)
+    url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
+    data = { "state": "closed" }
+    github_request(url, "Closing PR", self.url, json.dumps(data), self.repo_name, "PATCH")
 
 
 # Get github user as used by the hub command
