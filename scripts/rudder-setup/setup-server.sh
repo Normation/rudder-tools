@@ -36,15 +36,6 @@ setup_server() {
     fi
   fi
 
-  # Debian with Sun's JRE
-  if [ "${PM}" = "apt" ]
-  then
-    cat << EOF | debconf-set-selections
-sun-java6-bin   shared/accepted-sun-dlj-v1-1    boolean true
-sun-java6-jre   shared/accepted-sun-dlj-v1-1    boolean true
-EOF
-  fi
-
   # Install rudder-server-root
   ${PM_INSTALL} rudder-server-root
 

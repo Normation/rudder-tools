@@ -4,7 +4,7 @@ set -e
 
 # Documentation !
 usage() {
-  echo "Usage $0 [add-repository|setup-agent|setup-server|upgrade-agent|upgrade-server] <rudder_version>"
+  echo "Usage $0 (add-repository|setup-agent|setup-server|upgrade-agent|upgrade-server) <rudder_version> [<policy_server>]"
   echo "  Adds a repository and setup rudder on your OS" 
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"

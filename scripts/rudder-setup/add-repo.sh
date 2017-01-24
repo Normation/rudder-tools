@@ -30,12 +30,10 @@ add_repo() {
 
   if [ "${PM}" = "yum" ]
   then
-    $local OSVERSION=`echo "${OS_COMPATIBLE_VERSION}" | sed 's/[^0-9].*//'`
-    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OSVERSION}/"
+    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}/"
   elif [ "${PM}" = "zypper" ]
   then
-    $local OSVERSION=`echo "${OS_COMPATIBLE_VERSION}" | sed 's/[^0-9].*//'`
-    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OSVERSION}/"
+    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}/"
   fi
 
   # add repository
