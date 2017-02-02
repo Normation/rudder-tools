@@ -45,6 +45,73 @@ no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18
 RHEL/CentOS 3 and RHEL/CentOS 5
 
 
+## Rudder 4.1.0~beta2 (2017-02-02)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Reorganize Rules page interface ([\#9960](http://www.rudder-project.org/redmine/issues/9960))
+
+#### Web - Config management
+
+  - Remove all datasource code from Rudder main and add needed hooks ([\#10050](http://www.rudder-project.org/redmine/issues/10050))
+
+#### Agent
+
+  - Extend rudder-sign to add new information ([\#9996](http://www.rudder-project.org/redmine/issues/9996))
+  - Warn the user if rudder agent is not run as root ([\#9684](http://www.rudder-project.org/redmine/issues/9684))
+
+#### Packaging
+
+  - Permit skipping scala build within packages ([\#10055](http://www.rudder-project.org/redmine/issues/10055))
+  - use suse_version instead of sles_version during build ([\#9919](http://www.rudder-project.org/redmine/issues/9919))
+  - Automatically set year in Rudder interface at build time ([\#9891](http://www.rudder-project.org/redmine/issues/9891))
+
+#### API
+
+  - Deprecate API v5, v6 and v7, and remove API v2,3,4 ([\#9836](http://www.rudder-project.org/redmine/issues/9836))
+  - Remote run API should use relay API ([\#9714](http://www.rudder-project.org/redmine/issues/9714))
+
+#### Architecture - Dependencies
+
+  -  Requires Java8 (jdk8) for Rudder 4.1 ([\#9917](http://www.rudder-project.org/redmine/issues/9917))
+
+### Bug fixes
+
+#### Packaging
+
+  - Fixed: Wrong ncf version dependency in 4.1 ([\#10091](http://www.rudder-project.org/redmine/issues/10091))
+  - Fixed: On CentOS relay API uses /etc/httpd/logs/wsgi.18610.0.1.sock ([\#10072](http://www.rudder-project.org/redmine/issues/10072))
+  - Fixed: The user trying to open nodes list in relay-api is not rudder ([\#10068](http://www.rudder-project.org/redmine/issues/10068))
+  - Fixed: Wrong permission for /etc/sudoers.d/rudder-relay file on Sles ([\#10065](http://www.rudder-project.org/redmine/issues/10065))
+  - Fixed: Remove rudder-apache-common.conf in postinstall ([\#10041](http://www.rudder-project.org/redmine/issues/10041))
+  - Fixed: Not having set %{real_name} does operate on /bin ([\#10003](http://www.rudder-project.org/redmine/issues/10003))
+  - Fixed: Allow to restrict edits on sudoers during install ([\#10001](http://www.rudder-project.org/redmine/issues/10001))
+
+#### Web - Config management
+
+  - Fixed: When I save a Directive, after cliking "save", it's not possible to scroll anymore in the Directive tree ([\#10010](http://www.rudder-project.org/redmine/issues/10010))
+
+#### Server components
+
+  - Fixed: the relay api shoud read nodeslist on each call ([\#10111](http://www.rudder-project.org/redmine/issues/10111))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Janos Mattyasovszky
+
+This software is in beta status and contains several new features but we
+have tested it and believe it to be free of any critical bugs.¬The use
+on production systems is not encouraged at this time and is at your own
+risk. However, we do encourage testing, and welcome all and any
+feedback\!
+
+
 ## Rudder 4.1.0~beta1 (2017-01-17)
 
 ### Changes
