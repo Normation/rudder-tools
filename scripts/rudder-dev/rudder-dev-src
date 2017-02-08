@@ -1691,7 +1691,7 @@ def blame(filename, long_format, before_commit, changed_from):
           logline = m.group(1) + " " + logtype + " #" + m.group(3)
         else:
           logline = commit_id
-        output += "%-15.15s %s\n" % (logline, match.group(2))
+        output += "%-16.16s %s\n" % (logline, match.group(2))
   print(output)
 
 
