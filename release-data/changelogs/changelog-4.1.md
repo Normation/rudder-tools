@@ -45,6 +45,111 @@ no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18
 RHEL/CentOS 3 and RHEL/CentOS 5
 
 
+## Rudder 4.1.0.beta3 (2017-02-14)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Add an option to not display rule status/recent changes in directives screen
+    ([\#10157](https://www.rudder-project.org/redmine/issues/10157))
+  - Node breakdown - show actual numbers
+    ([\#7422](https://www.rudder-project.org/redmine/issues/7422))
+
+#### Documentation
+
+  - Document the relay API
+    ([\#9997](https://www.rudder-project.org/redmine/issues/9997))
+
+#### Initial promises & sys tech
+
+  - Use rudder agent run as cfruncommand
+    ([\#10081](https://www.rudder-project.org/redmine/issues/10081))
+
+#### Architecture - Dependencies
+
+  - Switch to Scala 2.12 / Lift 3.0 
+    ([\#10127](https://www.rudder-project.org/redmine/issues/10127))
+
+#### Architecture - Refactoring
+
+  - Scala actors are deprecated in scala 2.11 and removed in 2.12: update inventory-endpoint
+    ([\#10119](https://www.rudder-project.org/redmine/issues/10119))
+
+#### Techniques
+
+  - Deprecate old techniques versions
+    ([\#10159](https://www.rudder-project.org/redmine/issues/10159))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Status dropdown's display is broken
+    ([\#10177](https://www.rudder-project.org/redmine/issues/10177))
+  - Fixed: Display of new "Display compliance and recent changes columns on rule summary" setting is broken
+    ([\#10173](https://www.rudder-project.org/redmine/issues/10173))
+  - Fixed: Included "time ended" in Status dropdown
+    ([\#10133](https://www.rudder-project.org/redmine/issues/10133))
+  - Fixed: On Group creation, the tooltip on the "Save" button doesn't appear when it is disabled
+    ([\#10116](https://www.rudder-project.org/redmine/issues/10116))
+  - Fixed: Broken text fields in directive form
+    ([\#10164](https://www.rudder-project.org/redmine/issues/10164))
+
+#### Web - Config management
+
+  - Fixed: Deadlock with simultaneous generation and new reports
+    ([\#10168](https://www.rudder-project.org/redmine/issues/10168))
+  - Fixed: Incomplete logging in expected reports computation
+    ([\#10143](https://www.rudder-project.org/redmine/issues/10143))
+  - Fixed: Renable WriteSystemTechniquesTest
+    ([\#10150](https://www.rudder-project.org/redmine/issues/10150))
+
+#### Documentation
+
+  - Fixed: Broken link in CFEngine doc
+    ([\#10151](https://www.rudder-project.org/redmine/issues/10151))
+
+#### Packaging
+
+  - Fixed: the shared-files directory is owned by root
+    ([\#10178](https://www.rudder-project.org/redmine/issues/10178))
+  - Fixed: openjdk8 cannot be installed if there is a backport in the building os
+    ([\#10163](https://www.rudder-project.org/redmine/issues/10163))
+  - Fixed: rudder-techniques depends on perl(XML::TreePP)
+    ([\#9845](https://www.rudder-project.org/redmine/issues/9845))
+  - Fixed: Missing entry in rudder-web.properties after update to 4.1.0.b2
+    ([\#10132](https://www.rudder-project.org/redmine/issues/10132))
+  - Fixed: rudder-relay has bad "sed" line
+    ([\#10131](https://www.rudder-project.org/redmine/issues/10131))
+
+#### Initial promises & sys tech
+
+  - Fixed: Download Shared from node and  to nodes fail because /var/rudder/share-files is non existent (on centos)
+    ([\#10085](https://www.rudder-project.org/redmine/issues/10085))
+
+#### API
+
+  - Fixed: Allow relay-api to make asynchronous remote run call with output 
+    ([\#10114](https://www.rudder-project.org/redmine/issues/10114))
+
+#### Architecture - Dependencies
+
+  - Fixed: Test broken with "FileNotFoundException /ldap/bootstrap.ldif"
+    ([\#10147](https://www.rudder-project.org/redmine/issues/10147))
+  - Fixed: warning: Class javax.annotation.Nonnull not found - continuing with a stub.
+    ([\#10146](https://www.rudder-project.org/redmine/issues/10146))
+  - Fixed: warning: Class javax.annotation.Nonnull not found - continuing with a stub.
+    ([\#10146](https://www.rudder-project.org/redmine/issues/10146))
+  - Fixed: Use correct repository definition in pom.xml
+    ([\#10120](https://www.rudder-project.org/redmine/issues/10120))
+
+#### Server components
+
+  - Fixed: pass ttl through url parameters in sharedfiles api
+    ([\#10138](https://www.rudder-project.org/redmine/issues/10138))
+
+
 ## Rudder 4.1.0~beta2 (2017-02-02)
 
 ### Changes
