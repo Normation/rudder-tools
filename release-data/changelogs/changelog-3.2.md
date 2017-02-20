@@ -190,6 +190,23 @@ It will be available again in Rudder 3.2.4.
   - Fixed: Job is not run for Technique JobScheduler in Rudder
     ([\#9822](https://www.rudder-project.org/redmine/issues/9822))
 
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Janos Mattyasovszky
+
+This is a bug fix release in the 3.2 series and therefore all
+installations of 3.2 should be upgraded when possible. 
+An end-of-life date has been scheduled for this release (10th February 2017), See our
+FAQ for details, on [the website](https://www.rudder-project.org/site/documentation/faq/#what_is_the_versioning_policy).
+As such, it is recommended to upgrade all pre-4.0 (current latest version)
+installations to 4.0 as soon as possible to enjoy the latest features and 
+improvements of a more mature and stable version.
+
+
 
 ## Rudder 3.2.10 (2016-12-12)
 

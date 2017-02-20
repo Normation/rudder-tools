@@ -207,6 +207,22 @@ This version provides packages for these operating systems:
   - Fixed: Job is not run for Technique JobScheduler in Rudder
     ([\#9822](https://www.rudder-project.org/redmine/issues/9822))
 
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Ilan Costa
+  - Janos Mattyasovszky
+  - Dmitry Svyatogorov
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. The current "esr"
+release is 3.1.\*. When we release a new version of Rudder, it has been
+ thoroughly tested, and we consider the release enterprise-ready for
+deployment
+
 
 ## Rudder 4.0.2 (2016-12-20)
 
