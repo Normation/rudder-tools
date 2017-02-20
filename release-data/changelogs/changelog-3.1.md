@@ -61,6 +61,137 @@ This version provides packages for these operating systems:
   - Rudder agent (non-free): **Windows Server 2008-2012**, **AIX 5-6-7**
 
 
+## Rudder 3.1.18 (2017-02-20)
+
+### Changes
+
+#### Web - Nodes & inventories
+
+  - API endpoint to get information about queue status of uploaded inventories
+    ([\#9976](https://www.rudder-project.org/redmine/issues/9976))
+
+#### Web - UI & UX
+
+  - Add an option to not display rule status/recent changes in directives screen
+    ([\#10157](https://www.rudder-project.org/redmine/issues/10157))
+  - Node breakdown - show actual numbers
+    ([\#7422](https://www.rudder-project.org/redmine/issues/7422))
+
+#### Documentation
+
+  - Add link to the new FAQ in the manual
+    ([\#10181](https://www.rudder-project.org/redmine/issues/10181))
+  - Add qa-test for line breaks
+    ([\#9893](https://www.rudder-project.org/redmine/issues/9893))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Included "time ended" in Status dropdown
+    ([\#10133](https://www.rudder-project.org/redmine/issues/10133))
+  - Fixed: Shared files input does not appear on in directives form
+    ([\#9804](https://www.rudder-project.org/redmine/issues/9804))
+  - Fixed: Change request link is too small
+    ([\#6142](https://www.rudder-project.org/redmine/issues/6142))
+
+#### Web - Config management
+
+  - Fixed: Deadlock with simultaneous generation and new reports
+    ([\#10168](https://www.rudder-project.org/redmine/issues/10168))
+  - Fixed: Incomplete logging in expected reports computation
+    ([\#10143](https://www.rudder-project.org/redmine/issues/10143))
+
+#### Performance and scalability
+
+  - Fixed: Compliance on all reports is always computed, even when not necessary
+    ([\#9869](https://www.rudder-project.org/redmine/issues/9869))
+
+#### Architecture - Internal libs
+
+  - Fixed: Test create directories in /tmp that are not cleaned nor unique
+    ([\#10029](https://www.rudder-project.org/redmine/issues/10029))
+
+#### Documentation
+
+  - Fixed: Broken link in CFEngine doc
+    ([\#10151](https://www.rudder-project.org/redmine/issues/10151))
+  - Fixed: expected reports, component keys
+    ([\#8633](https://www.rudder-project.org/redmine/issues/8633))
+  - Fixed: Missing "default =" word in node properties expansion documention
+    ([\#9800](https://www.rudder-project.org/redmine/issues/9800))
+
+#### Miscellaneous
+
+  - Fixed: Typo in root of policy libray tree name
+    ([\#9884](https://www.rudder-project.org/redmine/issues/9884))
+
+#### Web - Compliance & node report
+
+  - Fixed: If node is sending unexpected report, we get an invalid text
+    ([\#9930](https://www.rudder-project.org/redmine/issues/9930))
+  - Fixed: When we receive reports from node with old reports, caches are not used for compliance computation
+    ([\#9835](https://www.rudder-project.org/redmine/issues/9835))
+
+#### Packaging
+
+  - Fixed: rudder-techniques depends on perl(XML::TreePP)
+    ([\#9845](https://www.rudder-project.org/redmine/issues/9845))
+  - Fixed: Missing selinux-policy-devel in rudder-server-relay dependencies
+    ([\#10090](https://www.rudder-project.org/redmine/issues/10090))
+  - Fixed: Do not build SELinux policy on old OSes
+    ([\#10089](https://www.rudder-project.org/redmine/issues/10089))
+  - Fixed: SELinux target directory does not exist
+    ([\#10056](https://www.rudder-project.org/redmine/issues/10056))
+  - Fixed: Add SELinux config to relay package
+    ([\#9913](https://www.rudder-project.org/redmine/issues/9913))
+  - Fixed: ncf-api-virtualenv build depends on selinux
+    ([\#9851](https://www.rudder-project.org/redmine/issues/9851))
+
+#### Initial promises & sys tech
+
+  - Fixed: Error parsing inventory
+    ([\#9841](https://www.rudder-project.org/redmine/issues/9841))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Inventories with fields containing only spaces/tabs/... may fail to be parsed due to invalid sanitization of entry
+    ([\#10220](https://www.rudder-project.org/redmine/issues/10220))
+  - Fixed: FileNotFoundException when looking for deleted history file
+    ([\#10115](https://www.rudder-project.org/redmine/issues/10115))
+
+#### Agent
+
+  - Fixed: Logs from 4.1 agent are not sent to the server
+    ([\#9776](https://www.rudder-project.org/redmine/issues/9776))
+
+#### Architecture - Dependencies
+
+  - Fixed: warning: Class javax.annotation.Nonnull not found - continuing with a stub.
+    ([\#10146](https://www.rudder-project.org/redmine/issues/10146))
+  - Fixed: Use correct repository definition in pom.xml
+    ([\#10120](https://www.rudder-project.org/redmine/issues/10120))
+
+#### Web - Maintenance
+
+  - Fixed: If the Rudder Web Interface is interrupted during the second step of reports archiving, then it won't never succeed in archiving again
+    ([\#10171](https://www.rudder-project.org/redmine/issues/10171))
+
+#### Server components
+
+  - Fixed: Rudder's LDAP server configuration does not allow to query the monitor DB
+    ([\#9818](https://www.rudder-project.org/redmine/issues/9818))
+
+#### Techniques
+
+  - Fixed: The service management technique does not disable boot services
+    ([\#9872](https://www.rudder-project.org/redmine/issues/9872))
+  - Fixed: copyGitFile reports an error when destination is a symbolic link
+    ([\#9500](https://www.rudder-project.org/redmine/issues/9500))
+  - Fixed: Job is not run for Technique JobScheduler in Rudder
+    ([\#9822](https://www.rudder-project.org/redmine/issues/9822))
+
+
 ## Rudder 3.1.17 (2016-12-12)
 
 ### Changes
