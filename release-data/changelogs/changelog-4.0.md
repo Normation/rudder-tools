@@ -48,6 +48,166 @@ This version provides packages for these operating systems:
     AIX 5-6-7**
 
 
+## Rudder 4.0.3 (2017-02-20)
+
+### Changes
+
+#### Web - Nodes & inventories
+
+  - API endpoint to get information about queue status of uploaded inventories
+    ([\#9976](https://www.rudder-project.org/redmine/issues/9976))
+
+#### Web - UI & UX
+
+  - Add an option to not display rule status/recent changes in directives screen
+    ([\#10157](https://www.rudder-project.org/redmine/issues/10157))
+  - Node breakdown - show actual numbers
+    ([\#7422](https://www.rudder-project.org/redmine/issues/7422))
+  - Remove the "disabled rule" notice 
+    ([\#9955](https://www.rudder-project.org/redmine/issues/9955))
+
+#### Documentation
+
+  - Add link to the new FAQ in the manual
+    ([\#10181](https://www.rudder-project.org/redmine/issues/10181))
+  - Add qa-test for line breaks
+    ([\#9893](https://www.rudder-project.org/redmine/issues/9893))
+  - Document the Audit mode
+    ([\#9668](https://www.rudder-project.org/redmine/issues/9668))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Status dropdown's display is broken
+    ([\#10177](https://www.rudder-project.org/redmine/issues/10177))
+  - Fixed: Display of new "Display compliance and recent changes columns on rule summary" setting is broken
+    ([\#10173](https://www.rudder-project.org/redmine/issues/10173))
+  - Fixed: Included "time ended" in Status dropdown
+    ([\#10133](https://www.rudder-project.org/redmine/issues/10133))
+  - Fixed: In group page, remove reference to CFEngine in generated classes
+    ([\#9885](https://www.rudder-project.org/redmine/issues/9885))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Users with "node_all" security role can not change Agent Policy Mode
+    ([\#9936](https://www.rudder-project.org/redmine/issues/9936))
+  - Fixed: Inventories with fields containing only spaces/tabs/... may fail to be parsed due to invalid sanitization of entry
+    ([\#10220](https://www.rudder-project.org/redmine/issues/10220))
+  - Fixed: FileNotFoundException when looking for deleted history file
+    ([\#10115](https://www.rudder-project.org/redmine/issues/10115))
+
+#### Performance and scalability
+
+  - Fixed: Compliance on all reports is always computed, even when not necessary
+    ([\#9869](https://www.rudder-project.org/redmine/issues/9869))
+  - Fixed: Incomplete logging in debug_timming
+    ([\#9853](https://www.rudder-project.org/redmine/issues/9853))
+
+#### Web - Config management
+
+  - Fixed: Broken directive migration in Rudder 4.0.2
+    ([\#9859](https://www.rudder-project.org/redmine/issues/9859))
+  - Fixed: Deadlock with simultaneous generation and new reports
+    ([\#10168](https://www.rudder-project.org/redmine/issues/10168))
+  - Fixed: Incomplete logging in expected reports computation
+    ([\#10143](https://www.rudder-project.org/redmine/issues/10143))
+  - Fixed: Cannot select by status on the "Change Requests" page
+    ([\#10012](https://www.rudder-project.org/redmine/issues/10012))
+
+#### Web - Compliance & node report
+
+  - Fixed: If node is sending unexpected report, we get an invalid text
+    ([\#9930](https://www.rudder-project.org/redmine/issues/9930))
+  - Fixed: When we receive reports from node with old reports, caches are not used for compliance computation
+    ([\#9835](https://www.rudder-project.org/redmine/issues/9835))
+
+#### Documentation
+
+  - Fixed: Merge error - Link check disappeared in 4.0
+    ([\#10206](https://www.rudder-project.org/redmine/issues/10206))
+  - Fixed: Broken link in CFEngine doc
+    ([\#10151](https://www.rudder-project.org/redmine/issues/10151))
+  - Fixed: expected reports, component keys
+    ([\#8633](https://www.rudder-project.org/redmine/issues/8633))
+
+#### Miscellaneous
+
+  - Fixed: Typo in root of policy libray tree name
+    ([\#9884](https://www.rudder-project.org/redmine/issues/9884))
+
+#### Agent
+
+  - Fixed: Error when upgrading rudder-agent
+    ([\#10034](https://www.rudder-project.org/redmine/issues/10034))
+  - Fixed: Broken CFEngine patch in 4.0 branch
+    ([\#9809](https://www.rudder-project.org/redmine/issues/9809))
+  - Fixed: Logs from 4.1 agent are not sent to the server
+    ([\#9776](https://www.rudder-project.org/redmine/issues/9776))
+
+#### Packaging
+
+  - Fixed: rudder-techniques depends on perl(XML::TreePP)
+    ([\#9845](https://www.rudder-project.org/redmine/issues/9845))
+  - Fixed: Missing selinux-policy-devel in rudder-server-relay dependencies
+    ([\#10090](https://www.rudder-project.org/redmine/issues/10090))
+  - Fixed: Do not build SELinux policy on old OSes
+    ([\#10089](https://www.rudder-project.org/redmine/issues/10089))
+  - Fixed: SELinux target directory does not exist
+    ([\#10056](https://www.rudder-project.org/redmine/issues/10056))
+  - Fixed: Add SELinux config to relay package
+    ([\#9913](https://www.rudder-project.org/redmine/issues/9913))
+  - Fixed: When upgrading Rudder, we get mails from cron saying "ok: Rudder agent check ran without errors."
+    ([\#9858](https://www.rudder-project.org/redmine/issues/9858))
+  - Fixed: ncf-api-virtualenv build depends on selinux
+    ([\#9851](https://www.rudder-project.org/redmine/issues/9851))
+  - Fixed: Simple relay tries to configure rsyslog-pgsql
+    ([\#9979](https://www.rudder-project.org/redmine/issues/9979))
+
+#### Initial promises & sys tech
+
+  - Fixed: Impossible to collect reports in mission portal since #9216
+    ([\#10209](https://www.rudder-project.org/redmine/issues/10209))
+  - Fixed: Error parsing inventory
+    ([\#9841](https://www.rudder-project.org/redmine/issues/9841))
+
+#### Plugin - datasources
+
+  - Fixed: EventLog at promise generation for datasources change, even if nothing changed
+    ([\#10198](https://www.rudder-project.org/redmine/issues/10198))
+
+#### Architecture - Internal libs
+
+  - Fixed: Test create directories in /tmp that are not cleaned nor unique
+    ([\#10029](https://www.rudder-project.org/redmine/issues/10029))
+
+#### Architecture - Dependencies
+
+  - Fixed: warning: Class javax.annotation.Nonnull not found - continuing with a stub.
+    ([\#10146](https://www.rudder-project.org/redmine/issues/10146))
+  - Fixed: Use correct repository definition in pom.xml
+    ([\#10120](https://www.rudder-project.org/redmine/issues/10120))
+
+#### Web - Maintenance
+
+  - Fixed: If the Rudder Web Interface is interrupted during the second step of reports archiving, then it won't never succeed in archiving again
+    ([\#10171](https://www.rudder-project.org/redmine/issues/10171))
+
+#### Server components
+
+  - Fixed: Rudder's LDAP server configuration does not allow to query the monitor DB
+    ([\#9818](https://www.rudder-project.org/redmine/issues/9818))
+
+#### Techniques
+
+  - Fixed: The service management technique does not disable boot services
+    ([\#9872](https://www.rudder-project.org/redmine/issues/9872))
+  - Fixed: copyGitFile reports an error when destination is a symbolic link
+    ([\#9500](https://www.rudder-project.org/redmine/issues/9500))
+  - Fixed: Job is not run for Technique JobScheduler in Rudder
+    ([\#9822](https://www.rudder-project.org/redmine/issues/9822))
+
+
 ## Rudder 4.0.2 (2016-12-20)
 
 ### Changes
