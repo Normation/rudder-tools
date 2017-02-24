@@ -237,6 +237,7 @@ class Issue:
 
   def clone(self, version_id, new_title, bug=False):
     """Clone this issue making the new one a child of this one"""
+    self._get_info()
     new_info = {}
     for i in ('project_id', 'tracker_id', 'priority_id', 'subject', 'description', 'category_id', 'fixed_version_id', 'is_private'):
       if i in self.info:
