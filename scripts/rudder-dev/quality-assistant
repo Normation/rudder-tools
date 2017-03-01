@@ -30,6 +30,7 @@ from __future__ import print_function
 import os
 import shutil
 import time
+import fcntl
 from common import *
 from github import *
 from redmine import *
@@ -70,15 +71,19 @@ def clean_repo(repo, alt_dir):
   # check lock
   lockfile = directory + "/qa.lock"
   wait = Config.LOCK_TIMEOUT
+  fd = open(lockfile, 'w')
   while wait > 0:
-    if os.path.isfile(lockfile):
+    try:
+      fcntl.flock(f,fcntl.LOCK_EX | fcntl.LOCK_NB)
+      break
+    except:
       print("Lock present, remaining wait time : " + str(wait) + "s")
       w = min(wait,5) # recheck lock every 5s
       time.sleep(w)
       wait -= 5
-    else:
-      break
-  if os.path.isfile(lockfile):
+  try:
+    fcntl.flock(f,fcntl.LOCK_EX | fcntl.LOCK_NB)
+  except:
     if alt_dir:
       # since working directory is just a cache to speedup git, we can just create another one if needed
       workdir = mkdtemp()
@@ -90,8 +95,6 @@ def clean_repo(repo, alt_dir):
       print("Lockfile " + lockfile + " is present, stoping")
       exit(1)
 
-  open(lockfile, 'a').close()
-  
   # cleanup working directory
   os.chdir(directory)
   shell("git clean -f -d -e qa.lock"+redirect, "Cleanup working directory")
@@ -174,10 +177,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)
 
-  if workdir == Config.WORKING_DIRECTORY:
-    # keep cache and remove lockfile 
-    os.remove(workdir + "/" + repo + "/qa.lock")
-  else:
+  if workdir != Config.WORKING_DIRECTORY:
     # remove everything temporary
     shutil.rmtree(workdir)
 
