@@ -74,7 +74,7 @@ def clean_repo(repo, alt_dir):
   fd = open(lockfile, 'w')
   while wait > 0:
     try:
-      fcntl.flock(f,fcntl.LOCK_EX | fcntl.LOCK_NB)
+      fcntl.flock(fd,fcntl.LOCK_EX | fcntl.LOCK_NB)
       break
     except:
       print("Lock present, remaining wait time : " + str(wait) + "s")
@@ -82,7 +82,7 @@ def clean_repo(repo, alt_dir):
       time.sleep(w)
       wait -= 5
   try:
-    fcntl.flock(f,fcntl.LOCK_EX | fcntl.LOCK_NB)
+    fcntl.flock(fd,fcntl.LOCK_EX | fcntl.LOCK_NB)
   except:
     if alt_dir:
       # since working directory is just a cache to speedup git, we can just create another one if needed
