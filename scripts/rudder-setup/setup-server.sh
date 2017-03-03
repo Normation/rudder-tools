@@ -69,7 +69,7 @@ upgrade_server() {
   # Upgrade
   if [ "${PM}" = "apt" ]
   then
-    ${PM_UPGRADE} rudder-server-root
+    ${PM_UPGRADE} rudder-server-root ncf ncf-api-virtualenv
   else
     ${PM_UPGRADE} "rudder-*" "ncf*"
   fi
