@@ -45,6 +45,253 @@ no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18
 RHEL/CentOS 3 and RHEL/CentOS 5
 
 
+## Rudder 4.1.0.rc1 (2017-03-07)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Adjust providers display in the node properties tab
+    ([\#10320](https://www.rudder-project.org/redmine/issues/10320))
+  - Display provider of node properties if defined
+    ([\#10302](https://www.rudder-project.org/redmine/issues/10302))
+  - Change graph lib to more efficent one
+    ([\#8171](https://www.rudder-project.org/redmine/issues/8171))
+  - Adjust the height box height's css property instead of max-height 
+    ([\#10252](https://www.rudder-project.org/redmine/issues/10252))
+  - Add autocomplete on rule/directive tags
+    ([\#10192](https://www.rudder-project.org/redmine/issues/10192))
+  - The "Technique version" select and "Migrate" button should be aligned
+    ([\#9938](https://www.rudder-project.org/redmine/issues/9938))
+  - Reorder and hide deprecated Techniques in Directive tree 
+    ([\#10228](https://www.rudder-project.org/redmine/issues/10228))
+  - UI to define node properties
+    ([\#10169](https://www.rudder-project.org/redmine/issues/10169))
+  - Reorganize Directives page interface
+    ([\#10080](https://www.rudder-project.org/redmine/issues/10080))
+
+#### Documentation
+
+  - Document usage of file sharing between nodes
+    ([\#10278](https://www.rudder-project.org/redmine/issues/10278))
+  - Add guideline for technique naming
+    ([\#10222](https://www.rudder-project.org/redmine/issues/10222))
+  - Use the lato font in the manual
+    ([\#9945](https://www.rudder-project.org/redmine/issues/9945))
+  - Add link to the new FAQ in the manual
+    ([\#10181](https://www.rudder-project.org/redmine/issues/10181))
+
+#### Agent
+
+  - Create a cfengine_rudder class
+    ([\#9384](https://www.rudder-project.org/redmine/issues/9384))
+  - Improve usage of ncf logging in rudder command
+    ([\#9280](https://www.rudder-project.org/redmine/issues/9280))
+
+#### Packaging
+
+  - Registered Plugins should be kept at upgrade
+    ([\#10251](https://www.rudder-project.org/redmine/issues/10251))
+  - Stop jetty before upgrading the webapp
+    ([\#9820](https://www.rudder-project.org/redmine/issues/9820))
+  - Embed openssl on old debian systems
+    ([\#10303](https://www.rudder-project.org/redmine/issues/10303))
+  - Upgrade OpenSSL to 1.0.2k
+    ([\#10246](https://www.rudder-project.org/redmine/issues/10246))
+  - Upgrade fusion agent to 2.3.19
+    ([\#9763](https://www.rudder-project.org/redmine/issues/9763))
+  - Redirect http to https in relay api
+    ([\#10073](https://www.rudder-project.org/redmine/issues/10073))
+
+#### Initial promises & sys tech
+
+  - Remove unused body yum_remi
+    ([\#10349](https://www.rudder-project.org/redmine/issues/10349))
+
+#### System integration
+
+  - Add a package manager for plugins
+    ([\#10254](https://www.rudder-project.org/redmine/issues/10254))
+
+#### Techniques
+
+  - More consistant naming of techniques
+    ([\#10214](https://www.rudder-project.org/redmine/issues/10214))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Compliance display when hoverving over the compliance bar is too precise
+    ([\#9323](https://www.rudder-project.org/redmine/issues/9323))
+  - Fixed: Compliance/Recent change column should not be present by default in directive screen
+    ([\#10339](https://www.rudder-project.org/redmine/issues/10339))
+  - Fixed: Compliance bar isn't display the same way in 'List nodes' and 'Rules' pages
+    ([\#10321](https://www.rudder-project.org/redmine/issues/10321))
+  - Fixed: Display of shared files popup is broken
+    ([\#10329](https://www.rudder-project.org/redmine/issues/10329))
+  - Fixed: Unconsistent titles style in Rule settings
+    ([\#10325](https://www.rudder-project.org/redmine/issues/10325))
+  - Fixed: Disabled label disappear passing the mouse over the policy mode label
+    ([\#10323](https://www.rudder-project.org/redmine/issues/10323))
+  - Fixed: Cannot change schedule on Node 
+    ([\#10318](https://www.rudder-project.org/redmine/issues/10318))
+  - Fixed: Clone group popup is broken
+    ([\#10307](https://www.rudder-project.org/redmine/issues/10307))
+  - Fixed: Lost space at the bottom of the group page
+    ([\#10281](https://www.rudder-project.org/redmine/issues/10281))
+  - Fixed: When clicking refresh in rules, grid header height change
+    ([\#10262](https://www.rudder-project.org/redmine/issues/10262))
+  - Fixed: When trying to create a new API account that has the same name as an existing acocunt, nothing happen
+    ([\#10250](https://www.rudder-project.org/redmine/issues/10250))
+  - Fixed: Setting title are barelly outstanding
+    ([\#10261](https://www.rudder-project.org/redmine/issues/10261))
+  - Fixed: Button are not correctly aligned compared to tables in 4.1
+    ([\#10257](https://www.rudder-project.org/redmine/issues/10257))
+  - Fixed: Rules form fields are too wide
+    ([\#10202](https://www.rudder-project.org/redmine/issues/10202))
+  - Fixed: Vertically center the filter line in the event logs page
+    ([\#10219](https://www.rudder-project.org/redmine/issues/10219))
+  - Fixed: Unconsistent titles style in the Settings page
+    ([\#10217](https://www.rudder-project.org/redmine/issues/10217))
+  - Fixed: Parameters description won't show up in 4.1
+    ([\#10197](https://www.rudder-project.org/redmine/issues/10197))
+  - Fixed: Broken display in Rule popup creation
+    ([\#10182](https://www.rudder-project.org/redmine/issues/10182))
+  - Fixed: If we set a short description for a Rule, it won't show up anymore in the rule list
+    ([\#10196](https://www.rudder-project.org/redmine/issues/10196))
+
+#### Web - Config management
+
+  - Fixed: Remove "rights" in node property
+    ([\#10301](https://www.rudder-project.org/redmine/issues/10301))
+  - Fixed: When we filter directive by tags, and update a directive, the tree is refreshed without taking into account the filter
+    ([\#10271](https://www.rudder-project.org/redmine/issues/10271))
+  - Fixed: When we add/remove/update a tag to a Directive/Rule, we get an empty event log
+    ([\#10275](https://www.rudder-project.org/redmine/issues/10275))
+  - Fixed: Tag filter creation greyed out after creating a tag filter
+    ([\#10272](https://www.rudder-project.org/redmine/issues/10272))
+  - Fixed: "Migrate" button is displayed for deprecated techniques even if all version are deprecated
+    ([\#9859](https://www.rudder-project.org/redmine/issues/9859))
+
+#### Techniques
+
+  - Fixed: The service management technique does not disable boot services
+    ([\#9872](https://www.rudder-project.org/redmine/issues/9872))
+  - Fixed: Deprecate openVPN technique
+    ([\#6707](https://www.rudder-project.org/redmine/issues/6707))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Include Timezone in Node Info
+    ([\#7092](https://www.rudder-project.org/redmine/issues/7092))
+  - Fixed: Improve management of rights and other metadata of node properties
+    ([\#10235](https://www.rudder-project.org/redmine/issues/10235))
+  - Fixed: Cannot choose between Group or category when creating a Group
+    ([\#10249](https://www.rudder-project.org/redmine/issues/10249))
+  - Fixed: Users with "node_all" security role can not change Agent Policy Mode
+    ([\#9936](https://www.rudder-project.org/redmine/issues/9936))
+  - Fixed: Can not see details of pending node
+    ([\#10174](https://www.rudder-project.org/redmine/issues/10174))
+  - Fixed: Inventories with fields containing only spaces/tabs/... may fail to be parsed due to invalid sanitization of entry
+    ([\#10220](https://www.rudder-project.org/redmine/issues/10220))
+
+#### Documentation
+
+  - Fixed: Doc about copying ncf technique to /var/rudder/ncf/local is false
+    ([\#10269](https://www.rudder-project.org/redmine/issues/10269))
+  - Fixed: Broken formatting of plugin packaging doc
+    ([\#10297](https://www.rudder-project.org/redmine/issues/10297))
+  - Fixed: Merge error - Link check disappeared in 4.0
+    ([\#10206](https://www.rudder-project.org/redmine/issues/10206))
+
+#### Miscellaneous
+
+  - Fixed: Error when putting uuid.hive in inventory-updates
+    ([\#10070](https://www.rudder-project.org/redmine/issues/10070))
+  - Fixed: Clean tags data model 
+    ([\#9934](https://www.rudder-project.org/redmine/issues/9934))
+  - Fixed: Promise validation errors (cf-promises) are unreadable
+    ([\#10175](https://www.rudder-project.org/redmine/issues/10175))
+
+#### Agent
+
+  - Fixed: Scary message about OpenSSL on SLES when running rudder agent update
+    ([\#10066](https://www.rudder-project.org/redmine/issues/10066))
+  - Fixed: Some QEMU virtual machines are seen as physical
+    ([\#9616](https://www.rudder-project.org/redmine/issues/9616))
+  - Fixed: If rudder server component is stopped on Rudder root server, it is never restarted
+    ([\#10258](https://www.rudder-project.org/redmine/issues/10258))
+
+#### Packaging
+
+  - Fixed: make clean in rudder agent package doesn't remove build-cfengine-stamp
+    ([\#10334](https://www.rudder-project.org/redmine/issues/10334))
+  - Fixed: Accept TTL with spaces in relay API
+    ([\#10296](https://www.rudder-project.org/redmine/issues/10296))
+  - Fixed: Error downloading perl modules with https
+    ([\#10264](https://www.rudder-project.org/redmine/issues/10264))
+  - Fixed: Missing prefix in asynchronous output in remote run
+    ([\#10190](https://www.rudder-project.org/redmine/issues/10190))
+  - Fixed: Impossible to share file due to wrong permissions for /var/rudder/shared-files
+    ([\#10184](https://www.rudder-project.org/redmine/issues/10184))
+  - Fixed: version is not properly set in web interface
+    ([\#10107](https://www.rudder-project.org/redmine/issues/10107))
+
+#### Initial promises & sys tech
+
+  - Fixed: Transient update error on ncf/local
+    ([\#10028](https://www.rudder-project.org/redmine/issues/10028))
+  - Fixed: Error in relay promises when there are no shared files
+    ([\#9881](https://www.rudder-project.org/redmine/issues/9881))
+  - Fixed: Propagate promises error when no nodes behind a relay
+    ([\#7671](https://www.rudder-project.org/redmine/issues/7671))
+  - Fixed: Impossible to collect reports in mission portal since #9216
+    ([\#10209](https://www.rudder-project.org/redmine/issues/10209))
+
+#### API
+
+  - Fixed: API compatibility feature switch must be removed in 4.1
+    ([\#10322](https://www.rudder-project.org/redmine/issues/10322))
+  - Fixed: Log an error when Rest API fails 
+    ([\#10295](https://www.rudder-project.org/redmine/issues/10295))
+  - Fixed: Missing timezone information in API "node details"
+    ([\#10280](https://www.rudder-project.org/redmine/issues/10280))
+  - Fixed: Fix behavior of directive API and make api more consistent
+    ([\#10225](https://www.rudder-project.org/redmine/issues/10225))
+
+#### Relay server or API
+
+  - Fixed: Allow dots in file_id in shared-files api
+    ([\#10338](https://www.rudder-project.org/redmine/issues/10338))
+  - Fixed: Remote-run exec for root fail with "rudder agent was interrupted"
+    ([\#10185](https://www.rudder-project.org/redmine/issues/10185))
+
+#### Web - Compliance & node report
+
+  - Fixed: Recent changes aren't display sometimes on Rules list
+    ([\#10194](https://www.rudder-project.org/redmine/issues/10194))
+
+#### Web - Maintenance
+
+  - Fixed: There is no error logged when an error occurs when updating information of Node in Node cache
+    ([\#10290](https://www.rudder-project.org/redmine/issues/10290))
+  - Fixed: If the Rudder Web Interface is interrupted during the second step of reports archiving, then it won't never succeed in archiving again
+    ([\#10171](https://www.rudder-project.org/redmine/issues/10171))
+
+#### Plugin - datasources
+
+  - Fixed: EventLog at promise generation for datasources change, even if nothing changed
+    ([\#10198](https://www.rudder-project.org/redmine/issues/10198))
+
+#### System integration
+
+  - Fixed: Log for failed login attempt is not (correctly) reported
+    ([\#10259](https://www.rudder-project.org/redmine/issues/10259))
+  - Fixed: Clean-up and add build information in META-INF
+    ([\#10253](https://www.rudder-project.org/redmine/issues/10253))
+
+
 ## Rudder 4.1.0.beta3 (2017-02-14)
 
 ### Changes
