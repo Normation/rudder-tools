@@ -24,7 +24,7 @@ setup_ncf() {
     # cfengine from Rudder
     RUDDER_VERSION=$(echo "${CFENGINE_VERSION}" | cut -f 2 -d "-")
     add_repo
-    setup_agent
+    setup_agent || true # To allow failing inventories, when we have no server
     remove_repo
     ln -s /var/rudder/cfengine-community /var/cfengine
   else
@@ -43,6 +43,12 @@ setup_ncf() {
     echo "pure ncf packaging not ready yet"
   elif echo "${NCF_VERSION}" | grep "^rudder" > /dev/null
   then
+    if [ "${COMMAND}" = "test-local" ]
+    then
+      echo "tests requires using a git repository as ncf source"
+      exit 1
+    fi
+
     # ncf package from Rudder
     RUDDER_VERSION=$(echo "${NCF_VERSION}" | cut -f 2 -d "-")
     add_repo

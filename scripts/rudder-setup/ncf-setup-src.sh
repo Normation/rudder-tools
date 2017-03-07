@@ -4,12 +4,13 @@ set -e
 
 # Documentation !
 usage() {
-  echo "Usage $0 [add-repository|setup-local] <ncf_version> <cfengine_version>"
+  echo "Usage $0 [add-repository|setup-local|test-local] <ncf_version> <cfengine_version> [test-target]"
   echo "  Adds a repository and setup ncf on your OS" 
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
   echo "  ncf_version ex: 1.0.0.201607292014, rudder-3.1, git@github.com:Normation/ncf.git#master"
   echo "  cfengine_version ex: 3.6.6 3.7.1 rudder-3.1 ci/rudder-3.2.1"
+  echo "  test-target: test, test-unsafe"
   exit 1
 }
 # GOTO bottom for main()
@@ -26,6 +27,8 @@ usage() {
 
 # Include: setup-agent.sh
 
+# Include: test-ncf.sh
+
 ########
 # MAIN #
 ########
@@ -35,6 +38,13 @@ setlocal || re_exec "$@"
 COMMAND="$1"
 NCF_VERSION="$2"
 CFENGINE_VERSION="$3"
+
+if [ -z "$3" ]
+then
+  TEST_TARGET="$3"
+else
+  TEST_TARGET="test-unsafe"
+fi
 
 [ -z "${CFENGINE_VERSION}" ] && usage
 
@@ -54,6 +64,11 @@ case "${COMMAND}" in
   "setup-local")
 #    add_repo
     setup_ncf
+    ;;
+  "test-local")
+#    add_repo
+    setup_ncf
+    test_ncf
     ;;
   *)
     usage
