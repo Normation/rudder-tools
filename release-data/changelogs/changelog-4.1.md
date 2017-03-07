@@ -291,6 +291,23 @@ RHEL/CentOS 3 and RHEL/CentOS 5
   - Fixed: Clean-up and add build information in META-INF
     ([\#10253](https://www.rudder-project.org/redmine/issues/10253))
 
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Dennis Cabooter
+  - Janos Mattyasovszky
+  - Hamlyn Mootoo
+  - Dmitry Svyatogorov
+
+This software is in beta status and contains several new features but we
+have tested it and believe it to be free of any critical bugs.¬The use
+on production systems is not encouraged at this time and is at your own
+risk. However, we do encourage testing, and welcome all and any
+feedback\!
+
 
 ## Rudder 4.1.0.beta3 (2017-02-14)
 
