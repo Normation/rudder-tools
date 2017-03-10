@@ -252,7 +252,7 @@ class Issue:
       else:
         new_info['subject'] = new_title
     new_info['fixed_version_id'] = version_id
-    return self.server._create_issue(ticket_json)
+    return self.server._create_issue(new_info)
 
   def url(self):
     return self.api_url+"/issues/"+str(self.id)
@@ -286,7 +286,6 @@ class Redmine:
 
   def _create_issue(self, new_info):
     ticket_json = json.dumps({ 'issue': new_info })
-    pprint(ticket_json)
     ret = self._query("/issues.json", ticket_json)
     if ret.status_code != 201:
       logfail("Issue creation error: " + ret.reason + "\n" + ret.text)
