@@ -7,13 +7,22 @@ and rc versions are listed below for convenience.
 
 **Main new features in Rudder 4.1:**
 
-  - Add a Relay API:  share files between nodes, launch run on remote run behind relay
-  - Import automatically properties to Nodes using http data sources
-  - Organize Rules and Directives with tags
-  - Implement notifications for different server-side actions and events (hooks)
-  - Upgrade CFEngine to 3.10 in Rudder agent 
-  - Store node compliance in database
-  - Small improvements on UI (properties display, titles, harmonize some form ...)
+  - Add a Relay API:
+    - Share files between nodes
+    - Trigger remote run behind relay
+  - New plugin: Automatically import properties to Nodes using external Rest API
+  - Organize Rules and Directives with tags 
+  - Notifications for different server-side actions and events (hooks)
+  - A new UI to manage Node properties
+  - Improved user experience:
+    - Reorganize Rule and Directive pages
+    - New order in Technique tree
+    - Harmonize UI (titles, forms, buttons, ...) 
+  - Architecture changes:
+    - Upgrade of agent dependencies
+    - Upgrade of server dependencies (Java 8)
+    - Deprecate old technique versions
+    - Store more data about compliance in database for future use
 
 **Installing, upgrading and testing**
 
