@@ -58,7 +58,7 @@ gpgcheck=1
 gpgkey=https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub
 EOF
     # CentOS 5 only supports importing keys from files
-    wget -O "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
+    wget -q -O "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     return 0
@@ -67,7 +67,7 @@ EOF
   then
     # Add SuSE repo
     # SLES11 only supports importing keys from files
-    wget -O "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
+    wget -q -O "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
