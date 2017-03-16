@@ -7,11 +7,16 @@ and rc versions are listed below for convenience.
 
 **Main new features in Rudder 4.1:**
 
-  - Organize Rules and Directives with tags
+  - Organize Rules and Directives by setting key=value tags (using UI or REST API)
   - Add or remove Node properties directly in the web interface
-  - Improved user experience, including new pages for Rules and Directive, and a lot more to discover!
-  - Have better control over your Nodes with the relay API (share files, remote run)
+  - Share files between Nodes (via new generic methods)
+  - Trigger agent runs on Nodes via relay servers without modifying your network configuration
+  - Many Techniques renamed to be more explicit and now displayed in alphabetical order to make finding them easier
   - Customize Rudder behavior with the new hook system based on server-side actions
+  - Improved user experience, overall improvement of web performance (web resources are cached), many minor UI tweaks  (page titles, forms, buttons, filters, ...)
+  - Switched to a new graph rendering library, fixing all performance issues with Firefox
+  - Agent package now embeds OpenSSL on unmaintained Debian/Ubuntu distributions (Debian 5, Debian 6, Ubuntu 12.04, Ubuntu 12.10) as well as unmaintained RHEL/SLES distributions.
+  - New plugin packaging system for easier plugin management
   - New plugin ‘data sources’: Automatically import Node properties from external REST APIs
 
 **Installing, upgrading and testing**
