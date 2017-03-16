@@ -63,7 +63,10 @@ EOF
   elif [ "${PM}" = "zypper" ]
   then
     # Add SuSE repo
-    rpm --import "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
+    # SLES11 only supports importing keys from files
+    wget -O "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
+    rpm --import "/tmp/rudder_rpm_key.pub"
+    rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
     zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}" Rudder || true
     zypper --non-interactive refresh
