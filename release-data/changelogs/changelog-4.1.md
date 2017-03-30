@@ -49,6 +49,233 @@ no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18
 RHEL/CentOS 3 and RHEL/CentOS 5
 
 
+## Rudder 4.1.0 (2017-03-30)
+
+### Changes
+
+#### Packaging
+
+  - rpm packages should depend on java headless
+    ([\#10468](https://www.rudder-project.org/redmine/issues/10468))
+
+#### Web - UI & UX
+
+  - Add icon for directives which can be migrated to an upper technique version
+    ([\#10421](https://www.rudder-project.org/redmine/issues/10421))
+  - Add icon for directives which use deprecated technique
+    ([\#10420](https://www.rudder-project.org/redmine/issues/10420))
+  - Find a way to display "deprecated" techniques which still contain directives in the directives tree
+    ([\#10229](https://www.rudder-project.org/redmine/issues/10229))
+  - Fix some details in Directives page
+    ([\#10384](https://www.rudder-project.org/redmine/issues/10384))
+  - Group Type order should be switched
+    ([\#10330](https://www.rudder-project.org/redmine/issues/10330))
+
+#### Documentation
+
+  - Document how to build an agent
+    ([\#10333](https://www.rudder-project.org/redmine/issues/10333))
+  - Change page split level and reorganize sections
+    ([\#10350](https://www.rudder-project.org/redmine/issues/10350))
+
+#### Performance and scalability
+
+  - Add caching information to static JS/CSS resources
+    ([\#4519](https://www.rudder-project.org/redmine/issues/4519))
+
+#### Miscellaneous
+
+  - Add a convention for ".disabled" hooks to not be executed
+    ([\#10412](https://www.rudder-project.org/redmine/issues/10412))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: "New category" button hides "Categories" title on small screens
+    ([\#10510](https://www.rudder-project.org/redmine/issues/10510))
+  - Fixed: Some tooltips can't overflow their container
+    ([\#10509](https://www.rudder-project.org/redmine/issues/10509))
+  - Fixed: A running Policy generation is not displayed on the Status dropdown
+    ([\#10451](https://www.rudder-project.org/redmine/issues/10451))
+  - Fixed: Directive page not displaying with "None.get" in logs
+    ([\#10501](https://www.rudder-project.org/redmine/issues/10501))
+  - Fixed: When activating change requests, the CR zone doesn't appear in the main bar
+    ([\#10499](https://www.rudder-project.org/redmine/issues/10499))
+  - Fixed: GUI breaks completely with IE 11
+    ([\#10452](https://www.rudder-project.org/redmine/issues/10452))
+  - Fixed: padding-down instead of padding-bottom in rudder.css
+    ([\#10465](https://www.rudder-project.org/redmine/issues/10465))
+  - Fixed: Weird appearance of accet new nodes popup
+    ([\#10458](https://www.rudder-project.org/redmine/issues/10458))
+  - Fixed: Display issue on "Accept new Nodes" page
+    ([\#9165](https://www.rudder-project.org/redmine/issues/9165))
+  - Fixed: Dropdown lists in directive forms are not wide enough and hide the contents of options
+    ([\#10361](https://www.rudder-project.org/redmine/issues/10361))
+  - Fixed: In the rule table, Recent changes column change size during page loading
+    ([\#10340](https://www.rudder-project.org/redmine/issues/10340))
+  - Fixed: On the Rule details, if I click on "Clone", then cancel action, I get switched to Settings tab
+    ([\#10345](https://www.rudder-project.org/redmine/issues/10345))
+  - Fixed: Directive from a whole deprecated technique are not displayed
+    ([\#10422](https://www.rudder-project.org/redmine/issues/10422))
+  - Fixed: "Create with latest version" button text is cut off in new directive page
+    ([\#10358](https://www.rudder-project.org/redmine/issues/10358))
+  - Fixed: Cannot use slashes in quick search
+    ([\#10407](https://www.rudder-project.org/redmine/issues/10407))
+  - Fixed: Quick search text has gone a hard to read gray
+    ([\#10400](https://www.rudder-project.org/redmine/issues/10400))
+  - Fixed: Checkboxes in Administration menu are not locked for users with missing permissions
+    ([\#9328](https://www.rudder-project.org/redmine/issues/9328))
+  - Fixed: Bad Rudder logo in src/main/webapp/images
+    ([\#10386](https://www.rudder-project.org/redmine/issues/10386))
+  - Fixed: Rudder (svg) logo aren't displayed with chrome 
+    ([\#10387](https://www.rudder-project.org/redmine/issues/10387))
+  - Fixed: Tooltips are broken in Rule tables
+    ([\#10389](https://www.rudder-project.org/redmine/issues/10389))
+  - Fixed: Directive "Migrate" button is stuck to the version dropdown list
+    ([\#10360](https://www.rudder-project.org/redmine/issues/10360))
+  - Fixed: "Delete <component> #1" button in directive form's text is not centered
+    ([\#10359](https://www.rudder-project.org/redmine/issues/10359))
+  - Fixed: Save button shown even no permission to change it
+    ([\#9819](https://www.rudder-project.org/redmine/issues/9819))
+  - Fixed: If there is an error in the Parameter edition/creation popup, its shape change
+    ([\#10248](https://www.rudder-project.org/redmine/issues/10248))
+  - Fixed: Inconsistent capitalization of titles in the menu
+    ([\#9545](https://www.rudder-project.org/redmine/issues/9545))
+  - Fixed: Inconsistent message style in settings page
+    ([\#9426](https://www.rudder-project.org/redmine/issues/9426))
+  - Fixed: Wrong action named in API accounts table
+    ([\#10203](https://www.rudder-project.org/redmine/issues/10203))
+
+#### Documentation
+
+  - Fixed: Inconsistent section order
+    ([\#10413](https://www.rudder-project.org/redmine/issues/10413))
+  - Fixed: Remove doc for the old quicksearch bar that has been removed
+    ([\#10401](https://www.rudder-project.org/redmine/issues/10401))
+
+#### Web - Technique editor
+
+  - Fixed: Cannot open technique editor on SLES12
+    ([\#10511](https://www.rudder-project.org/redmine/issues/10511))
+
+#### Web - Nodes & inventories
+
+  - Fixed: On Group page, we can click on "Save" on arrival on the page, and it prevent any further saving of the Group
+    ([\#10376](https://www.rudder-project.org/redmine/issues/10376))
+  - Fixed: No error message in group creation popup if no name is set
+    ([\#10328](https://www.rudder-project.org/redmine/issues/10328))
+
+#### Web - Config management
+
+  - Fixed: No generation triggered at the end of installation
+    ([\#10448](https://www.rudder-project.org/redmine/issues/10448))
+  - Fixed: When upgrading to 4.1, rudder.community.checkpromises.command=/bin/true option is lost 
+    ([\#10379](https://www.rudder-project.org/redmine/issues/10379))
+  - Fixed: Dataource can not override an existing property
+    ([\#10520](https://www.rudder-project.org/redmine/issues/10520))
+  - Fixed: Policy validation fails
+    ([\#10446](https://www.rudder-project.org/redmine/issues/10446))
+
+#### Miscellaneous
+
+  - Fixed: Validation hooks should execute cf-promises by exec
+    ([\#10449](https://www.rudder-project.org/redmine/issues/10449))
+
+#### Web - Compliance & node report
+
+  - Fixed: Several core features don't work anymore with more than 1000 nodes
+    ([\#10456](https://www.rudder-project.org/redmine/issues/10456))
+
+#### Packaging
+
+  - Fixed: slapd migration for 4.1 is not done on Ubuntu 16.04
+    ([\#10517](https://www.rudder-project.org/redmine/issues/10517))
+  - Fixed: Rudder 4.1 fails to install Ubuntu/Debian because of rudder-slapd service restart
+    ([\#10506](https://www.rudder-project.org/redmine/issues/10506))
+  - Fixed: Error when upgrading from Rudder 3.1 to Rudder 4.1 on Debian 8
+    ([\#10440](https://www.rudder-project.org/redmine/issues/10440))
+  - Fixed: On SLES12, missing package rsyslog-module-pgsql
+    ([\#10497](https://www.rudder-project.org/redmine/issues/10497))
+  - Fixed: Use the same initial database password everywhere to avoid breaking database connection before rudder-init
+    ([\#10484](https://www.rudder-project.org/redmine/issues/10484))
+  - Fixed: Relay-Api does not handle different Apache versions
+    ([\#10455](https://www.rudder-project.org/redmine/issues/10455))
+  - Fixed: Error on hooks on fresh install on Centos7
+    ([\#10436](https://www.rudder-project.org/redmine/issues/10436))
+  - Fixed: LDAP error at upgrade - Cannot allocate memory
+    ([\#10424](https://www.rudder-project.org/redmine/issues/10424))
+  - Fixed: On Centos 7.3, upgrading from 4.0 to 4.1 fail due to SELinux problem
+    ([\#10372](https://www.rudder-project.org/redmine/issues/10372))
+  - Fixed: Upgrading from 4.0 to 4.1 failed on Centos7.3, and purged LDAP directory
+    ([\#10373](https://www.rudder-project.org/redmine/issues/10373))
+  - Fixed: Don't display warning about configuring policy server on root server
+    ([\#8976](https://www.rudder-project.org/redmine/issues/8976))
+
+#### Initial promises & sys tech
+
+  - Fixed: Inventory is not resent in case of error - and agent don't report the error
+    ([\#10088](https://www.rudder-project.org/redmine/issues/10088))
+  - Fixed: A 4.1 agent cannot fetch its promises from a 3.1 server
+    ([\#10049](https://www.rudder-project.org/redmine/issues/10049))
+  - Fixed: Ignore changes generated by creation/deletion of ncf expected reports file
+    ([\#10355](https://www.rudder-project.org/redmine/issues/10355))
+
+#### System integration
+
+  - Fixed: Error in migration (ldap backup not found because ending by .gz)
+    ([\#10521](https://www.rudder-project.org/redmine/issues/10521))
+  - Fixed: Apache not started on a fresh centos7 install (selinux problem)
+    ([\#10426](https://www.rudder-project.org/redmine/issues/10426))
+  - Fixed: On freshly installed centos7, ldap connections fail with "bad auth"
+    ([\#10427](https://www.rudder-project.org/redmine/issues/10427))
+  - Fixed: rudder-upgrade fails if run twice 
+    ([\#10466](https://www.rudder-project.org/redmine/issues/10466))
+  - Fixed: rudder-slapd force-stop doesn't exist on sles 12
+    ([\#10464](https://www.rudder-project.org/redmine/issues/10464))
+  - Fixed: rudder-reports doesn't start postgresql on postinstall on sles 12
+    ([\#10460](https://www.rudder-project.org/redmine/issues/10460))
+  - Fixed: Unable to setup metadata virtual space list
+    ([\#10444](https://www.rudder-project.org/redmine/issues/10444))
+  - Fixed: /var/log/rudder/ldap/slapd.log is full of not indexed message
+    ([\#10429](https://www.rudder-project.org/redmine/issues/10429))
+  - Fixed: Hook failed with fork: retry: No child processes
+    ([\#10457](https://www.rudder-project.org/redmine/issues/10457))
+  - Fixed: After running rudder-init, no connectivity to postgresql
+    ([\#10486](https://www.rudder-project.org/redmine/issues/10486))
+
+#### Relay server or API
+
+  - Fixed: Error in the cron job prevents purging expired files shared between nodes
+    ([\#10417](https://www.rudder-project.org/redmine/issues/10417))
+
+#### Architecture - Dependencies
+
+  - Fixed: Update monix (critical bug fix)
+    ([\#10393](https://www.rudder-project.org/redmine/issues/10393))
+
+#### Performance and scalability
+
+  - Fixed: If I click on "Regenerate all policies", it clears the cache of changes, and slows down a lot the web interface
+    ([\#10383](https://www.rudder-project.org/redmine/issues/10383))
+  - Fixed: Enable gzip compression on text resources
+    ([\#10365](https://www.rudder-project.org/redmine/issues/10365))
+
+#### Server components
+
+  - Fixed: slapd is not always restarted after installation of rudder-inventory-ldap
+    ([\#10467](https://www.rudder-project.org/redmine/issues/10467))
+  - Fixed: In debug verbosity, logs are overflowed by logs about com.zaxxer.hikari.pool
+    ([\#10471](https://www.rudder-project.org/redmine/issues/10471))
+
+#### Techniques
+
+  - Fixed: Variable * techniques description refers to CFEngine technical vocabulary
+    ([\#10363](https://www.rudder-project.org/redmine/issues/10363))
+  - Fixed: "Download files from the shared folder" behaving badly?
+    ([\#10312](https://www.rudder-project.org/redmine/issues/10312))
+
+
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
 ### Changes
