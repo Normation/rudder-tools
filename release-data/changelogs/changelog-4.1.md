@@ -1,6 +1,6 @@
 # Change logs for Rudder 4.1.\* versions
 
-Rudder 4.1 is currently the beta version of Rudder.
+Rudder 4.1 is currently the **latest** version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
@@ -41,10 +41,10 @@ This version provides packages for these operating systems:
     RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), Fedora 18, SLES
     10, SLES 12, Ubuntu 10.04, Ubuntu 12.04, Ubuntu 12.10**
   - Rudder agent (binary packages available from
-    ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
+    [Normation](http://www.normation.com)): **Windows Server 2008-2012,
     AIX 5-6-7**
 
-**Note**: As of Rudder 4.1, the rudder-agent-thin and rudder-server-relay packges are
+**Note**: As of Rudder 4.1, the rudder-agent-thin and rudder-server-relay packages are
 no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18, 
 RHEL/CentOS 3 and RHEL/CentOS 5
 

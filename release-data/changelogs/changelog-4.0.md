@@ -1,6 +1,6 @@
 # Change logs for Rudder 4.0.\* versions
 
-Rudder 4.0 is currently the **latest** version of Rudder.
+Rudder 4.0 is currently the **old-latest** version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
