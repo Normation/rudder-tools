@@ -3,10 +3,13 @@
 release = "4.1"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "rc"
+release-status = "final"
 
 # Is this version currently supported?
-supported = false
+supported = true
+
+# 30th March 2017
+release-date = "2017-03-30"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
