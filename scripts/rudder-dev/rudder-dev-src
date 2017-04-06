@@ -34,7 +34,7 @@ SMART
     <smart_arg> is a shortcut for other commands
     - if it is a number > 100, it is guessed to be a ticket_id -> branch
     - if it is a x.y or master, it is guessed to be a branch -> pull
-    - if it is a caps TLA, it is guessed to be a trigraph -> commit
+    - if it is a caps TLA, it is guessed to be a trigraph -> commit -u
     - if it is '-', checkout the last branch we where working on
 
 CLONE
@@ -112,7 +112,8 @@ WIP
 COMMIT
     Call it after working on a branch.
     - fork the repository if it has not yet been forked
-    - commit current work (no -a, you need to git add)
+    - if no file is indexed by git, call git add -u
+    - commit current work
     - push the branch to your github repository
     - make a pull-request to Normation's repository
     - update the coresponding bug with those informations
@@ -121,7 +122,8 @@ COMMIT
 
 AMEND
     Call it after you made a change to a branch with a PR.
-    - commit current work amending last commit (no -a, you need to git add)
+    - if no file is indexed by git, call git add -u
+    - commit current work amending last commit
     - push the branch to your github repository
     - add a comment to the PR to signal the change
     ex: rudder-dev amend "@reviewer pr updated"
@@ -774,6 +776,14 @@ def commit_push(branch, message, force_amend=False):
   if github_fork():
     # github fork is asynchronous but pretty fast, this should be sufficient
     time.sleep(2)
+
+  # git add if needed
+  files = shell("git status --untracked-files=no --porcelain", keep_output=True)
+  # git status returns a space at beginning of a line if the file is not indexed
+  # if all lines start with a space then nothing is indexed
+  if re.search(r'^[^ ]', files, flags=re.M) is None: # beware, this is a double negation
+    # if nothing is indexed, call git add -u
+    shell("git add -u", "No file added, adding all tracked files that were modified")
 
   (code, wip, err) = shell("git log --grep \"^Work in progress\" HEAD^..", keep_output=True, fail_exit=False)
   if code == 0:
