@@ -31,6 +31,8 @@ We also recommend using the [Rudder
 Vagrant](https://github.com/Normation/rudder-vagrant) config if you want
 a quick and easy way to get an installation for testing.
 
+**IMPORTANT:** Rudder 4.1 requires Java RE (version 8 at least)
+
 **Operating systems supported**
 
 This version provides packages for these operating systems:
