@@ -36,7 +36,7 @@ Documentation:
   - Install:
     https://www.rudder-project.org/doc-3.1/_install_rudder_server.html
   - Upgrade:
-    https://www.rudder-project.org/doc-3.1/_upgrade_rudder.html
+    https://www.rudder-project.org/doc-3.1/_upgrade.html
 
 The Download Links are available here:
 https://www.rudder-project.org/site/get-rudder/downloads/.
