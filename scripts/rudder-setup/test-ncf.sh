@@ -4,6 +4,7 @@ test_ncf() {
     cd "${directory}"
 
     # Install dependencies
+    ${PM_UPDATE}
     ${PM_INSTALL} ${TEST_DEPENDENCIES}
 
     # Use path from Rudder package if present
