@@ -65,7 +65,10 @@ setup_ncf() {
     cd "${directory}"
     # avoid making doc
     touch doc/ncf.1
-    make install
+    # Old branches do not have an "install" target
+    if grep -q "install:" Makefile; then 
+      make install
+    fi
   fi
 
   # setup ncf within cfengine
