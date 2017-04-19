@@ -61,6 +61,115 @@ This version provides packages for these operating systems:
   - Rudder agent (non-free): **Windows Server 2008-2012**, **AIX 5-6-7**
 
 
+## <a name="3.1.19" > </a> Rudder 3.1.19 (2017-04-19)
+
+### Changes
+
+#### Packaging
+
+  - Upgrade OpenSSL to 1.0.2k
+    ([\#10246](https://www.rudder-project.org/redmine/issues/10246))
+
+### Bug fixes
+
+#### API
+
+  - Fixed: Wrong error message on directive API
+    ([\#10554](https://www.rudder-project.org/redmine/issues/10554))
+  - Fixed: Log an error when Rest API fails 
+    ([\#10295](https://www.rudder-project.org/redmine/issues/10295))
+  - Fixed: Fix behavior of directive API and make api more consistent
+    ([\#10225](https://www.rudder-project.org/redmine/issues/10225))
+
+#### Web - UI & UX
+
+  - Fixed: Different icons for magnifier in pending nodes page
+    ([\#10524](https://www.rudder-project.org/redmine/issues/10524))
+  - Fixed: A magnifier icon appears in the filter fild after displaying directives that would be applied in pending nodes page
+    ([\#10525](https://www.rudder-project.org/redmine/issues/10525))
+  - Fixed: "Reset to default" action in "Change Audit Logs" doesn't reset to install version
+    ([\#9391](https://www.rudder-project.org/redmine/issues/9391))
+  - Fixed: A running Policy generation is not displayed on the Status dropdown
+    ([\#10451](https://www.rudder-project.org/redmine/issues/10451))
+  - Fixed: GUI breaks completely with IE 11
+    ([\#10452](https://www.rudder-project.org/redmine/issues/10452))
+  - Fixed: padding-down instead of padding-bottom in rudder.css
+    ([\#10465](https://www.rudder-project.org/redmine/issues/10465))
+  - Fixed: Display issue on "Accept new Nodes" page
+    ([\#9165](https://www.rudder-project.org/redmine/issues/9165))
+  - Fixed: Dropdown lists in directive forms are not wide enough and hide the contents of options
+    ([\#10361](https://www.rudder-project.org/redmine/issues/10361))
+  - Fixed: Cannot use slashes in quick search
+    ([\#10407](https://www.rudder-project.org/redmine/issues/10407))
+  - Fixed: Checkboxes in Administration menu are not locked for users with missing permissions
+    ([\#9328](https://www.rudder-project.org/redmine/issues/9328))
+  - Fixed: Compliance display when hoverving over the compliance bar is too precise
+    ([\#9323](https://www.rudder-project.org/redmine/issues/9323))
+  - Fixed: When trying to create a new API account that has the same name as an existing acocunt, nothing happen
+    ([\#10250](https://www.rudder-project.org/redmine/issues/10250))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Regex search on node properties is broken: returns all nodes with a property when no using invalid value
+    ([\#10570](https://www.rudder-project.org/redmine/issues/10570))
+  - Fixed: Rudder fails to accept inventories with user account different only in their case
+    ([\#10545](https://www.rudder-project.org/redmine/issues/10545))
+
+#### Web - Maintenance
+
+  - Fixed: There is no error logged when an error occurs when updating information of Node in Node cache
+    ([\#10290](https://www.rudder-project.org/redmine/issues/10290))
+
+#### Web - Config management
+
+  - Fixed: Missing "user techniques" in the technique editor when exporting / importing archive
+    ([\#9448](https://www.rudder-project.org/redmine/issues/9448))
+  - Fixed: Policy validation fails
+    ([\#10446](https://www.rudder-project.org/redmine/issues/10446))
+
+#### Agent
+
+  - Fixed: Policy loading is slow due to innefficient variable manipulation
+    ([\#10576](https://www.rudder-project.org/redmine/issues/10576))
+  - Fixed: On upgrade from 3.1 to 4.1, policy could not be generated any more
+    ([\#10559](https://www.rudder-project.org/redmine/issues/10559))
+
+#### Packaging
+
+  - Fixed: Don't display warning about configuring policy server on root server
+    ([\#8976](https://www.rudder-project.org/redmine/issues/8976))
+
+#### Initial promises & sys tech
+
+  - Fixed: Transient update error on ncf/local
+    ([\#10028](https://www.rudder-project.org/redmine/issues/10028))
+  - Fixed: Propagate promises error when no nodes behind a relay
+    ([\#7671](https://www.rudder-project.org/redmine/issues/7671))
+
+#### System integration
+
+  - Fixed: Error in migration (ldap backup not found because ending by .gz)
+    ([\#10521](https://www.rudder-project.org/redmine/issues/10521))
+  - Fixed: Log contains debug info  "**** got string: {"start":"2017-03-09 00:00:00", "end", "2017-03-11 00:00:00"}"
+    ([\#10553](https://www.rudder-project.org/redmine/issues/10553))
+  - Fixed: Log for failed login attempt is not (correctly) reported
+    ([\#10259](https://www.rudder-project.org/redmine/issues/10259))
+  - Fixed: After running rudder-init, no connectivity to postgresql
+    ([\#10486](https://www.rudder-project.org/redmine/issues/10486))
+  - Fixed: Clean-up and add build information in META-INF
+    ([\#10253](https://www.rudder-project.org/redmine/issues/10253))
+
+#### Performance and scalability
+
+  - Fixed: Enable gzip compression on text resources
+    ([\#10365](https://www.rudder-project.org/redmine/issues/10365))
+
+#### Techniques
+
+  - Fixed: "Download files from the shared folder" behaving badly?
+    ([\#10312](https://www.rudder-project.org/redmine/issues/10312))
+
+
 ## Rudder 3.1.18 (2017-02-20)
 
 ### Changes
