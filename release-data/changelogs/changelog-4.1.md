@@ -51,6 +51,85 @@ no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18
 RHEL/CentOS 3 and RHEL/CentOS 5
 
 
+## <a name="4.1.1" > </a> Rudder 4.1.1 (2017-04-19)
+
+### Changes
+
+#### Techniques
+
+  - Add tests for manageKeyValueFile
+    ([\#10473](https://www.rudder-project.org/redmine/issues/10473))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Different icons for magnifier in pending nodes page
+    ([\#10524](https://www.rudder-project.org/redmine/issues/10524))
+  - Fixed: A magnifier icon appears in the filter fild after displaying directives that would be applied in pending nodes page
+    ([\#10525](https://www.rudder-project.org/redmine/issues/10525))
+  - Fixed: Buttons left-right padding is inconsistent
+    ([\#10528](https://www.rudder-project.org/redmine/issues/10528))
+  - Fixed: "Reset to default" action in "Change Audit Logs" doesn't reset to install version
+    ([\#9391](https://www.rudder-project.org/redmine/issues/9391))
+  - Fixed: Directive column of pending nodes table is not wide enough.
+    ([\#10513](https://www.rudder-project.org/redmine/issues/10513))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Adding a json node property by UI make it a string
+    ([\#10569](https://www.rudder-project.org/redmine/issues/10569))
+  - Fixed: Regex search on node properties is broken: returns all nodes with a property when no using invalid value
+    ([\#10570](https://www.rudder-project.org/redmine/issues/10570))
+  - Fixed: Rudder fails to accept inventories with user account different only in their case
+    ([\#10545](https://www.rudder-project.org/redmine/issues/10545))
+
+#### Web - Config management
+
+  - Fixed: On centos7, generation fails because of hook policy-generation-node-ready/10-cf-promise-check
+    ([\#10532](https://www.rudder-project.org/redmine/issues/10532))
+  - Fixed: Cannot add node property when audit message is mandatory
+    ([\#10578](https://www.rudder-project.org/redmine/issues/10578))
+  - Fixed: Missing "user techniques" in the technique editor when exporting / importing archive
+    ([\#9448](https://www.rudder-project.org/redmine/issues/9448))
+
+#### Documentation
+
+  - Fixed: Broken links in 4.1 doc
+    ([\#10593](https://www.rudder-project.org/redmine/issues/10593))
+  - Fixed: Rudder documentation and release note don't mention the dependency to Java 1.8 for Rudder 4.1
+    ([\#10548](https://www.rudder-project.org/redmine/issues/10548))
+
+#### Agent
+
+  - Fixed: Policy loading is slow due to innefficient variable manipulation
+    ([\#10576](https://www.rudder-project.org/redmine/issues/10576))
+  - Fixed: On upgrade from 3.1 to 4.1, policy could not be generated any more
+    ([\#10559](https://www.rudder-project.org/redmine/issues/10559))
+
+#### Packaging
+
+  - Fixed: rudder-pkg is missing in rudder package
+    ([\#10556](https://www.rudder-project.org/redmine/issues/10556))
+
+#### API
+
+  - Fixed: Wrong error message on directive API
+    ([\#10554](https://www.rudder-project.org/redmine/issues/10554))
+  - Fixed: Cannot insert a directive via the API in Rudder 4.1
+    ([\#10547](https://www.rudder-project.org/redmine/issues/10547))
+
+#### Web - Compliance & node report
+
+  - Fixed: Compliance bar graph doesn't show small compliance numbers
+    ([\#10392](https://www.rudder-project.org/redmine/issues/10392))
+
+#### System integration
+
+  - Fixed: Log contains debug info  "**** got string: {"start":"2017-03-09 00:00:00", "end", "2017-03-11 00:00:00"}"
+    ([\#10553](https://www.rudder-project.org/redmine/issues/10553))
+
+
 ## Rudder 4.1.0 (2017-03-30)
 
 ### Changes
