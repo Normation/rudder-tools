@@ -220,6 +220,20 @@ This version provides packages for these operating systems:
   - Fixed: "Download files from the shared folder" behaving badly?
     ([\#10312](https://www.rudder-project.org/redmine/issues/10312))
 
+## Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Ilan Costa
+  - Florian Heigl
+  - Janos Mattyasovszky
+  - Hamlyn Mootoo 
+  - Dmitry Svyatogorov 
+
+This is a bug fix release in the 4.0 series and therefore all installations of 4.0 should be upgraded when possible. An end-of-life date has been scheduled for this release (30th June 2017), See our FAQ for details, on the website. As such, it is recommended to upgrade all pre-4.1 (current latest version) installations to 4.1 as soon as possible to enjoy the latest features and improvements of a more mature and stable version.
+
 
 ## Rudder 4.0.3 (2017-02-20)
 

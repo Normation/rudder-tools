@@ -129,8 +129,22 @@ RHEL/CentOS 3 and RHEL/CentOS 5
   - Fixed: Log contains debug info  "**** got string: {"start":"2017-03-09 00:00:00", "end", "2017-03-11 00:00:00"}"
     ([\#10553](https://www.rudder-project.org/redmine/issues/10553))
 
+### Release notes
 
-## Rudder 4.1.0 (2017-03-30)
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+  - Ilan Costa
+  - Florian Heigl
+  - Janos Mattyasovszky
+  - Hamlyn Mootoo 
+  - Dmitry Svyatogorov 
+  - Rémi Verchère
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
+
+
+
+## <a name=4.1.0> </a> Rudder 4.1.0 (2017-03-30)
 
 ### Changes
 
@@ -355,6 +369,14 @@ RHEL/CentOS 3 and RHEL/CentOS 5
     ([\#10363](https://www.rudder-project.org/redmine/issues/10363))
   - Fixed: "Download files from the shared folder" behaving badly?
     ([\#10312](https://www.rudder-project.org/redmine/issues/10312))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+  - Janos Mattyasovszky
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
 
 
 ## Rudder 4.1.0.rc1 (2017-03-07)
