@@ -73,5 +73,7 @@ setup_ncf() {
 
   # setup ncf within cfengine
   rm -rf /var/cfengine/inputs/*
-  cp -r /usr/share/ncf/tree/* /var/cfengine/inputs/
+  if [ -d /usr/share/ncf/tree/ ]; then
+    cp -r /usr/share/ncf/tree/* /var/cfengine/inputs/
+  fi
 }
