@@ -264,6 +264,8 @@ RHEL/CentOS 3 and RHEL/CentOS 5
   - Fixed: When agent run interval is not 5 minutes, lock database is always purged
     ([\#10634](https://www.rudder-project.org/redmine/issues/10634))
 
+### Release notes
+
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
   - François Bayart
