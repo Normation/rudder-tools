@@ -47,6 +47,165 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
     AIX 5-6-7**
 
+## <a name="4.0.5" > </a> Rudder 4.0.5 (2017-05-22)
+
+### Changes
+
+#### Documentation
+
+  - Add an example of using a condition in the Technique creation tutorial
+    ([\#10694](https://www.rudder-project.org/redmine/issues/10694))
+  - Add Technique editor documentation
+    ([\#10685](https://www.rudder-project.org/redmine/issues/10685))
+  - Improve policy mode documentation
+    ([\#10667](https://www.rudder-project.org/redmine/issues/10667))
+  - Extend node property documentation for templates
+    ([\#10614](https://www.rudder-project.org/redmine/issues/10614))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Fix details in Technique editor doc
+    ([\#10699](https://www.rudder-project.org/redmine/issues/10699))
+  - Fixed: Cannot generate promises when invalid character in a group name (double quote here)
+    ([\#10745](https://www.rudder-project.org/redmine/issues/10745))
+  - Fixed: We have no way to know that a Technique is disabled
+    ([\#10660](https://www.rudder-project.org/redmine/issues/10660))
+  - Fixed: Directive is still marked unused after using it
+    ([\#9805](https://www.rudder-project.org/redmine/issues/9805))
+  - Fixed: Logout hover background is too wide
+    ([\#10529](https://www.rudder-project.org/redmine/issues/10529))
+  - Fixed: Cannot go back to the previous page on node details
+    ([\#10515](https://www.rudder-project.org/redmine/issues/10515))
+  - Fixed: On some resolution, top bar is on two line and we can't see the whole directive tree
+    ([\#10552](https://www.rudder-project.org/redmine/issues/10552))
+  - Fixed: Mono Font text in directive form are not correctly displayed in Chrome
+    ([\#9780](https://www.rudder-project.org/redmine/issues/9780))
+  - Fixed: Selects in Archives page are not wide enough
+    ([\#10615](https://www.rudder-project.org/redmine/issues/10615))
+
+#### Web - Config management
+
+  - Fixed: Tooltips don't disapear on safari
+    ([\#6145](https://www.rudder-project.org/redmine/issues/6145))
+
+#### Performance and scalability
+
+  - Fixed: Unecessary call to inventory code to check its version during policy validation
+    ([\#10641](https://www.rudder-project.org/redmine/issues/10641))
+
+#### Documentation
+
+  - Fixed: Document correctly memory usage 
+    ([\#10744](https://www.rudder-project.org/redmine/issues/10744))
+  - Fixed: Missing information in Technique editor doc
+    ([\#10710](https://www.rudder-project.org/redmine/issues/10710))
+  - Fixed: Supported Windows platforms are Windows Server 2008 and after
+    ([\#10656](https://www.rudder-project.org/redmine/issues/10656))
+  - Fixed: Doc: "Regenerate now" button has been renamed "Update policies"
+    ([\#10633](https://www.rudder-project.org/redmine/issues/10633))
+  - Fixed: Backup restoration requires disabling the agent
+    ([\#10639](https://www.rudder-project.org/redmine/issues/10639))
+  - Fixed: Rudder installation docs are misleading as to running rudder-init
+    ([\#10624](https://www.rudder-project.org/redmine/issues/10624))
+  - Fixed: Node property documentation has error
+    ([\#10613](https://www.rudder-project.org/redmine/issues/10613))
+
+#### Miscellaneous
+
+  - Fixed: If cf-serverd is not up, hook 50-reload-policy-file-server is in error and breaks policy generation
+    ([\#10493](https://www.rudder-project.org/redmine/issues/10493))
+  - Fixed: escaping ${SSH_ORIGINAL_COMMAND} in GUI - sshKeyDistribution/3.0
+    ([\#10715](https://www.rudder-project.org/redmine/issues/10715))
+
+#### Web - Compliance & node report
+
+  - Fixed: In reports list, if the directive contains < >, then the part in < > doesn't appear in the reports
+    ([\#5718](https://www.rudder-project.org/redmine/issues/5718))
+  - Fixed: When no reports has been received from a node for new policy, message contains unexpanded variable
+    ([\#10636](https://www.rudder-project.org/redmine/issues/10636))
+
+#### Packaging
+
+  - Fixed: Installation fails due to broken nss/nss-softokn detection on CentOS6
+    ([\#10734](https://www.rudder-project.org/redmine/issues/10734))
+  - Fixed: Broken agent build on Debian/ubuntu
+    ([\#10729](https://www.rudder-project.org/redmine/issues/10729))
+  - Fixed: Man pages provided in rudder-agent package are out-of-date
+    ([\#10432](https://www.rudder-project.org/redmine/issues/10432))
+  - Fixed: rudder-init doesn't use fully qualified path for executing cf-agent
+    ([\#10607](https://www.rudder-project.org/redmine/issues/10607))
+
+#### Initial promises & sys tech
+
+  - Fixed: Agent inventory generation invalid if hostname is not defined
+    ([\#9829](https://www.rudder-project.org/redmine/issues/9829))
+
+#### System integration
+
+  - Fixed: Script rudder-init cannot reinit ldap database
+    ([\#10608](https://www.rudder-project.org/redmine/issues/10608))
+  - Fixed:  java.lang.InternalError when calling the internal API on Redhat because of invalid version of nss
+    ([\#9905](https://www.rudder-project.org/redmine/issues/9905))
+  - Fixed: Infinite "rudder is loading" page if rudder-init didn't run
+    ([\#10567](https://www.rudder-project.org/redmine/issues/10567))
+  - Fixed: If an error happen during boostrap, the webapp starts but is in a zombie state and the error page is not displayed
+    ([\#1974](https://www.rudder-project.org/redmine/issues/1974))
+  - Fixed: rudder server debug fails on SLES 11
+    ([\#7892](https://www.rudder-project.org/redmine/issues/7892))
+
+#### Agent
+
+  - Fixed: If component value starts with # , report is not outputed by rudder agent output
+    ([\#10601](https://www.rudder-project.org/redmine/issues/10601))
+  - Fixed: Thell the user a node needs to be removed from the server when running a factory-reset
+    ([\#10640](https://www.rudder-project.org/redmine/issues/10640))
+
+#### Web - Maintenance
+
+  - Fixed: Adding an authorized network when "common-root" directive is missing seems to work, but actually fails
+    ([\#8017](https://www.rudder-project.org/redmine/issues/8017))
+  - Fixed: There is small display glitch in change request display 
+    ([\#6257](https://www.rudder-project.org/redmine/issues/6257))
+
+#### Server components
+
+  - Fixed: Inventory endpoint accepts inventory even if ldap or postgresql connectivity failed
+    ([\#10485](https://www.rudder-project.org/redmine/issues/10485))
+
+#### Techniques
+
+  - Fixed: Technique tests do not pass on initial promises
+    ([\#10725](https://www.rudder-project.org/redmine/issues/10725))
+  - Fixed: Unclear field description in MOTD technique
+    ([\#10655](https://www.rudder-project.org/redmine/issues/10655))
+  - Fixed: Technique files contains UTF-8 chars (especially spaces)
+    ([\#7622](https://www.rudder-project.org/redmine/issues/7622))
+  - Fixed: "Variable (String)" Directive in the Directive library does not use textarea
+    ([\#10585](https://www.rudder-project.org/redmine/issues/10585))
+  - Fixed: When agent run interval is not 5 minutes, lock database is always purged
+    ([\#10634](https://www.rudder-project.org/redmine/issues/10634))
+
+## Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - François Bayart
+  - Romuald Bouvard
+  - Jean Cardona
+  - Christophe Crier
+  - Florian Heigl
+  - Janos Mattyasovszky
+  - Ferenc Ulrich
+  - Kiran V
+  - Rémi Verchère
+  - Josh Watt
+
+This is a bug fix release in the 4.0 series and therefore all installations of 4.0 should be upgraded when possible. An end-of-life date has been scheduled for this release (30th June 2017), See our FAQ for details, on the website. As such, it is recommended to upgrade all pre-4.1 (current latest version) installations to 4.1 as soon as possible to enjoy the latest features and improvements of a more mature and stable version.
+
 
 ## <a name="4.0.4" > </a> Rudder 4.0.4 (2017-04-19)
 
@@ -234,146 +393,6 @@ better:
 
 This is a bug fix release in the 4.0 series and therefore all installations of 4.0 should be upgraded when possible. An end-of-life date has been scheduled for this release (30th June 2017), See our FAQ for details, on the website. As such, it is recommended to upgrade all pre-4.1 (current latest version) installations to 4.1 as soon as possible to enjoy the latest features and improvements of a more mature and stable version.
 
-
-## <a name="4.0.5" > </a> Rudder 4.0.5 (2017-05-22)
-
-### Changes
-
-#### Documentation
-
-  - Add an example of using a condition in the Technique creation tutorial
-    ([\#10694](https://www.rudder-project.org/redmine/issues/10694))
-  - Add Technique editor documentation
-    ([\#10685](https://www.rudder-project.org/redmine/issues/10685))
-  - Improve policy mode documentation
-    ([\#10667](https://www.rudder-project.org/redmine/issues/10667))
-  - Extend node property documentation for templates
-    ([\#10614](https://www.rudder-project.org/redmine/issues/10614))
-
-### Bug fixes
-
-#### Web - UI & UX
-
-  - Fixed: Fix details in Technique editor doc
-    ([\#10699](https://www.rudder-project.org/redmine/issues/10699))
-  - Fixed: Cannot generate promises when invalid character in a group name (double quote here)
-    ([\#10745](https://www.rudder-project.org/redmine/issues/10745))
-  - Fixed: We have no way to know that a Technique is disabled
-    ([\#10660](https://www.rudder-project.org/redmine/issues/10660))
-  - Fixed: Directive is still marked unused after using it
-    ([\#9805](https://www.rudder-project.org/redmine/issues/9805))
-  - Fixed: Logout hover background is too wide
-    ([\#10529](https://www.rudder-project.org/redmine/issues/10529))
-  - Fixed: Cannot go back to the previous page on node details
-    ([\#10515](https://www.rudder-project.org/redmine/issues/10515))
-  - Fixed: On some resolution, top bar is on two line and we can't see the whole directive tree
-    ([\#10552](https://www.rudder-project.org/redmine/issues/10552))
-  - Fixed: Mono Font text in directive form are not correctly displayed in Chrome
-    ([\#9780](https://www.rudder-project.org/redmine/issues/9780))
-  - Fixed: Selects in Archives page are not wide enough
-    ([\#10615](https://www.rudder-project.org/redmine/issues/10615))
-
-#### Web - Config management
-
-  - Fixed: Tooltips don't disapear on safari
-    ([\#6145](https://www.rudder-project.org/redmine/issues/6145))
-
-#### Performance and scalability
-
-  - Fixed: Unecessary call to inventory code to check its version during policy validation
-    ([\#10641](https://www.rudder-project.org/redmine/issues/10641))
-
-#### Documentation
-
-  - Fixed: Document correctly memory usage 
-    ([\#10744](https://www.rudder-project.org/redmine/issues/10744))
-  - Fixed: Missing information in Technique editor doc
-    ([\#10710](https://www.rudder-project.org/redmine/issues/10710))
-  - Fixed: Supported Windows platforms are Windows Server 2008 and after
-    ([\#10656](https://www.rudder-project.org/redmine/issues/10656))
-  - Fixed: Doc: "Regenerate now" button has been renamed "Update policies"
-    ([\#10633](https://www.rudder-project.org/redmine/issues/10633))
-  - Fixed: Backup restoration requires disabling the agent
-    ([\#10639](https://www.rudder-project.org/redmine/issues/10639))
-  - Fixed: Rudder installation docs are misleading as to running rudder-init
-    ([\#10624](https://www.rudder-project.org/redmine/issues/10624))
-  - Fixed: Node property documentation has error
-    ([\#10613](https://www.rudder-project.org/redmine/issues/10613))
-
-#### Miscellaneous
-
-  - Fixed: If cf-serverd is not up, hook 50-reload-policy-file-server is in error and breaks policy generation
-    ([\#10493](https://www.rudder-project.org/redmine/issues/10493))
-  - Fixed: escaping ${SSH_ORIGINAL_COMMAND} in GUI - sshKeyDistribution/3.0
-    ([\#10715](https://www.rudder-project.org/redmine/issues/10715))
-
-#### Web - Compliance & node report
-
-  - Fixed: In reports list, if the directive contains < >, then the part in < > doesn't appear in the reports
-    ([\#5718](https://www.rudder-project.org/redmine/issues/5718))
-  - Fixed: When no reports has been received from a node for new policy, message contains unexpanded variable
-    ([\#10636](https://www.rudder-project.org/redmine/issues/10636))
-
-#### Packaging
-
-  - Fixed: Installation fails due to broken nss/nss-softokn detection on CentOS6
-    ([\#10734](https://www.rudder-project.org/redmine/issues/10734))
-  - Fixed: Broken agent build on Debian/ubuntu
-    ([\#10729](https://www.rudder-project.org/redmine/issues/10729))
-  - Fixed: Man pages provided in rudder-agent package are out-of-date
-    ([\#10432](https://www.rudder-project.org/redmine/issues/10432))
-  - Fixed: rudder-init doesn't use fully qualified path for executing cf-agent
-    ([\#10607](https://www.rudder-project.org/redmine/issues/10607))
-
-#### Initial promises & sys tech
-
-  - Fixed: Agent inventory generation invalid if hostname is not defined
-    ([\#9829](https://www.rudder-project.org/redmine/issues/9829))
-
-#### System integration
-
-  - Fixed: Script rudder-init cannot reinit ldap database
-    ([\#10608](https://www.rudder-project.org/redmine/issues/10608))
-  - Fixed:  java.lang.InternalError when calling the internal API on Redhat because of invalid version of nss
-    ([\#9905](https://www.rudder-project.org/redmine/issues/9905))
-  - Fixed: Infinite "rudder is loading" page if rudder-init didn't run
-    ([\#10567](https://www.rudder-project.org/redmine/issues/10567))
-  - Fixed: If an error happen during boostrap, the webapp starts but is in a zombie state and the error page is not displayed
-    ([\#1974](https://www.rudder-project.org/redmine/issues/1974))
-  - Fixed: rudder server debug fails on SLES 11
-    ([\#7892](https://www.rudder-project.org/redmine/issues/7892))
-
-#### Agent
-
-  - Fixed: If component value starts with # , report is not outputed by rudder agent output
-    ([\#10601](https://www.rudder-project.org/redmine/issues/10601))
-  - Fixed: Thell the user a node needs to be removed from the server when running a factory-reset
-    ([\#10640](https://www.rudder-project.org/redmine/issues/10640))
-
-#### Web - Maintenance
-
-  - Fixed: Adding an authorized network when "common-root" directive is missing seems to work, but actually fails
-    ([\#8017](https://www.rudder-project.org/redmine/issues/8017))
-  - Fixed: There is small display glitch in change request display 
-    ([\#6257](https://www.rudder-project.org/redmine/issues/6257))
-
-#### Server components
-
-  - Fixed: Inventory endpoint accepts inventory even if ldap or postgresql connectivity failed
-    ([\#10485](https://www.rudder-project.org/redmine/issues/10485))
-
-#### Techniques
-
-  - Fixed: Technique tests do not pass on initial promises
-    ([\#10725](https://www.rudder-project.org/redmine/issues/10725))
-  - Fixed: Unclear field description in MOTD technique
-    ([\#10655](https://www.rudder-project.org/redmine/issues/10655))
-  - Fixed: Technique files contains UTF-8 chars (especially spaces)
-    ([\#7622](https://www.rudder-project.org/redmine/issues/7622))
-  - Fixed: "Variable (String)" Directive in the Directive library does not use textarea
-    ([\#10585](https://www.rudder-project.org/redmine/issues/10585))
-  - Fixed: When agent run interval is not 5 minutes, lock database is always purged
-    ([\#10634](https://www.rudder-project.org/redmine/issues/10634))
 
 
 ## Rudder 4.0.3 (2017-02-20)
