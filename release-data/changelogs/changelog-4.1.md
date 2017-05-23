@@ -616,6 +616,28 @@ This is a bug fix release in the 4.1 series and therefore all installations of 4
 
 
 
+## <a name="4.1.3" > </a> Rudder 4.1.3 (2017-05-23)
+
+### Changes
+
+#### Documentation
+
+  - Update FAQ links in the doc
+    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: When folding directive tree filter, the directive tree stays at its initial size
+    ([\#10705](https://www.rudder-project.org/redmine/issues/10705))
+
+#### Initial promises & sys tech
+
+  - Fixed: During install, inventory generated into bad file path: /var/rudder/${inventory_path}
+    ([\#10774](https://www.rudder-project.org/redmine/issues/10774))
+
+
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
 ### Changes
