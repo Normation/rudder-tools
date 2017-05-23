@@ -43,7 +43,7 @@ setup_agent() {
     echo "${SERVER}" > /var/rudder/cfengine-community/policy_server.dat
     if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"
     then
-      rudder agent inventory
+      rudder agent run
     else
       cf-agent -K -D force_inventory -b doInventory
     fi
@@ -71,7 +71,7 @@ setup_relay() {
 
   if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"; then
     ${PM_INSTALL} rudder-server-relay
-    rudder agent inventory
+    rudder agent run
   else
     setup_relay_old
   fi

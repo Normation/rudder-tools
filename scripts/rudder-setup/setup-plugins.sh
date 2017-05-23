@@ -15,7 +15,7 @@ install_windows_plugin() {
   cd server
   if type rudder >/dev/null 2>&1
   then
-    rudder agent inventory
+    rudder agent run
   else
     /var/rudder/cfengine-community/bin/cf-agent -KC -D force_inventory
   fi
