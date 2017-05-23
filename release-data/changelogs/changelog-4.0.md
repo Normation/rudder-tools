@@ -395,6 +395,23 @@ This is a bug fix release in the 4.0 series and therefore all installations of 4
 
 
 
+## <a name="4.0.6" > </a> Rudder 4.0.6 (2017-05-23)
+
+### Changes
+
+#### Documentation
+
+  - Update FAQ links in the doc
+    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
+
+### Bug fixes
+
+#### Initial promises & sys tech
+
+  - Fixed: During install, inventory generated into bad file path: /var/rudder/${inventory_path}
+    ([\#10774](https://www.rudder-project.org/redmine/issues/10774))
+
+
 ## Rudder 4.0.3 (2017-02-20)
 
 ### Changes
