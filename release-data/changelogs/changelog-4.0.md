@@ -47,6 +47,27 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
     AIX 5-6-7**
 
+## <a name="4.0.6" > </a> Rudder 4.0.6 (2017-05-23)
+
+### Changes
+
+#### Documentation
+
+  - Update FAQ links in the doc
+    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
+
+### Bug fixes
+
+#### Initial promises & sys tech
+
+  - Fixed: During install, inventory generated into bad file path: /var/rudder/${inventory_path}
+    ([\#10774](https://www.rudder-project.org/redmine/issues/10774))
+
+### Release notes
+
+This is a bug fix release in the 4.0 series and therefore all installations of 4.0 should be upgraded when possible. An end-of-life date has been scheduled for this release (30th June 2017), See our FAQ for details, on the website. As such, it is recommended to upgrade all pre-4.1 (current latest version) installations to 4.1 as soon as possible to enjoy the latest features and improvements of a more mature and stable version.
+
+
 ## <a name="4.0.5" > </a> Rudder 4.0.5 (2017-05-22)
 
 ### Changes
@@ -394,22 +415,6 @@ better:
 This is a bug fix release in the 4.0 series and therefore all installations of 4.0 should be upgraded when possible. An end-of-life date has been scheduled for this release (30th June 2017), See our FAQ for details, on the website. As such, it is recommended to upgrade all pre-4.1 (current latest version) installations to 4.1 as soon as possible to enjoy the latest features and improvements of a more mature and stable version.
 
 
-
-## <a name="4.0.6" > </a> Rudder 4.0.6 (2017-05-23)
-
-### Changes
-
-#### Documentation
-
-  - Update FAQ links in the doc
-    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
-
-### Bug fixes
-
-#### Initial promises & sys tech
-
-  - Fixed: During install, inventory generated into bad file path: /var/rudder/${inventory_path}
-    ([\#10774](https://www.rudder-project.org/redmine/issues/10774))
 
 
 ## Rudder 4.0.3 (2017-02-20)

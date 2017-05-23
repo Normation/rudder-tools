@@ -50,6 +50,32 @@ This version provides packages for these operating systems:
 no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18, 
 RHEL/CentOS 3 and RHEL/CentOS 5
 
+## <a name="4.1.3" > </a> Rudder 4.1.3 (2017-05-23)
+
+### Changes
+
+#### Documentation
+
+  - Update FAQ links in the doc
+    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: When folding directive tree filter, the directive tree stays at its initial size
+    ([\#10705](https://www.rudder-project.org/redmine/issues/10705))
+
+#### Initial promises & sys tech
+
+  - Fixed: During install, inventory generated into bad file path: /var/rudder/${inventory_path}
+    ([\#10774](https://www.rudder-project.org/redmine/issues/10774))
+
+### Release notes
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
+
+
 ## <a name="4.1.2" > </a> Rudder 4.1.2 (2017-05-22)
 
 ### Changes
@@ -613,29 +639,6 @@ Special thanks go out to the following individuals who invested time, patience, 
   - Janos Mattyasovszky
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
-
-
-
-## <a name="4.1.3" > </a> Rudder 4.1.3 (2017-05-23)
-
-### Changes
-
-#### Documentation
-
-  - Update FAQ links in the doc
-    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
-
-### Bug fixes
-
-#### Web - UI & UX
-
-  - Fixed: When folding directive tree filter, the directive tree stays at its initial size
-    ([\#10705](https://www.rudder-project.org/redmine/issues/10705))
-
-#### Initial promises & sys tech
-
-  - Fixed: During install, inventory generated into bad file path: /var/rudder/${inventory_path}
-    ([\#10774](https://www.rudder-project.org/redmine/issues/10774))
 
 
 ## Rudder 4.1.0.rc1 (2017-03-07)
