@@ -252,13 +252,13 @@ Config.LIFECYCLES = [ { "name": "rudder",
                  "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                  "format": "branches/rudder/{}",
-                 "redmine_version": [ (r'master|.*~alpha\d+', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
+                 "redmine_version": [ (r'master|.*~alpha\d+', r'master'), (r'4.2.0~prototype', r'prototype'), (r'(\d+\.\w\d*).*', r'\1') ],
                },
                { "name": "ncf",
                  "project_id": "41",
                  "detection": r'^\*?\s+remotes/{}/v(\d\..*)',
                  "format": "v{}",
-                 "redmine_version": [ (r'master', r'master'), (r'(\d+\.\w\d*).*', r'\1') ],
+                 "redmine_version": [ (r'master', r'master'), (r'4.2.0~prototype', r'prototype'), (r'(\d+\.\w\d*).*', r'\1') ],
                },
                { "name" : "master_only",
                  "detection": r'(.*)',
@@ -596,13 +596,14 @@ def get_versions():
       if re.match(k, version['name']):
         v = re.sub(k, val, version['name'])
         break
-    if v in git_version_list or v == 'master':
+    if v in git_version_list or v == 'master' or v == 'prototype':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
   
-  # add master, keep unique name and sort
+  # keep unique name and sort
   version_list = list(set(redmine_version_list))
   try:
+    # order is the right one because x.y < 'master' < 'prototype'
     version_list.sort(key=LooseVersion)
   except TypeError as e:
     import distutils.version
@@ -634,6 +635,8 @@ def branch_from_version(version):
   lifecycle = get_lifecycle()
   if version == "master":
     return version
+  elif version == "prototype":
+    return "prototype/windows-dsc"
   else:
     return lifecycle['format'].format(version)
 
@@ -644,6 +647,8 @@ def version_from_branch(branch):
   lifecycle = get_lifecycle()
   if branch == "master":
     return branch
+  elif branch == "prototype/windows-dsc":
+    return "prototype"
   else:
     m = re.match(lifecycle["format"].format('(.*)'), branch)
     if m:
