@@ -65,8 +65,16 @@ PREFIX=$(echo "${RUDDER_VERSION}" | cut -f 1 -d "/")
 if [ "${PREFIX}" = "ci" ]
 then
   USE_CI=yes
-  RUDDER_VERSION=$(echo "${RUDDER_VERSION}" | cut -f 2 -d "/")
+  RUDDER_VERSION=$(echo "${RUDDER_VERSION}" | cut -f 2- -d "/")
 fi
+
+PREFIX=$(echo "${RUDDER_VERSION}" | cut -f 1 -d "/")
+if [ "${PREFIX}" = "prototype" ]
+then
+  PROTOTYPE=yes
+  RUDDER_VERSION=$(echo "${RUDDER_VERSION}" | cut -f 2- -d "/")
+fi
+
 
 if [ $(whoami) != "root" ]
 then

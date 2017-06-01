@@ -15,11 +15,16 @@ add_repo() {
 
   if [ "${USE_CI}" = "yes" ]
   then
-    if [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]
+    if [ "${PROTOTYPE}" =" yes" ]
     then
-      $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/release/${RUDDER_VERSION}/"
+      $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/release/prototype/${RUDDER_VERSION}/"
     else
-      $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+      if [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]
+      then
+        $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/release/${RUDDER_VERSION}/"
+      else
+        $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+      fi
     fi
   elif [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]
   then

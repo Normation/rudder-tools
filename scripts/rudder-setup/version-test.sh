@@ -213,7 +213,7 @@ rudder_is_compatible() {
 
 rudder_compatibility_check() {
   $local ROLE="$1"
-  [ "${UNSUPPORTED}" = "y" ] && return
+  [ "${UNSUPPORTED}" = "y" ] || [ "${USE_CI}" = "yes" ]  || [ "${PROTOTYPE}" = "yes" ] && return
   if ! rudder_is_compatible "${ROLE}" "${RUDDER_VERSION}" "${OS_COMPATIBLE}" "${OS_VERSION}"
   then
     echo "Your installation: Rudder ${RUDDER_VERSION} ${ROLE} for ${OS_COMPATIBLE} - ${OS_VERSION} is not supported."
