@@ -15,7 +15,7 @@ add_repo() {
 
   if [ "${USE_CI}" = "yes" ]
   then
-    if [ "${PROTOTYPE}" =" yes" ]
+    if [ "${PROTOTYPE}" = "yes" ]
     then
       $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/release/prototype/${RUDDER_VERSION}/"
     else
