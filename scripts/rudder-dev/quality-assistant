@@ -12,6 +12,9 @@ Usage:
         quality-assistant merge <repo> [--alt-dir] [-d|--debug] [-f|--force]
         quality-assistant autolabel all [-d|--debug] [-f|--force]
         quality-assistant autolabel <repo> [-d|--debug] [-f|--force]
+        quality-assistant pr-cleanup all [-d|--debug] [-f|--force]
+        quality-assistant pr-cleanup <repo> [-d|--debug] [-f|--force]
+
 Options:
         alt-dir : after waiting on a lock, use alternate directory instead of failing
 
@@ -31,6 +34,8 @@ import os
 import shutil
 import time
 import fcntl
+from datetime import datetime
+from dateutil.parser import parse
 from common import *
 from github import *
 from redmine import *
@@ -100,6 +105,11 @@ def clean_repo(repo, alt_dir):
   shell("git clean -f -d -e qa.lock"+redirect, "Cleanup working directory")
   shell("git reset --hard"+redirect, "Reset working directory")
   return workdir
+
+
+def list_repositories():
+  repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
+  Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
 
 
 def repo_merge(repo, alt_dir):
@@ -203,14 +213,68 @@ def manage_label(repo, name, color):
       print("- Updating color of label: " + name)
       github_call(get_url, post_data=data, method="PATCH")
 
+
 def autolabel(repo):
   manage_label(repo, Config.BOT_CANNOT_MERGE_LABEL, Config.BOT_CANNOT_MERGE_COLOR)
   manage_label(repo, Config.PR_VALIDATED_LABEL, Config.PR_VALIDATED_COLOR)
+  manage_label(repo, Config.PR_TOO_OLD_LABEL, Config.PR_TOO_OLD_COLOR)
+
 
 def autolabel_all():
   for repo in Config.REPOSITORIES:
     print("Repo: " + repo)
     autolabel(repo)
+
+
+def pr_cleanup(repo):
+  url = "https://api.github.com/repos/Normation/{repo}/pulls".format(repo=repo)
+  pulls = github_call(url)
+  for pull in pulls:
+    if pull['state'] != "open":
+      continue
+    # generic PR info
+    updated = parse(pull['updated_at'], ignoretz=True)
+    author = pull['user']['login']
+    pr = PR(pull['html_url'])
+    mergeable = pr.mergeable()
+    unmergeable = mergeable is not None and not mergeable
+
+    # info from comments
+    comments = pr.get_comments()
+    last_comment = updated
+    last_ping = updated
+    user = get_github_user()
+    reviewers = [ author ]
+    for c in comments:
+      if c['date'] > last_comment and c['author'] != user:
+        last_comment = c['date']
+      if c['date'] > last_ping and c['author'] == user:
+        last_ping = c['date']
+      reviewers.append(c['author'])
+    reviewers = set(reviewers)
+
+    # age info
+    now = datetime.now()
+    ping_age = (now - last_ping).total_seconds() / 3600 / 24
+    comment_age = (now - last_comment).total_seconds() / 3600 / 24
+    update_age = (now - updated).total_seconds() / 3600 / 24
+    can_ping = ping_age > 3 or ping_age == update_age
+
+    # pings
+    if comment_age > Config.OLD_PR_DAYS and update_age > Config.OLD_PR_DAYS:
+      #print("Very old PR ! : "+pr.url)
+      pr.label(Config.PR_TOO_OLD_LABEL)
+    # next steps
+    #if comment_age > 5 and update_age > 5 and can_ping:
+    #  print("forgotten pr @"+" @".join(reviewers))
+    #if unmergeable and update_age > 1 and can_ping:
+    #  print("Your pr is not mergeable anymore @"+author)
+ 
+
+def pr_cleanup_all():
+  for repo in Config.REPOSITORIES:
+    print("Repo: " + repo)
+    pr_cleanup(repo)
 
 
 if __name__ == "__main__":
@@ -221,7 +285,9 @@ if __name__ == "__main__":
   Config.WORKING_DIRECTORY = get_config("working_directory", "No 'working_directory' entry in " + Config.CONFIG_FILE, section)
   Config.LOGLEVEL = get_config("loglevel", "No 'loglevel' entry in " + Config.CONFIG_FILE, section) # verbose, info, error
   Config.LOCK_TIMEOUT = get_config("lock_timeout", None, section)
-  if Config.LOCK_TIMEOUT is None:
+  Config.OLD_PR_DAYS = get_config("old_pr_days", None, section)
+  if Config.OLD_PR_DAYS is None:
+    Config.OLD_PR_DAYS = 30
     # use a value long enough to wait for a normal run (including tests) if don't use alt_dir
     # use a value that correspond to the overhead of cloning, checkouting and removing when using alt_dir
     Config.LOCK_TIMEOUT = 60
@@ -230,15 +296,18 @@ if __name__ == "__main__":
     Config.LOGLEVEL = "debug"
   Config.force = arguments['-f'] or arguments['--force']
   if arguments['merge'] and arguments['all']:
-    repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
-    Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
+    list_repositories()
     repo_merge_all(arguments['--alt-dir'])
   elif arguments['merge']:
     repo_merge(arguments['<repo>'], arguments['--alt-dir'])
   elif arguments['autolabel'] and arguments['all']:
-    repositories = get_config("repos", "No 'repositories' list in " + Config.CONFIG_FILE, section)
-    Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
+    list_repositories()
     autolabel_all()
   elif arguments['autolabel']:
     autolabel(arguments['<repo>'])
-
+  elif arguments['pr-cleanup'] and arguments['all']:
+    list_repositories()
+    pr_cleanup_all()
+  elif arguments['pr-cleanup']:
+    pr_cleanup_(arguments['<repo>'])
+     

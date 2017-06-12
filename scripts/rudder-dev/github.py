@@ -2,6 +2,7 @@ import sys
 import json
 import re
 import requests # apt-get install python-requests || pip install requests
+from dateutil.parser import parse
 
 # trick to make fake import compatible with regular import
 if 'Config' not in vars():
@@ -12,6 +13,8 @@ Config.PR_VALIDATED_LABEL = "Ready for merge"
 Config.PR_VALIDATED_COLOR = "0e8a16"
 Config.BOT_CANNOT_MERGE_LABEL = "qa: Can't merge"
 Config.BOT_CANNOT_MERGE_COLOR = "ededed"
+Config.PR_TOO_OLD_LABEL = "Very old PR"
+Config.PR_TOO_OLD_COLOR = "d93f0b"
 
 class PR:
   """A Pull Request"""
@@ -59,6 +62,10 @@ class PR:
     self._request_pr()
     return self.info['title']
 
+  def mergeable(self):
+    self._request_pr()
+    return self.info['mergeable']
+
   def _commits(self):
     self._request_pr()
     self.commits = github_call(self.info['commits_url'])
@@ -66,10 +73,6 @@ class PR:
   def commits_titles(self):
     self._commits()
     return [ x['commit']['message'] for x in self.commits ]
-
-  def url(self):
-    self._request_pr()
-    return self.info['html_url']
 
   def comment(self, comment):
     url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
@@ -96,10 +99,33 @@ class PR:
     data = { "state": "closed" }
     github_request(url, "Closing PR", self.url, json.dumps(data), self.repo_name, "PATCH")
 
+  # comments can be issue comments or review comments
+  def get_comments(self):
+    comments = []
+    # Issue comments
+    url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
+    icomments = github_request(url, None, self.url, repo=self.repo_name)
+    for c in icomments:
+      comments.append({
+            "date": parse(c['updated_at'], ignoretz=True),
+            "author": c['user']['login'],
+            "body": c['body'],
+          })
+    # Review comments
+    url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}/reviews"
+    pcomments = github_request(url, None, self.url, repo=self.repo_name)
+    for c in pcomments:
+      comments.append({
+          "date": parse(c['submitted_at'], ignoretz=True),
+          "author": c['user']['login'],
+          "body": c['body'],
+          })
+    return comments
+
 
 # Get github user as used by the hub command
 def get_github_user():
-  user_data=github_request("https://api.github.com/user", None)
+  user_data=github_call("https://api.github.com/user")
   if 'login' in user_data:
     return user_data['login']
   else:
@@ -144,7 +170,10 @@ def github_request(api_url, comment, pr_url=None, post_data=None, repo=None, met
   # Say what we are doing
   if comment is not None:
     print(comment)
-    print(" $ api-call [...] " + url)
+    call_on = ""
+    if pr_url is not None:
+      call_on = "for " + pr_url
+    print(" $ api-call " + url + " " + call_on)
 
   return github_call(url, post_data, method=method)
 
