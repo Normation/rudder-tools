@@ -12,7 +12,7 @@ supported = true
 release-date = "2017-03-30"
 
 # Has this version had Long-Term Support (LTS)?
-lts = false
+lts = true
 
 # Supported architecture for each distribution
 architectures = { 
