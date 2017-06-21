@@ -641,6 +641,83 @@ Special thanks go out to the following individuals who invested time, patience, 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
 
 
+## Rudder 4.1.4 (2017-06-21)
+
+### Changes
+
+#### Packaging
+
+  - Log check-rudder-agent cron job output
+    ([\#8438](https://www.rudder-project.org/redmine/issues/8438))
+
+#### Architecture - Internal libs
+
+  - Match non exaustive on workflow step: log on error
+    ([\#10938](https://www.rudder-project.org/redmine/issues/10938))
+  - Bad comparison in unique variable
+    ([\#10825](https://www.rudder-project.org/redmine/issues/10825))
+
+#### Documentation
+
+  - Use a bigger favicon for Rudder documentation 
+    ([\#10894](https://www.rudder-project.org/redmine/issues/10894))
+  - Document the usage of the ansible plugin
+    ([\#10854](https://www.rudder-project.org/redmine/issues/10854))
+
+#### Agent
+
+  - Create a rudder agent command to format old logs
+    ([\#10708](https://www.rudder-project.org/redmine/issues/10708))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Broken display on directive screen on 3.1.20
+    ([\#10923](https://www.rudder-project.org/redmine/issues/10923))
+  - Fixed: Time since last generation is limited to hours
+    ([\#9302](https://www.rudder-project.org/redmine/issues/9302))
+  - Fixed: Node search input field are tiny and a nightmare to use
+    ([\#10659](https://www.rudder-project.org/redmine/issues/10659))
+  - Fixed: Directives tree overflows the page
+    ([\#10735](https://www.rudder-project.org/redmine/issues/10735))
+
+#### Documentation
+
+  - Fixed: Agent build documentation in GitHub README is out of date
+    ([\#10762](https://www.rudder-project.org/redmine/issues/10762))
+  - Fixed: Document renaming of /opt/rudder/etc/ssl/rudder-webapp.crt in 4.1
+    ([\#10833](https://www.rudder-project.org/redmine/issues/10833))
+  - Fixed: Missing doc about required agent version for audit mode
+    ([\#10811](https://www.rudder-project.org/redmine/issues/10811))
+
+#### Web - Config management
+
+  - Fixed: When hooks in policy-generation-node-ready or policy-generation-node-finished fails, there is no error in the generation
+    ([\#10908](https://www.rudder-project.org/redmine/issues/10908))
+
+#### Agent
+
+  - Fixed: check-rudder-agent doesn't purge the lmdb file when run via cron
+    ([\#10771](https://www.rudder-project.org/redmine/issues/10771))
+  - Fixed: If component value starts with # , report is not outputed by rudder agent output
+    ([\#10601](https://www.rudder-project.org/redmine/issues/10601))
+  - Fixed: rudder agent start fails on sles12
+    ([\#10810](https://www.rudder-project.org/redmine/issues/10810))
+
+#### Initial promises & sys tech
+
+  - Fixed: If syslog service is stopped, it is not restarted automatically by rudder-agent, so agent doesn't report anything
+    ([\#8168](https://www.rudder-project.org/redmine/issues/8168))
+
+#### Techniques
+
+  - Fixed: The rpmPackageInstallation technique tries to install package-* instead of package when no version is specified
+    ([\#9283](https://www.rudder-project.org/redmine/issues/9283))
+  - Fixed: Improve generated inventory checks when inventory is missing
+    ([\#10711](https://www.rudder-project.org/redmine/issues/10711))
+
+
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
 ### Changes
