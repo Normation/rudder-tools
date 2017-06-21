@@ -417,6 +417,62 @@ This is a bug fix release in the 4.0 series and therefore all installations of 4
 
 
 
+## Rudder 4.0.7 (2017-06-21)
+
+### Changes
+
+#### Packaging
+
+  - Log check-rudder-agent cron job output
+    ([\#8438](https://www.rudder-project.org/redmine/issues/8438))
+
+#### Architecture - Internal libs
+
+  - Match non exaustive on workflow step: log on error
+    ([\#10938](https://www.rudder-project.org/redmine/issues/10938))
+
+#### Agent
+
+  - Create a rudder agent command to format old logs
+    ([\#10708](https://www.rudder-project.org/redmine/issues/10708))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Broken display on directive screen on 3.1.20
+    ([\#10923](https://www.rudder-project.org/redmine/issues/10923))
+  - Fixed: Time since last generation is limited to hours
+    ([\#9302](https://www.rudder-project.org/redmine/issues/9302))
+  - Fixed: Node search input field are tiny and a nightmare to use
+    ([\#10659](https://www.rudder-project.org/redmine/issues/10659))
+  - Fixed: Directives tree overflows the page
+    ([\#10735](https://www.rudder-project.org/redmine/issues/10735))
+
+#### Documentation
+
+  - Fixed: Agent build documentation in GitHub README is out of date
+    ([\#10762](https://www.rudder-project.org/redmine/issues/10762))
+  - Fixed: Missing doc about required agent version for audit mode
+    ([\#10811](https://www.rudder-project.org/redmine/issues/10811))
+
+#### Agent
+
+  - Fixed: check-rudder-agent doesn't purge the lmdb file when run via cron
+    ([\#10771](https://www.rudder-project.org/redmine/issues/10771))
+  - Fixed: If component value starts with # , report is not outputed by rudder agent output
+    ([\#10601](https://www.rudder-project.org/redmine/issues/10601))
+  - Fixed: rudder agent start fails on sles12
+    ([\#10810](https://www.rudder-project.org/redmine/issues/10810))
+
+#### Techniques
+
+  - Fixed: The rpmPackageInstallation technique tries to install package-* instead of package when no version is specified
+    ([\#9283](https://www.rudder-project.org/redmine/issues/9283))
+  - Fixed: Improve generated inventory checks when inventory is missing
+    ([\#10711](https://www.rudder-project.org/redmine/issues/10711))
+
+
 ## Rudder 4.0.3 (2017-02-20)
 
 ### Changes
