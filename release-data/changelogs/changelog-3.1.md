@@ -60,6 +60,65 @@ This version provides packages for these operating systems:
     10.04, Ubuntu 12.10**
   - Rudder agent (non-free): **Windows Server 2008-2012**, **AIX 5-6-7**
 
+## <a name="3.1.21" > </a> Rudder 3.1.21 (2017-06-21)
+
+### Changes
+
+#### Packaging
+
+  - Log check-rudder-agent cron job output
+    ([\#8438](https://www.rudder-project.org/redmine/issues/8438))
+
+#### Architecture - Internal libs
+
+  - Match non exaustive on workflow step: log on error
+    ([\#10938](https://www.rudder-project.org/redmine/issues/10938))
+
+#### Documentation
+
+  - Update FAQ links in the doc
+    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
+
+#### Agent
+
+  - Create a rudder agent command to format old logs
+    ([\#10708](https://www.rudder-project.org/redmine/issues/10708))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Broken display on directive screen on 3.1.20
+    ([\#10923](https://www.rudder-project.org/redmine/issues/10923))
+  - Fixed: Node search input field are tiny and a nightmare to use
+    ([\#10659](https://www.rudder-project.org/redmine/issues/10659))
+  - Fixed: Directives tree overflows the page
+    ([\#10735](https://www.rudder-project.org/redmine/issues/10735))
+
+#### Agent
+
+  - Fixed: check-rudder-agent doesn't purge the lmdb file when run via cron
+    ([\#10771](https://www.rudder-project.org/redmine/issues/10771))
+
+#### Techniques
+
+  - Fixed: The rpmPackageInstallation technique tries to install package-* instead of package when no version is specified
+    ([\#9283](https://www.rudder-project.org/redmine/issues/9283))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Florian Heigl
+  - Janos Mattyasovszky
+
+This is a bug fix release in the 3.1 ESR series and therefore all
+installations of 3.1.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
 ## <a name="3.1.20" > </a> Rudder 3.1.20 (2017-05-22)
 
 ### Changes
@@ -324,53 +383,6 @@ This is a bug fix release in the 3.1 'esr' series and therefore all
 installations of 3.1.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
-
-
-
-## Rudder 3.1.21 (2017-06-21)
-
-### Changes
-
-#### Packaging
-
-  - Log check-rudder-agent cron job output
-    ([\#8438](https://www.rudder-project.org/redmine/issues/8438))
-
-#### Architecture - Internal libs
-
-  - Match non exaustive on workflow step: log on error
-    ([\#10938](https://www.rudder-project.org/redmine/issues/10938))
-
-#### Documentation
-
-  - Update FAQ links in the doc
-    ([\#10760](https://www.rudder-project.org/redmine/issues/10760))
-
-#### Agent
-
-  - Create a rudder agent command to format old logs
-    ([\#10708](https://www.rudder-project.org/redmine/issues/10708))
-
-### Bug fixes
-
-#### Web - UI & UX
-
-  - Fixed: Broken display on directive screen on 3.1.20
-    ([\#10923](https://www.rudder-project.org/redmine/issues/10923))
-  - Fixed: Node search input field are tiny and a nightmare to use
-    ([\#10659](https://www.rudder-project.org/redmine/issues/10659))
-  - Fixed: Directives tree overflows the page
-    ([\#10735](https://www.rudder-project.org/redmine/issues/10735))
-
-#### Agent
-
-  - Fixed: check-rudder-agent doesn't purge the lmdb file when run via cron
-    ([\#10771](https://www.rudder-project.org/redmine/issues/10771))
-
-#### Techniques
-
-  - Fixed: The rpmPackageInstallation technique tries to install package-* instead of package when no version is specified
-    ([\#9283](https://www.rudder-project.org/redmine/issues/9283))
 
 
 ## Rudder 3.1.18 (2017-02-20)
