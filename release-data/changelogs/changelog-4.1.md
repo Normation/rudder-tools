@@ -731,6 +731,23 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
 
+## Rudder 4.1.5 (2017-06-22)
+
+### Changes
+
+### Bug fixes
+
+#### Initial promises & sys tech
+
+  - Fixed: Broken rsyslog configuration in 4.1
+    ([\#10982](https://www.rudder-project.org/redmine/issues/10982))
+
+#### Miscellaneous
+
+  - Fixed: No logs when (r)?syslog(-ng)? is restarted in 4.1
+    ([\#10987](https://www.rudder-project.org/redmine/issues/10987))
+
+
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
 ### Changes
