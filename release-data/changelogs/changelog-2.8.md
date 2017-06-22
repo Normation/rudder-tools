@@ -1,6 +1,6 @@
 # Change logs for Rudder 2.8.\* "Patrol boat" versions
 
-Rudder 2.8 is currently the **old-latest** version of Rudder. This
+Rudder 2.8 has reached End of Life the in November 2013. This
 branch is codenamed "Patrol boat".
 
 This page provides a summary of changes for each version. Previous beta

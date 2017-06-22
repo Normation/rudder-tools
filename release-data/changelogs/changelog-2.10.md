@@ -1,8 +1,7 @@
 # Change logs for Rudder 2.10.\* versions
 
-Rudder 2.10 is an extend support release, which end-of-life has been
-planned on the 5th December 2015. This version is codenamed
-"**Catamaran**".
+Rudder 2.10 has reached End of Life the 5th December 2015.
+This version is codenamed "**Catamaran**".
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.

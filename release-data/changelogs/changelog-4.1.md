@@ -1,6 +1,6 @@
 # Change logs for Rudder 4.1.\* versions
 
-Rudder 4.1 is currently the **latest** version of Rudder.
+Rudder 4.1 is currently a maintained **'ESR' (Extended Support Release)** of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
@@ -50,6 +50,29 @@ This version provides packages for these operating systems:
 no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18, 
 RHEL/CentOS 3 and RHEL/CentOS 5
 
+## <a name="4.1.5" > </a> Rudder 4.1.5 (2017-06-22)
+
+### Bug fixes
+
+#### Initial promises & sys tech
+
+  - Fixed: Broken rsyslog configuration in 4.1
+    ([\#10982](https://www.rudder-project.org/redmine/issues/10982))
+
+#### Miscellaneous
+
+  - Fixed: No logs when (r)?syslog(-ng)? is restarted in 4.1
+    ([\#10987](https://www.rudder-project.org/redmine/issues/10987))
+
+### Release notes
+
+Note: Rudder 4.1.4 was released but quickly withdrawn because of 
+[\#10982](https://www.rudder-project.org/redmine/issues/10982).
+
+This is a bug fix release in the 4.1 ESR series and therefore all
+installations of 4.1.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
 
 ## <a name="4.1.4" > </a> Rudder 4.1.4 (2017-06-21)
 
@@ -730,23 +753,6 @@ Special thanks go out to the following individuals who invested time, patience, 
   - Janos Mattyasovszky
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
-
-## Rudder 4.1.5 (2017-06-22)
-
-### Changes
-
-### Bug fixes
-
-#### Initial promises & sys tech
-
-  - Fixed: Broken rsyslog configuration in 4.1
-    ([\#10982](https://www.rudder-project.org/redmine/issues/10982))
-
-#### Miscellaneous
-
-  - Fixed: No logs when (r)?syslog(-ng)? is restarted in 4.1
-    ([\#10987](https://www.rudder-project.org/redmine/issues/10987))
-
 
 ## Rudder 4.1.0.rc1 (2017-03-07)
 

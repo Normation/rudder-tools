@@ -1,6 +1,6 @@
 # Change logs for Rudder 2.6.\* "Clipper" versions
 
-Rudder 2.6 is currently the **old-stable** available version of Rudder.
+Rudder 2.6 has reached End of Life the in April 2013.
 This branch is codenamed "Clipper".
 
 This page provides a summary of changes for each version. Previous beta

@@ -1,8 +1,7 @@
 # Change logs for Rudder 3.0.\* versions
 
-Rudder 3.0 is currently the **old-latest** version of Rudder. This
-version is codenamed "Galleon". End of life has been scheduled for 10th
-June 2016.
+Rudder 3.0 has reached End of Life the 10th June 2016. This
+version is codenamed "Galleon".
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.

@@ -1,6 +1,6 @@
 # Change logs for Rudder 2.4.\* "Drakkar" versions
 
-Rudder 2.4 is currently the **old-stable** release. This branch is
+Rudder 2.4 has reached End of Life the in December 2012. This branch is
 codenamed "Drakkar".
 
 The initial version was 2.4.0, released on 14th December 2012.

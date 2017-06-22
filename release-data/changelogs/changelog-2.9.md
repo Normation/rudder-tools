@@ -1,6 +1,6 @@
 # Change logs for Rudder 2.9.\* versions
 
-Rudder 2.9 is currently the **old-latest** available version of Rudder.
+Rudder 2.9 has reached End of Life the in December 2013.
 This version is codenamed "Liberty ship".
 
 This page provides a summary of changes for each version. Previous beta
