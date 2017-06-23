@@ -1,7 +1,7 @@
 # Change logs for Rudder 2.11.\* versions
 
-Rudder 2.11 is currently the **old-esr** of Rudder. This version is
-codenamed "**Perahu**". End of life is scheduled for 10 September 2016
+Rudder 2.11 has reached End of Life the 10th September 2016. This version is
+codenamed "**Perahu**".
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.

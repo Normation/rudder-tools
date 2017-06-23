@@ -1,16 +1,6 @@
 # Change logs for Rudder 2.3.\* "IceBreaker" versions
 
-Rudder 2.3.0 was initially released on 11th October 2011. Since then,
-maintenance releases have been and will be regularly released. Rudder's
-versioning policy is to release only minor changes, essentially bug
-fixes in maintenance releases.
-
-As of 14th December 2012, Rudder 2.3 is **no longer the most recent
-stable release** of Rudder. We recommend that all users upgrade to
-[Rudder 2.4](System/Documentation:ChangeLog24). Rudder 2.3 will continue
-to receive security corrections and bug fixes for 6 months, that is
-until **14th June 2013**.
-
+Rudder 2.3 has reached End of Life the in October 2011.
 This branch is codenamed "IceBreaker".
 
 This page provides a summary of changes for each

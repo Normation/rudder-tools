@@ -1,7 +1,7 @@
 # Change logs for Rudder 2.7.\* "Powerboat" versions
 
-Rudder 2.7 is currently the **old-latest** available version of
-Rudder.This branch is codenamed "Powerboat".
+Rudder 2.7 has reached End of Life the in July 2013.
+This branch is codenamed "Powerboat".
 
 This page provides a summary of changes for each version.
 
