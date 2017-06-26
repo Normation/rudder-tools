@@ -28,12 +28,8 @@ This version provides packages for these operating systems:
     RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), Fedora 18, SLES
     10, SLES 12, Ubuntu 10.04, Ubuntu 12.04, Ubuntu 12.10**
   - Rudder agent (binary packages available from
-    ([Normation](http://www.normation.com)): **Windows Server 2008-2012,
+    ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
     AIX 5-6-7**
-
-**Note**: As of Rudder 4.1, the rudder-agent-thin and rudder-server-relay packages are
-no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18,
-RHEL/CentOS 3 and RHEL/CentOS 5
 
 ## Rudder 4.2.0.beta1 (2017-06-26)
 
@@ -151,10 +147,10 @@ RHEL/CentOS 3 and RHEL/CentOS 5
   - Fixed: Bad semantic for system error on hooks
     ([\#11010](https://www.rudder-project.org/redmine/issues/11010))
 
-
-## Rudder 4.2.0~alpha1
-
-### Changes
-
 ### Release notes
 
+This software is in beta status and has several known bugs
+(particularly [\#11027](https://www.rudder-project.org/redmine/issues/11027) and [\#10961](https://www.rudder-project.org/redmine/issues/10961)).
+You should hence not use it in production.
+However, we do encourage testing, and welcome all and any
+feedback\!
