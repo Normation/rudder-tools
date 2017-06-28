@@ -41,7 +41,7 @@ This version provides packages for these operating systems:
     ([\#10911](https://www.rudder-project.org/redmine/issues/10911))
   - Display rudder-agent dsc version on Dashboard
     ([\#10836](https://www.rudder-project.org/redmine/issues/10836))
-  - Adapt inventory processor so it can read agent certificate 
+  - Adapt inventory processor so it can read agent certificate
     ([\#10879](https://www.rudder-project.org/redmine/issues/10879))
   - Parse AGENT_KEY instead of CFENGINE_KEY in inventory
     ([\#10824](https://www.rudder-project.org/redmine/issues/10824))
@@ -177,4 +177,14 @@ cp /opt/rudder/etc/ssl/rudder.crt /opt/rudder/etc/ssl/ca.cert
 
 ```
 apt-get install -f
+```
+
+- reset git repos (because it is in a bad state)
+
+```
+cd /var/rudder/configuration-repository/
+rm -rf .git
+git init
+git add .
+git commit -q -m "initial commit"
 ```
