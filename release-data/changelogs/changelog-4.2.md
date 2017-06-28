@@ -150,7 +150,31 @@ This version provides packages for these operating systems:
 ### Release notes
 
 This software is in beta status and has several known bugs
-(particularly [\#11027](https://www.rudder-project.org/redmine/issues/11027) and [\#10961](https://www.rudder-project.org/redmine/issues/10961)).
+(particularly [\#11027](https://www.rudder-project.org/redmine/issues/11027), [\#10961](https://www.rudder-project.org/redmine/issues/10961), [\#10990](https://www.rudder-project.org/redmine/issues/10990) and [\#11051](https://www.rudder-project.org/redmine/issues/11051)).
 You should hence not use it in production.
 However, we do encourage testing, and welcome all and any
 feedback\!
+
+To be able to finish the installation (on ubuntu), after `apt-get install rudder-server-root` fails, you will need to:
+
+- workaround #10990
+
+```
+cd /var/rudder/configuration-repository/
+git init
+git add .
+git commit -q -m "initial commit"
+```
+
+- workaround #11051
+
+```
+touch /opt/rudder/etc/rudder-share-acl-24.conf /opt/rudder/etc/rudder-share-acl.conf
+cp /opt/rudder/etc/ssl/rudder.crt /opt/rudder/etc/ssl/ca.cert
+```
+
+- finish installation:
+
+```
+apt-get install -f
+```
