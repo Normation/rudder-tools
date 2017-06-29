@@ -1,7 +1,6 @@
 # Change logs for Rudder 4.0.\* versions
 
-Rudder 4.0 is currently a maintained release of Rudder, with
-an End of Life planned the 30th June 2017.
+Rudder 4.0 has reached End of Life the 30th June 2017.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
