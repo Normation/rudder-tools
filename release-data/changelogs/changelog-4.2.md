@@ -31,6 +31,76 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
     AIX 5-6-7**
 
+## Rudder 4.2.0.beta2 (2017-07-12)
+
+### Changes
+
+#### System integration
+
+  - Use uuid to authenticate windows agents
+    ([\#11033](https://www.rudder-project.org/redmine/issues/11033))
+
+#### Architecture - Refactoring
+
+  - Move out dsc code into the plugin part
+    ([\#11072](https://www.rudder-project.org/redmine/issues/11072))
+
+#### Web - Compliance & node report
+
+  - We are identifying agent runs based on hasPolicyServer-*, which is inefficient, and invalid
+    ([\#11027](https://www.rudder-project.org/redmine/issues/11027))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: In Directive details, tags input is broken on Iceweasel
+    ([\#11118](https://www.rudder-project.org/redmine/issues/11118))
+  - Fixed: Wrong XML identation in event log
+    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
+  - Fixed: Wrong XML identation in event log
+    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
+  - Fixed: Keep (open/folded) menu state in cache
+    ([\#10955](https://www.rudder-project.org/redmine/issues/10955))
+  - Fixed: Add a margin between the filters and the table in Technical logs tab
+    ([\#11083](https://www.rudder-project.org/redmine/issues/11083))
+  - Fixed: Repaired does not appear as yellow anymore
+    ([\#11028](https://www.rudder-project.org/redmine/issues/11028))
+
+#### Web - Config management
+
+  - Fixed: Missing included list of ps1 in rudder-directive.ps1
+    ([\#11076](https://www.rudder-project.org/redmine/issues/11076))
+
+#### Miscellaneous
+
+  - Fixed: Generated technique name for dsc technique in rudder-directives.ps1 contains forbiden chars
+    ([\#11071](https://www.rudder-project.org/redmine/issues/11071))
+
+#### Agent
+
+  - Fixed: rudder agent update -q bad exit code
+    ([\#11047](https://www.rudder-project.org/redmine/issues/11047))
+
+#### Packaging
+
+  - Fixed: When upgrading 4.2 server, system techniques from plugin are purged
+    ([\#11045](https://www.rudder-project.org/redmine/issues/11045))
+  - Fixed: if plugin is broken, we cannot upgrade it
+    ([\#11064](https://www.rudder-project.org/redmine/issues/11064))
+  - Fixed: When installing Rudder-Webapp, postinst script runs rudder-upgrade before initializing the git, and it can fail
+    ([\#10990](https://www.rudder-project.org/redmine/issues/10990))
+  - Fixed: Do not show instructions for rudder-node-to-relay on root setup
+    ([\#10859](https://www.rudder-project.org/redmine/issues/10859))
+  - Fixed: ca.cert file is empty, prevent apache2 to start
+    ([\#11114](https://www.rudder-project.org/redmine/issues/11114))
+
+#### Techniques
+
+  - Fixed: Directive: Services Management doesn't support AIX
+    ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
+
+
 ## Rudder 4.2.0.beta1 (2017-06-26)
 
 ### Changes
