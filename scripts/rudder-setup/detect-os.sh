@@ -114,6 +114,7 @@ detect_os() {
   OS_COMPATIBLE_VERSION="${OS_VERSION}"
   case "${OS_NAME}" in
     RedHat) OS_COMPATIBLE="RHEL" ;;
+    RedHatEnterprise*) OS_COMPATIBLE="RHEL" ;;
     Oracle) OS_COMPATIBLE="RHEL" ;;
     CentOS) OS_COMPATIBLE="RHEL" ;;
     Amazon) OS_COMPATIBLE="RHEL"
