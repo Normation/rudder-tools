@@ -31,6 +31,91 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
     AIX 5-6-7**
 
+## <a name="4.2.0.beta3" > </a> Rudder 4.2.0.beta3 (2017-08-08)
+
+### Changes
+
+#### Architecture - Internal libs
+
+  - Upgrade to Scala 2.12.3 to improve compilation time
+    ([\#11192](https://www.rudder-project.org/redmine/issues/11192))
+
+#### Documentation
+
+  - Update screenshot for interface usage page 
+    ([\#11143](https://www.rudder-project.org/redmine/issues/11143))
+  - Adapt run schedule documentation and add screenshots
+    ([\#11139](https://www.rudder-project.org/redmine/issues/11139))
+  - Add diagram and screenshots in documentation
+    ([\#11137](https://www.rudder-project.org/redmine/issues/11137))
+  - Compliance logfile parsing regex
+    ([\#11107](https://www.rudder-project.org/redmine/issues/11107))
+  - Warn on risk of updating file format
+    ([\#11155](https://www.rudder-project.org/redmine/issues/11155))
+
+#### Miscellaneous
+
+  - filetemplate technique posthook
+    ([\#11142](https://www.rudder-project.org/redmine/issues/11142))
+
+#### Techniques
+
+  - Create a file template technique
+    ([\#9078](https://www.rudder-project.org/redmine/issues/9078))
+
+### Bug fixes
+
+#### Web - Nodes & inventories
+
+  - Fixed: Add a post-node-acceptance hook
+    ([\#11191](https://www.rudder-project.org/redmine/issues/11191))
+  - Fixed: When we manage a Windows 2016, we don't have the proper Windows version displayed
+    ([\#11172](https://www.rudder-project.org/redmine/issues/11172))
+
+#### Web - Config management
+
+  - Fixed: Typo in unauthorized acces message
+    ([\#11182](https://www.rudder-project.org/redmine/issues/11182))
+  - Fixed: Cannot add a directive with a " in its name in Rule
+    ([\#10754](https://www.rudder-project.org/redmine/issues/10754))
+
+#### Documentation
+
+  - Fixed: Typo in rudder-setup usage in documentation
+    ([\#11136](https://www.rudder-project.org/redmine/issues/11136))
+  - Fixed: Wrong doc for restore of Rudder ldap on 4.1
+    ([\#11127](https://www.rudder-project.org/redmine/issues/11127))
+
+#### Miscellaneous
+
+  - Fixed: Error when trying to remove a node
+    ([\#11171](https://www.rudder-project.org/redmine/issues/11171))
+  - Fixed: Unrecognized Windows agent version in webapp
+    ([\#11186](https://www.rudder-project.org/redmine/issues/11186))
+
+#### Packaging
+
+  - Fixed: /var/rudder/share is not readable by rudder-policy-reader
+    ([\#11176](https://www.rudder-project.org/redmine/issues/11176))
+
+#### Initial promises & sys tech
+
+  - Fixed: Check permissions on /var/rudder files, particularly modified-files
+    ([\#11110](https://www.rudder-project.org/redmine/issues/11110))
+  - Fixed: Wrong stderr / stdout redirection of logs from rudder agent check in 4.1
+    ([\#11044](https://www.rudder-project.org/redmine/issues/11044))
+
+#### Security
+
+  - Fixed: JSESSION cookie should be "secure"
+    ([\#11159](https://www.rudder-project.org/redmine/issues/11159))
+
+#### Techniques
+
+  - Fixed: No new line between two certificates in ca.cert, breaking apache when there is more than one node with a certificate
+    ([\#11151](https://www.rudder-project.org/redmine/issues/11151))
+
+
 ## Rudder 4.2.0.beta2 (2017-07-12)
 
 ### Changes
