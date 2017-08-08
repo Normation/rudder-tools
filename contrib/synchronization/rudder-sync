@@ -1,0 +1,397 @@
+#!/usr/bin/env python
+
+
+# Rudder API CLI Schnittstelle
+
+
+import sys, json, requests
+import pprint
+import ordereddict
+import argparse
+import ldap
+
+
+nodes  = {}
+groups = {}
+group_categories = {}
+rule_categories = {}
+hostnames  = []
+
+#baseurl = 'https://localhost/rudder/api/latest'
+
+
+token    = {}
+url      = {}
+head     = {}
+ldaphost = {}
+ldapuser = {}
+ldappass = {}
+
+
+ldaphost['source'] = "localhost"
+ldapuser['source'] = "cn=manager,cn=rudder-configuration"
+ldappass['source'] = "XXXXXXXXXXXX"
+
+
+url['source']   = 'https://localhost/rudder/api/latest'
+url['dest']     = 'https://XXXXXXXXXXXX/rudder/api/latest'
+
+token['source'] = "XXXXXXXXXXXX"
+token['dest']   = "XXXXXXXXXXXX"
+
+head['source'] = {
+  "X-API-Token"  : token['source'],
+}
+head['dest'] = {
+  "X-API-Token"  : token['dest'],
+}
+
+
+def get_all_directives(server):
+    geturl = url[server] + '/directives'
+    return get_request(server, geturl)['data']['directives']
+
+def get_all_groups(server):
+    geturl = url[server] + '/groups'
+    return get_request(server, geturl)['data']['groups']
+
+def get_all_rules(server):
+    geturl = url[server] + '/rules'
+    return get_request(server, geturl)['data']['rules']
+
+def get_all_objecttype(server, type):
+    geturl = url[server] + '/' + type
+    return get_request(server, geturl)['data'][type]
+
+def get_directive(server, id):
+    geturl = url[server] + '/directives/' + id
+    return get_request(server, geturl)['data']
+
+def get_request(server, url, params = {}):
+    return request(server, "GET", url, params)
+
+def put_request(server, url, params={}, body={}):
+    request(server, "PUT", url, params, body)
+
+def post_request(server, url, params, body = {}):
+    request(server, "POST", url, params, body)
+
+def delete_request(server, url):
+    request(server, "DELETE", url)
+
+def request(server, method, url, params = {}, body = {}):
+  try:
+    #print("DEBUG: method=" , method , ", url=" , url , ", params=" , params)
+    
+    # Sanitize booleans because Python's "True" is not supported
+    # by Rudder's API which expects "true" (same for False/false)
+    for key, value in params.iteritems():
+        #print(key, value)
+        if isinstance(value, bool):
+            params[key] = str(value).lower()
+
+    for key, value in body.iteritems():
+        #print(key, value)
+        if isinstance(value, bool):
+            body[key] = str(value).lower()
+
+    #print("request:------params")
+    #print(params)
+    #print("request:------body")
+    #print(body)
+
+
+    resp = requests.request(method, url=url, params=params, data=body, verify=False, headers=head[server])
+  except requests.exceptions.RequestException as e:
+   print(e)
+   #sys.exit(1)
+   return
+
+  if resp.status_code != 200:
+    print("HTTP Access error, HTTP Return code %d pushing data to API" % resp.status_code)
+    print("Method: ", method)
+    print("URL: ", url)
+    print("Params: ", params)
+    print("Body: ", body)
+    print("Error details:",)
+    pprint.pprint(resp)
+    #sys.exit(1)
+
+  j = json.loads(resp.text)
+  if j.get('errorDetails'):
+    print("API Error:", j['errorDetails'])
+    #sys.exit(1)
+    return
+
+  return resp.json()
+
+
+def connect_ldap(server):
+  try:
+    l = ldap.open(ldaphost[server])
+    l.protocol_version = ldap.VERSION3
+    # Any errors will throw an ldap.LDAPError exception 
+    # or related exception so you can ignore the result
+    l.simple_bind(ldapuser[server], ldappass[server])
+  except ldap.LDAPError as e
+    print(e)
+    # handle error however you like
+  return l
+
+
+
+def search_ldap_info(server, cat_type):
+
+  categories = {
+    "techniques" : ( 
+      "techniqueCategoryId=Active Techniques,ou=Rudder,cn=rudder-configuration", 
+      "(objectClass=activeTechnique)" ),
+    "groups"     : ( 
+      "groupCategoryId=GroupRoot,ou=Rudder,cn=rudder-configuration", 
+      "(&(objectClass=nodeGroup)(isSystem=FALSE))"),
+      #"(objectClass=nodeGroup)"),
+    # respective Rule Categories are stored in the rule
+    "rules"      : (  
+      "ou=Rules,ou=Rudder,cn=rudder-configuration",
+      "(objectClass=rule)"),
+    }
+
+  l = connect_ldap("source")
+  searchScope = ldap.SCOPE_SUBTREE
+  # None heisst "alles"
+  retrieveAttributes = None
+  
+  try:
+    ldap_result_id = l.search(categories[cat_type][0], searchScope, categories[cat_type][1], retrieveAttributes)
+    result_set = []
+    while 1:
+        result_type, result_data = l.result(ldap_result_id, 0)
+        if (result_data == []):
+            break
+        else:
+            if result_type == ldap.RES_SEARCH_ENTRY:
+                result_set.append(result_data)
+    return(result_set)
+  except ldap.LDAPError as e:
+    print(e)
+
+
+def directive_create(server, directive):
+    # @TODO: There is currently a bug in Rudder that prevents it
+    # from handling JSON in the body of a HTTP PUT request to create
+    # a Directive. This method should be rewritten once this is fixed.
+    # See http://www.rudder-project.org/redmine/issues/5778
+
+    # For now, we create the Directive without parameters,
+    # then add them afterwards with a Directive update
+    
+    directive_create = directive
+    parameters_json = json.dumps(directive['parameters'])
+    del directive_create['parameters']
+    print("directive needs to be created", directive_create)
+
+    put_request(server, url[server]+'/directives', directive_create)
+    post_request(server, url[server]+'/directives/'+directive_create['id'], {'parameters': parameters_json })
+
+def directive_update(server, directive):
+    # @TODO: Implement this method.
+    print("UPDATE directive: method not yet implemented!")
+    
+def directive_delete(server, directive_id):
+    delete_request(server, url[server]+'/directives/'+directive_id)
+
+def group_create(server, group):
+    # Make a local copy
+    group_create = group
+    
+    # Field names differ in read and write...
+    group_create[u'dynamic'] = group_create['isDynamic']
+    del group_create['isDynamic']
+
+    # We never include node IDs when creating a group
+    del group_create['nodeIds']
+
+    # The query string needs to be passed as a JSON string 
+    # (not as a Python dict!)
+    group_query_json = json.dumps(group['query'])
+    group['query'] = group_query_json
+
+    # @TODO
+    # We need to synchronize group categories too, since they are 
+    # referred by the groups. Right now they come from LDAP.
+    # LDAP Code can be removed  once the Rudder API allows this.
+
+    cn = group_create['displayName']
+    group_create[u'category'] = unicode(group_categories[group_create['id']])
+
+    put_request(server, url[server]+'/groups', group_create)
+
+
+def rule_create(server, rule):
+
+    rule_create = rule
+    parameters_json = json.dumps(rule['targets'])
+    del rule_create['targets']
+
+    # A rule can be in one or more groups. Those are stored as in the "tag" LDAP field of the group
+    # Right now I'm unsure how to set them on creation.
+    cat_id = rule_categories[rule['id']]
+
+
+    # Rudder API needs a certain order in the python dict upload.
+    # We need to use ordered dict to enforce
+    hax = ( ("id",          rule['id']),
+        (u"tag",   unicode(cat_id)),
+        ("displayName", rule['displayName']) )
+    for k, v in rule.iteritems():
+      hax += ((k, v),)
+
+    hax = ordereddict.OrderedDict(hax)
+
+    #pprint.pprint(hax)
+
+
+    #targets = rule_create['targets']
+    print("Rule:...")
+    #pprint.pprint(rule_create)
+    #if len(rule_create['targets']) > 0:
+    #    print("Includes...")
+    #    includes = rule_create['targets'][0]['include']
+    #    print("Excludes...")
+    #    excludes = rule_create['targets'][0]['exclude']
+
+
+    put_request(server, url[server]+'/rules', rule_create)
+    post_request(server, url[server]+'/rules/'+rule['id'], {'parameters': parameters_json })
+    #post_request(server, url[server]+'/rules', hax)
+
+
+
+def create_object(server, type, object):
+    if type == 'directives':
+        directive_create(server, object)
+    elif type == 'groups':
+        group_create(server, object)
+    elif type == 'rules':
+        rule_create(server, object)
+    else:
+        put_request(server, url[server]+'/'+type, object)
+
+def update_object(server, type, object):
+    #print("TODO: implement update method!")
+    print("Warning: Updates are disabled")
+    return
+    #post_request(server, url[server]+'/'+type+'/'+object['id'], object)
+
+def delete_object(server, type, object_id):
+    delete_request(server, url[server]+'/'+type+'/'+object_id)
+
+# @TODO: add parameters to sync
+
+# Return a list of objects found in a but not in b
+def find_missing_objects(a, b):
+    missing_objects = []
+    for a_object in a:
+        # Check if this object exists in b
+        exists = False
+        for b_object in b:
+            if a_object['id'] == b_object['id']:
+                exists = True
+                
+        if not exists:
+            missing_objects.append(a_object)
+    return missing_objects
+
+
+
+def get_group_catids(server): 
+
+  d = search_ldap_info('source', "groups")
+
+  for obj in d:
+    ids = obj[0][0]
+    dn = ids.split(",")
+    cn = obj[0][1]['cn'][0]
+    nodeGroupId = dn[0].split("=")[1]
+    groupCategoryId = dn[1].split("=")[1]
+    group_categories[nodeGroupId] = groupCategoryId
+  
+def get_rule_catids(server):
+
+  d = search_ldap_info('source', "rules")
+
+  for obj in d:
+    cn, data = obj[0]
+    if data[u'isSystem'][0] == u'TRUE':
+      print("skipping system rule")
+      continue
+    # {'objectClass': ['ruleCategory', 'top'], 'isSystem': ['FALSE'], 'cn': ['ABCCat'], 'ruleCategoryId': ['36015e75-c828-47da-9738-f33c2dc0ed1a']}
+    ruleName        = data['cn'][0]
+    ruleId          = data['ruleId'][0]
+    ruleCategoryId  = data['tag'][0]
+    rule_categories[ruleId] = ruleCategoryId
+
+      
+
+if name == "main":
+
+  # Fetch a list of all objects from both servers
+  source = {}
+  dest = {} 
+  idmap_source = {}
+  
+  for type in ['directives', 'groups', 'rules']:
+      source[type]       = get_all_objecttype('source', type)
+      dest[type]         = get_all_objecttype('dest', type)
+  
+  get_group_catids('source')
+  get_rule_catids('source')
+  
+  
+  # Step 1 of the sync: Sync all existing Directives, Groups, Rules from source and create/update in destination
+  for type in ['directives', 'groups', 'rules']:
+      missing = find_missing_objects(source[type], dest[type])
+      
+      print("Found ", len(missing), " ", type, " missing from dest")
+  
+      for source_object in source[type]:
+  
+          # @TODO: We currently don't exclude system items, maybe we should
+  
+          # attempt to do that for groups:
+          if type == "groups" and source_object[u'displayName'].startswith("All nodes managed by"):
+            continue
+  
+          if source_object in missing:
+              print(type + " ID " + source_object['id'] + " does not exist in destination, creating it...")
+              create_object('dest', type, source_object)
+          else:
+              print(type + " ID " + source_object['id'] + " already exists in destination, updating...")
+              update_object('dest', type, source_object)
+  
+  
+  # Step 2 of the sync: Delete any Rules, Groups, Directives in destination that don't exist in source
+  for type in reversed(['directives', 'groups', 'rules']):
+      missing = find_missing_objects(dest[type], source[type])
+      print("Found ", len(missing), " extra ", type, " in dest")
+      for dest_object in missing:
+          print(type + " ID " + dest_object['id'] + " should not exist in destination, deleting it...")
+          delete_object('dest', type, dest_object['id'])
+  
+  
+  sys.exit(1)
+  
+  for d in dest['directives']:
+      # Check if this directive exists in source
+      exists = False
+  
+      print("Checking if Directive ID " + d['id'] + " exists in source...")
+  
+      for source_d in source['directives']:
+          if source_d['id'] == d['id']:
+              exists = True
+              break
+              
+      if not exists:
+          print("Directive ID " + d['id'] + " doesn't exist in source (anymore?). Removing...")
+          directive_delete("dest", d['id'])
