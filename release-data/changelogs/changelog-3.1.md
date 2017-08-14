@@ -386,6 +386,58 @@ a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
 
+## <a name="3.1.22" > </a> Rudder 3.1.22 (2017-08-14)
+
+### Changes
+
+#### Documentation
+
+  - Compliance logfile parsing regex
+    ([\#11107](https://www.rudder-project.org/redmine/issues/11107))
+  - Warn on risk of updating file format
+    ([\#11155](https://www.rudder-project.org/redmine/issues/11155))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Wrong XML identation in event log
+    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
+
+#### Documentation
+
+  - Fixed: Put warnings (about dependencies for example) before install/upgrade instructions
+    ([\#11162](https://www.rudder-project.org/redmine/issues/11162))
+
+#### Web - Config management
+
+  - Fixed: Typo in generation error
+    ([\#11232](https://www.rudder-project.org/redmine/issues/11232))
+  - Fixed: Typo in unauthorized acces message
+    ([\#11182](https://www.rudder-project.org/redmine/issues/11182))
+  - Fixed: Cannot add a directive with a " in its name in Rule
+    ([\#10754](https://www.rudder-project.org/redmine/issues/10754))
+  - Fixed: Rudder can't start anymore because does not find configuration-repository techniques category in git 
+    ([\#11055](https://www.rudder-project.org/redmine/issues/11055))
+
+#### Initial promises & sys tech
+
+  - Fixed: Check permissions on /var/rudder files, particularly modified-files
+    ([\#11110](https://www.rudder-project.org/redmine/issues/11110))
+
+#### Security
+
+  - Fixed: JSESSION cookie should be "secure"
+    ([\#11159](https://www.rudder-project.org/redmine/issues/11159))
+
+#### Techniques
+
+  - Fixed: Aix group technique
+    ([\#11235](https://www.rudder-project.org/redmine/issues/11235))
+  - Fixed: Directive: Services Management doesn't support AIX
+    ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
+
+
 ## Rudder 3.1.18 (2017-02-20)
 
 ### Changes
