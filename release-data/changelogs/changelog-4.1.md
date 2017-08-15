@@ -50,6 +50,139 @@ This version provides packages for these operating systems:
 no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18, 
 RHEL/CentOS 3 and RHEL/CentOS 5
 
+## <a name="4.1.6" > </a> Rudder 4.1.6 (2017-08-14)
+
+### Changes
+
+#### Architecture - Internal libs
+
+  - Upgrade to Scala 2.12.3 to improve compilation time
+    ([\#11192](https://www.rudder-project.org/redmine/issues/11192))
+
+#### Documentation
+
+  - Update screenshot for interface usage page 
+    ([\#11143](https://www.rudder-project.org/redmine/issues/11143))
+  - Adapt run schedule documentation and add screenshots
+    ([\#11139](https://www.rudder-project.org/redmine/issues/11139))
+  - Add diagram and screenshots in documentation
+    ([\#11137](https://www.rudder-project.org/redmine/issues/11137))
+  - Compliance logfile parsing regex
+    ([\#11107](https://www.rudder-project.org/redmine/issues/11107))
+  - Warn on risk of updating file format
+    ([\#11155](https://www.rudder-project.org/redmine/issues/11155))
+
+#### Techniques
+
+  - Create a file template technique
+    ([\#9078](https://www.rudder-project.org/redmine/issues/9078))
+
+#### System integration
+
+  - Add node-post-acceptance hook 
+    ([\#11218](https://www.rudder-project.org/redmine/issues/11218))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: If a Rule is enabled but applies no Directive, it is displayed as Disabled
+    ([\#11123](https://www.rudder-project.org/redmine/issues/11123))
+  - Fixed: Wrong sort on compliance in tables
+    ([\#11229](https://www.rudder-project.org/redmine/issues/11229))
+  - Fixed: Disabled Rules status is invisible
+    ([\#11205](https://www.rudder-project.org/redmine/issues/11205))
+  - Fixed: In Directive details, tags input is broken on Iceweasel
+    ([\#11118](https://www.rudder-project.org/redmine/issues/11118))
+  - Fixed: Wrong XML identation in event log
+    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
+  - Fixed: Wrong XML identation in event log
+    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
+  - Fixed: Add a margin between the filters and the table in Technical logs tab
+    ([\#11083](https://www.rudder-project.org/redmine/issues/11083))
+  - Fixed: Repaired does not appear as yellow anymore
+    ([\#11028](https://www.rudder-project.org/redmine/issues/11028))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Impossible to delete a node when policy server has been deleted
+    ([\#11231](https://www.rudder-project.org/redmine/issues/11231))
+  - Fixed: When we manage a Windows 2016, we don't have the proper Windows version displayed
+    ([\#11172](https://www.rudder-project.org/redmine/issues/11172))
+
+#### Web - Config management
+
+  - Fixed: Typo in generation error
+    ([\#11232](https://www.rudder-project.org/redmine/issues/11232))
+  - Fixed: Typo in unauthorized acces message
+    ([\#11182](https://www.rudder-project.org/redmine/issues/11182))
+  - Fixed: Cannot add a directive with a " in its name in Rule
+    ([\#10754](https://www.rudder-project.org/redmine/issues/10754))
+
+#### Documentation
+
+  - Fixed: Put warnings (about dependencies for example) before install/upgrade instructions
+    ([\#11162](https://www.rudder-project.org/redmine/issues/11162))
+  - Fixed: Typo in rudder-setup usage in documentation
+    ([\#11136](https://www.rudder-project.org/redmine/issues/11136))
+  - Fixed: Wrong doc for restore of Rudder ldap on 4.1
+    ([\#11127](https://www.rudder-project.org/redmine/issues/11127))
+  - Fixed: Style broken in documention: upgrade_from_rudder_3_1_3_2_or_4_0
+    ([\#11002](https://www.rudder-project.org/redmine/issues/11002))
+
+#### Web - Compliance & node report
+
+  - Fixed: Reporting on old technique fails in audit mode
+    ([\#11152](https://www.rudder-project.org/redmine/issues/11152))
+  - Fixed: /var/log/webapp/compliance/non-compliant-reports does not contain non-compliant (audit) report
+    ([\#11223](https://www.rudder-project.org/redmine/issues/11223))
+
+#### Packaging
+
+  - Fixed: Backup of apache vhost by rudder-server-relay created in bad directory
+    ([\#10860](https://www.rudder-project.org/redmine/issues/10860))
+  - Fixed: if plugin is broken, we cannot upgrade it
+    ([\#11064](https://www.rudder-project.org/redmine/issues/11064))
+  - Fixed: When installing Rudder-Webapp, postinst script runs rudder-upgrade before initializing the git, and it can fail
+    ([\#10990](https://www.rudder-project.org/redmine/issues/10990))
+  - Fixed: Do not show instructions for rudder-node-to-relay on root setup
+    ([\#10859](https://www.rudder-project.org/redmine/issues/10859))
+
+#### Initial promises & sys tech
+
+  - Fixed: Check permissions on /var/rudder files, particularly modified-files
+    ([\#11110](https://www.rudder-project.org/redmine/issues/11110))
+  - Fixed: Wrong stderr / stdout redirection of logs from rudder agent check in 4.1
+    ([\#11044](https://www.rudder-project.org/redmine/issues/11044))
+
+#### System integration
+
+  - Fixed: Non normalize hooks env var names for node info
+    ([\#11213](https://www.rudder-project.org/redmine/issues/11213))
+  - Fixed: Bad semantic for system error on hooks
+    ([\#11010](https://www.rudder-project.org/redmine/issues/11010))
+
+#### Agent
+
+  - Fixed: rudder agent factory-reset bugs
+    ([\#10766](https://www.rudder-project.org/redmine/issues/10766))
+  - Fixed: rudder agent update -q bad exit code
+    ([\#11047](https://www.rudder-project.org/redmine/issues/11047))
+
+#### Security
+
+  - Fixed: JSESSION cookie should be "secure"
+    ([\#11159](https://www.rudder-project.org/redmine/issues/11159))
+
+#### Techniques
+
+  - Fixed: Aix group technique
+    ([\#11235](https://www.rudder-project.org/redmine/issues/11235))
+  - Fixed: "Package management" technique missing "allow untrusted" switch
+    ([\#10241](https://www.rudder-project.org/redmine/issues/10241))
+  - Fixed: Directive: Services Management doesn't support AIX
+    ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
+
 ## <a name="4.1.5" > </a> Rudder 4.1.5 (2017-06-22)
 
 ### Bug fixes
@@ -753,140 +886,6 @@ Special thanks go out to the following individuals who invested time, patience, 
   - Janos Mattyasovszky
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
-
-## <a name="4.1.6" > </a> Rudder 4.1.6 (2017-08-14)
-
-### Changes
-
-#### Architecture - Internal libs
-
-  - Upgrade to Scala 2.12.3 to improve compilation time
-    ([\#11192](https://www.rudder-project.org/redmine/issues/11192))
-
-#### Documentation
-
-  - Update screenshot for interface usage page 
-    ([\#11143](https://www.rudder-project.org/redmine/issues/11143))
-  - Adapt run schedule documentation and add screenshots
-    ([\#11139](https://www.rudder-project.org/redmine/issues/11139))
-  - Add diagram and screenshots in documentation
-    ([\#11137](https://www.rudder-project.org/redmine/issues/11137))
-  - Compliance logfile parsing regex
-    ([\#11107](https://www.rudder-project.org/redmine/issues/11107))
-  - Warn on risk of updating file format
-    ([\#11155](https://www.rudder-project.org/redmine/issues/11155))
-
-#### Techniques
-
-  - Create a file template technique
-    ([\#9078](https://www.rudder-project.org/redmine/issues/9078))
-
-#### System integration
-
-  - Add node-post-acceptance hook 
-    ([\#11218](https://www.rudder-project.org/redmine/issues/11218))
-
-### Bug fixes
-
-#### Web - UI & UX
-
-  - Fixed: If a Rule is enabled but applies no Directive, it is displayed as Disabled
-    ([\#11123](https://www.rudder-project.org/redmine/issues/11123))
-  - Fixed: Wrong sort on compliance in tables
-    ([\#11229](https://www.rudder-project.org/redmine/issues/11229))
-  - Fixed: Disabled Rules status is invisible
-    ([\#11205](https://www.rudder-project.org/redmine/issues/11205))
-  - Fixed: In Directive details, tags input is broken on Iceweasel
-    ([\#11118](https://www.rudder-project.org/redmine/issues/11118))
-  - Fixed: Wrong XML identation in event log
-    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
-  - Fixed: Wrong XML identation in event log
-    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
-  - Fixed: Add a margin between the filters and the table in Technical logs tab
-    ([\#11083](https://www.rudder-project.org/redmine/issues/11083))
-  - Fixed: Repaired does not appear as yellow anymore
-    ([\#11028](https://www.rudder-project.org/redmine/issues/11028))
-
-#### Web - Nodes & inventories
-
-  - Fixed: Impossible to delete a node when policy server has been deleted
-    ([\#11231](https://www.rudder-project.org/redmine/issues/11231))
-  - Fixed: When we manage a Windows 2016, we don't have the proper Windows version displayed
-    ([\#11172](https://www.rudder-project.org/redmine/issues/11172))
-
-#### Web - Config management
-
-  - Fixed: Typo in generation error
-    ([\#11232](https://www.rudder-project.org/redmine/issues/11232))
-  - Fixed: Typo in unauthorized acces message
-    ([\#11182](https://www.rudder-project.org/redmine/issues/11182))
-  - Fixed: Cannot add a directive with a " in its name in Rule
-    ([\#10754](https://www.rudder-project.org/redmine/issues/10754))
-
-#### Documentation
-
-  - Fixed: Put warnings (about dependencies for example) before install/upgrade instructions
-    ([\#11162](https://www.rudder-project.org/redmine/issues/11162))
-  - Fixed: Typo in rudder-setup usage in documentation
-    ([\#11136](https://www.rudder-project.org/redmine/issues/11136))
-  - Fixed: Wrong doc for restore of Rudder ldap on 4.1
-    ([\#11127](https://www.rudder-project.org/redmine/issues/11127))
-  - Fixed: Style broken in documention: upgrade_from_rudder_3_1_3_2_or_4_0
-    ([\#11002](https://www.rudder-project.org/redmine/issues/11002))
-
-#### Web - Compliance & node report
-
-  - Fixed: Reporting on old technique fails in audit mode
-    ([\#11152](https://www.rudder-project.org/redmine/issues/11152))
-  - Fixed: /var/log/webapp/compliance/non-compliant-reports does not contain non-compliant (audit) report
-    ([\#11223](https://www.rudder-project.org/redmine/issues/11223))
-
-#### Packaging
-
-  - Fixed: Backup of apache vhost by rudder-server-relay created in bad directory
-    ([\#10860](https://www.rudder-project.org/redmine/issues/10860))
-  - Fixed: if plugin is broken, we cannot upgrade it
-    ([\#11064](https://www.rudder-project.org/redmine/issues/11064))
-  - Fixed: When installing Rudder-Webapp, postinst script runs rudder-upgrade before initializing the git, and it can fail
-    ([\#10990](https://www.rudder-project.org/redmine/issues/10990))
-  - Fixed: Do not show instructions for rudder-node-to-relay on root setup
-    ([\#10859](https://www.rudder-project.org/redmine/issues/10859))
-
-#### Initial promises & sys tech
-
-  - Fixed: Check permissions on /var/rudder files, particularly modified-files
-    ([\#11110](https://www.rudder-project.org/redmine/issues/11110))
-  - Fixed: Wrong stderr / stdout redirection of logs from rudder agent check in 4.1
-    ([\#11044](https://www.rudder-project.org/redmine/issues/11044))
-
-#### System integration
-
-  - Fixed: Non normalize hooks env var names for node info
-    ([\#11213](https://www.rudder-project.org/redmine/issues/11213))
-  - Fixed: Bad semantic for system error on hooks
-    ([\#11010](https://www.rudder-project.org/redmine/issues/11010))
-
-#### Agent
-
-  - Fixed: rudder agent factory-reset bugs
-    ([\#10766](https://www.rudder-project.org/redmine/issues/10766))
-  - Fixed: rudder agent update -q bad exit code
-    ([\#11047](https://www.rudder-project.org/redmine/issues/11047))
-
-#### Security
-
-  - Fixed: JSESSION cookie should be "secure"
-    ([\#11159](https://www.rudder-project.org/redmine/issues/11159))
-
-#### Techniques
-
-  - Fixed: Aix group technique
-    ([\#11235](https://www.rudder-project.org/redmine/issues/11235))
-  - Fixed: "Package management" technique missing "allow untrusted" switch
-    ([\#10241](https://www.rudder-project.org/redmine/issues/10241))
-  - Fixed: Directive: Services Management doesn't support AIX
-    ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
-
 
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
