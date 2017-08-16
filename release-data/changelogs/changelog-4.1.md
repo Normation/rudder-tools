@@ -96,8 +96,6 @@ RHEL/CentOS 3 and RHEL/CentOS 5
     ([\#11118](https://www.rudder-project.org/redmine/issues/11118))
   - Fixed: Wrong XML identation in event log
     ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
-  - Fixed: Wrong XML identation in event log
-    ([\#10951](https://www.rudder-project.org/redmine/issues/10951))
   - Fixed: Add a margin between the filters and the table in Technical logs tab
     ([\#11083](https://www.rudder-project.org/redmine/issues/11083))
   - Fixed: Repaired does not appear as yellow anymore
