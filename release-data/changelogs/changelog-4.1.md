@@ -141,6 +141,22 @@ RHEL/CentOS 3 and RHEL/CentOS 5
   - Fixed: sudo management isn't update-safe
     ([\#9347](https://www.rudder-project.org/redmine/issues/9347))
 
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Ilan Costa
+  - Florian Heigl
+  - Janos Mattyasovszky
+  - Dmitry Svyatogorov
+
+This is a bug fix release in the 4.1 ESR series and therefore all
+installations of 4.1.x should be upgraded when possible.
+When we release a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
 
 ## <a name="4.1.6" > </a> Rudder 4.1.6 (2017-08-14)
 
@@ -273,6 +289,25 @@ RHEL/CentOS 3 and RHEL/CentOS 5
   - Fixed: Directive: Services Management doesn't support AIX
     ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
 
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Ilan Costa
+  - Florian Heigl
+  - Maxime Longuet 
+  - Janos Mattyasovszky
+  - David Svejda
+  - Dmitry Svyatogorov
+
+This is a bug fix release in the 4.1 ESR series and therefore all
+installations of 4.1.x should be upgraded when possible.
+When we release a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
+
 ## <a name="4.1.5" > </a> Rudder 4.1.5 (2017-06-22)
 
 ### Bug fixes
@@ -383,8 +418,8 @@ better:
   - Janos Mattyasovszky
 
 This is a bug fix release in the 4.1 ESR series and therefore all
-installations of 4.1.x should be upgraded when possible. When we release
-a new version of Rudder it has been thoroughly tested, and we consider
+installations of 4.1.x should be upgraded when possible.
+When we release a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
 ## <a name="4.1.3" > </a> Rudder 4.1.3 (2017-05-23)

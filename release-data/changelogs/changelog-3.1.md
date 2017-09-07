@@ -99,6 +99,20 @@ This version provides packages for these operating systems:
   - Fixed: sudo management isn't update-safe
     ([\#9347](https://www.rudder-project.org/redmine/issues/9347))
 
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Florian Heigl
+
+This is a bug fix release in the 3.1 ESR series and therefore all
+installations of 3.1.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
+
 
 ## <a name="3.1.22" > </a> Rudder 3.1.22 (2017-08-14)
 
@@ -150,6 +164,21 @@ This version provides packages for these operating systems:
     ([\#11235](https://www.rudder-project.org/redmine/issues/11235))
   - Fixed: Directive: Services Management doesn't support AIX
     ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+  - Janos Mattyasovszky
+  - David Svejda
+
+This is a bug fix release in the 3.1 ESR series and therefore all
+installations of 3.1.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
 
 ## <a name="3.1.21" > </a> Rudder 3.1.21 (2017-06-21)
 
