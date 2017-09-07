@@ -885,6 +885,98 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
 
+## <a name="4.1.7" > </a> Rudder 4.1.7 (2017-09-07)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Fold automatically Group categories if there are too many of them 
+    ([\#11323](https://www.rudder-project.org/redmine/issues/11323))
+
+#### Miscellaneous
+
+  - New technique to centralize creation Variable 
+    ([\#11148](https://www.rudder-project.org/redmine/issues/11148))
+  - New technique to read variables from a JSON file
+    ([\#11149](https://www.rudder-project.org/redmine/issues/11149))
+
+#### Agent
+
+  - Upgrade openssl to 1.0.2l
+    ([\#11279](https://www.rudder-project.org/redmine/issues/11279))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Node key display differences
+    ([\#10852](https://www.rudder-project.org/redmine/issues/10852))
+  - Fixed: The description of the group tree mentions drag and drop which does not work
+    ([\#11287](https://www.rudder-project.org/redmine/issues/11287))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Inventory endpoint info api is reporting saturated off by one
+    ([\#11330](https://www.rudder-project.org/redmine/issues/11330))
+
+#### Documentation
+
+  - Fixed: Missing doc about latest hooks in the manual
+    ([\#11305](https://www.rudder-project.org/redmine/issues/11305))
+
+#### Miscellaneous
+
+  - Fixed: "compliance" user role is broken
+    ([\#11185](https://www.rudder-project.org/redmine/issues/11185))
+
+#### Web - Compliance & node report
+
+  - Fixed: Missing agent reports after Rudder server restart
+    ([\#11037](https://www.rudder-project.org/redmine/issues/11037))
+  - Fixed: "no report" explanation is not correct in node details
+    ([\#11270](https://www.rudder-project.org/redmine/issues/11270))
+
+#### Packaging
+
+  - Fixed: Pre/post upgrade scripts do not correctly save and restore plugins status with rudder-plugin
+    ([\#11278](https://www.rudder-project.org/redmine/issues/11278))
+  - Fixed: Jdk is not installed at build on debian 9
+    ([\#11262](https://www.rudder-project.org/redmine/issues/11262))
+  - Fixed: Remove rudder.8.gz from rudder-packages preventing build of man pages
+    ([\#11258](https://www.rudder-project.org/redmine/issues/11258))
+  - Fixed: Configuration of database password fails after install
+    ([\#11253](https://www.rudder-project.org/redmine/issues/11253))
+
+#### Initial promises & sys tech
+
+  - Fixed: When running "rudder agent inventory", all other reports are missing on the server
+    ([\#11285](https://www.rudder-project.org/redmine/issues/11285))
+
+#### Agent
+
+  - Fixed: Upgrade agent to CFEngine 3.10.2
+    ([\#11288](https://www.rudder-project.org/redmine/issues/11288))
+  - Fixed: Do not display components summary in non-full-compliance modes
+    ([\#11324](https://www.rudder-project.org/redmine/issues/11324))
+  - Fixed: 'rudder agent info' should report compliance mode (full-compliance / changes-only / reports-disabled)
+    ([\#10649](https://www.rudder-project.org/redmine/issues/10649))
+  - Fixed: When in changes only mode, with no heartbeat, 'rudder agent run' outputs 'error: Rudder agent was interrupted during execution by a fatal error.'
+    ([\#9807](https://www.rudder-project.org/redmine/issues/9807))
+
+#### Web - Maintenance
+
+  - Fixed: Node compliances table is never archived
+    ([\#11314](https://www.rudder-project.org/redmine/issues/11314))
+
+#### Techniques
+
+  - Fixed: Technique "Package sources and settings (APT)" does not support stretch
+    ([\#11336](https://www.rudder-project.org/redmine/issues/11336))
+  - Fixed: sudo management isn't update-safe
+    ([\#9347](https://www.rudder-project.org/redmine/issues/9347))
+
+
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
 ### Changes
