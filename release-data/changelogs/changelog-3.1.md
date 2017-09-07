@@ -436,6 +436,45 @@ installations of 3.1.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
+## <a name="3.1.23" > </a> Rudder 3.1.23 (2017-09-07)
+
+### Changes
+
+#### Agent
+
+  - Upgrade openssl to 1.0.2l
+    ([\#11279](https://www.rudder-project.org/redmine/issues/11279))
+
+### Bug fixes
+
+#### Packaging
+
+  - Fixed: Remove rudder.8.gz from rudder-packages
+    ([\#11258](https://www.rudder-project.org/redmine/issues/11258))
+  - Fixed: Configuration of database password fails after install
+    ([\#11253](https://www.rudder-project.org/redmine/issues/11253))
+
+#### Agent
+
+  - Fixed: When in changes only mode, with no heartbeat, 'rudder agent run' outputs 'error: Rudder agent was interrupted during execution by a fatal error.'
+    ([\#9807](https://www.rudder-project.org/redmine/issues/9807))
+
+#### Miscellaneous
+
+  - Fixed: "compliance" role is broken
+    ([\#11185](https://www.rudder-project.org/redmine/issues/11185))
+
+#### Web - Compliance & node report
+
+  - Fixed: "no report" explanation is not correct in node details
+    ([\#11270](https://www.rudder-project.org/redmine/issues/11270))
+
+#### Techniques
+
+  - Fixed: sudo management isn't update-safe
+    ([\#9347](https://www.rudder-project.org/redmine/issues/9347))
+
+
 ## Rudder 3.1.18 (2017-02-20)
 
 ### Changes
