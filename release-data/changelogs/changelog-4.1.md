@@ -37,7 +37,7 @@ a quick and easy way to get an installation for testing.
 
 This version provides packages for these operating systems:
 
-  - Rudder server and Rudder relay: **Debian 7, Debian 8, RHEL/CentOS 6, RHEL/CentOS 7
+  - Rudder server and Rudder relay: **Debian 7, Debian 8, Debian 9, RHEL/CentOS 6, RHEL/CentOS 7
     (64 bits), SLES 11, SLES 12, Ubuntu 14.04, Ubuntu 16.04**
   - Rudder agent: all of the above plus **Debian 5, Debian 6,
     RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), Fedora 18, SLES
