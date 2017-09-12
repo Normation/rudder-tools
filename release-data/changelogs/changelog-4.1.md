@@ -54,6 +54,11 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 ### Changes
 
+#### Packaging
+
+  - Add Debian 9 support 
+    (CI/internal changes and [\#11262](https://www.rudder-project.org/redmine/issues/11262))
+
 #### Web - UI & UX
 
   - Fold automatically Group categories if there are too many of them 
@@ -106,8 +111,6 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
   - Fixed: Pre/post upgrade scripts do not correctly save and restore plugins status with rudder-plugin
     ([\#11278](https://www.rudder-project.org/redmine/issues/11278))
-  - Fixed: Jdk is not installed at build on debian 9
-    ([\#11262](https://www.rudder-project.org/redmine/issues/11262))
   - Fixed: Remove rudder.8.gz from rudder-packages preventing build of man pages
     ([\#11258](https://www.rudder-project.org/redmine/issues/11258))
   - Fixed: Configuration of database password fails after install
