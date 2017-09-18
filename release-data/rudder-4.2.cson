@@ -3,7 +3,7 @@
 release = "4.2"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "rc"
 
 # Is this version currently supported?
 supported = false
@@ -39,11 +39,11 @@ architectures = {
 roles = { 
           "debian-5":     [ "agent-allinone" ],
           "debian-6":     [ "agent-allinone" ],
-          "debian-7":     [ "agent-allinone", "agent-thin", "relay", "server" ],
+          "debian-7":     [ "agent-allinone" ],
           "debian-8":     [ "agent-allinone", "agent-thin", "relay", "server" ],
           "debian-9":     [ "agent-allinone", "agent-thin", "relay", "server" ],
           "ubuntu-10.04": [ "agent-allinone" ],
-          "ubuntu-12.04": [ "agent-allinone", "agent-thin", "relay" ],
+          "ubuntu-12.04": [ "agent-allinone" ],
           "ubuntu-12.10": [ "agent-allinone" ],
           "ubuntu-14.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
           "ubuntu-16.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
