@@ -286,6 +286,85 @@ no longer available in Ubuntu 12.04.
 
 
 
+## <a name="4.2.0.rc2" > </a> Rudder 4.2.0.rc2 (2017-09-21)
+
+### Changes
+
+#### Documentation
+
+  - Document debian 9 support for 4.1
+    ([\#11382](https://www.rudder-project.org/redmine/issues/11382))
+  - Better explain configuration drift reporting
+    ([\#11338](https://www.rudder-project.org/redmine/issues/11338))
+
+#### ncf
+
+  - Create a technique to download a file from the server
+    ([\#11181](https://www.rudder-project.org/redmine/issues/11181))
+
+#### Techniques
+
+  - Deprecate techniques that have a more recent version and remove deprecated ones
+    ([\#11370](https://www.rudder-project.org/redmine/issues/11370))
+  - Review parameters text in technique parameters
+    ([\#11120](https://www.rudder-project.org/redmine/issues/11120))
+  - make a dsc user_technique
+    ([\#11308](https://www.rudder-project.org/redmine/issues/11308))
+  - Add a dsc version of file_template technique
+    ([\#11317](https://www.rudder-project.org/redmine/issues/11317))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Cannot select version of directive to create if technique desciption contains curly braces 
+    ([\#11393](https://www.rudder-project.org/redmine/issues/11393))
+  - Fixed: Allowed networks UI is broken in Chromium
+    ([\#11351](https://www.rudder-project.org/redmine/issues/11351))
+
+#### Documentation
+
+  - Fixed: Update doc for 4.2
+    ([\#11365](https://www.rudder-project.org/redmine/issues/11365))
+  - Fixed: Missing documentation on Directive ordering
+    ([\#11289](https://www.rudder-project.org/redmine/issues/11289))
+
+#### Web - Config management
+
+  - Fixed: chars are not escaped correctly in dsc techniques
+    ([\#11326](https://www.rudder-project.org/redmine/issues/11326))
+
+#### Miscellaneous
+
+  - Fixed: debug prompt in dsc user_technique
+    ([\#11363](https://www.rudder-project.org/redmine/issues/11363))
+
+#### Packaging
+
+  - Fixed: Cannot save plugin status during initial install
+    ([\#11395](https://www.rudder-project.org/redmine/issues/11395))
+  - Fixed: When ugrading Rudder, the Windows plugins is not enabled anymore
+    ([\#11385](https://www.rudder-project.org/redmine/issues/11385))
+  - Fixed: PORT in /etc/default/rudder-slapd is ignored
+    ([\#11331](https://www.rudder-project.org/redmine/issues/11331))
+
+#### System integration
+
+  - Fixed: ERROR 405 when using "File from shared folder" generic method
+    ([\#11358](https://www.rudder-project.org/redmine/issues/11358))
+
+#### Techniques
+
+  - Fixed: Wrong report in users 8.0 on windows
+    ([\#11391](https://www.rudder-project.org/redmine/issues/11391))
+  - Fixed: Missing report for Unix options in Users 8.0
+    ([\#11390](https://www.rudder-project.org/redmine/issues/11390))
+  - Fixed: Duplicate description in filesPermissions/2.1
+    ([\#11383](https://www.rudder-project.org/redmine/issues/11383))
+  - Fixed: File content (key/value format) technique allows white space before separator but not after it
+    ([\#11087](https://www.rudder-project.org/redmine/issues/11087))
+
+
 ## Rudder 4.2.0.beta2 (2017-07-12)
 
 ### Changes
