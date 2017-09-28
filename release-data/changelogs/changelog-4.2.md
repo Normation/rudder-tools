@@ -1,10 +1,15 @@
 
 # Change logs for Rudder 4.2.\* versions
 
-Rudder 4.2 is currently the developement version of Rudder.
+Rudder 4.2 is currently the latest version of Rudder.
 You can test it using development builds, but not use it in production.
 
 **Main new features in Rudder 4.2:**
+
+  - New plugable policy generation, allowing to support new Agent or OS via plugin
+  - Internal support for DSC agent type (Inventory, display compatibility of Techniques/methods ...). Policy generation is supported by separated plugin.
+  - Relay API: Files from Rudder shared folder can be accessed using the rest api
+  - UI improvements on Settings page ( Update on style )
 
 **Installing, upgrading and testing**
 
@@ -34,6 +39,70 @@ This version provides packages for these operating systems:
 **Note**: As of Rudder 4.2, the rudder server and relay packages are not longer available on Debian 7
 and the rudder-agent-thin and rudder-server-relay packages are
 no longer available in Ubuntu 12.04.
+
+## <a name="4.2.0" > </a> Rudder 4.2.0 (2017-09-28)
+
+### Changes
+
+#### Web - Config management
+
+  - Update generation process to make it plugable by agenttype AND by os
+    ([\#11431](https://www.rudder-project.org/redmine/issues/11431))
+
+#### Web - UI & UX
+
+  - Highlight techniques that have at least one version compatible with the dsc agent
+    ([\#11297](https://www.rudder-project.org/redmine/issues/11297))
+
+#### System integration
+
+  - Add in rudder core apis to display license information from plugins. 
+    ([\#11427](https://www.rudder-project.org/redmine/issues/11427))
+
+#### Miscellaneous
+
+  - Refactor policy generation tests
+    ([\#11397](https://www.rudder-project.org/redmine/issues/11397))
+
+#### Techniques
+
+  - Add a new syntax for rudder parameters
+    ([\#11405](https://www.rudder-project.org/redmine/issues/11405))
+
+### Bug fixes
+
+#### Packaging
+
+  - Fixed: Plugin postint are not run after a rudder upgrade
+    ([\#11430](https://www.rudder-project.org/redmine/issues/11430))
+  - Fixed: rudder-techniques requires a recent ncf version
+    ([\#11411](https://www.rudder-project.org/redmine/issues/11411))
+
+#### Initial promises & sys tech
+
+  - Fixed: Error message on classical windows agent when getting environement variable
+    ([\#11435](https://www.rudder-project.org/redmine/issues/11435))
+
+#### Documentation
+
+  - Fixed: Wrong formatting in doc to build agent
+    ([\#11274](https://www.rudder-project.org/redmine/issues/11274))
+
+#### API
+
+  - Fixed: Archives API list returns date with wrong format
+    ([\#11408](https://www.rudder-project.org/redmine/issues/11408))
+
+#### Techniques
+
+  - Fixed: Wrong report for home directory on windows in audit mode
+    ([\#11399](https://www.rudder-project.org/redmine/issues/11399))
+
+### Release Note
+
+This version of Rudder is a final release. We have tested it thoroughly and believe it to be free of any major bugs.
+However, this branch is not marked "stable", since it still has to be proven reliable on production systems over a period of several months.
+
 
 ## <a name="4.2.0.rc2" > </a> Rudder 4.2.0.rc2 (2017-09-21)
 
@@ -113,6 +182,10 @@ no longer available in Ubuntu 12.04.
   - Fixed: File content (key/value format) technique allows white space before separator but not after it
     ([\#11087](https://www.rudder-project.org/redmine/issues/11087))
 
+### Release Note
+
+This software is in "release candidate" status and contains multiple bug fixes since the first release candidate (4.2.0~rc1).
+If no major bugs are found, a "final" release of 4.2.0 will be released next week.
 
 ## <a name="4.2.0.rc1" > </a> Rudder 4.2.0.rc1 (2017-09-07)
 
@@ -278,6 +351,11 @@ no longer available in Ubuntu 12.04.
   - Fixed: sudo management isn't update-safe
     ([\#9347](https://www.rudder-project.org/redmine/issues/9347))
 
+### Release Note
+
+This software is in "release candidate" status and contains multiple bug fixes since last beta (4.2.0~beta3).
+If no major bugs are found, a "final" release of 4.2.0 will be released next week.
+
 
 ## <a name="4.2.0.beta3" > </a> Rudder 4.2.0.beta3 (2017-08-08)
 
@@ -363,66 +441,10 @@ no longer available in Ubuntu 12.04.
   - Fixed: No new line between two certificates in ca.cert, breaking apache when there is more than one node with a certificate
     ([\#11151](https://www.rudder-project.org/redmine/issues/11151))
 
+### Release Note
 
-
-
-## <a name="4.2.0" > </a> Rudder 4.2.0 (2017-09-28)
-
-### Changes
-
-#### Web - Config management
-
-  - Update generation process to make it plugable by agenttype AND by os
-    ([\#11431](https://www.rudder-project.org/redmine/issues/11431))
-
-#### Web - UI & UX
-
-  - Highlight techniques that have at least one version compatible with the dsc agent
-    ([\#11297](https://www.rudder-project.org/redmine/issues/11297))
-
-#### System integration
-
-  - Add in rudder core apis to display license information from plugins. 
-    ([\#11427](https://www.rudder-project.org/redmine/issues/11427))
-
-#### Miscellaneous
-
-  - Refactor policy generation tests
-    ([\#11397](https://www.rudder-project.org/redmine/issues/11397))
-
-#### Techniques
-
-  - Add a new syntax for rudder parameters
-    ([\#11405](https://www.rudder-project.org/redmine/issues/11405))
-
-### Bug fixes
-
-#### Packaging
-
-  - Fixed: Plugin postint are not run after a rudder upgrade
-    ([\#11430](https://www.rudder-project.org/redmine/issues/11430))
-  - Fixed: rudder-techniques requires a recent ncf version
-    ([\#11411](https://www.rudder-project.org/redmine/issues/11411))
-
-#### Initial promises & sys tech
-
-  - Fixed: Error message on classical windows agent when getting environement variable
-    ([\#11435](https://www.rudder-project.org/redmine/issues/11435))
-
-#### Documentation
-
-  - Fixed: Wrong formatting in doc to build agent
-    ([\#11274](https://www.rudder-project.org/redmine/issues/11274))
-
-#### API
-
-  - Fixed: Archives API list returns date with wrong format
-    ([\#11408](https://www.rudder-project.org/redmine/issues/11408))
-
-#### Techniques
-
-  - Fixed: Wrong report for home directory on windows in audit mode
-    ([\#11399](https://www.rudder-project.org/redmine/issues/11399))
+This software is in beta status and contains several new features but we have tested it and believe it to be free of any critical bugs.
+The use on production systems is not encouraged at this time and is at your own risk. However, we do encourage testing, and welcome all and any feedback!
 
 
 ## Rudder 4.2.0.beta2 (2017-07-12)
@@ -493,6 +515,11 @@ no longer available in Ubuntu 12.04.
 
   - Fixed: Directive: Services Management doesn't support AIX
     ([\#8752](https://www.rudder-project.org/redmine/issues/8752))
+
+### Release Note
+
+This software is in beta status and contains several new features but we have tested it and believe it to be free of any critical bugs.
+The use on production systems is not encouraged at this time and is at your own risk. However, we do encourage testing, and welcome all and any feedback!
 
 
 ## Rudder 4.2.0.beta1 (2017-06-26)
@@ -611,7 +638,7 @@ no longer available in Ubuntu 12.04.
   - Fixed: Bad semantic for system error on hooks
     ([\#11010](https://www.rudder-project.org/redmine/issues/11010))
 
-### Release notes
+### Release Note
 
 This software is in beta status and has several known bugs
 (particularly [\#11027](https://www.rudder-project.org/redmine/issues/11027), [\#10961](https://www.rudder-project.org/redmine/issues/10961), [\#10990](https://www.rudder-project.org/redmine/issues/10990) and [\#11051](https://www.rudder-project.org/redmine/issues/11051)).
