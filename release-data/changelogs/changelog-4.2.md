@@ -366,6 +366,65 @@ no longer available in Ubuntu 12.04.
 
 
 
+## <a name="4.2.0" > </a> Rudder 4.2.0 (2017-09-28)
+
+### Changes
+
+#### Web - Config management
+
+  - Update generation process to make it plugable by agenttype AND by os
+    ([\#11431](https://www.rudder-project.org/redmine/issues/11431))
+
+#### Web - UI & UX
+
+  - Highlight techniques that have at least one version compatible with the dsc agent
+    ([\#11297](https://www.rudder-project.org/redmine/issues/11297))
+
+#### System integration
+
+  - Add in rudder core apis to display license information from plugins. 
+    ([\#11427](https://www.rudder-project.org/redmine/issues/11427))
+
+#### Miscellaneous
+
+  - Refactor policy generation tests
+    ([\#11397](https://www.rudder-project.org/redmine/issues/11397))
+
+#### Techniques
+
+  - Add a new syntax for rudder parameters
+    ([\#11405](https://www.rudder-project.org/redmine/issues/11405))
+
+### Bug fixes
+
+#### Packaging
+
+  - Fixed: Plugin postint are not run after a rudder upgrade
+    ([\#11430](https://www.rudder-project.org/redmine/issues/11430))
+  - Fixed: rudder-techniques requires a recent ncf version
+    ([\#11411](https://www.rudder-project.org/redmine/issues/11411))
+
+#### Initial promises & sys tech
+
+  - Fixed: Error message on classical windows agent when getting environement variable
+    ([\#11435](https://www.rudder-project.org/redmine/issues/11435))
+
+#### Documentation
+
+  - Fixed: Wrong formatting in doc to build agent
+    ([\#11274](https://www.rudder-project.org/redmine/issues/11274))
+
+#### API
+
+  - Fixed: Archives API list returns date with wrong format
+    ([\#11408](https://www.rudder-project.org/redmine/issues/11408))
+
+#### Techniques
+
+  - Fixed: Wrong report for home directory on windows in audit mode
+    ([\#11399](https://www.rudder-project.org/redmine/issues/11399))
+
+
 ## Rudder 4.2.0.beta2 (2017-07-12)
 
 ### Changes
