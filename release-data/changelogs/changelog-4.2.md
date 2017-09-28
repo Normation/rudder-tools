@@ -11,7 +11,7 @@ and rc versions are listed below for convenience.
   - New plugable policy generation, allowing to support new Agent or OS via plugin
   - Internal support for DSC agent type (Inventory, display compatibility of Techniques/methods ...). Policy generation is supported by separated plugin.
   - Relay API: Files from Rudder shared folder can be accessed using the rest api
-  - UI improvements on Settings page ( Update on style )
+  - UI improvements on Settings page (Update on style)
 
 **Installing, upgrading and testing**
 
