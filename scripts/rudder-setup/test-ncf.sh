@@ -1,4 +1,4 @@
-TEST_DEPENDENCIES="curl lsb-release htop python-jinja2"
+TEST_DEPENDENCIES="curl lsb-release htop python-jinja2 git"
 
 test_ncf() {
     cd "${directory}"
