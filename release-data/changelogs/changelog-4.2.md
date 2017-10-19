@@ -16,7 +16,7 @@ and rc versions are listed below for convenience.
 **Installing, upgrading and testing**
 
   - Install docs:
-    https://www.rudder-project.org/doc-4.2/_install_rudder_server.html
+    https://www.rudder-project.org/doc-4.2/_installation.html
   - Upgrade docs:
     https://www.rudder-project.org/doc-4.2/_upgrade_rudder.html
   - Download links: https://www.rudder-project.org/site/get-rudder/downloads/
