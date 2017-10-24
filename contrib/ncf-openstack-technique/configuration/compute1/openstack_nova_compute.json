@@ -1,0 +1,7 @@
+{
+  "management_ip": "192.168.20.3",
+  "rabbit": {
+    "user": "openstack_compute2",
+    "password": "rabbitmq_password"
+  }
+}

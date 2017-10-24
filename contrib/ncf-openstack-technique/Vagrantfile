@@ -1,0 +1,72 @@
+Vagrant.configure("2") do |config|
+	
+	# Specify the base box
+	config.vm.box = "chef/centos-7.0"
+	
+  # 10 : Configuration management
+  # 20 : OpenStack management
+  # 30 : OpenStack storage (not used)
+
+  config.vm.define "server" do |rudder|
+    rudder.vm.network "private_network", ip: "192.168.10.10"
+    rudder.vm.network :forwarded_port, guest: 443, host: 8081
+    
+    rudder.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+    end
+    
+    # Shell provisioning
+    rudder.vm.provision "shell" do |s|
+    	s.path = "scripts/deploy-rudder.sh"
+      s.args = "server server"
+    end
+  end
+
+  config.vm.define "controller" do |controller|
+    controller.vm.network "private_network", ip: "192.168.10.2"
+    controller.vm.network "private_network", ip: "192.168.20.2"
+    controller.vm.network :forwarded_port, guest: 80, host: 8082
+    
+    controller.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+    end
+    
+    # Shell provisioning
+    controller.vm.provision "shell" do |s|
+      s.path = "scripts/deploy-rudder.sh"
+      s.args = "agent controller"
+    end
+  end
+  
+  config.vm.define "compute1" do |compute1|
+    compute1.vm.network "private_network", ip: "192.168.10.3"
+    compute1.vm.network "private_network", ip: "192.168.20.3"
+    compute1.vm.network "private_network", ip: "192.168.30.3"
+    
+    compute1.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 1024]
+    end
+    
+    # Shell provisioning
+    compute1.vm.provision "shell" do |s|
+      s.path = "scripts/deploy-rudder.sh"
+      s.args = "agent compute1"
+    end
+  end
+  
+  config.vm.define "compute2" do |compute2|
+    compute2.vm.network "private_network", ip: "192.168.10.4"
+    compute2.vm.network "private_network", ip: "192.168.20.4"
+    compute2.vm.network "private_network", ip: "192.168.30.4"
+    
+    compute2.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", 1024]
+    end
+    
+    # Shell provisioning
+    compute2.vm.provision "shell" do |s|
+      s.path = "scripts/deploy-rudder.sh"
+      s.args = "agent compute2"
+    end
+  end
+end

@@ -1,0 +1,42 @@
+# @name openstack_keystone
+# @description Install, configure and ensure keystone is running. Uses a template file for configuration.
+# @version 0.1
+
+bundle agent openstack_keystone
+{
+  methods:
+    "method_call" usebundle => data_load("${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("openstack-keystone"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("python-openstackclient"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("memcached"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("python-memcached"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/keystone.conf.tpl", "/etc/keystone/keystone.conf", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/keystone-paste.ini.tpl", "/etc/keystone/keystone-paste.ini", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => permissions_recurse("/etc/keystone/", "640", "keystone", "keystone"),
+      ifvarclass => concat("any");
+    "method_call" usebundle  => command_execution("su -s /bin/sh -c \"keystone-manage db_sync\" keystone"),
+      ifvarclass => concat("any.file_from_template_mustache_data__etc_keystone_keystone_conf_repaired");
+    "method_call" usebundle => service_restart("openstack-keystone"),
+      ifvarclass => concat("any.(file_from_template_mustache_data__etc_keystone_keystone_conf_repaired|file_from_template_mustache_data__etc_keystone_keystone_paste_ini_repaired)");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/identity-init.sh.tpl", "/root/.openstack/identity-init.sh", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle  => command_execution("sh /root/.openstack/identity-init.sh"),
+      ifvarclass => concat("any.file_from_template_mustache_data__root__openstack_identity_init_sh_repaired");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/openrc.sh.tpl", "/root/.openstack/admin-openrc.sh", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_running("openstack-keystone"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_running("memcached"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_started_at_boot("openstack-keystone"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_started_at_boot("memcached"),
+      ifvarclass => concat("any");
+}

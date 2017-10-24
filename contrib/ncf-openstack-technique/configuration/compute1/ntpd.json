@@ -1,0 +1,5 @@
+{
+  "servers": [
+    {"address": "server", "options": "iburst"}
+  ]
+}

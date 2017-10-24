@@ -1,0 +1,16 @@
+{
+  "bridge": "br100",
+  "virt_type": "qemu",
+  "management_ip": "127.0.0.1",
+  "external_interface": "enp0s3",
+  "controller": "controller",
+  "vnc_enabled": true,
+  "keystone": {
+    "user": "nova",
+    "password": "nova_password"
+  },
+  "rabbit": {
+    "user": "openstack",
+    "password": "rabbitmq_password"
+  }
+}

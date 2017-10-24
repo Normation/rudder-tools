@@ -1,0 +1,22 @@
+{
+  "management_ip": "192.168.20.2",
+  "controller": "controller",
+  "keystone": {
+    "user": "nova",
+    "password": "nova_password"
+  },
+  "rabbit": {
+    "user": "openstack",
+    "password": "rabbitmq_password"
+  },
+  "network": {
+    "bridge": "br100",
+    "range": "10.0.2.15/24"
+  },
+  "database": {
+    "user": "nova",
+    "password": "nova_password",
+    "name": "nova",
+    "host": "192.168.20.2"
+  }
+}

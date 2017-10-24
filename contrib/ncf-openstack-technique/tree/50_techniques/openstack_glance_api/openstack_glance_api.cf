@@ -1,0 +1,24 @@
+# @name openstack_glance_api
+# @description Install, configure and ensure glance-api is running. Uses a template file for configuration.
+# @version 0.1
+
+bundle agent openstack_glance_api
+{
+  methods:
+    "method_call" usebundle => data_load("${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("openstack-glance python-glance python-glanceclient"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/glance-api.conf.tpl", "/etc/glance/glance-api.conf", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => permissions_recurse("/etc/glance/", "640", "glance", "glance"),
+      ifvarclass => concat("any");
+    "method_call" usebundle  => command_execution("su -s /bin/sh -c \"glance-manage db_sync\" glance"),
+      ifvarclass => concat("any.file_from_template_mustache_data__etc_glance_glance_api_conf_repaired");
+    "method_call" usebundle => service_restart("keystone"),
+      ifvarclass => concat("any.file_from_template_mustache_data__etc_glance_glance_api_conf_repaired");
+    "method_call" usebundle => service_ensure_running("openstack-glance-api"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_started_at_boot("openstack-glance-api"),
+      ifvarclass => concat("any");
+}

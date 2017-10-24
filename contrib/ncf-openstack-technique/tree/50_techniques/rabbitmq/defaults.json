@@ -1,0 +1,7 @@
+{
+  "users": [
+    {"username": "openstack_compute1", "password": "rabbitmq_password"},
+    {"username": "openstack_compute2", "password": "rabbitmq_password"},
+    {"username": "openstack_controller1", "password": "rabbitmq_password"}
+  ]
+}

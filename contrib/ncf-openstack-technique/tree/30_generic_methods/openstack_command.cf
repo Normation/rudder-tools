@@ -1,0 +1,37 @@
+#####################################################################################
+# Copyright 2013 Normation SAS
+#####################################################################################
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, Version 3.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#####################################################################################
+
+# @name Openstack command
+# @description Execute an OpenStack command as administrator
+#
+# @parameter token   Admin token
+# @parameter url     URL of the Keystone endpoint
+# @parameter command Command to execute
+#
+# @class_prefix command
+# @class_parameter command
+# This bundle will define a class openstack_command_${command}_{kept,repaired,not_ok,ok,reached}
+
+bundle agent openstack_command(token, url, command)
+{
+  vars:
+      "class_prefix"  string => canonify("openstack_command_${command}");
+
+  methods:
+      "execute" usebundle => command_execution("/usr/bin/openstack --os-token ${token} --os-url ${url} ${command}");
+}

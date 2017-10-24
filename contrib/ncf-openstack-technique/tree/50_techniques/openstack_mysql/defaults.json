@@ -1,0 +1,9 @@
+{
+  "users": [
+    {"database": "keystone", "username": "keystone", "password": "keystone_password", "host": "192.168.20.2"},
+    {"database": "glance", "username": "glance", "password": "glance_password", "host": "192.168.20.2"},
+    {"database": "nova", "username": "nova", "password": "nova_password", "host": "192.168.20.2"}
+  ],
+  "root_password": "openstack_root",
+  "bind_address": "192.168.20.2"
+}

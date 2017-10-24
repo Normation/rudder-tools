@@ -1,0 +1,18 @@
+# @name ntpd
+# @description Install, configure and ensure ntpd is running. Uses a template file for configuration.
+# @version 0.1
+
+bundle agent ntpd
+{
+  methods:
+    "method_call" usebundle => data_load("${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("ntp"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/ntp.conf.tpl", "/etc/ntp.conf", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_restart("ntpd"),
+      ifvarclass => concat("any.redhat.file_from_template_mustache_data__etc_ntp_conf_repaired");
+    "method_call" usebundle => service_ensure_running("ntpd"),
+      ifvarclass => concat("any.redhat");
+}

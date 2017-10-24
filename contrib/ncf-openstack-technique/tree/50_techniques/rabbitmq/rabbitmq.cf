@@ -1,0 +1,16 @@
+# @name rabbitmq
+# @description Install, configure and ensure rabbitmq is running.
+# @version 0.1
+
+bundle agent rabbitmq
+{
+  methods:
+    "method_call" usebundle => data_load("${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => package_install("rabbitmq-server"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => command_execution("sh ${variable_string.${this.bundle}_technique_path}/scripts/set_users.sh \"`echo '${data_json.${this.bundle}}' | jq -c '.users'`\""),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_running("rabbitmq-server"),
+      ifvarclass => concat("any.redhat");
+}

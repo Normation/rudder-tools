@@ -1,0 +1,13 @@
+{
+  "controller": "controller",
+  "keystone": {
+    "user": "glance",
+    "password": "glance_password"
+  },
+  "database": {
+    "host": "controller",
+    "name": "glance",
+    "user": "glance",
+    "password": "glance_password"
+  },
+}

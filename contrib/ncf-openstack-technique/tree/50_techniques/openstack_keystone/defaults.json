@@ -1,0 +1,37 @@
+{
+  "database": {
+    "user": "keystone",
+    "password": "keystone_password",
+    "name": "keystone",
+    "host": "192.168.20.2"
+  },
+  "admin": {
+    "project":"admin",
+    "tenant":"admin",
+    "user":"admin",
+    "password":"admin_password",
+    "controller":"controller",
+    "port":"35357",
+    "token": "myadmintoken"
+  },
+  "demo": {
+    "project":"demo",
+    "tenant":"demo",
+    "user":"demo",
+    "password":"demo_password",
+    "controller":"controller",
+    "port":"5000"
+  },
+  "glance": {
+    "user":"glance",
+    "password":"glance_password",
+    "controller":"controller",
+  },
+  "nova": {
+    "user":"nova",
+    "password":"nova_password",
+    "controller":"controller",
+  },
+  "hash_algorithm": "sha256",
+  "enable_admin_token": false
+}

@@ -1,0 +1,24 @@
+# @name openstack_horizon
+# @description Install, configure and ensure horizon is running. Uses a template file for configuration.
+# @version 0.1
+
+bundle agent openstack_horizon
+{
+  methods:
+    "method_call" usebundle => data_load("${this.bundle}"),
+      ifvarclass => concat("any");    
+    "method_call" usebundle => package_install("openstack-dashboard httpd mod_wsgi memcached python-memcached"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => file_from_template_mustache_data("${variable_string.${this.bundle}_technique_path}/templates/local_settings.tpl", "/etc/openstack-dashboard/local_settings", "data_merge.${this.bundle}"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => command_execution("setsebool -P httpd_can_network_connect on"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => command_execution("chown -R apache:apache /usr/share/openstack-dashboard/static"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_restart("httpd memcached"),
+      ifvarclass => concat("any.file_from_template_mustache_data__etc_openstack_dashboard_local_settings_repaired");
+    "method_call" usebundle => service_ensure_running("httpd memcached"),
+      ifvarclass => concat("any");
+    "method_call" usebundle => service_ensure_started_at_boot("httpd memcached"),
+      ifvarclass => concat("any");
+}

@@ -1,0 +1,37 @@
+#####################################################################################
+# Copyright 2013 Normation SAS
+#####################################################################################
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, Version 3.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#####################################################################################
+
+# @name Store data into JSON string
+# @description Formats the given data container to a JSON string
+#
+# @parameter name  Name of the created variable
+# @parameter default_data Data
+#
+# @class_prefix data_json
+# @class_parameter name
+# This bundle will define a class data_son_${name}_{kept,repaired,not_ok,ok,reached}
+
+bundle agent data_json(name, data)
+{
+  vars:
+      "${name}" string => storejson("${data}");
+      
+  reports:
+    debug::
+      "${configuration.debug} Storing '${name}'";
+}

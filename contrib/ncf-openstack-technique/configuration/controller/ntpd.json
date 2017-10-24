@@ -1,0 +1,8 @@
+{
+  "restricts": [
+    {"address": "-4", "options": "default kod notrap nomodify"},
+    {"address": "-6", "options": "default kod notrap nomodify"},
+    {"address": "127.0.0.1", "options": ""},
+    {"address": "::1", "options": ""}
+  ]
+}

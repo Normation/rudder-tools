@@ -1,0 +1,6 @@
+{
+  "rabbit": {
+    "user": "openstack_controller1",
+    "password": "rabbitmq_password"
+  }
+}

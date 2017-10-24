@@ -1,0 +1,20 @@
+# @name openstack_repository
+# @description Install OpenStack repository.
+# @version 0.1
+
+bundle agent openstack_repository
+{
+  methods:
+    "method_call" usebundle => file_download("http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm", "/root/.openstack/epel-release-7-5.noarch.rpm"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => package_install("/root/.openstack/epel-release-7-5.noarch.rpm"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => file_download("http://rdo.fedorapeople.org/openstack-kilo/rdo-release-kilo.rpm", "/root/.openstack/rdo-release-kilo.rpm"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => package_install("/root/.openstack/rdo-release-kilo.rpm"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => package_install("openstack-selinux"),
+      ifvarclass => concat("any.redhat");
+    "method_call" usebundle => package_install("jq"),
+      ifvarclass => concat("any.redhat");
+}
