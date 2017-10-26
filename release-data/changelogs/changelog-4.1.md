@@ -50,6 +50,141 @@ This version provides packages for these operating systems:
 no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18, 
 RHEL/CentOS 3 and RHEL/CentOS 5
 
+## <a name="4.1.8" > </a> Rudder 4.1.8 (2017-10-26)
+
+### Changes
+
+#### Initial promises & sys tech
+
+  - Do not send inventory if a forwarder/uploader daemon exists
+    ([\#11257](https://www.rudder-project.org/redmine/issues/11257))
+
+#### Documentation
+
+  - Document debian 9 support for 4.1
+    ([\#11382](https://www.rudder-project.org/redmine/issues/11382))
+  - Better explain configuration drift reporting
+    ([\#11338](https://www.rudder-project.org/redmine/issues/11338))
+
+#### Miscellaneous
+
+  - Refactor policy generation tests
+    ([\#11397](https://www.rudder-project.org/redmine/issues/11397))
+
+#### Agent
+
+  - Node properties local override
+    ([\#11618](https://www.rudder-project.org/redmine/issues/11618))
+  - Add a rudder agent diff command
+    ([\#11099](https://www.rudder-project.org/redmine/issues/11099))
+
+#### Techniques
+
+  - UserManagement technique does not allow to change the gid of an existing user
+    ([\#11596](https://www.rudder-project.org/redmine/issues/11596))
+  - Add a new syntax for rudder parameters
+    ([\#11405](https://www.rudder-project.org/redmine/issues/11405))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Screen estate in compliance graph
+    ([\#10761](https://www.rudder-project.org/redmine/issues/10761))
+  - Fixed: Global parameters UI now showing Edit/Delete button on long lines
+    ([\#11585](https://www.rudder-project.org/redmine/issues/11585))
+  - Fixed: Update Directive popup is broken on firefox 38.6.1esr 
+    ([\#11584](https://www.rudder-project.org/redmine/issues/11584))
+  - Fixed: Cannot select version of directive to create if technique desciption contains curly braces 
+    ([\#11393](https://www.rudder-project.org/redmine/issues/11393))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Groups are not reloaded after restoring from archive
+    ([\#11244](https://www.rudder-project.org/redmine/issues/11244))
+
+#### Web - Config management
+
+  - Fixed: Parameter name requires at least 3 characters
+    ([\#11588](https://www.rudder-project.org/redmine/issues/11588))
+  - Fixed: There is no way to remove a Directive based on a Technique that no longer exists
+    ([\#5203](https://www.rudder-project.org/redmine/issues/5203))
+
+#### Documentation
+
+  - Fixed: Manually restoring permissions for NCF after archive import is broken
+    ([\#11414](https://www.rudder-project.org/redmine/issues/11414))
+  - Fixed: Dead link in doc
+    ([\#11579](https://www.rudder-project.org/redmine/issues/11579))
+  - Fixed: Missing documentation on Directive ordering
+    ([\#11289](https://www.rudder-project.org/redmine/issues/11289))
+  - Fixed: Wrong formatting in doc to build agent
+    ([\#11274](https://www.rudder-project.org/redmine/issues/11274))
+
+#### Agent
+
+  - Fixed: Xen domU detection issues with pvops kernels.
+    ([\#10787](https://www.rudder-project.org/redmine/issues/10787))
+  - Fixed: Inventory uploaded multiple times after reinit
+    ([\#11580](https://www.rudder-project.org/redmine/issues/11580))
+
+#### Packaging
+
+  - Fixed: Error at installation of Rudder 4.1 on centos 6
+    ([\#11628](https://www.rudder-project.org/redmine/issues/11628))
+  - Fixed: Build on Deb7 and ubuntu14.04 fails because jdk8u144 is unavalaible
+    ([\#11626](https://www.rudder-project.org/redmine/issues/11626))
+  - Fixed: We should not try to edit /etc/cron.d/rudder-agent on AIX
+    ([\#11595](https://www.rudder-project.org/redmine/issues/11595))
+  - Fixed: Warning about zip dependency is at top of installation of plugin
+    ([\#11398](https://www.rudder-project.org/redmine/issues/11398))
+  - Fixed: Plugin postint are not run after a rudder upgrade
+    ([\#11430](https://www.rudder-project.org/redmine/issues/11430))
+  - Fixed: rudder-techniques requires a recent ncf version
+    ([\#11411](https://www.rudder-project.org/redmine/issues/11411))
+  - Fixed: Cannot save plugin status during initial install
+    ([\#11395](https://www.rudder-project.org/redmine/issues/11395))
+  - Fixed: When ugrading Rudder, the Windows plugins is not enabled anymore
+    ([\#11385](https://www.rudder-project.org/redmine/issues/11385))
+  - Fixed: PORT in /etc/default/rudder-slapd is ignored
+    ([\#11331](https://www.rudder-project.org/redmine/issues/11331))
+
+#### Initial promises & sys tech
+
+  - Fixed: Tidy expected reports does have a too big TTL
+    ([\#11591](https://www.rudder-project.org/redmine/issues/11591))
+  - Fixed: Error message on classical windows agent when getting environement variable
+    ([\#11435](https://www.rudder-project.org/redmine/issues/11435))
+
+#### API
+
+  - Fixed: Archives API list returns date with wrong format
+    ([\#11408](https://www.rudder-project.org/redmine/issues/11408))
+
+#### Techniques
+
+  - Fixed: Allow variable as directive parameters in regexp validated inputs 
+    ([\#11449](https://www.rudder-project.org/redmine/issues/11449))
+  - Fixed: generic_variable_definition inserts spaces in multi lined values
+    ([\#11613](https://www.rudder-project.org/redmine/issues/11613))
+  - Fixed: group management technique doesn't ensure optional user is in group
+    ([\#8739](https://www.rudder-project.org/redmine/issues/8739))
+  - Fixed: Incomplete description of the behaviour of technique copyGitFile, that may result in broken permissions of whole folder
+    ([\#11422](https://www.rudder-project.org/redmine/issues/11422))
+  - Fixed: File content (key/value format) technique allows white space before separator but not after it
+    ([\#11087](https://www.rudder-project.org/redmine/issues/11087))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Janos Mattyasovszky
+ * Florian Heigl
+ * Hamlyn Mootoo
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
 ## <a name="4.1.7" > </a> Rudder 4.1.7 (2017-09-07)
 
 ### Changes
@@ -1015,140 +1150,6 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1 should be upgraded when possible. The current "esr" release is 3.1.*. When we release a new version of Rudder, it has been thoroughly tested, and we consider the release enterprise-ready for deployment
 
-
-## <a name="4.1.8" > </a> Rudder 4.1.8 (2017-10-26)
-
-### Changes
-
-#### Initial promises & sys tech
-
-  - Do not send inventory if a forwarder/uploader daemon exists
-    ([\#11257](https://www.rudder-project.org/redmine/issues/11257))
-
-#### Documentation
-
-  - Document debian 9 support for 4.1
-    ([\#11382](https://www.rudder-project.org/redmine/issues/11382))
-  - Better explain configuration drift reporting
-    ([\#11338](https://www.rudder-project.org/redmine/issues/11338))
-
-#### Miscellaneous
-
-  - Refactor policy generation tests
-    ([\#11397](https://www.rudder-project.org/redmine/issues/11397))
-
-#### Agent
-
-  - Node properties local override
-    ([\#11618](https://www.rudder-project.org/redmine/issues/11618))
-  - Add a rudder agent diff command
-    ([\#11099](https://www.rudder-project.org/redmine/issues/11099))
-
-#### Techniques
-
-  - UserManagement technique does not allow to change the gid of an existing user
-    ([\#11596](https://www.rudder-project.org/redmine/issues/11596))
-  - Add a new syntax for rudder parameters
-    ([\#11405](https://www.rudder-project.org/redmine/issues/11405))
-
-### Bug fixes
-
-#### Web - UI & UX
-
-  - Fixed: Screen estate in compliance graph
-    ([\#10761](https://www.rudder-project.org/redmine/issues/10761))
-  - Fixed: Global parameters UI now showing Edit/Delete button on long lines
-    ([\#11585](https://www.rudder-project.org/redmine/issues/11585))
-  - Fixed: Update Directive popup is broken on firefox 38.6.1esr 
-    ([\#11584](https://www.rudder-project.org/redmine/issues/11584))
-  - Fixed: Cannot select version of directive to create if technique desciption contains curly braces 
-    ([\#11393](https://www.rudder-project.org/redmine/issues/11393))
-
-#### Web - Nodes & inventories
-
-  - Fixed: Groups are not reloaded after restoring from archive
-    ([\#11244](https://www.rudder-project.org/redmine/issues/11244))
-
-#### Web - Config management
-
-  - Fixed: Parameter name requires at least 3 characters
-    ([\#11588](https://www.rudder-project.org/redmine/issues/11588))
-  - Fixed: There is no way to remove a Directive based on a Technique that no longer exists
-    ([\#5203](https://www.rudder-project.org/redmine/issues/5203))
-
-#### Documentation
-
-  - Fixed: Manually restoring permissions for NCF after archive import is broken
-    ([\#11414](https://www.rudder-project.org/redmine/issues/11414))
-  - Fixed: Dead link in doc
-    ([\#11579](https://www.rudder-project.org/redmine/issues/11579))
-  - Fixed: Missing documentation on Directive ordering
-    ([\#11289](https://www.rudder-project.org/redmine/issues/11289))
-  - Fixed: Wrong formatting in doc to build agent
-    ([\#11274](https://www.rudder-project.org/redmine/issues/11274))
-
-#### Agent
-
-  - Fixed: Xen domU detection issues with pvops kernels.
-    ([\#10787](https://www.rudder-project.org/redmine/issues/10787))
-  - Fixed: Inventory uploaded multiple times after reinit
-    ([\#11580](https://www.rudder-project.org/redmine/issues/11580))
-
-#### Packaging
-
-  - Fixed: Error at installation of Rudder 4.1 on centos 6
-    ([\#11628](https://www.rudder-project.org/redmine/issues/11628))
-  - Fixed: Build on Deb7 and ubuntu14.04 fails because jdk8u144 is unavalaible
-    ([\#11626](https://www.rudder-project.org/redmine/issues/11626))
-  - Fixed: We should not try to edit /etc/cron.d/rudder-agent on AIX
-    ([\#11595](https://www.rudder-project.org/redmine/issues/11595))
-  - Fixed: Warning about zip dependency is at top of installation of plugin
-    ([\#11398](https://www.rudder-project.org/redmine/issues/11398))
-  - Fixed: Plugin postint are not run after a rudder upgrade
-    ([\#11430](https://www.rudder-project.org/redmine/issues/11430))
-  - Fixed: rudder-techniques requires a recent ncf version
-    ([\#11411](https://www.rudder-project.org/redmine/issues/11411))
-  - Fixed: Cannot save plugin status during initial install
-    ([\#11395](https://www.rudder-project.org/redmine/issues/11395))
-  - Fixed: When ugrading Rudder, the Windows plugins is not enabled anymore
-    ([\#11385](https://www.rudder-project.org/redmine/issues/11385))
-  - Fixed: PORT in /etc/default/rudder-slapd is ignored
-    ([\#11331](https://www.rudder-project.org/redmine/issues/11331))
-
-#### Initial promises & sys tech
-
-  - Fixed: Tidy expected reports does have a too big TTL
-    ([\#11591](https://www.rudder-project.org/redmine/issues/11591))
-  - Fixed: Error message on classical windows agent when getting environement variable
-    ([\#11435](https://www.rudder-project.org/redmine/issues/11435))
-
-#### API
-
-  - Fixed: Archives API list returns date with wrong format
-    ([\#11408](https://www.rudder-project.org/redmine/issues/11408))
-
-#### Techniques
-
-  - Fixed: Allow variable as directive parameters in regexp validated inputs 
-    ([\#11449](https://www.rudder-project.org/redmine/issues/11449))
-  - Fixed: generic_variable_definition inserts spaces in multi lined values
-    ([\#11613](https://www.rudder-project.org/redmine/issues/11613))
-  - Fixed: group management technique doesn't ensure optional user is in group
-    ([\#8739](https://www.rudder-project.org/redmine/issues/8739))
-  - Fixed: Incomplete description of the behaviour of technique copyGitFile, that may result in broken permissions of whole folder
-    ([\#11422](https://www.rudder-project.org/redmine/issues/11422))
-  - Fixed: File content (key/value format) technique allows white space before separator but not after it
-    ([\#11087](https://www.rudder-project.org/redmine/issues/11087))
-
-### Release notes
-
-Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
-
- * Janos Mattyasovszky
- * Florian Heigl
- * Hamlyn Mootoo
-
-This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
 ## Rudder 4.1.0.rc1 (2017-03-07)
 
