@@ -1,4 +1,4 @@
-# Change logs for Rudder 3.1.\* versions
+# General information
 
 Rudder 3.1 is currently a maintained **'ESR' (Extended Support Release)**
 version of Rudder, with an End of Life planned the 22th December 2017.
@@ -60,6 +60,8 @@ This version provides packages for these operating systems:
     RHEL/CentOS 3, RHEL/CentOS 5, Fedora 18, SLES 10, SLES 12 Ubuntu
     10.04, Ubuntu 12.10**
   - Rudder agent (non-free): **Windows Server 2008-2012**, **AIX 5-6-7**
+
+# Changelogs
 
 ## <a name="3.1.23" > </a> Rudder 3.1.23 (2017-09-07)
 

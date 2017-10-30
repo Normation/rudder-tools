@@ -1,5 +1,5 @@
 
-# Change logs for Rudder 4.2.\* versions
+# General information
 
 Rudder 4.2 is currently the latest version of Rudder.
 
@@ -41,6 +41,8 @@ This version provides packages for these operating systems:
 **Note**: As of Rudder 4.2, the rudder server and relay packages are no longer available on Debian 7
 and the rudder-agent-thin and rudder-server-relay packages are
 no longer available in Ubuntu 12.04.
+
+# Changelogs
 
 ## <a name="4.2.0" > </a> Rudder 4.2.0 (2017-09-28)
 

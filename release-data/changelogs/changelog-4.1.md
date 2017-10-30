@@ -1,4 +1,4 @@
-# Change logs for Rudder 4.1.\* versions
+# General information
 
 Rudder 4.1 is currently a maintained **'ESR' (Extended Support Release)** of Rudder.
 
@@ -49,6 +49,8 @@ This version provides packages for these operating systems:
 **Note**: As of Rudder 4.1, the rudder-agent-thin and rudder-server-relay packages are
 no longer available in Debian 5, Debian 6, Ubuntu 10.04, Ubuntu 12.10, Fedora 18, 
 RHEL/CentOS 3 and RHEL/CentOS 5
+
+# Changelogs
 
 ## <a name="4.1.8" > </a> Rudder 4.1.8 (2017-10-26)
 
