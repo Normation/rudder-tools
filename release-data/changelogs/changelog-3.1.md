@@ -63,6 +63,83 @@ This version provides packages for these operating systems:
 
 # Changelogs
 
+## <a name="3.1.24" > </a> Rudder 3.1.24 (2017-10-30)
+
+### Changes
+
+#### Initial promises & sys tech
+
+  - Do not send inventory if a forwarder/uploader daemon exists
+    ([\#11257](https://www.rudder-project.org/redmine/issues/11257))
+
+#### Techniques
+
+  - UserManagement technique does not allow to change the gid of an existing user
+    ([\#11596](https://www.rudder-project.org/redmine/issues/11596))
+
+### Bug fixes
+
+#### Web - Nodes & inventories
+
+  - Fixed: Groups are not reloaded after restoring from archive
+    ([\#11244](https://www.rudder-project.org/redmine/issues/11244))
+
+#### Web - Config management
+
+  - Fixed: Parameter name requires at least 3 characters
+    ([\#11588](https://www.rudder-project.org/redmine/issues/11588))
+  - Fixed: There is no way to remove a Directive based on a Technique that no longer exists
+    ([\#5203](https://www.rudder-project.org/redmine/issues/5203))
+
+#### Documentation
+
+  - Fixed: Manually restoring permissions for NCF after archive import is broken
+    ([\#11414](https://www.rudder-project.org/redmine/issues/11414))
+  - Fixed: Dead link in doc
+    ([\#11579](https://www.rudder-project.org/redmine/issues/11579))
+  - Fixed: Missing documentation on Directive ordering
+    ([\#11289](https://www.rudder-project.org/redmine/issues/11289))
+
+#### Agent
+
+  - Fixed: Xen domU detection issues with pvops kernels.
+    ([\#10787](https://www.rudder-project.org/redmine/issues/10787))
+  - Fixed: Inventory uploaded multiple times after reinit
+    ([\#11580](https://www.rudder-project.org/redmine/issues/11580))
+
+#### Packaging
+
+  - Fixed: rudder-techniques requires a recent ncf version
+    ([\#11411](https://www.rudder-project.org/redmine/issues/11411))
+  - Fixed: PORT in /etc/default/rudder-slapd is ignored
+    ([\#11331](https://www.rudder-project.org/redmine/issues/11331))
+
+#### API
+
+  - Fixed: Archives API list returns date with wrong format
+    ([\#11408](https://www.rudder-project.org/redmine/issues/11408))
+
+#### Techniques
+
+  - Fixed: generic_variable_definition inserts spaces in multi lined values
+    ([\#11613](https://www.rudder-project.org/redmine/issues/11613))
+  - Fixed: group management technique doesn't ensure optional user is in group
+    ([\#8739](https://www.rudder-project.org/redmine/issues/8739))
+  - Fixed: Incomplete description of the behaviour of technique copyGitFile, that may result in broken permissions of whole folder
+    ([\#11422](https://www.rudder-project.org/redmine/issues/11422))
+  - Fixed: File content (key/value format) technique allows white space before separator but not after it
+    ([\#11087](https://www.rudder-project.org/redmine/issues/11087))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Janos Mattyasovszky
+ * Florian Heigl
+ * Hamlyn Mootoo
+
+This is a bug fix release in the 3.1 series and therefore all installations of 3.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="3.1.23" > </a> Rudder 3.1.23 (2017-09-07)
 
 ### Changes
