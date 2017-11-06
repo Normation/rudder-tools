@@ -71,8 +71,7 @@ arch-dependent-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-invento
 
 # Internal components versions
 components = {
-               "cfengine": "3.10",
-               "ncf": "master",
+               "cfengine": "3.10"
              }
 
 # Agent versions you can use with this version's server
