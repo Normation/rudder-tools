@@ -562,62 +562,6 @@ This software is in beta status and contains several new features but we have te
 The use on production systems is not encouraged at this time and is at your own risk. However, we do encourage testing, and welcome all and any feedback!
 
 
-## <a name="4.2.2" > </a> Rudder 4.2.2 (2017-11-08)
-
-### Changes
-
-#### Packaging
-
-  - Change rudder-techniques ncf depdency to a correct version
-    ([\#11692](https://www.rudder-project.org/redmine/issues/11692))
-
-#### Web - UI & UX
-
-  - Can't edit a new Directive parameters, message "This directive has no parameters" displayed instead
-    ([\#11713](https://www.rudder-project.org/redmine/issues/11713))
-  - On Nodes table, put the link to node details on node's name instead of on magnifying glass icon
-    ([\#11643](https://www.rudder-project.org/redmine/issues/11643))
-  - Add a jumbotron next to Directives list
-    ([\#9354](https://www.rudder-project.org/redmine/issues/9354))
-
-#### Architecture - Refactoring
-
-  - Clean-up unused imports in rudder
-    ([\#11685](https://www.rudder-project.org/redmine/issues/11685))
-  - Make allocated memory for build configurable
-    ([\#11688](https://www.rudder-project.org/redmine/issues/11688))
-
-### Bug fixes
-
-#### Web - UI & UX
-
-  - Fixed: Some icons in the interface look pixelized on hidpi screens
-    ([\#11237](https://www.rudder-project.org/redmine/issues/11237))
-  - Fixed: Fix some CSS issues in Rule's compliance tables
-    ([\#11679](https://www.rudder-project.org/redmine/issues/11679))
-
-#### Initial promises & sys tech
-
-  - Fixed: rudder service and thus cf-execd is never restarted / ensure running
-    ([\#11303](https://www.rudder-project.org/redmine/issues/11303))
-
-#### System integration
-
-  - Fixed: Fusioninventory task Deploy is missing a dependency to File-Copy-Recursive
-    ([\#11701](https://www.rudder-project.org/redmine/issues/11701))
-  - Fixed: Update doc of hooks to add DSC mention and remove cfengine-nova
-    ([\#11671](https://www.rudder-project.org/redmine/issues/11671))
-
-#### Documentation
-
-  - Fixed: fetch git branch before checkout when building rudder-doc
-    ([\#11697](https://www.rudder-project.org/redmine/issues/11697))
-  - Fixed: Use new ncf branches in rudder-doc
-    ([\#11693](https://www.rudder-project.org/redmine/issues/11693))
-  - Fixed: Remove all mention to CFEngine Enterprise in Rudder doc
-    ([\#11669](https://www.rudder-project.org/redmine/issues/11669))
-
-
 ## Rudder 4.2.0.beta2 (2017-07-12)
 
 ### Changes
