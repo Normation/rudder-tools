@@ -233,9 +233,13 @@ def date_diff(date1):
 
 if __name__ == "__main__":
   read_configuration()
+  if len(sys.argv)>1 and sys.argv[1] == "-p":
+    redmine="external"
+  else:
+    redmine="all"
 # PERSONAL overview
   # My TR + FR
-  format_issues("My reviews", {"assigned_to_id": "id", "status_id": "status_review"}, "full-pr")
+  format_issues("My reviews", {"assigned_to_id": "id", "status_id": "status_review"}, "full-pr", redmine=redmine)
   
   # My PR
   pulls = my_prs()
@@ -252,10 +256,10 @@ if __name__ == "__main__":
   format_full("My old PR without update", old)
 
   # My issues with priority 1
-  format_issues("My high priority issues", {"assigned_to_id": "id", "status_id": "status_todo", "priority_id": "priority_max"})
+  format_issues("My high priority issues", {"assigned_to_id": "id", "status_id": "status_todo", "priority_id": "priority_max"}, redmine=redmine)
 
   # My bugs
-  format_issues("My bugs", {"assigned_to_id": "id", "tracker_id": "tracker_bug", "status_id": "status_todo"})
+  format_issues("My bugs", {"assigned_to_id": "id", "tracker_id": "tracker_bug", "status_id": "status_todo"}, redmine=redmine)
 
 # NORMATION overview
   # Quick and important
@@ -263,22 +267,22 @@ if __name__ == "__main__":
 
   # Assigned issues
   format_issues("Assigned Issues", {"assigned_to_id": "*", "status_id": "status_review"}, "count",
-                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=", redmine=redmine)
 
   # Unassigned issues
   format_issues("Unassigned Issues", {"assigned_to_id": "!*", "status_id": "status_review"}, "count",
-                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=", redmine=redmine)
 
   # Issues assigned to an extern
-  format_issues("Issues not assigned to Normation", {"assigned_to_id": "users_normation", "status_id": "status_todo"}, "count")
+  format_issues("Issues not assigned to Normation", {"assigned_to_id": "users_normation", "status_id": "status_todo"}, "count", redmine=redmine)
 
   # Assigned bugs
   format_issues("Assigned Bugs", {"assigned_to_id": "*", "tracker_id": "tracker_bug", "status_id": "status_todo"}, "count",
-                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=", redmine=redmine)
 
   # Unassigned bugs
   format_issues("Unassigned Bugs", {"assigned_to_id": "!*", "tracker_id": "tracker_bug", "status_id": "status_todo"}, "count",
-                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=")
+                "http://www.rudder-project.org/redmine/issues?utf8=%E2%9C%93&set_filter=1&f[]=status_id&op[status_id]=%3D&v[status_id][]=1&v[status_id][]=9&v[status_id][]=4&f[]=assigned_to_id&op[assigned_to_id]=!*&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]=1&f[]=&c[]=project&c[]=tracker&c[]=parent&c[]=status&c[]=priority&c[]=subject&c[]=author&c[]=assigned_to&c[]=category&c[]=fixed_version&group_by=", redmine=redmine)
 
 #  # PR waiting pas le même résultat -> Bug ?
 #  # https://github.com/issues?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+user%3ANormation+
