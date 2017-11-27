@@ -252,12 +252,10 @@ Config.LIFECYCLES = [ { "name": "rudder",
                  "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                  "format": "branches/rudder/{}",
-                 "redmine_version": [ (r'master|.*~alpha\d+', r'master'), (r'.*~prototype', r'prototype'), (r'(\d+\.\w\d*).*', r'\1') ],
                },
                { "name" : "master_only",
                  "detection": r'(.*)',
                  "format": "master",
-                 "redmine_version": [ (r'.*', r'master') ],
                },
              ]
 
@@ -288,8 +286,7 @@ def get_version(ticket, error_fail=True):
       exit(2)
     else:
       return None
-  detector = get_lifecycle()['redmine_version']
-  for k,v in detector:
+  for k,v in Config.REDMINE_VERSION_DETECTOR:
     if re.match(k, ticket['fixed_version']['name']):
       return re.sub(k, v, ticket['fixed_version']['name'])
   if error_fail:
@@ -562,7 +559,7 @@ def get_lifecycle():
 version_list = None
 version_dict = None
 # get the version list for a given project
-def get_versions():
+def get_versions(internal=False):
   global version_list, version_dict
   if version_list is not None:
     return (version_list, version_dict)
@@ -578,15 +575,14 @@ def get_versions():
       git_version_list.append(m.group(1))
 
   # list all versions using redmine
-  versions = requests.get(Config.REDMINE_API_URL + "/projects/" + lifecycle['name'] + "/versions.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
+  server = Redmine(False)
   redmine_version_list = []
   version_dict = {}
-  for version in versions.json()['versions']:
+  for version in server.version_list(lifecycle['name']):
     if version['status'] != 'open':
       continue
-    detector = lifecycle['redmine_version']
     v = None
-    for k,val in detector:
+    for k,val in Config.REDMINE_VERSION_DETECTOR:
       if re.match(k, version['name']):
         v = re.sub(k, val, version['name'])
         break
@@ -610,8 +606,8 @@ def get_versions():
 
 
 # get the version after old
-def get_next_version(old):
-  all_versions = get_versions()[0]
+def get_next_version(old, internal=False):
+  all_versions = get_versions(internal)[0]
   new = None
   for idx, version in enumerate(all_versions):
     if old == version:

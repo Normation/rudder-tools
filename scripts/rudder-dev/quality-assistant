@@ -113,6 +113,7 @@ def list_repositories():
 
 
 def repo_merge(repo, alt_dir):
+  # Always merge PR with the label "Ready for merge"
   api_url = "https://api.github.com/repos/Normation/{repo}/issues?labels="+Config.PR_VALIDATED_LABEL
   url = api_url.format(repo=repo)
   data = github_call(url)
@@ -123,6 +124,46 @@ def repo_merge(repo, alt_dir):
         print("Skipping " + pr_info['html_url'] + " : marked as can't merge")
       continue
     pr_merge(repo, pr_info['html_url'], alt_dir)
+
+  # Merge approved PR only if we are not in freeze period
+  freeze = False
+  server = Redmine(False)
+  if server.has_locked_version('rudder'):
+    if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+      print("Freeze period, approved PR won't be merged !")
+    freeze = True
+
+  # List approved PR
+  api_url = "https://api.github.com/repos/Normation/{repo}/pulls?state=open"
+  url = api_url.format(repo=repo)
+  data = github_call(url)
+  for pr_info in data:
+    # list reviews of this PR (always in chronological order)
+    api_url = "https://api.github.com/repos/Normation/{repo}/pulls/{id}/reviews"
+    url = api_url.format(repo=repo, id=data["number"])
+    status = {}
+    for review in github_call(url):
+      # for each reviewer, get the last status given and filter out comments
+      if review['state'] == "APPROVED":
+        status[review['user']['login']] = True
+      if review['state'] == "REQUEST_CHANGES":
+        status[review['user']['login']] = False
+    # Skip PR without review
+    if len(status) == 0:
+      continue
+    change_requested = False in status.values()
+    # Reassign if a change is requested
+    if change_requested:
+      if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+        print("Reassigning unapproved PR: " + pr_info['html_url'])
+      reassign(pr_info['html_url'], Config.DISCUSSION_CODE)
+    # Merge approved PR outside of freeze period
+    elif not freeze:
+      if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+        print("Merging approved PR: " + pr_info['html_url'])
+      pr_merge(repo, pr_info['html_url'], alt_dir)
+    elif Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+      print("We are in freeze period, skipping PR: " + pr_info['html_url'])
 
 
 def reassign(pr, status):
@@ -142,7 +183,8 @@ def reassign(pr, status):
                 if field["value"] == pr.author():
                   uid = user ["id"]
       if uid != -1:
-        issue.to_status(status, uid)
+        if issue['assigned_to_id'] != uid:
+          issue.to_status(status, uid)
         return
  
 
@@ -171,9 +213,7 @@ After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
 -- Your faithful QA"""
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
-    # Reassign needs redmine.py Issue object which needs get_lifecycle, but it should not
-    # Re-enable after next refactoring
-    #reassign(pr, Config.DISCUSSION_CODE)
+    reassign(pr, Config.DISCUSSION_CODE)
   elif code != 0:
     # PR must be manually merged
     comment="""This PR is not mergeable to upper versions.
@@ -182,7 +222,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
 -- Your faithful QA"""
     pr.comment(comment)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    #reassign(pr, Config.PENDING_MERGE_CODE)
+    reassign(pr, Config.PENDING_MERGE_CODE)
   else:
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)

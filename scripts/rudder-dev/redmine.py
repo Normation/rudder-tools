@@ -27,6 +27,8 @@ Config.BUG_TACKER_ID = 1
 Config.PENDING_MERGE_CODE = 12
 Config.DISCUSSION_CODE = 4
 
+Config.REDMINE_VERSION_DETECTOR = [ (r'master|.*~alpha\d+', r'master'), (r'4.2.0~prototype', r'prototype'), (r'(\d+\.\w\d*).*', r'\1') ]
+
 class Issue:
   """Class to hold informations about a single issue"""
   def __init__(self, name, must_be_open=True):
@@ -71,8 +73,7 @@ class Issue:
         exit(2)
       else:
         return None
-    detector = get_lifecycle()['redmine_version']
-    for k,v in detector:
+    for k,v in Config.REDMINE_VERSION_DETECTOR:
       if re.match(k, issue_info['fixed_version']['name']):
         return (issue_info['fixed_version']['id'], re.sub(k, v, issue_info['fixed_version']['name']))
     if error_fail:
@@ -136,6 +137,8 @@ class Issue:
       info['category_id'] = issue['category']['id']
     if 'is_private' in issue:
       info['is_private'] = issue['is_private']
+    if 'assigned_to' in issue:
+      info['assigned_to_id'] = issue['assigned_to']['id']
     if 'custom_fields' in issue:
       for field in issue['custom_fields']:
         if field['id'] == self.custom_field_pr and 'value' in field and field['value'] is not None and field['value'] != '':
@@ -184,8 +187,7 @@ class Issue:
       info = { 'issue': { 'notes': alt_message } }
 
     # send info
-    url = self.api_url + "/issues/" + str(self.id) + ".json"
-    ret = requests.put(url, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data=json.dumps(info) )
+    ret = self.server._query("/issues/" + str(self.id) + ".json", data=json.dumps(info))
     if ret.status_code != 200:
       logfail("Issue Update error: " + ret.reason)
       print(ret.text)
@@ -273,6 +275,7 @@ class Redmine:
       self.nrm_group = Config.REDMINE_NRM_GROUP
 
   def _query(self, query, post_data=None):
+    """ Function to directly request the right redmine server """
     if post_data is None:
       ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token })
     else:
@@ -285,6 +288,7 @@ class Redmine:
     return self._create_issue(new_info)
 
   def _create_issue(self, new_info):
+    """ Private method for use just above, do not call """
     ticket_json = json.dumps({ 'issue': new_info })
     ret = self._query("/issues.json", ticket_json)
     if ret.status_code != 201:
@@ -297,8 +301,8 @@ class Redmine:
       new_id = str(ret.json()['issue']['id'])
     return Issue(new_id)
 
-  # Return true if the current user can modify an issue in the given project
   def can_modify_issues(self, project_id):
+    """ Return true if the current user can modify an issue in the given project """
     if self.can_modify is not None:
       return self.can_modify
     user = self._query("/users/current.json?include=memberships").json()
@@ -314,6 +318,15 @@ class Redmine:
   def list_nrm_users(self):
     return self._query("/users.json?group_id=" + str(self.nrm_group))['users']
 
+  def version_list(self, project):
+    """ Return a list of version as given by the redmine API """
+    return self._query("/projects/" + lifecycle['name'] + "/versions.json").json()['versions']
+
+  def has_locked_version(self, project):
+    """ True if there is at least one locked version for this project """
+    for v in self.version_list(self, project):
+      if v['status'] == "locked":
+        return True
 
 def issue_from_branch(branch):
   """Create issue object from given branch"""
