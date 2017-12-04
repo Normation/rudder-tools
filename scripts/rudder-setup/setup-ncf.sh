@@ -3,14 +3,15 @@
 ###############################
 get_cfengine_url() {
   VERSION="$1"
+  ARCH=$(arch)
   if [ "${PM}" = "apt" ]
   then
-    ARCH=$(dpkg --print-architecture)
-    echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community_${VERSION}-1_${ARCH}.deb"
+    DEBARCH=$(dpkg --print-architecture)
+    echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/Community-${VERSION}/agent_deb_${ARCH}/cfengine-community_${VERSION}-1_${DEBARCH}-debian4.deb"
   elif [ "${PM}" = "yum" ] || [ "${PM}" = "zypper" ]
   then
     ARCH=$(arch)
-    echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/cfengine-community-${VERSION}-1.${ARCH}.rpm"
+    echo "https://cfengine-package-repos.s3.amazonaws.com/community_binaries/Community-${VERSION}/agent_rpm_${ARCH}/cfengine-community-${VERSION}-1.el4.${ARCH}.rpm"
   fi
 }
 
