@@ -138,6 +138,11 @@ def repo_merge(repo, alt_dir):
   url = api_url.format(repo=repo)
   data = github_call(url)
   for pr_info in data:
+    labels = [l['name'] for l in pr_info['labels']]
+    if Config.BOT_CANNOT_MERGE_LABEL in labels and not Config.force:
+      if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+        print("Skipping " + pr_info['html_url'] + " : marked as can't merge")
+      continue
     pr = PR(pr_info['html_url'])
     approved = pr.review_approval()
     if approved is None:

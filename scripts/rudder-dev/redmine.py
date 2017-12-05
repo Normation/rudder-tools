@@ -1,6 +1,7 @@
 from __future__ import print_function
 import sys
 import requests
+import json
 
 # trick to make fake import compatible with regular import
 if 'Config' not in vars():
@@ -145,7 +146,7 @@ class Issue:
           info['pr'] = field['value']
 
     # Get ticket's last assignment besides me
-    my_id = get_redmine_uid()
+    my_id = self.server.get_redmine_uid()
     if 'journals' in issue:
       for journal in issue['journals']:
         if 'details' in journal:
@@ -187,7 +188,7 @@ class Issue:
       info = { 'issue': { 'notes': alt_message } }
 
     # send info
-    ret = self.server._query("/issues/" + str(self.id) + ".json", data=json.dumps(info))
+    ret = self.server._query("/issues/" + str(self.id) + ".json", post_data=json.dumps(info))
     if ret.status_code != 200:
       logfail("Issue Update error: " + ret.reason)
       print(ret.text)
@@ -328,12 +329,18 @@ class Redmine:
       if v['status'] == "locked":
         return True
 
+  def get_redmine_uid(self):
+    """ Get current redmine user """
+    user = self._query("/users/current.json")
+    return user.json()['user']['id']
+
 def issue_from_branch(branch):
-  """Create issue object from given branch"""
+  """ Create issue object from given branch """
   match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
   if match:
     return Issue(match.group(1))
   else:
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
+
 
