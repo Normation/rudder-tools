@@ -138,7 +138,7 @@ def repo_merge(repo, alt_dir):
   url = api_url.format(repo=repo)
   data = github_call(url)
   for pr_info in data:
-    pr = PR(data['html_url'])
+    pr = PR(pr_info['html_url'])
     approved = pr.review_approval()
     if approved is None:
       continue

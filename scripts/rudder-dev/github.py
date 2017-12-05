@@ -125,7 +125,7 @@ class PR:
   def review_approval(self):
     """ Returns True (approved), False (not approved) or None (no review) """
     # list reviews of this PR (always in chronological order)
-    url = "https://api.github.com/repos/Normation/{repo}/pulls/{id}/reviews"
+    url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}/reviews"
     data = github_request(url, "Getting review status", self.url, repo=self.repo_name)
     status = {}
     for review in data:

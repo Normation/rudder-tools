@@ -316,11 +316,11 @@ class Redmine:
     return False
   
   def list_nrm_users(self):
-    return self._query("/users.json?group_id=" + str(self.nrm_group))['users']
+    return self._query("/users.json?group_id=" + str(self.nrm_group)).json()['users']
 
   def version_list(self, project):
     """ Return a list of version as given by the redmine API """
-    return self._query("/projects/" + lifecycle['name'] + "/versions.json").json()['versions']
+    return self._query("/projects/" + project + "/versions.json").json()['versions']
 
   def has_locked_version(self, project):
     """ True if there is at least one locked version for this project """
