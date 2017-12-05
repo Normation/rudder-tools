@@ -2,7 +2,7 @@
 
 # This script will generate reports and insert them in the database
 
-# This script is compatible Rudder 4.0+
+# This script is compatible Rudder 4.0 and 4.1
 # It function by reading all nodeconfigurations, and generating reports 
 # with randomized timestamps 
 
@@ -16,10 +16,11 @@ password = 'Normation'
 database = 'rudder'
 port_database = 5432
 
-# Proportion of repaired and error reports
-# Betweeen 0 (no repair) and 1 (only repair reports)
+# Proportion of repaired, error and non-compliant reports
+# Betweeen 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.3
 error_proportion = 0.2
+non_compliant_proportion = 0.1
 
 import psycopg2
 import json
@@ -99,16 +100,29 @@ for nodeid, config, begindate, configuration in cur.fetchall():
         write = myConnection.cursor()
 
         for directives in rules['directives']:
+            audit = False
+            if 'policyMode' in directives.keys():
+                if directives['policyMode'] == 'audit':
+                    audit = True
+
             for components in directives['components']:
                 for value in components['values']:
                     # randomize the reports to have also error and repaired
                     randomValue = random.random()
-                    if (randomValue > (1 - repair_proportion)):
-                      status = 'result_repaired'
-                    elif (randomValue > (1 - repair_proportion - error_proportion)):
-                      status = 'result_error'
+                    if audit ==  False:
+                        if (randomValue > (1 - repair_proportion)):
+                          status = 'result_repaired'
+                        elif (randomValue > (1 - repair_proportion - error_proportion)):
+                          status = 'result_error'
+                        else:
+                          status = 'result_success'
                     else:
-                      status = 'result_success'
+                        if (randomValue > (1-non_compliant_proportion)):
+                            status = 'audit_noncompliant'
+                        elif (randomValue > (1 - non_compliant_proportion - error_proportion)):
+                            status = 'audit_error'
+                        else:
+                            status = 'audit_compliant'
 
                     write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
                     #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
