@@ -324,7 +324,7 @@ class Redmine:
 
   def has_locked_version(self, project):
     """ True if there is at least one locked version for this project """
-    for v in self.version_list(self, project):
+    for v in self.version_list(project):
       if v['status'] == "locked":
         return True
 

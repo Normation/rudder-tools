@@ -122,6 +122,23 @@ class PR:
           })
     return comments
 
+  def review_approval(self):
+    """ Returns True (approved), False (not approved) or None (no review) """
+    # list reviews of this PR (always in chronological order)
+    url = "https://api.github.com/repos/Normation/{repo}/pulls/{id}/reviews"
+    data = github_request(url, "Getting review status", self.url, repo=self.repo_name)
+    status = {}
+    for review in data:
+      # for each reviewer, get the last status given and filter out comments
+      if review['state'] == "APPROVED":
+        status[review['user']['login']] = True
+      if review['state'] == "REQUEST_CHANGES":
+        status[review['user']['login']] = False
+    # Skip PR without review
+    if len(status) == 0:
+      return None
+    return not (False in status.values())
+
 
 # Get github user as used by the hub command
 def get_github_user():

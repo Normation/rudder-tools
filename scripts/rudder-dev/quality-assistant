@@ -138,22 +138,12 @@ def repo_merge(repo, alt_dir):
   url = api_url.format(repo=repo)
   data = github_call(url)
   for pr_info in data:
-    # list reviews of this PR (always in chronological order)
-    api_url = "https://api.github.com/repos/Normation/{repo}/pulls/{id}/reviews"
-    url = api_url.format(repo=repo, id=data["number"])
-    status = {}
-    for review in github_call(url):
-      # for each reviewer, get the last status given and filter out comments
-      if review['state'] == "APPROVED":
-        status[review['user']['login']] = True
-      if review['state'] == "REQUEST_CHANGES":
-        status[review['user']['login']] = False
-    # Skip PR without review
-    if len(status) == 0:
+    pr = PR(data['html_url'])
+    approved = pr.review_approval()
+    if approved is None:
       continue
-    change_requested = False in status.values()
     # Reassign if a change is requested
-    if change_requested:
+    if not approved:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
         print("Reassigning unapproved PR: " + pr_info['html_url'])
       reassign(pr_info['html_url'], Config.DISCUSSION_CODE)
