@@ -1777,7 +1777,10 @@ if __name__ == "__main__":
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['subtask']:
+    stash()
     subtask(arguments['<next_branch>'], arguments['--title'], arguments['--base'], arguments['--bug'])
+    unstash()
+    stash_info()
   elif arguments['wip']:
     wip()
   elif arguments['commit']:

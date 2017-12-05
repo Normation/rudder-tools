@@ -134,7 +134,7 @@ def repo_merge(repo, alt_dir):
     freeze = True
 
   # List approved PR
-  api_url = "https://api.github.com/repos/Normation/{repo}/pulls?state=open"
+  api_url = "https://api.github.com/repos/Normation/{repo}/issues?state=open"
   url = api_url.format(repo=repo)
   data = github_call(url)
   for pr_info in data:

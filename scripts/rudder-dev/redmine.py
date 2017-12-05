@@ -188,7 +188,7 @@ class Issue:
       info = { 'issue': { 'notes': alt_message } }
 
     # send info
-    ret = self.server._query("/issues/" + str(self.id) + ".json", post_data=json.dumps(info))
+    ret = self.server._query("/issues/" + str(self.id) + ".json", put_data=json.dumps(info))
     if ret.status_code != 200:
       logfail("Issue Update error: " + ret.reason)
       print(ret.text)
@@ -275,12 +275,14 @@ class Redmine:
       self.api_url = Config.REDMINE_API_URL
       self.nrm_group = Config.REDMINE_NRM_GROUP
 
-  def _query(self, query, post_data=None):
+  def _query(self, query, post_data=None, put_data=None):
     """ Function to directly request the right redmine server """
-    if post_data is None:
-      ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token })
-    else:
+    if post_data is not None:
       ret = requests.post(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = post_data)
+    elif put_data is None:
+      ret = requests.put(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = put_data)
+    else:
+      ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token })
     return ret
 
   def create_issue(self, project_id, subject, description, tracker_id, version_id):
