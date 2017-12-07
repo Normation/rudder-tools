@@ -1062,7 +1062,7 @@ def technique(version, message):
   # maintained technique list
   insert_line(basedir + "/maintained-techniques",
               techniquedir + "/" + last_version,
-              techniquedir + "/" + version)
+              techniquedir + "/" + version + "\n")
   shell("git add " + basedir + "/maintained-techniques", "Adding maintained-techniques")
 
   # commit
