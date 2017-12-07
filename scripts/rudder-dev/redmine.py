@@ -279,7 +279,7 @@ class Redmine:
     """ Function to directly request the right redmine server """
     if post_data is not None:
       ret = requests.post(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = post_data)
-    elif put_data is None:
+    elif put_data is not None:
       ret = requests.put(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = put_data)
     else:
       ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token })
