@@ -63,57 +63,6 @@ This version provides packages for these operating systems:
 
 # Changelogs
 
-## <a name="3.1.25" > </a> Rudder 3.1.25 (2017-12-11)
-
-### Changes
-
-#### Packaging
-
-  - Upgrade openssl to 1.0.2m
-    ([\#11734](https://www.rudder-project.org/redmine/issues/11734))
-  - Change rudder-techniques ncf depdency to a correct version
-    ([\#11692](https://www.rudder-project.org/redmine/issues/11692))
-
-### Bug fixes
-
-#### Initial promises & sys tech
-
-  - Fixed: Unexpected report for Send inventories to CMDB after #11257
-    ([\#11648](https://www.rudder-project.org/redmine/issues/11648))
-
-#### System integration
-
-  - Fixed: rudder-init fails to report memory errors from jetty start
-    ([\#8165](https://www.rudder-project.org/redmine/issues/8165))
-  - Fixed: When we have a /var full, Rudder LDAP or Postgres can be corrupted
-    ([\#11125](https://www.rudder-project.org/redmine/issues/11125))
-  - Fixed: Fusioninventory task Deploy is missing a dependency to File-Copy-Recursive
-    ([\#11701](https://www.rudder-project.org/redmine/issues/11701))
-  - Fixed: Duration of logrotate for /var/log/rudder/  is too long making /var/log too big
-    ([\#10912](https://www.rudder-project.org/redmine/issues/10912))
-
-#### Web - Maintenance
-
-  - Fixed: Null pointer exception when restoring group archive.
-    ([\#11805](https://www.rudder-project.org/redmine/issues/11805))
-
-#### Documentation
-
-  - Fixed: Archive REST section outdated for download ZIP archive
-    ([\#11650](https://www.rudder-project.org/redmine/issues/11650))
-  - Fixed: fetch git branch before checkout when building rudder-doc
-    ([\#11697](https://www.rudder-project.org/redmine/issues/11697))
-  - Fixed: Use new ncf branches in rudder-doc
-    ([\#11693](https://www.rudder-project.org/redmine/issues/11693))
-
-### Release notes
-
-Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
-
- * Janos Mattyasovszky
-
-This is a bug fix release in the 3.1 series and therefore all installations of 3.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
 ## <a name="3.1.24" > </a> Rudder 3.1.24 (2017-10-30)
 
 ### Changes
