@@ -36,7 +36,7 @@ nodes = {}
 
 
 def init_table():
-  print "Creating table oldconfig to store old config id"
+  print("Creating table oldconfig to store old config id")
   cur.execute("CREATE TABLE oldconfig (nodeid text NOT NULL CHECK (nodeId <> '') , nodeconfigid text NOT NULL );")
   myConnection.commit()
   exit(0)
