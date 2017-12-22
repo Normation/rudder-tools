@@ -1,8 +1,7 @@
 # General information
 
-Rudder 3.1 is currently a maintained **'ESR' (Extended Support Release)**
-version of Rudder, with an End of Life planned the 22th December 2017.
-It is codenamed **Frigate**.
+Rudder 3.1 has reached End of Life the 22th December 2017. This
+version is codenamed "Frigate".
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
