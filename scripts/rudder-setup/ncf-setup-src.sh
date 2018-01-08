@@ -67,6 +67,8 @@ case "${COMMAND}" in
     ;;
   "test-local")
 #    add_repo
+    # avoid sending a real inventory in tests
+    SERVER="localhost"
     setup_ncf
     test_ncf
     ;;
