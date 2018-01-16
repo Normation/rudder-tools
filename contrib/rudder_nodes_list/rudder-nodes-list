@@ -76,8 +76,8 @@ for node in sorted(nodes):
   # Vars
   node_id        = node["id"]
   host_name      = node["hostname"]
-  mach_type      = node["machineType"]
-  oper_sys       = node["osName"] + " " + node["osVersion"]
+  mach_type      = node["machine"]["type"]
+  oper_sys       = node["os"]["name"] + " " + node["os"]["version"]
   rudder_version = rudder_versions[node_id]
 
   # Indexing is zero based, row then column
