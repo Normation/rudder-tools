@@ -3,7 +3,7 @@
 release = "4.3"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 # Is this version currently supported?
 supported = false
@@ -20,10 +20,8 @@ architectures = {
                   "debian-9":     [ "i386", "amd64" ],
                   "ubuntu-10.04": [ "i386", "amd64" ],
                   "ubuntu-12.04": [ "i386", "amd64" ],
-                  "ubuntu-12.10": [ "i386", "amd64" ],
                   "ubuntu-14.04": [ "i386", "amd64" ],
                   "ubuntu-16.04": [ "i386", "amd64" ],
-                  "fedora-18":    [ "i386", "amd64" ],
                   "rhel-3":       [ "i386", "amd64" ],
                   "rhel-5":       [ "i386", "amd64" ],
                   "rhel-6":       [ "i386", "amd64" ],
@@ -44,10 +42,8 @@ roles = {
           "debian-9":     [ "agent-allinone", "agent-thin", "relay", "server" ],
           "ubuntu-10.04": [ "agent-allinone" ],
           "ubuntu-12.04": [ "agent-allinone" ],
-          "ubuntu-12.10": [ "agent-allinone" ],
           "ubuntu-14.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
           "ubuntu-16.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
-          "fedora-18":    [ "agent-allinone" ],
           "rhel-3":       [ "agent-allinone" ],
           "rhel-5":       [ "agent-allinone" ],
           "rhel-6":       [ "agent-allinone", "agent-thin", "relay", "server" ],
