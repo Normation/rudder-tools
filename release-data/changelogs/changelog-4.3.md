@@ -35,15 +35,14 @@ This version provides packages for these operating systems:
   - Rudder server and Rudder relay: **Debian 8, Debian 9, RHEL/CentOS 6, RHEL/CentOS 7
     (64 bits), SLES 11, SLES 12, Ubuntu 14.04, Ubuntu 16.04**
   - Rudder agent: all of the above plus **Debian 5, Debian 6, Debian 7
-    RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), Fedora 18, SLES
-    10, SLES 12, Ubuntu 10.04, Ubuntu 12.04, Ubuntu 12.10**
+    RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), SLES
+    10, SLES 12, Ubuntu 10.04, Ubuntu 12.04**
   - Rudder agent (binary packages available from
     ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
     AIX 5-6-7**
 
-**Note**: As of Rudder 4.2, the rudder server and relay packages are no longer available on Debian 7
-and the rudder-agent-thin and rudder-server-relay packages are
-no longer available in Ubuntu 12.04.
+**Note**: As of Rudder 4.3, the rudder agent packages are no longer available on Fedora 18
+and Ubuntu 12.10.
 
 # Changelogs
 
