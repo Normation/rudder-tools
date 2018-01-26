@@ -77,6 +77,13 @@ service_cmd() {
     name="$1"
     shift
     "/etc/init.d/${name}" "$@"
+  elif type systemctl >/dev/null 2>/dev/null
+  then
+    name="$1"
+    shift
+    cmd="$2"
+    shift
+    systemctl "${cmd}" "${name}" "$@"
   else
     service "$@"
   fi
