@@ -12,9 +12,9 @@ and rc versions are listed below for convenience.
   - **Multi version/mode Directives:** You can now apply Directives with different versions and diffrent policy mode. This allow easy migration (to a new version, from Audit to Enforce) that was previously impossible.
   - **Autorization system for API accounts:** Choose between read-only or full access. Finely grained authorisation will go in a plugin.
   - **Node properties from inventory:** Nodes properties can be automatically provided by the inventory made on the node.
-  - Complete IPv6 support by default.
   - **Node lifecycle:** You can define a state for each Node managed by Rudder (provisionning, pending removal, disabled etc.). This can be used to build groups and apply configuration according to the Node current state. Also disabled Nodes are not counted in compliance reports, so you are not bothered by offline Nodes when checking compliance.
   - **Group based on Groups**: You can now define that a Group should contain the Nodes of another Group, making it easier to manage a complex set of Nodes.
+  - **IPv6 support by default:** Rudder is now completely compatible with IPv6 on the agent side as well as server side.
   - **Hooks on techniques:** You can add pre- and post- hooks in your techniques that will be executed once per technique, even if you applied it in several directives. Another tool in your hands when you wrtie your own techniques.
   - **Use system Perl:** On recent systems, rudder-agent does not embed Perl anymore, so it uses an up to date version of Perl more integrated to your system. On a side note, it makes easier to build a rudder-agent package (which size goes down from 12Mb to 4Mb!).
   - **Rudder agent services based on systemd:** On systemd based os, we switched from SysV init system to systemd, to make rudder-agent more integrated to your system.
