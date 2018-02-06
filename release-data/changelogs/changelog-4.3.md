@@ -8,20 +8,20 @@ and rc versions are listed below for convenience.
 
 **Main new features in Rudder 4.3:**
 
-  - **Technique Parameters:** You can now add parameters to your Techniques created with the technique editor. The value of theses parameters will be set in Directives, making your techniques much more versatile and expressive and them access to feature that were only available to classic techniques.
-  - **Multi version/mode Directives:** You can now apply Directives with different versions and diffrent policy mode. This allow easy migration (to a new version, from Audit to Enforce) that was previously impossible.
-  - **Autorization system for API accounts:** Choose between read-only or full access. Finely grained authorisation will go in a plugin.
-  - **Node properties from inventory:** Nodes properties can be automatically provided by the inventory made on the node.
-  - **Node lifecycle:** You can define a state for each Node managed by Rudder (provisionning, pending removal, disabled etc.). This can be used to build groups and apply configuration according to the Node current state. Also disabled Nodes are not counted in compliance reports, so you are not bothered by offline Nodes when checking compliance.
+  - **Technique Parameters:** You can now add parameters to your Techniques created with the Technique editor. The value of theses parameters will be set in Directives, making your Techniques much more versatile and expressive and them access to feature that were only available to classic Techniques.
+  - **Multi version/mode Directives:** You can now apply Directives with different versions and different policy mode. This allow easy migration (to a new version, from Audit to Enforce) that was previously impossible.
+  - **Authorization system for API accounts:** Choose between read-only or full access. A plugin will be available soon in order to allow you more finely grained authorization.
+  - **Node properties from inventory:** Nodes properties can be automatically provided by the inventory data from the node.
+  - **Node lifecycle:** You can define a state for each Node managed by Rudder (provisioning, pending removal, disabled etc.). This can be used to build groups and apply configuration according to the Node current state. Also disabled Nodes are not counted in compliance reports, so you are not bothered by offline Nodes when checking compliance.
   - **Group based on Groups**: You can now define that a Group should contain the Nodes of another Group, making it easier to manage a complex set of Nodes.
   - **IPv6 support by default:** Rudder is now completely compatible with IPv6 on the agent side as well as server side.
-  - **Hooks on techniques:** You can add pre- and post- hooks in your techniques that will be executed once per technique, even if you applied it in several directives. Another tool in your hands when you wrtie your own techniques.
+  - **Hooks on Techniques:** You can add pre- and post- hooks in your Techniques that will be executed once per Technique, even if you applied it in several directives. Another tool in your hands when you write your own Techniques.
   - **Use system Perl:** On recent systems, rudder-agent does not embed Perl anymore, so it uses an up to date version of Perl more integrated to your system. On a side note, it makes easier to build a rudder-agent package (which size goes down from 12Mb to 4Mb!).
   - **Rudder agent services based on systemd:** On systemd based os, we switched from SysV init system to systemd, to make rudder-agent more integrated to your system.
   - **Time all action made by the agent:** A new option (-T) added to "rudder agent" command line, to display how long an action took and find what makes a run slow.
-  - **Renaming of all generic methods:** We changed for a clearer and more logic name scheme in all our generic methods in the technique editor. 
-  - **Simplified logger for techniques:** We changed the way we do reporting for techniques from technique editor with a really simpler way, which should be faster and also fix some reporting issues (ie: when you use variables in your reports).
-  - **Plenty of library updates / cleaning / architechture changes**: Either on web app or in rudder-agent we upgraded some dependencies, refactor some code, to provide you a more secure, maintenable and faster Rudder.
+  - **Renaming of all generic methods:** We changed for a clearer and more logic name scheme in all our generic methods in the Technique editor. 
+  - **Simplified logger for Techniques:** We changed the way we do reporting for Techniques from Technique editor with a really simpler way, which should be faster and also fix some reporting issues (ie: when you use variables in your reports).
+  - **Plenty of library updates / cleaning / architecture changes**: Either on web app or in rudder-agent we upgraded some dependencies, refactored some code, to provide you a more secure, maintainable and faster Rudder.
 
 **Installing, upgrading and testing**
 
@@ -69,11 +69,11 @@ and Ubuntu 12.10.
 
 #### Technique editor - API
 
-  - Use a fixed size font in the technique editor parameters
+  - Use a fixed size font in the Technique editor parameters
     ([\#11895](https://www.rudder-project.org/redmine/issues/11895))
   - no reporting if value to report contains a variable
     ([\#11913](https://www.rudder-project.org/redmine/issues/11913))
-  - Add support to parameters in ncf techniques written with ncf builder
+  - Add support to parameters in ncf Techniques written with ncf builder
     ([\#5673](https://www.rudder-project.org/redmine/issues/5673))
 
 #### Web - Nodes & inventories
@@ -87,9 +87,9 @@ and Ubuntu 12.10.
 
 #### Web - Config management
 
-  - Add common pre- and post- agent run action triggered by technique logic
+  - Add common pre- and post- agent run action triggered by Technique logic
     ([\#11858](https://www.rudder-project.org/redmine/issues/11858))
-  - Don't merge directive from same technique on generation
+  - Don't merge directive from same Technique on generation
     ([\#10625](https://www.rudder-project.org/redmine/issues/10625))
 
 #### Generic methods - File Management
@@ -146,12 +146,12 @@ and Ubuntu 12.10.
     ([\#11733](https://www.rudder-project.org/redmine/issues/11733))
   - Upgrade to Jetty9
     ([\#11647](https://www.rudder-project.org/redmine/issues/11647))
-  - Create a rudder server upgrade-techniques commands
+  - Create a rudder server upgrade-Techniques commands
     ([\#11059](https://www.rudder-project.org/redmine/issues/11059))
 
 #### Initial promises & sys tech
 
-  - Remove old package promises from system techniques
+  - Remove old package promises from system Techniques
     ([\#11717](https://www.rudder-project.org/redmine/issues/11717))
 
 #### API
@@ -200,9 +200,9 @@ and Ubuntu 12.10.
 
 #### Technique editor - API
 
-  - Fixed: If change message is mandatory, we cannot update technique with technique editor
+  - Fixed: If change message is mandatory, we cannot update Technique with Technique editor
     ([\#12008](https://www.rudder-project.org/redmine/issues/12008))
-  - Fixed: Saving a technique in the technique editor in IE11 fails
+  - Fixed: Saving a Technique in the Technique editor in IE11 fails
     ([\#11894](https://www.rudder-project.org/redmine/issues/11894))
 
 #### Web - Config management
@@ -226,7 +226,7 @@ and Ubuntu 12.10.
 
 #### Web - Technique editor
 
-  - Fixed: Set flag to reload ncf technique through Rudder during update
+  - Fixed: Set flag to reload ncf Technique through Rudder during update
     ([\#12005](https://www.rudder-project.org/redmine/issues/12005))
 
 #### Web - Nodes & inventories
@@ -279,7 +279,7 @@ and Ubuntu 12.10.
     ([\#12074](https://www.rudder-project.org/redmine/issues/12074))
   - Fixed: typo in rudder-server relay package install output
     ([\#12064](https://www.rudder-project.org/redmine/issues/12064))
-  - Fixed: Reload of techniques after update throught technique editor should only be done by Rudder, remove reload.sh hook
+  - Fixed: Reload of Techniques after update throught Technique editor should only be done by Rudder, remove reload.sh hook
     ([\#12010](https://www.rudder-project.org/redmine/issues/12010))
   - Fixed: Upgrade Java version used when building webapp on old debian versions, since oracle jvm links has changed
     ([\#11981](https://www.rudder-project.org/redmine/issues/11981))
@@ -332,11 +332,11 @@ and Ubuntu 12.10.
 
 #### Techniques
 
-  - Fixed: The technique file copy from shared folder reports file source instead of file destination
+  - Fixed: The Technique file copy from shared folder reports file source instead of file destination
     ([\#6564](https://www.rudder-project.org/redmine/issues/6564))
-  - Fixed: Group management technique silently changes the group gid
+  - Fixed: Group management Technique silently changes the group gid
     ([\#11863](https://www.rudder-project.org/redmine/issues/11863))
-  - Fixed: Typo in services technique preventing persisting post-hook
+  - Fixed: Typo in services Technique preventing persisting post-hook
     ([\#11861](https://www.rudder-project.org/redmine/issues/11861))
 
 ### Release notes
