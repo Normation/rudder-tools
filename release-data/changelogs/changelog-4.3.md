@@ -8,13 +8,20 @@ and rc versions are listed below for convenience.
 
 **Main new features in Rudder 4.3:**
 
-  - Ability to have directives from the same technique with different versions or policy mode on the same node.
-  - Autorization system for API accounts
-  - The techniques created with the technique editor can now have parameters
-  - The reporting in techniques created with the technique editor now works even when using variables as parameters
-  - Ability to add custom data to the inventory on the node side
-  - Complete IPv6 support by default
-  - Node lifecycles that allow different behavior depending on the node state (provisionning, pending removal, etc.)
+  - **Technique Parameters:** You can now add parameters to your Techniques created with the technique editor. The value of theses parameters will be set in Directives, making your techniques much more versatile and expressive and them access to feature that were only available to classic techniques.
+  - **Multi version/mode Directives:** You can now apply Directives with different versions and diffrent policy mode. This allow easy migration (to a new version, from Audit to Enforce) that was previously impossible.
+  - **Autorization system for API accounts:** Choose between read-only or full access. Finely grained authorisation will go in a plugin.
+  - **Node properties from inventory:** Nodes properties can be automatically provided by the inventory made on the node.
+  - Complete IPv6 support by default.
+  - **Node lifecycle:** You can define a state for each Node managed by Rudder (provisionning, pending removal, disabled etc.). This can be used to build groups and apply configuration according to the Node current state. Also disabled Nodes are not counted in compliance reports, so you are not bothered by offline Nodes when checking compliance.
+  - **Group based on Groups**: You can now define that a Group should contain the Nodes of another Group, making it easier to manage a complex set of Nodes.
+  - **Hooks on techniques:** You can add pre- and post- hooks in your techniques that will be executed once per technique, even if you applied it in several directives. Another tool in your hands when you wrtie your own techniques.
+  - **Use system Perl:** On recent systems, rudder-agent does not embed Perl anymore, so it uses an up to date version of Perl more integrated to your system. On a side note, it makes easier to build a rudder-agent package (which size goes down from 12Mb to 4Mb!).
+  - **Rudder agent services based on systemd:** On systemd based os, we switched from SysV init system to systemd, to make rudder-agent more integrated to your system.
+  - **Time all action made by the agent:** A new option (-T) added to "rudder agent" command line, to display how long an action took and find what makes a run slow.
+  - **Renaming of all generic methods:** We changed for a clearer and more logic name scheme in all our generic methods in the technique editor. 
+  - **Simplified logger for techniques:** We changed the way we do reporting for techniques from technique editor with a really simpler way, which should be faster and also fix some reporting issues (ie: when you use variables in your reports).
+  - **Plenty of library updates / cleaning / architechture changes**: Either on web app or in rudder-agent we upgraded some dependencies, refactor some code, to provide you a more secure, maintenable and faster Rudder.
 
 **Installing, upgrading and testing**
 
@@ -200,8 +207,6 @@ and Ubuntu 12.10.
 
 #### Web - Config management
 
-  - Fixed: RudderUniqueID is not replaced  when used in OUTPATH
-    ([\#11862](https://www.rudder-project.org/redmine/issues/11862))
   - Fixed: Audit mode flag is not correctly set on DSC Techniques
     ([\#10974](https://www.rudder-project.org/redmine/issues/10974))
   - Fixed: Unhelpful error message when applying a tehcnique with invalid agent type to a node
@@ -278,8 +283,6 @@ and Ubuntu 12.10.
     ([\#12010](https://www.rudder-project.org/redmine/issues/12010))
   - Fixed: Upgrade Java version used when building webapp on old debian versions, since oracle jvm links has changed
     ([\#11981](https://www.rudder-project.org/redmine/issues/11981))
-  - Fixed: Broken server install on CentOS7 in 4.3
-    ([\#11965](https://www.rudder-project.org/redmine/issues/11965))
   - Fixed: Rudder root on SLES12 shows LDAP error during installation
     ([\#10454](https://www.rudder-project.org/redmine/issues/10454))
   - Fixed: Impossible to share policies to DSC Nodes with a SLES11 Server
