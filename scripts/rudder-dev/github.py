@@ -185,7 +185,7 @@ def github_request(api_url, comment, pr_url=None, post_data=None, repo=None, met
   url = api_url.format(repo=repo, pr_id=pr_id)
 
   # Say what we are doing
-  if comment is not None:
+  if comment is not None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info"):
     print(comment)
     call_on = ""
     if pr_url is not None:

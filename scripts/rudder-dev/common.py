@@ -33,7 +33,7 @@ class Config:
 # Run a command in a shell like a script would do
 # And inform the user of its execution
 def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=False):
-  if comment is not None:
+  if comment is not None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
     print(comment)
     print(" $ " + command)
   if keep_output or keep_error:
@@ -54,7 +54,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=F
     output = None
     error = None
   if fail_exit and retcode != 0:
-    if comment is None:
+    if comment is None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
       print(command)
     logfail("*** COMMAND ERROR " + str(retcode))
     if not Config.force:
@@ -113,6 +113,9 @@ def read_configuration(section=None):
   Config.REMOTE_PROTOCOL = get_config("remote_protocol", None, section)
   if Config.REMOTE_PROTOCOL is None:
     Config.REMOTE_PROTOCOL = "ssh"
+  Config.LOGLEVEL = get_config("loglevel", None, section) # verbose, info, error
+  if Config.LOGLEVEL is None:
+    Config.LOGLEVEL = info
 
 
 def get_config(item, error, section):
