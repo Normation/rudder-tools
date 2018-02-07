@@ -33,7 +33,7 @@ class Config:
 # Run a command in a shell like a script would do
 # And inform the user of its execution
 def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=False):
-  if comment is not None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+  if comment is not None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info"):
     print(comment)
     print(" $ " + command)
   if keep_output or keep_error:
@@ -54,7 +54,7 @@ def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=F
     output = None
     error = None
   if fail_exit and retcode != 0:
-    if comment is None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+    if comment is None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info"):
       print(command)
     logfail("*** COMMAND ERROR " + str(retcode))
     if not Config.force:
