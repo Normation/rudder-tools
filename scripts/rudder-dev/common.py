@@ -115,7 +115,7 @@ def read_configuration(section=None):
     Config.REMOTE_PROTOCOL = "ssh"
   Config.LOGLEVEL = get_config("loglevel", None, section) # verbose, info, error
   if Config.LOGLEVEL is None:
-    Config.LOGLEVEL = info
+    Config.LOGLEVEL = "info"
 
 
 def get_config(item, error, section):
