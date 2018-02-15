@@ -1042,11 +1042,13 @@ def technique(version, message):
   # new version
   shell("cp -r " + last_version + " " + version, "Creating the version " + version)
 
-  # Deprecate old version
-  insert_line(last_version + "/metadata.xml",
-              r'\s*<TECHNIQUE name=',
-              "  <DEPRECATED>This technique version has been superseded by a new version. It will no longer be available in the next stable version of Rudder. Please upgrade to the latest version.</DEPRECATED>\n")
-  shell("git add " + last_version + "/metadata.xml", "Adding deprecated info to old version")
+  # Commentend out since we should deprecated only in next major realse
+  # Kept here just in case we need the code later
+  ## Deprecate old version
+  #insert_line(last_version + "/metadata.xml",
+  #            r'\s*<TECHNIQUE name=',
+  #            "  <DEPRECATED>This technique version has been superseded by a new version. It will no longer be available in the next stable version of Rudder. Please upgrade to the latest version.</DEPRECATED>\n")
+  #shell("git add " + last_version + "/metadata.xml", "Adding deprecated info to old version")
 
   # changelog
   locale.setlocale(locale.LC_TIME, 'C')
