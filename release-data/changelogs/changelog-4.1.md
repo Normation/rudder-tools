@@ -52,6 +52,265 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 # Changelogs
 
+## <a name="4.1.10" > </a> Rudder 4.1.10 (2018-02-23)
+
+### Changes
+
+#### Technique editor - UI/UX
+
+  - Change max field length from 2k to 16k
+    ([\#11859](https://www.rudder-project.org/redmine/issues/11859))
+
+#### Web - UI & UX
+
+  - add margin to the magnifying glass icon in the Nodes table
+    ([\#11849](https://www.rudder-project.org/redmine/issues/11849))
+
+#### Generic methods
+
+  - file_copy_with_check
+    ([\#11610](https://www.rudder-project.org/redmine/issues/11610))
+  - Add a method to unset all the classes of a prefix
+    ([\#11903](https://www.rudder-project.org/redmine/issues/11903))
+  - Implement a push / pop mechanism for audit mode
+    ([\#11732](https://www.rudder-project.org/redmine/issues/11732))
+
+#### Web - Nodes & inventories
+
+  - Add more information about the inventory in the inventory process reporting
+    ([\#10084](https://www.rudder-project.org/redmine/issues/10084))
+
+#### Documentation
+
+  - Remove bibliography from the doc
+    ([\#7733](https://www.rudder-project.org/redmine/issues/7733))
+  - Document scheduler generic method
+    ([\#6946](https://www.rudder-project.org/redmine/issues/6946))
+
+#### Technique editor - API
+
+  - Use a fixed size font in the technique editor parameters
+    ([\#11895](https://www.rudder-project.org/redmine/issues/11895))
+
+#### Agent
+
+  - Backport complete variable table performance patch
+    ([\#12130](https://www.rudder-project.org/redmine/issues/12130))
+  - Update CFEngine to 3.10.3
+    ([\#12090](https://www.rudder-project.org/redmine/issues/12090))
+  - Add a "rudder agent history" command
+    ([\#12053](https://www.rudder-project.org/redmine/issues/12053))
+
+#### Packaging
+
+  - Upgrade openssl to 1.0.2n
+    ([\#11967](https://www.rudder-project.org/redmine/issues/11967))
+  - Create a rudder server upgrade-techniques commands
+    ([\#11059](https://www.rudder-project.org/redmine/issues/11059))
+
+#### Initial promises & sys tech
+
+  - Implement disable-flag for policy server policy copy for nodes
+    ([\#11631](https://www.rudder-project.org/redmine/issues/11631))
+  - Create a global variable for "shared-files" path
+    ([\#6324](https://www.rudder-project.org/redmine/issues/6324))
+
+#### Architecture - Refactoring
+
+  - Remove ListTag workaround when JGit version > 1.2
+    ([\#2278](https://www.rudder-project.org/redmine/issues/2278))
+
+#### Techniques
+
+  - Add post-hook to the manage key-value file techniques
+    ([\#12124](https://www.rudder-project.org/redmine/issues/12124))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Update / Delete buttons on group Category modification should be separated
+    ([\#11782](https://www.rudder-project.org/redmine/issues/11782))
+  - Fixed: Javascript error on every pages, preventing usage of file explorer
+    ([\#11991](https://www.rudder-project.org/redmine/issues/11991))
+  - Fixed: Directives tree is not filtered after saving changes
+    ([\#11670](https://www.rudder-project.org/redmine/issues/11670))
+  - Fixed: Input text for repository in apt repository management is too small
+    ([\#11841](https://www.rudder-project.org/redmine/issues/11841))
+  - Fixed: "Agent policy mode" should be "Node policy mode" 
+    ([\#11837](https://www.rudder-project.org/redmine/issues/11837))
+
+#### Generic methods
+
+  - Fixed: command_execution_result does not report anything
+    ([\#12087](https://www.rudder-project.org/redmine/issues/12087))
+  - Fixed: yum is run at each cf-promises, having a massive perf cost, on redhat-like system
+    ([\#11937](https://www.rudder-project.org/redmine/issues/11937))
+  - Fixed: Add a comment about quotes in file_ensure_key_value parameters documentation
+    ([\#11896](https://www.rudder-project.org/redmine/issues/11896))
+  - Fixed: Wrong result class in file_enforce_content
+    ([\#11880](https://www.rudder-project.org/redmine/issues/11880))
+  - Fixed: Abort bundle does not work in dry-run mode
+    ([\#11867](https://www.rudder-project.org/redmine/issues/11867))
+  - Fixed: "Shared file to node" method does not send file to node if file to send was created during run
+    ([\#11869](https://www.rudder-project.org/redmine/issues/11869))
+
+#### Web - Nodes & inventories
+
+  - Fixed: No Machine Inventory in nodes list while the details are complete
+    ([\#12041](https://www.rudder-project.org/redmine/issues/12041))
+  - Fixed: When a network interface is deleted from a node, it is not removed on the Rudder server
+    ([\#12026](https://www.rudder-project.org/redmine/issues/12026))
+  - Fixed: Incorrect detection of architecture on Ubuntu 14.04 32 bits
+    ([\#11918](https://www.rudder-project.org/redmine/issues/11918))
+
+#### Technique editor - Techniques
+
+  - Fixed: rudder_reporting file is invalid on nodes if it contains '&&' in one of its parameter
+    ([\#11870](https://www.rudder-project.org/redmine/issues/11870))
+
+#### Generic methods - Package Management
+
+  - Fixed: Zypper hangs on dialogs / issues due to open tty
+    ([\#6291](https://www.rudder-project.org/redmine/issues/6291))
+
+#### Web - Technique editor
+
+  - Fixed: Broken variable expression when using node properties in the technique editor
+    ([\#10304](https://www.rudder-project.org/redmine/issues/10304))
+
+#### Documentation
+
+  - Fixed: Please, legitimate "Priority" usage in multi-instance directives
+    ([\#11963](https://www.rudder-project.org/redmine/issues/11963))
+  - Fixed: Missing documentation about InputTCPMaxSessions and when to change its value in rsyslog
+    ([\#8613](https://www.rudder-project.org/redmine/issues/8613))
+  - Fixed: Merge "Migration" and "Server migration" subsections in the doc
+    ([\#11062](https://www.rudder-project.org/redmine/issues/11062))
+  - Fixed: Restore backup documentation is not correct
+    ([\#11177](https://www.rudder-project.org/redmine/issues/11177))
+  - Fixed: Redirect FAQ to faq.rudder-project.org
+    ([\#11905](https://www.rudder-project.org/redmine/issues/11905))
+
+#### Technique editor - API
+
+  - Fixed: Result class containing {} are not properly canonized
+    ([\#11600](https://www.rudder-project.org/redmine/issues/11600))
+
+#### Agent
+
+  - Fixed: Autocompletion for rudder commands doesn't work on RHEL and SLES
+    ([\#11885](https://www.rudder-project.org/redmine/issues/11885))
+  - Fixed: The agent moves obstructions regardless of policy mode
+    ([\#11866](https://www.rudder-project.org/redmine/issues/11866))
+  - Fixed: Agent script argument parsing failure when using non-default locale 
+    ([\#12131](https://www.rudder-project.org/redmine/issues/12131))
+  - Fixed: rudder remote run cuts down IP of remote host
+    ([\#11418](https://www.rudder-project.org/redmine/issues/11418))
+  - Fixed: With "rudder agent run", nothing is logged in /var/rudder/cfengine-community/outputs/
+    ([\#10801](https://www.rudder-project.org/redmine/issues/10801))
+  - Fixed: When rudder agent disable fails it prints a success message
+    ([\#11936](https://www.rudder-project.org/redmine/issues/11936))
+  - Fixed: Agent process detection is wrong in rudder agent check on AIX
+    ([\#11921](https://www.rudder-project.org/redmine/issues/11921))
+
+#### Packaging
+
+  - Fixed: rudder-webapp upgrade doesn't commit updates to ncf hooks
+    ([\#6758](https://www.rudder-project.org/redmine/issues/6758))
+  - Fixed: rudder-inventory-ldap package provides openldap libraries
+    ([\#3377](https://www.rudder-project.org/redmine/issues/3377))
+  - Fixed: typo in rudder-server relay package install output
+    ([\#12064](https://www.rudder-project.org/redmine/issues/12064))
+  - Fixed: Upgrade Java version used when building webapp on old debian versions, since oracle jvm links has changed
+    ([\#11981](https://www.rudder-project.org/redmine/issues/11981))
+  - Fixed: Rudder root on SLES12 shows LDAP error during installation
+    ([\#10454](https://www.rudder-project.org/redmine/issues/10454))
+
+#### Initial promises & sys tech
+
+  - Fixed: If we a have generic method command_execution with parameter /bin/true, we get an error on reporting for syslog restart on non-aix nor solaris sytem
+    ([\#12139](https://www.rudder-project.org/redmine/issues/12139))
+  - Fixed: Rudder server installation fails if apache cannot resolve server hostname
+    ([\#11983](https://www.rudder-project.org/redmine/issues/11983))
+  - Fixed: Use rudder agent check in aix crontab
+    ([\#11920](https://www.rudder-project.org/redmine/issues/11920))
+  - Fixed: Inventory from a node on Xen dom0 is missing UUID and is invalid
+    ([\#11902](https://www.rudder-project.org/redmine/issues/11902))
+  - Fixed: remote execution is cut at 30 secondes
+    ([\#11416](https://www.rudder-project.org/redmine/issues/11416))
+
+#### API
+
+  - Fixed: Api does not fail on bad JSON
+    ([\#5931](https://www.rudder-project.org/redmine/issues/5931))
+
+#### Web - Compliance & node report
+
+  - Fixed: Compliance keeps on loading while expected reports are not available for a node or a rule
+    ([\#7281](https://www.rudder-project.org/redmine/issues/7281))
+  - Fixed: Runaway quotation mark at Node report
+    ([\#11834](https://www.rudder-project.org/redmine/issues/11834))
+
+#### Architecture - Dependencies
+
+  - Fixed: ERROR: canceling statement due to user request
+    ([\#11973](https://www.rudder-project.org/redmine/issues/11973))
+  - Fixed: Update to monix 2.3.3: critical bug corrected
+    ([\#12024](https://www.rudder-project.org/redmine/issues/12024))
+
+#### Techniques
+
+  - Fixed: Typo in templating technique
+    ([\#12126](https://www.rudder-project.org/redmine/issues/12126))
+  - Fixed: Typo in tooltip of File content (from remote template) for path of file
+    ([\#12123](https://www.rudder-project.org/redmine/issues/12123))
+  - Fixed: The technique file copy from shared folder reports file source instead of file destination
+    ([\#6564](https://www.rudder-project.org/redmine/issues/6564))
+  - Fixed: Group management technique silently changes the group gid
+    ([\#11863](https://www.rudder-project.org/redmine/issues/11863))
+  - Fixed: sharedfile_to_node reports repaired even if it fails 
+    ([\#11836](https://www.rudder-project.org/redmine/issues/11836))
+
+#### Server components
+
+  - Fixed: There is a /var/cfengine/inputs on a Rudder server
+    ([\#8625](https://www.rudder-project.org/redmine/issues/8625))
+  - Fixed: Clarify support for SLES12 SP2 as Root Server
+    ([\#11854](https://www.rudder-project.org/redmine/issues/11854))
+  - Fixed: rudder server refusing nodes after an error in check-rudder-agent
+    ([\#11309](https://www.rudder-project.org/redmine/issues/11309))
+
+#### System integration
+
+  - Fixed: Stopping slapd fails if pid file is empty
+    ([\#10498](https://www.rudder-project.org/redmine/issues/10498))
+  - Fixed: service rudder-* outputs on stderror
+    ([\#6429](https://www.rudder-project.org/redmine/issues/6429))
+  - Fixed: Cannot run rudder server reload-techniques on RedHat 6.6
+    ([\#11907](https://www.rudder-project.org/redmine/issues/11907))
+  - Fixed: Configuration file of Rudder mention that we may change "LDAP DIT configuration", which is wrong
+    ([\#10664](https://www.rudder-project.org/redmine/issues/10664))
+  - Fixed: send-clean.sh blocks on inventory parsing error
+    ([\#10019](https://www.rudder-project.org/redmine/issues/10019))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Michael Gliwinski
+ * Dennis Cabooter
+ * Avit Sidis
+ * Dmitry Svyatogorov
+ * Janos Mattyasovszky
+ * The Ranger
+ * Jean Cardona
+ * Alexandre BRIANCEAU
+ * Alexander Brunhirl
+ * Florian Heigl
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.1.9" > </a> Rudder 4.1.9 (2017-12-12)
 
 ### Changes
