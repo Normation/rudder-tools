@@ -53,6 +53,239 @@ and Ubuntu 12.10.
 
 # Changelogs
 
+## <a name="4.3.0.rc1" > </a> Rudder 4.3.0.rc1 (2018-03-15)
+
+### Changes
+
+#### API
+
+  - The compliance API is missing a global compliance target
+    ([\#8584](https://www.rudder-project.org/redmine/issues/8584))
+
+#### Web - UI & UX
+
+  -  Rename class to condition in the interface
+    ([\#12174](https://www.rudder-project.org/redmine/issues/12174))
+  - Make Rudder UI pluggable (login + common layout)
+    ([\#12093](https://www.rudder-project.org/redmine/issues/12093))
+
+#### Generic methods
+
+  - file_copy_with_check
+    ([\#11610](https://www.rudder-project.org/redmine/issues/11610))
+
+#### Web - Nodes & inventories
+
+  - Allows inventories to be augmented by the user with custom properties
+    ([\#4670](https://www.rudder-project.org/redmine/issues/4670))
+  - Add more information about the inventory in the inventory process reporting
+    ([\#10084](https://www.rudder-project.org/redmine/issues/10084))
+
+#### Documentation
+
+  - Remove bibliography from the doc
+    ([\#7733](https://www.rudder-project.org/redmine/issues/7733))
+  - Document scheduler generic method
+    ([\#6946](https://www.rudder-project.org/redmine/issues/6946))
+
+#### Miscellaneous
+
+  - Make node post-acceptation properties configurable
+    ([\#11811](https://www.rudder-project.org/redmine/issues/11811))
+
+#### Agent
+
+  - Backport complete variable table performance patch
+    ([\#12130](https://www.rudder-project.org/redmine/issues/12130))
+  - Update CFEngine to 3.10.3
+    ([\#12090](https://www.rudder-project.org/redmine/issues/12090))
+  - Add a "rudder agent history" command
+    ([\#12053](https://www.rudder-project.org/redmine/issues/12053))
+
+#### Packaging
+
+  - remove ld.so.conf
+    ([\#8969](https://www.rudder-project.org/redmine/issues/8969))
+  - Stop providing rudder-policy-templates
+    ([\#12120](https://www.rudder-project.org/redmine/issues/12120))
+  - Use debconf to configure rudder-agent on debian
+    ([\#5919](https://www.rudder-project.org/redmine/issues/5919))
+  - Changelog on Rudder rpm hasn't been updated since 2011
+    ([\#8609](https://www.rudder-project.org/redmine/issues/8609))
+
+#### Initial promises & sys tech
+
+  - Keep N last inventories generated on the node 
+    ([\#7908](https://www.rudder-project.org/redmine/issues/7908))
+  - Keep N last inventories generated on the node 
+    ([\#7908](https://www.rudder-project.org/redmine/issues/7908))
+  - Implement disable-flag for policy server policy copy for nodes
+    ([\#11631](https://www.rudder-project.org/redmine/issues/11631))
+  - rename cf-served file and cfserved variable
+    ([\#12119](https://www.rudder-project.org/redmine/issues/12119))
+  - Create a global variable for "shared-files" path
+    ([\#6324](https://www.rudder-project.org/redmine/issues/6324))
+
+#### System integration
+
+  - link policy server config to Rudder's config dir
+    ([\#10847](https://www.rudder-project.org/redmine/issues/10847))
+
+#### Architecture - Refactoring
+
+  - Remove ListTag workaround when JGit version > 1.2
+    ([\#2278](https://www.rudder-project.org/redmine/issues/2278))
+
+#### Techniques
+
+  - Add post-hook to the manage key-value file techniques
+    ([\#12124](https://www.rudder-project.org/redmine/issues/12124))
+
+### Bug fixes
+
+#### Technique editor - UI/UX
+
+  - Fixed: Parameters menu arrow does not work as expected
+    ([\#12082](https://www.rudder-project.org/redmine/issues/12082))
+
+#### Web - UI & UX
+
+  - Fixed: Update / Delete buttons on group Category modification should be separated
+    ([\#11782](https://www.rudder-project.org/redmine/issues/11782))
+
+#### Generic methods
+
+  - Fixed: ncf 4.3 now requires CFEngine >= 3.10
+    ([\#12161](https://www.rudder-project.org/redmine/issues/12161))
+  - Fixed: command_execution_result does not report anything
+    ([\#12087](https://www.rudder-project.org/redmine/issues/12087))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Node details "properties" page broken: js not loading
+    ([\#12206](https://www.rudder-project.org/redmine/issues/12206))
+  - Fixed: No Machine Inventory in nodes list while the details are complete
+    ([\#12041](https://www.rudder-project.org/redmine/issues/12041))
+
+#### Web - Technique editor
+
+  - Fixed: metadata.xml not generated when saving a technique from editor
+    ([\#12209](https://www.rudder-project.org/redmine/issues/12209))
+  - Fixed: Broken variable expression when using node properties in the technique editor
+    ([\#10304](https://www.rudder-project.org/redmine/issues/10304))
+
+#### Technique editor - API
+
+  - Fixed: Result class containing {} are not properly canonized
+    ([\#11600](https://www.rudder-project.org/redmine/issues/11600))
+
+#### Generic methods - File Management
+
+  - Fixed: We cannot use file_enforce_content with a list and enforce=true
+    ([\#12147](https://www.rudder-project.org/redmine/issues/12147))
+
+#### Documentation
+
+  - Fixed: Please, legitimate "Priority" usage in multi-instance directives
+    ([\#11963](https://www.rudder-project.org/redmine/issues/11963))
+
+#### Miscellaneous
+
+  - Fixed: On a fresh Rudder 4.3 centos6 install, error about ncf API in logs
+    ([\#12034](https://www.rudder-project.org/redmine/issues/12034))
+
+#### Agent
+
+  - Fixed: Broken "rudder agent check" in 4.3
+    ([\#12178](https://www.rudder-project.org/redmine/issues/12178))
+  - Fixed: Broken "rudder agent history" in 4.3
+    ([\#12177](https://www.rudder-project.org/redmine/issues/12177))
+  - Fixed: Agent script argument parsing failure when using non-default locale 
+    ([\#12131](https://www.rudder-project.org/redmine/issues/12131))
+  - Fixed: rudder remote run cuts down IP of remote host
+    ([\#11418](https://www.rudder-project.org/redmine/issues/11418))
+  - Fixed: With "rudder agent run", nothing is logged in /var/rudder/cfengine-community/outputs/
+    ([\#10801](https://www.rudder-project.org/redmine/issues/10801))
+
+#### Packaging
+
+  - Fixed: Broken rudder-agent 4.1->4.3 upgrade in debian 9
+    ([\#12182](https://www.rudder-project.org/redmine/issues/12182))
+  - Fixed: Remove suggestion to install cfengine in ncf package
+    ([\#12183](https://www.rudder-project.org/redmine/issues/12183))
+  - Fixed: On debian, with systemd rudder-agent services are not enabled during postinst
+    ([\#12083](https://www.rudder-project.org/redmine/issues/12083))
+  - Fixed: On debian, installation is broken
+    ([\#12162](https://www.rudder-project.org/redmine/issues/12162))
+  - Fixed: rudder-webapp upgrade doesn't commit updates to ncf hooks
+    ([\#6758](https://www.rudder-project.org/redmine/issues/6758))
+  - Fixed: rudder-inventory-ldap package provides openldap libraries
+    ([\#3377](https://www.rudder-project.org/redmine/issues/3377))
+
+#### Initial promises & sys tech
+
+  - Fixed: We have broken reports on a root server in 4.3 beta1
+    ([\#12086](https://www.rudder-project.org/redmine/issues/12086))
+  - Fixed: If we a have generic method command_execution with parameter /bin/true, we get an error on reporting for syslog restart on non-aix nor solaris sytem
+    ([\#12139](https://www.rudder-project.org/redmine/issues/12139))
+
+#### API
+
+  - Fixed: Unathenticated API v1 are not accessible anymore
+    ([\#12216](https://www.rudder-project.org/redmine/issues/12216))
+  - Fixed: Api does not fail on bad JSON
+    ([\#5931](https://www.rudder-project.org/redmine/issues/5931))
+
+#### Techniques
+
+  - Fixed: Missing report in Group Management 
+    ([\#12214](https://www.rudder-project.org/redmine/issues/12214))
+  - Fixed: Invalid call in descriptor of Technique File download (Rudder server) , version 2.2 in branch 4.2 and 4.3
+    ([\#12213](https://www.rudder-project.org/redmine/issues/12213))
+  - Fixed: Typo in templating technique
+    ([\#12126](https://www.rudder-project.org/redmine/issues/12126))
+  - Fixed: Typo in tooltip of File content (from remote template) for path of file
+    ([\#12123](https://www.rudder-project.org/redmine/issues/12123))
+  - Fixed: sharedfile_to_node reports repaired even if it fails 
+    ([\#11836](https://www.rudder-project.org/redmine/issues/11836))
+
+#### Server components
+
+  - Fixed: Clarify support for SLES12 SP2 as Root Server
+    ([\#11854](https://www.rudder-project.org/redmine/issues/11854))
+  - Fixed: rudder server refusing nodes after an error in check-rudder-agent
+    ([\#11309](https://www.rudder-project.org/redmine/issues/11309))
+
+#### System integration
+
+  - Fixed: Stopping slapd fails if pid file is empty
+    ([\#10498](https://www.rudder-project.org/redmine/issues/10498))
+  - Fixed: service rudder-* outputs on stderror
+    ([\#6429](https://www.rudder-project.org/redmine/issues/6429))
+  - Fixed: Cannot run rudder server reload-techniques on RedHat 6.6
+    ([\#11907](https://www.rudder-project.org/redmine/issues/11907))
+  - Fixed: Promises shared with apache are group executable
+    ([\#12169](https://www.rudder-project.org/redmine/issues/12169))
+  - Fixed: send-clean.sh blocks on inventory parsing error
+    ([\#10019](https://www.rudder-project.org/redmine/issues/10019))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Michael Gliwinski
+ * Avit Sidis
+ * Dmitry Svyatogorov
+ * d i
+ * Janos Mattyasovszky
+ * The Ranger
+ * Jean Cardona
+ * Alexandre BRIANCEAU
+ * Alexander Brunhirl
+ * Florian Heigl
+
+This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.3.0.beta1" > </a> Rudder 4.3.0.beta1 (2018-02-06)
 
 ### Changes
