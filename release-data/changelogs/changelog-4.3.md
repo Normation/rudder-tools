@@ -1,7 +1,9 @@
 
 # General information
 
-Rudder 4.3 is currently under development..
+Rudder 4.3 is the next version of Rudder and is currently in release candidate phase.
+During this phase we are ensuring that Rudder 4.3 is ready to go to production by checking all features of Rudder (both new and legacy features) and that migration process from older versions to be smooth and easy.
+We expect a final version of Rudder 4.3 to be released a few weeks after first rc.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
