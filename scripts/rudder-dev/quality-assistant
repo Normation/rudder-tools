@@ -204,10 +204,11 @@ def pr_merge(repo, url, alt_dir):
 ```
 You should run ./""" + Config.QA_TEST + """ in your repository to make sure it works.
 You can also run `rudder-dev merge """ + url + """ --test` to test with upmerging.
-After this, you can remove the """ + Config.PR_VALIDATED_LABEL + """ tag
+After this, you can remove the """ + Config.BOT_CANNOT_MERGE_LABEL + """ ta
 -- Your faithful QA"""
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
+    pr.label(Config.BOT_CANNOT_MERGE_LABEL)
     reassign(pr, Config.DISCUSSION_CODE)
   elif code != 0:
     # PR must be manually merged
