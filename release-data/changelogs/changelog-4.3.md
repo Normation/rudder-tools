@@ -57,6 +57,117 @@ and Ubuntu 12.10.
 
 # Changelogs
 
+## <a name="4.3.0.rc3" > </a> Rudder 4.3.0.rc3 (2018-04-10)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Make API account page pluggable
+    ([\#12375](https://www.rudder-project.org/redmine/issues/12375))
+
+#### Generic methods
+
+  - Create hook ncf methods that can be used in pre-/post-run hooks
+    ([\#11857](https://www.rudder-project.org/redmine/issues/11857))
+
+#### Documentation
+
+  - Update doc for 4.3
+    ([\#12347](https://www.rudder-project.org/redmine/issues/12347))
+
+#### Miscellaneous
+
+  - Update the techniques tests
+    ([\#12346](https://www.rudder-project.org/redmine/issues/12346))
+
+### Bug fixes
+
+#### Generic methods
+
+  - Fixed: Canonify job-id in classes for scheduler methods
+    ([\#12382](https://www.rudder-project.org/redmine/issues/12382))
+  - Fixed: Job cheduler methods whith mode are broken
+    ([\#12378](https://www.rudder-project.org/redmine/issues/12378))
+  - Fixed: Unexpected report on several methods due to non-executed bundles
+    ([\#12368](https://www.rudder-project.org/redmine/issues/12368))
+  - Fixed: Missing report for "Shared file to node"
+    ([\#12377](https://www.rudder-project.org/redmine/issues/12377))
+  - Fixed: Some methods which let another one do the reporting are broken in 4.3
+    ([\#12371](https://www.rudder-project.org/redmine/issues/12371))
+
+#### Web - Config management
+
+  - Fixed: Cannot generate policies when there is a loop in policy server hierharchy (stackoverflow)
+    ([\#12359](https://www.rudder-project.org/redmine/issues/12359))
+
+#### Web - Nodes & inventories
+
+  - Fixed: LDAP query checker must succeed when criteria is empty
+    ([\#12343](https://www.rudder-project.org/redmine/issues/12343))
+  - Fixed: "Error when trying to find dependencies for that group" when accepting a node
+    ([\#12338](https://www.rudder-project.org/redmine/issues/12338))
+
+#### Generic methods - File Management
+
+  - Fixed: Jinja2 templating: Shows error in output even when successful
+    ([\#12379](https://www.rudder-project.org/redmine/issues/12379))
+  - Fixed: Missing report in Manage keys-values in file because of invalid conditions in ensure_key_value_option
+    ([\#12345](https://www.rudder-project.org/redmine/issues/12345))
+
+#### Documentation
+
+  - Fixed: Remove references to foswiki in the doc
+    ([\#12363](https://www.rudder-project.org/redmine/issues/12363))
+
+#### Packaging
+
+  - Fixed: rudder-agent fails to build on debian 7/ubuntu 12.04
+    ([\#12362](https://www.rudder-project.org/redmine/issues/12362))
+  - Fixed: Rudder agent fails to build on some os
+    ([\#12353](https://www.rudder-project.org/redmine/issues/12353))
+
+#### Initial promises & sys tech
+
+  - Fixed: Error at policy generation when using sudoParameter technique with Rudder 4.3
+    ([\#12339](https://www.rudder-project.org/redmine/issues/12339))
+
+#### System integration
+
+  - Fixed: Temp folders of jetty are piling up in /var/rudder/tmp/jetty 
+    ([\#11987](https://www.rudder-project.org/redmine/issues/11987))
+
+#### Security
+
+  - Fixed: Bad session counting block user login after three session created
+    ([\#12367](https://www.rudder-project.org/redmine/issues/12367))
+
+#### Server components
+
+  - Fixed: sysconfig/apache2 modifications get removed
+    ([\#11153](https://www.rudder-project.org/redmine/issues/11153))
+
+#### Techniques
+
+  - Fixed: RudderUniqueId is not replaced when using OUTPATH in metadata, causing no report in File Permissions
+    ([\#12344](https://www.rudder-project.org/redmine/issues/12344))
+  - Fixed: Time settings directive configuration not accessible to non-root users
+    ([\#12303](https://www.rudder-project.org/redmine/issues/12303))
+  - Fixed: Correct path to permlist file in File Permissions in 4.3
+    ([\#12348](https://www.rudder-project.org/redmine/issues/12348))
+  - Fixed: Unsupported key types are silently ignored in ssh key management technique
+    ([\#8618](https://www.rudder-project.org/redmine/issues/8618))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Janos Mattyasovszky
+ * Florian Heigl
+ * Rob Pomeroy
+
+This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.3.0.rc2" > </a> Rudder 4.3.0.rc2 (2018-04-03)
 
 ### Changes
