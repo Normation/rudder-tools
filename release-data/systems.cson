@@ -40,24 +40,42 @@ rhel = {
   aliases = [ "redhat", "centos" ]
   package-format = "rpm"
   name = "Red Hat Entreprise Linux / CentOS"
+  codenames = {
+    "3": "RHEL_3",
+    "4": "RHEL_4",
+    "5": "RHEL_5",
+    "6": "RHEL_6",
+    "7": "RHEL_7"
+  }
 }
 
 fedora = {
   aliases = [ ]
   package-format = "rpm"
   name = "Fedora"
+  codenames = {
+    "18": "FEDORA_18"
+  }
 }
 
 sles = {
   aliases = [ "suse" ]
   package-format = "rpm"
   name = "SUSE Linux Enterprise Server"
+  codenames = {
+    "10sp3": "SLES_10_SP3",
+    "11": "SLES_11",
+    "12": "SLES_12"
+  }
 }
 
 aix = {
   aliases = [ ]
   package-format = "rpm"
   name = "AIX"
+  codenames = {
+    "5": "AIX_5"
+  }
 }
 
 windows = {
