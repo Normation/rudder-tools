@@ -52,6 +52,140 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 # Changelogs
 
+## <a name="4.1.11" > </a> Rudder 4.1.11 (2018-04-19)
+
+### Changes
+
+#### Packaging
+
+  - Oracle jdk url has changed but not in ppa
+    ([\#12479](https://www.rudder-project.org/redmine/issues/12479))
+
+#### Relay server or API
+
+  - Make Groups and Rules API accessible for internal use
+    ([\#12419](https://www.rudder-project.org/redmine/issues/12419))
+
+#### Miscellaneous
+
+  - Update the techniques tests
+    ([\#12346](https://www.rudder-project.org/redmine/issues/12346))
+
+### Bug fixes
+
+#### Generic methods
+
+  - Fixed: Job cheduler methods whith mode are broken
+    ([\#12378](https://www.rudder-project.org/redmine/issues/12378))
+  - Fixed: Missing report for "Shared file to node"
+    ([\#12377](https://www.rudder-project.org/redmine/issues/12377))
+
+#### Web - Config management
+
+  - Fixed: Cannot generate policies when there is a loop in policy server hierharchy (stackoverflow)
+    ([\#12359](https://www.rudder-project.org/redmine/issues/12359))
+  - Fixed: Typo in agent build error "reource""
+    ([\#12314](https://www.rudder-project.org/redmine/issues/12314))
+
+#### Technique editor - Techniques
+
+  - Fixed: Technique editor returning an error when saving
+    ([\#12464](https://www.rudder-project.org/redmine/issues/12464))
+
+#### Plugin - API ACL
+
+  - Fixed: API failing on root node
+    ([\#12229](https://www.rudder-project.org/redmine/issues/12229))
+
+#### Generic methods - File Management
+
+  - Fixed: Jinja2 templating: Shows error in output even when successful
+    ([\#12379](https://www.rudder-project.org/redmine/issues/12379))
+  - Fixed: We cannot use file_enforce_content with a list and enforce=true
+    ([\#12147](https://www.rudder-project.org/redmine/issues/12147))
+
+#### Documentation
+
+  - Fixed: Remove references to foswiki in the doc
+    ([\#12363](https://www.rudder-project.org/redmine/issues/12363))
+  - Fixed: Missing configuration instructions at the end of node install documentation
+    ([\#11927](https://www.rudder-project.org/redmine/issues/11927))
+  - Fixed: Remove doc of class_prefix variable
+    ([\#12176](https://www.rudder-project.org/redmine/issues/12176))
+  - Fixed: condition_from_expression documentation does not clearly state how to use it
+    ([\#12157](https://www.rudder-project.org/redmine/issues/12157))
+
+#### Miscellaneous
+
+  - Fixed: broken reporting for ssh key distribution technique
+    ([\#12444](https://www.rudder-project.org/redmine/issues/12444))
+  - Fixed: wrong xenstore-read path on (at least) ubuntu
+    ([\#12376](https://www.rudder-project.org/redmine/issues/12376))
+  - Fixed: Wrong regex in FileTemplate technique
+    ([\#12263](https://www.rudder-project.org/redmine/issues/12263))
+
+#### Agent
+
+  - Fixed: if we have syntax error in policies on the Rudder server, rudder agent check says that all is fine
+    ([\#12220](https://www.rudder-project.org/redmine/issues/12220))
+  - Fixed: agent-health should not require reverse resolution
+    ([\#12218](https://www.rudder-project.org/redmine/issues/12218))
+
+#### Packaging
+
+  - Fixed: rudder-jetty should depend on headless jre on centos7
+    ([\#12328](https://www.rudder-project.org/redmine/issues/12328))
+  - Fixed: Remove invalid comment in rudder-agent spec file
+    ([\#12312](https://www.rudder-project.org/redmine/issues/12312))
+  - Fixed: rudder-init fails when rudder-server-roles.conf does not exist
+    ([\#12247](https://www.rudder-project.org/redmine/issues/12247))
+
+#### Web - Nodes & inventories
+
+  - Fixed: LDAP query checker must succeed when criteria is empty
+    ([\#12343](https://www.rudder-project.org/redmine/issues/12343))
+
+#### Plugins
+
+  - Fixed: rudder-pkg does not allow to install/update/remove several plugin at once
+    ([\#12330](https://www.rudder-project.org/redmine/issues/12330))
+
+#### Security
+
+  - Fixed: Failed generation with "Could not initialize class javax.crypto.JceSecurity"
+    ([\#12448](https://www.rudder-project.org/redmine/issues/12448))
+  - Fixed: Bad session counting block user login after three session created
+    ([\#12367](https://www.rudder-project.org/redmine/issues/12367))
+
+#### Server components
+
+  - Fixed: Agent components should not try to load failsafe.cf when policies are broken
+    ([\#12243](https://www.rudder-project.org/redmine/issues/12243))
+  - Fixed: sysconfig/apache2 modifications get removed
+    ([\#11153](https://www.rudder-project.org/redmine/issues/11153))
+
+#### Techniques
+
+  - Fixed: Time settings directive configuration not accessible to non-root users
+    ([\#12303](https://www.rudder-project.org/redmine/issues/12303))
+  - Fixed: Unsupported key types are silently ignored in ssh key management technique
+    ([\#8618](https://www.rudder-project.org/redmine/issues/8618))
+  - Fixed: Missing report for component "Post-modification hook" when cleaning files
+    ([\#12297](https://www.rudder-project.org/redmine/issues/12297))
+  - Fixed: Missing report in Group Management 
+    ([\#12214](https://www.rudder-project.org/redmine/issues/12214))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Ilan COSTA
+ * Janos Mattyasovszky
+ * Florian Heigl
+ * Rob Pomeroy
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.1.11" > </a> Rudder 4.1.11 (2018-04-16)
 
 ### Changes
