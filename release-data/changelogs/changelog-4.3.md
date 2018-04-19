@@ -55,6 +55,130 @@ and Ubuntu 12.10.
 
 # Changelogs
 
+## <a name="4.3.0" > </a> Rudder 4.3.0 (2018-04-19)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Modify the mouse cursor when hovering the chart
+    ([\#12438](https://www.rudder-project.org/redmine/issues/12438))
+  - Allow to search on machine type in search nodes request
+    ([\#12380](https://www.rudder-project.org/redmine/issues/12380))
+  - NodeGroupId picker for subgroup selection
+    ([\#12311](https://www.rudder-project.org/redmine/issues/12311))
+  - Make dashboard graphs clickable
+    ([\#12358](https://www.rudder-project.org/redmine/issues/12358))
+
+#### Generic methods
+
+  - Make reporting work when targeting several time the same item with several generic method
+    ([\#12414](https://www.rudder-project.org/redmine/issues/12414))
+  - Synchronize ncf stdlib with cfengine 3.10.3 stdlib
+    ([\#12384](https://www.rudder-project.org/redmine/issues/12384))
+
+#### Technique editor - Techniques
+
+  - Add import/export buttons to the technique editor
+    ([\#12280](https://www.rudder-project.org/redmine/issues/12280))
+
+#### Documentation
+
+  - Add a "Rudder by example" guide to the documentation
+    ([\#12383](https://www.rudder-project.org/redmine/issues/12383))
+
+#### Agent
+
+  - Add libacl to Rudder agent
+    ([\#12270](https://www.rudder-project.org/redmine/issues/12270))
+
+#### Packaging
+
+  - Oracle jdk url has changed but not in ppa
+    ([\#12479](https://www.rudder-project.org/redmine/issues/12479))
+  - Disable default logger in ncf
+    ([\#12425](https://www.rudder-project.org/redmine/issues/12425))
+
+#### Relay server or API
+
+  - Make Groups and Rules API accessible for internal use
+    ([\#12419](https://www.rudder-project.org/redmine/issues/12419))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Lifecycle UI elements (dropdown menu & display) looks bad
+    ([\#12048](https://www.rudder-project.org/redmine/issues/12048))
+  - Fixed: Node agent schedule cannot be changed due to a JS Error
+    ([\#12388](https://www.rudder-project.org/redmine/issues/12388))
+
+#### Generic methods
+
+  - Fixed: Permissions dirs recursive has a wrong rename tag
+    ([\#12437](https://www.rudder-project.org/redmine/issues/12437))
+  - Fixed: service_restart_if has two deprecation tags
+    ([\#12435](https://www.rudder-project.org/redmine/issues/12435))
+
+#### Technique editor - Techniques
+
+  - Fixed: Technique editor returning an error when saving
+    ([\#12464](https://www.rudder-project.org/redmine/issues/12464))
+
+#### plugin-cfe-enterprise
+
+  - Fixed: Compute SHA key, and change key identification for enterprise node
+    ([\#12458](https://www.rudder-project.org/redmine/issues/12458))
+
+#### Web - Config management
+
+  - Fixed: (breaking change) In Windows Agent, a '\' in a directive parameter value is escaped but it should not
+    ([\#12390](https://www.rudder-project.org/redmine/issues/12390))
+
+#### Miscellaneous
+
+  - Fixed: broken reporting for ssh key distribution technique
+    ([\#12444](https://www.rudder-project.org/redmine/issues/12444))
+  - Fixed: Report missing if no password given in User technique
+    ([\#12422](https://www.rudder-project.org/redmine/issues/12422))
+  - Fixed: wrong xenstore-read path on (at least) ubuntu
+    ([\#12376](https://www.rudder-project.org/redmine/issues/12376))
+
+#### Packaging
+
+  - Fixed: rpm fails to build on aix
+    ([\#12480](https://www.rudder-project.org/redmine/issues/12480))
+  - Fixed: Problem: nothing provides libyaml needed by rudder-agent-1398866025:4.3.0.rc3-1.SLES.12.x86_64
+    ([\#12461](https://www.rudder-project.org/redmine/issues/12461))
+
+#### Plugins
+
+  - Fixed: rudder-pkg does not allow to install/update/remove several plugin at once
+    ([\#12330](https://www.rudder-project.org/redmine/issues/12330))
+
+#### Security
+
+  - Fixed: Failed generation with "Could not initialize class javax.crypto.JceSecurity"
+    ([\#12448](https://www.rudder-project.org/redmine/issues/12448))
+
+#### Server components
+
+  - Fixed: Root server can be disable with node lifecycle "ignore" "set empty policies"
+    ([\#12324](https://www.rudder-project.org/redmine/issues/12324))
+
+#### Techniques
+
+  - Fixed: When upgrading from 4.1 to 4.3, reports from Rudder Techniques break reporting
+    ([\#12398](https://www.rudder-project.org/redmine/issues/12398))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Janos Mattyasovszky
+
+This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.3.0.rc3" > </a> Rudder 4.3.0.rc3 (2018-04-10)
 
 ### Changes
