@@ -46,6 +46,11 @@ no longer available in Ubuntu 12.04.
 
 ## <a name="4.2.5" > </a> Rudder 4.2.5 (2018-04-19)
 
+### Breaking Changes
+
+  - Fixed: In Windows Agent, a '\' in a directive parameter value is escaped but it should not
+    ([\#12390](https://www.rudder-project.org/redmine/issues/12390))
+
 ### Changes
 
 #### Packaging
@@ -74,8 +79,6 @@ no longer available in Ubuntu 12.04.
 
 #### Web - Config management
 
-  - Fixed: In Windows Agent, a '\' in a directive parameter value is escaped but it should not
-    ([\#12390](https://www.rudder-project.org/redmine/issues/12390))
   - Fixed: Cannot generate policies when there is a loop in policy server hierharchy (stackoverflow)
     ([\#12359](https://www.rudder-project.org/redmine/issues/12359))
   - Fixed: Typo in agent build error "reource""
@@ -191,6 +194,12 @@ This is a bug fix release in the 4.2 series and therefore all installations of 4
 
 ## <a name="4.2.4" > </a> Rudder 4.2.4 (2018-02-23)
 
+
+### Breaking Changes
+
+  - Fixed: Incorrect detection and storage of architecture 32/64 bits
+    ([\#11918](https://www.rudder-project.org/redmine/issues/11918))
+
 ### Changes
 
 #### Technique editor - UI/UX
@@ -303,8 +312,6 @@ This is a bug fix release in the 4.2 series and therefore all installations of 4
     ([\#12041](https://www.rudder-project.org/redmine/issues/12041))
   - Fixed: When a network interface is deleted from a node, it is not removed on the Rudder server
     ([\#12026](https://www.rudder-project.org/redmine/issues/12026))
-  - Fixed: Incorrect detection of architecture on Ubuntu 14.04 32 bits
-    ([\#11918](https://www.rudder-project.org/redmine/issues/11918))
 
 #### Technique editor - Techniques
 

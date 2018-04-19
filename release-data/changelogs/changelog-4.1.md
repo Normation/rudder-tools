@@ -188,6 +188,11 @@ This is a bug fix release in the 4.1 series and therefore all installations of 4
 
 ## <a name="4.1.10" > </a> Rudder 4.1.10 (2018-02-23)
 
+### Breaking Changes
+
+  - Fixed: Incorrect detection and storage of architecture 32/64 bits
+    ([\#11918](https://www.rudder-project.org/redmine/issues/11918))
+
 ### Changes
 
 #### Technique editor - UI/UX
@@ -295,8 +300,6 @@ This is a bug fix release in the 4.1 series and therefore all installations of 4
     ([\#12041](https://www.rudder-project.org/redmine/issues/12041))
   - Fixed: When a network interface is deleted from a node, it is not removed on the Rudder server
     ([\#12026](https://www.rudder-project.org/redmine/issues/12026))
-  - Fixed: Incorrect detection of architecture on Ubuntu 14.04 32 bits
-    ([\#11918](https://www.rudder-project.org/redmine/issues/11918))
 
 #### Technique editor - Techniques
 
