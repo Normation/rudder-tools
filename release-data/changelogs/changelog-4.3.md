@@ -1,11 +1,7 @@
 
 # General information
 
-Rudder 4.3 is the next version of Rudder and is currently in release candidate phase.
-
-During this phase we are ensuring that Rudder 4.3 is ready to go to production by checking all features of Rudder (both new and legacy features) and that migration process from older versions to be smooth and easy.
-
-We expect a final version of Rudder 4.3 to be released a few weeks after first rc.
+Rudder 4.3 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
@@ -13,18 +9,20 @@ and rc versions are listed below for convenience.
 **Main new features in Rudder 4.3:**
 
   - **Technique Parameters:** You can now add parameters to your Techniques created with the Technique editor. The value of theses parameters will be set in Directives, making your Techniques much more versatile and expressive and them access to feature that were only available to classic Techniques.
-  - **Multi version/mode Directives:** You can now apply Directives with different versions and different policy mode. This allow easy migration (to a new version, from Audit to Enforce) that was previously impossible.
+  - **Multi version/mode Directives:** You can now apply Directives with different versions and different policy mode *on the same node*. This allow easy migration (to a new version, from Audit to Enforce) that was previously impossible.
   - **Authorization system for API accounts:** Choose between read-only or full access. A plugin will be available soon in order to allow you more finely grained authorization.
   - **Node properties from inventory:** Nodes properties can be automatically provided by the inventory data from the node.
   - **Node lifecycle:** You can define a state for each Node managed by Rudder (provisioning, pending removal, disabled etc.). This can be used to build groups and apply configuration according to the Node current state. Also disabled Nodes are not counted in compliance reports, so you are not bothered by offline Nodes when checking compliance.
   - **Group based on Groups**: You can now define that a Group should contain the Nodes of another Group, making it easier to manage a complex set of Nodes.
   - **IPv6 support by default:** Rudder is now completely compatible with IPv6 on the agent side as well as server side.
-  - **Hooks on Techniques:** You can add pre- and post- hooks in your Techniques that will be executed once per Technique, even if you applied it in several directives. Another tool in your hands when you write your own Techniques.
-  - **Use system Perl:** On recent systems, rudder-agent does not embed Perl anymore, so it uses an up to date version of Perl more integrated to your system. On a side note, it makes easier to build a rudder-agent package (which size goes down from 12Mb to 4Mb!).
+  - **Hooks on Techniques:** When you write a Technique by hand, you can add pre- and post- hooks in it that will be executed once per Technique, even if you applied it in several directives.
+  - **Use system Perl:** On recent systems, rudder-agent does not embed Perl anymore, so it uses an up to date version of Perl more integrated to your system. All the needed dependencies are either declared (for the common ones) or still embedded. On a side note, it makes it easier to build a rudder-agent package (which size goes down from 12MB to 4MB!).
   - **Rudder agent services based on systemd:** On systemd based os, we switched from SysV init system to systemd, to make rudder-agent more integrated to your system.
-  - **Time all action made by the agent:** A new option (-T) added to "rudder agent" command line, to display how long an action took and find what makes a run slow.
+  - **Time all actions made by the agent:** A new option (-T) added to "rudder agent" command line, to display how long an action took and find what makes a run slow.
   - **Renaming of all generic methods:** We changed for a clearer and more logic name scheme in all our generic methods in the Technique editor. 
   - **Simplified logger for Techniques:** We changed the way we do reporting for Techniques from Technique editor with a really simpler way, which should be faster and also fix some reporting issues (ie: when you use variables in your reports).
+  - **Graphs on the dashboard are now clickable**: You can access the list of nodes in a category by clicking on parts of the graphs.
+  - **Import/Export of techniques in the Technique Editor**: There is now a button to export or import a technique in the Technique Editor, allowing sharing techniques easily. Be careful, this import/export only works between servers running the same Rudder version.
   - **Plenty of library updates / cleaning / architecture changes**: Either on web app or in rudder-agent we upgraded some dependencies, refactored some code, to provide you a more secure, maintainable and faster Rudder.
 
 **Installing, upgrading and testing**
