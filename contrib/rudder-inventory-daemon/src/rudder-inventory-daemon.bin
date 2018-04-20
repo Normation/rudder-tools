@@ -1,0 +1,1094 @@
+#!/usr/bin/perl
+###################################################################################################
+# Copyright 2017 BMW AG
+#  Author: Janos Mattyasovszky
+###################################################################################################
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+
+## 
+## Rudder Forwarder and Uploader Daemon
+##
+
+unless (-d q{/var/rudder/share/}) {
+    print "This daemon needs to run on a Rudder policy server, which tends to have a '/var/rudder/share/' directory\n";
+    exit 1;
+}
+
+
+####################################################################################################
+# Used modules and constants
+####################################################################################################
+
+use strict;
+use warnings;
+
+use YAML qw{LoadFile};
+use JSON;
+
+use POSIX;
+use Getopt::Long;
+use Time::HiRes qw{time};
+use File::Basename;
+use File::Copy;
+use File::Path q{mkpath};
+use Data::Dumper;
+
+use Carp;
+$Carp::MaxArgLen = 0;
+$Carp::MaxArgNums = 0;
+
+use Linux::Inotify2; ## Included on the SLE-11-SPx-SDK-DVD-x86_64-GM-DVD1 iso, available from SUSE
+use LWP::UserAgent;  ## Included on the SLES-11-SPx-DVD-x86_64-GM-DVD1 iso, available also from SUSE
+use HTTP::Request::Common;
+use Getopt::Long;
+
+# Unfortunately HTTP::Status' `:constants' does not work here due to having a too old perl version on SLES11
+use constant {
+    HTTP_ACCEPTED               => 202,
+    HTTP_UNAUTHORIZED           => 401,
+    HTTP_PRECONDITION_FAILED    => 412,
+    HTTP_INTERNAL_SERVER_ERROR  => 500,
+    HTTP_SERVICE_UNAVAILABLE    => 503,
+};
+
+use constant {
+    VERBOSE => "VERBOSE",
+    DEBUG1 => "DEBUG1",
+    DEBUG2 => "DEBUG2",
+    DEBUG3 => "DEBUG3",
+    INFO  => "INFO",
+    ERROR => "ERROR",
+    WARN  => "WARNING",
+    FATAL => "FATAL",
+};
+
+use constant { INVENTORY_BASE_DIR => '/var/rudder/inventories' };
+
+my $CONFIGFILE = '/opt/rudder/etc/rudder-inventory-daemon.config.yml';
+my $_CONFIG = {};
+my $_DEFAULT_CONFIG = {
+    'HTTP_POST_TIMEOUT' => '10',
+    'MAX_FAILS_PER_INVENTORY' => '5',
+    'DELETE_PARSED_INVENTORIES' => '0',
+    'DEFAULT_SIG_WAIT_TIME_SECS' => '120',
+    'PROCESS_FRIENDLY_NAME' => 'rudder-inventory-daemon',
+    'PIDFILE' => '/var/rudder/run/rudder-inventory-daemon.pid',
+    'LOGFILE' => '/var/log/rudder/rudder-inventory-daemon.log',
+    'FAILED_DIR'   => INVENTORY_BASE_DIR . "/failed",
+    'ARCHIVE_DIR'  => INVENTORY_BASE_DIR . "/received",
+    'PROXY_URL' => '',
+    'SSL_VERIFY' => '0',
+    'SSL_OPTS' => { },
+    'CUSTOM_FORWARDINGS' => [ ],
+};
+
+
+####################################################################################################
+# USAGE
+####################################################################################################
+
+die "This needs te be run as root!" unless ($< == 0);
+
+sub usage {
+    print "\n";
+    print "[[ Rudder inventory daemon ]]\n";
+    print "\n";
+    print "Usage: $0 <options>\n";
+    print "\n";
+    print " Generic options:\n";
+    print "   -v|--verbose       enter verbose mode, up to 4x\n";
+    print "   -f|--fork          initV mode with forking, otherwise stay on console\n";
+    print "   -c|--config <file> use specified config file instead of $CONFIGFILE\n";
+    print "\n";
+    exit 255;
+};
+
+my ($opts_verbose, $opts_fork) = (0,0);
+
+GetOptions (
+    "v|verbose+"    => \$opts_verbose,
+    "f|fork"        => \$opts_fork,
+    "c|config=s"    => \$CONFIGFILE,
+) || usage;
+
+####################################################################################################
+# Functions
+####################################################################################################
+
+## Logging.
+## Invocation:
+## -> LOG( $type, $format, @params);
+
+sub LOG {
+    ## "Unlike printf, sprintf does not do what you probably mean when you pass it an array as your first argument.
+    ## The array is given scalar context, and instead of using the 0th element of the array as the format, Perl will
+    ## use the count of elements in the array as the format, which is almost never useful."
+    ## - http://perldoc.perl.org/functions/sprintf.html
+    my $type = shift // "no-type?";
+    return if ($type eq 'VERBOSE' and not $opts_verbose >= 1);
+    return if ($type eq 'DEBUG1' and not $opts_verbose >= 2);
+    return if ($type eq 'DEBUG2' and not $opts_verbose >= 3);
+    return if ($type eq 'DEBUG3' and not $opts_verbose >= 4);
+    my $t = time;
+    printf "{%s.%s} <%s> [%s] %s\n",
+        strftime("%Y-%m-%d %H:%M:%S", localtime(time)),
+        sprintf("%03d", ($t-int($t))*1000 ),
+        $$,
+        $type,
+        sprintf(shift // "no-message?", @_);
+}
+
+
+sub LoadConfig {
+    eval {
+        if (-r $CONFIGFILE) {
+            $_CONFIG = LoadFile($CONFIGFILE);
+            LOG(INFO, "Config file %s loaded and parsed", $CONFIGFILE);
+            LOG(DEBUG2, "Config contains: %s", Dumper($_CONFIG));
+        } else {
+            LOG(WARN, "Config file %s does not exist", $CONFIGFILE);
+        }
+        1;
+    };
+    if ($@) {
+        LOG(WARN,"Config file has syntax error, ignoring it: %s", $@);
+        $_CONFIG = { };
+        return 0;
+    }
+    return 1;
+}
+
+my $ConfigSection;
+## Get config option
+## Invocation
+## -> cfg($name, [$section])
+sub cfg {
+    my $name    = shift // return undef;
+    my $section = shift // $ConfigSection // 'default';
+    # We first look at the current named section within the config file, fall back to the default section, if also not found, hard-coded default, finally undef
+    return $_CONFIG->{$section}->{$name} // $_CONFIG->{default}->{$name} // $_DEFAULT_CONFIG->{$name} // undef;
+}
+
+
+
+####################################################################################################
+# Global variables
+
+my @queue;
+my @watchers;
+my %stats;
+my $RUN;
+my $inotify;
+my $UserAgent;
+my $logfh;
+my $daemon = 0;
+
+my $ENDPOINT_URL;
+my %endpoint = ( maxsize => '-', fillcount => '-', saturated => '0' );
+my %failcount;
+
+my ($LOGFILE, $PIDFILE, $PROCESS_FRIENDLY_NAME);
+
+## Short handler function so we can use the same queue_file as when
+## parsing the directories directly at startup
+## See http://search.cpan.org/~mlehmann/Linux-Inotify2-1.22/Inotify2.pm for details.
+
+my $queue_file;
+
+my $event_handler = sub {
+    local *__ANON__ = 'event_handler';
+    my $e = shift;
+    LOG(ERROR, "event_handler: Event queue overflown!") if $e->IN_Q_OVERFLOW;
+    die "Filesystem was umounted!" if $e->IN_UNMOUNT;
+    my $path = $e->fullname;
+    $queue_file->($path);
+};
+
+## Exit routine after receiving an exit signal (INT or TERM): close all watchers and exit
+sub end {
+    foreach my $watcher (@watchers) {
+        LOG(INFO, "shutdown: Closing notify handle: %s", $watcher->name);
+        $watcher->cancel();
+    }
+    LOG(INFO, "Exiting.");
+    close($logfh) if ($daemon);
+    exit (shift // 0);
+}
+
+# Internal function to HTTP GET an URL
+sub _GET {
+    my $url = shift // die "No URL in _GET";
+    my $resp = $UserAgent->get( $url );
+    my $message = $resp->{_content};
+    my $code    = $resp->code;
+    chomp($message);
+    return ($code, $message);
+}
+
+## Daemonize the process, close all filedescriptors, set own process group etc etc
+## Using this extract instead of Proc::Daemon since they are not core modules, and
+## this is otherwise not that black magic that it would justify installing it.
+## Idea taken from 'bklyn' at https://stackoverflow.com/a/768448/4752565
+
+sub daemonize {
+    mkdir dirname($PIDFILE) unless ( -d dirname($PIDFILE) );
+    if (-f $PIDFILE) {
+        # Open pid to check if it still runs
+        open my $pidfh, '<', ${PIDFILE} or die "Error opening " . ${PIDFILE} . ": $!";
+        my $pid = do { local $/; <$pidfh>; };
+        close $pidfh;
+        if ($pid =~ m/^[0-9]+$/) {
+            if (kill 0, $pid) {
+                die "Process already running with PID $pid according to " . ${PIDFILE};
+            }
+        }
+    }
+
+    open(my $pidfh, ">",  ${PIDFILE}) || die "Can not open pid file " . ${PIDFILE} . ": $!";
+    open($logfh, ">>", ${LOGFILE}) || die "Can not open log file " . ${LOGFILE} . ": $!";
+    binmode $logfh;
+
+    my $pid = fork();
+    if ($pid < 0) {
+        # Error
+        die "fork: $!";
+    } elsif ($pid) {
+        # Original flow: save pid file and exit.
+        print $pidfh $pid;
+        close $pidfh;
+        print "Forked daemon with PID $pid\n";
+        POSIX::_exit(0);
+    } else {
+        # Child process
+        POSIX::setsid or die "setsid: $!";
+        chdir "/";
+        umask 0;
+        foreach ( 0 .. (POSIX::sysconf(&POSIX::_SC_OPEN_MAX) || 1024) ) {
+            POSIX::close($_) unless ( $_ eq fileno($logfh) );
+        }
+        open(STDIN, '/dev/null') or die "Can't read /dev/null: $!";
+        *STDOUT = $logfh;
+        *STDERR = $logfh;
+        if ($PROCESS_FRIENDLY_NAME and $PROCESS_FRIENDLY_NAME ne '') {
+            $0 = $PROCESS_FRIENDLY_NAME;
+        };
+        $daemon = 1;
+    }
+}
+
+####################################################################################################
+### MAIN
+####################################################################################################
+
+
+&LoadConfig;
+
+if (my $v = cfg('LOGLEVEL')) {
+    $opts_verbose = int($v);
+    LOG(DEBUG1, "Setting log level to %s", $opts_verbose);
+}
+
+my $MODE;
+if (-f q{/opt/rudder/etc/server-roles.d/rudder-server-root}) {
+    $ConfigSection = 'uploader';
+    LOG(DEBUG1, "Running as an Uploader");
+    $MODE = 'ROOT';
+} else {
+    $ConfigSection = 'forwarder';
+    LOG(DEBUG1, "Running as a Forwarder");
+    $MODE = 'RELAY';
+}
+
+%stats = ( processed_total => 0 );
+
+$| = 1;
+$RUN = 1;
+
+## Catch signals, log verbose and handle issues relatively gracefully
+
+$SIG{INT} = $SIG{TERM} = sub {
+    LOG(INFO, "signal: Will terminate gracefully at next loop.");
+    $RUN = 0;
+};
+
+$SIG{__DIE__} = sub {
+    LOG(FATAL, "We died, very unpleasant, but hey, have some backtraces!\n%s", shift);
+    end(1);
+};
+
+$SIG{__WARN__} = sub {
+    LOG(WARN, "signal: Received warning: %s", shift);
+};
+
+$SIG{HUP} = sub {
+    if ($logfh) {
+        close($logfh);
+        open($logfh, ">>", $LOGFILE) || die "Can not open log file $LOGFILE: $!";
+        binmode $logfh;
+        LOG(INFO, "signal: reopening logfiles on HUP");
+        *STDOUT = $logfh;
+        *STDERR = $logfh;
+    } else {
+        LOG(INFO, "signal: not running as daemon to be HUPped!");
+    }
+};
+
+$inotify = new Linux::Inotify2;
+$inotify->blocking(0);
+
+my $HTTP_POST_TIMEOUT = cfg('HTTP_POST_TIMEOUT');
+$HTTP_POST_TIMEOUT = int($HTTP_POST_TIMEOUT) < 1 ? 10 : int($HTTP_POST_TIMEOUT);
+
+$UserAgent = LWP::UserAgent->new( timeout => $HTTP_POST_TIMEOUT, keep_alive => 2 );
+$UserAgent->proxy(['http','https'], cfg('PROXY_URL')) if (cfg('PROXY_URL') and cfg('PROXY_URL') ne '');
+
+my %SSL_OPTS;
+if (my $cfgopts = cfg('SSL_OPTS')){
+    %SSL_OPTS = %{$cfgopts} if (ref($cfgopts) eq 'HASH');
+}
+$UserAgent->ssl_opts( verify_hostname => cfg('VERIFY_SSL'), %SSL_OPTS );
+
+## Standard log/pidfile for a daemon
+$LOGFILE  = cfg('LOGFILE');
+$PIDFILE  = cfg('PIDFILE');
+$PROCESS_FRIENDLY_NAME = cfg('PROCESS_FRIENDLY_NAME');
+
+&daemonize if $opts_fork;
+
+LOG(INFO, "starting: Inventory daemon started with pid <%s> in mode <%s>", $$, $MODE);
+
+####################################################################################################
+# RELAY MODE
+####################################################################################################
+
+if ($MODE eq 'RELAY') {
+
+    ## This config files are being parsed: *on a relay
+    ##  - site.cf => upload protocol (http/https) + auth for inv updates
+    ##  - policy_server.dat => the current endpoint to forward the invs to
+
+    my $site_file    = '/var/rudder/cfengine-community/inputs/common/1.0/site.cf';
+    my $polserv_file = '/var/rudder/cfengine-community/policy_server.dat';
+
+    ## This davconfig hash is populated later from the config files themselves (See above),
+    ## The default DAV user/pw was hardcoded, so this is also kept hardcoded for the moment.
+    ## For %DIRS we use references to this hash so when we update this data those also get updated.
+
+    my %davconfig = (
+        protocol => 'https',
+        polserv  => '',
+        dav_user => '',       dav_pw   => '',
+        def_user => 'rudder', def_pw   => 'rudder',
+    );
+
+    ## This hash hold all that we are handling: 
+    ## - The keys are directories for the inotify watchers
+    ## - The values are hashrefs with following keys:
+    ##    - d: subdirectory on the upload endpoint (which is the policy server)
+    ##    - u/p: user and password being used as basic auth for the upload
+    ## NB: The directories are scanned at startup to queue already present files
+    ##     that were missed while daemon was not running.
+
+    my %DIRS = (
+        ## Unauthenticated node's inventories
+        '/var/rudder/inventories/incoming'               => { d => 'inventories',       u => \$davconfig{def_user}, p => \$davconfig{def_pw} },
+
+        ## Known node's inventory updates and OVAL reports.
+        '/var/rudder/inventories/accepted-nodes-updates' => { d => 'inventory-updates', u => \$davconfig{dav_user}, p => \$davconfig{dav_pw} }, 
+    );
+
+    ## Load additional directories to watch
+    my $addtnl_dirs = cfg('CUSTOM_FORWARDINGS');
+    if (ref($addtnl_dirs) eq 'ARRAY') {
+        for my $dentry (@{$addtnl_dirs}) {
+            if (ref($dentry) eq 'HASH' 
+                and exists $dentry->{watchdir}    and ref($dentry->{watchdir}) eq '' 
+                and exists $dentry->{endpointdir} and ref($dentry->{endpointdir}) eq '') {
+                    $DIRS{$dentry->{watchdir}} = { 
+                        d => $dentry->{endpointdir}, 
+                        u => \$dentry->{davuser} // \$davconfig{dav_user}, 
+                        p => \$dentry->{davpass} // \$davconfig{dav_pw},
+                    };
+            }
+        }
+    }
+
+    ## Parse site.cf to get protocol and auth creds
+    my $parse_site = sub {
+        local *__ANON__ = 'parse_site';
+        if (my $e = shift) {
+            my $path = $e->fullname;
+            return 0 unless ($path eq $site_file);
+        }
+        my @array;
+        if (open(my $fh, "<", $site_file )) {
+            my @lines = <$fh>; 
+            close $fh;
+
+            ## We need the upload credentials, so parse it from the cf-file (tested to work on 3.1.17 and 4.1.5)
+            my ($davuser, $davpw) = map { /^ +"dav(?:user|pw)" .*string => "([^"]+)";$/ ? $1 : () } @lines;
+            LOG(DEBUG1, "parse_site: DAV Credentials parsed to: '%s' / '%s'", $davuser, $davpw);
+            if ($davuser ne $davconfig{dav_user} or $davpw ne $davconfig{dav_pw}) {
+                LOG(INFO, "parse_site: Updated private upload WebDAV credentials");
+                $davconfig{dav_user} = $davuser;
+                $davconfig{dav_pw}   = $davpw;
+            }
+
+            ## This parses the upload protocol to be used for uploads. Currently we only accept http or https
+            my $protocol = (join("",@lines) =~ /!aix::[\t\n ]+"inventory_upload_protocol" +string => "([^"]+)";/)[0];
+            LOG(DEBUG1, "parse_site: Protocol parsed to '%s'", $protocol);
+            if ($protocol !~ /^https?$/) {
+                LOG(ERROR, "parse_site: Unknown protocol '%s'", $protocol);
+                
+            } elsif ($protocol ne $davconfig{protocol}) {
+                LOG(INFO, "parse_site: Changed protocol from '%s' to '%s'", $davconfig{protocol}, $protocol);
+                $davconfig{protocol} = $protocol;
+            } else {
+                LOG(DEBUG1, "parse_site: Protocol kept as '%s'", $protocol);
+            }
+        } else {
+            LOG(WARN, "parse_site: Failed to open file '%s': %s", $site_file, $!);
+        }
+    };
+
+    ## Parse policy_server.dat for upload endpoint
+    my $parse_policy_server = sub {
+        local *__ANON__ = 'parse_policy_server';
+        if (my $e = shift) {
+            my $path = $e->fullname;
+            return 0 unless ($path eq $polserv_file);
+        }
+        if (open(my $fh, "<", $polserv_file)) {
+            my $firstline = <$fh>;
+            close($fh);
+            chomp($firstline);
+            $firstline =~ s/^\s+|\s+$//g ;
+            LOG(DEBUG1, "parse_policy_server: Got '%s'", $firstline);
+            if ($davconfig{polserv} ne $firstline) {
+                LOG(INFO, "parse_policy_server: Updated from '%s' to '%s'", $davconfig{polserv}, $firstline);
+                $davconfig{polserv} = $firstline;
+            }
+        } else {
+            LOG(WARN, "parse_policy_server: Failed to open file '%s', Error: '%s'", $polserv_file, $!);
+        }
+    };
+
+    ## Here we perform the HTTP PUT
+    ## Invocation:
+    ## -> forward_file( $path );
+    ## Returns:
+    ## -> -1: Connection refused, endpoint not reached
+    ## -> 0: Some error occured, forward failed
+    ## -> 1: Forward succeeded
+
+    sub forward_file {
+        my $path = shift;
+        LOG(DEBUG1, "forward_file: We try to upload: '%s'", $path);
+
+        ## NB: We need to specify application/octet-stream, otherwise the parsing would messed up by the endpoint (on <CFKEY>)...
+        ## We still handle the case when a file would vanish after being queued but before being processed.
+        if (! -f "$path") {
+            LOG(ERROR, "forward_file: File does not exist any more: '%s'", $path);
+            return 0;
+        };
+
+        ## We need to get the proper endpoint URL and upload credentials from our hash, so match the file's path to the keys of %DIR
+        my ($cfg) = map { $path =~ /\Q$_/ ? $DIRS{$_} : () } keys %DIRS;
+        my $ENDPOINT_URL = sprintf("%s://%s/%s", $davconfig{protocol}, $davconfig{polserv}, $cfg->{d});
+        LOG(DEBUG1, "forward_file: Endpoint determined is '%s'", $ENDPOINT_URL);
+
+        ## Thanks to PUT(), we cannot give a file to upload, we have to provide the content to put, so we need to slurp the whole 
+        ## file to a string and set that as the content... 
+        my $fh;
+        unless (open $fh, '<', $path) {
+            LOG(ERROR, "forward_file: Error opening '%s': %s", $path, $!);
+            return 0;
+        }
+        my $content = do { local $/; <$fh>; };
+        close($fh);
+
+        ## SLES11 does currently not have the LWP::UserAgent that has put() helper, so we need to construct a request ourselves.
+        ## But that is not a problem, since adding authorization is easier this way
+        my $request = PUT(
+            sprintf("%s/%s", $ENDPOINT_URL, basename($path)), 
+                Content => $content,
+        );
+        $request->authorization_basic(${$cfg->{u}}, ${$cfg->{p}});
+
+        ## We make the actual response, and bytes travel through the wires...
+        my $resp = $UserAgent->request($request);
+        my $code = $resp->code;
+        my $message = $resp->{_content};
+        chomp($message);
+        LOG(DEBUG1, "forward_file: HTTP %s: Server returned: %s", $code, $message);
+
+        ## NB: LWP::UserAgent "fakes" a 500 even if the connection was not established at all, so we have to check for the
+        ## "cliend-warning" header...
+        if ($code == 500) {
+            if ($resp->header('client-warning') eq 'Internal response') {
+                LOG(ERROR, "forward_file: HTTP %s: Connection refused to: '%s'", $code, $ENDPOINT_URL);
+                return -1;
+            }
+        }
+
+        if ($resp->is_success()) {
+            LOG(VERBOSE, "forward_file: HTTP %s: OK for '%s'", $code, $path);
+            unlink $path;
+            return 1;
+        } else {
+            LOG(ERROR, "forward_file: HTTP %s: Failed for '%s', Server responeded: %s", $code, $path, $message);
+            return 0;
+        }
+    };
+
+    # We have mode-dependent functions, which do a little bit more if run on a root server
+    $queue_file = sub {
+        local *__ANON__ = 'queue_file';
+        my $path = shift;
+        return 0 if ($path =~ m/uuid[.]hive$/);
+        push @queue, $path;
+        LOG("DEBUG1", "queue_file: Queued file: %s", $path);
+    };
+
+    # Since we have to handle signed inventories, not each of the file can be processed in one step.
+    # The theoretical possibility is present, that the signature is uploaded before the ocs file itself.
+    # So we set the notification to non-blocking, and push all files to a queue, where we process all
+    # of them in one mail loop, and poll the notifier in each of the loops
+
+    LOG(INFO, "starting: Loading config from files");
+    &$parse_site; 
+    &$parse_policy_server;
+
+    LOG(INFO, "starting: Adding event listener for site file: %s", $site_file);
+    push @watchers, $inotify->watch( dirname($site_file),    IN_CLOSE_WRITE|IN_MOVED_TO , $parse_site );
+
+    LOG(INFO, "starting: Adding event listener for polserv file: %s", $polserv_file);
+    push @watchers, $inotify->watch( dirname($polserv_file), IN_CLOSE_WRITE|IN_MOVED_TO , $parse_policy_server );
+
+    # Find all files in the directories and queue them um, since we'll not get any notifications for them.
+    # Save watcher references to close at exit.
+    LOG(INFO, "starting: Reading directory contents from watchees");
+    for my $dir ( keys %DIRS ) {
+        unless (-d $dir) {
+            LOG(WARN, "Specified directory does not exist: '%s'", $dir);
+            next;
+        }
+        LOG(DEBUG1, "starting: Processing dir '%s'", $dir);
+        opendir my $dh, $dir or die "Cannot open directory $dir: $!";
+        $queue_file->("$dir/$_") foreach grep { !/^[.]{1,2}$/ } readdir $dh;
+        closedir $dh;
+    }
+
+    LOG(INFO, "starting: Setting up inotify listeners");
+    for my $dir ( keys %DIRS ) {
+        unless (-d $dir) {
+            LOG(WARN, "Specified directory does not exist: '%s'", $dir);
+            next;
+        }
+        LOG(DEBUG1, "starting: Adding listener on directory: '%s'", $dir);
+        push @watchers, $inotify->watch( $dir, IN_CLOSE_WRITE|IN_MOVED_TO , $event_handler );
+    }
+
+    LOG(INFO, "starting: Initialization finished, entering looping.");
+
+    while ($RUN) {
+        LOG(DEBUG1, "loop: starting next iteration with polling the notifier");
+        $inotify->poll;
+        LOG(DEBUG1, "Currently items in queue: '%s'", scalar(@queue));
+
+        # We need a separate local next_queue, since if we would push not processed items
+        # to the end of the real queue, the while loop would process them in the same main loop
+        my @next_queue = ( );
+
+        # We actually do not need this process_queue, but keeping it for debug logging later
+        my $process_queue = 1;
+
+        while ( $process_queue and my $path = shift(@queue) ) {
+            # Upload file from queue
+            my $rc = forward_file($path);
+            
+            # Handle errors:
+            # We push items to end of queue and break the current processing loop and wait 
+            # for the next iteration, which includes a bigger delay if connection was refused
+            if ($rc != 1) {
+                if ($rc == -1) {
+                    LOG(WARN, "loop: sleeping 15s due endpoint not available");
+                    sleep 15;
+                }
+                push @next_queue, $path;
+                $process_queue = 0;
+                last;
+            } else {
+                LOG(INFO, "forward: Delivered: %s", basename($path));
+            }
+        }
+        push @queue, @next_queue;
+        last unless ($RUN);
+        sleep 1;
+    }
+
+    &end(0);
+}
+
+####################################################################################################
+# ROOT MODE
+####################################################################################################
+
+if ($MODE eq 'ROOT') {
+
+    my $FAILED_DIR = cfg('FAILED_DIR'); 
+    mkpath $FAILED_DIR,  mode => 750 unless (-d $FAILED_DIR);
+
+    my $ARCHIVE_DIR = cfg('ARCHIVE_DIR');
+    mkpath $ARCHIVE_DIR, mode => 750 unless (-d $ARCHIVE_DIR);
+
+    my $DEFAULT_SIG_WAIT_TIME_SECS = cfg('DEFAULT_SIG_WAIT_TIME_SECS');
+    if (ref($DEFAULT_SIG_WAIT_TIME_SECS) eq '' or int($DEFAULT_SIG_WAIT_TIME_SECS) < 1) {
+        $DEFAULT_SIG_WAIT_TIME_SECS = 120 ;
+    } else {
+        $DEFAULT_SIG_WAIT_TIME_SECS = int($DEFAULT_SIG_WAIT_TIME_SECS);
+    }
+
+    my $MAX_FAILS_PER_INVENTORY = cfg('MAX_FAILS_PER_INVENTORY');
+    if (ref($MAX_FAILS_PER_INVENTORY) eq '' or int($MAX_FAILS_PER_INVENTORY) < 1) {
+        $MAX_FAILS_PER_INVENTORY = 5;
+    } else {
+        $MAX_FAILS_PER_INVENTORY = int($MAX_FAILS_PER_INVENTORY);
+    }
+
+    my $DELETE_PARSED_INVENTORIES = cfg('DELETE_PARSED_INVENTORIES') ? 1 : 0;
+
+
+    ## Move to destination directory. Handles .sign files also seamlessly.
+    ## Invocation:
+    ## -> mv($source_file, $destination_directory, [ $suffix ]);
+    sub mv {
+        my $path = shift;
+        my $dest = shift;
+        my $suffix = shift // "";
+        LOG(DEBUG3, "Moving '%s' to directory '%s' with suffix '%s'", $path, $dest, $suffix);
+        if (! -f $path) {
+            LOG(WARN, "MOVE: File '%s' to move to dir '%s' does not exist", $path, $dest);
+            return 0;
+        }
+        if (! -d $dest) {
+            LOG(ERROR, "MOVE: Destination directory does not exist: '%s'", $dest);
+            return 0;
+        }
+        my $filename = basename($path) . $suffix;
+        move "$path.sign", "$dest/$filename.sign$suffix" if (-f "$path.sign");
+        move "$path",      "$dest/$filename$suffix";
+        return $?;
+    }
+
+
+    ## Move to failed/archived directory
+    ## Invocation:
+    ## -> fail( $file );
+    ## -> arch( $file );
+    sub fail { mv(shift, $FAILED_DIR, strftime("_%Y-%m-%d", localtime(time)));  }
+    sub arch { mv(shift, $ARCHIVE_DIR); }
+
+
+    ## Add file to upload queue.  If file is compressed, uncompress it but do not add:
+    ## The file will be picked up by an inotify event caused by gunzip creating a new file in the directory
+    ## so we will not add this file right now to the queue, but process that event as a not-compressed inventory
+    ## appearing in the directory we are already watching.
+    ## Invocation:
+    ## -> queue_file( $path );
+    ## returns:
+    ## -> 1: Added successfully
+    ## -> 0: Ignored
+    $queue_file = sub {
+        local *__ANON__ = 'queue_file';
+        my $path = shift;
+        if ($path =~ m/[.]ocs([.]gz)?$/) {
+            if (defined $1 and $1 eq '.gz') {
+                uncompress($path) || return 0;
+                return 1;
+            } else {
+                if (grep( m{^$path$} ,@queue)) {
+                    LOG(VERBOSE, "queue_file: File %s re-appeared and is already in the queue", $path);
+                    return 0;
+                }
+                push @queue, $path;
+                my $INVENTORIES_BASE = INVENTORY_BASE_DIR;
+                $path =~ s|$INVENTORIES_BASE/?||;
+                LOG(VERBOSE, "queue_file: Queued inventory file: '%s'", $path);
+            }
+        } else {
+            LOG(DEBUG3, "queue_file: File skipped: %s", $path);
+            return 0;
+        }
+        return 1;
+    };
+
+
+    ## Check signature. A Signature is OK if:
+    ##  1) Signature exists
+    ##  2) Inventory was uploaded more than $DEFAULT_SIG_WAIT_TIME_SECS secs ago and still no signature present
+    ## Invocation:
+    ## -> signature_check( $path );
+    ## Returns:
+    ## -> 1: signature found & ok OR waiting for signature timed out
+    ## -> 0: signature missing but timeout for waiting for it not reached
+    sub signature_check {
+        my $path = shift;
+        unless (-f $path) {
+            LOG(WARN, "signature_check: File %s does not exist any more", $path);
+            return 1; # Missing file error will be handled by send_file;
+        }
+        if (-f "$path.sign") {
+            LOG(DEBUG3, "signature_check: Signature exists for: %s",$path);
+            return 1;
+        }
+
+        my $signature_missing_since = int(time - (stat $path)[9]);
+        if ($signature_missing_since < $DEFAULT_SIG_WAIT_TIME_SECS) {
+            LOG(DEBUG1, "signature_check: Signature missing for %s, waiting for it since %s sec(s)", $path, $signature_missing_since);
+            return 0;
+        }
+        LOG(WARN, "signature_check: Signature missing for %s, but timeout of %s reached", $path, $DEFAULT_SIG_WAIT_TIME_SECS);
+        return 1;
+    }
+
+
+    ## Handle compressed files by uncompressing them, but ignore rest.
+    ## Invocation:
+    ## -> uncompress( $path );
+    ## Returns:
+    ## -> 0: failed to decomperss
+    ## -> 1: file not handled or decompression successful
+    sub uncompress {
+        my $path = shift;
+        if ($path =~ /[.]ocs[.]gz$/) {
+            LOG(DEBUG2, "uncompress: unzipping inventory: %s",$path);
+            my $t0 = time;
+            unless ( system(qw{ /bin/gzip  --force --quiet --decompress }, $path) == 0 ) {
+                LOG(ERROR, "uncompress: Failed to decompress '%s': %s", $path, $!);
+                fail($path);
+                return 0;
+            }
+            LOG(DEBUG3, "uncompress: Uncompressing inventory took %s secs", (time-$t0));
+        }
+        return 1;
+    }
+
+    ## TODO:  Add watcher to config file, so changes are picked up from a running agent.
+    ## Currently not implemented because this is not something that one might change on a daily basis...
+    sub endpoint_init_vars {
+        die "no rudder-web.properties found!" unless (-s "/opt/rudder/etc/rudder-web.properties");
+        open(my $fh, "<", "/opt/rudder/etc/rudder-web.properties") or die "Could not open rudder-web.properties: $@";
+        my @lines = <$fh>;
+        close $fh;
+        my ($endpoint_protocol, $endpoint_host) = map { m/^rudder[.]endpoint[.]cmdb\s*=\s*(https?):\/\/([^\/]+)\/.*/ ? ($1, $2) : () } @lines;
+        $ENDPOINT_URL  = sprintf("%s://%s/endpoint", $endpoint_protocol, $endpoint_host);
+        LOG(VERBOSE, "endpoint_init_vars: base url: %s", $ENDPOINT_URL); 
+    }
+
+    # Get endpoint saturation info, see https://www.rudder-project.org/redmine/issues/9976 for details
+    sub get_endpoint_saturation {
+        my $apidata;
+        my $info_url = sprintf("%s/%s", $ENDPOINT_URL, "/api/info");
+        # Data returned via body response body: 
+        #  {"queueMaxSize":50, "queueFillCount":0, "queueSaturated":false}
+        my ($code, $message) = _GET($info_url);
+        if (not grep $code, qw{200 429}) {
+            LOG(WARN, "get_endpoint_saturation: API Info did return unexpected HTTP/$code");
+            # We will reset previous saturation data
+            @endpoint{qw{maxsize fillcount saturated}} = qw( - - 0 );
+            return;
+        }
+        eval {
+            local $SIG{__DIE__};
+            $apidata = from_json($message);
+
+            ## TODO: info is broken, see https://www.rudder-project.org/redmine/issues/11330
+            ## Sanitize the boolean object to a definite integer binary value
+            #$apidata->{queueSaturated} = ($apidata->{queueSaturated} == JSON::true)?1:0;
+            $apidata->{queueSaturated} = (int($apidata->{queueMaxSize}) == int($apidata->{queueFillCount})) ? 1 : 0;
+
+            1;
+        };
+        if ($@) {
+            LOG(WARN, "get_endpoint_saturation: Parsing JSON content returned error: %s", $@);
+            @endpoint{qw{maxsize fillcount saturated}} = qw( - - 0 );
+            return;
+        }
+        @endpoint{qw{maxsize fillcount saturated}} = @{$apidata}{qw{queueMaxSize queueFillCount queueSaturated}};
+    }
+
+    sub is_endpoint_OK {
+        my $status_url = sprintf("%s/%s", $ENDPOINT_URL, "/api/status");
+        my ($code, $message) = _GET($status_url);
+        LOG(DEBUG3, "Endpoint status is 'HTTP/%s' with message body '%s'", $code, $message);
+        return ($code eq '200' and $message eq 'OK')
+    }
+
+
+    ## Here we perform the HTTP POST upload of the inventory (and possible signatures), including error handling.
+    ## Invocation:
+    ## -> send_file( $path );
+    ## Returns:
+    ## -> -1: Connection refused, endpoint not reached
+    ## -> -2: Internal server error, inventory was probably corrupt or something other broke
+    ## -> -3: Processing queue is saturated, try later, should not happen since we try to catch this earlier
+    ## -> 0: Some error occured, inventory processing failed
+    ## -> 1: Inventory upload and processing succeeded
+
+    sub send_file {
+        my $path = shift;
+
+        # We construct the content of the POST depending on the existence of the signature
+        my $upload_content = [ ];
+
+        ## NB: We need to specify application/octet-stream, otherwise the parsing would messed up by the endpoint (on <CFKEY>)...
+
+        my $signed;
+
+        if (-f "$path.sign") {
+            LOG(DEBUG3, "send_file: Inventory is SIGNED: %s",$path);
+            push @$upload_content, ( signature => [ "$path.sign" , undef, 'Content-Type' => 'application/octet-stream'] );
+            $signed = 'SIGNED';
+        } else {
+            LOG(WARN, "send_file: Inventory is UNSIGNED: %s", $path);
+            $signed = 'UNSIGNED';
+        }
+
+        ## We still handle the case when a file would vanish after being queued but before being processed.
+        if (-f "$path") {
+            push @$upload_content, ( file => [ "$path", undef, 'Content-Type' => 'application/octet-stream' ] );
+        } else {
+            LOG(ERROR, "send_file: File in queue does not exist any more: %s", $path);
+            return 0;
+        }
+
+        LOG(DEBUG3, "send_file: Starting upload for file: %s",$path);
+
+        my $resp = $UserAgent->post( "$ENDPOINT_URL/upload",  Content_Type => 'form-data', Content => $upload_content );
+        my $message = $resp->{_content};
+        my $code    = $resp->code;
+        chomp($message);
+        LOG(DEBUG3, "send_file: End uploading file, got HTTP/%s: Server returned: %s", $code, $message);
+
+        ## LWP::UserAgent "fakes" a 500 even if the connection was not established at all, so we have to check for the
+        ## "cliend-warning" header...
+        if ($code == HTTP_INTERNAL_SERVER_ERROR) {
+            if ($resp->header('client-warning') eq 'Internal response') {
+                LOG(ERROR, "send_file: HTTP/%s: Connection refused to: '%s'", $code, $ENDPOINT_URL);
+                return -1;
+            }
+
+            ## Here we handle the case where a 500 could mean a temporary badness on server side, but the inventory would be parseable
+            ## so retry it multiple times, but also limit it to a sane value since a broken inventory coud cause the parser to throw a
+            ## so beautiful Java Exception, that my portrait-aligned wide-screen was not able to show it on one page, and this would just
+            ## keep failing and "pollute" the queue by unparseable inventories... Good thing is if we return <0, the item will get pushed
+            ## to the end of the queue, so inventories could still be parsed before this blocks the queue
+            if (++$failcount{$path} > $MAX_FAILS_PER_INVENTORY) {
+                LOG(ERROR, "send_file: HTTP/%s: Gave up on '%s' after %s tries!", $code, $path, ${MAX_FAILS_PER_INVENTORY});
+                delete $failcount{$path};
+                fail($path);
+                return 0;
+            } else {
+                LOG(WARN, "send_file: HTTP/%s: Will try later. Server returned: %s", $code, $message);
+                return -2;
+            }
+        }
+
+        if ($resp->code == HTTP_UNAUTHORIZED) {
+            LOG ERROR, "send_file: HTTP/%s: Bad Signature for '%s'. Server returned: %s", $code, $path, $message;
+            delete $failcount{$path};
+            fail($path);
+            return 0;
+        }
+
+        if ($resp->code == HTTP_PRECONDITION_FAILED) {
+            LOG ERROR, "send_file: HTTP/%s: Bad Inventory for '%s', Server returned: %s", $code, $path, $message;
+            delete $failcount{$path};
+            fail($path);
+            return 0;
+        }
+
+        if ($resp->code == HTTP_SERVICE_UNAVAILABLE) {
+            LOG WARN, "send_file: HTTP/%s: Queue is saturated for '%s', Server returned: %s", $code, $path, $message;
+            return -3;
+        }
+
+        if ($resp->code == HTTP_ACCEPTED) {
+            delete $failcount{$path};
+            LOG VERBOSE, "send_file: HTTP/%s: OK for %s inventory '%s'", $code, $signed, $path;
+            if ($DELETE_PARSED_INVENTORIES) {
+                LOG(VERBOSE, "Deleting file %s instead of archiving it (set via config)", $path);
+                unlink($path);
+            } else {
+                arch($path);
+            }
+            return 1;
+        }
+
+        LOG(ERROR, "send_file: HTTP/%s: Unknown error, Server returned: %s", $code, $message);
+        delete $failcount{$path};
+        fail($path);
+        return 0;
+    };
+
+    # Since we have to handle signed inventories, not each of the file can be processed in one step.
+    # The theoretical possibility is present, that the signature is uploaded before the ocs file itself.
+    # So we set the notification to non-blocking, and push all files to a queue, where we process all
+    # of them in one main loop, and poll the notifier in each of the loops.
+
+    # This will result in the gzipped files being extracted, and causing yet a new inotify event to fire,
+    # so we actually don't need to add the extracted files to the queue, they are handled with a separate
+    # event by inotify. To have this not last 2 iteration, we poll the inotify twice, so we can process
+    # each gzipped file in the same loop they were extracted, because chances are high the signature is already
+    # uploaded and we can forward it to the endpoint.
+
+    # Find all files in the directories and queue them um, since we'll not get any notifications for them.
+    # Save watcher references to close at exit.
+    LOG(VERBOSE, "starting: Reading directory contents from watchees");
+    my @MONITOR_DIRS = (
+        INVENTORY_BASE_DIR . "/accepted-nodes-updates",
+        INVENTORY_BASE_DIR . "/incoming",
+    );
+
+    for my $dir (@MONITOR_DIRS) {
+        unless (-d $dir) {
+            LOG(WARN, "starting: Specified directory does not exist: '%s'", $dir);
+            next;
+        }
+        LOG(DEBUG2, "starting: Reading directory content: %s",$dir);
+        opendir my $dh, $dir or die "Cannot open directory $dir: $!";
+        for my $file (readdir $dh) {
+            if ($file =~ m/[.]ocs(?:[.]gz)?$/) {
+                &uncompress("$dir/$file");
+                $file =~ s/[.]gz$//;
+            }
+            if ($file =~ m/[.]ocs$/) {
+                $queue_file->("$dir/$file");
+            }
+        }
+        closedir $dh;
+    }
+
+    LOG(VERBOSE, "starting: Setting up inotify listeners");
+    for my $dir (@MONITOR_DIRS) {
+        unless (-d $dir) {
+            LOG(WARN, "starting: Specified directory does not exist: '%s'", $dir);
+            next;
+        }
+        LOG(DEBUG2, "starting: Adding event listener on directory: %s", $dir);
+        push @watchers, $inotify->watch( $dir, IN_CLOSE_WRITE|IN_MOVED_TO , $event_handler );
+    }
+
+    &endpoint_init_vars();
+
+    LOG(DEBUG1, "starting: Initial queue size is: %s", scalar(@queue));
+
+    LOG(INFO, "starting: Initialization finished, entering loop.");
+
+    ## TODO: Add more statistics for later use.
+    $stats{start_time} = time;
+
+    # Start main loop
+    while ($RUN) {
+
+        # Wait for endpoint accepting inventories
+        if (not &is_endpoint_OK) {
+            LOG(WARN, "main: Endpoint API reported not OK, waiting for OK");
+            while (not &is_endpoint_OK and $RUN) {
+                sleep 3;
+            }
+        }
+
+        # Poll twice so uncompressed files can be picked up after being unzipped
+        my $size1 = scalar(@queue);
+        LOG(DEBUG1, "Calling poll for inotify handlers #1");
+        $inotify->poll;
+        my $size2 = scalar(@queue);
+        LOG(DEBUG1, "Queue growth by %s item(s)", ($size2-$size1));
+
+        LOG(DEBUG1, "Calling poll for inotify handlers #2 (to catch unzipped inventories in same batch)");
+        $inotify->poll;
+        my $size3 = scalar(@queue);
+        LOG(DEBUG1, "Queue growth by %s item(s)", ($size3-$size2));
+
+        LOG(VERBOSE, "main: Starting upload batch with %s item(s) in the queue", $size3) if $size3;
+        local $Data::Dumper::Indent = 1;
+        LOG(DEBUG2, "main: Queue contains: %s ", Dumper(\@queue));
+
+        # We need a separate local next_queue, since if we would push not processed items
+        # to the end of the real queue, the while loop would process them in the same main loop
+        my @next_queue;
+
+        my $processed_in_this_batch = 0;
+        while (my $path = shift(@queue)) {
+
+            # We schedule processing for later if no signature found, so push item to end of the next queue
+            if (not signature_check($path) ) {
+                push @next_queue, $path;
+                next;
+            }
+
+            # Check if upload queue has free capacity to process the inventory
+            &get_endpoint_saturation;
+            if ($endpoint{saturated}) {
+                # NB: the current file is not in the queue any more, but is also not processed yet, that's why +1
+                LOG(VERBOSE, "batch: Endpoint saturated, postponing remaining %s file(s) to next batch.", scalar(@queue)+1); 
+                push @next_queue, $path;
+                last;
+            }
+
+            my $rc = send_file($path);
+            # We handle <Queue_is_saturated> or <Connection_is_refused> errors gracefully:
+            # We push items to end of queue and break the current processing loop and wait for the next iteration, 
+            # which includes a delay, that might give the endpoint a chance to recover.
+            if ($rc < 0) {
+                last unless ($RUN); # If upload is slow, we might have received an INT during waiting for the upload
+                push @next_queue, $path;
+                if ($rc == -1) {
+                    LOG(INFO, "batch: Last upload did not reach endpoint, will wait 15s ...");
+                    sleep 15;
+                }
+                last;
+            }
+            if ($rc == 1) {
+                my $INVENTORIES_BASE = INVENTORY_BASE_DIR;
+                my $shortpath = $path;
+                # This RegExp matches ${fqdn}-${UUID}.ocs, ${fqdn}-${yyyy-mm-dd-hh-mm-ss}.ocs and also ${fqdn}-root.ocs
+                my $servername = ($path =~ m{$INVENTORIES_BASE/?(?:[^/]+)/(.+)-([a-z0-9]{8}-(?:[a-z0-9]{4}-){3}[a-z0-9]{12}|[0-9]{4}(?:-[0-9]{2}){5}|root)[.]ocs$}) ? sprintf("%s (%s)", $1, $2) : $path ;
+                &get_endpoint_saturation;
+                LOG INFO, "send: Endpoint: %s/%s, Queued: %s, Accepted: %s", 
+                    @endpoint{qw{fillcount maxsize}},
+                    scalar(@queue), 
+                    $servername; 
+            }
+            ++$processed_in_this_batch;
+        }
+        push @queue, @next_queue;
+        if ($processed_in_this_batch) {
+            $stats{processed_total} += $processed_in_this_batch;
+            LOG(VERBOSE, "main: batch ended. Sent to endpoint: %s.", $processed_in_this_batch);
+        }
+        last unless ($RUN);
+        sleep 1;
+    }
+
+    LOG(INFO, "shutdown: Some stats: Processed total: %s, Still in the Queue: %s", $stats{processed_total}, scalar(@queue));
+
+    &end(0);
+}
+
+
+

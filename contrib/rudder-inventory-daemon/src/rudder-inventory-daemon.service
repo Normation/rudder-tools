@@ -1,0 +1,13 @@
+[Unit]
+Description=Rudder Inventory Daemon
+After=network.target
+
+[Service]
+Type=simple
+PIDFile={PIDFILE}
+ExecStart={BINFILE}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
