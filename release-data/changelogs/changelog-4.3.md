@@ -50,12 +50,12 @@ This version provides packages for these operating systems:
     ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
     AIX 5-6-7**
 
+**Note**: As of Rudder 4.3, the rudder agent packages are no longer available on Fedora 18
+and Ubuntu 12.10.
+
 **Special thanks**
 
 Thank you Maxime Longuet from Itika for sponsoring the *node lifecycle* feature !
-
-**Note**: As of Rudder 4.3, the rudder agent packages are no longer available on Fedora 18
-and Ubuntu 12.10.
 
 # Changelogs
 
