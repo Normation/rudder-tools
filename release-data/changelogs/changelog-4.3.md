@@ -55,7 +55,7 @@ and Ubuntu 12.10.
 
 **Special thanks**
 
-Thank you Maxime Longuet from Itika for sponsoring the *node lifecycle* feature !
+* Thanks to Maxime Longuet from Itika for sponsoring the *node lifecycle* feature!
 
 # Changelogs
 
