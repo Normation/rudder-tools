@@ -53,6 +53,10 @@ This version provides packages for these operating systems:
 **Note**: As of Rudder 4.3, the rudder agent packages are no longer available on Fedora 18
 and Ubuntu 12.10.
 
+**Special thanks**
+
+* Thanks to Maxime Longuet from [Itika](https://www.itika.net/) for sponsoring the *node lifecycle* feature!
+
 # Changelogs
 
 ## <a name="4.3.0" > </a> Rudder 4.3.0 (2018-04-19)
