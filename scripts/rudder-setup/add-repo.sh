@@ -17,20 +17,20 @@ add_repo() {
   then
     if [ "${PROTOTYPE}" = "yes" ]
     then
-      $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/release/prototype/${RUDDER_VERSION}/"
+      $local URL_BASE="http://ci.normation.com/${REPO_PREFIX}${REPO_TYPE}-repos/release/prototype/${RUDDER_VERSION}/"
     else
       if [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]
       then
-        $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/release/${RUDDER_VERSION}/"
+        $local URL_BASE="http://ci.normation.com/${REPO_PREFIX}${REPO_TYPE}-repos/release/${RUDDER_VERSION}/"
       else
-        $local URL_BASE="http://ci.normation.com/${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+        $local URL_BASE="http://ci.normation.com/${REPO_PREFIX}${REPO_TYPE}-repos/${RUDDER_VERSION}/"
       fi
     fi
   elif [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]
   then
-    $local URL_BASE="http://www.rudder-project.org/${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+    $local URL_BASE="http://www.rudder-project.org/${REPO_PREFIX}${REPO_TYPE}-repos/${RUDDER_VERSION}/"
   else
-    $local URL_BASE="http://www.rudder-project.org/${REPO_TYPE}-${RUDDER_VERSION}"
+    $local URL_BASE="http://www.rudder-project.org/${REPO_PREFIX}${REPO_TYPE}-${RUDDER_VERSION}"
   fi
 
   if [ "${PM}" = "yum" ]
@@ -45,7 +45,7 @@ add_repo() {
   if [ "${PM}" = "apt" ]
   then
     # Debian / Ubuntu like
-   get - "https://www.rudder-project.org/apt-repos/rudder_apt_key.pub" | apt-key add -
+   get - "https://www.rudder-project.org/${REPO_PREFIX}apt-repos/rudder_apt_key.pub" | apt-key add -
     cat > /etc/apt/sources.list.d/rudder.list << EOF
 deb ${URL_BASE} ${OS_CODENAME} main
 EOF
@@ -60,10 +60,10 @@ EOF
 name=Rudder ${RUDDER_VERSION} Repository
 baseurl=${URL_BASE}
 gpgcheck=1
-gpgkey=https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub
+gpgkey=https://www.rudder-project.org/${REPO_PREFIX}rpm-repos/rudder_rpm_key.pub
 EOF
     # CentOS 5 only supports importing keys from files
-    get "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
+    get "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/${REPO_PREFIX}rpm-repos/rudder_rpm_key.pub"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     return 0
@@ -72,7 +72,7 @@ EOF
   then
     # Add SuSE repo
     # SLES11 only supports importing keys from files
-    get "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/rpm-repos/rudder_rpm_key.pub"
+    get "/tmp/rudder_rpm_key.pub" "https://www.rudder-project.org/${REPO_PREFIX}rpm-repos/rudder_rpm_key.pub"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
