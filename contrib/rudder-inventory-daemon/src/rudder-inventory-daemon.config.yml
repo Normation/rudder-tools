@@ -1,0 +1,134 @@
+###################################################################################################
+# Copyright 2017 BMW AG
+#  Author: Janos Mattyasovszky
+###################################################################################################
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+###################################################################################################
+## Config file for Rudder Inventory Daemon
+##
+## Some key points:
+## - It is in yaml format, so indentations *do* matter
+## - Help text is commented out using at least two hashmarks and follows an indentation
+## - Configurable settings are commented out with single hashmarks at the beginning of the line
+## - There is one config section for 'uploader' and 'forwarder'
+## - Not set option defaults to the commented out value within the shipped config file
+## - If the Config is file not present, all options use the default values
+## - Settings defined within the 'default' section are inherited by 'uploader' and 'forwarder'
+## - Settings defined within the 'uploader' and 'forwarder' sections override ones from 'default'
+##
+
+
+###################################################################################################
+## Default configs will be inherited by both forwarder and uploader
+## Each of these settings within default may be defined also inside 
+## the uploader/forwarder section overriding the default value.
+###################################################################################################
+
+default:
+  ######
+  ## Currently no proxy is used, but the possibility is kept for split-server setup behind a proxy
+
+#  PROXY_URL: ''
+
+  ######
+  ## Wait given amount of seconds before we consider the upload as a timed out
+
+#  HTTP_POST_TIMEOUT: 10
+
+  ######
+  ## If the endpoint uses SSL, we can switch on verification if we use a proper SSL Certificate
+  ## Optionally use SSL_ca_file or SSL_ca_path in SSL_OPTS if custom CA is the issuer
+  ## See for possible options:
+  ##   http://search.cpan.org/~oalders/libwww-perl-6.27/lib/LWP/UserAgent.pm#ssl_opts
+ 
+#  SSL_VERIFY: 0
+ 
+#  SSL_OPTS:
+#    SSL_ca_file: ''
+#    SSL_ca_path: ''
+
+  #####
+  ## Rename daemon in process table (sets $0) if uncommented and set
+
+#  PROCESS_FRIENDLY_NAME: "Rudder-Inventory-Daemon"
+
+  ######
+  ## Standard log/pidfile for a daemon
+
+#  LOGFILE: '/var/log/rudder/inventory-daemon.log'
+#  PIDFILE: '/var/rudder/run/inventory-daemon.pid'
+
+  #####
+  ## Logging verbosity (equals the number of -v options on CLI)
+
+#  LOGLEVEL: 0
+
+
+###################################################################################################
+## Inventory uploader
+##  Runs on the Root server and uploads inventories to the rudder-inventory-endpoint
+###################################################################################################
+
+uploader:
+
+  ######
+  ## Wait for siganture to be uploaded for before submitting without signature to the endpoint
+  
+#  DEFAULT_SIG_WAIT_TIME_SECS: 120
+  
+  ######
+  ## The problem is that an Error 500 indicates a problem with the Endpoint itself, which might not be
+  ## the result of a broken inventory that breaks the processing, but something else, so we'd miss an 
+  ## inventory if the problem is only temporary and not caused by the inventory upload itself.
+  ##
+  ## If an inventory upload returns error 500, we try to re-upload it this many times before it is
+  ## considered "broken" and removed from further processing an put into "failed". 
+  ## This will keep possible future bugs from always retrying to parse a broken inventory and hammering
+  ## the endpoint with bad data. You might want to monitor if this happens and open a bug with the
+  ## inventory attached.
+  
+#  MAX_FAILS_PER_INVENTORY: 5
+  
+  ######
+  ## Settings this to 1 causes the successfully processed inventories to be deleted instead of archiving
+  ## Saves disk space if you don't need them laying around for eternity / you delete them manually.
+  ## This will not modify the behavior of failed inventories being kept in the failed subdir.
+  
+#  DELETE_PARSED_INVENTORIES: 0
+  
+  
+  ######
+  ## What directories to put failed/archived inventories to
+  
+#  FAILED_DIR:  "/var/rudder/inventories/failed"
+#  ARCHIVE_DIR: "/var/rudder/inventories/received"
+ 
+
+###################################################################################################
+## Inventory forwarder
+##  Runs on non-root policy server, and forwards received inventories to the parent policy server
+###################################################################################################
+
+forwarder:
+
+  # You can add additional items here to be included in watch+forward,
+  # The DAV User/Pass for inventory uploads will be used if not specified by davuser/davpass
+
+#  CUSTOM_FORWARDINGS:
+#    - watchdir: '/var/rudder/oval/accepted-nodes-reports'
+#      endpointdir: 'oval-incoming'
+#      davuser: 'uploadusername'
+#      davpass: 'S3cretP4$$'
+
