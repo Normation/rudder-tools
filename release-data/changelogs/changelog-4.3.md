@@ -59,6 +59,124 @@ and Ubuntu 12.10.
 
 # Changelogs
 
+## <a name="4.3.1" > </a> Rudder 4.3.1 (2018-05-04)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Make the compliance graph clickable
+    ([\#12429](https://www.rudder-project.org/redmine/issues/12429))
+
+#### Generic methods
+
+  - Add generic methods to assign monitoring templates and parameters to nodes
+    ([\#12517](https://www.rudder-project.org/redmine/issues/12517))
+
+#### Documentation
+
+  - Document the behavior of inventory hooks
+    ([\#8335](https://www.rudder-project.org/redmine/issues/8335))
+
+#### Miscellaneous
+
+  - Add tests for sshKeyDistribution technique
+    ([\#12455](https://www.rudder-project.org/redmine/issues/12455))
+
+#### Techniques
+
+  - New rudder technique : SNMP configuration to monitor the rudder agent health
+    ([\#12501](https://www.rudder-project.org/redmine/issues/12501))
+  - Add a system technique handling monitoring files sharing
+    ([\#12519](https://www.rudder-project.org/redmine/issues/12519))
+
+### Bug fixes
+
+#### Technique editor - UI/UX
+
+  - Fixed: The filter field in the technique editor should not be monospace
+    ([\#12081](https://www.rudder-project.org/redmine/issues/12081))
+
+#### Web - UI & UX
+
+  - Fixed: Missing border in Default policy mode setting
+    ([\#12236](https://www.rudder-project.org/redmine/issues/12236))
+  - Fixed: Inconsistent font for status of rule in accept new node page, when looking at the Rules to be applied
+    ([\#12364](https://www.rudder-project.org/redmine/issues/12364))
+  - Fixed: Switch's css is broken on the Api accounts page
+    ([\#12518](https://www.rudder-project.org/redmine/issues/12518))
+  - Fixed: Add space between filter and Event logs table
+    ([\#12515](https://www.rudder-project.org/redmine/issues/12515))
+  - Fixed: CSS of txt/json inputs is broken
+    ([\#12514](https://www.rudder-project.org/redmine/issues/12514))
+  - Fixed: Add margin between selects and button groups in Archives page
+    ([\#12513](https://www.rudder-project.org/redmine/issues/12513))
+  - Fixed: Buttons don't follow a straight design
+    ([\#12512](https://www.rudder-project.org/redmine/issues/12512))
+
+#### Generic methods
+
+  - Fixed: service restart uses an undefined variable
+    ([\#12553](https://www.rudder-project.org/redmine/issues/12553))
+
+#### Web - Config management
+
+  - Fixed: Wrong parameter used to create dsc ncf techniques
+    ([\#12533](https://www.rudder-project.org/redmine/issues/12533))
+
+#### Documentation
+
+  - Fixed: Wrong service name in agent install instruction in 4.3
+    ([\#12569](https://www.rudder-project.org/redmine/issues/12569))
+  - Fixed: Typo beeing -> being in rudder manual
+    ([\#12506](https://www.rudder-project.org/redmine/issues/12506))
+  - Fixed: Add a favicon for Rudder by example
+    ([\#12490](https://www.rudder-project.org/redmine/issues/12490))
+
+#### Miscellaneous
+
+  - Fixed: wrong import in ssh-key-distribution tests
+    ([\#12511](https://www.rudder-project.org/redmine/issues/12511))
+
+#### Packaging
+
+  - Fixed: Fix flask version during build
+    ([\#12541](https://www.rudder-project.org/redmine/issues/12541))
+  - Fixed: rudder-pkg python3 issue
+    ([\#12504](https://www.rudder-project.org/redmine/issues/12504))
+
+#### Technique editor - API
+
+  - Fixed: Broken reporting for non-applicable generic methods
+    ([\#12542](https://www.rudder-project.org/redmine/issues/12542))
+
+#### System integration
+
+  - Fixed: apache_acl file is remplaced, even on relay with no http
+    ([\#12530](https://www.rudder-project.org/redmine/issues/12530))
+
+#### System techniques
+
+  - Fixed: monitoring_hook do no exist in initial promises
+    ([\#12563](https://www.rudder-project.org/redmine/issues/12563))
+  - Fixed: Don't stop agent execution when uuid is missing on non community agent
+    ([\#12529](https://www.rudder-project.org/redmine/issues/12529))
+  - Fixed: Access rules on Rudder servers/relays prevent in most case the server from downloading/connecting on itself
+    ([\#12521](https://www.rudder-project.org/redmine/issues/12521))
+
+#### Techniques
+
+  - Fixed: A rudder relay or server, with no nodes behind it, does not share ncf
+    ([\#12465](https://www.rudder-project.org/redmine/issues/12465))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Janos Mattyasovszky
+
+This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.3.0" > </a> Rudder 4.3.0 (2018-04-19)
 
 ### Changes
