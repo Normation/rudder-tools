@@ -1,6 +1,6 @@
 # Release data file
 
-release = "4.3"
+release = "4.4"
 
 # Status of the release (alpha, beta, rc, final)
 release-status = "alpha"
@@ -34,40 +34,45 @@ architectures = {
                 }
 
 # Roles are package groups
-roles = { 
+# We should only support LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES) 
+roles-community = { 
+          "debian-8":     [ "agent-allinone", "relay", "server" ],
+          "debian-9":     [ "agent-allinone", "relay", "server" ],
+          "ubuntu-14.04": [ "agent-allinone" ],
+          "ubuntu-16.04": [ "agent-allinone", "relay", "server" ],
+          "ubuntu-18.04": [ "agent-allinone", "relay", "server" ],
+          "rhel-6":       [ "agent-allinone" ],
+          "rhel-7":       [ "agent-allinone", "relay", "server" ],
+          "sles-11":      [ "agent-allinone" ],
+          "sles-12":      [ "agent-allinone", "relay", "server" ],
+        }
+
+# roles-subscription = roles-subscription-only + roles-community
+roles-subscription-only = { 
           "debian-5":     [ "agent-allinone" ],
           "debian-6":     [ "agent-allinone" ],
           "debian-7":     [ "agent-allinone" ],
-          "debian-8":     [ "agent-allinone", "agent-thin", "relay", "server" ],
-          "debian-9":     [ "agent-allinone", "agent-thin", "relay", "server" ],
           "ubuntu-10.04": [ "agent-allinone" ],
           "ubuntu-12.04": [ "agent-allinone" ],
-          "ubuntu-14.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
-          "ubuntu-16.04": [ "agent-allinone", "agent-thin", "relay", "server" ],
           "rhel-3":       [ "agent-allinone" ],
           "rhel-5":       [ "agent-allinone" ],
-          "rhel-6":       [ "agent-allinone", "agent-thin", "relay", "server" ],
-          "rhel-7":       [ "agent-allinone", "agent-thin", "relay", "server" ],
           "sles-10sp3":   [ "agent-allinone" ],
-          "sles-11":      [ "agent-allinone", "agent-thin", "relay", "server" ],
-          "sles-12":      [ "agent-allinone", "agent-thin", "relay", "server" ],
           "aix-5":        [ "agent-allinone" ],
         }
 
 # Packages that are built
 packages = { 
              "agent-allinone": [ "rudder-agent" ],
-             "agent-thin":     [ "rudder-agent-thin" ],
              "relay":          [ "rudder-server-relay" ],
              "server":         [ "rudder-inventory-ldap", "rudder-inventory-endpoint", "rudder-jetty", "rudder-reports", "rudder-server-root", "rudder-webapp", "rudder-techniques", "ncf", "ncf-api-virtualenv" ],
            }
 
 # Packages that are architecture dependent (others are independent)
-arch-dependent-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap" ]
+arch-dependent-packages = [ "rudder-agent", "rudder-inventory-ldap" ]
 
 # Internal components versions
 components = {
-               "cfengine": "3.10"
+               "cfengine": "3.12"
              }
 
 # Agent versions you can use with this version's server
@@ -75,3 +80,4 @@ compatible-agents = [ "4.1", "4.2", "4.3", "4.4" ]
 
 # Versions you can upgrade from directly
 supported-upgrade = [ "4.1", "4.2", "4.3", "4.4" ]
+
