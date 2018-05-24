@@ -132,7 +132,7 @@ class PR:
       # for each reviewer, get the last status given and filter out comments
       if review['state'] == "APPROVED":
         status[review['user']['login']] = True
-      if review['state'] == "REQUEST_CHANGES":
+      if review['state'] == "REQUEST_CHANGES" or review['state'] == "CHANGES_REQUESTED":
         status[review['user']['login']] = False
     # Skip PR without review
     if len(status) == 0:
