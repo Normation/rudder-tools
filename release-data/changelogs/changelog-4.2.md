@@ -45,6 +45,174 @@ no longer available in Ubuntu 12.04.
 
 # Changelogs
 
+## <a name="4.2.6" > </a> Rudder 4.2.6 (2018-05-29)
+
+### Changes
+
+#### Documentation
+
+  - Add docs about Windows agent logging
+    ([\#12393](https://www.rudder-project.org/redmine/issues/12393))
+
+#### Miscellaneous
+
+  - Add tests for sshKeyDistribution technique
+    ([\#12455](https://www.rudder-project.org/redmine/issues/12455))
+
+#### Web - Compliance & node report
+
+  - Overriden directives are not listed in reports information
+    ([\#7616](https://www.rudder-project.org/redmine/issues/7616))
+
+#### Agent
+
+  - Upgrade to CFEngine 3.10.4 LTS
+    ([\#12576](https://www.rudder-project.org/redmine/issues/12576))
+
+#### System techniques
+
+  - Add a way to override report mode in system techniques
+    ([\#12680](https://www.rudder-project.org/redmine/issues/12680))
+  - rudder-lib.st in the "common" system technique does not identify crond as running when the ps is /usr/sbin/crond -l notice
+    ([\#12615](https://www.rudder-project.org/redmine/issues/12615))
+
+#### Performance and scalability
+
+  - Explore alternative format for compliance table
+    ([\#12621](https://www.rudder-project.org/redmine/issues/12621))
+
+#### Techniques
+
+  - Add an entry for the slackware package module in the packageManagement technique metadata
+    ([\#12687](https://www.rudder-project.org/redmine/issues/12687))
+  - Make the 'common' system technique identify crond on a slackware agent
+    ([\#12610](https://www.rudder-project.org/redmine/issues/12610))
+  - New rudder technique : SNMP configuration to monitor the rudder agent health
+    ([\#12501](https://www.rudder-project.org/redmine/issues/12501))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Compliance bar appears partially white in some graphes
+    ([\#12643](https://www.rudder-project.org/redmine/issues/12643))
+  - Fixed: Directive  tree filter is very slow
+    ([\#12650](https://www.rudder-project.org/redmine/issues/12650))
+  - Fixed: While adding network in General settings CIDR notation validation fails in special cases
+    ([\#12629](https://www.rudder-project.org/redmine/issues/12629))
+  - Fixed: Delete directive confirmation popup should display the action to confirm
+    ([\#12552](https://www.rudder-project.org/redmine/issues/12552))
+  - Fixed: Add space between filter and Event logs table
+    ([\#12515](https://www.rudder-project.org/redmine/issues/12515))
+  - Fixed: CSS of txt/json inputs is broken
+    ([\#12514](https://www.rudder-project.org/redmine/issues/12514))
+  - Fixed: Add margin between selects and button groups in Archives page
+    ([\#12513](https://www.rudder-project.org/redmine/issues/12513))
+  - Fixed: Buttons don't follow a straight design
+    ([\#12512](https://www.rudder-project.org/redmine/issues/12512))
+
+#### Technique editor - UI/UX
+
+  - Fixed: Broken css when technique name is long
+    ([\#12545](https://www.rudder-project.org/redmine/issues/12545))
+  - Fixed: The filter field in the technique editor should not be monospace
+    ([\#12081](https://www.rudder-project.org/redmine/issues/12081))
+
+#### Web - Config management
+
+  - Fixed: "Safelly" typo in logs
+    ([\#12635](https://www.rudder-project.org/redmine/issues/12635))
+
+#### Web - Maintenance
+
+  - Fixed: Java 9 / Java 10 compatibility: security exception for JS VM
+    ([\#12548](https://www.rudder-project.org/redmine/issues/12548))
+  - Fixed: Java 9 / Java 10 compatibility: javax/xml/bind removed
+    ([\#12557](https://www.rudder-project.org/redmine/issues/12557))
+
+#### Web - Technique editor
+
+  - Fixed: Always get "Technique diverges" pop-up when coming back to technique editor
+    ([\#12207](https://www.rudder-project.org/redmine/issues/12207))
+
+#### Architecture - Internal libs
+
+  - Fixed: Missing ipv6 constraint regex test
+    ([\#12666](https://www.rudder-project.org/redmine/issues/12666))
+
+#### Documentation
+
+  - Fixed: Restricted java security policy breaks Rudder (class configured for Cipher(provider: BC)cannot be found)
+    ([\#12606](https://www.rudder-project.org/redmine/issues/12606))
+  - Fixed: Typo beeing -> being in rudder manual
+    ([\#12506](https://www.rudder-project.org/redmine/issues/12506))
+  - Fixed: Fix various typos in ncf doc
+    ([\#12570](https://www.rudder-project.org/redmine/issues/12570))
+
+#### Miscellaneous
+
+  - Fixed: Policies regeneration error when using a parameters with " char
+    ([\#12674](https://www.rudder-project.org/redmine/issues/12674))
+  - Fixed: wrong import in ssh-key-distribution tests
+    ([\#12511](https://www.rudder-project.org/redmine/issues/12511))
+
+#### Web - Compliance & node report
+
+  - Fixed: ${const.dollar} in generic method parameter leads to missing report
+    ([\#12616](https://www.rudder-project.org/redmine/issues/12616))
+
+#### Packaging
+
+  - Fixed: .pyc file are not cleand up during postinst
+    ([\#12634](https://www.rudder-project.org/redmine/issues/12634))
+  - Fixed: Build fail on ubuntu 18
+    ([\#12683](https://www.rudder-project.org/redmine/issues/12683))
+  - Fixed: Fix flask version during build
+    ([\#12541](https://www.rudder-project.org/redmine/issues/12541))
+  - Fixed: rudder-pkg python3 issue
+    ([\#12504](https://www.rudder-project.org/redmine/issues/12504))
+  - Fixed: ncf script traceback error
+    ([\#12633](https://www.rudder-project.org/redmine/issues/12633))
+
+#### API
+
+  - Fixed: NumberFormatException in NodeAPI 8 (runResponse)
+    ([\#12556](https://www.rudder-project.org/redmine/issues/12556))
+
+#### Agent
+
+  - Fixed: jobScheduler does not work when the first non-loopback interface has no ip address
+    ([\#12262](https://www.rudder-project.org/redmine/issues/12262))
+
+#### System techniques
+
+  - Fixed: Access rules on Rudder servers/relays prevent in most case the server from downloading/connecting on itself
+    ([\#12521](https://www.rudder-project.org/redmine/issues/12521))
+
+#### Performance and scalability
+
+  - Fixed: Rule tree filter is a bit slow
+    ([\#12690](https://www.rudder-project.org/redmine/issues/12690))
+
+#### Techniques
+
+  - Fixed: Enforce checkbox tooltip in groupmanagement technique is misleading
+    ([\#12670](https://www.rudder-project.org/redmine/issues/12670))
+  - Fixed: Missing report if two mountounts with the same target
+    ([\#12647](https://www.rudder-project.org/redmine/issues/12647))
+  - Fixed: Missing report when we cannot change home directory in users technique
+    ([\#12555](https://www.rudder-project.org/redmine/issues/12555))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Daniel Fuleki
+ * Janos Mattyasovszky
+ * Vincent DAVY
+
+This is a bug fix release in the 4.2 series and therefore all installations of 4.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.2.5" > </a> Rudder 4.2.5 (2018-04-19)
 
 ### Breaking Changes
