@@ -67,8 +67,6 @@ and Ubuntu 12.10.
 
   - Add the possibility to customize filters and tests for jinja2 templating
     ([\#12761](https://www.rudder-project.org/redmine/issues/12761))
-  - Add the possibility to customize filters and tests for jinja2 templating
-    ([\#12761](https://www.rudder-project.org/redmine/issues/12761))
   - Add a generic method to test variable content
     ([\#12596](https://www.rudder-project.org/redmine/issues/12596))
 
@@ -216,8 +214,6 @@ and Ubuntu 12.10.
 
   - Fixed: Technique Editor may ignores some error when authenticating, leading to unauthorized access
     ([\#12720](https://www.rudder-project.org/redmine/issues/12720))
-  - Fixed: Technique Editor may ignores some error when authenticating, leading to unauthorized access
-    ([\#12720](https://www.rudder-project.org/redmine/issues/12720))
 
 #### Web - Compliance & node report
 
@@ -298,8 +294,6 @@ and Ubuntu 12.10.
     ([\#12745](https://www.rudder-project.org/redmine/issues/12745))
   - Fixed: Misleading error message in Services technique when range of number of process could not be repaired
     ([\#12713](https://www.rudder-project.org/redmine/issues/12713))
-  - Fixed: Add zypper_pattern provider in package technique
-    ([\#12700](https://www.rudder-project.org/redmine/issues/12700))
   - Fixed: Wrong reporting in "ManagekeyValue" technique
     ([\#12603](https://www.rudder-project.org/redmine/issues/12603))
   - Fixed: Enforce checkbox tooltip in groupmanagement technique is misleading
