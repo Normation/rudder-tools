@@ -300,6 +300,9 @@ and Ubuntu 12.10.
     ([\#12670](https://www.rudder-project.org/redmine/issues/12670))
   - Fixed: Missing report if two mountounts with the same target
     ([\#12647](https://www.rudder-project.org/redmine/issues/12647))
+  - Fixed: Add zypper pattern option in package Technique.
+    *please note that it does not work yet and will be available in next release 4.3.3*
+    ([\#12700](https://www.rudder-project.org/redmine/issues/12700))
   - Fixed: Missing report when we cannot change home directory in users technique
     ([\#12555](https://www.rudder-project.org/redmine/issues/12555))
   - Fixed: Typo in generic method File content
