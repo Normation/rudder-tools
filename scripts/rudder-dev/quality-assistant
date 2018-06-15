@@ -151,7 +151,7 @@ def repo_merge(repo, alt_dir):
     if not approved:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
         print("Reassigning unapproved PR: " + pr_info['html_url'])
-      reassign(pr_info['html_url'], Config.DISCUSSION_CODE)
+      reassign(pr, Config.DISCUSSION_CODE)
     # Merge approved PR outside of freeze period
     elif not freeze:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
