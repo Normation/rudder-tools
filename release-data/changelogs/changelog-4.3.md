@@ -45,7 +45,7 @@ This version provides packages for these operating systems:
     (64 bits), SLES 11, SLES 12, Ubuntu 14.04, Ubuntu 16.04**
   - Rudder agent: all of the above plus **Debian 5, Debian 6, Debian 7
     RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), SLES
-    10, SLES 12, Ubuntu 10.04, Ubuntu 12.04**
+    10, SLES 12, Ubuntu 10.04, Ubuntu 12.04, Ubuntu 18.04**
   - Rudder agent (binary packages available from
     ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
     AIX 5-6-7**
@@ -62,6 +62,11 @@ and Ubuntu 12.10.
 ## <a name="4.3.2" > </a> Rudder 4.3.2 (2018-06-12)
 
 ### Changes
+
+#### Packaging
+ 
+  - Add agent support for Ubuntu 18.04 LTS "Bionic Beaver"
+    ([\#12683](https://www.rudder-project.org/redmine/issues/12683))
 
 #### Generic methods
 
@@ -224,8 +229,6 @@ and Ubuntu 12.10.
 
   - Fixed: .pyc file are not cleand up during postinst
     ([\#12634](https://www.rudder-project.org/redmine/issues/12634))
-  - Fixed: Build fail on ubuntu 18
-    ([\#12683](https://www.rudder-project.org/redmine/issues/12683))
   - Fixed: Build fail because on non existent man3 directory
     ([\#12632](https://www.rudder-project.org/redmine/issues/12632))
   - Fixed: Error during postinst on upgrade to 4.3
