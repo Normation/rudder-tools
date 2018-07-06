@@ -126,7 +126,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
 
                     write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
                     #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
-        if directives['directiveId'].startswith('common-'):
+        if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
             write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, 'run', 'rudder',  rules['serial'], 'end', nodeconfigid, reportDate, 'control', '', 'End execution'))
             #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
         myConnection.commit()
