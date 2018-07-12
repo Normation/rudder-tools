@@ -51,6 +51,10 @@ for node in sorted(nodes):
     if software['name'] == "rudder-agent":
       # The software is rudder-agent, store the version
       rudder_versions[node['id']] = software['version']
+    if software['name'] == "Rudder agent (DSC)":
+      # The software is Rudder agent (DSC), for Windows DSC
+      rudder_versions[node['id']] = software['version']
+
 
 # Initialize Workbook object 
 wbk = xlwt.Workbook()
@@ -78,7 +82,7 @@ for node in sorted(nodes):
   host_name      = node["hostname"]
   mach_type      = node["machine"]["type"]
   oper_sys       = node["os"]["name"] + " " + node["os"]["version"]
-  rudder_version = rudder_versions[node_id]
+  rudder_version = rudder_versions.get(node_id, "Version not available")
 
   # Indexing is zero based, row then column
   sheet.write(row, 0, host_name)
