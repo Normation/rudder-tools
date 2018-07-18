@@ -45,6 +45,247 @@ no longer available in Ubuntu 12.04.
 
 # Changelogs
 
+## <a name="4.2.7" > </a> Rudder 4.2.7 (2018-07-18)
+
+### Changes
+
+#### Generic methods
+
+  - Add the possibility to customize filters and tests for jinja2 templating
+    ([\#12761](https://www.rudder-project.org/redmine/issues/12761))
+  - Add the possibility to customize filters and tests for jinja2 templating
+    ([\#12761](https://www.rudder-project.org/redmine/issues/12761))
+  - Add support for BSD-style init scripts services (rc.d) (slackware)
+    ([\#12593](https://www.rudder-project.org/redmine/issues/12593))
+
+#### Generic methods - Package Management
+
+  - Synchronize the 'slackpkg' cfengine package module shipped with ncf with the official one
+    ([\#12811](https://www.rudder-project.org/redmine/issues/12811))
+  - Synchronize package modules from masterfiles
+    ([\#10907](https://www.rudder-project.org/redmine/issues/10907))
+  - Backport options for yum package provider
+    ([\#12127](https://www.rudder-project.org/redmine/issues/12127))
+  - Add a package module for cfengine supporting slackware
+    ([\#12684](https://www.rudder-project.org/redmine/issues/12684))
+
+#### Documentation
+
+  - Document plugin node-external-reports
+    ([\#12864](https://www.rudder-project.org/redmine/issues/12864))
+  - Add binary dependency to rpkg format documentation
+    ([\#12810](https://www.rudder-project.org/redmine/issues/12810))
+  - Change the documentation to tell the user to use the gpg key from the root path
+    ([\#12802](https://www.rudder-project.org/redmine/issues/12802))
+
+#### Agent
+
+  - Add a command line option to run the agent in full compliance mode
+    ([\#12681](https://www.rudder-project.org/redmine/issues/12681))
+
+#### Packaging
+
+  - Accept external options to rpmbuild calls
+    ([\#12973](https://www.rudder-project.org/redmine/issues/12973))
+
+#### System techniques
+
+  - Make the agent resend the inventory if sending failed
+    ([\#7490](https://www.rudder-project.org/redmine/issues/7490))
+
+#### Techniques
+
+  - Add testing on sshKeyDistribution
+    ([\#12822](https://www.rudder-project.org/redmine/issues/12822))
+
+### Bug fixes
+
+#### API
+
+  - Fixed: Tags in directives are ignored in POST API
+    ([\#12355](https://www.rudder-project.org/redmine/issues/12355))
+  - Fixed: Archive API always tells "group" even for other objects
+    ([\#12705](https://www.rudder-project.org/redmine/issues/12705))
+
+#### Web - UI & UX
+
+  - Fixed: The red cross in case of generation problem is not visible enough
+    ([\#11889](https://www.rudder-project.org/redmine/issues/11889))
+  - Fixed: loading page and 404 page does not use correct style when redirected by apache
+    ([\#12736](https://www.rudder-project.org/redmine/issues/12736))
+  - Fixed: Windows node show an empty Certificate Hash field in node details
+    ([\#11347](https://www.rudder-project.org/redmine/issues/11347))
+  - Fixed: GUI problem with long strings in reporting
+    ([\#12283](https://www.rudder-project.org/redmine/issues/12283))
+
+#### Technique editor - API
+
+  - Fixed: On debian 9.4, ncf views.py can not access http://localhost/rudder (but can https://..)
+    ([\#12957](https://www.rudder-project.org/redmine/issues/12957))
+  - Fixed: Technique Editor may ignores some error when authenticating, leading to unauthorized access
+    ([\#12720](https://www.rudder-project.org/redmine/issues/12720))
+  - Fixed: Technique Editor may ignores some error when authenticating, leading to unauthorized access
+    ([\#12720](https://www.rudder-project.org/redmine/issues/12720))
+
+#### Web - Config management
+
+  - Fixed: When we add a section in the directive editor, it clears the content of the previous section
+    ([\#12916](https://www.rudder-project.org/redmine/issues/12916))
+  - Fixed: No reports on dsc only techniques on a Linux Node
+    ([\#12754](https://www.rudder-project.org/redmine/issues/12754))
+  - Fixed: When policies have wrong permissions (660), agent cannot be executed, and reload server fails, it breaks the generation, and prevent correcting the permission
+    ([\#12732](https://www.rudder-project.org/redmine/issues/12732))
+
+#### Generic methods - Package Management
+
+  - Fixed: Force using epoch when installing a package with zypper
+    ([\#12799](https://www.rudder-project.org/redmine/issues/12799))
+  - Fixed: zypper module arch and version specification for zypper commands is not correct
+    ([\#12798](https://www.rudder-project.org/redmine/issues/12798))
+
+#### Web - Technique editor
+
+  - Fixed: Broken technique editor if a technique is in the browser cache, but has been removed from the FS
+    ([\#12970](https://www.rudder-project.org/redmine/issues/12970))
+
+#### Rudder web app
+
+  - Fixed: wrong text encoding in technique editor
+    ([\#12471](https://www.rudder-project.org/redmine/issues/12471))
+
+#### Web - Nodes & inventories
+
+  - Fixed: In inventory, "motherboardid" is not the mother board id but the machine id
+    ([\#12893](https://www.rudder-project.org/redmine/issues/12893))
+  - Fixed: It's difficult to know if the node property added is valid json 
+    ([\#12360](https://www.rudder-project.org/redmine/issues/12360))
+  - Fixed: Slackware is not known by Rudder
+    ([\#12707](https://www.rudder-project.org/redmine/issues/12707))
+  - Fixed: Log with cause for a missing node is swallowed
+    ([\#12724](https://www.rudder-project.org/redmine/issues/12724))
+
+#### Documentation
+
+  - Fixed: Invalid ordering of elements in node external reports plugin
+    ([\#12901](https://www.rudder-project.org/redmine/issues/12901))
+  - Fixed: Move DSC documentation inside the plugins section of Rudder doc
+    ([\#12895](https://www.rudder-project.org/redmine/issues/12895))
+  - Fixed: Missing support of Ubuntu 18.04 agent in documentation
+    ([\#12854](https://www.rudder-project.org/redmine/issues/12854))
+  - Fixed: Documentation for dsc ncf GM does not appear in the user manual
+    ([\#12750](https://www.rudder-project.org/redmine/issues/12750))
+  - Fixed: Documentation should use full path to rudder-pkg for command examples
+    ([\#12771](https://www.rudder-project.org/redmine/issues/12771))
+  - Fixed: Adding missings informations for Windows plugin installation
+    ([\#12748](https://www.rudder-project.org/redmine/issues/12748))
+
+#### Technique editor - UI/UX
+
+  - Fixed: dsc filter in technique editor does not seem to work
+    ([\#12468](https://www.rudder-project.org/redmine/issues/12468))
+
+#### Web - Compliance & node report
+
+  - Fixed: During an upgrade of Rudder, if a new generic method appears in ncf, that is also on local method, all is broken
+    ([\#12930](https://www.rudder-project.org/redmine/issues/12930))
+  - Fixed: Some reports are duplicated between agent and postgres leading to "unexpected" compliance 
+    ([\#12719](https://www.rudder-project.org/redmine/issues/12719))
+
+#### Packaging
+
+  - Fixed: Broken windows plugin install in 4.3
+    ([\#12922](https://www.rudder-project.org/redmine/issues/12922))
+  - Fixed: Rudder-agent provides rudder-agent without a version
+    ([\#7777](https://www.rudder-project.org/redmine/issues/7777))
+  - Fixed: Error in Plugin section for Node external reports
+    ([\#12898](https://www.rudder-project.org/redmine/issues/12898))
+  - Fixed: Warn during inventory if sending through http not https
+    ([\#11284](https://www.rudder-project.org/redmine/issues/11284))
+
+#### Generic methods - Service Management
+
+  - Fixed: fail to restart certain services on Ubuntu because of incomplete detection of systemd/upstart
+    ([\#12887](https://www.rudder-project.org/redmine/issues/12887))
+
+#### System integration
+
+  - Fixed: apache overwrites error response from Rudder
+    ([\#12747](https://www.rudder-project.org/redmine/issues/12747))
+  - Fixed: Generation gets stuck when cf-serverd is not running
+    ([\#12604](https://www.rudder-project.org/redmine/issues/12604))
+
+#### Generic methods
+
+  - Fixed: Wrong bundle name passed in 12154
+    ([\#12921](https://www.rudder-project.org/redmine/issues/12921))
+  - Fixed: Description of the "user primary group" method is wrong
+    ([\#12785](https://www.rudder-project.org/redmine/issues/12785))
+  - Fixed: Create a generic method to define environment variable
+    ([\#12154](https://www.rudder-project.org/redmine/issues/12154))
+
+#### Plugins
+
+  - Fixed: rudder-pkg must disable plugin during major version Rudder update
+    ([\#12331](https://www.rudder-project.org/redmine/issues/12331))
+  - Fixed: rudder-pkg should fail installation is a dependency is missing
+    ([\#12749](https://www.rudder-project.org/redmine/issues/12749))
+
+#### System techniques
+
+  - Fixed: System Techniques must not be added by reload technique, only updated, else they are duplicated
+    ([\#12765](https://www.rudder-project.org/redmine/issues/12765))
+  - Fixed: cron is always restarted since #12615
+    ([\#12886](https://www.rudder-project.org/redmine/issues/12886))
+  - Fixed: When a technique reports several time the exact same text, there is only one report generated
+    ([\#6343](https://www.rudder-project.org/redmine/issues/6343))
+  - Fixed: Detection of minicurl and https is done in conflicting ways
+    ([\#12155](https://www.rudder-project.org/redmine/issues/12155))
+  - Fixed: Rudder agent needs 2 updates to work properly
+    ([\#12793](https://www.rudder-project.org/redmine/issues/12793))
+
+#### Performance and scalability
+
+  - Fixed: Method copyResourceFile is quite inefficient
+    ([\#12702](https://www.rudder-project.org/redmine/issues/12702))
+  - Fixed: Unused formatter in policy generation spend a bit of time in policy generation
+    ([\#12735](https://www.rudder-project.org/redmine/issues/12735))
+  - Fixed: Moving policies to their final position (last step of policies writing) could be improved
+    ([\#12730](https://www.rudder-project.org/redmine/issues/12730))
+  - Fixed: We are missing a lot of timing measurement in policy generation
+    ([\#12725](https://www.rudder-project.org/redmine/issues/12725))
+
+#### Techniques
+
+  - Fixed: Technique userManagement does not change shell
+    ([\#6395](https://www.rudder-project.org/redmine/issues/6395))
+  - Fixed: Missing support for ubuntu 18_04 in technique aptPackageManagerSettings
+    ([\#12884](https://www.rudder-project.org/redmine/issues/12884))
+  - Fixed: Clean up the tests for sshKeyDistribution
+    ([\#12863](https://www.rudder-project.org/redmine/issues/12863))
+  - Fixed: Load modules from local ncf in Rudder policies
+    ([\#12774](https://www.rudder-project.org/redmine/issues/12774))
+  - Fixed: Process management: stopped sends multiple reports.
+    ([\#11683](https://www.rudder-project.org/redmine/issues/11683))
+  - Fixed: SSH Configuration Technique on AIX does not reload correctly sshd service when there's been a change
+    ([\#12745](https://www.rudder-project.org/redmine/issues/12745))
+  - Fixed: Misleading error message in Services technique when range of number of process could not be repaired
+    ([\#12713](https://www.rudder-project.org/redmine/issues/12713))
+  - Fixed: Add zypper_pattern provider in package technique
+    ([\#12700](https://www.rudder-project.org/redmine/issues/12700))
+  - Fixed: Typo in generic method File content
+    ([\#12507](https://www.rudder-project.org/redmine/issues/12507))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Ilan COSTA
+ * Janos Mattyasovszky
+ * Dmitry Svyatogorov
+ * Florian Heigl
+
+This is a bug fix release in the 4.2 series and therefore all installations of 4.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.2.7" > </a> Rudder 4.2.7 (2018-07-11)
 
 ### Changes
