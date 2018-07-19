@@ -1214,13 +1214,7 @@ def commit(trigraph=None, message=None):
 # amend commit, push -f, comment PR
 def amend(comment=None):
   issue = issue_from_branch(current_branch)
-
-  # Remove labels to avoid a direct merge by quality-assistant
-  if 'pr' in issue and issue['pr'] != '':
-    pr = PR(issue['pr'])
-    pr.unlabel(Config.PR_VALIDATED_LABEL)
-    pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
-  
+ 
   # commit over last commit and push
   if issue['private']:
     title = ''
@@ -1228,6 +1222,14 @@ def amend(comment=None):
     title = issue['name'].replace("\"", "\\\"")
   commit_push(current_branch, "Fixes #" + str(issue.id) + ": " + title, True)
 
+  # Remove labels
+  if 'pr' in issue and issue['pr'] != '':
+    pr = PR(issue['pr'])
+    # Remove validated labels to avoid a direct merge by quality-assistant
+    pr.unlabel(Config.PR_VALIDATED_LABEL)
+    # Remove cannot merge labels to permit merge again
+    pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
+ 
   # reassign ticket
   if 'last_assignee' in issue:
     issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
