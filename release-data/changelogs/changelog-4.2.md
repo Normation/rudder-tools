@@ -1,8 +1,7 @@
 
 # General information
 
-Rudder 4.2 is currently a maintained version of Rudder. An EOL date has been planned to
-the 20th July 2018.
+Rudder 4.2 has reached End of Life the 20th July 2018.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.

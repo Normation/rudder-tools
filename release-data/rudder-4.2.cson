@@ -6,7 +6,7 @@ release = "4.2"
 release-status = "final"
 
 # Is this version currently supported?
-supported = true
+supported = false
 
 # 30th September 2017
 release-date = "2017-09-30"
