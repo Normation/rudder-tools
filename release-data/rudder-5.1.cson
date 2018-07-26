@@ -1,6 +1,6 @@
 # Release data file
 
-release = "4.4"
+release = "5.1"
 
 # Status of the release (alpha, beta, rc, final)
 release-status = "alpha"
