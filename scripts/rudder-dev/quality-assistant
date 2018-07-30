@@ -8,8 +8,8 @@ You need a configuration file, if you don't have one, the tool will create one f
 
 Usage:
         quality-assistant -h|--help
-        quality-assistant merge all [--alt-dir] [-d|--debug] [-f|--force]
-        quality-assistant merge <repo> [--alt-dir] [-d|--debug] [-f|--force]
+        quality-assistant merge all [--work-dir=<directory>] [--alt-dir] [-d|--debug] [-f|--force]
+        quality-assistant merge <repo> [--work-dir=<directory>] [--alt-dir] [-d|--debug] [-f|--force]
         quality-assistant autolabel all [-d|--debug] [-f|--force]
         quality-assistant autolabel <repo> [-d|--debug] [-f|--force]
         quality-assistant pr-cleanup all [-d|--debug] [-f|--force]
@@ -104,6 +104,9 @@ def clean_repo(repo, alt_dir):
   os.chdir(directory)
   shell("git clean -f -d -e qa.lock"+redirect, "Cleanup working directory")
   shell("git reset --hard"+redirect, "Reset working directory")
+
+  # remove potential destination branches is case they are dirty
+  shell("git branch --list 'branches*' --list master --format='%(refname:lstrip=2)' | xargs -n1 git branch -D")
   return workdir
 
 
@@ -179,12 +182,16 @@ def reassign(pr, status):
                   uid = user ["id"]
       if uid != -1:
         if issue['assigned_to_id'] != uid:
+          if Config.LOGLEVEL == "debug":
+            print("Found previous owner, reassigning " + pr.url + " to redmine user " + str(uid))
           issue.to_status(status, uid)
         return
  
 
 def pr_merge(repo, url, alt_dir):
   redirect = ""
+  if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
+    print("Merging " + url)
   if Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error":
     redirect = " > /dev/null 2>/dev/null"
   workdir = clean_repo(repo, alt_dir)
@@ -230,6 +237,8 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
 
 def repo_merge_all(alt_dir):
   for repo in Config.REPOSITORIES:
+    if Config.LOGLEVEL == "debug":
+      print("Calling merge on " + repo)
     repo_merge(repo, alt_dir)
 
 
@@ -258,7 +267,6 @@ def autolabel(repo):
 
 def autolabel_all():
   for repo in Config.REPOSITORIES:
-    print("Repo: " + repo)
     autolabel(repo)
 
 
@@ -330,6 +338,8 @@ if __name__ == "__main__":
 
   if arguments['-d'] or arguments['--debug']:
     Config.LOGLEVEL = "debug"
+  if arguments['--work-dir'] is not None:
+    Config.WORKING_DIRECTORY = arguments['--work-dir']
   Config.force = arguments['-f'] or arguments['--force']
   if arguments['merge'] and arguments['all']:
     list_repositories()
@@ -345,5 +355,5 @@ if __name__ == "__main__":
     list_repositories()
     pr_cleanup_all()
   elif arguments['pr-cleanup']:
-    pr_cleanup_(arguments['<repo>'])
+    pr_cleanup(arguments['<repo>'])
      
