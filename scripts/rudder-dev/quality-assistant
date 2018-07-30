@@ -105,6 +105,8 @@ def clean_repo(repo, alt_dir):
   shell("git clean -f -d -e qa.lock"+redirect, "Cleanup working directory")
   shell("git reset --hard"+redirect, "Reset working directory")
 
+  # make sure removal next line never fails
+  shell("git checkout -b tmp || git checkout tmp")
   # remove potential destination branches is case they are dirty
   shell("git branch --list 'branches*' --list master --format='%(refname:lstrip=2)' | xargs -n1 git branch -D")
   return workdir
