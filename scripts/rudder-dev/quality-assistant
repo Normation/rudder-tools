@@ -8,8 +8,8 @@ You need a configuration file, if you don't have one, the tool will create one f
 
 Usage:
         quality-assistant -h|--help
-        quality-assistant merge all [--work-dir=<directory>] [--alt-dir] [-d|--debug] [-f|--force]
-        quality-assistant merge <repo> [--work-dir=<directory>] [--alt-dir] [-d|--debug] [-f|--force]
+        quality-assistant merge all [--job-id=<id>] [--work-dir=<directory>] [--alt-dir] [-d|--debug] [-f|--force]
+        quality-assistant merge <repo> [--job-id=<id>] [--work-dir=<directory>] [--alt-dir] [-d|--debug] [-f|--force]
         quality-assistant autolabel all [-d|--debug] [-f|--force]
         quality-assistant autolabel <repo> [-d|--debug] [-f|--force]
         quality-assistant pr-cleanup all [-d|--debug] [-f|--force]
@@ -117,7 +117,7 @@ def list_repositories():
   Config.REPOSITORIES = re.split(r'[ ,]+', repositories)
 
 
-def repo_merge(repo, alt_dir):
+def repo_merge(repo, alt_dir, jobid):
   # Always merge PR with the label "Ready for merge"
   api_url = "https://api.github.com/repos/Normation/{repo}/issues?labels="+Config.PR_VALIDATED_LABEL
   url = api_url.format(repo=repo)
@@ -161,7 +161,7 @@ def repo_merge(repo, alt_dir):
     elif not freeze:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
         print("Merging approved PR: " + pr_info['html_url'])
-      pr_merge(repo, pr_info['html_url'], alt_dir)
+      pr_merge(repo, pr_info['html_url'], alt_dir, jobid)
     elif Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
       print("We are in freeze period, skipping PR: " + pr_info['html_url'])
 
@@ -190,7 +190,7 @@ def reassign(pr, status):
         return
  
 
-def pr_merge(repo, url, alt_dir):
+def pr_merge(repo, url, alt_dir, jobid):
   redirect = ""
   if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
     print("Merging " + url)
@@ -215,6 +215,8 @@ You should run ./""" + Config.QA_TEST + """ in your repository to make sure it w
 You can also run `rudder-dev merge """ + url + """ --test` to test with upmerging.
 After this, you can remove the """ + Config.BOT_CANNOT_MERGE_LABEL + """ ta
 -- Your faithful QA"""
+    if jobid is not None:
+      comment += " (" + str(jobid) + ")"
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
@@ -225,6 +227,8 @@ After this, you can remove the """ + Config.BOT_CANNOT_MERGE_LABEL + """ ta
 Since it is "Ready for merge" you must merge it by yourself using the following command:
 `rudder-dev merge """ + url + """`
 -- Your faithful QA"""
+    if jobid is not None:
+      comment += " (" + str(jobid) + ")"
     pr.comment(comment)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
     reassign(pr, Config.PENDING_MERGE_CODE)
@@ -237,11 +241,11 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
     shutil.rmtree(workdir)
 
 
-def repo_merge_all(alt_dir):
+def repo_merge_all(alt_dir, jobid):
   for repo in Config.REPOSITORIES:
     if Config.LOGLEVEL == "debug":
       print("Calling merge on " + repo)
-    repo_merge(repo, alt_dir)
+    repo_merge(repo, alt_dir, jobid)
 
 
 def manage_label(repo, name, color):
@@ -345,9 +349,9 @@ if __name__ == "__main__":
   Config.force = arguments['-f'] or arguments['--force']
   if arguments['merge'] and arguments['all']:
     list_repositories()
-    repo_merge_all(arguments['--alt-dir'])
+    repo_merge_all(arguments['--alt-dir'], arguments['--job-id'])
   elif arguments['merge']:
-    repo_merge(arguments['<repo>'], arguments['--alt-dir'])
+    repo_merge(arguments['<repo>'], arguments['--alt-dir'], arguments['--job-id'])
   elif arguments['autolabel'] and arguments['all']:
     list_repositories()
     autolabel_all()
