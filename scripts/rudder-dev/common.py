@@ -54,8 +54,12 @@ def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=F
     output = None
     error = None
   if fail_exit and retcode != 0:
-    if comment is None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info"):
+    if (comment is None and Config.LOGLEVEL == "info") or (Config.LOGLEVEL == "debug"):
       print(command)
+    if Config.LOGLEVEL == "debug" and output is not None:
+      print(">" + output)
+    if (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info") and error is not None:
+      print(error)
     logfail("*** COMMAND ERROR " + str(retcode))
     if not Config.force:
       exit(1)
