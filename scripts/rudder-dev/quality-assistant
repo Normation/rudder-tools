@@ -128,7 +128,7 @@ def repo_merge(repo, alt_dir, jobid):
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
         print("Skipping " + pr_info['html_url'] + " : marked as can't merge")
       continue
-    pr_merge(repo, pr_info['html_url'], alt_dir)
+    pr_merge(repo, pr_info['html_url'], alt_dir, jobid)
 
   # Merge approved PR only if we are not in freeze period
   freeze = False
