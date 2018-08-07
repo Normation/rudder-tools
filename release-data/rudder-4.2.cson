@@ -75,7 +75,7 @@ packages = {
            }
 
 # Packages that are architecture dependent (others are independent)
-arch-dependent-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap" ]
+arch-dependent-packages = [ "rudder-agent", "rudder-agent-thin", "rudder-inventory-ldap", "rudder-server-relay" ]
 
 # Internal components versions
 components = {
