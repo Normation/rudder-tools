@@ -59,6 +59,102 @@ and Ubuntu 12.10.
 
 # Changelogs
 
+## <a name="4.3.4" > </a> Rudder 4.3.4 (2018-08-08)
+
+### Changes
+
+#### Packaging
+
+  - Add the slackware target to packages.makefile
+    ([\#13070](https://www.rudder-project.org/redmine/issues/13070))
+
+#### Web - UI & UX
+
+  - Remove the "Update policy" button
+    ([\#12668](https://www.rudder-project.org/redmine/issues/12668))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Strange behavior of the generation status icon background
+    ([\#12816](https://www.rudder-project.org/redmine/issues/12816))
+  - Fixed: Display Rudder Machine ID color scheme is surprising
+    ([\#12923](https://www.rudder-project.org/redmine/issues/12923))
+  - Fixed: Style to define behaviour regarding duplicated reports in 4.3 is not consistent with the rest of the option
+    ([\#12987](https://www.rudder-project.org/redmine/issues/12987))
+
+#### Generic methods
+
+  - Fixed: Generic method File present is called Presence of a file, and that's really confusing
+    ([\#13003](https://www.rudder-project.org/redmine/issues/13003))
+
+#### Web - Config management
+
+  - Fixed: "SocketException(message='Socket closed'" error at the end of generation with 500 nodes
+    ([\#10646](https://www.rudder-project.org/redmine/issues/10646))
+  - Fixed: Wrong tag used in metadata.xml to define if a technique should use ncf method reporting or not
+    ([\#13035](https://www.rudder-project.org/redmine/issues/13035))
+
+#### Architecture - Internal libs
+
+  - Fixed: nuProcess 1.2.0 crashes on JDK 10
+    ([\#12832](https://www.rudder-project.org/redmine/issues/12832))
+
+#### Documentation
+
+  - Fixed: Script execution must be allowed to install and use Rudder on Windows nodes
+    ([\#12772](https://www.rudder-project.org/redmine/issues/12772))
+
+#### Agent
+
+  - Fixed: Broken -g option in rudder remote run
+    ([\#13017](https://www.rudder-project.org/redmine/issues/13017))
+
+#### Packaging
+
+  - Fixed: cfengine fails to build with embedded libxml on rhel3
+    ([\#13096](https://www.rudder-project.org/redmine/issues/13096))
+  - Fixed: agent postinstall fails on OS without /proc/self
+    ([\#13066](https://www.rudder-project.org/redmine/issues/13066))
+  - Fixed: libxml depends on zlib but we don't pass it the configure flag
+    ([\#13060](https://www.rudder-project.org/redmine/issues/13060))
+  - Fixed: Libgcc is missing on aix
+    ([\#13046](https://www.rudder-project.org/redmine/issues/13046))
+  - Fixed: static-libgcc is ignored by some build
+    ([\#13042](https://www.rudder-project.org/redmine/issues/13042))
+  - Fixed: echo -n doewn't work on aix
+    ([\#13005](https://www.rudder-project.org/redmine/issues/13005))
+  - Fixed: Missing lib path in AIX cfengine executables
+    ([\#12994](https://www.rudder-project.org/redmine/issues/12994))
+  - Fixed: Silent install does not work
+    ([\#12929](https://www.rudder-project.org/redmine/issues/12929))
+  - Fixed: Tests broken after #12953
+    ([\#13001](https://www.rudder-project.org/redmine/issues/13001))
+
+#### Relay server or API
+
+  - Fixed: Relay API does not correctly work on relay, as RewriteEngine is not enabled
+    ([\#13063](https://www.rudder-project.org/redmine/issues/13063))
+
+#### System techniques
+
+  - Fixed: Missing report on File key-value present
+    ([\#12998](https://www.rudder-project.org/redmine/issues/12998))
+
+#### Web - Maintenance
+
+  - Fixed: rudder-metrics-reporting fail to report reports on directive/expected reports in 4.3, as the database schema changed
+    ([\#13041](https://www.rudder-project.org/redmine/issues/13041))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Martin Zbozien
+
+This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.3.3" > </a> Rudder 4.3.3 (2018-07-18)
 
 ### Changes
