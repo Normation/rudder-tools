@@ -52,6 +52,51 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 # Changelogs
 
+## <a name="4.1.14" > </a> Rudder 4.1.14 (2018-08-08)
+
+### Changes
+
+#### Web - UI & UX
+
+  - Remove the "Update policy" button
+    ([\#12668](https://www.rudder-project.org/redmine/issues/12668))
+
+### Bug fixes
+
+#### Packaging
+
+  - Fixed: echo -n doewn't work on aix
+    ([\#13005](https://www.rudder-project.org/redmine/issues/13005))
+
+#### Architecture - Internal libs
+
+  - Fixed: nuProcess 1.2.0 crashes on JDK 10
+    ([\#12832](https://www.rudder-project.org/redmine/issues/12832))
+
+#### Web - Config management
+
+  - Fixed: "SocketException(message='Socket closed'" error at the end of generation with 500 nodes
+    ([\#10646](https://www.rudder-project.org/redmine/issues/10646))
+
+#### Agent
+
+  - Fixed: Broken -g option in rudder remote run
+    ([\#13017](https://www.rudder-project.org/redmine/issues/13017))
+
+#### Web - UI & UX
+
+  - Fixed: Strange behavior of the generation status icon background
+    ([\#12816](https://www.rudder-project.org/redmine/issues/12816))
+  - Fixed: Display Rudder Machine ID color scheme is surprising
+    ([\#12923](https://www.rudder-project.org/redmine/issues/12923))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.1.13" > </a> Rudder 4.1.13 (2018-07-18)
 
 ### Changes
