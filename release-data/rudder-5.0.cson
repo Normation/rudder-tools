@@ -5,9 +5,6 @@ release = "5.0"
 # Status of the release (alpha, beta, rc, final)
 release-status = "alpha"
 
-# Is this version currently supported?
-supported = false
-
 # Has this version had Long-Term Support (LTS)?
 lts = false
 
