@@ -17,6 +17,11 @@ get_cfengine_url() {
 
 setup_ncf() {
 
+  # Install dependencies
+  SETUP_DEPENDENCIES="git"
+  ${PM_UPDATE}
+  ${PM_INSTALL} ${SETUP_DEPENDENCIES}
+
   # setup cfengine
 
   # cfengine from ci
@@ -27,7 +32,7 @@ setup_ncf() {
     add_repo
     setup_agent || true # To allow failing inventories, when we have no server
     remove_repo
-    ln -s /var/rudder/cfengine-community /var/cfengine
+    ln -nsf /var/rudder/cfengine-community /var/cfengine
   else
     # cfengine vanilla
     url=$(get_cfengine_url "${CFENGINE_VERSION}")
