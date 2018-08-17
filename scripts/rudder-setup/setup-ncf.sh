@@ -18,9 +18,8 @@ get_cfengine_url() {
 setup_ncf() {
 
   # Install dependencies
-  SETUP_DEPENDENCIES="git"
   ${PM_UPDATE}
-  ${PM_INSTALL} ${SETUP_DEPENDENCIES}
+  ${PM_INSTALL} git || ${PM_INSTALL} git-core
 
   # setup cfengine
 
