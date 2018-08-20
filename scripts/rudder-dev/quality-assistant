@@ -56,6 +56,10 @@ try:
 except:
   pass
 
+def rudder_dev_cmd():
+  if Config.LOGLEVEL == "debug":
+    return "rudder-dev --debug"
+  return "rudder-dev"
 
 def clean_repo(repo, alt_dir):
   redirect = ""
@@ -72,7 +76,7 @@ def clean_repo(repo, alt_dir):
   directory = workdir + "/" + repo
   if not os.path.isdir(directory):
     os.chdir(workdir)
-    shell("rudder-dev clone "+repo+redirect, "Cloning "+repo+" in the master directory")
+    shell(rudder_dev_cmd() + " clone "+repo+redirect, "Cloning "+repo+" in the master directory")
 
   # check lock
   lockfile = directory + "/qa.lock"
@@ -96,7 +100,7 @@ def clean_repo(repo, alt_dir):
       directory = workdir + "/" + repo
       lockfile = directory + "/qa.lock"
       os.chdir(workdir)
-      shell("rudder-dev clone "+repo+redirect, "Cloning "+repo+" in a temporary directory")
+      shell(rudder_dev_cmd() + " clone "+repo+redirect, "Cloning "+repo+" in a temporary directory")
     else:
       print("Lockfile " + lockfile + " is present, stoping")
       exit(1)
@@ -214,7 +218,7 @@ def pr_merge(repo, url, alt_dir, jobid):
     redirect = " > /dev/null 2>/dev/null"
   workdir = clean_repo(repo, alt_dir)
   pr = PR(url)
-  command = "rudder-dev merge " + url + " --automatic"
+  command = rudder_dev_cmd() + " merge " + url + " --automatic"
   (code, output, stderr) = shell(command + " --test", "Trying to merge PR " + url, fail_exit=False, keep_output=True, keep_error=True)
   log = "-- stdout -- \n" + output + "\n-- stderr --\n" + stderr
   if not (Config.LOGLEVEL == "info" or Config.LOGLEVEL == "error"):
