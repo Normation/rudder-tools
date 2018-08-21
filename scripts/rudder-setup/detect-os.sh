@@ -44,7 +44,7 @@ detect_os() {
   then
     PM="yum"
     PM_INSTALL="yum -y install"
-    PM_UPDATE="yum -y check-update"
+    PM_UPDATE="yum -y makecache"
     PM_UPGRADE="yum -y update"
     PM_LOCAL_INSTALL="rpm -i"
   elif exists zypper

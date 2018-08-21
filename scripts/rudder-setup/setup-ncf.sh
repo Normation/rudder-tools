@@ -19,6 +19,12 @@ setup_ncf() {
 
   # Install dependencies
   ${PM_UPDATE}
+  if [ ${OS_NAME} = "CentOS" ];
+  then
+    ${PM_INSTALL} curl libcurl nss
+    ${PM_UPGRADE} curl libcurl nss
+  fi
+
   ${PM_INSTALL} git || ${PM_INSTALL} git-core
 
   # setup cfengine
