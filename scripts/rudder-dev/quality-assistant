@@ -189,6 +189,21 @@ def reassign(pr, status):
           issue.to_status(status, uid)
         return
  
+def kant_merge():
+  quotes = [
+          "Science is organized knowledge. Wisdom is organized life.",
+          "Two things awe me most, the starry sky above me and the moral law within me.",
+          "Thoughts without content are empty, intuitions without concepts are blind.",
+          "It is beyond a doubt that all our knowledge begins with experience.",
+          "Live your life as though your every act were to become a universal law.",
+          "In law a man is guilty when he violates the rights of others. In ethics he is guilty if he only thinks of doing so.",
+          "Happiness is not an ideal of reason, but of imagination.",
+          "Morality is not the doctrine of how we may make ourselves happy, but how we may make ourselves worthy of happiness.",
+          "To be is to do.",
+          "All our knowledge begins with the senses, proceeds then to the understanding, and ends with reason. There is nothing higher than reason.",
+          ]
+  i = random.randint(0,len(quotes))
+  return "Kant merge: \"" + quotes[i] + "\"\n"
 
 def pr_merge(repo, url, alt_dir, jobid):
   redirect = ""
@@ -226,7 +241,8 @@ After this, you can remove the """ + Config.BOT_CANNOT_MERGE_LABEL + """ ta
     comment="""This PR is not mergeable to upper versions.
 Since it is "Ready for merge" you must merge it by yourself using the following command:
 `rudder-dev merge """ + url + """`
--- Your faithful QA"""
+-- Your faithful QA
+""" + kant_merge()
     if jobid is not None:
       comment += " (" + str(jobid) + ")"
     pr.comment(comment)
