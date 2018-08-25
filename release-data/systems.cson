@@ -67,6 +67,16 @@ sles = {
     "10sp3": "SLES_10_SP3",
     "11": "SLES_11",
     "12": "SLES_12"
+    "15": "SLES_15"
+  }
+}
+
+slackware = {
+  aliases = [ ]
+  package-format = "misc/tgz"
+  name = "Slackware"
+  codenames = {
+    "14": "slackware-14"
   }
 }
 
