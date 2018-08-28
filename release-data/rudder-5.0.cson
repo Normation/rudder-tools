@@ -27,6 +27,8 @@ architectures = {
                   "sles-10sp3":   [ "i386", "amd64" ],
                   "sles-11"   :   [ "i386", "amd64" ],
                   "sles-12"   :   [ "amd64" ],
+                  "sles-15"   :   [ "amd64" ],
+                  "slackware-14": [ "amd64" ],
                   "aix-5":        [ "ppc" ],
                 }
 
@@ -42,6 +44,7 @@ roles-community = {
           "rhel-7":       [ "agent-allinone", "relay", "server" ],
           "sles-11":      [ "agent-allinone" ],
           "sles-12":      [ "agent-allinone", "relay", "server" ],
+          "sles-15":      [ "agent-allinone", "relay", "server" ],
         }
 
 # roles-subscription = roles-subscription-only + roles-community
