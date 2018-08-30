@@ -3,10 +3,10 @@
 release = "5.0"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 # Has this version had Long-Term Support (LTS)?
-lts = false
+lts = true
 
 # Supported architecture for each distribution
 architectures = { 
@@ -33,33 +33,40 @@ architectures = {
                 }
 
 # Roles are package groups
-# We should only support LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES) 
-roles-community = { 
-          "debian-8":     [ "agent-allinone", "relay", "server" ],
-          "debian-9":     [ "agent-allinone", "relay", "server" ],
-          "ubuntu-14.04": [ "agent-allinone" ],
-          "ubuntu-16.04": [ "agent-allinone", "relay", "server" ],
-          "ubuntu-18.04": [ "agent-allinone", "relay", "server" ],
-          "rhel-6":       [ "agent-allinone" ],
-          "rhel-7":       [ "agent-allinone", "relay", "server" ],
-          "sles-11":      [ "agent-allinone" ],
-          "sles-12":      [ "agent-allinone", "relay", "server" ],
-          "sles-15":      [ "agent-allinone", "relay", "server" ],
-        }
-
-# roles-subscription = roles-subscription-only + roles-community
-roles-subscription-only = { 
+# We should only support server on LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES) 
+roles = { 
           "debian-5":     [ "agent-allinone" ],
           "debian-6":     [ "agent-allinone" ],
           "debian-7":     [ "agent-allinone" ],
+          "debian-8":     [ "agent-allinone", "relay", "server" ],
+          "debian-9":     [ "agent-allinone", "relay", "server" ],
           "ubuntu-10.04": [ "agent-allinone" ],
           "ubuntu-12.04": [ "agent-allinone" ],
+          "ubuntu-14.04": [ "agent-allinone" ],
+          "ubuntu-16.04": [ "agent-allinone", "relay", "server" ],
+          "ubuntu-18.04": [ "agent-allinone", "relay", "server" ],
           "rhel-3":       [ "agent-allinone" ],
           "rhel-5":       [ "agent-allinone" ],
+          "rhel-6":       [ "agent-allinone" ],
+          "rhel-7":       [ "agent-allinone", "relay", "server" ],
           "sles-10sp3":   [ "agent-allinone" ],
+          "sles-11":      [ "agent-allinone" ],
+          "sles-12":      [ "agent-allinone", "relay", "server" ],
+          "sles-15":      [ "agent-allinone", "relay", "server" ],
           "aix-5":        [ "agent-allinone" ],
           "slackware-14": [ "agent-allinone" ],
         }
+
+# tier 1 are systems that must not fail during a release (community supported or subscription paid)
+# tier 2 are systems that are built but may fail to release
+tier1 = [
+          "debian-8", "debian-9",
+          "ubuntu-14.04", "ubuntu-16.04", "ubuntu-18.04",
+          "rhel-6", "rhel-7",
+          "sles-11", "sles-12", "sles-15",
+          "aix-5",
+          "slackware-14",
+        ]
 
 # Packages that are built
 packages = { 
@@ -77,8 +84,8 @@ components = {
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "4.1", "4.2", "4.3", "4.4" ]
+compatible-agents = [ "4.1", "4.2", "4.3", "5.0" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "4.1", "4.2", "4.3", "4.4" ]
+supported-upgrade = [ "4.1", "4.2", "4.3", "5.0" ]
 
