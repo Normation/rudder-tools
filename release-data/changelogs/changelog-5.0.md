@@ -22,14 +22,13 @@ a quick and easy way to get an installation for testing.
 
 This version provides packages for these operating systems:
 
-  - Rudder server and Rudder relay: **Debian 8, Debian 9, RHEL/CentOS 6, RHEL/CentOS 7
-    (64 bits), SLES 11, SLES 12, Ubuntu 14.04, Ubuntu 16.04**
+  - Rudder server and Rudder relay: **Debian 8-9, RHEL/CentOS 7
+    (64 bits), SLES 12-15, Ubuntu 16.04-18.04**
   - Rudder agent: all of the above plus **Debian 5, Debian 6, Debian 7
-    RHEL/CentOS 3, RHEL/CentOS 5, CentOS 7 (32 bits), SLES
-    10, SLES 12, Ubuntu 10.04, Ubuntu 12.04, Ubuntu 18.04**
+    RHEL/CentOS 3-5-6-7(32 bits), SLES 10-11, Ubuntu 10.04-12.04-14.04**
   - Rudder agent (binary packages available from
     ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
-    AIX 5-6-7**
+    AIX 5-6-7, Slackware 14**
 
 # Changelogs
 ## <a name="5.0.0.beta1" > </a> Rudder 5.0.0.beta1 (2018-08-29)
@@ -213,5 +212,5 @@ Special thanks go out to the following individuals who invested time, patience, 
  * Pierre HAY
  * Guillaume Terrier
 
-This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
+This software is in beta status and contains several new features but we have tested it and believe it to be free of any critical bugs.
+The use on production systems is not encouraged at this time and is at your own risk. However, we do encourage testing, and welcome all and any feedback!
