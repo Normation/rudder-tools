@@ -183,7 +183,7 @@ class Issue:
         info['issue']['notes'] = message
     else:
       if alt_message is None:
-        print("Cannot update the issue, you should update it manually status here " + self.api_url + "/issues/" + str(issue.id))
+        print("Cannot update the issue, you should update it manually status here " + self.api_url + "/issues/" + str(self.id))
         return False
       info = { 'issue': { 'notes': alt_message } }
 
