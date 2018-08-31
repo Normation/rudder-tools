@@ -21,9 +21,9 @@ Usage:
     rudder-dev [-f|--force] takeover <ticket_id>
     rudder-dev [-f|--force] revert <ticket_id> [--retarget]
     rudder-dev [-f|--force] merge all [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
-    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge <first_branch/ticket_id/pr_url> [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test] [--no-autosquash]
     rudder-dev [-f|--force] merge <first_branch> <next_branch> [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
-    rudder-dev [-f|--force] merge [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test]
+    rudder-dev [-f|--force] merge [(-s <strategy>)] [-a|--automatic] [-t|--test] [-n|--no-qa-test] [--no-autosquash]
     rudder-dev [-f|--force] find <command>
     rudder-dev [-f|--force] cleanup [--more] [-n|--dry-run]
     rudder-dev [-f|--force] update
@@ -174,6 +174,7 @@ MERGE
     When we reach this version, use -s ours to avoid upmerging to later branches.
     - detect the ticket id from current branch if there is no parameter 
     - checkout an pull last version or the PR branch for a given ticket
+    - automatically fixup commits on the PR branch unless --no-autosquash is provided
     - checkout an pull new version
     - merge both
     - push result to Normation's repository
@@ -1428,6 +1429,12 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
     current_branch = test_branch
   merge_branch(branch, new, strategy, automatic, old, test, run_tests)
 
+# Squash commits in PR if necessary
+def pre_merge_squash(pr, test=False):
+  shell("EDITOR=true git rebase -i --autosquash " + pr.base_branch())
+  if not test:
+    shell("git push --force " + pr.repo() + " " + pr.branch(), "Pushing merged branch")
+
 # Merge remote branch
 def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, run_tests=True):
   global first_merge, current_branch
@@ -1477,7 +1484,7 @@ def merge_all(strategy=None, automatic=False, test=False, run_tests=True):
     merge_to_next(version, strategy, automatic, test, run_tests)
 
 # Merge given issue into its target branch and upmerge
-def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run_tests=True):
+def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run_tests=True, no_autosquash=False):
   # get issue info
   if issue_name is None:
     issue = issue_from_branch(current_branch)
@@ -1487,11 +1494,11 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run
   if 'pr' not in issue or issue['pr'] == '':
     logfail("There is no PR in this issue " + issue.name)
     exit(15)
-  merge_pr(issue['pr'], strategy, automatic, test, run_tests)
+  merge_pr(issue['pr'], strategy, automatic, test, run_tests, no_autosquash)
 
 
 # Merge given PR into its target branch and upmerge
-def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True):
+def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True, no_autosquash=False):
   pr = PR(pr_url)
   # PR must be validated
   if not test and not pr.is_labeled(Config.PR_VALIDATED_LABEL) and pr.review_approval() is not True:
@@ -1509,6 +1516,9 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True)
   if not test:
     # comment for the merge
     pr.comment("""OK, merging this PR""")
+  # squash commits
+  if not no_autosquash:
+    pre_merge_squash(pr, test)
   # regular merge
   merge_branch(pr_branch, version, strategy, automatic, pr.repo()+":"+pr.remote_branch(), test, run_tests)
   # upmerge
@@ -1813,11 +1823,11 @@ if __name__ == "__main__":
     elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
       merge_version(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], automatic, test, run_tests)
     elif arguments['<first_branch/ticket_id/pr_url>'] is None: # rudder-dev merge
-      merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test, run_tests=run_tests)
+      merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test, run_tests=run_tests, arguments['--no-autosquash'])
     elif re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id/pr_url>']): # 3+ digits -> ticket_id: rudder-dev merge ticket_id
       merge_issue(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests)
     elif re.match(r'^https?://', arguments['<first_branch/ticket_id/pr_url>']): # starts with http:// -> pr_url: rudder-dev merge pr
-      merge_pr(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests)
+      merge_pr(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests, arguments['--no-autosquash'])
     else: # rudder-dev merge first
       merge_to_next(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test)
     shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
