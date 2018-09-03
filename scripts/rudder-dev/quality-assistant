@@ -203,7 +203,7 @@ def kant_merge():
           "To be is to do.",
           "All our knowledge begins with the senses, proceeds then to the understanding, and ends with reason. There is nothing higher than reason.",
           ]
-  i = random.randint(0,len(quotes))
+  i = random.randint(0,len(quotes)-1)
   return "Kant merge: \"" + quotes[i] + "\"\n"
 
 def pr_merge(repo, url, alt_dir, jobid):
