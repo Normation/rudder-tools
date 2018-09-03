@@ -1430,10 +1430,12 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
   merge_branch(branch, new, strategy, automatic, old, test, run_tests)
 
 # Squash commits in PR if necessary
-def pre_merge_squash(pr, test=False):
+def pre_merge_squash(pr_branch, pr, test=False):
+  pull(pr.base_branch())
+  pull(pr_branch)
   shell("EDITOR=true git rebase -i --autosquash " + pr.base_branch())
   if not test:
-    shell("git push --force " + pr.repo() + " " + pr.branch(), "Pushing merged branch")
+    shell("git push --force " + pr.repo() + " " + pr.remote_branch(), "Pushing merged branch")
 
 # Merge remote branch
 def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, run_tests=True):
@@ -1518,7 +1520,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True,
     pr.comment("""OK, merging this PR""")
   # squash commits
   if not no_autosquash:
-    pre_merge_squash(pr, test)
+    pre_merge_squash(pr_branch, pr, test)
   # regular merge
   merge_branch(pr_branch, version, strategy, automatic, pr.repo()+":"+pr.remote_branch(), test, run_tests)
   # upmerge
