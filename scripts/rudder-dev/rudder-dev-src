@@ -1823,7 +1823,7 @@ if __name__ == "__main__":
     elif arguments['<first_branch>'] is not None: # rudder-dev merge first next
       merge_version(arguments['<first_branch>'], arguments['<next_branch>'], arguments['<strategy>'], automatic, test, run_tests)
     elif arguments['<first_branch/ticket_id/pr_url>'] is None: # rudder-dev merge
-      merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test, run_tests=run_tests, arguments['--no-autosquash'])
+      merge_issue(strategy=arguments['<strategy>'], automatic=automatic, test=test, run_tests=run_tests, no_autosquash=arguments['--no-autosquash'])
     elif re.match(r'^i?\d{3,}$', arguments['<first_branch/ticket_id/pr_url>']): # 3+ digits -> ticket_id: rudder-dev merge ticket_id
       merge_issue(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests)
     elif re.match(r'^https?://', arguments['<first_branch/ticket_id/pr_url>']): # starts with http:// -> pr_url: rudder-dev merge pr
