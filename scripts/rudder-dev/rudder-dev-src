@@ -1430,8 +1430,8 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
   merge_branch(branch, new, strategy, automatic, old, test, run_tests)
 
 # Squash commits in PR if necessary
-def pre_merge_squash(pr_branch, pr, test=False):
-  pull(pr.base_branch())
+def pre_merge_squash(version, pr_branch, pr, test=False):
+  pull(version)
   pull(pr_branch)
   log = shell("git log " + pr.base_branch() + "..HEAD", keep_output=True)
   if re.search(r'^[\da-z]+ fixup! ', log, flags=re.MULTILINE):
@@ -1524,7 +1524,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True,
   # squash commits
   squashed = False
   if not no_autosquash:
-    squashed = pre_merge_squash(pr_branch, pr, test)
+    squashed = pre_merge_squash(version, pr_branch, pr, test)
   if not test and not squashed:
     # comment for the merge if not already done
     pr.comment("""OK, merging this PR""")
