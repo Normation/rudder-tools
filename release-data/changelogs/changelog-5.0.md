@@ -32,6 +32,117 @@ This version provides packages for these operating systems:
 
 # Changelogs
 ## <a name="5.0.0.beta1" > </a> Rudder 5.0.0.beta1 (2018-08-29)
+## <a name="5.0.0.beta2" > </a> Rudder 5.0.0.beta2 (2018-09-06)
+
+### Changes
+
+#### Packaging
+
+  - Remove rudder agent thin in 5.0
+    ([\#13377](https://www.rudder-project.org/redmine/issues/13377))
+  - Upgrade python related dependencies
+    ([\#13371](https://www.rudder-project.org/redmine/issues/13371))
+  - Remove apache 2.2 support
+    ([\#13325](https://www.rudder-project.org/redmine/issues/13325))
+  - keep only systemd on server packages
+    ([\#13320](https://www.rudder-project.org/redmine/issues/13320))
+  - Upgrade jetty to 9.4.11
+    ([\#13323](https://www.rudder-project.org/redmine/issues/13323))
+  - Remove support for old system on rudder server builds
+    ([\#13315](https://www.rudder-project.org/redmine/issues/13315))
+  - Update agent dependencies
+    ([\#13314](https://www.rudder-project.org/redmine/issues/13314))
+  - Upgrade openssl
+    ([\#13316](https://www.rudder-project.org/redmine/issues/13316))
+  - Upgrade python related dependencies
+    ([\#13373](https://www.rudder-project.org/redmine/issues/13373))
+
+#### Web - UI & UX
+
+  - Update main menu: plugin at top level, techique editor in configuration policy
+    ([\#13067](https://www.rudder-project.org/redmine/issues/13067))
+
+#### Documentation
+
+  - Use repository.rudder.io in 5.0 doc
+    ([\#13382](https://www.rudder-project.org/redmine/issues/13382))
+
+#### Plugins integration
+
+  - Make user/role management a plugin
+    ([\#13030](https://www.rudder-project.org/redmine/issues/13030))
+
+#### Architecture - Dependencies
+
+  - Update all rudder dependencies
+    ([\#13313](https://www.rudder-project.org/redmine/issues/13313))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Fonts changed in Rudder 5.0
+    ([\#13364](https://www.rudder-project.org/redmine/issues/13364))
+  - Fixed: Save button in group page is not readable in Rudder 5.0
+    ([\#13368](https://www.rudder-project.org/redmine/issues/13368))
+  - Fixed: In directives pages, Text selector and input field are not correctly allligned in Rudder 5.0
+    ([\#13372](https://www.rudder-project.org/redmine/issues/13372))
+  - Fixed: Clicking on Status/Details leads to a disabled screen in Rudder 5.0
+    ([\#13362](https://www.rudder-project.org/redmine/issues/13362))
+
+#### Generic methods
+
+  - Fixed: user_primary_group tests are failing on suse
+    ([\#13282](https://www.rudder-project.org/redmine/issues/13282))
+  - Fixed: Some ncf tests are too old and fails on many distributions
+    ([\#13249](https://www.rudder-project.org/redmine/issues/13249))
+
+#### Architecture - Internal libs
+
+  - Fixed: Spring Security error - leading to random unlogging in Rudder 5
+    ([\#13365](https://www.rudder-project.org/redmine/issues/13365))
+
+#### Technique editor - API
+
+  - Fixed: Error message is not correctly treated when an exception occurs in when authenticating to Rudder authentication API
+    ([\#13219](https://www.rudder-project.org/redmine/issues/13219))
+
+#### Packaging
+
+  - Fixed: libxml 2.9.8 doesn't compile on aix
+    ([\#13363](https://www.rudder-project.org/redmine/issues/13363))
+  - Fixed: libxml fails to build with old compiler
+    ([\#13337](https://www.rudder-project.org/redmine/issues/13337))
+  - Fixed: Use correct version when building Slackware packages
+    ([\#13329](https://www.rudder-project.org/redmine/issues/13329))
+  - Fixed: Use https everywhere to download server sources
+    ([\#13324](https://www.rudder-project.org/redmine/issues/13324))
+  - Fixed: parallel build on rpmbuild hides build error
+    ([\#13300](https://www.rudder-project.org/redmine/issues/13300))
+
+#### Generic methods - Service Management
+
+  - Fixed: Service test do not use any service to test on suse
+    ([\#13278](https://www.rudder-project.org/redmine/issues/13278))
+  - Fixed: 4.3+ version of 13278
+    ([\#13279](https://www.rudder-project.org/redmine/issues/13279))
+  - Fixed:  services GM are not working anymore due to typo
+    ([\#13258](https://www.rudder-project.org/redmine/issues/13258))
+
+#### Security
+
+  - Fixed: "//" in rudder-web/secure/api//settings/global_policy_mode cause browser/spring error
+    ([\#13356](https://www.rudder-project.org/redmine/issues/13356))
+  - Fixed: Bad mime type for our js files: application/js
+    ([\#13334](https://www.rudder-project.org/redmine/issues/13334))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 
 ### Changes
 
