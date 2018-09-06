@@ -31,7 +31,7 @@ This version provides packages for these operating systems:
     AIX 5-6-7, Slackware 14**
 
 # Changelogs
-## <a name="5.0.0.beta1" > </a> Rudder 5.0.0.beta1 (2018-08-29)
+
 ## <a name="5.0.0.beta2" > </a> Rudder 5.0.0.beta2 (2018-09-06)
 
 ### Changes
@@ -143,6 +143,7 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+## <a name="5.0.0.beta1" > </a> Rudder 5.0.0.beta1 (2018-08-29)
 
 ### Changes
 
