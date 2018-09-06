@@ -1432,7 +1432,7 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
 # Squash commits in PR if necessary
 def pre_merge_squash(version, pr_branch, pr, test=False):
   pull(version)
-  log = shell("git log " + pr.base_branch() + ".." + pr_branch, keep_output=True)
+  log = shell("git log --oneline " + pr.base_branch() + ".." + pr_branch, keep_output=True)
   if re.search(r'^[\da-z]+ fixup! ', log, flags=re.MULTILINE):
     if not test:
       pr.comment("""OK, squash merging this PR""")
