@@ -81,7 +81,7 @@ service_cmd() {
   then
     name="$1"
     shift
-    cmd="$2"
+    cmd="$1"
     shift
     systemctl "${cmd}" "${name}" "$@"
   else
