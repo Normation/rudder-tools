@@ -45,7 +45,9 @@ def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=F
       keep_err = PIPE
     else:
       keep_err = None
-    process = Popen(command, stdout=keep_out, stderr=keep_err, shell=True, universal_newlines=True)
+    # contrary to python doc, environment is not inherited by default
+    env = os.environ.copy()
+    process = Popen(command, stdout=keep_out, stderr=keep_err, shell=True, universal_newlines=True, env=env)
     output, error = process.communicate()
     retcode = process.poll()
   else: # keep tty management and thus colors
