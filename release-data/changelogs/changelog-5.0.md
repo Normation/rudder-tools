@@ -32,6 +32,53 @@ This version provides packages for these operating systems:
 
 # Changelogs
 
+## <a name="5.0.0.rc1" > </a> Rudder 5.0.0.rc1 (2018-09-12)
+
+### Changes
+
+#### Architecture - Internal libs
+
+  - We need to be able to decide what workflow to use based on the change request
+    ([\#13396](https://www.rudder-project.org/redmine/issues/13396))
+
+### Bug fixes
+
+#### API
+
+  - Fixed: POST/PUT/DELETE API requests gives 403
+    ([\#13426](https://www.rudder-project.org/redmine/issues/13426))
+  - Fixed: Rudder system api token only have RO access
+    ([\#13416](https://www.rudder-project.org/redmine/issues/13416))
+
+#### Generic methods
+
+  - Fixed: " error: List or container parameter 'args' not found while constructing scope 'log_rudder' - use @(scope.variable) in calling reference"  when running Rudder 4.3
+    ([\#13430](https://www.rudder-project.org/redmine/issues/13430))
+
+#### Performance and scalability
+
+  - Fixed: On error on nodecompliance SQL, logs are huge
+    ([\#13427](https://www.rudder-project.org/redmine/issues/13427))
+
+#### Architecture - Refactoring
+
+  - Fixed: Git merge issue between Rudder 4.3 and Rudder 5.0
+    ([\#13432](https://www.rudder-project.org/redmine/issues/13432))
+
+#### Agent
+
+  - Fixed: remove unessecary patch that remove truncation of line in inventory
+    ([\#13403](https://www.rudder-project.org/redmine/issues/13403))
+  - Fixed: Upgrade perl to latest minor version in 5.0 for fusion inventory
+    ([\#13402](https://www.rudder-project.org/redmine/issues/13402))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="5.0.0.beta2" > </a> Rudder 5.0.0.beta2 (2018-09-06)
 
 ### Changes
