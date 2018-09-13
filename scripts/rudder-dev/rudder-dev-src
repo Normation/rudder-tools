@@ -1431,12 +1431,14 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
 
 # Squash commits in PR if necessary
 def pre_merge_squash(version, pr_branch, pr, test=False):
+  global current_branch
   pull(version)
   log = shell("git log --pretty='format:%s' " + pr.base_branch() + ".." + pr_branch, keep_output=True)
   if re.search(r'^fixup! ', log, flags=re.MULTILINE):
     if not test:
       pr.comment("""OK, squash merging this PR""")
     shell("git checkout " + pr_branch, "Checkouting local PR branch")
+    current_branch = pr_branch
     shell("EDITOR=true git rebase -i --autosquash " + pr.base_branch(), "Squashing multicommits")
     if not test:
       shell("git push --force " + pr.repo() + " " + pr_branch + ":" + pr.remote_branch(), "Pushing merged branch")
