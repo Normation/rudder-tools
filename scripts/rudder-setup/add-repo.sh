@@ -12,12 +12,30 @@ add_repo() {
   [ "${PM}" = "apt" ] && REPO_TYPE="apt"
   [ "${PM}" = "yum" ] && REPO_TYPE="rpm"
   [ "${PM}" = "zypper" ] && REPO_TYPE="rpm"
+  if [ "${USE_HTTPS}" = "true" ]; then
+    S="s"
+  else
+    S=""
+  fi
+  if [ "${DOWNLOAD_USER}" = "" ]; then
+    USER=""
+  else
+    USER="${DOWNLOAD_USER}:${DOWNLOAD_PASSWORD}@"
+  fi
 
   if [ "${USE_CI}" = "yes" ]
   then
-    $local URL_BASE="http://publisher.normation.com/${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+    if [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]; then
+      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}-nightly/"
+    else
+      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}/"
+    fi
   else
-    $local URL_BASE="http://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+    if [ "${USER}" = "" ]; then
+      $local URL_BASE="http${S}://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}/"
+    else
+      $local URL_BASE="http${S}://${USER}downloads.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}/"
+    fi
   fi
 
   if [ "${PM}" = "yum" ]

@@ -14,10 +14,15 @@ usage() {
   echo "       x.y.z:       the exact x.y.z release (ex: 3.2.1)"
   echo "       x.y.z~a:     the latest x.y.z pre-release where a can be alpha1, beta1, rc1... (ex: 4.0.0~rc1) "
   echo "       x.y-nightly: the latest public x.y nightly build (ex: 3.2-nightly)"
-  echo "       ci/x.y:      the latest private x.y nightly build (ex: ci/3.2)"
-  echo "       ci/x.y.z:    the latest private x.y.z release build (ex: ci/3.2.16)"
-  echo "       ci/x.y.z~a:  the latest private x.y.z pre-release build (ex: ci/4.0.0~rc1)"
+  echo "       ci/x.y:      the latest development x.y nightly build (ex: ci/3.2)"
+  echo "       ci/x.y.z:    the latest development x.y.z release build (ex: ci/3.2.16)"
+  echo "       ci/x.y.z~a:  the latest development x.y.z pre-release build (ex: ci/4.0.0~rc1)"
   echo "       latest:      the latest stable version"
+  echo ""
+  echo "  Environment variables"
+  echo "    USE_HTTPS=true        use https in repository source (default false)"
+  echo "    DOWNLOAD_USER=...     download from private repository with this user"
+  echo "    DOWNLOAD_PASSWORD=... use this password for private repository"
   exit 1
 }
 # GOTO bottom for main()
