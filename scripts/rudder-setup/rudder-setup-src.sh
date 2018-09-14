@@ -12,14 +12,11 @@ usage() {
   echo "  rudder_version : x.y or x.y.z or x.y-nightly or ci/x.y or lts or latest"
   echo "       x.y:         the latest x.y release (ex: 3.2)"
   echo "       x.y.z:       the exact x.y.z release (ex: 3.2.1)"
-  echo "       x.y.z-t:     the exact x.y.z release with a retag number t (ex: 3.2.1-1) "
-  echo "       x.y.z.a:     the latest x.y.z pre-release where a can be alpha1, beta1, rc1... (ex: 4.0.0.rc1) "
+  echo "       x.y.z~a:     the latest x.y.z pre-release where a can be alpha1, beta1, rc1... (ex: 4.0.0~rc1) "
   echo "       x.y-nightly: the latest public x.y nightly build (ex: 3.2-nightly)"
   echo "       ci/x.y:      the latest private x.y nightly build (ex: ci/3.2)"
   echo "       ci/x.y.z:    the latest private x.y.z release build (ex: ci/3.2.16)"
-  echo "       ci/x.y.z-t:  the latest private x.y.z release build with a retag number t (ex: ci/3.2.16-1)"
-  echo "       ci/x.y.z.a:  the latest private x.y.z pre-release build (ex: ci/4.0.0.rc1)"
-  echo "       lts:         the latest long term support version"
+  echo "       ci/x.y.z~a:  the latest private x.y.z pre-release build (ex: ci/4.0.0~rc1)"
   echo "       latest:      the latest stable version"
   exit 1
 }
