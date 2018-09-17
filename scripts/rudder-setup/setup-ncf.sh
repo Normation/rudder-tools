@@ -26,6 +26,7 @@ setup_ncf() {
   fi
 
   ${PM_INSTALL} git || ${PM_INSTALL} git-core
+  ${PM_INSTALL} make
 
   # setup cfengine
 
