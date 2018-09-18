@@ -15,7 +15,7 @@ add_repo() {
 
   if [ "${USE_CI}" = "yes" ]
   then
-    $local URL_BASE="http://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}-repos/${RUDDER_VERSION}/"
+    $local URL_BASE="http://publisher.normation.com/${REPO_TYPE}-repos/${RUDDER_VERSION}/"
   else
     $local URL_BASE="http://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}-repos/${RUDDER_VERSION}/"
   fi
