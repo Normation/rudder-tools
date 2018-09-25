@@ -1,11 +1,18 @@
 TEST_DEPENDENCIES="curl lsb-release htop python-jinja2 git ntp"
+SLES_DEPENDENCIES="curl lsb-release dos2unix git-core ntp"
 
 test_ncf() {
     cd "${directory}"
 
     # Install dependencies
     ${PM_UPDATE}
-    ${PM_INSTALL} ${TEST_DEPENDENCIES}
+    if [ ${OS_NAME} = "SuSE" ];
+    then
+      # assume that jinja2 is already installed (most likely by pip)
+      ${PM_INSTALL} ${SLES_DEPENDENCIES}
+    else
+      ${PM_INSTALL} ${TEST_DEPENDENCIES}
+    fi
 
     # Use path from Rudder package if present
     export PATH="${PATH}:/var/rudder/cfengine-community/bin/"
