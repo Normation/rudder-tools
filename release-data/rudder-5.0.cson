@@ -5,6 +5,9 @@ release = "5.0"
 # Status of the release (alpha, beta, rc, final)
 release-status = "final"
 
+# 26th September 2018
+release-date = "2018-09-26"
+
 # Has this version had Long-Term Support (LTS)?
 lts = true
 
