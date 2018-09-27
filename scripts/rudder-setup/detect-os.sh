@@ -7,6 +7,13 @@ release_file() {
   OS_VERSION=`sed -n "/${rf_regex}/s/${rf_regex}/\\1/p" ${rf_release_file}`
 }
 
+os_release_file() {
+  $local os_release="$1"
+  if [ ! -f "${os_release}" ]; then return 1; fi
+  OS_NAME=`grep "^NAME=" ${os_release} | sed s/NAME=//g | sed s/\"//g | cut -d' ' -f1`
+  OS_VERSION=`grep "^VERSION=" ${os_release} | sed s/VERSION=//g | sed s/\"//g | cut -d' ' -f1`
+}
+
 # output example
 #
 #OS_NAME=Centos
@@ -106,6 +113,7 @@ detect_os() {
   elif release_file  'SuSE' '/etc/SuSE-release' 'VERSION *= *\([0-9.]\+\).*'; then
     OS_VERSION="${OS_VERSION}-`sed -n '/PATCHLEVEL/s/PATCHLEVEL *= *\([0-9.]\+\).*/\1/p' /etc/SuSE-release`"
   elif release_file  'Amazon' '/etc/system-release-cpe' '[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):.*'; then true
+  elif os_release_file '/etc/os-release'; then true
   fi
 
   # Detect compatibility
@@ -120,6 +128,7 @@ detect_os() {
     Amazon) OS_COMPATIBLE="RHEL"
             OS_COMPATIBLE_VERSION=6;;
     SuSE)   OS_COMPATIBLE="SLES" ;;
+    "SLES") OS_COMPATIBLE="SLES" ;;
     "SUSE LINUX")   OS_COMPATIBLE="SLES" ;;
   esac
   OS_MAJOR_VERSION=`echo "${OS_COMPATIBLE_VERSION}" | sed 's/[^0-9].*//'`
