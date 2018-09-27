@@ -32,6 +32,108 @@ This version provides packages for these operating systems:
 
 # Changelogs
 
+## <a name="5.0.0" > </a> Rudder 5.0.0 (2018-09-27)
+
+### Changes
+
+#### Packaging
+
+  - Require Postgresql 9.2 for rudder server
+    ([\#13545](https://www.rudder-project.org/redmine/issues/13545))
+  - rename "support info" script to "debug info" script and change store debug info in a standard path
+    ([\#13443](https://www.rudder-project.org/redmine/issues/13443))
+
+#### Documentation
+
+  - Rudder by example cleanup
+    ([\#13452](https://www.rudder-project.org/redmine/issues/13452))
+  - Add a rudder-by-example to replace line in a file
+    ([\#13404](https://www.rudder-project.org/redmine/issues/13404))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: Blue text color in node details tabs
+    ([\#13168](https://www.rudder-project.org/redmine/issues/13168))
+  - Fixed: fields are not correctly aligned in group page
+    ([\#13417](https://www.rudder-project.org/redmine/issues/13417))
+  - Fixed: Dual scrolling bars on the right of group details in Rudder 5
+    ([\#13428](https://www.rudder-project.org/redmine/issues/13428))
+  - Fixed: Tooltip on the source of property is not dislpayed in Rudder 5.0
+    ([\#13456](https://www.rudder-project.org/redmine/issues/13456))
+  - Fixed: JS error when loading Rules pages
+    ([\#13469](https://www.rudder-project.org/redmine/issues/13469))
+  - Fixed: In Rudder 5.0, Password fields in directive is empty
+    ([\#13446](https://www.rudder-project.org/redmine/issues/13446))
+  - Fixed: Rudder web login page shows 5 instead of 5.0 in the right bottom corner
+    ([\#13472](https://www.rudder-project.org/redmine/issues/13472))
+
+#### Generic methods
+
+  - Fixed: Some old tests are failing on centos
+    ([\#13535](https://www.rudder-project.org/redmine/issues/13535))
+  - Fixed: there is still a trailing new line in the jinja result test file
+    ([\#13529](https://www.rudder-project.org/redmine/issues/13529))
+  - Fixed: variable_string and variable_string_default GM are failing in rudder 5.0
+    ([\#13523](https://www.rudder-project.org/redmine/issues/13523))
+  - Fixed: Some tests are failing on ubuntu distros
+    ([\#13514](https://www.rudder-project.org/redmine/issues/13514))
+  - Fixed: add a method to set reportiing_context from within a technique
+    ([\#13351](https://www.rudder-project.org/redmine/issues/13351))
+
+#### Generic methods - File Management
+
+  - Fixed: Missing report on Permissions (non recursive)
+    ([\#13536](https://www.rudder-project.org/redmine/issues/13536))
+
+#### Documentation
+
+  - Fixed: Update download link in documentation
+    ([\#13534](https://www.rudder-project.org/redmine/issues/13534))
+  - Fixed: Fix appearance of titles
+    ([\#13502](https://www.rudder-project.org/redmine/issues/13502))
+
+#### Packaging
+
+  - Fixed: rudder-jetty cannot extract java version on sles15 
+    ([\#13552](https://www.rudder-project.org/redmine/issues/13552))
+  - Fixed: rudder-agent service is not removed when removing rudder-agent
+    ([\#13549](https://www.rudder-project.org/redmine/issues/13549))
+  - Fixed: add insserv-compat dependency on SLES15 packages
+    ([\#13550](https://www.rudder-project.org/redmine/issues/13550))
+  - Fixed: Use openjdk 10 on sles 15
+    ([\#13543](https://www.rudder-project.org/redmine/issues/13543))
+  - Fixed: Use new man page URL after doc URL redirect
+    ([\#13537](https://www.rudder-project.org/redmine/issues/13537))
+  - Fixed: Error at install of Rudder Server Root 5.0 on Sles 12 
+    ([\#13527](https://www.rudder-project.org/redmine/issues/13527))
+  - Fixed: rudder-agent 4.1 install hangs on Debian 7 
+    ([\#13525](https://www.rudder-project.org/redmine/issues/13525))
+  - Fixed: Doc download in webapp package does not work anymore
+    ([\#13499](https://www.rudder-project.org/redmine/issues/13499))
+  - Fixed: rudder server upgrade-techniques --autoupdate-technique-library fails when run during Rudder upgrade
+    ([\#13458](https://www.rudder-project.org/redmine/issues/13458))
+
+#### API
+
+  - Fixed: Harmonize URLs of system API
+    ([\#13471](https://www.rudder-project.org/redmine/issues/13471))
+
+#### Techniques
+
+  - Fixed: deprecate old version of techniques for Rudder 5.0
+    ([\#13487](https://www.rudder-project.org/redmine/issues/13487))
+  - Fixed: Package management technique fails to check if a package is absent in the "latest" version
+    ([\#12939](https://www.rudder-project.org/redmine/issues/12939))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="5.0.0" > </a> Rudder 5.0.0 (2018-09-24)
 
 ### Changes
