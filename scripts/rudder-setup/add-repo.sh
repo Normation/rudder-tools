@@ -26,24 +26,24 @@ add_repo() {
   if [ "${USE_CI}" = "yes" ]
   then
     if [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]; then
-      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}-nightly/"
+      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}-nightly"
     else
-      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}/"
+      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
     fi
   else
     if [ "${USER}" = "" ]; then
-      $local URL_BASE="http${S}://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}/"
+      $local URL_BASE="http${S}://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
     else
-      $local URL_BASE="http${S}://${USER}downloads.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}/"
+      $local URL_BASE="http${S}://${USER}downloads.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
     fi
   fi
 
   if [ "${PM}" = "yum" ]
   then
-    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}/"
+    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
   elif [ "${PM}" = "zypper" ]
   then
-    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}/"
+    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
   fi
 
   # add repository
@@ -52,7 +52,7 @@ add_repo() {
     # Debian / Ubuntu like
    get - "https://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
     cat > /etc/apt/sources.list.d/rudder.list << EOF
-deb ${URL_BASE} ${OS_CODENAME} main
+deb ${URL_BASE}/ ${OS_CODENAME} main
 EOF
     apt-get update
     return 0
@@ -63,7 +63,7 @@ EOF
     cat > /etc/yum.repos.d/rudder.repo << EOF
 [Rudder]
 name=Rudder ${RUDDER_VERSION} Repository
-baseurl=${URL_BASE}
+baseurl=${URL_BASE}/
 gpgcheck=1
 gpgkey=https://repository.rudder.io/rpm/rudder_rpm_key.pub
 EOF
@@ -81,7 +81,7 @@ EOF
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
-    zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}" Rudder || true
+    zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}/" Rudder || true
     zypper --non-interactive refresh
     return 0
   elif [ "${PM}" = "pkg" ]
