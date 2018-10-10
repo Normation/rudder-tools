@@ -6,6 +6,74 @@ Rudder 5.0 is currently the developement version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+The initial RUDDER model consisting of a single software block which includes all features,
+thus imposing a greater and greater complexity on all of our users, has reached its limits.
+We have now reached a sufficient understanding of the domain, its challenges, and the way
+RUDDER is used, to make us realize that this all-in-one model is not, or is no longer, the
+best suited.
+
+*New plugin ecosystem*: Version 5.0 introduces a plugin ecosystem that gathers RUDDER’s most
+specific features. This way, only essential features have to be installed by default and
+advanced features can be used on a case by case basis. So what is essential and what is not?
+The basic rule is that the essential experience must contain the features used by 80% or more
+of users, whatever the scale of use. In other words, we keep as core features everything that
+delivers on RUDDER’s initial promise: enabling users to continuously audit and enforce
+configurations with an easy to use webapp providing visual reporting. The remaining 20%
+solve needs that are no less important, only less common (PDF compliance reports, UI branding,
+scale-out relay servers, validation workflow…). To know everything about the impact of this
+evolution, you can read the detailed dedicated article:
+
+http://www.normation.com/en/blog/2018/09/26/rudder-5-new-modular-version-thanks-ecosystem-plugins/
+
+
+*Integration*: We provide integration with third party tools as plugins, making RUDDER more
+integrated with tools like Ansible, Centreon, Zabbix, GLPI or Vault.
+Except for a few (ie. managing AIX and Windows host), plugins are open source and source
+code is available here: https://github.com/normation/rudder-plugins/
+
+*New documentation*: Welcome to our brand new documentation website 
+[docs.rudder.io](https://docs.rudder.io)! Beyond its fresh look (both on the online website
+and in the embedded version), this new documentation includes updated content and new resources,
+like a “getting started” guide and examples of use-cases.
+
+*System API*: We built a new REST API that allows to manage some advanced settings and perform
+maintenance operations in RUDDER, like triggering policy generations, updating dynamic groups
+and managing report archives. This was previously available in the now deprecated V1 API
+(https://docs.rudder.io/history/4.3/rest-api.html#rest-api) which will be removed in the next major version (5.1).
+
+*Debugging information script*: We created a script to gather basic information about a
+RUDDER setup when you want to debug or understand RUDDER’s behavior. This script fetches
+log files and executes various commands, either to get information from databases or directly
+from the system (package versions, etc)
+
+*Automatic Technique upgrade*: Techniques provided with RUDDER can now be automatically upgraded
+when you update RUDDER. This process used to be manual because you might have modified the
+base Technique Library and we thought you may want to have more control about the content
+of your Technique Library. But it appears that this process was forgotten by a majority of 
+our users and so many bug fixes and new versions were not available after an upgrade. 
+By default this feature is enabled on new RUDDER 5.0 installations but is disabled on
+upgrades from older versions, to prevent any accidental damage.
+
+*Support policy*: Our general policy is to maintain major releases until 3 months after
+the next major version is released to give some time for upgrading. The ESR tag was
+previously given to major releases that were maintained 6 months after the next ESR
+version was announced. Rudder 4.1 is the last ESR release.
+For a slower major upgrade pace, Rudder subscription provides long-term maintenance
+up to 24 months after release (depending on the subscription level) for Rudder versions.
+Read the FAQ page for more information: http://faq.rudder-project.org/forums/2-knowledge-base/topics/9-when-are-versions-published-and-how-long-are-they-maintained/
+
+*Packaging*: *Relay server support is now part of an open-source plugin*, pre-compiled packages are available as part of the Rudder subscription.
+
+The agent package is now more modular: instead of embedding all dependencies,
+we are using system libraries on maintained operating systems,
+to allow for a better system integration. As a consequence, the
+experimental rudder-agent-thin (which had this exact goal) package is not built anymore.
+
+*New repositories*: https://repository.rudder.io/
+We are using new repositories for versions starting from 5.0. We also provide all
+previous releases in these new repos. We improved our build system, files hierarchy,
+and added more gpg signatures on distributed files (Rudder sources, etc.)
+
 **Installing, upgrading and testing**
 
   - Install docs:
@@ -18,17 +86,18 @@ We also recommend using the [Rudder
 Vagrant](https://github.com/Normation/rudder-vagrant) config if you want
 a quick and easy way to get an installation for testing.
 
-**Operating systems supported**
+**Supported operating systems**
 
 This version provides packages for these operating systems:
 
   - Rudder server and Rudder relay: **Debian 8-9, RHEL/CentOS 7
-    (64 bits), SLES 12-15, Ubuntu 16.04-18.04**
-  - Rudder agent: all of the above plus **Debian 5, Debian 6, Debian 7
-    RHEL/CentOS 3-5-6-7(32 bits), SLES 10-11, Ubuntu 10.04-12.04-14.04**
+    (64 bits), SLES 12-15, Ubuntu 16.04 LTS-18.04 LTS**
+  - Rudder agent: all of the above plus **RHEL/CentOS 6, Ubuntu 14.04 LTS**
   - Rudder agent (binary packages available from
-    ([Normation](http://www.normation.com)): **Windows Server 2008R2-2016,
+    ([Normation](http://www.normation.com)): **Debian 5-7, RHEL/CentOS 3-5, SLES 10-11, Ubuntu 10.04 LTS-12.04 LTS, Windows Server 2008R2-2016,
     AIX 5-6-7, Slackware 14**
+
+Read more in https://docs.rudder.io/reference/5.0/installation/operating_systems.html
 
 # Changelogs
 
