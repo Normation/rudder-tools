@@ -1,7 +1,7 @@
 
 # General information
 
-Rudder 5.0 is currently the developement version of Rudder.
+Rudder 5.0 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
