@@ -6,6 +6,17 @@ Rudder 5.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+**Warning**: The following features are now provided as plugins and no more available as part of default Rudder
+installation starting from 5.0:
+
+* LDAP-based authentication
+* Relay servers
+* Changes validation workflow (change requests)
+
+If you were using them, upgrade will disable them and you will have to install
+the plugin to be able to use them.
+Read (the plugins page on our website)[http://rudder.io/plugins] for more information.
+
 The initial RUDDER model consisting of a single software block which includes all features,
 thus imposing a greater and greater complexity on all of our users, has reached its limits.
 We have now reached a sufficient understanding of the domain, its challenges, and the way
