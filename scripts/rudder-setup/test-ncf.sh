@@ -1,12 +1,12 @@
 TEST_DEPENDENCIES="curl lsb-release htop python-jinja2 git ntp"
-SLES_DEPENDENCIES="curl lsb-release dos2unix git-core"
+SLES_DEPENDENCIES="curl lsb-release dos2unix git-core createrepo"
 
 test_ncf() {
     cd "${directory}"
 
     # Install dependencies
     ${PM_UPDATE}
-    if [ ${OS_NAME} = "SuSE" ] || [ ${OS_NAME} = "SLES" ];
+    if [ ${OS_NAME} = "SuSE" ] || [ ${OS_COMPATIBLE} = "SLES" ];
     then
       # assume that jinja2 is already installed (most likely by pip)
       ${PM_INSTALL} ${SLES_DEPENDENCIES}
