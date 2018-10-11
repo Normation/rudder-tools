@@ -14,7 +14,7 @@ installation starting from 5.0:
 * Changes validation workflow (change requests)
 
 If you were using them, upgrade will disable them and you will have to install
-the plugin to be able to use them.
+the plugin.
 Read (the plugins page on our website)[http://rudder.io/plugins] for more information.
 
 The initial RUDDER model consisting of a single software block which includes all features,
