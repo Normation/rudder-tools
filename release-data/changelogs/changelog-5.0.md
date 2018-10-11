@@ -15,7 +15,7 @@ installation starting from 5.0:
 
 If you were using them, upgrade will disable them and you will have to install
 the plugin.
-Read (the plugins page on our website)[http://rudder.io/plugins] for more information.
+Read the [plugins page on our website](http://rudder.io/plugins) for more information.
 
 The initial RUDDER model consisting of a single software block which includes all features,
 thus imposing a greater and greater complexity on all of our users, has reached its limits.
