@@ -20,7 +20,9 @@ architectures = {
                   "debian-9":     [ "i386", "amd64" ],
                   "ubuntu-10.04": [ "i386", "amd64" ],
                   "ubuntu-12.04": [ "i386", "amd64" ],
+                  "ubuntu-13.04": [ "i386", "amd64" ],
                   "ubuntu-14.04": [ "i386", "amd64" ],
+                  "ubuntu-15.10": [ "i386", "amd64" ],
                   "ubuntu-16.04": [ "i386", "amd64" ],
                   "ubuntu-18.04": [ "amd64" ],
                   "rhel-3":       [ "i386", "amd64" ],
@@ -45,7 +47,9 @@ roles = {
           "debian-9":     [ "agent-allinone", "relay", "server" ],
           "ubuntu-10.04": [ "agent-allinone" ],
           "ubuntu-12.04": [ "agent-allinone" ],
+          "ubuntu-13.04": [ "agent-allinone" ],
           "ubuntu-14.04": [ "agent-allinone" ],
+          "ubuntu-15.10": [ "agent-allinone" ],
           "ubuntu-16.04": [ "agent-allinone", "relay", "server" ],
           "ubuntu-18.04": [ "agent-allinone", "relay", "server" ],
           "rhel-3":       [ "agent-allinone" ],
@@ -64,7 +68,7 @@ roles = {
 # tier 2 are systems that are built but may fail to release
 tier1 = [
           "debian-8", "debian-9",
-          "ubuntu-14.04", "ubuntu-16.04", "ubuntu-18.04",
+          "ubuntu-13.04", "ubuntu-14.04", "ubuntu-15.10", "ubuntu-16.04", "ubuntu-18.04",
           "rhel-6", "rhel-7",
           "sles-11", "sles-12", "sles-15",
           "aix-5",
