@@ -112,6 +112,117 @@ Read more in https://docs.rudder.io/reference/5.0/installation/operating_systems
 
 # Changelogs
 
+## <a name="5.0.1" > </a> Rudder 5.0.1 (2018-10-19)
+
+### Changes
+
+#### Packaging
+
+  - Embed dependencies on ubuntu 15
+    ([\#13677](https://www.rudder-project.org/redmine/issues/13677))
+
+#### Generic methods
+
+  - Add a flag library
+    ([\#13622](https://www.rudder-project.org/redmine/issues/13622))
+  - Add a flag library
+    ([\#13622](https://www.rudder-project.org/redmine/issues/13622))
+
+#### Generic methods - Package Management
+
+  - Add a package provider for zypper patterns
+    ([\#12164](https://www.rudder-project.org/redmine/issues/12164))
+
+### Bug fixes
+
+#### Generic methods
+
+  - Fixed: Allow to report on same reporting parameters 
+    ([\#13632](https://www.rudder-project.org/redmine/issues/13632))
+  - Fixed: style test nbsp_is_not_allowed.sh always fails
+    ([\#13637](https://www.rudder-project.org/redmine/issues/13637))
+  - Fixed: rudder agent log files content in user facility
+    ([\#13175](https://www.rudder-project.org/redmine/issues/13175))
+  - Fixed: 4.3+ version of 12164
+    ([\#13621](https://www.rudder-project.org/redmine/issues/13621))
+  - Fixed: still some typos in package tests
+    ([\#13591](https://www.rudder-project.org/redmine/issues/13591))
+  - Fixed: some ncf test are failing on SLES because they are trying to deal with packages that are not available
+    ([\#13573](https://www.rudder-project.org/redmine/issues/13573))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Node group with 'OR' multi criteria fails
+    ([\#13649](https://www.rudder-project.org/redmine/issues/13649))
+
+#### Web - Config management
+
+  - Fixed: Change request must not be saved when no validation is needed
+    ([\#13609](https://www.rudder-project.org/redmine/issues/13609))
+
+#### Documentation
+
+  - Fixed: rudder-doc embedeed doesn't work anymore
+    ([\#13659](https://www.rudder-project.org/redmine/issues/13659))
+  - Fixed: Document Amazon Linux compatibility
+    ([\#13624](https://www.rudder-project.org/redmine/issues/13624))
+  - Fixed: Add sles 15 in 5.0 supported OS
+    ([\#13533](https://www.rudder-project.org/redmine/issues/13533))
+  - Fixed: Bad explanation for generic variable overide priority cause people making the opposite of what is needed
+    ([\#13615](https://www.rudder-project.org/redmine/issues/13615))
+
+#### Technique editor - UI/UX
+
+  - Fixed: Rename "bundle name" in the technique details
+    ([\#12847](https://www.rudder-project.org/redmine/issues/12847))
+
+#### Agent
+
+  - Fixed: rudder server command states that "Warning: Long arguments are not supported, you probably tried to use one!" - but it does support it
+    ([\#13505](https://www.rudder-project.org/redmine/issues/13505))
+
+#### Packaging
+
+  - Fixed: Ubuntu 13.04 package tries to use systemd
+    ([\#13676](https://www.rudder-project.org/redmine/issues/13676))
+  - Fixed: Debian package cannot build in 4.1 because of docs.rudder.io
+    ([\#13594](https://www.rudder-project.org/redmine/issues/13594))
+  - Fixed: cebtos7 install_package_existant should be skipped
+    ([\#13596](https://www.rudder-project.org/redmine/issues/13596))
+
+#### Security
+
+  - Fixed: StackOverflowError during policy generation in JavascriptEngine - debian 9.5 with jdk 1.8.0_181
+    ([\#13014](https://www.rudder-project.org/redmine/issues/13014))
+  - Fixed: In Rudder 5.0, user password encoding is broken for some passwords. 
+    ([\#13643](https://www.rudder-project.org/redmine/issues/13643))
+  - Fixed: Api User Account doesn't have User role
+    ([\#13629](https://www.rudder-project.org/redmine/issues/13629))
+  - Fixed: file enforce content log file content which can have private info
+    ([\#13608](https://www.rudder-project.org/redmine/issues/13608))
+
+#### Performance and scalability
+
+  - Fixed: Hikari pool autocomit configuration is incorrect, which can impact performance
+    ([\#13582](https://www.rudder-project.org/redmine/issues/13582))
+  - Fixed: Policy generation fails definitively when postgresql is shut down during policy generation
+    ([\#13517](https://www.rudder-project.org/redmine/issues/13517))
+
+#### Techniques
+
+  - Fixed: SudoParameter technique version 3.2 returns a report that is not parsable by the CLI
+    ([\#13350](https://www.rudder-project.org/redmine/issues/13350))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Jeremy CHAMPEL
+ * tim c
+ * Marco Kirchhoff
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="5.0.0" > </a> Rudder 5.0.0 (2018-09-27)
 
 ### Changes
