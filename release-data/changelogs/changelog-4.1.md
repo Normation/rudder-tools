@@ -52,6 +52,120 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 # Changelogs
 
+## <a name="4.1.15" > </a> Rudder 4.1.15 (2018-10-19)
+
+### Changes
+
+#### Packaging
+
+  - Upgrade openssl
+    ([\#13316](https://www.rudder-project.org/redmine/issues/13316))
+  - Add sles 15 support to rudder-packages
+    ([\#13295](https://www.rudder-project.org/redmine/issues/13295))
+  - Download sources from repository.rudder.io instead of www.normation.com
+    ([\#13172](https://www.rudder-project.org/redmine/issues/13172))
+
+#### Generic methods - Package Management
+
+  - Add a package provider for zypper patterns
+    ([\#12164](https://www.rudder-project.org/redmine/issues/12164))
+
+### Bug fixes
+
+#### Generic methods
+
+  - Fixed: Allow to report on same reporting parameters 
+    ([\#13632](https://www.rudder-project.org/redmine/issues/13632))
+  - Fixed: still some typos in package tests
+    ([\#13591](https://www.rudder-project.org/redmine/issues/13591))
+  - Fixed: some ncf test are failing on SLES because they are trying to deal with packages that are not available
+    ([\#13573](https://www.rudder-project.org/redmine/issues/13573))
+  - Fixed: Some old tests are failing on centos
+    ([\#13535](https://www.rudder-project.org/redmine/issues/13535))
+  - Fixed: Tests on variable_string and variable_string_default GM are failing
+    ([\#13523](https://www.rudder-project.org/redmine/issues/13523))
+  - Fixed: Some tests are failing on ubuntu distros
+    ([\#13514](https://www.rudder-project.org/redmine/issues/13514))
+  - Fixed: Some ncf tests are too old and fails on many distributions
+    ([\#13249](https://www.rudder-project.org/redmine/issues/13249))
+  - Fixed: file_check_special tests are failing on debian
+    ([\#13243](https://www.rudder-project.org/redmine/issues/13243))
+
+#### Generic methods - Package Management
+
+  - Fixed: old packages generic methods are failing on old debian
+    ([\#13305](https://www.rudder-project.org/redmine/issues/13305))
+
+#### Documentation
+
+  - Fixed: rudder-doc embedeed doesn't work anymore
+    ([\#13659](https://www.rudder-project.org/redmine/issues/13659))
+  - Fixed: Document Amazon Linux compatibility
+    ([\#13624](https://www.rudder-project.org/redmine/issues/13624))
+  - Fixed: Bad explanation for generic variable overide priority cause people making the opposite of what is needed
+    ([\#13615](https://www.rudder-project.org/redmine/issues/13615))
+
+#### Agent
+
+  - Fixed: rudder server command states that "Warning: Long arguments are not supported, you probably tried to use one!" - but it does support it
+    ([\#13505](https://www.rudder-project.org/redmine/issues/13505))
+
+#### Packaging
+
+  - Fixed: Debian package cannot build in 4.1 because of docs.rudder.io
+    ([\#13594](https://www.rudder-project.org/redmine/issues/13594))
+  - Fixed: Use new man page URL after doc URL redirect
+    ([\#13537](https://www.rudder-project.org/redmine/issues/13537))
+  - Fixed: rudder-agent 4.1 install hangs on Debian 7 
+    ([\#13525](https://www.rudder-project.org/redmine/issues/13525))
+  - Fixed: Doc download in webapp package does not work anymore
+    ([\#13499](https://www.rudder-project.org/redmine/issues/13499))
+  - Fixed: parallel build on rpmbuild hides build error
+    ([\#13300](https://www.rudder-project.org/redmine/issues/13300))
+  - Fixed: Purge of rudder-webapp should not fail
+    ([\#13210](https://www.rudder-project.org/redmine/issues/13210))
+  - Fixed: Fix bdb download link from repository.rudder.io
+    ([\#13198](https://www.rudder-project.org/redmine/issues/13198))
+  - Fixed: rudder server upgrade-techniques --autoupdate-technique-library fails when run during Rudder upgrade
+    ([\#13458](https://www.rudder-project.org/redmine/issues/13458))
+  - Fixed: cebtos7 install_package_existant should be skipped
+    ([\#13596](https://www.rudder-project.org/redmine/issues/13596))
+  - Fixed: Makefile fails if a symbolink link /usr/bin/ncf already exists
+    ([\#13277](https://www.rudder-project.org/redmine/issues/13277))
+
+#### Generic methods - Service Management
+
+  - Fixed: Service test do not use any service to test on suse
+    ([\#13278](https://www.rudder-project.org/redmine/issues/13278))
+
+#### Security
+
+  - Fixed: Bad mime type for our js files: application/js
+    ([\#13334](https://www.rudder-project.org/redmine/issues/13334))
+  - Fixed: file enforce content log file content which can have private info
+    ([\#13608](https://www.rudder-project.org/redmine/issues/13608))
+
+#### Performance and scalability
+
+  - Fixed: Hikari pool autocomit configuration is incorrect, which can impact performance
+    ([\#13582](https://www.rudder-project.org/redmine/issues/13582))
+  - Fixed: Policy generation fails definitively when postgresql is shut down during policy generation
+    ([\#13517](https://www.rudder-project.org/redmine/issues/13517))
+  - Fixed: On error on nodecompliance SQL, logs are huge
+    ([\#13427](https://www.rudder-project.org/redmine/issues/13427))
+
+#### Techniques
+
+  - Fixed: Package management technique fails to check if a package is absent in the "latest" version
+    ([\#12939](https://www.rudder-project.org/redmine/issues/12939))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.1.14" > </a> Rudder 4.1.14 (2018-08-08)
 
 ### Changes
