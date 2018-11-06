@@ -52,6 +52,80 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 # Changelogs
 
+## <a name="4.1.16" > </a> Rudder 4.1.16 (2018-11-06)
+
+### Changes
+
+#### Documentation
+
+  - Document zypper pattern usage in the "Package state" generic method documentation
+    ([\#13725](https://www.rudder-project.org/redmine/issues/13725))
+
+### Bug fixes
+
+#### Generic methods
+
+  - Fixed: Generic method "Sharedfile to node" always return repaired status
+    ([\#13753](https://www.rudder-project.org/redmine/issues/13753))
+  - Fixed: Unit tests for generic method "File from a Jinja2 template" fail on Ubuntu12 on Rudder 4.1
+    ([\#13747](https://www.rudder-project.org/redmine/issues/13747))
+  - Fixed: Time lib may not work when the first non-loopback interface has no ip adress
+    ([\#13744](https://www.rudder-project.org/redmine/issues/13744))
+  - Fixed: Remove comment about classes_generic_two being deprecated
+    ([\#13286](https://www.rudder-project.org/redmine/issues/13286))
+  - Fixed: Style test nbsp_is_not_allowed.sh always fails, missing 4.1 version of 13637
+    ([\#13722](https://www.rudder-project.org/redmine/issues/13722))
+  - Fixed: Add more tests for the schedule lib in ncf
+    ([\#13668](https://www.rudder-project.org/redmine/issues/13668))
+  - Fixed: Zypper patterns tests should not be executed on non sles os
+    ([\#13638](https://www.rudder-project.org/redmine/issues/13638))
+
+#### Generic methods - File Management
+
+  - Fixed: Generic Method "File copy from remote source" does not report when copying a directory
+    ([\#13634](https://www.rudder-project.org/redmine/issues/13634))
+
+#### Documentation
+
+  - Fixed: Broken doc build
+    ([\#13734](https://www.rudder-project.org/redmine/issues/13734))
+
+#### Agent
+
+  - Fixed: Redhat Openstack Nova compute QEMU virtual machines are seen as physical
+    ([\#10265](https://www.rudder-project.org/redmine/issues/10265))
+  - Fixed: Mustache templating in audit mode always considers destination compliant once it exists
+    ([\#13664](https://www.rudder-project.org/redmine/issues/13664))
+
+#### Packaging
+
+  - Fixed: Fusioninventory error about unitialized value $FQDN
+    ([\#13739](https://www.rudder-project.org/redmine/issues/13739))
+  - Fixed: Rudder syslog port is reset after upgrade on Ubuntu (< 14) Servers
+    ([\#12714](https://www.rudder-project.org/redmine/issues/12714))
+
+#### Performance and scalability
+
+  - Fixed: LDAP IO error on generation with a lot of nodes
+    ([\#13256](https://www.rudder-project.org/redmine/issues/13256))
+
+#### Techniques
+
+  - Fixed: Sharing files with "root" does not work
+    ([\#10605](https://www.rudder-project.org/redmine/issues/10605))
+  - Fixed: Add a bigger warning about full path in "Download a file" technique
+    ([\#13646](https://www.rudder-project.org/redmine/issues/13646))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Ilan COSTA
+ * Jérémy HOCDÉ
+ * Janos Mattyasovszky
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="4.1.15" > </a> Rudder 4.1.15 (2018-10-19)
 
 ### Changes
