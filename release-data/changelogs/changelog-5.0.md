@@ -112,6 +112,157 @@ Read more in https://docs.rudder.io/reference/5.0/installation/operating_systems
 
 # Changelogs
 
+## <a name="5.0.2" > </a> Rudder 5.0.2 (2018-11-06)
+
+### Changes
+
+#### Generic methods
+
+  - Add condition_once and execute_once generic methods
+    ([\#13667](https://www.rudder-project.org/redmine/issues/13667))
+
+#### Documentation
+
+  - Document zypper pattern usage in the "Package state" generic method documentation
+    ([\#13725](https://www.rudder-project.org/redmine/issues/13725))
+
+### Bug fixes
+
+#### Web - UI & UX
+
+  - Fixed: We have no way to know that a Technique is disabled when editing a Directive
+    ([\#12829](https://www.rudder-project.org/redmine/issues/12829))
+  - Fixed: Broken display of popup to delete node property in Rudder 5.0.1
+    ([\#13694](https://www.rudder-project.org/redmine/issues/13694))
+
+#### Generic methods
+
+  - Fixed: Generic method "Sharedfile to node" always return repaired status
+    ([\#13753](https://www.rudder-project.org/redmine/issues/13753))
+  - Fixed: Unit tests for generic method "File from a Jinja2 template" fail on Ubuntu12 on Rudder 4.1
+    ([\#13747](https://www.rudder-project.org/redmine/issues/13747))
+  - Fixed: Time lib may not work when the first non-loopback interface has no ip adress
+    ([\#13744](https://www.rudder-project.org/redmine/issues/13744))
+  - Fixed: Remove comment about classes_generic_two being deprecated
+    ([\#13286](https://www.rudder-project.org/redmine/issues/13286))
+  - Fixed: Style test nbsp_is_not_allowed.sh always fails, missing 4.1 version of 13637
+    ([\#13722](https://www.rudder-project.org/redmine/issues/13722))
+  - Fixed: Missing report when using default value in Generic method parameters
+    ([\#13704](https://www.rudder-project.org/redmine/issues/13704))
+  - Fixed: Add more tests for the schedule lib in ncf
+    ([\#13668](https://www.rudder-project.org/redmine/issues/13668))
+  - Fixed: Zypper patterns tests should not be executed on non sles os
+    ([\#13638](https://www.rudder-project.org/redmine/issues/13638))
+
+#### Web - Nodes & inventories
+
+  - Fixed: Group of group is empty if we use the AND combinator
+    ([\#13424](https://www.rudder-project.org/redmine/issues/13424))
+
+#### Plugins integration
+
+  - Fixed: Authentication providers are not loaded before authentication is initialized
+    ([\#13695](https://www.rudder-project.org/redmine/issues/13695))
+
+#### Generic methods - File Management
+
+  - Fixed: Change the detection of curl path in ncf to use rudder_curl if available
+    ([\#13745](https://www.rudder-project.org/redmine/issues/13745))
+  - Fixed: Missing report in "Manage keys-values in file" technique
+    ([\#13715](https://www.rudder-project.org/redmine/issues/13715))
+  - Fixed: Missing reporting in "Permisisons recurse" method
+    ([\#13683](https://www.rudder-project.org/redmine/issues/13683))
+  - Fixed: Generic Method "File copy from remote source" does not report when copying a directory
+    ([\#13634](https://www.rudder-project.org/redmine/issues/13634))
+  - Fixed: Missing status when I use "File copy from Rudder shared folder" Technique
+    ([\#13669](https://www.rudder-project.org/redmine/issues/13669))
+
+#### Web - Config management
+
+  - Fixed: In directive, change input for parameter from technique editor from text to textarea 
+    ([\#12824](https://www.rudder-project.org/redmine/issues/12824))
+
+#### Generic methods - Package Management
+
+  - Fixed: Missing report when using the "Package state" generic method with default value for the "state" parameter
+    ([\#13703](https://www.rudder-project.org/redmine/issues/13703))
+
+#### Agent
+
+  - Fixed: Redhat Openstack Nova compute QEMU virtual machines are seen as physical
+    ([\#10265](https://www.rudder-project.org/redmine/issues/10265))
+  - Fixed: Mustache templating in audit mode always considers destination compliant once it exists
+    ([\#13664](https://www.rudder-project.org/redmine/issues/13664))
+
+#### Packaging
+
+  - Fixed: rudder-cf-execd and rudder-cf-serverd are not enabled nor running after a server install on debian 8
+    ([\#13774](https://www.rudder-project.org/redmine/issues/13774))
+  - Fixed: Rudder agent uninstall may fail to to systemd unit
+    ([\#13762](https://www.rudder-project.org/redmine/issues/13762))
+  - Fixed: can't upgrade debian package if /bin/systemd exist but sysv is used
+    ([\#13174](https://www.rudder-project.org/redmine/issues/13174))
+  - Fixed: rudder.conf is not removed from /etc/ld.so.conf.d
+    ([\#12554](https://www.rudder-project.org/redmine/issues/12554))
+  - Fixed: Fusioninventory error about unitialized value $FQDN
+    ([\#13739](https://www.rudder-project.org/redmine/issues/13739))
+  - Fixed:  Embedded openssl does not build on Ubuntu 15.10
+    ([\#13712](https://www.rudder-project.org/redmine/issues/13712))
+  - Fixed: "type: systemctl : not found" appears in rudder-agent installation logs
+    ([\#13693](https://www.rudder-project.org/redmine/issues/13693))
+  - Fixed: Script rudder-support-info is too chatty when looking for time (branch 5.0)
+    ([\#13670](https://www.rudder-project.org/redmine/issues/13670))
+  - Fixed: Rudder syslog port is reset after upgrade on Ubuntu (< 14) Servers
+    ([\#12714](https://www.rudder-project.org/redmine/issues/12714))
+
+#### Generic methods - Service Management
+
+  - Fixed: Broken variable in "Service restart" method report
+    ([\#13713](https://www.rudder-project.org/redmine/issues/13713))
+
+#### Documentation
+
+  - Fixed: Broken doc build
+    ([\#13734](https://www.rudder-project.org/redmine/issues/13734))
+
+#### System techniques
+
+  - Fixed: Use embedded curl when available
+    ([\#13687](https://www.rudder-project.org/redmine/issues/13687))
+
+#### Performance and scalability
+
+  - Fixed: LDAP IO error on generation with a lot of nodes
+    ([\#13256](https://www.rudder-project.org/redmine/issues/13256))
+
+#### Techniques
+
+  - Fixed: Sharing files with "root" does not work
+    ([\#10605](https://www.rudder-project.org/redmine/issues/10605))
+  - Fixed: Add option for Zypper Patterns in Technique "Packages"
+    ([\#13721](https://www.rudder-project.org/redmine/issues/13721))
+  - Fixed: Add a bigger warning about full path in "Download a file" technique
+    ([\#13647](https://www.rudder-project.org/redmine/issues/13647))
+  - Fixed: Add a bigger warning about full path in "Download a file" technique
+    ([\#13646](https://www.rudder-project.org/redmine/issues/13646))
+  - Fixed: Fix some typo in "rudder server directive upgrade" help output
+    ([\#13765](https://www.rudder-project.org/redmine/issues/13765))
+  - Fixed: "directive-upgrade" rudder command does not work
+    ([\#13681](https://www.rudder-project.org/redmine/issues/13681))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * tim c
+ * Matthew Frost
+ * Ilan COSTA
+ * Jérémy HOCDÉ
+ * Janos Mattyasovszky
+ * Thomas CAILHE
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="5.0.1" > </a> Rudder 5.0.1 (2018-10-19)
 
 ### Changes
