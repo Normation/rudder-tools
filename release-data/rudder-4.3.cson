@@ -56,6 +56,17 @@ roles = {
           "aix-5":        [ "agent-allinone" ],
         }
 
+# tier 1 are systems that must not fail during a release (community supported or subscription paid) 
+# tier 2 are systems that are built but may fail to release 
+tier1 = [ 
+          "debian-8", "debian-9", 
+          "ubuntu-14.04", "ubuntu-16.04", 
+          "rhel-6", "rhel-7", 
+          "sles-11", "sles-12",  
+          "aix-5", 
+        ] 
+
+
 # Packages that are built
 packages = { 
              "agent-allinone": [ "rudder-agent" ],
