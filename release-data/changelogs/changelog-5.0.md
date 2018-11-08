@@ -110,7 +110,9 @@ This version provides packages for these operating systems:
 
 Read more in https://docs.rudder.io/reference/5.0/installation/operating_systems.html
 
-# Known issue: Communication between agents built with 1.1.0 vs. 1.0.x openssl versions 
+# Known issues
+
+## Communication between agents built with 1.1.0 vs. 1.0.x openssl versions <a name="openssl-bug"></a>
 
 We have found a communication problem between some versions of rudder agent and server due to a bug in OpenSSL library.
 
