@@ -110,11 +110,11 @@ This version provides packages for these operating systems:
 
 Read more in https://docs.rudder.io/reference/5.0/installation/operating_systems.html
 
-# Known issue: Communication between agents built with 1.1.0 vs. 1.0.x versions 
+# Known issue: Communication between agents built with 1.1.0 vs. 1.0.x openssl versions 
 
 We have found a communication problem between some versions of rudder agent and server due to a bug in OpenSSL library.
 
-The problem occurs when a client (resp. server) using OpenSSL 1.0 try to communicate with a server (resp. client) using OpenSSL 1.1.0.
+The problem occurs when a client (resp. server) using OpenSSL 1.0 tries to communicate with a server (resp. client) using OpenSSL 1.1.0.
 It is [corrected](https://github.com/openssl/openssl/issues/7134) in newly released OpenSSL 1.1.1. The Rudder corresponding bug is [traced on Rudder bug tracker](https://www.rudder-project.org/redmine/issues/13690).
 
 Rudder versions from 5.0.0 to 5.0.2 on Ubuntu 18.04, Debian 9, and SLES 15 use OpenSSL 1.1.0.
