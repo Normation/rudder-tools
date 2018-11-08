@@ -126,7 +126,7 @@ A safer and simpler solution, if available, is to delay such on upgrade until a 
 
 We are working on the patch to replace the buggy OpenSSL 1.1.0 and we will release a new version of Rudder 5.0 with it as soon as possible.
 
-We are sorry for any inconvenience resulting from this problem. If you need more information or help, please don't hesitate to contact us by email or other means of communication like gitter (https://gitter.im/normation/rudder) or irc (#rudder on freenode).
+We are sorry for any inconvenience resulting from this problem. If you need more information or help, please don't hesitate to contact us by email or other means of communication like [gitter](https://gitter.im/normation/rudder) or irc (#rudder on freenode).
 
 # Changelogs
 
