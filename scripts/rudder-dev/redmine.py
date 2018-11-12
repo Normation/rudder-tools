@@ -8,7 +8,7 @@ if 'Config' not in vars():
   from common import *  
     
 Config.REDMINE_ALT_API_URL = "https://redmine.normation.com"
-Config.REDMINE_API_URL = "https://www.rudder-project.org/redmine"
+Config.REDMINE_API_URL = "https://issues.rudder.io"
 Config.REDMINE_API_LIMIT = 100
 Config.REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
 Config.REDMINE_META_TRACKERS = [3]
