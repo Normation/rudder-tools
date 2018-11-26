@@ -158,11 +158,10 @@ RHEL/CentOS 3 and RHEL/CentOS 5
 
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
- * Alexandre BRIANCEAU
- * Romain Quinaud
- * Florian Heigl
  * vlycop Doo
+ * Florian Heigl
  * Janos Mattyasovszky
+ * Romain Quinaud
 
 This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 

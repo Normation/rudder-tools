@@ -374,15 +374,14 @@ We are sorry for any inconvenience resulting from this problem. If you need more
 
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
- * Ilan COSTA
- * Janos Mattyasovszky
- * Renaud Manus
  * Thomas CAILHE
- * Florian Heigl
+ * Ilan COSTA
  * vlycop Doo
- * David Svejda
- * Alexandre BRIANCEAU
+ * Florian Heigl
+ * Renaud Manus
+ * Janos Mattyasovszky
  * Romain Quinaud
+ * David Svejda
 
 This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 

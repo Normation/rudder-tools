@@ -277,15 +277,14 @@ and Ubuntu 12.10.
 
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
- * David Svejda
+ * Thomas CAILHE
+ * Ilan COSTA
  * vlycop Doo
+ * Florian Heigl
  * Renaud Manus
  * Janos Mattyasovszky
- * Ilan COSTA
- * Florian Heigl
- * Thomas CAILHE
- * Alexandre BRIANCEAU
  * Romain Quinaud
+ * David Svejda
 
 This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
