@@ -132,6 +132,260 @@ We are sorry for any inconvenience resulting from this problem. If you need more
 
 # Changelogs
 
+## <a name="5.0.3" > </a> Rudder 5.0.3 (2018-11-26)
+
+### Changes
+
+#### API
+
+  - Add rudder server version to the Rest API (system/info endpoint)
+    ([\#13654](https://issues.rudder.io/issues/13654))
+
+#### System techniques
+
+  - Remove default server value from system techniques
+    ([\#13819](https://issues.rudder.io/issues/13819))
+
+#### Techniques
+
+  - Provide a rudder.json file with initial policies
+    ([\#13805](https://issues.rudder.io/issues/13805))
+
+#### Documentation
+
+  - Cleanup the ncf repo
+    ([\#13651](https://issues.rudder.io/issues/13651))
+
+### Bug fixes
+
+#### Plugins integration
+
+  - Fixed: Improve error messsage when path to install a plugin package is not correct
+    ([\#13891](https://issues.rudder.io/issues/13891))
+
+#### Packaging
+
+  - Fixed: Rudder agent 4.3 needs libxml-treepp-perl on debian
+    ([\#12599](https://issues.rudder.io/issues/12599))
+  - Fixed: Slackware agent is not started at boot
+    ([\#13850](https://issues.rudder.io/issues/13850))
+  - Fixed: Error when uninstalling rudder-webapp and ncf-api-virtualenv
+    ([\#11206](https://issues.rudder.io/issues/11206))
+  - Fixed: Don't create crontab entry at Rudder agent install but during first run
+    ([\#13846](https://issues.rudder.io/issues/13846))
+  - Fixed: Remove unnecessary conflict dependency with openjdk 9 on debian
+    ([\#12664](https://issues.rudder.io/issues/12664))
+  - Fixed: Missing _ in slackware package name
+    ([\#13839](https://issues.rudder.io/issues/13839))
+  - Fixed: Download Rudder sources from the new repository
+    ([\#13838](https://issues.rudder.io/issues/13838))
+  - Fixed: Agent should depend on a logging system on SUSE
+    ([\#13788](https://issues.rudder.io/issues/13788))
+  - Fixed: On rudder-webapp upgrade, ncf.conf file is not commited
+    ([\#13679](https://issues.rudder.io/issues/13679))
+
+#### Agent
+
+  - Fixed: Upgrade CFEngine to 3.10.5
+    ([\#13851](https://issues.rudder.io/issues/13851))
+  - Fixed: "rudder-keys change-key" does not check for key file existence
+    ([\#12496](https://issues.rudder.io/issues/12496))
+  - Fixed: When "policy-server.dat" is missing, generated inventory is not legit
+    ([\#11715](https://issues.rudder.io/issues/11715))
+  - Fixed: /var/log/rudder/agent-check/check.log should contains only error level messages
+    ([\#12230](https://issues.rudder.io/issues/12230))
+  - Fixed: rudder remote run error, and unable to pass -i option
+    ([\#11318](https://issues.rudder.io/issues/11318))
+  - Fixed: Command "rudder remote run -a" does not warn about missing token
+    ([\#11417](https://issues.rudder.io/issues/11417))
+  - Fixed: Add a warn message when agent run is incomplete
+    ([\#10751](https://issues.rudder.io/issues/10751))
+  - Fixed: Command "rudder agent reset" sets incorrect permission in /var/rudder/cfengine-community/inputs
+    ([\#12410](https://issues.rudder.io/issues/12410))
+  - Fixed: "rudder agent info" returns invalid report mode for not yet accepted nodes
+    ([\#12992](https://issues.rudder.io/issues/12992))
+  - Fixed: Missing spaces between key and message on rudder agent run report when using -w option
+    ([\#13663](https://issues.rudder.io/issues/13663))
+
+#### Performance and scalability
+
+  - Fixed: There are still tables expectedreports & expectesreportsnodes on upgraded Rudder 4.x and 5.x,
+    ([\#13770](https://issues.rudder.io/issues/13770))
+  - Fixed: After a node is deleted, a policy generation is started every 5 secondes
+    ([\#13845](https://issues.rudder.io/issues/13845))
+  - Fixed: Invalid value reported for Node expected reports saved in base in Rudder log
+    ([\#13418](https://issues.rudder.io/issues/13418))
+
+#### Security
+
+  - Fixed: Impossible to update promises when using a debian9 or Ubuntu 18 server and older distributions as Nodes (incompatible openssl version)
+    ([\#13690](https://issues.rudder.io/issues/13690))
+
+#### System integration
+
+  - Fixed: "rudder-pkg enable-all" command fails when a plugin has no jar
+    ([\#13785](https://issues.rudder.io/issues/13785))
+  - Fixed: Bad log level during generation
+    ([\#9512](https://issues.rudder.io/issues/9512))
+  - Fixed: Init check on group All classic Nodes known by Rudder (Using a CFEngine based agent) always tries to rewrite the group
+    ([\#13792](https://issues.rudder.io/issues/13792))
+
+#### Documentation
+
+  - Fixed: Windows doc has disappeared
+    ([\#13880](https://issues.rudder.io/issues/13880))
+  - Fixed: Document syslog port 5514 if Rudder server is an ubuntu < 14
+    ([\#11016](https://issues.rudder.io/issues/11016))
+  - Fixed: No favicon for Rudder doc on embeded doc
+    ([\#13520](https://issues.rudder.io/issues/13520))
+  - Fixed: Fix path to jinja2_custom.py in jinja2 templating doc
+    ([\#13784](https://issues.rudder.io/issues/13784))
+
+#### Web - Config management
+
+  - Fixed: The password field allows storing a password without any selected hash
+    ([\#12198](https://issues.rudder.io/issues/12198))
+  - Fixed: Spinning compliance in nodes list on a disabled node
+    ([\#12649](https://issues.rudder.io/issues/12649))
+  - Fixed: Spinning compliance in nodes list on a disabled node
+    ([\#12649](https://issues.rudder.io/issues/12649))
+  - Fixed: "Not copying missing license file into" in webapp log
+    ([\#10917](https://issues.rudder.io/issues/10917))
+  - Fixed: Missing node state variable expansion in directive
+    ([\#13671](https://issues.rudder.io/issues/13671))
+  - Fixed: Add full path to shared-folder in description of "Download file from shared folder" Technique
+    ([\#13530](https://issues.rudder.io/issues/13530))
+
+#### Web - UI & UX
+
+  - Fixed: Wrong text color in table header in Rule page
+    ([\#13835](https://issues.rudder.io/issues/13835))
+  - Fixed: Quotes in reports are displayed as &quot; in the web interface
+    ([\#13349](https://issues.rudder.io/issues/13349))
+  - Fixed: Upgrade loading wheel with a new look
+    ([\#8622](https://issues.rudder.io/issues/8622))
+  - Fixed: On Dashboard, when we have 100% of something, the pie is including a confusing white line
+    ([\#12233](https://issues.rudder.io/issues/12233))
+  - Fixed: Imperfect alignement of radio button
+    ([\#13512](https://issues.rudder.io/issues/13512))
+  - Fixed: No color difference on hover on the user menu
+    ([\#12926](https://issues.rudder.io/issues/12926))
+  - Fixed: "Configure the default state" is lacking explanations
+    ([\#12462](https://issues.rudder.io/issues/12462))
+  - Fixed: Bad display of radio button on the Reports Database page in Rudder 5.0
+    ([\#13476](https://issues.rudder.io/issues/13476))
+  - Fixed: Remove static ids in Password section
+    ([\#13457](https://issues.rudder.io/issues/13457))
+  - Fixed: Button to enable a technique in Directive Screen is not working, should be a link to the Technique
+    ([\#13779](https://issues.rudder.io/issues/13779))
+  - Fixed: In directive page, tooltip is not correctly aligned with text 
+    ([\#13511](https://issues.rudder.io/issues/13511))
+  - Fixed: The "hardware" tab is not displayed in accept new nodes screen
+    ([\#13688](https://issues.rudder.io/issues/13688))
+
+#### Web - Nodes & inventories
+
+  - Fixed: When a node is deleted, its generated promises are not removed
+    ([\#4709](https://issues.rudder.io/issues/4709))
+  - Fixed: Inventory keeps its key certified when node is deleted
+    ([\#9149](https://issues.rudder.io/issues/9149))
+  - Fixed: Missing gateway, network in network interface details
+    ([\#13804](https://issues.rudder.io/issues/13804))
+  - Fixed: Network group criteria not working
+    ([\#13772](https://issues.rudder.io/issues/13772))
+  - Fixed: Node details shows Operating System Type: MSWin for Windows node rather than Windows
+    ([\#6019](https://issues.rudder.io/issues/6019))
+  - Fixed: The error message for bad inventory signature is unclear
+    ([\#9192](https://issues.rudder.io/issues/9192))
+  - Fixed: Network, mask and gateway not correctly parsed from inventory
+    ([\#13803](https://issues.rudder.io/issues/13803))
+
+#### Web - Compliance & node report
+
+  - Fixed: Compliance error (missing) when a directive is applied by two rules on a node
+    ([\#13674](https://issues.rudder.io/issues/13674))
+
+#### API
+
+  - Fixed: Remove old "machyne type" api Rest typo since it should not be called anymore
+    ([\#13795](https://issues.rudder.io/issues/13795))
+  - Fixed:  Tags in rules are ignored in POST API
+    ([\#13374](https://issues.rudder.io/issues/13374))
+
+#### Techniques
+
+  - Fixed: Option description for "File download (Rudder server)" technique is misleading
+    ([\#13887](https://issues.rudder.io/issues/13887))
+  - Fixed: Technique "Cron job v3.0" does not use the "user" setting with predefined scheduled
+    ([\#8004](https://issues.rudder.io/issues/8004))
+  - Fixed: Missing reports on password component on "User management" Technique in audit mode
+    ([\#9474](https://issues.rudder.io/issues/9474))
+  - Fixed:  Enforce checkbox tooltip in "Group management" Technique is misleading
+    ([\#13489](https://issues.rudder.io/issues/13489))
+  - Fixed: Missing report with 'File and directory basics' Technique in audit mode when checking perms on non existing file
+    ([\#11653](https://issues.rudder.io/issues/11653))
+  - Fixed: Broken reporting when copying a directory from the Rudder server without specifying the trailing / in the destination
+    ([\#13290](https://issues.rudder.io/issues/13290))
+  - Fixed: Missing report for post-modification hook in Technique "File download (Rudder server)"
+    ([\#13717](https://issues.rudder.io/issues/13717))
+  - Fixed: Details of usage of technique "Variable from command output (string)" is not clear
+    ([\#12058](https://issues.rudder.io/issues/12058))
+  - Fixed: Some files in the techniques repository do not present any licence header
+    ([\#13633](https://issues.rudder.io/issues/13633))
+  - Fixed: Technique "cron job" refuses task user name if it contains hyphen 
+    ([\#12960](https://issues.rudder.io/issues/12960))
+  - Fixed: Missing report for component "Post-modification hook" when cleaning files with "File and directory basics" Technique version 4.1
+    ([\#13786](https://issues.rudder.io/issues/13786))
+
+#### System techniques
+
+  - Fixed: Mustache templates are not processed at all (including cron.d/rudder-agent file)
+    ([\#13885](https://issues.rudder.io/issues/13885))
+  - Fixed: Slackware agent cron.d is broken in system technique
+    ([\#13848](https://issues.rudder.io/issues/13848))
+
+#### Server components
+
+  - Fixed: server command based on jq should exit when jq is not installed and explain to install it
+    ([\#13682](https://issues.rudder.io/issues/13682))
+
+#### Generic methods
+
+  - Fixed: Typo in "File content" generic method description
+    ([\#13883](https://issues.rudder.io/issues/13883))
+  - Fixed: Generic method "File_remove" can delete empty directories
+    ([\#12857](https://issues.rudder.io/issues/12857))
+  - Fixed: Scheduler classes have incomplete labels
+    ([\#8008](https://issues.rudder.io/issues/8008))
+
+#### Web - Technique editor
+
+  - Fixed: In technique editor, on save, we get "success" but some errors are shallowed
+    ([\#12210](https://issues.rudder.io/issues/12210))
+
+#### Generic methods - File Management
+
+  - Fixed: Generic Method "permission dirs" incorrect reporting when target path is a file
+    ([\#10689](https://issues.rudder.io/issues/10689))
+  - Fixed: "File key-value present" Generic Method  and "Manage keys-values in file" Technique  does not support | as separator
+    ([\#13562](https://issues.rudder.io/issues/13562))
+
+### Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+ * Ilan COSTA
+ * Janos Mattyasovszky
+ * Renaud Manus
+ * Thomas CAILHE
+ * Florian Heigl
+ * vlycop Doo
+ * David Svejda
+ * Alexandre BRIANCEAU
+ * Romain Quinaud
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ## <a name="5.0.2" > </a> Rudder 5.0.2 (2018-11-06)
 
 ### Changes
