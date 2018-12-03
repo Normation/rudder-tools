@@ -1,0 +1,1636 @@
+Change logs for Rudder 4.0.* versions
+-------------------------------------
+
+Rudder 4.0 has reached End of Life the 30th June 2017.
+
+This page provides a summary of changes for each version. Previous beta
+and rc versions are listed below for convenience.
+
+*Main new features in Rudder 4.0:*
+
+* Policy can be applied in ``Audit mode'', which only checks
+configuration and does not enforce it, on a global, per-node or
+per-directive basis
+* Global redesign of web interface
+* Files from shared folder can be selected using a file browser
+* Agents can be remotely started using API (wrapper for ``rudder remote
+run'' on the CLI)
+* Settings API
+* Rudder agent status command
+* Performance improved (compliance, policy generation are faster)
+* New file copy protocol
+
+A blog post explaining these features is available here:
+https://www.normation.com/en/blog/2016/11/11/rudder-4-0/
+
+*Installing, upgrading and testing*
+
+* Install docs:
+https://www.rudder-project.org/doc-4.0/_install_rudder_server.html
+* Upgrade docs: https://www.rudder-project.org/doc-4.0/_upgrade.html
+* Download links:
+https://www.rudder-project.org/site/get-rudder/downloads/
+
+We also recommend using the
+https://github.com/Normation/rudder-vagrant[Rudder Vagrant] config if
+you want a quick and easy way to get an installation for testing.
+
+*Operating systems supported*
+
+This version provides packages for these operating systems:
+
+* Rudder server: *Debian 7, Debian 8, RHEL/CentOS 6, RHEL/CentOS 7 (64
+bits), SLES 11, Ubuntu 14.04, Ubuntu 16.04*
+* Rudder agent: all of the above plus *Debian 5, Debian 6, RHEL/CentOS
+3, RHEL/CentOS 5, CentOS 7 (32 bits), Fedora 18, SLES 10, SLES 12,
+Ubuntu 10.04, Ubuntu 12.04, Ubuntu 12.10*
+* Rudder agent (binary packages available from
+(http://www.normation.com[Normation]): *Windows Server 2008-2012, AIX
+5-6-7*
+
+ Rudder 4.0.7 (2017-06-21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Packaging
++++++++++
+
+* Log check-rudder-agent cron job output
+(https://www.rudder-project.org/redmine/issues/8438[#8438])
+
+Architecture - Internal libs
+++++++++++++++++++++++++++++
+
+* Match non exaustive on workflow step: log on error
+(https://www.rudder-project.org/redmine/issues/10938[#10938])
+
+Agent
++++++
+
+* Create a rudder agent command to format old logs
+(https://www.rudder-project.org/redmine/issues/10708[#10708])
+
+Bug fixes
+^^^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Broken display on directive screen on 3.1.20
+(https://www.rudder-project.org/redmine/issues/10923[#10923])
+* Fixed: Time since last generation is limited to hours
+(https://www.rudder-project.org/redmine/issues/9302[#9302])
+* Fixed: Node search input field are tiny and a nightmare to use
+(https://www.rudder-project.org/redmine/issues/10659[#10659])
+* Fixed: Directives tree overflows the page
+(https://www.rudder-project.org/redmine/issues/10735[#10735])
+
+Documentation
++++++++++++++
+
+* Fixed: Agent build documentation in GitHub README is out of date
+(https://www.rudder-project.org/redmine/issues/10762[#10762])
+* Fixed: Missing doc about required agent version for audit mode
+(https://www.rudder-project.org/redmine/issues/10811[#10811])
+
+Agent
++++++
+
+* Fixed: check-rudder-agent doesn’t purge the lmdb file when run via
+cron (https://www.rudder-project.org/redmine/issues/10771[#10771])
+* Fixed: If component value starts with # , report is not outputed by
+rudder agent output
+(https://www.rudder-project.org/redmine/issues/10601[#10601])
+* Fixed: rudder agent start fails on sles12
+(https://www.rudder-project.org/redmine/issues/10810[#10810])
+
+Techniques
+++++++++++
+
+* Fixed: The rpmPackageInstallation technique tries to install package-*
+instead of package when no version is specified
+(https://www.rudder-project.org/redmine/issues/9283[#9283])
+* Fixed: Improve generated inventory checks when inventory is missing
+(https://www.rudder-project.org/redmine/issues/10711[#10711])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+* Florian Heigl
+* Janos Mattyasovszky
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. An end-of-life
+date has been scheduled for this release (30th June 2017), See our FAQ
+for details, on the website. As such, it is recommended to upgrade all
+pre-4.1 (current latest version) installations to 4.1 as soon as
+possible to enjoy the latest features and improvements of a more mature
+and stable version.
+
+ Rudder 4.0.6 (2017-05-23)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Documentation
++++++++++++++
+
+* Update FAQ links in the doc
+(https://www.rudder-project.org/redmine/issues/10760[#10760])
+
+Bug fixes
+^^^^^^^^^
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: During install, inventory generated into bad file path:
+/var/rudder/$\{inventory_path}
+(https://www.rudder-project.org/redmine/issues/10774[#10774])
+
+Release notes
+^^^^^^^^^^^^^
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. An end-of-life
+date has been scheduled for this release (30th June 2017), See our FAQ
+for details, on the website. As such, it is recommended to upgrade all
+pre-4.1 (current latest version) installations to 4.1 as soon as
+possible to enjoy the latest features and improvements of a more mature
+and stable version.
+
+ Rudder 4.0.5 (2017-05-22)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Documentation
++++++++++++++
+
+* Add an example of using a condition in the Technique creation tutorial
+(https://www.rudder-project.org/redmine/issues/10694[#10694])
+* Add Technique editor documentation
+(https://www.rudder-project.org/redmine/issues/10685[#10685])
+* Improve policy mode documentation
+(https://www.rudder-project.org/redmine/issues/10667[#10667])
+* Extend node property documentation for templates
+(https://www.rudder-project.org/redmine/issues/10614[#10614])
+
+Bug fixes
+^^^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Fix details in Technique editor doc
+(https://www.rudder-project.org/redmine/issues/10699[#10699])
+* Fixed: Cannot generate promises when invalid character in a group name
+(double quote here)
+(https://www.rudder-project.org/redmine/issues/10745[#10745])
+* Fixed: We have no way to know that a Technique is disabled
+(https://www.rudder-project.org/redmine/issues/10660[#10660])
+* Fixed: Directive is still marked unused after using it
+(https://www.rudder-project.org/redmine/issues/9805[#9805])
+* Fixed: Logout hover background is too wide
+(https://www.rudder-project.org/redmine/issues/10529[#10529])
+* Fixed: Cannot go back to the previous page on node details
+(https://www.rudder-project.org/redmine/issues/10515[#10515])
+* Fixed: On some resolution, top bar is on two line and we can’t see the
+whole directive tree
+(https://www.rudder-project.org/redmine/issues/10552[#10552])
+* Fixed: Mono Font text in directive form are not correctly displayed in
+Chrome (https://www.rudder-project.org/redmine/issues/9780[#9780])
+* Fixed: Selects in Archives page are not wide enough
+(https://www.rudder-project.org/redmine/issues/10615[#10615])
+
+Web - Config management
++++++++++++++++++++++++
+
+* Fixed: Tooltips don’t disapear on safari
+(https://www.rudder-project.org/redmine/issues/6145[#6145])
+
+Performance and scalability
++++++++++++++++++++++++++++
+
+* Fixed: Unecessary call to inventory code to check its version during
+policy validation
+(https://www.rudder-project.org/redmine/issues/10641[#10641])
+
+Documentation
++++++++++++++
+
+* Fixed: Document correctly memory usage
+(https://www.rudder-project.org/redmine/issues/10744[#10744])
+* Fixed: Missing information in Technique editor doc
+(https://www.rudder-project.org/redmine/issues/10710[#10710])
+* Fixed: Supported Windows platforms are Windows Server 2008 and after
+(https://www.rudder-project.org/redmine/issues/10656[#10656])
+* Fixed: Doc: ``Regenerate now'' button has been renamed ``Update
+policies'' (https://www.rudder-project.org/redmine/issues/10633[#10633])
+* Fixed: Backup restoration requires disabling the agent
+(https://www.rudder-project.org/redmine/issues/10639[#10639])
+* Fixed: Rudder installation docs are misleading as to running
+rudder-init
+(https://www.rudder-project.org/redmine/issues/10624[#10624])
+* Fixed: Node property documentation has error
+(https://www.rudder-project.org/redmine/issues/10613[#10613])
+
+Miscellaneous
++++++++++++++
+
+* Fixed: If cf-serverd is not up, hook 50-reload-policy-file-server is
+in error and breaks policy generation
+(https://www.rudder-project.org/redmine/issues/10493[#10493])
+* Fixed: escaping $\{SSH_ORIGINAL_COMMAND} in GUI -
+sshKeyDistribution/3.0
+(https://www.rudder-project.org/redmine/issues/10715[#10715])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: In reports list, if the directive contains < >, then the part
+in < > doesn’t appear in the reports
+(https://www.rudder-project.org/redmine/issues/5718[#5718])
+* Fixed: When no reports has been received from a node for new policy,
+message contains unexpanded variable
+(https://www.rudder-project.org/redmine/issues/10636[#10636])
+
+Packaging
++++++++++
+
+* Fixed: Installation fails due to broken nss/nss-softokn detection on
+CentOS6 (https://www.rudder-project.org/redmine/issues/10734[#10734])
+* Fixed: Broken agent build on Debian/ubuntu
+(https://www.rudder-project.org/redmine/issues/10729[#10729])
+* Fixed: Man pages provided in rudder-agent package are out-of-date
+(https://www.rudder-project.org/redmine/issues/10432[#10432])
+* Fixed: rudder-init doesn’t use fully qualified path for executing
+cf-agent (https://www.rudder-project.org/redmine/issues/10607[#10607])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Agent inventory generation invalid if hostname is not defined
+(https://www.rudder-project.org/redmine/issues/9829[#9829])
+
+System integration
+++++++++++++++++++
+
+* Fixed: Script rudder-init cannot reinit ldap database
+(https://www.rudder-project.org/redmine/issues/10608[#10608])
+* Fixed: java.lang.InternalError when calling the internal API on Redhat
+because of invalid version of nss
+(https://www.rudder-project.org/redmine/issues/9905[#9905])
+* Fixed: Infinite ``rudder is loading'' page if rudder-init didn’t run
+(https://www.rudder-project.org/redmine/issues/10567[#10567])
+* Fixed: If an error happen during boostrap, the webapp starts but is in
+a zombie state and the error page is not displayed
+(https://www.rudder-project.org/redmine/issues/1974[#1974])
+* Fixed: rudder server debug fails on SLES 11
+(https://www.rudder-project.org/redmine/issues/7892[#7892])
+
+Agent
++++++
+
+* Fixed: If component value starts with # , report is not outputed by
+rudder agent output
+(https://www.rudder-project.org/redmine/issues/10601[#10601])
+* Fixed: Thell the user a node needs to be removed from the server when
+running a factory-reset
+(https://www.rudder-project.org/redmine/issues/10640[#10640])
+
+Web - Maintenance
++++++++++++++++++
+
+* Fixed: Adding an authorized network when ``common-root'' directive is
+missing seems to work, but actually fails
+(https://www.rudder-project.org/redmine/issues/8017[#8017])
+* Fixed: There is small display glitch in change request display
+(https://www.rudder-project.org/redmine/issues/6257[#6257])
+
+Server components
++++++++++++++++++
+
+* Fixed: Inventory endpoint accepts inventory even if ldap or postgresql
+connectivity failed
+(https://www.rudder-project.org/redmine/issues/10485[#10485])
+
+Techniques
+++++++++++
+
+* Fixed: Technique tests do not pass on initial promises
+(https://www.rudder-project.org/redmine/issues/10725[#10725])
+* Fixed: Unclear field description in MOTD technique
+(https://www.rudder-project.org/redmine/issues/10655[#10655])
+* Fixed: Technique files contains UTF-8 chars (especially spaces)
+(https://www.rudder-project.org/redmine/issues/7622[#7622])
+* Fixed: ``Variable (String)'' Directive in the Directive library does
+not use textarea
+(https://www.rudder-project.org/redmine/issues/10585[#10585])
+* Fixed: When agent run interval is not 5 minutes, lock database is
+always purged
+(https://www.rudder-project.org/redmine/issues/10634[#10634])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+* François Bayart
+* Romuald Bouvard
+* Jean Cardona
+* Christophe Crier
+* Florian Heigl
+* Janos Mattyasovszky
+* Ferenc Ulrich
+* Kiran V
+* Rémi Verchère
+* Josh Watt
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. An end-of-life
+date has been scheduled for this release (30th June 2017), See our FAQ
+for details, on the website. As such, it is recommended to upgrade all
+pre-4.1 (current latest version) installations to 4.1 as soon as
+possible to enjoy the latest features and improvements of a more mature
+and stable version.
+
+ Rudder 4.0.4 (2017-04-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Packaging
++++++++++
+
+* Upgrade OpenSSL to 1.0.2k
+(https://www.rudder-project.org/redmine/issues/10246[#10246])
+
+Techniques
+++++++++++
+
+* Add tests for manageKeyValueFile
+(https://www.rudder-project.org/redmine/issues/10473[#10473])
+
+Bug fixes
+^^^^^^^^^
+
+API
++++
+
+* Fixed: Wrong error message on directive API
+(https://www.rudder-project.org/redmine/issues/10554[#10554])
+* Fixed: Log an error when Rest API fails
+(https://www.rudder-project.org/redmine/issues/10295[#10295])
+* Fixed: Missing timezone information in API ``node details''
+(https://www.rudder-project.org/redmine/issues/10280[#10280])
+* Fixed: Fix behavior of directive API and make api more consistent
+(https://www.rudder-project.org/redmine/issues/10225[#10225])
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Different icons for magnifier in pending nodes page
+(https://www.rudder-project.org/redmine/issues/10524[#10524])
+* Fixed: A magnifier icon appears in the filter fild after displaying
+directives that would be applied in pending nodes page
+(https://www.rudder-project.org/redmine/issues/10525[#10525])
+* Fixed: ``Reset to default'' action in ``Change Audit Logs'' doesn’t
+reset to install version
+(https://www.rudder-project.org/redmine/issues/9391[#9391])
+* Fixed: Directive column of pending nodes table is not wide enough.
+(https://www.rudder-project.org/redmine/issues/10513[#10513])
+* Fixed: A running Policy generation is not displayed on the Status
+dropdown (https://www.rudder-project.org/redmine/issues/10451[#10451])
+* Fixed: GUI breaks completely with IE 11
+(https://www.rudder-project.org/redmine/issues/10452[#10452])
+* Fixed: padding-down instead of padding-bottom in rudder.css
+(https://www.rudder-project.org/redmine/issues/10465[#10465])
+* Fixed: Weird appearance of accet new nodes popup
+(https://www.rudder-project.org/redmine/issues/10458[#10458])
+* Fixed: Display issue on ``Accept new Nodes'' page
+(https://www.rudder-project.org/redmine/issues/9165[#9165])
+* Fixed: Dropdown lists in directive forms are not wide enough and hide
+the contents of options
+(https://www.rudder-project.org/redmine/issues/10361[#10361])
+* Fixed: Cannot use slashes in quick search
+(https://www.rudder-project.org/redmine/issues/10407[#10407])
+* Fixed: Checkboxes in Administration menu are not locked for users with
+missing permissions
+(https://www.rudder-project.org/redmine/issues/9328[#9328])
+* Fixed: Bad Rudder logo in src/main/webapp/images
+(https://www.rudder-project.org/redmine/issues/10386[#10386])
+* Fixed: Tooltips are broken in Rule tables
+(https://www.rudder-project.org/redmine/issues/10389[#10389])
+* Fixed: ``Delete #1'' button in directive form’s text is not centered
+(https://www.rudder-project.org/redmine/issues/10359[#10359])
+* Fixed: Save button shown even no permission to change it
+(https://www.rudder-project.org/redmine/issues/9819[#9819])
+* Fixed: If there is an error in the Parameter edition/creation popup,
+its shape change
+(https://www.rudder-project.org/redmine/issues/10248[#10248])
+* Fixed: Inconsistent capitalization of titles in the menu
+(https://www.rudder-project.org/redmine/issues/9545[#9545])
+* Fixed: Inconsistent message style in settings page
+(https://www.rudder-project.org/redmine/issues/9426[#9426])
+* Fixed: Wrong action named in API accounts table
+(https://www.rudder-project.org/redmine/issues/10203[#10203])
+* Fixed: Compliance display when hoverving over the compliance bar is
+too precise (https://www.rudder-project.org/redmine/issues/9323[#9323])
+* Fixed: Cannot change schedule on Node
+(https://www.rudder-project.org/redmine/issues/10318[#10318])
+* Fixed: When trying to create a new API account that has the same name
+as an existing acocunt, nothing happen
+(https://www.rudder-project.org/redmine/issues/10250[#10250])
+* Fixed: Setting title are barelly outstanding
+(https://www.rudder-project.org/redmine/issues/10261[#10261])
+
+Web - Config management
++++++++++++++++++++++++
+
+* Fixed: On centos7, generation fails because of hook
+policy-generation-node-ready/10-cf-promise-check
+(https://www.rudder-project.org/redmine/issues/10532[#10532])
+* Fixed: Missing ``user techniques'' in the technique editor when
+exporting / importing archive
+(https://www.rudder-project.org/redmine/issues/9448[#9448])
+* Fixed: Policy validation fails
+(https://www.rudder-project.org/redmine/issues/10446[#10446])
+
+Web - Maintenance
++++++++++++++++++
+
+* Fixed: There is no error logged when an error occurs when updating
+information of Node in Node cache
+(https://www.rudder-project.org/redmine/issues/10290[#10290])
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* Fixed: Regex search on node properties is broken: returns all nodes
+with a property when no using invalid value
+(https://www.rudder-project.org/redmine/issues/10570[#10570])
+* Fixed: Include Timezone in Node Info
+(https://www.rudder-project.org/redmine/issues/7092[#7092])
+* Fixed: Rudder fails to accept inventories with user account different
+only in their case
+(https://www.rudder-project.org/redmine/issues/10545[#10545])
+
+Documentation
++++++++++++++
+
+* Fixed: Remove doc for the old quicksearch bar that has been removed
+(https://www.rudder-project.org/redmine/issues/10401[#10401])
+* Fixed: Doc about copying ncf technique to /var/rudder/ncf/local is
+false (https://www.rudder-project.org/redmine/issues/10269[#10269])
+
+Agent
++++++
+
+* Fixed: Policy loading is slow due to innefficient variable
+manipulation
+(https://www.rudder-project.org/redmine/issues/10576[#10576])
+* Fixed: On upgrade from 3.1 to 4.1, policy could not be generated any
+more (https://www.rudder-project.org/redmine/issues/10559[#10559])
+* Fixed: Some QEMU virtual machines are seen as physical
+(https://www.rudder-project.org/redmine/issues/9616[#9616])
+* Fixed: If rudder server component is stopped on Rudder root server, it
+is never restarted
+(https://www.rudder-project.org/redmine/issues/10258[#10258])
+
+Packaging
++++++++++
+
+* Fixed: Don’t display warning about configuring policy server on root
+server (https://www.rudder-project.org/redmine/issues/8976[#8976])
+* Fixed: make clean in rudder agent package doesn’t remove
+build-cfengine-stamp
+(https://www.rudder-project.org/redmine/issues/10334[#10334])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Transient update error on ncf/local
+(https://www.rudder-project.org/redmine/issues/10028[#10028])
+* Fixed: Inventory is not resent in case of error - and agent don’t
+report the error
+(https://www.rudder-project.org/redmine/issues/10088[#10088])
+* Fixed: A 4.1 agent cannot fetch its promises from a 3.1 server
+(https://www.rudder-project.org/redmine/issues/10049[#10049])
+* Fixed: Ignore changes generated by creation/deletion of ncf expected
+reports file
+(https://www.rudder-project.org/redmine/issues/10355[#10355])
+* Fixed: Propagate promises error when no nodes behind a relay
+(https://www.rudder-project.org/redmine/issues/7671[#7671])
+
+System integration
+++++++++++++++++++
+
+* Fixed: Error in migration (ldap backup not found because ending by
+.gz) (https://www.rudder-project.org/redmine/issues/10521[#10521])
+* Fixed: Log contains debug info ``**** got string:
+\{''start``:''2017-03-09 00:00:00``,''end``,''2017-03-11 00:00:00``}''
+(https://www.rudder-project.org/redmine/issues/10553[#10553])
+* Fixed: Log for failed login attempt is not (correctly) reported
+(https://www.rudder-project.org/redmine/issues/10259[#10259])
+* Fixed: After running rudder-init, no connectivity to postgresql
+(https://www.rudder-project.org/redmine/issues/10486[#10486])
+* Fixed: Clean-up and add build information in META-INF
+(https://www.rudder-project.org/redmine/issues/10253[#10253])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: Compliance bar graph doesn’t show small compliance numbers
+(https://www.rudder-project.org/redmine/issues/10392[#10392])
+
+Performance and scalability
++++++++++++++++++++++++++++
+
+* Fixed: Enable gzip compression on text resources
+(https://www.rudder-project.org/redmine/issues/10365[#10365])
+
+Server components
++++++++++++++++++
+
+* Fixed: In debug verbosity, logs are overflowed by logs about
+com.zaxxer.hikari.pool
+(https://www.rudder-project.org/redmine/issues/10471[#10471])
+
+Techniques
+++++++++++
+
+* Fixed: ``Download files from the shared folder'' behaving badly?
+(https://www.rudder-project.org/redmine/issues/10312[#10312])
+
+Release notes
+~~~~~~~~~~~~~
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+* Ilan Costa
+* Florian Heigl
+* Janos Mattyasovszky
+* Hamlyn Mootoo
+* Dmitry Svyatogorov
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. An end-of-life
+date has been scheduled for this release (30th June 2017), See our FAQ
+for details, on the website. As such, it is recommended to upgrade all
+pre-4.1 (current latest version) installations to 4.1 as soon as
+possible to enjoy the latest features and improvements of a more mature
+and stable version.
+
+Rudder 4.0.3 (2017-02-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* API endpoint to get information about queue status of uploaded
+inventories (https://www.rudder-project.org/redmine/issues/9976[#9976])
+
+Web - UI & UX
++++++++++++++
+
+* Add an option to not display rule status/recent changes in directives
+screen (https://www.rudder-project.org/redmine/issues/10157[#10157])
+* Node breakdown - show actual numbers
+(https://www.rudder-project.org/redmine/issues/7422[#7422])
+* Remove the ``disabled rule'' notice
+(https://www.rudder-project.org/redmine/issues/9955[#9955])
+
+Documentation
++++++++++++++
+
+* Add link to the new FAQ in the manual
+(https://www.rudder-project.org/redmine/issues/10181[#10181])
+* Add qa-test for line breaks
+(https://www.rudder-project.org/redmine/issues/9893[#9893])
+* Document the Audit mode
+(https://www.rudder-project.org/redmine/issues/9668[#9668])
+
+Bug fixes
+^^^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Status dropdown’s display is broken
+(https://www.rudder-project.org/redmine/issues/10177[#10177])
+* Fixed: Display of new ``Display compliance and recent changes columns
+on rule summary'' setting is broken
+(https://www.rudder-project.org/redmine/issues/10173[#10173])
+* Fixed: Included ``time ended'' in Status dropdown
+(https://www.rudder-project.org/redmine/issues/10133[#10133])
+* Fixed: In group page, remove reference to CFEngine in generated
+classes (https://www.rudder-project.org/redmine/issues/9885[#9885])
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* Fixed: Users with ``node_all'' security role can not change Agent
+Policy Mode (https://www.rudder-project.org/redmine/issues/9936[#9936])
+* Fixed: Inventories with fields containing only spaces/tabs/… may fail
+to be parsed due to invalid sanitization of entry
+(https://www.rudder-project.org/redmine/issues/10220[#10220])
+* Fixed: FileNotFoundException when looking for deleted history file
+(https://www.rudder-project.org/redmine/issues/10115[#10115])
+
+Performance and scalability
++++++++++++++++++++++++++++
+
+* Fixed: Compliance on all reports is always computed, even when not
+necessary (https://www.rudder-project.org/redmine/issues/9869[#9869])
+* Fixed: Incomplete logging in debug_timming
+(https://www.rudder-project.org/redmine/issues/9853[#9853])
+
+Web - Config management
++++++++++++++++++++++++
+
+* Fixed: Broken directive migration in Rudder 4.0.2
+(https://www.rudder-project.org/redmine/issues/9859[#9859])
+* Fixed: Deadlock with simultaneous generation and new reports
+(https://www.rudder-project.org/redmine/issues/10168[#10168])
+* Fixed: Incomplete logging in expected reports computation
+(https://www.rudder-project.org/redmine/issues/10143[#10143])
+* Fixed: Cannot select by status on the ``Change Requests'' page
+(https://www.rudder-project.org/redmine/issues/10012[#10012])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: If node is sending unexpected report, we get an invalid text
+(https://www.rudder-project.org/redmine/issues/9930[#9930])
+* Fixed: When we receive reports from node with old reports, caches are
+not used for compliance computation
+(https://www.rudder-project.org/redmine/issues/9835[#9835])
+
+Documentation
++++++++++++++
+
+* Fixed: Merge error - Link check disappeared in 4.0
+(https://www.rudder-project.org/redmine/issues/10206[#10206])
+* Fixed: Broken link in CFEngine doc
+(https://www.rudder-project.org/redmine/issues/10151[#10151])
+* Fixed: expected reports, component keys
+(https://www.rudder-project.org/redmine/issues/8633[#8633])
+
+Miscellaneous
++++++++++++++
+
+* Fixed: Typo in root of policy libray tree name
+(https://www.rudder-project.org/redmine/issues/9884[#9884])
+
+Agent
++++++
+
+* Fixed: Error when upgrading rudder-agent
+(https://www.rudder-project.org/redmine/issues/10034[#10034])
+* Fixed: Broken CFEngine patch in 4.0 branch
+(https://www.rudder-project.org/redmine/issues/9809[#9809])
+* Fixed: Logs from 4.1 agent are not sent to the server
+(https://www.rudder-project.org/redmine/issues/9776[#9776])
+
+Packaging
++++++++++
+
+* Fixed: rudder-techniques depends on perl(XML::TreePP)
+(https://www.rudder-project.org/redmine/issues/9845[#9845])
+* Fixed: Missing selinux-policy-devel in rudder-server-relay
+dependencies
+(https://www.rudder-project.org/redmine/issues/10090[#10090])
+* Fixed: Do not build SELinux policy on old OSes
+(https://www.rudder-project.org/redmine/issues/10089[#10089])
+* Fixed: SELinux target directory does not exist
+(https://www.rudder-project.org/redmine/issues/10056[#10056])
+* Fixed: Add SELinux config to relay package
+(https://www.rudder-project.org/redmine/issues/9913[#9913])
+* Fixed: When upgrading Rudder, we get mails from cron saying ``ok:
+Rudder agent check ran without errors.''
+(https://www.rudder-project.org/redmine/issues/9858[#9858])
+* Fixed: ncf-api-virtualenv build depends on selinux
+(https://www.rudder-project.org/redmine/issues/9851[#9851])
+* Fixed: Simple relay tries to configure rsyslog-pgsql
+(https://www.rudder-project.org/redmine/issues/9979[#9979])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Impossible to collect reports in mission portal since #9216
+(https://www.rudder-project.org/redmine/issues/10209[#10209])
+* Fixed: Error parsing inventory
+(https://www.rudder-project.org/redmine/issues/9841[#9841])
+
+Plugin - datasources
+++++++++++++++++++++
+
+* Fixed: EventLog at promise generation for datasources change, even if
+nothing changed
+(https://www.rudder-project.org/redmine/issues/10198[#10198])
+
+Architecture - Internal libs
+++++++++++++++++++++++++++++
+
+* Fixed: Test create directories in /tmp that are not cleaned nor unique
+(https://www.rudder-project.org/redmine/issues/10029[#10029])
+
+Architecture - Dependencies
++++++++++++++++++++++++++++
+
+* Fixed: warning: Class javax.annotation.Nonnull not found - continuing
+with a stub.
+(https://www.rudder-project.org/redmine/issues/10146[#10146])
+* Fixed: Use correct repository definition in pom.xml
+(https://www.rudder-project.org/redmine/issues/10120[#10120])
+
+Web - Maintenance
++++++++++++++++++
+
+* Fixed: If the Rudder Web Interface is interrupted during the second
+step of reports archiving, then it won’t never succeed in archiving
+again (https://www.rudder-project.org/redmine/issues/10171[#10171])
+
+Server components
++++++++++++++++++
+
+* Fixed: Rudder’s LDAP server configuration does not allow to query the
+monitor DB (https://www.rudder-project.org/redmine/issues/9818[#9818])
+
+Techniques
+++++++++++
+
+* Fixed: The service management technique does not disable boot services
+(https://www.rudder-project.org/redmine/issues/9872[#9872])
+* Fixed: copyGitFile reports an error when destination is a symbolic
+link (https://www.rudder-project.org/redmine/issues/9500[#9500])
+* Fixed: Job is not run for Technique JobScheduler in Rudder
+(https://www.rudder-project.org/redmine/issues/9822[#9822])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+* Ilan Costa
+* Janos Mattyasovszky
+* Dmitry Svyatogorov
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. The current
+``esr'' release is 3.1.*. When we release a new version of Rudder, it
+has been thoroughly tested, and we consider the release enterprise-ready
+for deployment
+
+Rudder 4.0.2 (2016-12-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Documentation
++++++++++++++
+
+* Document the Audit mode
+(https://issues.rudder.io/issues/9668[#9668])
+
+Bug fixes
+^^^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Broken login page css on latest Chrome version
+(https://issues.rudder.io/issues/9778[#9778])
+* Fixed: Shared files input does not appear on in directives form
+(https://issues.rudder.io/issues/9804[#9804])
+* Fixed: Change request link is too small
+(https://issues.rudder.io/issues/6142[#6142])
+
+Web - Config management
++++++++++++++++++++++++
+
+* Fixed: Error when displaying Rules when a rule is applying a directive
+that does not exists anymore
+(https://issues.rudder.io/issues/9802[#9802])
+* Fixed: Error when accessing change request
+(https://issues.rudder.io/issues/9790[#9790])
+
+Agent
++++++
+
+* Fixed: Broken CFEngine patch in 4.0 branch
+(https://issues.rudder.io/issues/9809[#9809])
+* Fixed: Grep error when running the agent
+(https://issues.rudder.io/issues/9799[#9799])
+
+Documentation
++++++++++++++
+
+* Fixed: Missing ``default ='' word in node properties expansion
+documention (https://issues.rudder.io/issues/9800[#9800])
+
+Server components
++++++++++++++++++
+
+* Fixed: Rudder’s LDAP server configuration does not allow to query the
+monitor DB (https://issues.rudder.io/issues/9818[#9818])
+
+Techniques
+++++++++++
+
+* Fixed: Malformed .gz inventory breaks upload process
+(https://issues.rudder.io/issues/9794[#9794])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+* Alexandre Anriot
+* Janos Mattyasovszky
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. The current
+``esr'' release is 3.1.*. When we release a new version of Rudder, it
+has been thoroughly tested, and we consider the release enterprise-ready
+for deployment
+
+Rudder 4.0.1 (2016-12-12)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Agent
++++++
+
+* Warn the user when he tries to use long arguments with rudder agent
+(https://issues.rudder.io/issues/9658[#9658])
+* Make rudder agent reinit warn the user
+(https://issues.rudder.io/issues/8106[#8106])
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* On agent, check inventory before sending it to Rudder server
+(https://issues.rudder.io/issues/8127[#8127])
+
+System integration
+++++++++++++++++++
+
+* Rudder error pages should not change transport
+(https://issues.rudder.io/issues/9637[#9637])
+
+Architecture - Internal libs
+++++++++++++++++++++++++++++
+
+* Add basic infrastructure to test REST API
+(https://issues.rudder.io/issues/9201[#9201])
+
+Documentation
++++++++++++++
+
+* Move techniques reference doc to the manual
+(https://issues.rudder.io/issues/9586[#9586])
+* Make rudder-doc gitignore more complete
+(https://issues.rudder.io/issues/9570[#9570])
+* Build final doc for releases in rc status
+(https://issues.rudder.io/issues/9564[#9564])
+* Use $releasever in upgrade section for RHEL
+(https://issues.rudder.io/issues/9439[#9439])
+* Update documentation to have version independant repo
+(https://issues.rudder.io/issues/9422[#9422])
+* Use release info to get ncf version to use in doc
+(https://issues.rudder.io/issues/9393[#9393])
+* Add Rudder high level diagram on Readme
+(https://issues.rudder.io/issues/9672[#9672])
+
+Bug fixes
+^^^^^^^^^
+
+Web - Config management
++++++++++++++++++++++++
+
+* Fixed: Node properties update doesn’t invalidate node configuration
+hash (https://issues.rudder.io/issues/9402[#9402])
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Degraded style of text areas in directive forms
+(https://issues.rudder.io/issues/9703[#9703])
+* Fixed: Missing top of eventLog datetime picker on small screen
+(https://issues.rudder.io/issues/9267[#9267])
+* Fixed: If an event logs contains long lines it is not displayed
+properly (https://issues.rudder.io/issues/5963[#5963])
+* Fixed: Rounded corner inside status menu
+(https://issues.rudder.io/issues/9681[#9681])
+* Fixed: Pop-up bottom is rounded, but top is not
+(https://issues.rudder.io/issues/9657[#9657])
+* Fixed: Login page broken when window is widened
+(https://issues.rudder.io/issues/9656[#9656])
+* Fixed: Display disabled rules with a tag in place is grey italic
+(https://issues.rudder.io/issues/9492[#9492])
+* Fixed: Error message when failing to accept a new node is hard to find
+(https://issues.rudder.io/issues/9436[#9436])
+* Fixed: An horizontal scrollbar appears on the dashboard when hovering
+over the right graph
+(https://issues.rudder.io/issues/9429[#9429])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: When applying same directive in different rule, reporting is
+broken (https://issues.rudder.io/issues/9743[#9743])
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* Fixed: No server inventory in web interface if /etc/hosts is not
+correctly configured
+(https://issues.rudder.io/issues/9744[#9744])
+
+Agent
+
+* Fixed: Improve error messages in ``rudder agent update''
+(https://issues.rudder.io/issues/9726[#9726])
+* Fixed: Fusioninventory is not tracked by check-rudder-health
+(https://issues.rudder.io/issues/9622[#9622])
+* Fixed: Typo in rudder agent run failure message
+(https://issues.rudder.io/issues/9618[#9618])
+* Fixed: Virtual machine detected as physical
+(https://issues.rudder.io/issues/9496[#9496])
+* Fixed: Some QEMU systems are wrongly detected as physical system
+(https://issues.rudder.io/issues/9335[#9335])
+* Fixed: Agent capabilities should be per agent, and not per node
+(https://issues.rudder.io/issues/9359[#9359])
+
+Techniques
+
+* Fixed: Allow to only install a specific version in apt and rpm
+techniques. (https://issues.rudder.io/issues/9761[#9761])
+* Fixed: Wrong warn log report in ssh techniques on sles >= 11
+(https://issues.rudder.io/issues/9317[#9317])
+
+API
+^^^
+
+* Fixed: API allows to create duplicate UUIDs at group creation
+(https://issues.rudder.io/issues/9742[#9742])
+* Fixed: Creating an empty group with no search criteria messes up GUI
+(https://issues.rudder.io/issues/9741[#9741])
+* Fixed: Setting nodeProperty over API does fail on bad key order
+(https://issues.rudder.io/issues/9326[#9326])
+* Fixed: Rudder API timeouts when passing wrong parameters
+(https://issues.rudder.io/issues/7134[#7134])
+
+Documentation
+^^^^^^^^^^^^^
+
+* Fixed: Bad plugin installation info on doc
+(https://issues.rudder.io/issues/9721[#9721])
+* Fixed: Bad file indicated in Java memory config chapter
+(https://issues.rudder.io/issues/9628[#9628])
+* Fixed: Manual is broken because of some new syntax in ncf doc
+(https://issues.rudder.io/issues/9621[#9621])
+* Fixed: Wiki documentation broken URL
+(https://issues.rudder.io/issues/9608[#9608])
+* Fixed: Mention port 80 in manual
+(https://issues.rudder.io/issues/9567[#9567])
+* Fixed: API Documentation: Delete node shows example of accept node
+(https://issues.rudder.io/issues/9368[#9368])
+* Fixed: Cleanup node properties documentation
+(https://issues.rudder.io/issues/9253[#9253])
+* Fixed: Rudder API doc is invalid for getting the list of pending nodes
+(https://issues.rudder.io/issues/7973[#7973])
+
+Packaging
++++++++++
+
+* Fixed: On Ubuntu 16.04, openjdk 9 is installed by default, and not
+recognized as a compatible version
+(https://issues.rudder.io/issues/9613[#9613])
+* Fixed: fusion agent fail to build on ubuntu 16
+(https://issues.rudder.io/issues/9556[#9556])
+* Fixed: ncf initialization seems to be repaired conctinuously
+(https://issues.rudder.io/issues/9464[#9464])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Script that validate inventory is not correctly called on
+Windows (https://issues.rudder.io/issues/9764[#9764])
+* Fixed: Error on inventory of policy servers: Error when parsing an
+entry, that agent will be ignored. <- could not parse policy server id
+(tag POLICY_SERVER_UUID) from specific inventory
+(https://issues.rudder.io/issues/9327[#9327])
+* Fixed: Explain in the reports of system techniques that we do not need
+to manage the cron service on AIX
+(https://issues.rudder.io/issues/9235[#9235])
+* Fixed: Multiple errors ``The postgresql process was not running and
+has been restarted''
+(https://issues.rudder.io/issues/9182[#9182])
+* Fixed: No reports when agent cannot update its promises
+(https://issues.rudder.io/issues/9751[#9751])
+* Fixed: The locks are removed every 10 minutes by check-rudder-agent
+when there is no promise update
+(https://issues.rudder.io/issues/9626[#9626])
+* Fixed: Error message when restarting rudder-agent during relay install
+(https://issues.rudder.io/issues/9216[#9216])
+* Fixed: No answer with common / update
+(https://issues.rudder.io/issues/8155[#8155])
+* Fixed: A cfengine enterprise agent fails to connect to rudder server
+in cfengine 3.7, because there is no agentallconnects
+(https://issues.rudder.io/issues/9716[#9716])
+* Fixed: Broken node.env variable in 4.0
+(https://issues.rudder.io/issues/9691[#9691])
+
+System integration
+++++++++++++++++++
+
+* Fixed: rudder-upgrade should use the database name from the webapp
+configuration (https://issues.rudder.io/issues/9749[#9749])
+* Fixed: Add a warning comment for password change in
+rudder-web.properties
+(https://issues.rudder.io/issues/9685[#9685])
+* Fixed: Compressing the ldap backup hangs if would require to overwrite
+it (https://issues.rudder.io/issues/9630[#9630])
+* Fixed: Firefox stalls after TLS handshake on self signed certificate
+(https://issues.rudder.io/issues/9566[#9566])
+* Fixed: The API alive check may hang forever
+(https://issues.rudder.io/issues/9561[#9561])
+* Fixed: Missing logger information for quicksearch in logback.xml
+(https://issues.rudder.io/issues/9406[#9406])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+* Alexandre Anriot
+* Alexander Brunhirl
+* Florian Heigl
+* Janos Mattyasovszky
+* Dmitry Svyatogorov
+
+This is a bug fix release in the 4.0 series and therefore all
+installations of 4.0 should be upgraded when possible. The current
+``esr'' release is 3.1.*. When we release a new version of Rudder, it
+has been thoroughly tested, and we consider the release enterprise-ready
+for deployment
+
+Rudder 4.0.0 (2016-11-10)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Too large fields in directive form
+(https://issues.rudder.io/issues/9619[#9619])
+* Allow overriding the policy mode by default
+(https://issues.rudder.io/issues/9605[#9605])
+* Filter rules by application in the directive page
+(https://issues.rudder.io/issues/9256[#9256])
+
+Documentation
++++++++++++++
+
+* Update Github Readme for Rudder 4.0 and up
+(https://issues.rudder.io/issues/9647[#9647])
+* Update doc for the new server-node protocol
+(https://issues.rudder.io/issues/9638[#9638])
+
+Techniques
+++++++++++
+
+* Deprecate old package management techniques
+(https://issues.rudder.io/issues/9607[#9607])
+
+Bug fixes
+^^^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Can not click on Audit button in Settings
+(https://issues.rudder.io/issues/9655[#9655])
+* Fixed: Link to settings from node preferences doesn’t work
+(https://issues.rudder.io/issues/9642[#9642])
+* Fixed: Some tables still have 10 entries by default
+(https://issues.rudder.io/issues/9606[#9606])
+* Fixed: There is a request to fonts.googleapi.com
+(https://issues.rudder.io/issues/9604[#9604])
+* Fixed: We cannot add group exception in rules settings
+(https://issues.rudder.io/issues/9603[#9603])
+* Fixed: In rules list, the category column is as wide as the name
+column (https://issues.rudder.io/issues/9601[#9601])
+* Fixed: There is a cursor under Global compliance details in the home
+page (https://issues.rudder.io/issues/9600[#9600])
+* Fixed: The technique tree does not reach the bottom of the screen
+(https://issues.rudder.io/issues/9599[#9599])
+* Fixed: ``Applying'' appears like ``no report'' in ``nodes by overall
+compliance'' (https://issues.rudder.io/issues/9579[#9579])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Do not report on report file creation because it is always
+repaired (https://issues.rudder.io/issues/9577[#9577])
+* Fixed: Add an EndRun report to Rudder abort handler
+(https://issues.rudder.io/issues/9571[#9571])
+
+Web - Maintenance
++++++++++++++++++
+
+* Fixed: Changing policy mode in the setting screen spams the webapp log
+(https://issues.rudder.io/issues/9611[#9611])
+
+Agent
++++++
+
+* Fixed: Typo in rudder agent stop output
+(https://issues.rudder.io/issues/9617[#9617])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: Bad constraint in table nodeConfigurations
+(https://issues.rudder.io/issues/9646[#9646])
+* Fixed: Null pointer exception when changing policy mode on the
+Directive screen
+(https://issues.rudder.io/issues/9610[#9610])
+* Fixed: If i override compliance on a node to ``audit'', it is still
+shows ``enforce'' in its details
+(https://issues.rudder.io/issues/9593[#9593])
+
+Release notes
+^^^^^^^^^^^^^
+
+This version of Rudder is a final release. We have tested it thoroughly
+and believe it to be free of any major bugs. This version is now the
+latest version of Rudder (lastest ESR is still 3.1).
+
+Rudder 4.0.0~rc5 (2016-10-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Bug fixes
+^^^^^^^^^
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* Fixed: On Search nodes page, if I click on ``Include Rudder server
+components'' checkbox, or change any criteria (except And and Or), I get
+a JS error (https://issues.rudder.io/issues/9544[#9544])
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Recent change column title is incorrect for status
+(https://issues.rudder.io/issues/9550[#9550])
+* Fixed: The link to the quick search doc has disappeared in 4.0
+(https://issues.rudder.io/issues/9537[#9537])
+
+System integration
+++++++++++++++++++
+
+* Fixed: Remove index script on expectedreportsnodes table
+(https://issues.rudder.io/issues/9554[#9554])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: NodeConfigurations and reportsexecutions are not archived in
+the same way as reports
+(https://issues.rudder.io/issues/8444[#8444])
+
+Release notes
+^^^^^^^^^^^^^
+
+This software is in ``release candidate'' status but we have tested it
+and believe it to be free of any critical bug. The use on production
+systems is not encouraged at this time and is at your own risk. However,
+we do encourage testing, and welcome all and any feedback! If no major
+bugs are found, a ``final'' release of 4.0.0 will be released by
+November 4th.
+
+Rudder 4.0.0~rc4 (2016-10-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Update the login page background
+(https://issues.rudder.io/issues/9535[#9535])
+* The ``info'' icon should be replaced
+(https://issues.rudder.io/issues/9526[#9526])
+* LIttle improvements on Directive form display (bootstrap on general
+informations) (https://issues.rudder.io/issues/9509[#9509])
+
+Documentation
++++++++++++++
+
+* Remove gradient background in tabs in embedded html doc
+(https://issues.rudder.io/issues/9525[#9525])
+
+Bug fixes
+^^^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: Compliance not display in node details from direct link
+(https://issues.rudder.io/issues/9533[#9533])
+* Fixed: Inconsitent naming of buttons in setting actions
+(https://issues.rudder.io/issues/9532[#9532])
+* Fixed: Old icon when cleaning report datatbase
+(https://issues.rudder.io/issues/9529[#9529])
+
+Web - Config management
++++++++++++++++++++++++
+
+* Fixed: When changing policy mode on a node, it changes the global
+policy mode for the application
+(https://issues.rudder.io/issues/9541[#9541])
+* Fixed: Two generation are started after changing the global policy
+mode (https://issues.rudder.io/issues/9539[#9539])
+* Fixed: Wrong warning in directive save popup
+(https://issues.rudder.io/issues/9523[#9523])
+
+Documentation
++++++++++++++
+
+* Fixed: Remove bottom border of doc header
+(https://issues.rudder.io/issues/9516[#9516])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: When the node reports an abort run for bad policy mode, nothing
+is displayed (https://issues.rudder.io/issues/9549[#9549])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Create the expected reports file for ncf in system techniques
+instead of first log
+(https://issues.rudder.io/issues/9540[#9540])
+
+System integration
+++++++++++++++++++
+
+* Fixed: On a fresh Rudder 4.0 install, expectedreports and
+expectedreportsnodes table are still present
+(https://issues.rudder.io/issues/9517[#9517])
+
+Release notes
+^^^^^^^^^^^^^
+
+Rudder 4.0.0~rc3 (2016-10-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Add bootstrap on Rules form
+(https://issues.rudder.io/issues/9494[#9494])
+
+Bug fixes
+^^^^^^^^^
+
+Packaging
++++++++++
+
+* Fixed: Sometime ppkeys is not 700
+(https://issues.rudder.io/issues/9520[#9520])
+* Fixed: rudder agant post-install make an error trying to stop the
+service (https://issues.rudder.io/issues/9519[#9519])
+* Fixed: rudder-init fails to check authorized networks
+(https://issues.rudder.io/issues/9515[#9515])
+
+System integration
+++++++++++++++++++
+
+* Fixed: WARN level debug message
+(https://issues.rudder.io/issues/9513[#9513])
+
+Web - Compliance & node report
+++++++++++++++++++++++++++++++
+
+* Fixed: When we just apply a configuration, reports is ``missing'' (not
+``pending'') (https://issues.rudder.io/issues/9518[#9518])
+
+Release notes
+^^^^^^^^^^^^^
+
+Rudder 4.0.0~rc2 (2016-10-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Packaging
++++++++++
+
+* Add IPV6 support in rudder-init
+(https://issues.rudder.io/issues/9269[#9269])
+
+Web - UI & UX
++++++++++++++
+
+* Remove stripped progress bars animation
+(https://issues.rudder.io/issues/9498[#9498])
+
+Bug fixes
+^^^^^^^^^
+
+Packaging
++++++++++
+
+* Fixed: Error in add-nodeconfigurations migration script in 4.0 nightly
+(https://issues.rudder.io/issues/9447[#9447])
+* Fixed: Error during upgrade from 3.2 to 4.0
+(https://issues.rudder.io/issues/9233[#9233])
+
+Web - UI & UX
++++++++++++++
+
+* Fixed: DataTable warning when clicking in Software in Node details
+(https://issues.rudder.io/issues/9493[#9493])
+* Fixed: 404 on JS script
+(https://issues.rudder.io/issues/9484[#9484])
+* Fixed: No background on audit component compliance status
+(https://issues.rudder.io/issues/9473[#9473])
+* Fixed: Wrong display of node details tabs while loading
+(https://issues.rudder.io/issues/9472[#9472])
+* Fixed: In some forms, we see variables names before page loading in
+finished (https://issues.rudder.io/issues/9470[#9470])
+* Fixed: Animations are too slow in the UI
+(https://issues.rudder.io/issues/9389[#9389])
+
+System integration
+++++++++++++++++++
+
+* Fixed: We should not hide exceptions in logs
+(https://issues.rudder.io/issues/9407[#9407])
+* Fixed: Process management issues on nodes hosting LXC containers
+(https://issues.rudder.io/issues/7381[#7381])
+
+Release notes
+^^^^^^^^^^^^^
+
+Rudder 4.0.0~rc1 (2016-10-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Web - UI & UX
++++++++++++++
+
+* Redesign Rudder web interface
+(https://issues.rudder.io/issues/8844[#8844]) ** New
+menu ** Responsive design ** New popups / tree / buttons ** New colors
+for compliance ** Upgraded all Javascript / css librairies, and
+reorganized
+
+Web - Nodes & inventories
++++++++++++++++++++++++++
+
+* Default group type should be ``dynamic''
+(https://issues.rudder.io/issues/8568[#8568])
+
+Web - Config management
++++++++++++++++++++++++
+
+* Add Directive field with a graphical File Explorer for shared files
+(https://issues.rudder.io/issues/9211[#9211])
+* Add an Audit mode to Rudder: only check properties, no modification on
+nodes (https://issues.rudder.io/issues/1808[#1808])
+
+API
++++
+
+* Settings API
+(https://issues.rudder.io/issues/9478[#9478])
+* Add an API endpoint to call rudder-remote-run
+(https://issues.rudder.io/issues/9290[#9290])
+
+Agent
++++++
+
+* Update CFEngine to 3.7.4
+(https://issues.rudder.io/issues/8812[#8812])
+* Move check-rudder-agent to rudder-agent repo
+(https://issues.rudder.io/issues/8806[#8806])
+* Rudder agent disable should have a stop option too
+(https://issues.rudder.io/issues/8734[#8734])
+* Update lmdb to 0.9.18
+(https://issues.rudder.io/issues/8325[#8325])
+* Add a cfpromises check to rudder agent health
+(https://issues.rudder.io/issues/8205[#8205])
+* rudder remote-run should allow running for a group of nodes
+(https://issues.rudder.io/issues/8187[#8187])
+* rudder agent status/start/stop
+(https://issues.rudder.io/issues/8076[#8076])
+* Filter ``rudder remote run'' output like ``rudder agent run''
+(https://issues.rudder.io/issues/7945[#7945])
+* Add a -u option to rudder agent run to run an update before the run
+(https://issues.rudder.io/issues/7824[#7824])
+* Add a rudder server disable command
+(https://issues.rudder.io/issues/7050[#7050])
+
+Documentation
++++++++++++++
+
+* Update list of supported OSes in the manual
+(https://issues.rudder.io/issues/9408[#9408])
+* Document agent-server compatibility limits for 4.0
+(https://issues.rudder.io/issues/9305[#9305])
+* Prepare manual for 4.0
+(https://issues.rudder.io/issues/8927[#8927])
+* Create packages for Ubuntu 16.04
+(https://issues.rudder.io/issues/8200[#8200])
+* Remove asciidoc from the documentation repository and use the system
+version (https://issues.rudder.io/issues/7891[#7891])
+
+Packaging
++++++++++
+
+* Upgrade jdk version used to build the webapp
+(https://issues.rudder.io/issues/9446[#9446])
+* Only display major version on the login page
+(https://issues.rudder.io/issues/9386[#9386])
+* Require a recent ncf version for 4.0
+(https://issues.rudder.io/issues/9385[#9385])
+* Change the Rudder version in the sources to be substituted in the
+packaging script
+(https://issues.rudder.io/issues/9382[#9382])
+* Remove old conflicts in rudder-inventory-ldap package
+(https://issues.rudder.io/issues/9104[#9104])
+* Remove migration scripts for 2.10-3.0 in 4.0
+(https://issues.rudder.io/issues/9012[#9012])
+* Add an automatic network detection in rudder-init
+(https://issues.rudder.io/issues/9010[#9010])
+* Update embedded openLDAP to 2.4.44
+(https://issues.rudder.io/issues/8486[#8486])
+* Update fusioninventory to 2.3.17
+(https://issues.rudder.io/issues/8328[#8328])
+* Preliminary support for Slackware
+(https://issues.rudder.io/issues/8015[#8015])
+* Preliminary support for freebsd
+(https://issues.rudder.io/issues/7358[#7358])
+* Include Timezone in Inventory
+(https://issues.rudder.io/issues/7093[#7093])
+* Merge rudder-agent postinstall into a single script
+(https://issues.rudder.io/issues/7074[#7074])
+* Preliminary support for solaris package
+(https://issues.rudder.io/issues/6832[#6832])
+* Rework rudder-agent makefile to make it more standard
+(https://issues.rudder.io/issues/6770[#6770])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Add node key in managed_nodes system variable
+(https://issues.rudder.io/issues/8985[#8985])
+* Make environment variables parse easier
+(https://issues.rudder.io/issues/8464[#8464])
+* Load environment variables from /etc/profile
+(https://issues.rudder.io/issues/8263[#8263])
+* Make signature problem easier to diagnose
+(https://issues.rudder.io/issues/8053[#8053])
+* Merge initial promises and system techniques
+(https://issues.rudder.io/issues/7915[#7915])
+* Simplify generic_process_check_process bundle
+(https://issues.rudder.io/issues/7822[#7822])
+
+Architecture - Dependencies
++++++++++++++++++++++++++++
+
+* Use latest minor jetty in Rudder 4.0
+(https://issues.rudder.io/issues/8965[#8965])
+* use Hikari connection pool
+(https://issues.rudder.io/issues/7865[#7865])
+
+Architecture - Refactoring
+++++++++++++++++++++++++++
+
+* Clean old fileFormat migration and fileFormat numbering policy
+(https://issues.rudder.io/issues/9202[#9202])
+* Rename Rudder 3.3 to 4.0
+(https://issues.rudder.io/issues/8934[#8934])
+* Use Doobie or Slick in place of SpringTemplate / squeryl / pur JDBC
+(https://issues.rudder.io/issues/2787[#2787])
+
+System integration
+++++++++++++++++++
+
+* make rudder-perl able to call either rudder’s perl or the local perl
+(https://issues.rudder.io/issues/8500[#8500])
+
+Bug fixes
+^^^^^^^^^
+
+Documentation
++++++++++++++
+
+* Fixed: Broken manual build due to missing 4.0 repo
+(https://issues.rudder.io/issues/9396[#9396])
+
+Agent
++++++
+
+* Fixed: ``rudder agent update'' should not be quiet by default
+(https://issues.rudder.io/issues/9218[#9218])
+* Fixed: Syntax errors in rudder commands
+(https://issues.rudder.io/issues/8915[#8915])
+* Fixed: Broken ``rudder agent reinit'' on 4.0
+(https://issues.rudder.io/issues/8838[#8838])
+* Fixed: rudder_promises_generated is now called
+rudder-promises-generated
+(https://issues.rudder.io/issues/8818[#8818])
+* Fixed: Copy initial-ncf in rudder agent reset
+(https://issues.rudder.io/issues/8805[#8805])
+* Fixed: Rename rudder agent reinit to rudder agent factory-reset
+(https://issues.rudder.io/issues/8676[#8676])
+* Fixed: Tell if we are on a relay in rudder agent info
+(https://issues.rudder.io/issues/8196[#8196])
+* Fixed: Add an output to all Rudder commands
+(https://issues.rudder.io/issues/7911[#7911])
+
+Packaging
++++++++++
+
+* Fixed: Build may fail on rhel6
+(https://issues.rudder.io/issues/9358[#9358])
+* Fixed: Rudder man page is missing in 4.0 package
+(https://issues.rudder.io/issues/9223[#9223])
+* Fixed: Make downloading files in Makefile be done in two steps
+(https://issues.rudder.io/issues/9002[#9002])
+* Fixed: Maven does not honor PROXY settings during build
+(https://issues.rudder.io/issues/9000[#9000])
+* Fixed: SLES12 SP1 is not detected properly
+(https://issues.rudder.io/issues/8999[#8999])
+* Fixed: Broken dependencies in 4.0 RPM because of epoch
+(https://issues.rudder.io/issues/8914[#8914])
+* Fixed: Makke uuidgen a single point of uuid generation
+(https://issues.rudder.io/issues/8837[#8837])
+* Fixed: On SLES (at least), updating rudder-server-root does not update
+dependencies (https://issues.rudder.io/issues/8454[#8454])
+
+Initial promises & sys tech
++++++++++++++++++++++++++++
+
+* Fixed: Incorrect inventory on Rudder server
+(https://issues.rudder.io/issues/9433[#9433])
+
+System integration
+++++++++++++++++++
+
+* Fixed: logback.xml doesn’t contains most entries in 4.0
+(https://issues.rudder.io/issues/9397[#9397])
+* Fixed: Wrong detection of rudder init parameters
+(https://issues.rudder.io/issues/9222[#9222])
+
+Architecture - Dependencies
++++++++++++++++++++++++++++
+
+* Fixed: Missing version bump in parent-pom for rudder-version
+(https://issues.rudder.io/issues/8035[#8035])

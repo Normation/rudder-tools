@@ -1,0 +1,259 @@
+Changelogs for Rudder plugin dsc 4.3.* versions
+-----------------------------------------------
+
+ Plugin dsc - dsc-4.3-1.11 (2018-11-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+CLI
++++
+
+* Add a rudder command to list system classes
+(https://issues.rudder.io/issues/12815[#12815])
+* Add CLI options (https://issues.rudder.io/issues/13147[#13147])
+* Add more info in the output of rudder agent info
+(https://issues.rudder.io/issues/13112[#13112])
+
+ncf
++++
+
+* Add tests to the files generic methods
+(https://issues.rudder.io/issues/12837[#12837])
+* registry type test should be case insensitive
+(https://issues.rudder.io/issues/13425[#13425])
+* Add reports mode options to the agent
+(https://issues.rudder.io/issues/13103[#13103])
+* Add tests for command_execution generic method
+(https://issues.rudder.io/issues/13020[#13020])
+* Add a test mechanism for generic methods
+(https://issues.rudder.io/issues/11220[#11220])
+
+Packaging
++++++++++
+
+* use rudder.io instead of normation.com in the makefile
+(https://issues.rudder.io/issues/13453[#13453])
+* Use an official curl binary
+(https://issues.rudder.io/issues/13304[#13304])
+
+Inventory
++++++++++
+
+* We should sign inventories
+(https://issues.rudder.io/issues/13431[#13431])
+
+Miscellaneous
++++++++++++++
+
+* Add tests for directory_\{absent/create} GM
+(https://issues.rudder.io/issues/12858[#12858])
+
+Bug fixes
+^^^^^^^^^
+
+System techniques
++++++++++++++++++
+
+* Fixed: Rudder agent scheduled task is not working due to encoding
+problem (https://issues.rudder.io/issues/13616[#13616])
+* Fixed: System technique execution_scheduler still in error
+(https://issues.rudder.io/issues/13436[#13436])
+* Fixed: Wrong merge on #13413
+(https://issues.rudder.io/issues/13423[#13423])
+* Fixed: Some system component of the dsc-common are not listed in the
+reporting (https://issues.rudder.io/issues/13413[#13413])
+* Fixed: System technique execution_scheduler can not be run properly
+(https://issues.rudder.io/issues/13420[#13420])
+* Fixed: there are 2 dsc-common on the rudder server
+(https://issues.rudder.io/issues/13414[#13414])
+
+CLI
++++
+
+* Fixed: another typo in the update script
+(https://issues.rudder.io/issues/13422[#13422])
+* Fixed: update action should not use generic method
+(https://issues.rudder.io/issues/13415[#13415])
+
+ncf
++++
+
+* Fixed: Inventory wrong reportId
+(https://issues.rudder.io/issues/13348[#13348])
+* Fixed: Service-restart tests fails
+(https://issues.rudder.io/issues/13143[#13143])
+* Fixed: Add tests for service GM
+(https://issues.rudder.io/issues/12868[#12868])
+* Fixed: typo in rudder.ps1
+(https://issues.rudder.io/issues/13077[#13077])
+* Fixed: typo in file-content call to get-file-content
+(https://issues.rudder.io/issues/13048[#13048])
+* Fixed: file_enforce_content does not behave like in the unix version
+(https://issues.rudder.io/issues/12840[#12840])
+* Fixed: Wrong parameter in file_create GM
+(https://issues.rudder.io/issues/13040[#13040])
+* Fixed: Add tests for registry keys \{present/absent} generic method
+(https://issues.rudder.io/issues/13023[#13023])
+* Fixed: File management generic method can’t report success or repair
+if the file is written in utf8 without bom
+(https://issues.rudder.io/issues/13007[#13007])
+* Fixed: File-From-Shared-Folder GM does not support paths with spaces
+(https://issues.rudder.io/issues/12509[#12509])
+* Fixed: Most of the files generic methods do not handle file creation
+when the complete folder path is not already existing
+(https://issues.rudder.io/issues/13004[#13004])
+
+Packaging
++++++++++
+
+* Fixed: Wrong jump on the Installer in silent mode
+(https://issues.rudder.io/issues/13125[#13125])
+* Fixed: When postinst fails in silent installation, installer never
+terminates and so does not provide uninstall.exe
+(https://issues.rudder.io/issues/12952[#12952])
+
+Miscellaneous
++++++++++++++
+
+* Fixed: Interval run time should be manageable
+(https://issues.rudder.io/issues/13049[#13049])
+
+Inventory
++++++++++
+
+* Fixed: When postinst fails to get the rudder-server-uuid.txt from the
+server it should prompt an explicit error
+(https://issues.rudder.io/issues/13059[#13059])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+This is a bug fix release in the 4.3 series and therefore all
+installations of 4.3.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
+ Plugin dsc - dsc-4.3-1.10 (2018-11-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Bug fixes
+^^^^^^^^^
+
+Miscellaneous
++++++++++++++
+
+* Fixed: The GM file_download does not create missing folders in path
+(https://issues.rudder.io/issues/12900[#12900])
+* Fixed: The GM file_download does not create missing folders in path
+(https://issues.rudder.io/issues/12900[#12900])
+* Fixed: Typo in File_download GM
+(https://issues.rudder.io/issues/12938[#12938])
+* Fixed: Windows Component present/absent are not working from the
+technique editor (https://issues.rudder.io/issues/12753[#12753])
+
+ncf
++++
+
+* Fixed: Missing folder for the KB_present GM
+(https://issues.rudder.io/issues/12899[#12899])
+* Fixed: Because of wrong encoding for nxlog config file, nxlog fails to
+start (https://issues.rudder.io/issues/12972[#12972])
+* Fixed: Files enforce content does not UTF8
+(https://issues.rudder.io/issues/12935[#12935])
+* Fixed: Rename generic methods
+(https://issues.rudder.io/issues/12795[#12795])
+* Fixed: File_copy_from_local_source does not create the path when it is
+not already defined (https://issues.rudder.io/issues/12833[#12833])
+* Fixed: Variable_Dict GM fails when executed on an already existing
+variable (https://issues.rudder.io/issues/12826[#12826])
+* Fixed: Variable_String GM fails when executed on an already existing
+variable (https://issues.rudder.io/issues/12818[#12818])
+
+Rudder web app
+++++++++++++++
+
+* Fixed: Plugin does not compile with 4.3.3
+(https://issues.rudder.io/issues/12942[#12942])
+
+Packaging
++++++++++
+
+* Fixed: zip must be a binary dependency for the package
+(https://issues.rudder.io/issues/12794[#12794])
+* Fixed: Postinst script is always ending with errors because openssl
+can not find its conf file
+(https://issues.rudder.io/issues/12776[#12776])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+This is a bug fix release in the 4.3 series and therefore all
+installations of 4.3.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
+
+ Plugin dsc - dsc-4.3-1.9 (2018-11-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes
+^^^^^^^
+
+Miscellaneous
++++++++++++++
+
+* Add a windows hotfix present GM
+(https://issues.rudder.io/issues/12727[#12727])
+* Add a generic method to test variable existence
+(https://issues.rudder.io/issues/12742[#12742])
+
+ncf
++++
+
+* Add a windows hotfix absent GM
+(https://issues.rudder.io/issues/12726[#12726])
+
+Bug fixes
+^^^^^^^^^
+
+Rudder web app
+++++++++++++++
+
+* Fixed: Adapt tests after changes in 12743
+(https://issues.rudder.io/issues/12751[#12751])
+* Fixed: Serial is not added to ReportId anymore
+(https://issues.rudder.io/issues/12528[#12528])
+* Fixed: Generate technique call with parameters
+(https://issues.rudder.io/issues/12304[#12304])
+
+Miscellaneous
++++++++++++++
+
+* Fixed: condition_from_variable_match is generating wrong classes
+(https://issues.rudder.io/issues/12746[#12746])
+* Fixed: Duplicate definition of bundle condition_from_variable_*
+(https://issues.rudder.io/issues/12741[#12741])
+
+Release notes
+^^^^^^^^^^^^^
+
+Special thanks go out to the following individuals who invested time,
+patience, testing, patches or bug reports to make this version of Rudder
+better:
+
+This is a bug fix release in the 4.3 series and therefore all
+installations of 4.3.x should be upgraded when possible. When we release
+a new version of Rudder it has been thoroughly tested, and we consider
+the release enterprise-ready for deployment.
