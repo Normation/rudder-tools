@@ -1,25 +1,19 @@
-Changelogs for Rudder plugin branding 4.3.* versions
-----------------------------------------------------
+= Change logs for branding plugin 4.3
 
- Plugin branding - branding-4.3-1.2 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== branding-4.3-1.2 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: License incorrectly interpreted in several plugins
 (https://issues.rudder.io/issues/13054[#13054])
 * Fixed: Color picker is hidden by header bar
 (https://issues.rudder.io/issues/12948[#12948])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -30,31 +24,25 @@ installations of 4.3.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin branding - branding-4.3-1.1 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== branding-4.3-1.1 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Remove plugin-common from rudder-plugins
 (https://issues.rudder.io/issues/12910[#12910])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: A part of the login form disappears if the custom bar is not
 activated (https://issues.rudder.io/issues/12971[#12971])
 * Fixed: Add a success / error message when saving changes
 (https://issues.rudder.io/issues/12961[#12961])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -65,14 +53,11 @@ installations of 4.3.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin branding - branding-4.3-1.0 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== branding-4.3-1.0 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Customize Login frontend and Rudder color them to differentiate
 environments (https://issues.rudder.io/issues/6661[#6661])
@@ -83,11 +68,9 @@ elm-make (https://issues.rudder.io/issues/12738[#12738])
 * Initialize the Branding Plugin
 (https://issues.rudder.io/issues/12153[#12153])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Add missing class to make Branding page UI pretty
 (https://issues.rudder.io/issues/12890[#12890])
@@ -96,14 +79,12 @@ Miscellaneous
 * Fixed: Correct branding html so we can use it
 (https://issues.rudder.io/issues/12800[#12800])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Multiple plugin build errors in 4.3
 (https://issues.rudder.io/issues/12835[#12835])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

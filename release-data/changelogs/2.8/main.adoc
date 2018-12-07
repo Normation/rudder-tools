@@ -1,5 +1,4 @@
-Change logs for Rudder 2.8.* ``Patrol boat'' versions
------------------------------------------------------
+= Change logs for Rudder 2.8
 
 Rudder 2.8 has reached End of Life the in November 2013. This branch is
 codenamed ``Patrol boat''.
@@ -47,17 +46,13 @@ Ubuntu 12.04 and Ubuntu 12.10*
 * Rudder agent: all of the above plus *RHEL/CentOS 3, RHEL/CentOS 5 and
 SLES 10 and Ubuntu 10.04*
 
-Rudder 2.8.4 (2014-03-14)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.4 (2014-03-14)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Fixed: check-rudder-agent script fails to create a new UUID if not
 defined and no backup exists
@@ -65,55 +60,47 @@ defined and no backup exists
 * Fixed: Typo in the deletion of lock file if the promises are not
 updated (https://issues.rudder.io/issues/4604[#4604])
 
-Webapp - Reporting
-++++++++++++++++++
+==== Webapp - Reporting
 
 * Fixed: A rare race condition can lead to an error when looking at
 compliance while a deployment is in progress
 (https://issues.rudder.io/issues/4559[#4559])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Fixed: Remove unused data from the LDAP tree initialization
 (https://issues.rudder.io/issues/4575[#4575])
 
-Webapp - Node management
-++++++++++++++++++++++++
+==== Webapp - Node management
 
 * Fixed: When accepting several nodes, one policy generation is
 triggered for each of them
 (https://issues.rudder.io/issues/4492[#4492])
 
-Webapp - Display, home page
-+++++++++++++++++++++++++++
+==== Webapp - Display, home page
 
 * Fixed: Too many Rules are displayed on the Home page ( 3 system Rules
 are included )
 (https://issues.rudder.io/issues/4570[#4570])
 
-Techniques - System & initial promises
-++++++++++++++++++++++++++++++++++++++
+==== Techniques - System & initial promises
 
 * Fixed: Last update detection is broken, causing cron remove cf_lock
 database and flood with emails every 5 minutes
 (https://issues.rudder.io/issues/4582[#4582])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Missing dependencies declaration (rsyslog-pgsql) in debian may
 prevents from installing Rudder server correctly
 (https://issues.rudder.io/issues/4569[#4569])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Documentation does not build anymore due to an unclosed section
 (https://issues.rudder.io/issues/4572[#4572])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -138,20 +125,16 @@ and running in production for several months. However, since new 2.9.*
 versions has been released, we expect that new version to be declared
 stable very soon.
 
-Rudder 2.8.3 (2014-03-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.3 (2014-03-06)
 
-Changes
-^^^^^^^
+=== Changes
 
-Agent
-+++++
+==== Agent
 
 * Upgrade CFEngine version to 3.5.3
 (https://issues.rudder.io/issues/4553[#4553])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Technique `Group management': Add an option to enforce group content
 (https://issues.rudder.io/issues/4467[#4467])
@@ -162,31 +145,26 @@ Techniques
 * Technique `Group management': Set GID of group
 (https://issues.rudder.io/issues/3843[#3843])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Add a script to change Rudder policy server IP/host name
 (https://issues.rudder.io/issues/4325[#4325])
 
-Techniques - System & init promises
-+++++++++++++++++++++++++++++++++++
+==== Techniques - System & init promises
 
 * Improve zypper detection and usage on SLES10 agents
 (https://issues.rudder.io/issues/4449[#4449])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Add a section in documentation about sizing of a Rudder server
 (https://issues.rudder.io/issues/4053[#4053])
 * Add information about firewall for rudder-webapp
 (https://issues.rudder.io/issues/4131[#4131])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Technique ``Package Management for RPM systems'': Wrong
 operator for ``This version or any earlier one''
@@ -210,8 +188,7 @@ repository when updating /etc/group file
 Explanation about which files will be copied are not correct
 (https://issues.rudder.io/issues/4354[#4354])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Fixed: Newline characters may be missing from archived files in
 configuration repository
@@ -230,21 +207,18 @@ an invalid charachter in it
 Directives screen, Change Request popup not displayed
 (https://issues.rudder.io/issues/4383[#4383])
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * Fixed: Rudder max days of archived reports retained cannot be
 configured from properties
 (https://issues.rudder.io/issues/4401[#4401])
 
-Webapp - Node management
-++++++++++++++++++++++++
+==== Webapp - Node management
 
 * Fixed: Sort in group tree is case-sensitive
 (https://issues.rudder.io/issues/4157[#4157])
 
-Inventory (webapp, Fusion)
-++++++++++++++++++++++++++
+==== Inventory (webapp, Fusion)
 
 * Fixed: Inventory with empty CFEngine agent public key cannot be
 processed by Rudder raising exceptions
@@ -265,8 +239,7 @@ web interface (https://issues.rudder.io/issues/4400[#4400])
 * Fixed: Rudder considers an inventory as ``failed'' if the endpoint is
 unavailable (https://issues.rudder.io/issues/4491[#4491])
 
-Webapp - CFEngine integration
-+++++++++++++++++++++++++++++
+==== Webapp - CFEngine integration
 
 * Fixed: Promises are not generated when Rudder server starts for the
 first time (https://issues.rudder.io/issues/4532[#4532])
@@ -281,8 +254,7 @@ several times (https://issues.rudder.io/issues/4487[#4487])
 * Fixed: Sometimes CFEngine get stuck because of locks on !TokyoCabinet
 (https://issues.rudder.io/issues/3928[#3928])
 
-Webapp - Reporting
-++++++++++++++++++
+==== Webapp - Reporting
 
 * Fixed: The rsyslog regexp matching executionTimeStamp is too greedy
 and could take more characters than it should
@@ -291,14 +263,12 @@ and could take more characters than it should
 simultaneously
 (https://issues.rudder.io/issues/4281[#4281])
 
-Relay Servers
-+++++++++++++
+==== Relay Servers
 
 * Fixed: The allowed network on the relay servers are those of their own
 policy server (https://issues.rudder.io/issues/4380[#4380])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Fixed: Remove the unnecessary licenses file creation for CFEngine
 Enterprise systems in the rudder-init script
@@ -307,8 +277,7 @@ Enterprise systems in the rudder-init script
 Enterprise is not present
 (https://issues.rudder.io/issues/4481[#4481])
 
-Performance and scalability
-+++++++++++++++++++++++++++
+==== Performance and scalability
 
 * Fixed: Optimization on LDAP requests (number of rules, …) from home
 page (https://issues.rudder.io/issues/4495[#4495])
@@ -316,8 +285,7 @@ page (https://issues.rudder.io/issues/4495[#4495])
 making a new archive of the configuration
 (https://issues.rudder.io/issues/4479[#4479])
 
-Techniques - System & init promises
-+++++++++++++++++++++++++++++++++++
+==== Techniques - System & init promises
 
 * Fixed: Log file about non compliant reports is not managed by
 logrotate on Red Hat-like Rudder server
@@ -340,8 +308,7 @@ correct (https://issues.rudder.io/issues/4155[#4155])
 not apply delaycompress option
 (https://issues.rudder.io/issues/4554[#4554])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: rudder-inventory-ldap package should `conflict' with other
 !OpenLDAP packages that install /etc/init.d/slapd
@@ -364,21 +331,18 @@ postgres on ubuntu
 prevent an apache error log flooding
 (https://issues.rudder.io/issues/3120[#3120])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Documentation still mentions port 80 for web interface instead
 of 443 (https://issues.rudder.io/issues/4394[#4394])
 
-Architecture - Tests
-++++++++++++++++++++
+==== Architecture - Tests
 
 * Fixed: Connection releasing of test LDAP server is incorrect, leading
 to lost of connection
 (https://issues.rudder.io/issues/4464[#4464])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -406,24 +370,19 @@ and running in production for several months. However, since new 2.9.*
 versions has been released, we expect that new version to be declared
 stable very soon
 
-Rudder 2.8.2 (2014-01-16)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.2 (2014-01-16)
 
-Changes
-^^^^^^^
+=== Changes
 
-Techniques
-++++++++++
+==== Techniques
 
 * Technique ``Download a file from the shared folder'' should display
 where the shared folder is located
 (https://issues.rudder.io/issues/4353[#4353])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * Fixed: Archive parameter files are named `ParameterName(name).xml'
 instead of `name.xml'
@@ -436,8 +395,7 @@ instead of `name.xml'
 they really are
 (https://issues.rudder.io/issues/4101[#4101])
 
-Inventory (webapp, Fusion)
-++++++++++++++++++++++++++
+==== Inventory (webapp, Fusion)
 
 * Fixed: Without lsb_release installed, RedHat is detected as Scientific
 Linux (https://issues.rudder.io/issues/4360[#4360])
@@ -445,8 +403,7 @@ Linux (https://issues.rudder.io/issues/4360[#4360])
 be send to rudder server via CFEngine
 (https://issues.rudder.io/issues/4314[#4314])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Fixed: ``Missing node'' error message in rule compliance when a node
 is deleted (https://issues.rudder.io/issues/3955[#3955])
@@ -460,8 +417,7 @@ made on that Rule may be overwritten
 another server Rudder is not working
 (https://issues.rudder.io/issues/4149[#4149])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Specify the modules needed by the relay server installation
 (https://issues.rudder.io/issues/4266[#4266])
@@ -470,14 +426,12 @@ Documentation
 * Fixed: Remove unused relay documentation placeholder files
 (https://issues.rudder.io/issues/4267[#4267])
 
-Webapp - Display, home page
-+++++++++++++++++++++++++++
+==== Webapp - Display, home page
 
 * Fixed: If a popup is too large for a screen, save buttons can’t be
 used (https://issues.rudder.io/issues/3795[#3795])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Rudder server cannot be installed on CentOS and Red Hat 6.5
 since dependency `jre' does not exist anymore
@@ -485,8 +439,7 @@ since dependency `jre' does not exist anymore
 * Fixed: Necessary entries in the apache2 sysconfig of SLES systems are
 missing (https://issues.rudder.io/issues/4280[#4280])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Report state is ``unknown'' on Root server for ``Inventories''
 component in ``Distibute policy''
@@ -522,15 +475,13 @@ location of a file using `Enforce file content' Technique
 correct some typos is `sshConfiguration' Technique v3.0
 (https://issues.rudder.io/issues/4328[#4328])
 
-Webapp - Reporting
-++++++++++++++++++
+==== Webapp - Reporting
 
 * Fixed: Reports containing a _ in the ``Policy'' (human readable policy
 name) are rejected by rsyslog
 (https://issues.rudder.io/issues/4247[#4247])
 
-Webapp - CFEngine integration
-+++++++++++++++++++++++++++++
+==== Webapp - CFEngine integration
 
 * Fixed: CFEngine refuses to start after upgrade from 2.7.5 to 2.8.1 due
 to a CFEngine buffer overflow
@@ -541,8 +492,7 @@ could, because it cannot purge directory
 * Fixed: At each agent run, promises are validated and value of $ is
 invalid (https://issues.rudder.io/issues/4158[#4158])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -569,25 +519,20 @@ and running in production for several months. However, since new 2.9.*
 versions has been released, we expect that new version to be declared
 stable very soon.
 
-Rudder 2.8.1 (2013-11-20)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.1 (2013-11-20)
 
-Changes
-^^^^^^^
+=== Changes
 
-Techniques
-++++++++++
+==== Techniques
 
 * Hide by default sections that are not ``mandatory'' within Techniques
 (https://issues.rudder.io/issues/4105[#4105])
 * New Technique added: Partition monitoring
 (https://issues.rudder.io/issues/3984[#3984])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Logging
-+++++++
+==== Logging
 
 * Fixed: Excessive logs from ``Store Agent Run Times'' task
 (https://issues.rudder.io/issues/4138[#4138])
@@ -595,14 +540,12 @@ Logging
 request, however a log about change request is still displayed
 (https://issues.rudder.io/issues/4143[#4143])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Upgrading order for 2.8 is not sufficiently visible
 (https://issues.rudder.io/issues/4168[#4168])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: PostgreSQL migration of `nodes execution' table can take a long
 time, a warning should be displayed
@@ -612,30 +555,26 @@ output (https://issues.rudder.io/issues/4141[#4141])
 * Fixed: First inventory sending may not contains UUID
 (https://issues.rudder.io/issues/4147[#4147])
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * Fixed: Correct English in ``change message'' pop-ups
 (https://issues.rudder.io/issues/4151[#4151])
 * Fixed: Rudder cannot load several plugins at the same time
 (https://issues.rudder.io/issues/3314[#3314])
 
-Webapp - Node management
-++++++++++++++++++++++++
+==== Webapp - Node management
 
 * Fixed: A node in an invalid time could lead to have `No answer' state
 on the whole promises
 (https://issues.rudder.io/issues/4148[#4148])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Fixed: The deletion of a Technique version used by a Directive will
 throw an error ’ NoSuchElementError ’
 (https://issues.rudder.io/issues/3687[#3687])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Technique `Package management for RHEL / CentOS / (SuSE / RPM
 systems' v4.0, 4.1 and 5.0: Incorrect clear of cache of installed
@@ -648,8 +587,7 @@ clearer (https://issues.rudder.io/issues/4021[]
 * Fixed: The first inventory made display disturbing error messages
 about CPU (https://issues.rudder.io/issues/3854[#3854])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -671,14 +609,11 @@ declared ``stable'' we prefer to wait until a version has been available
 and running in production for several months. As such, we expect version
 2.7 of Rudder to be declared stable very soon.
 
-Rudder 2.8.0 (2013-11-07)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.0 (2013-11-07)
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: URL given at the end of rudder-init.sh still use `http' instead
 of `https' (https://issues.rudder.io/issues/4135[#4135])
@@ -692,36 +627,31 @@ or init script are not restored
 * Fixed: Ubuntu oneiric (11.10) packages are not built anymore since
 Rudder 2.8 (https://issues.rudder.io/issues/4122[#4122])
 
-API
-+++
+==== API
 
 * Fixed: API for Change Request details returns the wrong action name
 (https://issues.rudder.io/issues/4134[#4134])
 
-Webapp - CFEngine integration
-+++++++++++++++++++++++++++++
+==== Webapp - CFEngine integration
 
 * Fixed: When upgrading 2.4 -> 2.8, promises are generated before the
 migration of CFEngine variable, leading to wrong promises generated
 (https://issues.rudder.io/issues/4130[#4130])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: User manual doesn’t mention RHEL/CentOS 3 support
 (https://issues.rudder.io/issues/4125[#4125])
 * Fixed: User manual doesn’t mention Debian wheezy support
 (https://issues.rudder.io/issues/4124[#4124])
 
-Techniques - Sys & init promis
-++++++++++++++++++++++++++++++
+==== Techniques - Sys & init promis
 
 * Fixed: The rSyslog rate limiting bug fix is defined but not called in
 the Techniques
 (https://issues.rudder.io/issues/4127[#4127])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -735,14 +665,11 @@ marked ``stable'', since it still has to be proven reliable on
 production systems over a period of several months. The current
 ``stable'' release is 2.6.*.
 
-Rudder 2.8.0~rc2 (2013-10-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.0~rc2 (2013-10-31)
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: A typo in root server policy prevents upgrading Rudder server
 to Rudder 2.8 (https://issues.rudder.io/issues/4112[#4112])
@@ -759,8 +686,7 @@ does not exists leading to an error while installing
 * Fixed: Rudder upgrade script is not launched on installation on RPM
 based systems (https://issues.rudder.io/issues/4121[#4121])
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * Fixed: Reload technique library at webapp startup if a flag file
 exists (https://issues.rudder.io/issues/4113[#4113])
@@ -769,17 +695,14 @@ exists (https://issues.rudder.io/issues/4113[#4113])
 * Fixed: ``Change request'' menu does not appear if it was disabled at
 startup (https://issues.rudder.io/issues/4114[#4114])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Inventory Technique is not valid: ``isfile'' function does not
 exist (https://issues.rudder.io/issues/4111[#4111])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -793,46 +716,38 @@ bugs. The use on production systems is not encouraged at this time and
 is at your own risk. However, we do encourage testing, and welcome all
 and any feedback!
 
-Rudder 2.8.0~rc1 (2013-10-25)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.0~rc1 (2013-10-25)
 
-Changes
-^^^^^^^
+=== Changes
 
-Techniques - Sys & init promis
-++++++++++++++++++++++++++++++
+==== Techniques - Sys & init promis
 
 * Rudder-agent cron file now use check-rudder-agent script
 (/opt/rudder/bin/check-rudder-agent)
 (https://issues.rudder.io/issues/3930[#3930])
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * When Rudder does not start due to an error in rudder-users.xml, the
 webapp will display an usable error log
 (https://issues.rudder.io/issues/4079[#4079])
 
-Webapp - Display, home page
-+++++++++++++++++++++++++++
+==== Webapp - Display, home page
 
 * Add Rudder 2.8 logo: The patrol boat
 (https://issues.rudder.io/issues/4096[#4096])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Reduce Directive information size
 (https://issues.rudder.io/issues/4103[#4103])
 
-Inventory (webapp, Fusion)
-++++++++++++++++++++++++++
+==== Inventory (webapp, Fusion)
 
 * Move broken received inventories to a separate directory
 (https://issues.rudder.io/issues/3139[#3139])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Android support
 (https://issues.rudder.io/issues/4099[#4099])
@@ -844,11 +759,9 @@ uploaded on the agent and an inventory runs.
 * Hide by default sections that are not ``mandatory'' within Techniques
 (https://issues.rudder.io/issues/4105[#4105])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Techniques - Sys & init promis
-++++++++++++++++++++++++++++++
+==== Techniques - Sys & init promis
 
 * Fixed: Using list of path for sending inventories in Rudder 2.8 leads
 to inconsistent failure
@@ -858,16 +771,14 @@ to inconsistent failure
 * Fixed: The inventory promises truncate the policy server uuid to 33
 characters (https://issues.rudder.io/issues/4018[#4018])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Upgrade instructions from 2.5 to 2.8
 (https://issues.rudder.io/issues/4081[#4081])
 * Fixed: Change all references to version number to be 2.8 for the 2.8
 doc (https://issues.rudder.io/issues/4080[#4080])
 
-Webapp - Reporting
-++++++++++++++++++
+==== Webapp - Reporting
 
 * Fixed: When we migrate to 2.8, the time to catch up on all the nodes
 execution time is very long
@@ -875,8 +786,7 @@ execution time is very long
 * Fixed: A query about execution date of reports still use old
 parameters (https://issues.rudder.io/issues/4089[#4089])
 
-Webapp - Node management
-++++++++++++++++++++++++
+==== Webapp - Node management
 
 * Fixed: Deleted and pending nodes Role is displayed as an error
 message. (https://issues.rudder.io/issues/4086[#4086])
@@ -884,15 +794,13 @@ message. (https://issues.rudder.io/issues/4086[#4086])
 inventory details available
 (https://issues.rudder.io/issues/4085[#4085])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Fixed: The check of validity of rudder parameters within variable
 values is too strict
 (https://issues.rudder.io/issues/4063[#4063])
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * Fixed: Properties not updated in the webapp
 (https://issues.rudder.io/issues/4084[#4084])
@@ -900,8 +808,7 @@ Webapp - Administration
 directive technique was moved
 (https://issues.rudder.io/issues/4030[#4030])
 
-Webapp - Display, home page
-+++++++++++++++++++++++++++
+==== Webapp - Display, home page
 
 * Fixed: Links to Node in the change request and event log are broken
 (https://issues.rudder.io/issues/4049[#4049])
@@ -909,8 +816,7 @@ Webapp - Display, home page
 modifications to save
 (https://issues.rudder.io/issues/4043[#4043])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Remove comma after the promiser from passwordCheck in the
 distirbutePolicy promises
@@ -925,8 +831,7 @@ clearer (https://issues.rudder.io/issues/4021[#4021])
 git lock since a wrong merge from 2.4 to 2.6
 (https://issues.rudder.io/issues/4048[#4048])
 
-Packaging issues
-++++++++++++++++
+==== Packaging issues
 
 * Fixed: Rudder-agent upgrade fails if one of the binaries is in use
 during upgrade
@@ -940,8 +845,7 @@ metadata.xml were existing for the same techniques
 * Fixed: Upgrading rudder-agent from 2.6.8 to 2.8beta fails on Debian
 (https://issues.rudder.io/issues/4098[#4098])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -958,14 +862,11 @@ bugs. The use on production systems is not encouraged at this time and
 is at your own risk. However, we do encourage testing, and welcome all
 and any feedback!
 
-Rudder 2.8.0~beta1 (2013-10-16)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 2.8.0~beta1 (2013-10-16)
 
-Changes
-^^^^^^^
+=== Changes
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Add informations about the upgrade process for Rudder 2.8
 (https://issues.rudder.io/issues/3986[#3986])
@@ -973,14 +874,12 @@ Documentation
 http://www.rudder-project.org/rudder-doc-2.8/rudder-doc.html#_upgrading_from_rudder_2_4_2_6_or_2_7[upgrade
 process] here!
 
-Logging
-+++++++
+==== Logging
 
 * Improve debug log when a Change Request can’t be merged
 (https://issues.rudder.io/issues/3977[#3977])
 
-Webapp - Config management
-++++++++++++++++++++++++++
+==== Webapp - Config management
 
 * Display Technique version used for each Directive in the Directives
 tree (https://issues.rudder.io/issues/4007[#4007])
@@ -988,14 +887,12 @@ tree (https://issues.rudder.io/issues/4007[#4007])
 warning message
 (https://issues.rudder.io/issues/3937[#3937])
 
-Webapp - Administration
-+++++++++++++++++++++++
+==== Webapp - Administration
 
 * Manage properties inside the web interface.
 (https://issues.rudder.io/issues/4057[#4057])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Enable HTTP/S by default
 (https://issues.rudder.io/issues/3877[#3877],
@@ -1019,8 +916,7 @@ System integration
 repository base directory
 (https://issues.rudder.io/issues/4046[#4046])
 
-API
-+++
+==== API
 
 * Manage Change Request through REST API
 (https://issues.rudder.io/issues/3952[#3952]). See
@@ -1028,8 +924,7 @@ documentation
 http://www.rudder-project.org/rudder-api-doc/#api-Change_Requests[Change
 Request API documentation] here!
 
-Relay Servers
-+++++++++++++
+==== Relay Servers
 
 * Implement Relay Server within Rudder
 (https://issues.rudder.io/issues/4023[#4023],
@@ -1039,15 +934,13 @@ documentation about
 http://www.rudder-project.org/rudder-doc-2.8/rudder-doc.html#relay-servers[relay
 servers] here!
 
-Webapp - Reporting
-++++++++++++++++++
+==== Webapp - Reporting
 
 * Store agent executions history in a `lightweight' table, to speed up
 Rudder web interface
 (https://issues.rudder.io/issues/3945[#3945])
 
-Webapp - Node management
-++++++++++++++++++++++++
+==== Webapp - Node management
 
 * Display Node’s Role on the Node detail page
 (https://issues.rudder.io/issues/4044[#4044])

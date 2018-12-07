@@ -1,17 +1,12 @@
-Changelogs for Rudder plugin dsc 4.2.* versions
------------------------------------------------
+= Change logs for dsc plugin 4.2
 
- Plugin dsc - dsc-4.2-1.10 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.10 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: The GM file_download does not create missing folders in path
 (https://issues.rudder.io/issues/12900[#12900])
@@ -20,8 +15,7 @@ Miscellaneous
 * Fixed: Windows Component present/absent are not working from the
 technique editor (https://issues.rudder.io/issues/12753[#12753])
 
-ncf
-+++
+==== ncf
 
 * Fixed: Missing folder for the KB_present GM
 (https://issues.rudder.io/issues/12899[#12899])
@@ -36,8 +30,7 @@ variable (https://issues.rudder.io/issues/12826[#12826])
 * Fixed: Variable_String GM fails when executed on an already existing
 variable (https://issues.rudder.io/issues/12818[#12818])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: zip must be a binary dependency for the package
 (https://issues.rudder.io/issues/12794[#12794])
@@ -45,8 +38,7 @@ Packaging
 can not find its conf file
 (https://issues.rudder.io/issues/12776[#12776])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -57,14 +49,11 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.9 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.9 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Add a windows hotfix present GM
 (https://issues.rudder.io/issues/12727[#12727])
@@ -73,29 +62,24 @@ Miscellaneous
 * Add a condition_from_variable GM
 (https://issues.rudder.io/issues/12575[#12575])
 
-ncf
-+++
+==== ncf
 
 * Add a windows hotfix absent GM
 (https://issues.rudder.io/issues/12726[#12726])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Fixed: DSC agent may stay in no answer because of nxlog
 (https://issues.rudder.io/issues/11376[#11376])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: condition_from_variable_match is generating wrong classes
 (https://issues.rudder.io/issues/12746[#12746])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -106,31 +90,25 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.8 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.8 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Release version 1.8 of windows agent/plugin
 (https://issues.rudder.io/issues/12612[#12612])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Changing windows logger need some service restart
 (https://issues.rudder.io/issues/12523[#12523])
 * Fixed: registry_entry_present does not work properly in audit mode and
 with wrong inputs (https://issues.rudder.io/issues/12551[#12551])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -141,14 +119,11 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.7 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.7 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Add optional verbose logs on dsc agent
 (https://issues.rudder.io/issues/12403[#12403])
@@ -159,19 +134,16 @@ Miscellaneous
 * Add a dedicated rudder application event log
 (https://issues.rudder.io/issues/12413[#12413])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: nxlog was not well started
 (https://issues.rudder.io/issues/12401[#12401])
 * Fixed: Command execution GM is not reporting properly
 (https://issues.rudder.io/issues/12484[#12484])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -182,29 +154,23 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.6 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.6 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Release version 1.6 of plugin compatible with Rudder 4.2.5
 (https://issues.rudder.io/issues/12456[#12456])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: Upgrade Windows Agent to implement parameter escape API
 (https://issues.rudder.io/issues/12405[#12405])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -215,29 +181,23 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.5 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.5 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: When we upgrade dsc plugin, techniques are not reloaded
 automatically (https://issues.rudder.io/issues/12327[#12327])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: Broken policy generation
 (https://issues.rudder.io/issues/12315[#12315])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -248,23 +208,18 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.4 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.4 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: Windows Agent ``last seen'' never
 (https://issues.rudder.io/issues/12160[#12160])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -277,23 +232,18 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.3 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.3 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * NXlog configuration cannot be modified
 (https://issues.rudder.io/issues/12088[#12088])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -304,31 +254,25 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.2 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.2 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Use rudder to dsify techniques instead of ncf
 (https://issues.rudder.io/issues/11817[#11817])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-ncf
-+++
+==== ncf
 
 * Fixed: Implement condition_from_command in dsc
 (https://issues.rudder.io/issues/11815[#11815])
 * Fixed: windows component present installs a component in audit mode
 (https://issues.rudder.io/issues/11767[#11767])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -339,37 +283,30 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.1 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.1 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Release version 1.1. of dsc plugin/agent
 (https://issues.rudder.io/issues/11659[#11659])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: Bootstrap creation of DSC groups is not done
 (https://issues.rudder.io/issues/11657[#11657])
 * Fixed: DSC system group must be created in plugin
 (https://issues.rudder.io/issues/11590[#11590])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: ``System variables definition parameters'' component name is
 too long (https://issues.rudder.io/issues/11441[#11441])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -380,32 +317,26 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-1.0 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-1.0 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Release v1.0 of windows agent and plugin.
 (https://issues.rudder.io/issues/11446[#11446])
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Add license to dsc plugin
 (https://issues.rudder.io/issues/11413[#11413])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Add support for node properties and Rudder parameters to the DSC agent
 (https://issues.rudder.io/issues/11404[#11404])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * add a File_Download generic method
 (https://issues.rudder.io/issues/11343[#11343])
@@ -422,17 +353,14 @@ Miscellaneous
 * Add a variable_dict_from_file generic method
 (https://issues.rudder.io/issues/11269[#11269])
 
-CLI
-+++
+==== CLI
 
 * Add some colors to agent output
 (https://issues.rudder.io/issues/10926[#10926])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Bad path for demo license file
 (https://issues.rudder.io/issues/11440[#11440])
@@ -443,24 +371,21 @@ Packaging
 * Fixed: always update agent schedule when reinstalling agent
 (https://issues.rudder.io/issues/11368[#11368])
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: Missing private repositories
 (https://issues.rudder.io/issues/11436[#11436])
 * Fixed: Tests are broken after #11406
 (https://issues.rudder.io/issues/11419[#11419])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: .st files are distributed to the nodes
 (https://issues.rudder.io/issues/11425[#11425])
 * Fixed: Error when running agent right after install
 (https://issues.rudder.io/issues/11292[#11292])
 
-ncf
-+++
+==== ncf
 
 * Fixed: Change report message of dsc generic methods (part 1)
 (https://issues.rudder.io/issues/11369[#11369])
@@ -469,8 +394,7 @@ ncf
 * Fixed: componentKey error in Variable-String
 (https://issues.rudder.io/issues/11349[#11349])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Json file of variables
 (https://issues.rudder.io/issues/11379[#11379])
@@ -489,8 +413,7 @@ install/update (https://issues.rudder.io/issues/11345[#11345])
 * Fixed: file_from_shared_folder GM does not handle _
 (https://issues.rudder.io/issues/11333[#11333])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -501,14 +424,11 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-0.4 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-0.4 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Add a variable_dict_merge generic method
 (https://issues.rudder.io/issues/11271[#11271])
@@ -535,8 +455,7 @@ Miscellaneous
 * Add a generic method command_execution
 (https://issues.rudder.io/issues/11170[#11170])
 
-ncf
-+++
+==== ncf
 
 * Change reporting message format in ncf agent
 (https://issues.rudder.io/issues/11276[#11276])
@@ -550,11 +469,9 @@ needed (https://issues.rudder.io/issues/11273[#11273])
 generic method from another generic method
 (https://issues.rudder.io/issues/11103[#11103])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: user_password debug prompt
 (https://issues.rudder.io/issues/11337[#11337])
@@ -567,8 +484,7 @@ Miscellaneous
 * Fixed: user_present audit mode
 (https://issues.rudder.io/issues/11202[#11202])
 
-ncf
-+++
+==== ncf
 
 * Fixed: Policy generation fails due to duplicate bundle
 (https://issues.rudder.io/issues/11332[#11332])
@@ -582,8 +498,7 @@ generic method .ps1 and @name in equivalent for .cf
 * Fixed: user_present method
 (https://issues.rudder.io/issues/11189[#11189])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Error when installing plugin rpk
 (https://issues.rudder.io/issues/11298[#11298])
@@ -592,16 +507,14 @@ Packaging
 * Fixed: zip may be missing from system (ie on my Ubuntu 16)
 (https://issues.rudder.io/issues/11115[#11115])
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: Remove json generation done for all agent type
 (https://issues.rudder.io/issues/11227[#11227])
 * Fixed: DSC plugin def is the one of DataSource plugin
 (https://issues.rudder.io/issues/11175[#11175])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -612,35 +525,28 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-0.3 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-0.3 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-ncf
-+++
+==== ncf
 
 * Add extra generic methods for DSC
 (https://issues.rudder.io/issues/11104[#11104])
 
-Packaging
-+++++++++
+==== Packaging
 
 * windows agent certificate should contain the uuid instead of the
 hostname (https://issues.rudder.io/issues/11032[#11032])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Missing end run report from agent
 (https://issues.rudder.io/issues/11026[#11026])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -651,14 +557,11 @@ installations of 4.2.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.2-0.2 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.2-0.2 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Make 4.2-0.2 plugin release
 (https://issues.rudder.io/issues/11108[#11108])
@@ -684,8 +587,7 @@ error/repaired status (https://issues.rudder.io/issues/10784[#10784])
 * First iteration on generic method/technique/loading
 (https://issues.rudder.io/issues/10777[#10777])
 
-ncf
-+++
+==== ncf
 
 * Add directory_create and file_create generic methods
 (https://issues.rudder.io/issues/10892[#10892])
@@ -694,22 +596,19 @@ ncf
 * Normalize generic method format
 (https://issues.rudder.io/issues/10831[#10831])
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Move in code from Rudder into the plugin
 (https://issues.rudder.io/issues/11073[#11073])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Change start and end reports for plugin
 (https://issues.rudder.io/issues/11036[#11036])
 * Load system variables from a json file
 (https://issues.rudder.io/issues/10886[#10886])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Add a hook to create dsc version on a technique
 (https://issues.rudder.io/issues/11019[#11019])
@@ -740,8 +639,7 @@ authenticate on apache (https://issues.rudder.io/issues/10944[#10944])
 * First iteration on windows agent packaging
 (https://issues.rudder.io/issues/10736[#10736])
 
-CLI
-+++
+==== CLI
 
 * Update policy using client authentication
 (https://issues.rudder.io/issues/10957[#10957])
@@ -753,19 +651,16 @@ CLI
 * Add rudder agent enable/disable
 (https://issues.rudder.io/issues/10872[#10872])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Scheduling / execution engine
 (https://issues.rudder.io/issues/10740[#10740])
 * Change Rudder.pm file in fusion-invneoty to look for windows-dsc agent
 (https://issues.rudder.io/issues/10756[#10756])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-ncf
-+++
+==== ncf
 
 * Fixed: file_enforce_content is not working
 (https://issues.rudder.io/issues/11133[#11133])
@@ -777,8 +672,7 @@ exist (https://issues.rudder.io/issues/10867[#10867])
 * Fixed: Allow defining a class that is already defined
 (https://issues.rudder.io/issues/10866[#10866])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Add cfengine methods for service_status and user_status so they
 can be used in technique editor
@@ -801,14 +695,12 @@ generation (https://issues.rudder.io/issues/11065[#11065])
 * Fixed: Create agent key and parse it in inventory
 (https://issues.rudder.io/issues/10817[#10817])
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: error in dscify hook when creating technique
 (https://issues.rudder.io/issues/11092[#11092])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: invalid reporting from system technique
 (https://issues.rudder.io/issues/11070[#11070])
@@ -821,8 +713,7 @@ rudder-system-directives (https://issues.rudder.io/issues/10968[#10968])
 * Fixed: Broken syntax in agent
 (https://issues.rudder.io/issues/10851[#10851])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: missing closing ) in dsc agent to read build-info.json
 (https://issues.rudder.io/issues/11069[#11069])
@@ -861,8 +752,7 @@ Miscellaneous
 * Fixed: Add pretty display for execution and reports
 (https://issues.rudder.io/issues/10803[#10803])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Fixed: Scheduled tasks don’t work (and missing update task)
 (https://issues.rudder.io/issues/11003[#11003])
@@ -873,8 +763,7 @@ System integration
 * Fixed: Agent type must be ``dsc'' in hook and metadata.xml
 (https://issues.rudder.io/issues/10965[#10965])
 
-CLI
-+++
+==== CLI
 
 * Fixed: Agent cli is too verbose during post-install
 (https://issues.rudder.io/issues/10945[#10945])
@@ -889,8 +778,7 @@ CLI
 * Fixed: Different fields in report cli outputs are not aligned
 (https://issues.rudder.io/issues/10875[#10875])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

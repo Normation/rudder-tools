@@ -1,43 +1,34 @@
-Changelogs for Rudder plugin datasources 5.0.* versions
--------------------------------------------------------
+= Change logs for datasources plugin 5.0
 
- Plugin datasources - datasources-5.0-1.5 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== datasources-5.0-1.5 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-UI - UX
-+++++++
+==== UI - UX
 
 * Update menu registering for plugins
 (https://issues.rudder.io/issues/13379[#13379])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Generate usable docs files from plugins
 (https://issues.rudder.io/issues/13265[#13265])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Remove spring in plugins
 (https://issues.rudder.io/issues/13037[#13037])
 * Create a plugin for relay servers
 (https://issues.rudder.io/issues/12888[#12888])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Update build so that licensed binaries don’t embed key/license
 (https://issues.rudder.io/issues/13283[#13283])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

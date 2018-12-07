@@ -1,23 +1,17 @@
-Changelogs for Rudder plugin change-validation 5.0.* versions
--------------------------------------------------------------
+= Change logs for change-validation plugin 5.0
 
- Plugin change-validation - change-validation-5.0-1.2 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== change-validation-5.0-1.2 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Directive creation directly linked to a rule are ignored
 (https://issues.rudder.io/issues/13895[#13895])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -28,23 +22,18 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin change-validation - change-validation-5.0-1.1 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== change-validation-5.0-1.1 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Improve Change Valdiation plugin UI
 (https://issues.rudder.io/issues/13729[#13729])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -55,33 +44,27 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin change-validation - change-validation-5.0-1.0 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== change-validation-5.0-1.0 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Target groups for the Validation Workflow
 (https://issues.rudder.io/issues/12194[#12194])
 * Target groups for the Validation Workflow
 (https://issues.rudder.io/issues/12194[#12194])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Plugins with elm don’t get elm (again)
 (https://issues.rudder.io/issues/13631[#13631])
 * Fixed: Rename changes-validation to change-validation
 (https://issues.rudder.io/issues/13393[#13393])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Bad authorization for Change Validations pages: validator can’t
 validate (https://issues.rudder.io/issues/13628[#13628])
@@ -90,8 +73,7 @@ validate (https://issues.rudder.io/issues/13628[#13628])
 * Fixed: Check node, not group, for need of change request
 (https://issues.rudder.io/issues/13559[#13559])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

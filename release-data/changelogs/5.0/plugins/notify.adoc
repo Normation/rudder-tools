@@ -1,25 +1,19 @@
-Changelogs for Rudder plugin notify 5.0.* versions
---------------------------------------------------
+= Change logs for notify plugin 5.0
 
- Plugin notify - notify-5.0-1.0 (2018-11-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== notify-5.0-1.0 (2018-11-30)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * prepare the plugin for the v1 release
 (https://issues.rudder.io/issues/13917[#13917])
 * Make a feature to open ticket based on rudder events
 (https://issues.rudder.io/issues/13854[#13854])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: When no filters are set, the plugin does not behave like
 expected (https://issues.rudder.io/issues/13925[#13925])
@@ -28,8 +22,7 @@ expected (https://issues.rudder.io/issues/13925[#13925])
 * Fixed: Some plugins overwrite configuration when upgrading
 (https://issues.rudder.io/issues/13575[#13575])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

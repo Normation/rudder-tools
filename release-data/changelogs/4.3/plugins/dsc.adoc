@@ -1,14 +1,10 @@
-Changelogs for Rudder plugin dsc 4.3.* versions
------------------------------------------------
+= Change logs for dsc plugin 4.3
 
- Plugin dsc - dsc-4.3-1.11 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.3-1.11 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-CLI
-+++
+==== CLI
 
 * Add a rudder command to list system classes
 (https://issues.rudder.io/issues/12815[#12815])
@@ -16,8 +12,7 @@ CLI
 * Add more info in the output of rudder agent info
 (https://issues.rudder.io/issues/13112[#13112])
 
-ncf
-+++
+==== ncf
 
 * Add tests to the files generic methods
 (https://issues.rudder.io/issues/12837[#12837])
@@ -30,31 +25,26 @@ ncf
 * Add a test mechanism for generic methods
 (https://issues.rudder.io/issues/11220[#11220])
 
-Packaging
-+++++++++
+==== Packaging
 
 * use rudder.io instead of normation.com in the makefile
 (https://issues.rudder.io/issues/13453[#13453])
 * Use an official curl binary
 (https://issues.rudder.io/issues/13304[#13304])
 
-Inventory
-+++++++++
+==== Inventory
 
 * We should sign inventories
 (https://issues.rudder.io/issues/13431[#13431])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Add tests for directory_\{absent/create} GM
 (https://issues.rudder.io/issues/12858[#12858])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: Rudder agent scheduled task is not working due to encoding
 problem (https://issues.rudder.io/issues/13616[#13616])
@@ -69,16 +59,14 @@ reporting (https://issues.rudder.io/issues/13413[#13413])
 * Fixed: there are 2 dsc-common on the rudder server
 (https://issues.rudder.io/issues/13414[#13414])
 
-CLI
-+++
+==== CLI
 
 * Fixed: another typo in the update script
 (https://issues.rudder.io/issues/13422[#13422])
 * Fixed: update action should not use generic method
 (https://issues.rudder.io/issues/13415[#13415])
 
-ncf
-+++
+==== ncf
 
 * Fixed: Inventory wrong reportId
 (https://issues.rudder.io/issues/13348[#13348])
@@ -105,8 +93,7 @@ if the file is written in utf8 without bom
 when the complete folder path is not already existing
 (https://issues.rudder.io/issues/13004[#13004])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Wrong jump on the Installer in silent mode
 (https://issues.rudder.io/issues/13125[#13125])
@@ -114,21 +101,18 @@ Packaging
 terminates and so does not provide uninstall.exe
 (https://issues.rudder.io/issues/12952[#12952])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Interval run time should be manageable
 (https://issues.rudder.io/issues/13049[#13049])
 
-Inventory
-+++++++++
+==== Inventory
 
 * Fixed: When postinst fails to get the rudder-server-uuid.txt from the
 server it should prompt an explicit error
 (https://issues.rudder.io/issues/13059[#13059])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -139,17 +123,13 @@ installations of 4.3.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.3-1.10 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.3-1.10 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: The GM file_download does not create missing folders in path
 (https://issues.rudder.io/issues/12900[#12900])
@@ -160,8 +140,7 @@ Miscellaneous
 * Fixed: Windows Component present/absent are not working from the
 technique editor (https://issues.rudder.io/issues/12753[#12753])
 
-ncf
-+++
+==== ncf
 
 * Fixed: Missing folder for the KB_present GM
 (https://issues.rudder.io/issues/12899[#12899])
@@ -178,14 +157,12 @@ variable (https://issues.rudder.io/issues/12826[#12826])
 * Fixed: Variable_String GM fails when executed on an already existing
 variable (https://issues.rudder.io/issues/12818[#12818])
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: Plugin does not compile with 4.3.3
 (https://issues.rudder.io/issues/12942[#12942])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: zip must be a binary dependency for the package
 (https://issues.rudder.io/issues/12794[#12794])
@@ -193,8 +170,7 @@ Packaging
 can not find its conf file
 (https://issues.rudder.io/issues/12776[#12776])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -205,31 +181,25 @@ installations of 4.3.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Plugin dsc - dsc-4.3-1.9 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== dsc-4.3-1.9 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Add a windows hotfix present GM
 (https://issues.rudder.io/issues/12727[#12727])
 * Add a generic method to test variable existence
 (https://issues.rudder.io/issues/12742[#12742])
 
-ncf
-+++
+==== ncf
 
 * Add a windows hotfix absent GM
 (https://issues.rudder.io/issues/12726[#12726])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Rudder web app
-++++++++++++++
+==== Rudder web app
 
 * Fixed: Adapt tests after changes in 12743
 (https://issues.rudder.io/issues/12751[#12751])
@@ -238,16 +208,14 @@ Rudder web app
 * Fixed: Generate technique call with parameters
 (https://issues.rudder.io/issues/12304[#12304])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: condition_from_variable_match is generating wrong classes
 (https://issues.rudder.io/issues/12746[#12746])
 * Fixed: Duplicate definition of bundle condition_from_variable_*
 (https://issues.rudder.io/issues/12741[#12741])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

@@ -1,5 +1,4 @@
-General information
--------------------
+= Change logs for Rudder 5.0
 
 Rudder 5.0 is currently a maintained version of Rudder.
 
@@ -129,11 +128,9 @@ SLES 10-11, Ubuntu 10.04 LTS-12.04 LTS, Windows Server 2008R2-2016, AIX
 Read more in
 https://docs.rudder.io/reference/5.0/installation/operating_systems.html
 
-Known issues
-------------
+== Known issues
 
-Communication between agents built with 1.1.0 vs. 1.0.x openssl versions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Communication between agents built with 1.1.0 vs. 1.0.x openssl versions
 
 We have found a communication problem between some versions of rudder
 agent and server due to a bug in OpenSSL library.
@@ -166,49 +163,37 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
-Changelogs
-----------
+== Rudder 5.0.3 (2018-11-26)
 
- Rudder 5.0.3 (2018-11-26)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Changes
 
-Changes
-^^^^^^^
-
-API
-+++
+==== API
 
 * Add rudder server version to the Rest API (system/info endpoint)
 (https://issues.rudder.io/issues/13654[#13654])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Remove default server value from system techniques
 (https://issues.rudder.io/issues/13819[#13819])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Provide a rudder.json file with initial policies
 (https://issues.rudder.io/issues/13805[#13805])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Cleanup the ncf repo (https://issues.rudder.io/issues/13651[#13651])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Plugins integration
-+++++++++++++++++++
+==== Plugins integration
 
 * Fixed: Improve error messsage when path to install a plugin package is
 not correct (https://issues.rudder.io/issues/13891[#13891])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Rudder agent 4.3 needs libxml-treepp-perl on debian
 (https://issues.rudder.io/issues/12599[#12599])
@@ -229,8 +214,7 @@ first run (https://issues.rudder.io/issues/13846[#13846])
 * Fixed: On rudder-webapp upgrade, ncf.conf file is not commited
 (https://issues.rudder.io/issues/13679[#13679])
 
-Agent
-+++++
+==== Agent
 
 * Fixed: Upgrade CFEngine to 3.10.5
 (https://issues.rudder.io/issues/13851[#13851])
@@ -255,8 +239,7 @@ accepted nodes (https://issues.rudder.io/issues/12992[#12992])
 report when using -w option
 (https://issues.rudder.io/issues/13663[#13663])
 
-Performance and scalability
-+++++++++++++++++++++++++++
+==== Performance and scalability
 
 * Fixed: There are still tables expectedreports & expectesreportsnodes
 on upgraded Rudder 4.x and 5.x,
@@ -266,15 +249,13 @@ secondes (https://issues.rudder.io/issues/13845[#13845])
 * Fixed: Invalid value reported for Node expected reports saved in base
 in Rudder log (https://issues.rudder.io/issues/13418[#13418])
 
-Security
-++++++++
+==== Security
 
 * Fixed: Impossible to update promises when using a debian9 or Ubuntu 18
 server and older distributions as Nodes (incompatible openssl version)
 (https://issues.rudder.io/issues/13690[#13690])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Fixed: ``rudder-pkg enable-all'' command fails when a plugin has no
 jar (https://issues.rudder.io/issues/13785[#13785])
@@ -284,8 +265,7 @@ jar (https://issues.rudder.io/issues/13785[#13785])
 CFEngine based agent) always tries to rewrite the group
 (https://issues.rudder.io/issues/13792[#13792])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Windows doc has disappeared
 (https://issues.rudder.io/issues/13880[#13880])
@@ -296,8 +276,7 @@ Documentation
 * Fixed: Fix path to jinja2_custom.py in jinja2 templating doc
 (https://issues.rudder.io/issues/13784[#13784])
 
-Web - Config management
-+++++++++++++++++++++++
+==== Web - Config management
 
 * Fixed: The password field allows storing a password without any
 selected hash (https://issues.rudder.io/issues/12198[#12198])
@@ -313,8 +292,7 @@ selected hash (https://issues.rudder.io/issues/12198[#12198])
 file from shared folder'' Technique
 (https://issues.rudder.io/issues/13530[#13530])
 
-Web - UI & UX
-+++++++++++++
+==== Web - UI & UX
 
 * Fixed: Wrong text color in table header in Rule page
 (https://issues.rudder.io/issues/13835[#13835])
@@ -343,8 +321,7 @@ working, should be a link to the Technique
 * Fixed: The ``hardware'' tab is not displayed in accept new nodes
 screen (https://issues.rudder.io/issues/13688[#13688])
 
-Web - Nodes & inventories
-+++++++++++++++++++++++++
+==== Web - Nodes & inventories
 
 * Fixed: When a node is deleted, its generated promises are not removed
 (https://issues.rudder.io/issues/4709[#4709])
@@ -361,22 +338,19 @@ node rather than Windows (https://issues.rudder.io/issues/6019[#6019])
 * Fixed: Network, mask and gateway not correctly parsed from inventory
 (https://issues.rudder.io/issues/13803[#13803])
 
-Web - Compliance & node report
-++++++++++++++++++++++++++++++
+==== Web - Compliance & node report
 
 * Fixed: Compliance error (missing) when a directive is applied by two
 rules on a node (https://issues.rudder.io/issues/13674[#13674])
 
-API
-+++
+==== API
 
 * Fixed: Remove old ``machyne type'' api Rest typo since it should not
 be called anymore (https://issues.rudder.io/issues/13795[#13795])
 * Fixed: Tags in rules are ignored in POST API
 (https://issues.rudder.io/issues/13374[#13374])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Option description for ``File download (Rudder server)''
 technique is misleading (https://issues.rudder.io/issues/13887[#13887])
@@ -405,8 +379,7 @@ hyphen (https://issues.rudder.io/issues/12960[#12960])
 cleaning files with ``File and directory basics'' Technique version 4.1
 (https://issues.rudder.io/issues/13786[#13786])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: Mustache templates are not processed at all (including
 cron.d/rudder-agent file)
@@ -414,15 +387,13 @@ cron.d/rudder-agent file)
 * Fixed: Slackware agent cron.d is broken in system technique
 (https://issues.rudder.io/issues/13848[#13848])
 
-Server components
-+++++++++++++++++
+==== Server components
 
 * Fixed: server command based on jq should exit when jq is not installed
 and explain to install it
 (https://issues.rudder.io/issues/13682[#13682])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: Typo in ``File content'' generic method description
 (https://issues.rudder.io/issues/13883[#13883])
@@ -431,14 +402,12 @@ Generic methods
 * Fixed: Scheduler classes have incomplete labels
 (https://issues.rudder.io/issues/8008[#8008])
 
-Web - Technique editor
-++++++++++++++++++++++
+==== Web - Technique editor
 
 * Fixed: In technique editor, on save, we get ``success'' but some
 errors are shallowed (https://issues.rudder.io/issues/12210[#12210])
 
-Generic methods - File Management
-+++++++++++++++++++++++++++++++++
+==== Generic methods - File Management
 
 * Fixed: Generic Method ``permission dirs'' incorrect reporting when
 target path is a file (https://issues.rudder.io/issues/10689[#10689])
@@ -446,8 +415,7 @@ target path is a file (https://issues.rudder.io/issues/10689[#10689])
 keys-values in file'' Technique does not support | as separator
 (https://issues.rudder.io/issues/13562[#13562])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -467,30 +435,24 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Rudder 5.0.2 (2018-11-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 5.0.2 (2018-11-06)
 
-Changes
-^^^^^^^
+=== Changes
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Add condition_once and execute_once generic methods
 (https://www.rudder-project.org/redmine/issues/13667[#13667])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Document zypper pattern usage in the ``Package state'' generic method
 documentation
 (https://www.rudder-project.org/redmine/issues/13725[#13725])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Web - UI & UX
-+++++++++++++
+==== Web - UI & UX
 
 * Fixed: We have no way to know that a Technique is disabled when
 editing a Directive
@@ -498,8 +460,7 @@ editing a Directive
 * Fixed: Broken display of popup to delete node property in Rudder 5.0.1
 (https://www.rudder-project.org/redmine/issues/13694[#13694])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: Generic method ``Sharedfile to node'' always return repaired
 status (https://www.rudder-project.org/redmine/issues/13753[#13753])
@@ -521,21 +482,18 @@ parameters (https://www.rudder-project.org/redmine/issues/13704[#13704])
 * Fixed: Zypper patterns tests should not be executed on non sles os
 (https://www.rudder-project.org/redmine/issues/13638[#13638])
 
-Web - Nodes & inventories
-+++++++++++++++++++++++++
+==== Web - Nodes & inventories
 
 * Fixed: Group of group is empty if we use the AND combinator
 (https://www.rudder-project.org/redmine/issues/13424[#13424])
 
-Plugins integration
-+++++++++++++++++++
+==== Plugins integration
 
 * Fixed: Authentication providers are not loaded before authentication
 is initialized
 (https://www.rudder-project.org/redmine/issues/13695[#13695])
 
-Generic methods - File Management
-+++++++++++++++++++++++++++++++++
+==== Generic methods - File Management
 
 * Fixed: Change the detection of curl path in ncf to use rudder_curl if
 available (https://www.rudder-project.org/redmine/issues/13745[#13745])
@@ -550,22 +508,19 @@ when copying a directory
 folder'' Technique
 (https://www.rudder-project.org/redmine/issues/13669[#13669])
 
-Web - Config management
-+++++++++++++++++++++++
+==== Web - Config management
 
 * Fixed: In directive, change input for parameter from technique editor
 from text to textarea
 (https://www.rudder-project.org/redmine/issues/12824[#12824])
 
-Generic methods - Package Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Package Management
 
 * Fixed: Missing report when using the ``Package state'' generic method
 with default value for the ``state'' parameter
 (https://www.rudder-project.org/redmine/issues/13703[#13703])
 
-Agent
-+++++
+==== Agent
 
 * Fixed: Redhat Openstack Nova compute QEMU virtual machines are seen as
 physical (https://www.rudder-project.org/redmine/issues/10265[#10265])
@@ -573,8 +528,7 @@ physical (https://www.rudder-project.org/redmine/issues/10265[#10265])
 compliant once it exists
 (https://www.rudder-project.org/redmine/issues/13664[#13664])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: rudder-cf-execd and rudder-cf-serverd are not enabled nor
 running after a server install on debian 8
@@ -598,32 +552,27 @@ installation logs
 * Fixed: Rudder syslog port is reset after upgrade on Ubuntu (< 14)
 Servers (https://www.rudder-project.org/redmine/issues/12714[#12714])
 
-Generic methods - Service Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Service Management
 
 * Fixed: Broken variable in ``Service restart'' method report
 (https://www.rudder-project.org/redmine/issues/13713[#13713])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Broken doc build
 (https://www.rudder-project.org/redmine/issues/13734[#13734])
 
-System techniques
-+++++++++++++++++
+==== System techniques
 
 * Fixed: Use embedded curl when available
 (https://www.rudder-project.org/redmine/issues/13687[#13687])
 
-Performance and scalability
-+++++++++++++++++++++++++++
+==== Performance and scalability
 
 * Fixed: LDAP IO error on generation with a lot of nodes
 (https://www.rudder-project.org/redmine/issues/13256[#13256])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Sharing files with ``root'' does not work
 (https://www.rudder-project.org/redmine/issues/10605[#10605])
@@ -638,8 +587,7 @@ output (https://www.rudder-project.org/redmine/issues/13765[#13765])
 * Fixed: ``directive-upgrade'' rudder command does not work
 (https://www.rudder-project.org/redmine/issues/13681[#13681])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -657,37 +605,30 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Rudder 5.0.1 (2018-10-19)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 5.0.1 (2018-10-19)
 
-Changes
-^^^^^^^
+=== Changes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Embed dependencies on ubuntu 15
 (https://www.rudder-project.org/redmine/issues/13677[#13677])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Add a flag library
 (https://www.rudder-project.org/redmine/issues/13622[#13622])
 * Add a flag library
 (https://www.rudder-project.org/redmine/issues/13622[#13622])
 
-Generic methods - Package Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Package Management
 
 * Add a package provider for zypper patterns
 (https://www.rudder-project.org/redmine/issues/12164[#12164])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: Allow to report on same reporting parameters
 (https://www.rudder-project.org/redmine/issues/13632[#13632])
@@ -703,20 +644,17 @@ Generic methods
 deal with packages that are not available
 (https://www.rudder-project.org/redmine/issues/13573[#13573])
 
-Web - Nodes & inventories
-+++++++++++++++++++++++++
+==== Web - Nodes & inventories
 
 * Fixed: Node group with `OR' multi criteria fails
 (https://www.rudder-project.org/redmine/issues/13649[#13649])
 
-Web - Config management
-+++++++++++++++++++++++
+==== Web - Config management
 
 * Fixed: Change request must not be saved when no validation is needed
 (https://www.rudder-project.org/redmine/issues/13609[#13609])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: rudder-doc embedeed doesn’t work anymore
 (https://www.rudder-project.org/redmine/issues/13659[#13659])
@@ -728,21 +666,18 @@ Documentation
 people making the opposite of what is needed
 (https://www.rudder-project.org/redmine/issues/13615[#13615])
 
-Technique editor - UI/UX
-++++++++++++++++++++++++
+==== Technique editor - UI/UX
 
 * Fixed: Rename ``bundle name'' in the technique details
 (https://www.rudder-project.org/redmine/issues/12847[#12847])
 
-Agent
-+++++
+==== Agent
 
 * Fixed: rudder server command states that ``Warning: Long arguments are
 not supported, you probably tried to use one!'' - but it does support it
 (https://www.rudder-project.org/redmine/issues/13505[#13505])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Ubuntu 13.04 package tries to use systemd
 (https://www.rudder-project.org/redmine/issues/13676[#13676])
@@ -751,8 +686,7 @@ Packaging
 * Fixed: cebtos7 install_package_existant should be skipped
 (https://www.rudder-project.org/redmine/issues/13596[#13596])
 
-Security
-++++++++
+==== Security
 
 * Fixed: StackOverflowError during policy generation in JavascriptEngine
 - debian 9.5 with jdk 1.8.0_181
@@ -764,8 +698,7 @@ passwords. (https://www.rudder-project.org/redmine/issues/13643[#13643])
 * Fixed: file enforce content log file content which can have private
 info (https://www.rudder-project.org/redmine/issues/13608[#13608])
 
-Performance and scalability
-+++++++++++++++++++++++++++
+==== Performance and scalability
 
 * Fixed: Hikari pool autocomit configuration is incorrect, which can
 impact performance
@@ -774,15 +707,13 @@ impact performance
 down during policy generation
 (https://www.rudder-project.org/redmine/issues/13517[#13517])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: SudoParameter technique version 3.2 returns a report that is
 not parsable by the CLI
 (https://www.rudder-project.org/redmine/issues/13350[#13350])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -797,14 +728,11 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Rudder 5.0.0 (2018-09-27)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 5.0.0 (2018-09-27)
 
-Changes
-^^^^^^^
+=== Changes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Require Postgresql 9.2 for rudder server
 (https://www.rudder-project.org/redmine/issues/13545[#13545])
@@ -812,19 +740,16 @@ Packaging
 store debug info in a standard path
 (https://www.rudder-project.org/redmine/issues/13443[#13443])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Rudder by example cleanup
 (https://www.rudder-project.org/redmine/issues/13452[#13452])
 * Add a rudder-by-example to replace line in a file
 (https://www.rudder-project.org/redmine/issues/13404[#13404])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Web - UI & UX
-+++++++++++++
+==== Web - UI & UX
 
 * Fixed: Blue text color in node details tabs
 (https://www.rudder-project.org/redmine/issues/13168[#13168])
@@ -842,8 +767,7 @@ Web - UI & UX
 bottom corner
 (https://www.rudder-project.org/redmine/issues/13472[#13472])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: Some old tests are failing on centos
 (https://www.rudder-project.org/redmine/issues/13535[#13535])
@@ -856,22 +780,19 @@ rudder 5.0 (https://www.rudder-project.org/redmine/issues/13523[#13523])
 * Fixed: add a method to set reportiing_context from within a technique
 (https://www.rudder-project.org/redmine/issues/13351[#13351])
 
-Generic methods - File Management
-+++++++++++++++++++++++++++++++++
+==== Generic methods - File Management
 
 * Fixed: Missing report on Permissions (non recursive)
 (https://www.rudder-project.org/redmine/issues/13536[#13536])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Update download link in documentation
 (https://www.rudder-project.org/redmine/issues/13534[#13534])
 * Fixed: Fix appearance of titles
 (https://www.rudder-project.org/redmine/issues/13502[#13502])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: rudder-jetty cannot extract java version on sles15
 (https://www.rudder-project.org/redmine/issues/13552[#13552])
@@ -893,14 +814,12 @@ Packaging
 fails when run during Rudder upgrade
 (https://www.rudder-project.org/redmine/issues/13458[#13458])
 
-API
-+++
+==== API
 
 * Fixed: Harmonize URLs of system API
 (https://www.rudder-project.org/redmine/issues/13471[#13471])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: deprecate old version of techniques for Rudder 5.0
 (https://www.rudder-project.org/redmine/issues/13487[#13487])
@@ -908,8 +827,7 @@ Techniques
 absent in the ``latest'' version
 (https://www.rudder-project.org/redmine/issues/12939[#12939])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -920,59 +838,49 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Rudder 5.0.0.rc1 (2018-09-12)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 5.0.0.rc1 (2018-09-12)
 
-Changes
-^^^^^^^
+=== Changes
 
-Architecture - Internal libs
-++++++++++++++++++++++++++++
+==== Architecture - Internal libs
 
 * We need to be able to decide what workflow to use based on the change
 request (https://www.rudder-project.org/redmine/issues/13396[#13396])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-API
-+++
+==== API
 
 * Fixed: POST/PUT/DELETE API requests gives 403
 (https://www.rudder-project.org/redmine/issues/13426[#13426])
 * Fixed: Rudder system api token only have RO access
 (https://www.rudder-project.org/redmine/issues/13416[#13416])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: " error: List or container parameter `args' not found while
 constructing scope `log_rudder' - use @(scope.variable) in calling
 reference" when running Rudder 4.3
 (https://www.rudder-project.org/redmine/issues/13430[#13430])
 
-Performance and scalability
-+++++++++++++++++++++++++++
+==== Performance and scalability
 
 * Fixed: On error on nodecompliance SQL, logs are huge
 (https://www.rudder-project.org/redmine/issues/13427[#13427])
 
-Architecture - Refactoring
-++++++++++++++++++++++++++
+==== Architecture - Refactoring
 
 * Fixed: Git merge issue between Rudder 4.3 and Rudder 5.0
 (https://www.rudder-project.org/redmine/issues/13432[#13432])
 
-Agent
-+++++
+==== Agent
 
 * Fixed: remove unessecary patch that remove truncation of line in
 inventory (https://www.rudder-project.org/redmine/issues/13403[#13403])
 * Fixed: Upgrade perl to latest minor version in 5.0 for fusion
 inventory (https://www.rudder-project.org/redmine/issues/13402[#13402])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -983,14 +891,11 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Rudder 5.0.0.beta2 (2018-09-06)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 5.0.0.beta2 (2018-09-06)
 
-Changes
-^^^^^^^
+=== Changes
 
-Packaging
-+++++++++
+==== Packaging
 
 * Remove rudder agent thin in 5.0
 (https://www.rudder-project.org/redmine/issues/13377[#13377])
@@ -1011,36 +916,30 @@ Packaging
 * Upgrade python related dependencies
 (https://www.rudder-project.org/redmine/issues/13373[#13373])
 
-Web - UI & UX
-+++++++++++++
+==== Web - UI & UX
 
 * Update main menu: plugin at top level, techique editor in
 configuration policy
 (https://www.rudder-project.org/redmine/issues/13067[#13067])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Use repository.rudder.io in 5.0 doc
 (https://www.rudder-project.org/redmine/issues/13382[#13382])
 
-Plugins integration
-+++++++++++++++++++
+==== Plugins integration
 
 * Make user/role management a plugin
 (https://www.rudder-project.org/redmine/issues/13030[#13030])
 
-Architecture - Dependencies
-+++++++++++++++++++++++++++
+==== Architecture - Dependencies
 
 * Update all rudder dependencies
 (https://www.rudder-project.org/redmine/issues/13313[#13313])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Web - UI & UX
-+++++++++++++
+==== Web - UI & UX
 
 * Fixed: Fonts changed in Rudder 5.0
 (https://www.rudder-project.org/redmine/issues/13364[#13364])
@@ -1052,29 +951,25 @@ correctly allligned in Rudder 5.0
 * Fixed: Clicking on Status/Details leads to a disabled screen in Rudder
 5.0 (https://www.rudder-project.org/redmine/issues/13362[#13362])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: user_primary_group tests are failing on suse
 (https://www.rudder-project.org/redmine/issues/13282[#13282])
 * Fixed: Some ncf tests are too old and fails on many distributions
 (https://www.rudder-project.org/redmine/issues/13249[#13249])
 
-Architecture - Internal libs
-++++++++++++++++++++++++++++
+==== Architecture - Internal libs
 
 * Fixed: Spring Security error - leading to random unlogging in Rudder 5
 (https://www.rudder-project.org/redmine/issues/13365[#13365])
 
-Technique editor - API
-++++++++++++++++++++++
+==== Technique editor - API
 
 * Fixed: Error message is not correctly treated when an exception occurs
 in when authenticating to Rudder authentication API
 (https://www.rudder-project.org/redmine/issues/13219[#13219])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: libxml 2.9.8 doesn’t compile on aix
 (https://www.rudder-project.org/redmine/issues/13363[#13363])
@@ -1087,8 +982,7 @@ Packaging
 * Fixed: parallel build on rpmbuild hides build error
 (https://www.rudder-project.org/redmine/issues/13300[#13300])
 
-Generic methods - Service Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Service Management
 
 * Fixed: Service test do not use any service to test on suse
 (https://www.rudder-project.org/redmine/issues/13278[#13278])
@@ -1097,8 +991,7 @@ Generic methods - Service Management
 * Fixed: services GM are not working anymore due to typo
 (https://www.rudder-project.org/redmine/issues/13258[#13258])
 
-Security
-++++++++
+==== Security
 
 * Fixed: ``//'' in rudder-web/secure/api//settings/global_policy_mode
 cause browser/spring error
@@ -1106,8 +999,7 @@ cause browser/spring error
 * Fixed: Bad mime type for our js files: application/js
 (https://www.rudder-project.org/redmine/issues/13334[#13334])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
@@ -1118,32 +1010,26 @@ installations of 5.0.x should be upgraded when possible. When we release
 a new version of Rudder it has been thoroughly tested, and we consider
 the release enterprise-ready for deployment.
 
- Rudder 5.0.0.beta1 (2018-08-29)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== Rudder 5.0.0.beta1 (2018-08-29)
 
-Changes
-^^^^^^^
+=== Changes
 
-API
-+++
+==== API
 
 * Create system Rest API to replace V1 API
 (https://www.rudder-project.org/redmine/issues/12516[#12516])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Add a generic method to test variable existence
 (https://www.rudder-project.org/redmine/issues/12986[#12986])
 
-Plugins integration
-+++++++++++++++++++
+==== Plugins integration
 
 * Remove the need for Spring in plugin
 (https://www.rudder-project.org/redmine/issues/13036[#13036])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Change version of documentation on rudder-doc
 (https://www.rudder-project.org/redmine/issues/13019[#13019])
@@ -1156,14 +1042,12 @@ Documentation
 * Add a ``Rudder by example'' guide to the documentation
 (https://www.rudder-project.org/redmine/issues/12383[#12383])
 
-Technique editor - API
-++++++++++++++++++++++
+==== Technique editor - API
 
 * Remove expected reports.csv logic
 (https://www.rudder-project.org/redmine/issues/11915[#11915])
 
-Agent
-+++++
+==== Agent
 
 * Use CFEngine 3.12 in Rudder agent
 (https://www.rudder-project.org/redmine/issues/12856[#12856])
@@ -1172,8 +1056,7 @@ Agent
 * Update technique migration technique with 12614 review
 (https://www.rudder-project.org/redmine/issues/12676[#12676])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Add sles 15 support to rudder-packages
 (https://www.rudder-project.org/redmine/issues/13295[#13295])
@@ -1185,21 +1068,18 @@ www.normation.com
 * Download man on docs.rudder.io
 (https://www.rudder-project.org/redmine/issues/13170[#13170])
 
-Generic methods - Service Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Service Management
 
 * Remove unused _service_check_running_smf and
 _service_check_running_src in branch 5.0
 (https://www.rudder-project.org/redmine/issues/13245[#13245])
 
-System integration
-++++++++++++++++++
+==== System integration
 
 * Bundle support info script into Rudder
 (https://www.rudder-project.org/redmine/issues/13213[#13213])
 
-Architecture - Refactoring
-++++++++++++++++++++++++++
+==== Architecture - Refactoring
 
 * Make scale-out (relay) server a plugin
 (https://www.rudder-project.org/redmine/issues/12885[#12885])
@@ -1208,23 +1088,19 @@ Architecture - Refactoring
 * Make validation workflow a plugin
 (https://www.rudder-project.org/redmine/issues/12904[#12904])
 
-Generic methods - Package Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Package Management
 
 * Use the new class_prefix for package methods
 (https://www.rudder-project.org/redmine/issues/12427[#12427])
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Web - UI & UX
-+++++++++++++
+==== Web - UI & UX
 
 * Fixed: Remove the ``tw-bs'' css hack
 (https://www.rudder-project.org/redmine/issues/13022[#13022])
 
-Generic methods
-+++++++++++++++
+==== Generic methods
 
 * Fixed: Incomplete management of disabled/reenable reporting
 (https://www.rudder-project.org/redmine/issues/13209[#13209])
@@ -1234,21 +1110,18 @@ Generic methods
 longer than 1024 chars
 (https://www.rudder-project.org/redmine/issues/13155[#13155])
 
-Plugins integration
-+++++++++++++++++++
+==== Plugins integration
 
 * Fixed: Missing real-time check of license capabilities for api and
 others plugins
 (https://www.rudder-project.org/redmine/issues/13073[#13073])
 
-Generic methods - File Management
-+++++++++++++++++++++++++++++++++
+==== Generic methods - File Management
 
 * Fixed: Error when using 2 or more File from a jinja2 template
 (https://www.rudder-project.org/redmine/issues/13183[#13183])
 
-Documentation
-+++++++++++++
+==== Documentation
 
 * Fixed: Wrong version displayed on the login page for plugin branding
 (https://www.rudder-project.org/redmine/issues/13274[#13274])
@@ -1261,23 +1134,20 @@ Documentation
 * Fixed: Build rudder man page using asciidoctor
 (https://www.rudder-project.org/redmine/issues/12977[#12977])
 
-Miscellaneous
-+++++++++++++
+==== Miscellaneous
 
 * Fixed: Removing workflow comet leads to missing user information and
 session is destroyed
 (https://www.rudder-project.org/redmine/issues/13026[#13026])
 
-Agent
-+++++
+==== Agent
 
 * Fixed: Broken agent build on linux platforms
 (https://www.rudder-project.org/redmine/issues/13311[#13311])
 * Fixed: rudder technique-migrate is not documented nor properly named
 (https://www.rudder-project.org/redmine/issues/13146[#13146])
 
-Packaging
-+++++++++
+==== Packaging
 
 * Fixed: Purge of rudder-webapp should not fail
 (https://www.rudder-project.org/redmine/issues/13210[#13210])
@@ -1292,28 +1162,24 @@ Packaging
 * Fixed: Makefile fails if a symbolink link /usr/bin/ncf already exists
 (https://www.rudder-project.org/redmine/issues/13277[#13277])
 
-Generic methods - Service Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Service Management
 
 * Fixed: service_started_start.cf test fails on redhat
 (https://www.rudder-project.org/redmine/issues/13257[#13257])
 * Fixed: service_started_path.cf does not generate classes anymore since
 13220 (https://www.rudder-project.org/redmine/issues/13254[#13254])
 
-API
-+++
+==== API
 
 * Fixed: Compilation warnings in master
 (https://www.rudder-project.org/redmine/issues/13028[#13028])
 
-Generic methods - Package Management
-++++++++++++++++++++++++++++++++++++
+==== Generic methods - Package Management
 
 * Fixed: old packages generic methods are failing on old debian
 (https://www.rudder-project.org/redmine/issues/13305[#13305])
 
-Techniques
-++++++++++
+==== Techniques
 
 * Fixed: Package repository keys Technique in Audit Mode : Missing
 Reports (https://www.rudder-project.org/redmine/issues/13065[#13065])
@@ -1322,8 +1188,7 @@ Reports (https://www.rudder-project.org/redmine/issues/13065[#13065])
 * Fixed: Rudder SNMP technique has a component failing on first run
 (https://www.rudder-project.org/redmine/issues/13159[#13159])
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder

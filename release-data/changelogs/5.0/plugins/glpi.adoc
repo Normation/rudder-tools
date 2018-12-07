@@ -1,17 +1,12 @@
-Changelogs for Rudder plugin glpi 5.0.* versions
-------------------------------------------------
+= Change logs for glpi plugin 5.0
 
- Plugin glpi - glpi-5.0-1.1 (2018-11-28)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+== glpi-5.0-1.1 (2018-11-28)
 
-Changes
-^^^^^^^
+=== Changes
 
-Bug fixes
-^^^^^^^^^
+=== Bug fixes
 
-Release notes
-^^^^^^^^^^^^^
+=== Release notes
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make this version of Rudder
