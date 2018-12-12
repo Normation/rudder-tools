@@ -14,8 +14,9 @@ Usage:
     rudder-dev [-d|--debug] [-f|--force] technique <version> <comment>
     rudder-dev [-d|--debug] [-f|--force] subtask [<next_branch>] [--base=<ticket_id>] [--title=<new_title>] [--bug]
     rudder-dev [-d|--debug] [-f|--force] wip
-    rudder-dev [-d|--debug] [-f|--force] commit [<trigraph> [<PR_comment>]]
+    rudder-dev [-d|--debug] [-f|--force] commit [--nopr|<trigraph> [<PR_comment>]]
     rudder-dev [-d|--debug] [-f|--force] amend [<PR_comment>]
+    rudder-dev [-d|--debug] [-f|--force] fixup [<PR_comment>]
     rudder-dev [-d|--debug] [-f|--force] rebase [--base=<ticket_id>] [<PR_comment>]
     rudder-dev [-d|--debug] [-f|--force] retarget [<target_version>]
     rudder-dev [-d|--debug] [-f|--force] takeover <ticket_id>
@@ -115,18 +116,27 @@ COMMIT
     - if no file is indexed by git, call git add -u
     - commit current work
     - push the branch to your github repository
+    - stop if --nopr is given
     - make a pull-request to Normation's repository
     - update the coresponding bug with those informations
     ex: rudder-dev commit BPF "@reviewer please tell me it's good"
     ex: rudder-dev commit
 
 AMEND
-    Call it after you made a change to a branch with a PR.
+    Call it after you made a change to a branch with a PR (deprecated).
     - if no file is indexed by git, call git add -u
     - commit current work amending last commit
     - push the branch to your github repository
     - add a comment to the PR to signal the change
     ex: rudder-dev amend "@reviewer pr updated"
+
+FIXUP
+    Call it after you made a change to a branch with a PR.
+    - if no file is indexed by git, call git add -u
+    - commit current work creating a "fixup" commit
+    - push the branch to your github repository
+    - add a comment to the PR to signal the change
+    ex: rudder-dev fixup "@reviewer pr updated"
 
 REBASE
     Call it when a PR is not mergeable anymore.
@@ -768,7 +778,7 @@ def get_pr_merge_commit(pr_url):
 
 
 # Commit and push, if needed squash WIP and force push
-def commit_push(branch, message, force_amend=False):
+def commit_push(branch, message, force_amend=False, fixup=False):
   # Fork if needed
   if github_fork():
     # github fork is asynchronous but pretty fast, this should be sufficient
@@ -793,6 +803,8 @@ def commit_push(branch, message, force_amend=False):
     commit_cmd += " -m '" + message.replace("'", "'\"'\"'") + "'"
   if force_amend or wip != "":
     commit_cmd += " --amend --no-edit"
+  if fixup:
+    commit_cmd += " --fixup HEAD"
   shell(commit_cmd, "Commiting")
 
   # Should we check the need for rebasing before pushing ?
@@ -1184,7 +1196,7 @@ def quick_fix_local(filename, subject, trigraph=None):
 
 
 # Commit, push, create pull-request, update ticket
-def commit(trigraph=None, message=None):
+def commit(trigraph=None, message=None, nopr=false):
   info = ticket_from_branch(current_branch)
   master_branch = branch_from_version(info['version'])
 
@@ -1193,7 +1205,14 @@ def commit(trigraph=None, message=None):
     title = ''
   else:
     title = info['name'].replace("\"", "\\\"")
-  commit_push(current_branch, "Fixes #" + str(info['id']) + ": " + title)
+  if nopr is True:
+    prefix = "Refs"
+  else:
+    prefix = "Fixes"
+  commit_push(current_branch, prefix + " #" + str(info['id']) + ": " + title)
+
+  if nopr is True:
+    return
 
   # create PR
   pr_url = create_pr(master_branch, info, message)
@@ -1222,6 +1241,37 @@ def amend(comment=None):
   else:
     title = issue['name'].replace("\"", "\\\"")
   commit_push(current_branch, "Fixes #" + str(issue.id) + ": " + title, True)
+
+  # Remove labels
+  if 'pr' in issue and issue['pr'] != '':
+    pr = PR(issue['pr'])
+    # Remove validated labels to avoid a direct merge by quality-assistant
+    pr.unlabel(Config.PR_VALIDATED_LABEL)
+    # Remove cannot merge labels to permit merge again
+    pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
+ 
+  # reassign ticket
+  if 'last_assignee' in issue:
+    issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
+
+  # Message on PR if there is one
+  if 'pr' in issue and issue['pr'] != '':
+    update_pr(issue['pr'], "Commit modified", comment)
+    print("Done, you can see the PR here: " + issue['pr']) 
+  else:
+    print("No PR found.")
+
+
+# fixup commit, push, comment PR
+def fixup(comment=None):
+  issue = issue_from_branch(current_branch)
+ 
+  # commit over last commit and push
+  if issue['private']:
+    title = ''
+  else:
+    title = issue['name'].replace("\"", "\\\"")
+  commit_push(current_branch, "Fixes #" + str(issue.id) + ": " + title, False, True)
 
   # Remove labels
   if 'pr' in issue and issue['pr'] != '':
@@ -1811,9 +1861,11 @@ if __name__ == "__main__":
   elif arguments['wip']:
     wip()
   elif arguments['commit']:
-    commit(arguments['<trigraph>'], arguments['<PR_comment>'])
+    commit(arguments['<trigraph>'], arguments['<PR_comment>'], arguments['--nopr'])
   elif arguments['amend']:
     amend(arguments['<PR_comment>'])
+  elif arguments['fixup']:
+    fixup(arguments['<PR_comment>'])
   elif arguments['rebase']:
     rebase(arguments['<PR_comment>'], arguments['--base'])
   elif arguments['retarget']:
