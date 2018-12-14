@@ -1196,7 +1196,7 @@ def quick_fix_local(filename, subject, trigraph=None):
 
 
 # Commit, push, create pull-request, update ticket
-def commit(trigraph=None, message=None, nopr=false):
+def commit(trigraph=None, message=None, nopr=False):
   info = ticket_from_branch(current_branch)
   master_branch = branch_from_version(info['version'])
 
