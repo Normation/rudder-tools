@@ -76,7 +76,7 @@ tier1 = [
 packages = { 
              "agent-allinone": [ "rudder-agent" ],
              "relay":          [ "rudder-server-relay" ],
-             "server":         [ "rudder-inventory-ldap", "rudder-inventory-endpoint", "rudder-jetty", "rudder-reports", "rudder-server-root", "rudder-webapp" ],
+             "server":         [ "rudder-inventory-ldap", "rudder-reports", "rudder-server-root", "rudder-webapp" ],
            }
 
 # Packages that are architecture dependent (others are independent)
@@ -88,8 +88,8 @@ components = {
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "4.3", "5.0" ]
+compatible-agents = [ "4.3", "5.0", "5.1" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "4.3", "5.0" ]
+supported-upgrade = [ "4.3", "5.0", "5.1" ]
 

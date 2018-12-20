@@ -91,7 +91,7 @@ components = {
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "4.1", "4.2", "4.3", "5.0" ]
+compatible-agents = [ "4.1", "4.2", "4.3", "5.0", "5.1" ]
 
 # Versions you can upgrade from directly
 supported-upgrade = [ "4.1", "4.2", "4.3", "5.0" ]
