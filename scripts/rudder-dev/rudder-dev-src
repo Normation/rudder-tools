@@ -215,7 +215,7 @@ CLEANUP
 
 UPDATE
     Call it when you want the last version of rudder-dev.
-    - download last version from https://www.rudder-project.org/tools/rudder-dev
+    - download last version from https://repository.rudder.io/tools/rudder-dev
     - replace current rudder-dev with it
     - use sudo if needed
 
@@ -256,7 +256,7 @@ from redmine import * # fake import
 
 
 ## GLOBAL VARIABLES
-Config.RUDDER_DEV_ORIGIN = "https://www.rudder-project.org/tools/rudder-dev"
+Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 15 # days
 
 Config.LIFECYCLES = [ { "name": "rudder",
