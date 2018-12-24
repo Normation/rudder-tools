@@ -1,0 +1,7 @@
+# Release data file
+
+release = "2.8"
+release-status = "final"
+release-date = "2013-11-07"
+eol-date = "2014-03-14"
+
