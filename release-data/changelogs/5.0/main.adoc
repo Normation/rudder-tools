@@ -163,6 +163,157 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.4 (2019-01-10)
+
+=== Changes
+
+==== Packaging
+
+* Cleanup rudder promises generated
+    (https://issues.rudder.io/issues/13996[\#13996])
+* Update CFEngine to 3.12.1
+    (https://issues.rudder.io/issues/13927[\#13927])
+
+==== Documentation
+
+* Add a page with an array for all versions info
+    (https://issues.rudder.io/issues/13956[\#13956])
+* Add a page for videos about Rudder
+    (https://issues.rudder.io/issues/14029[\#14029])
+* Update rudder-setup url in docs
+    (https://issues.rudder.io/issues/14034[\#14034])
+* Render changelogs in Rudder doc
+    (https://issues.rudder.io/issues/13928[\#13928])
+* Document some node-level system variables
+    (https://issues.rudder.io/issues/13945[\#13945])
+
+==== System integration
+
+* Missing flag file to trigger a policy generation
+    (https://issues.rudder.io/issues/14050[\#14050])
+
+==== Web - UI & UX
+
+* Remove jquery-ui related css libraries
+    (https://issues.rudder.io/issues/13920[\#13920])
+
+==== Techniques
+
+* Download files needed to build rudder-techniques package from repository.rudder.io
+    (https://issues.rudder.io/issues/14036[\#14036])
+* Add a technique to manage basic SNMP configuration
+    (https://issues.rudder.io/issues/13602[\#13602])
+* Technique File download (Rudder server) has a borken posthook and should incorporate a windows and a linux section
+    (https://issues.rudder.io/issues/13918[\#13918])
+
+==== Technique editor - UI/UX
+
+* Add a filter on generic method tree to find methods faster
+    (https://issues.rudder.io/issues/14013[\#14013])
+* Allow to clone Generic methods in a technique in the editor
+    (https://issues.rudder.io/issues/11676[\#11676])
+* Make conditions visible in the Technique editor
+    (https://issues.rudder.io/issues/12740[\#12740])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: uuid.hive file should not be a rudder-agent package conf file
+    (https://issues.rudder.io/issues/14062[\#14062])
+* Fixed: Force http 1.1 when downloading curl
+    (https://issues.rudder.io/issues/14059[\#14059])
+* Fixed: When installing a rudder root server (on debian), it asks to run rudder-node-to-relay
+    (https://issues.rudder.io/issues/11630[\#11630])
+* Fixed: Change packaging to allow openjdk > 8 
+    (https://issues.rudder.io/issues/13896[\#13896])
+* Fixed: When we stop rudder-jetty, it says it stops Jetty 7 (we are using Jetty 9 ...)
+    (https://issues.rudder.io/issues/13929[\#13929])
+
+==== Agent
+
+* Fixed: Agent run errors are not outputed on stderr anymore
+    (https://issues.rudder.io/issues/14061[\#14061])
+* Fixed: Os name for sles 12 is not correct in 5.0 inventories
+    (https://issues.rudder.io/issues/13964[\#13964])
+
+==== Miscellaneous
+
+* Fixed: Rudder-jetty depends on jdk8 but always try to install jdk9 as dependency
+    (https://issues.rudder.io/issues/14024[\#14024])
+
+==== Documentation
+
+* Fixed: Use B instead of b for bytes in the doc
+    (https://issues.rudder.io/issues/14126[\#14126])
+* Fixed: Add documentation about rudder <-> plugin version compatibility in docs
+    (https://issues.rudder.io/issues/14099[\#14099])
+* Fixed: Broken 4.1/4.3 doc build
+    (https://issues.rudder.io/issues/14048[\#14048])
+* Fixed: Broken current redirect in docs
+    (https://issues.rudder.io/issues/14047[\#14047])
+
+==== Web - Config management
+
+* Fixed: Cannot modify groups when workflow are enabled
+    (https://issues.rudder.io/issues/14056[\#14056])
+
+==== Plugins integration
+
+* Fixed: indexes on nodecompliancelevels table are not valid and table ArchivedReportsExecution is never used
+    (https://issues.rudder.io/issues/14007[\#14007])
+
+==== Performance and scalability
+
+* Fixed: A lot of space is wasted on table nodecompliance and nodeconfigurations due to pretty jsonification
+    (https://issues.rudder.io/issues/14014[\#14014])
+* Fixed: Massive performance penalty in policy generation due to invalid usage of StringTemplate
+    (https://issues.rudder.io/issues/13987[\#13987])
+* Fixed: Load all ncf files in one go (or two)
+    (https://issues.rudder.io/issues/13859[\#13859])
+
+==== Web - Maintenance
+
+* Fixed: Impossible to log in with root admin 
+    (https://issues.rudder.io/issues/13910[\#13910])
+
+==== Web - UI & UX
+
+* Fixed: In the node details, clicking on the link to the policy server doesn't redirect to the policy server
+    (https://issues.rudder.io/issues/13834[\#13834])
+* Fixed: Alignement of radio button on Settings page is still imperfect
+    (https://issues.rudder.io/issues/13889[\#13889])
+
+==== Techniques
+
+* Fixed: "Job Scheduler" Technique miss runs when using a non-default agent execution frequency
+    (https://issues.rudder.io/issues/4840[\#4840])
+
+==== System techniques
+
+* Fixed: Inventory fails since the files are not copied on the right location
+    (https://issues.rudder.io/issues/13966[\#13966])
+* Fixed: "File from shared folder" technique in very old version does not work anymore since a common variable has been removed
+    (https://issues.rudder.io/issues/13932[\#13932])
+
+==== Web - Nodes & inventories
+
+* Fixed: Huge latency between inventory sent and inventory appears in Rudder
+    (https://issues.rudder.io/issues/14080[\#14080])
+
+==== Generic methods
+
+* Fixed: Error in the info (rudder agent run -i) output of the agent at first run
+    (https://issues.rudder.io/issues/13951[\#13951])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.3 (2018-11-26)
 
 === Changes
