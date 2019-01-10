@@ -51,8 +51,8 @@ setup_server() {
   fi
 
   # Initialize Rudder
-  echo -n "Running rudder-init.sh..."
-  /opt/rudder/bin/rudder-init.sh ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
+  echo -n "Running rudder-init..."
+  /opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
   echo "Done."
 
 }
