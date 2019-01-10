@@ -95,7 +95,7 @@ available on Fedora 18 and Ubuntu 12.10.
 * Thanks to Maxime Longuet from https://www.itika.net/[Itika] for
 sponsoring the _node lifecycle_ feature!
 
-== <a name="4.3.8" > </a> Rudder 4.3.8 (2019-01-10)
+== Rudder 4.3.8 (2019-01-10)
 
 === Changes
 
