@@ -62,7 +62,7 @@ http://www.normation.com[Normation]): *Windows Server 2008-2012, AIX
 packages are no longer available in Debian 5, Debian 6, Ubuntu 10.04,
 Ubuntu 12.10, Fedora 18, RHEL/CentOS 3 and RHEL/CentOS 5
 
-== </a> Rudder 4.1.18 (2019-01-10)
+== Rudder 4.1.18 (2019-01-10)
 
 === Changes
 
