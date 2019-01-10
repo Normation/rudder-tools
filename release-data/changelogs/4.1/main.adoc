@@ -60,6 +60,56 @@ http://www.normation.com[Normation]): *Windows Server 2008-2012, AIX
 
 *Note*: As of Rudder 4.1, the rudder-agent-thin and rudder-server-relay
 packages are no longer available in Debian 5, Debian 6, Ubuntu 10.04,
+== <a name="4.1.18" > </a> Rudder 4.1.18 (2019-01-10)
+
+=== Changes
+
+==== Techniques
+
+* Download files needed to build rudder-techniques package from repository.rudder.io
+    ([\#14036](https://issues.rudder.io/issues/14036))
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: uuid.hive file should not be a rudder-agent package conf file
+    ([\#14062](https://issues.rudder.io/issues/14062))
+* Fixed: When installing a rudder root server (on debian), it asks to run rudder-node-to-relay
+    ([\#11630](https://issues.rudder.io/issues/11630))
+
+==== Miscellaneous
+
+* Fixed: Rudder-jetty depends on jdk8 but always try to install jdk9 as dependency
+    ([\#14024](https://issues.rudder.io/issues/14024))
+
+==== Documentation
+
+* Fixed: Broken 4.1/4.3 doc build
+    ([\#14048](https://issues.rudder.io/issues/14048))
+
+==== Web - Config management
+
+* Fixed: Cannot modify groups when workflow are enabled
+    ([\#14056](https://issues.rudder.io/issues/14056))
+
+==== Web - UI & UX
+
+* Fixed: In the node details, clicking on the link to the policy server doesn't redirect to the policy server
+    ([\#13834](https://issues.rudder.io/issues/13834))
+
+==== Generic methods
+
+* Fixed: Error in the info (rudder agent run -i) output of the agent at first run
+    ([\#13951](https://issues.rudder.io/issues/13951))
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 Ubuntu 12.10, Fedora 18, RHEL/CentOS 3 and RHEL/CentOS 5
 
 == Rudder 4.1.17 (2018-11-26)
