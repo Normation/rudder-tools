@@ -1,6 +1,8 @@
 = Change logs for Rudder 4.3
 
-Rudder 4.3 is currently a maintained version of Rudder.
+Rudder 4.3 has reached public End of Life the 11th January 2019.
+It is currently maintained as part of extended support included in
+https://www.normation.com/en/rudder/subscription/[Rudder subscription].
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
