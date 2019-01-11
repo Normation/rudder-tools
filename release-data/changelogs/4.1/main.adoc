@@ -69,41 +69,41 @@ Ubuntu 12.10, Fedora 18, RHEL/CentOS 3 and RHEL/CentOS 5
 ==== Techniques
 
 * Download files needed to build rudder-techniques package from repository.rudder.io
-    ([\#14036](https://issues.rudder.io/issues/14036))
+    ([#14036](https://issues.rudder.io/issues/14036))
 
 === Bug fixes
 
 ==== Packaging
 
 * Fixed: uuid.hive file should not be a rudder-agent package conf file
-    ([\#14062](https://issues.rudder.io/issues/14062))
+    ([#14062](https://issues.rudder.io/issues/14062))
 * Fixed: When installing a rudder root server (on debian), it asks to run rudder-node-to-relay
-    ([\#11630](https://issues.rudder.io/issues/11630))
+    ([#11630](https://issues.rudder.io/issues/11630))
 
 ==== Miscellaneous
 
 * Fixed: Rudder-jetty depends on jdk8 but always try to install jdk9 as dependency
-    ([\#14024](https://issues.rudder.io/issues/14024))
+    ([#14024](https://issues.rudder.io/issues/14024))
 
 ==== Documentation
 
 * Fixed: Broken 4.1/4.3 doc build
-    ([\#14048](https://issues.rudder.io/issues/14048))
+    ([#14048](https://issues.rudder.io/issues/14048))
 
 ==== Web - Config management
 
 * Fixed: Cannot modify groups when workflow are enabled
-    ([\#14056](https://issues.rudder.io/issues/14056))
+    ([#14056](https://issues.rudder.io/issues/14056))
 
 ==== Web - UI & UX
 
 * Fixed: In the node details, clicking on the link to the policy server doesn't redirect to the policy server
-    ([\#13834](https://issues.rudder.io/issues/13834))
+    ([#13834](https://issues.rudder.io/issues/13834))
 
 ==== Generic methods
 
 * Fixed: Error in the info (rudder agent run -i) output of the agent at first run
-    ([\#13951](https://issues.rudder.io/issues/13951))
+    ([#13951](https://issues.rudder.io/issues/13951))
 
 === Release notes
 

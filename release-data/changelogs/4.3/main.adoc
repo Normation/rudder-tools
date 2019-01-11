@@ -102,89 +102,89 @@ sponsoring the _node lifecycle_ feature!
 ==== System integration
 
 * Missing flag file to trigger a policy generation
-    (https://issues.rudder.io/issues/14050[\#14050])
+    (https://issues.rudder.io/issues/14050[#14050])
 
 ==== Techniques
 
 * Download files needed to build rudder-techniques package from repository.rudder.io
-    (https://issues.rudder.io/issues/14036[\#14036])
+    (https://issues.rudder.io/issues/14036[#14036])
 * Add a technique to manage basic SNMP configuration
-    (https://issues.rudder.io/issues/13602[\#13602])
+    (https://issues.rudder.io/issues/13602[#13602])
 * Technique File download (Rudder server) has a borken posthook and should incorporate a windows and a linux section
-    (https://issues.rudder.io/issues/13918[\#13918])
+    (https://issues.rudder.io/issues/13918[#13918])
 
 ==== Technique editor - UI/UX
 
 * Add a filter on generic method tree to find methods faster
-    (https://issues.rudder.io/issues/14013[\#14013])
+    (https://issues.rudder.io/issues/14013[#14013])
 * Allow to clone Generic methods in a technique in the editor
-    (https://issues.rudder.io/issues/11676[\#11676])
+    (https://issues.rudder.io/issues/11676[#11676])
 * Make conditions visible in the Technique editor
-    (https://issues.rudder.io/issues/12740[\#12740])
+    (https://issues.rudder.io/issues/12740[#12740])
 
 === Bug fixes
 
 ==== Packaging
 
 * Fixed: uuid.hive file should not be a rudder-agent package conf file
-    (https://issues.rudder.io/issues/14062[\#14062])
+    (https://issues.rudder.io/issues/14062[#14062])
 * Fixed: Force http 1.1 when downloading curl
-    (https://issues.rudder.io/issues/14059[\#14059])
+    (https://issues.rudder.io/issues/14059[#14059])
 * Fixed: When installing a rudder root server (on debian), it asks to run rudder-node-to-relay
-    (https://issues.rudder.io/issues/11630[\#11630])
+    (https://issues.rudder.io/issues/11630[#11630])
 * Fixed: Change packaging to allow openjdk > 8 
-    (https://issues.rudder.io/issues/13896[\#13896])
+    (https://issues.rudder.io/issues/13896[#13896])
 * Fixed: When we stop rudder-jetty, it says it stops Jetty 7 (we are using Jetty 9 ...)
-    (https://issues.rudder.io/issues/13929[\#13929])
+    (https://issues.rudder.io/issues/13929[#13929])
 
 ==== Agent
 
 * Fixed: Agent run errors are not outputed on stderr anymore
-    (https://issues.rudder.io/issues/14061[\#14061])
+    (https://issues.rudder.io/issues/14061[#14061])
 
 ==== Miscellaneous
 
 * Fixed: Rudder-jetty depends on jdk8 but always try to install jdk9 as dependency
-    (https://issues.rudder.io/issues/14024[\#14024])
+    (https://issues.rudder.io/issues/14024[#14024])
 
 ==== Documentation
 
 * Fixed: Broken 4.1/4.3 doc build
-    (https://issues.rudder.io/issues/14048[\#14048])
+    (https://issues.rudder.io/issues/14048[#14048])
 
 ==== Web - Config management
 
 * Fixed: Cannot modify groups when workflow are enabled
-    (https://issues.rudder.io/issues/14056[\#14056])
+    (https://issues.rudder.io/issues/14056[#14056])
 
 ==== Plugins integration
 
 * Fixed: indexes on nodecompliancelevels table are not valid and table ArchivedReportsExecution is never used
-    (https://issues.rudder.io/issues/14007[\#14007])
+    (https://issues.rudder.io/issues/14007[#14007])
 
 ==== Performance and scalability
 
 * Fixed: A lot of space is wasted on table nodecompliance and nodeconfigurations due to pretty jsonification
-    (https://issues.rudder.io/issues/14014[\#14014])
+    (https://issues.rudder.io/issues/14014[#14014])
 * Fixed: Massive performance penalty in policy generation due to invalid usage of StringTemplate
-    (https://issues.rudder.io/issues/13987[\#13987])
+    (https://issues.rudder.io/issues/13987[#13987])
 * Fixed: Load all ncf files in one go (or two)
-    (https://issues.rudder.io/issues/13859[\#13859])
+    (https://issues.rudder.io/issues/13859[#13859])
 
 ==== Web - UI & UX
 
 * Fixed: In the node details, clicking on the link to the policy server doesn't redirect to the policy server
-    (https://issues.rudder.io/issues/13834[\#13834])
+    (https://issues.rudder.io/issues/13834[#13834])
 
 ==== Techniques
 
 * Fixed: "Job Scheduler" Technique miss runs when using a non-default agent execution frequency
-    (https://issues.rudder.io/issues/4840[\#4840])
+    (https://issues.rudder.io/issues/4840[#4840])
 
 ==== Generic methods
 
 * Fixed: Error in the info (rudder agent run -i) output of the agent at first run
-    (https://issues.rudder.io/issues/13951[\#13951])
+    (https://issues.rudder.io/issues/13951[#13951])
 
 === Release notes
 
