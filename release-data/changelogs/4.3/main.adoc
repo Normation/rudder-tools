@@ -97,6 +97,161 @@ available on Fedora 18 and Ubuntu 12.10.
 * Thanks to Maxime Longuet from https://www.itika.net/[Itika] for
 sponsoring the _node lifecycle_ feature!
 
+== Rudder 4.3.9 (2019-01-30)
+
+=== Changes
+
+==== System integration
+
+* Impossible to change keys of a Node using rudder-keys cli
+    (https://issues.rudder.io/issues/14207[#14207])
+
+==== Documentation
+
+* Add some known issues in the known issue of the DSC doc
+    (https://issues.rudder.io/issues/14150[#14150])
+* Add some known issues in the known issue of the DSC doc
+    (https://issues.rudder.io/issues/14150[#14150])
+
+==== Web - Maintenance
+
+* Update links in Rudder interface to use rudder.io
+    (https://issues.rudder.io/issues/14205[#14205])
+
+==== Web - Config management
+
+* Configure report value of technique from technique editor
+    (https://issues.rudder.io/issues/14091[#14091])
+
+==== Techniques
+
+* Port techniques downloadFile & cronManagement to separated policy generation 
+    (https://issues.rudder.io/issues/14002[#14002])
+
+==== Technique editor - UI/UX
+
+* In the technique editor, scrolling through the GM should not mask the filter
+    (https://issues.rudder.io/issues/14178[#14178])
+* Manage caching of technique editor resources (css/js) with Rudder version
+    (https://issues.rudder.io/issues/14194[#14194])
+* Display documentation of ncf methods directly in the editor
+    (https://issues.rudder.io/issues/14172[#14172])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: "rudder-init" script does not allow the "auto" option
+    (https://issues.rudder.io/issues/14134[#14134])
+
+==== Web - UI & UX
+
+* Fixed: Rudder node id is confused with machine id and not selectable by triple-click
+    (https://issues.rudder.io/issues/14243[#14243])
+
+==== Web - Compliance & node report
+
+* Fixed: we can inject html & javascript in Rudder tables
+    (https://issues.rudder.io/issues/14221[#14221])
+
+==== Web - Maintenance
+
+* Fixed: Constraints on table nodecompliancelevels are not valid
+    (https://issues.rudder.io/issues/14218[#14218])
+
+==== Performance and scalability
+
+* Fixed: Index nodeid_idx is not used and consumes a lot of disk space for nothing
+    (https://issues.rudder.io/issues/14149[#14149])
+
+==== Web - Config management
+
+* Fixed: When hooks are exiting with an error we can have stackoverflow error if there are many of them
+    (https://issues.rudder.io/issues/10973[#10973])
+* Fixed: When refreshing a rule details, the current tab is not memorized
+    (https://issues.rudder.io/issues/4904[#4904])
+
+==== API
+
+* Fixed: Logs full of WARN  Attribute 'apiAuthorizationKind' or 'expirationTimestamp' is defined for API account but it will be ignored
+    (https://issues.rudder.io/issues/13913[#13913])
+
+==== Techniques
+
+* Fixed: Technique "file content from remote template" does not work on the Rudder server when using remote file
+    (https://issues.rudder.io/issues/14211[#14211])
+* Fixed: "File content from remote template" technique ads tabs in the output file
+    (https://issues.rudder.io/issues/14188[#14188])
+
+==== System techniques
+
+* Fixed: improve error message when the node cannot get the uuid from the server
+    (https://issues.rudder.io/issues/14176[#14176])
+* Fixed: "classes promises do not support promise locking" warning message when running the agent
+    (https://issues.rudder.io/issues/14132[#14132])
+* Fixed: Add compatibility sles classes in failsafe
+    (https://issues.rudder.io/issues/13975[#13975])
+* Fixed: Missing report on File key-value parameter in list
+    (https://issues.rudder.io/issues/14164[#14164])
+
+==== Plugins integration
+
+* Fixed: Separated policy generation does not work correctly with Rudder DSC agent
+    (https://issues.rudder.io/issues/14038[#14038])
+
+==== Agent
+
+* Fixed: rudder agent inventory wrongly states that we are not in full compliance mode
+    (https://issues.rudder.io/issues/13882[#13882])
+
+==== System integration
+
+* Fixed: Every agent check for postgresql and ldap partition size, resulting in possible overzealous shutting down of Rudder on node
+    (https://issues.rudder.io/issues/14162[#14162])
+
+==== Server components
+
+* Fixed: cf-serverd may listen on port 8080 preventing rudder-jetty from running
+    (https://issues.rudder.io/issues/13982[#13982])
+
+==== Generic methods
+
+* Fixed: Avoid  checking for exit_on_lock option on newer yum
+    (https://issues.rudder.io/issues/14235[#14235])
+* Fixed: Enable 4h cache on available upgrades list in old package bodies
+    (https://issues.rudder.io/issues/14225[#14225])
+* Fixed: Error in inform mode about undefined @args in rudder agent output
+    (https://issues.rudder.io/issues/14214[#14214])
+* Fixed: file_from_string_mustache GM unwanted behaviour when the mustache template use non-printable elements
+    (https://issues.rudder.io/issues/14215[#14215])
+* Fixed: Generic method in 4.3 should not use the class has_promiser_stack
+    (https://issues.rudder.io/issues/14167[#14167])
+
+==== Technique editor - UI/UX
+
+* Fixed: Filter in generic method should not be case sensitive
+    (https://issues.rudder.io/issues/14216[#14216])
+
+==== Documentation
+
+* Fixed: Jinja templating iteration example in the doc is invalid
+    (https://issues.rudder.io/issues/14179[#14179])
+
+==== Generic methods - File Management
+
+* Fixed: Jinja templating method does not correctly clean up temporary files in audit mode
+    (https://issues.rudder.io/issues/13666[#13666])
+* Fixed: Generic Method "File key-value present with option " treats the option as one of the value
+    (https://issues.rudder.io/issues/14186[#14186])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Valentin Lelong
+
+This is a bug fix release in the 4.3 series and therefore all installations of 4.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 4.3.8 (2019-01-10)
 
 === Changes
