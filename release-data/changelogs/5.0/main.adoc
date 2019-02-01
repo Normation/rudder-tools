@@ -1074,6 +1074,9 @@ store debug info in a standard path
 
 ==== Documentation
 
+* Finish initial version of get-started guide
+(https://issues.rudder.io/issues/13177[#13177,
+https://issues.rudder.io/issues/13448[#13448])
 * Rudder by example cleanup
 (https://www.rudder-project.org/redmine/issues/13452[#13452])
 * Add a rudder-by-example to replace line in a file
@@ -1363,6 +1366,8 @@ the release enterprise-ready for deployment.
 
 ==== Documentation
 
+* Add a search field
+(https://issues.rudder.io/issues/13093[#13093])
 * Change version of documentation on rudder-doc
 (https://www.rudder-project.org/redmine/issues/13019[#13019])
 * Build a centralized place for doc: docs.rudder.io
@@ -1455,10 +1460,14 @@ others plugins
 
 ==== Documentation
 
+* Fixed: Git repository not initialised in plugin directory
+(https://issues.rudder.io/issues/13306[13306])
 * Fixed: Wrong version displayed on the login page for plugin branding
 (https://www.rudder-project.org/redmine/issues/13274[#13274])
 * Fixed: Update screenshot for Rudder Branding
 (https://www.rudder-project.org/redmine/issues/13270[#13270])
+* Fixed: Make plugin doc build with 5.0 doc
+(https://issues.rudder.io/issues/13137[13137])
 * Fixed: Typos in rudder-by-example
 (https://www.rudder-project.org/redmine/issues/12611[#12611])
 * Fixed: Add a favicon for Rudder by example
