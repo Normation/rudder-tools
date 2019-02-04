@@ -163,6 +163,50 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.6 (2019-02-04)
+
+=== Changes
+
+=== Bug fixes
+
+==== Web - Nodes & inventories
+
+* Fixed: RHEL 7.6 appears as "Other Linux"
+    (https://issues.rudder.io/issues/14200[#14200])
+
+==== Documentation
+
+* Fixed: Remove "repository" from Rudder repository name
+    (https://issues.rudder.io/issues/14262[#14262])
+
+==== System integration
+
+* Fixed: Bad rights for hooks
+    (https://issues.rudder.io/issues/14273[#14273])
+
+==== Web - UI & UX
+
+* Fixed: JS in directive name is executed on rule table if the directive is disabled
+    (https://issues.rudder.io/issues/14271[#14271])
+* Fixed: Rounding error in compliance bar
+    (https://issues.rudder.io/issues/10773[#10773])
+
+==== Architecture - Dependencies
+
+* Fixed: Update very old maven-assembly version used for template-cli
+    (https://issues.rudder.io/issues/14247[#14247])
+* Fixed: Duplicate dependency "jsr305" in rudder-core/pom.xml
+    (https://issues.rudder.io/issues/14248[#14248])
+* Fixed: Update very old maven-assembly version used for template-cli
+    (https://issues.rudder.io/issues/14247[#14247])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.5 (2019-01-30)
 
 === Changes
