@@ -37,7 +37,7 @@ reports, UI branding, scale-out relay servers, validation workflow…). To
 know everything about the impact of this evolution, you can read the
 detailed dedicated article:
 
-http://www.normation.com/en/blog/2018/09/26/rudder-5-new-modular-version-thanks-ecosystem-plugins/
+https://www.rudder.io/en/blog/2018/09/26/rudder-5-new-modular-version-thanks-ecosystem-plugins/
 
 _Integration_: We provide integration with third party tools as plugins,
 making RUDDER more integrated with tools like Ansible, Centreon, Zabbix,
