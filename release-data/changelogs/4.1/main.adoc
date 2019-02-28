@@ -62,6 +62,64 @@ http://www.normation.com[Normation]): *Windows Server 2008-2012, AIX
 packages are no longer available in Debian 5, Debian 6, Ubuntu 10.04,
 Ubuntu 12.10, Fedora 18, RHEL/CentOS 3 and RHEL/CentOS 5
 
+== Rudder 4.1.20 (2019-02-28)
+
+=== Changes
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: Patch cf-serverd to change loglevel on agent refusal
+    (https://issues.rudder.io/issues/8529[#8529])
+
+==== Packaging
+
+* Fixed: "/var/rudder/inventories: no such dir" error message on first run
+    (https://issues.rudder.io/issues/14257[#14257])
+
+==== Documentation
+
+* Fixed: Root of webapp docs changed
+    (https://issues.rudder.io/issues/14284[#14284])
+
+==== Architecture - Dependencies
+
+* Fixed: Compilation fails with Java 11
+    (https://issues.rudder.io/issues/14290[#14290])
+
+==== Web - Nodes & inventories
+
+* Fixed: Mandatory fields for new inventories are not correctly checked 
+    (https://issues.rudder.io/issues/13962[#13962])
+
+==== Techniques
+
+* Fixed: unexpected reports in zypper repo management technique
+    (https://issues.rudder.io/issues/14347[#14347])
+
+==== System techniques
+
+* Fixed: Technique uses /root as an hardcoded value for the home of user root
+    (https://issues.rudder.io/issues/6412[#6412])
+
+==== Generic methods - File Management
+
+* Fixed: File lines absent generic method doesn't report anything when the file doesn't exist
+    (https://issues.rudder.io/issues/14246[#14246])
+
+==== Generic methods
+
+* Fixed: ncf 4.1 is not compatible anymore with agent 3.1
+    (https://issues.rudder.io/issues/14293[#14293])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 4.1 series and therefore all installations of 4.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 4.1.19 (2019-01-30)
 
 === Changes
