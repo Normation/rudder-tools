@@ -57,6 +57,28 @@ fi
 
 detect_os
 
+# A POSIX variable
+OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+# Initialize our own variables:
+SERVERSPEC=0
+shift 3
+while getopts "-:" opt; do
+    case "$opt" in
+      -)
+        echo "${OPTARG}"
+          case "${OPTARG}" in
+              server-spec)
+                  SERVERSPEC=1
+                  ;;
+              *)
+                  echo "Unknown option --${OPTARG}" >&2
+                  ;;
+          esac;;
+    esac
+    shift
+done
+
 case "${COMMAND}" in
   "add-repository")
 #    add_repo
