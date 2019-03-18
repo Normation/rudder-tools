@@ -76,7 +76,8 @@ slackware = {
   package-format = "misc/tgz"
   name = "Slackware"
   codenames = {
-    "14": "slackware-14"
+    "14.1": "slackware-14.1"
+    "14.2": "slackware-14.2"
   }
 }
 
