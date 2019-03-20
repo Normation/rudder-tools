@@ -1,67 +1,32 @@
-= Changelogs for Rudder plugin reporting 5.0.\* versions
-
-== <a name="reporting-5.0-1.0" > </a> Plugin reporting - reporting-5.0-1.0 (2019-03-20)
+== reporting-5.0-1.1 (2019-03-20)
 
 === Changes
 
 ==== Miscellaneous
 
-* Make the table columns configurable
-    (https://issues.rudder.io/issues/14435[#14435])
-* Reorganize display when creating Report
-    (https://issues.rudder.io/issues/14429[#14429])
-* Make table components configurable
-    (https://issues.rudder.io/issues/14425[#14425])
-* Add a way to have a default / automatic name for reports
-    (https://issues.rudder.io/issues/14420[#14420])
-* Make components list look better
-    (https://issues.rudder.io/issues/14417[#14417])
-* Make the components name editable
-    (https://issues.rudder.io/issues/14412[#14412])
-* Add a button to delete a component when editing a Template
-    (https://issues.rudder.io/issues/14373[#14373])
-* Improve groups/node request on reporting plugin
-    (https://issues.rudder.io/issues/13053[#13053])
-
-==== packaging-common
-
-* Adapt plugin loading to not use spring anymore
-    (https://issues.rudder.io/issues/13038[#13038])
+* Add a way to use default/custom data when creating/updating templates
+    (https://issues.rudder.io/issues/14493[#14493])
+* Add delete button for reports
+    (https://issues.rudder.io/issues/14460[#14460])
+* Adding new columns to a table
+    (https://issues.rudder.io/issues/14448[#14448])
 
 === Bug fixes
 
 ==== Miscellaneous
 
-* Fixed: Limited reporting version does not compile
-    (https://issues.rudder.io/issues/14455[#14455])
-* Fixed: Prevent creating new report if plugin is disabled
-    (https://issues.rudder.io/issues/14454[#14454])
-* Fixed: fix compliance request
-    (https://issues.rudder.io/issues/14447[#14447])
-* Fixed: Added notification when API requests are successful
-    (https://issues.rudder.io/issues/14443[#14443])
-* Fixed: Correct use of cached data for reports, data api should be a POST, remove unused code, api calls, loggers ...
-    (https://issues.rudder.io/issues/14444[#14444])
-* Fixed: Fix the report container height
-    (https://issues.rudder.io/issues/14442[#14442])
-* Fixed: Fix CSS for printing when creating a new report
-    (https://issues.rudder.io/issues/14440[#14440])
-* Fixed: Graphs overflow their container in print mode
-    (https://issues.rudder.io/issues/14436[#14436])
-* Fixed: compliance data are not extracted correctly
-    (https://issues.rudder.io/issues/14437[#14437])
-* Fixed: Display report when creating a report
-    (https://issues.rudder.io/issues/14413[#14413])
-* Fixed: Improve the preview/pdf display of reports
-    (https://issues.rudder.io/issues/14407[#14407])
-* Fixed: Improve components list display
-    (https://issues.rudder.io/issues/14411[#14411])
-* Fixed: Redesign of the interface following the model changes.
-    (https://issues.rudder.io/issues/14405[#14405])
-* Fixed: Rewrite reporting plugin
-    (https://issues.rudder.io/issues/14239[#14239])
-* Fixed: Port reporting plugin to 4.3
-    (https://issues.rudder.io/issues/13735[#13735])
+* Fixed: Align id to template name
+    (https://issues.rudder.io/issues/14495[#14495])
+* Fixed: Remove empty tooltips
+    (https://issues.rudder.io/issues/14494[#14494])
+* Fixed: Only load report data when needed
+    (https://issues.rudder.io/issues/14466[#14466])
+* Fixed: Need to remove system rules from compliance graph when no rule/groups selected
+    (https://issues.rudder.io/issues/14457[#14457])
+* Fixed: Remove dev templates
+    (https://issues.rudder.io/issues/14459[#14459])
+* Fixed: Still need to improve data request
+    (https://issues.rudder.io/issues/14456[#14456])
 
 === Release notes
 
