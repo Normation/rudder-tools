@@ -1,6 +1,6 @@
 = Changelogs for Rudder plugin reporting 5.0.\* versions
 
-== <a name="reporting-5.0-1.0" > </a> Plugin reporting - reporting-5.0-1.0 (2019-03-20)
+== reporting-5.0-1.0 (2019-03-20)
 
 === Changes
 
