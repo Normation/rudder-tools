@@ -2,7 +2,7 @@
 
 # This script will generate reports and insert them in the database
 
-# This script is compatible Rudder 4.2 and more
+# This script is compatible Rudder 4.0 and 4.1
 # It function by reading all nodeconfigurations, and generating reports 
 # with randomized timestamps 
 
@@ -124,11 +124,11 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                         else:
                             status = 'audit_compliant'
 
-                    write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
-                    #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
+                    write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
+                    #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
         if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
-            write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, 'run', 'rudder',  '0', 'end', nodeconfigid, reportDate, 'control', '', 'End execution'))
-            #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
+            write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], 'common', 'EndRun', reportDate, 'log_info', '', 'End execution with config [' + nodeconfigid + ']'))
+            #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
         myConnection.commit()
         write.close()
 

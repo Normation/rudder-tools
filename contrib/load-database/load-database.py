@@ -2,7 +2,7 @@
 
 # This script will generate reports and insert them in the database
 
-# This script is compatible Rudder 4.0 and 4.1
+# This script is compatible Rudder 4.3, 5.0 and more
 # It function by reading all nodeconfigurations, and generating reports 
 # with randomized timestamps 
 
@@ -16,6 +16,9 @@ password = 'Normation'
 database = 'rudder'
 port_database = 5432
 
+# Use syslog rather than database
+use_syslog = True
+
 # Proportion of repaired, error and non-compliant reports
 # Betweeen 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.3
@@ -27,10 +30,14 @@ import json
 import random
 import datetime
 import sys
+import syslog
+
 
 myConnection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
 cur = myConnection.cursor()
 
+if use_syslog:
+  syslog.openlog('rudder', syslog.LOG_PID, syslog.LOG_LOCAL6)
 
 nodes = {}
 
@@ -124,15 +131,26 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                         else:
                             status = 'audit_compliant'
 
-                    write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
-                    #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
+                    if use_syslog:
+                      syslog_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something'
+                      syslog.syslog(syslog.LOG_INFO, syslog_string)
+                    else:
+                      write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
+                    #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
+
+        # specific report for end of run
         if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
-            write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], 'common', 'EndRun', reportDate, 'log_info', '', 'End execution with config [' + nodeconfigid + ']'))
-            #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  rules['serial'], 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
-        myConnection.commit()
-        write.close()
+          if use_syslog:
+            syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + nodeconfigid + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#End execution'
+            syslog.syslog(syslog.LOG_INFO, syslog_string)
+          else:
+            write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, 'run', 'rudder',  '0', 'end', nodeconfigid, reportDate, 'control', '', 'End execution'))
+            #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
+            myConnection.commit()
+            write.close()
 
 
 cur.close()
 myConnection.close()
-
+if use_syslog:
+  syslog.closelog()
