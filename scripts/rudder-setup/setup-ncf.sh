@@ -28,6 +28,13 @@ setup_ncf() {
   ${PM_INSTALL} git || ${PM_INSTALL} git-core
   ${PM_INSTALL} make
 
+  if [ $SERVERSPEC -eq 1 ];
+  then
+    ${PM_INSTALL} ruby
+    gem install serverspec
+  fi
+
+
   # setup cfengine
 
   # cfengine from ci
