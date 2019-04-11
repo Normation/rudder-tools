@@ -374,7 +374,7 @@ def get_ticket_info(ticket_id, internal=False, must_be_open=True):
     for journal in ticket['journals']:
       if 'details' in journal:
         for detail in journal['details']:
-          if detail['name'] == 'assigned_to_id' and 'old_value' in detail:
+          if detail['name'] == 'assigned_to_id' and 'old_value' in detail and detail['old_value'] is not None:
             if int(detail['old_value']) != my_id:
               info['last_assignee'] = int(detail['old_value'])
 
