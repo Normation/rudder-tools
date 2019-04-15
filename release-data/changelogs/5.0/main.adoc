@@ -163,6 +163,249 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.9 (2019-04-15)
+
+=== Changes
+
+==== Packaging
+
+* Remove psl dependency on curl
+    (https://issues.rudder.io/issues/14500[#14500])
+* Repair and adapt AIX agent to work with 5.0 changes 
+    (https://issues.rudder.io/issues/14467[#14467])
+* Reduce the size of the agent by removing cf-monitord
+    (https://issues.rudder.io/issues/14406[#14406])
+
+==== Documentation
+
+* Add Windows known issues and improve install Windows software how-to
+    (https://issues.rudder.io/issues/14446[#14446])
+* Update antora theme/tools to 2.0.0
+    (https://issues.rudder.io/issues/14385[#14385])
+
+==== Web - UI & UX
+
+* Add a "Copy to clipboard" button for Node properties and show its type
+    (https://issues.rudder.io/issues/14593[#14593])
+* Add a "Copy to clipboard" button for Node properties and show its type
+    (https://issues.rudder.io/issues/14593[#14593])
+* New display of Directives and Groups in Rule details
+    (https://issues.rudder.io/issues/14536[#14536])
+* New modern look for all tables
+    (https://issues.rudder.io/issues/9557[#9557])
+
+==== Web - Config management
+
+* New tab in group details: display Rules applied to the group
+    (https://issues.rudder.io/issues/11911[#11911])
+
+==== API
+
+* Add "Last seen" to Node API 
+    (https://issues.rudder.io/issues/7922[#7922])
+
+==== Web - Nodes & inventories
+
+* Add Linux Mint support in inventories
+    (https://issues.rudder.io/issues/10812[#10812])
+
+==== Techniques
+
+* Support separated policy generation for technique "Variable from JSON file (dict)"
+    (https://issues.rudder.io/issues/14160[#14160])
+* Support separated policy generation for technique "Variable from JSON file (dict)"
+    (https://issues.rudder.io/issues/14160[#14160])
+
+==== Generic methods
+
+* Add a generic method call to test generic method
+    (https://issues.rudder.io/issues/14563[#14563])
+* Add bundle dedicated to the ncf tests
+    (https://issues.rudder.io/issues/14311[#14311])
+* Add systemd commands to the library of standard system command paths
+    (https://issues.rudder.io/issues/14401[#14401])
+* Improve service_{start/stop} tests
+    (https://issues.rudder.io/issues/14323[#14323])
+
+==== Technique editor - UI/UX
+
+* We don't know where to click on a generic method to edit it
+    (https://issues.rudder.io/issues/14317[#14317])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: When installing rudder-agent, there's a long wait of run interval/2, so up to several hours
+    (https://issues.rudder.io/issues/14644[#14644])
+* Fixed: During installation of the agent, when staring "rudder agent" service, there is numerous error about missing '/opt/rudder/etc/uuid.hive' file
+    (https://issues.rudder.io/issues/14616[#14616])
+* Fixed: Debian 8 backports repository does not exist anymore, breaking our builds
+    (https://issues.rudder.io/issues/14608[#14608])
+* Fixed: Error message when installing or upgrading Rudder server about missing pid file
+    (https://issues.rudder.io/issues/13767[#13767])
+* Fixed: Build openssl for Slackware, so the agent can update promises
+    (https://issues.rudder.io/issues/14570[#14570])
+* Fixed: Error message when installing rudder-agent  on rpm based systems due to missing directory '/var/rudder/inventories'
+    (https://issues.rudder.io/issues/14348[#14348])
+
+==== System integration
+
+* Fixed: Agent stderr shows up in /var/log/apache2/error.log
+    (https://issues.rudder.io/issues/14602[#14602])
+* Fixed: Allow changing cf-serverd loglevel and set info as default
+    (https://issues.rudder.io/issues/8529[#8529])
+* Fixed: Only one Node below a Rudder server can be run through remote run API
+    (https://issues.rudder.io/issues/14391[#14391])
+* Fixed: Manage rudder webapp shutdown correctly in case of fatal exception at startup
+    (https://issues.rudder.io/issues/14281[#14281])
+* Fixed: Windows 10 inventory is not fully supported
+    (https://issues.rudder.io/issues/14295[#14295])
+* Fixed: Error about invalid variable in httpd at Rudder install on centos 7
+    (https://issues.rudder.io/issues/14592[#14592])
+
+==== Agent
+
+* Fixed: Slackware agent depends on mysql
+    (https://issues.rudder.io/issues/14472[#14472])
+
+==== System techniques
+
+* Fixed: Agent connection cache does not work, and does not improve performance as expected
+    (https://issues.rudder.io/issues/14342[#14342])
+* Fixed: Bad reporting mode for "Monitoring; No Rudder monitoring information to share with the server"
+    (https://issues.rudder.io/issues/14532[#14532])
+* Fixed: Remove cf-monitord check on component "Binaries update"  
+    (https://issues.rudder.io/issues/14561[#14561])
+* Fixed: Missing "update" reports on node
+    (https://issues.rudder.io/issues/12137[#12137])
+
+==== Plugins integration
+
+* Fixed: Typo in rudder-pkg when package version is incompatible
+    (https://issues.rudder.io/issues/14408[#14408])
+
+==== Documentation
+
+* Fixed: uuid.hive is not present afet an install or an upgradie ofrudder agent to latest 4.1.x, 4.3.x and 5.0.x on rpm system purges the uuid.hive
+    (https://issues.rudder.io/issues/14264[#14264])
+* Fixed: Command to upgrade server from old 4.1/4.2/4.3 to 5.0  does not upgrade rudder-agent, breaking everything
+    (https://issues.rudder.io/issues/14415[#14415])
+* Fixed: Command to upgrade server from old 4.1/4.2/4.3 to 5.0  does not upgrade rudder-agent, breaking everything
+    (https://issues.rudder.io/issues/14415[#14415])
+* Fixed: Update mustache templating method documentation to detail the windows syntax
+    (https://issues.rudder.io/issues/14451[#14451])
+
+==== Architecture - Internal libs
+
+* Fixed: Rudder postgres unit test are broken
+    (https://issues.rudder.io/issues/14599[#14599])
+
+==== Web - Config management
+
+* Fixed: Policies generated for Rudder server have wrong permissions
+    (https://issues.rudder.io/issues/14594[#14594])
+* Fixed: UI "settings" for management of hooks works inconsistently
+    (https://issues.rudder.io/issues/14386[#14386])
+
+==== Web - UI & UX
+
+* Fixed: There is no visual indication of sort in node table
+    (https://issues.rudder.io/issues/14434[#14434])
+* Fixed: JS error in rule pages, and Directives don't show in the list of directives
+    (https://issues.rudder.io/issues/14573[#14573])
+* Fixed: Fix some CSS issues following the style change of the Datatables
+    (https://issues.rudder.io/issues/14463[#14463])
+* Fixed: Typo in error message when aix plugin is not there
+    (https://issues.rudder.io/issues/14426[#14426])
+
+==== Web - Compliance & node report
+
+* Fixed: Improve message on Node compliance details when  reports are outdated
+    (https://issues.rudder.io/issues/14380[#14380])
+* Fixed: Missing report on generic method "command exec" with $()
+    (https://issues.rudder.io/issues/14390[#14390])
+
+==== Security
+
+* Fixed: Missing eventlogs for technique editor action and technique update
+    (https://issues.rudder.io/issues/14312[#14312])
+
+==== Web - Nodes & inventories
+
+* Fixed: Incoherent state when accepting a Node, where node is accepted but now available in UI (error when creating Node entry)
+    (https://issues.rudder.io/issues/14430[#14430])
+* Fixed: System groups should be treated like normal groups and display their list of nodes 
+    (https://issues.rudder.io/issues/11796[#11796])
+* Fixed: Error about failed  move of machine inventory doesn't give sufficient context information
+    (https://issues.rudder.io/issues/14522[#14522])
+
+==== Performance and scalability
+
+* Fixed: If a rule targets too many groups, policy generation fails
+    (https://issues.rudder.io/issues/14392[#14392])
+* Fixed: Improve 'rsyslog' to manage larger load of reports
+    (https://issues.rudder.io/issues/14506[#14506])
+* Fixed: Cron job checking rudder agent health, is ran every  5 minutes exactly, causing resource usage spike
+    (https://issues.rudder.io/issues/14258[#14258])
+
+==== Techniques
+
+* Fixed: SNMP technique on windows wrongly parse the authorized sources
+    (https://issues.rudder.io/issues/14368[#14368])
+
+==== Technique editor - UI/UX
+
+* Fixed: Padding in technique editor inputs makes you think there is a space before the value
+    (https://issues.rudder.io/issues/14340[#14340])
+* Fixed: Error in technique editor when there is  "$()" in  a parameter of a method
+    (https://issues.rudder.io/issues/14549[#14549])
+
+==== Generic methods
+
+* Fixed: _classes_sanitize should be strict on the classes cancelled
+    (https://issues.rudder.io/issues/14578[#14578])
+* Fixed: Policy generation fails after upgrade  to 4.3: Undefined bundle lines_present
+    (https://issues.rudder.io/issues/14548[#14548])
+* Fixed: Expected repaired class in ncf tests are not correctly defined
+    (https://issues.rudder.io/issues/14538[#14538])
+* Fixed: Reporting when executing severspec is not correct in ncf tests
+    (https://issues.rudder.io/issues/14537[#14537])
+* Fixed: monitoring.csv accumulate temporary files that can blow up the filesystem
+    (https://issues.rudder.io/issues/13716[#13716])
+
+==== Generic methods - Package Management
+
+* Fixed: Broken yum usage with old package promises on CentOS
+    (https://issues.rudder.io/issues/14546[#14546])
+
+==== Web - Technique editor
+
+* Fixed: Technique editor duplicate techniques for each change
+    (https://issues.rudder.io/issues/14370[#14370])
+* Fixed: Reporting fails on NCF when service start/stop is guarded by a class
+    (https://issues.rudder.io/issues/14404[#14404])
+
+==== Generic methods - Service Management
+
+* Fixed: ncf_services does not work on slackware
+    (https://issues.rudder.io/issues/14471[#14471])
+
+==== Generic methods - File Management
+
+* Fixed: Improve method 'file copy from shared files'  parameters documentation
+    (https://issues.rudder.io/issues/14361[#14361])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Aspid ASM
+* Maxime Longuet
+* Janos Mattyasovszky
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.8 (2019-02-28)
 
 === Changes
