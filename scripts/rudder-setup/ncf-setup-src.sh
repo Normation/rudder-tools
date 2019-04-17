@@ -4,7 +4,7 @@ set -e
 
 # Documentation !
 usage() {
-  echo "Usage $0 [add-repository|setup-local|test-local] <ncf_version> <cfengine_version> [test-target]"
+  echo "Usage $0 [add-repository|setup-local|test-local|test-pr] <ncf_version> <cfengine_version> [test-target|pull_request_id]"
   echo "  Adds a repository and setup ncf on your OS" 
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
@@ -35,9 +35,26 @@ usage() {
 
 setlocal || re_exec "$@"
 
+# Parsing the options before anything, and removing them from $@
+SERVERSPEC=0
+for opt in "$@"
+do
+    shift
+    case "$opt" in
+      --server-spec)
+        SERVERSPEC=1
+        ;;
+      *)
+        set -- "$@" "$opt"
+        ;;
+    esac
+done
+
 COMMAND="$1"
 NCF_VERSION="$2"
 CFENGINE_VERSION="$3"
+
+[ -z "${CFENGINE_VERSION}" ] && usage
 
 if [ -z "$3" ]
 then
@@ -46,7 +63,10 @@ else
   TEST_TARGET="test-unsafe"
 fi
 
-[ -z "${CFENGINE_VERSION}" ] && usage
+if [ "$COMMAND" = "test-pr" ]
+then
+  PULL_REQUEST="$4"
+fi
 
 PREFIX=$(echo "${CFENGINE_VERSION}" | cut -f 1 -d "/")
 if [ "${PREFIX}" = "ci" ]
@@ -57,27 +77,6 @@ fi
 
 detect_os
 
-# A POSIX variable
-OPTIND=1         # Reset in case getopts has been used previously in the shell.
-
-# Initialize our own variables:
-SERVERSPEC=0
-shift 3
-while getopts "-:" opt; do
-    case "$opt" in
-      -)
-        echo "${OPTARG}"
-          case "${OPTARG}" in
-              server-spec)
-                  SERVERSPEC=1
-                  ;;
-              *)
-                  echo "Unknown option --${OPTARG}" >&2
-                  ;;
-          esac;;
-    esac
-    shift
-done
 
 case "${COMMAND}" in
   "add-repository")
@@ -88,10 +87,14 @@ case "${COMMAND}" in
     setup_ncf
     ;;
   "test-local")
-#    add_repo
-    # avoid sending a real inventory in tests
     SERVER="localhost"
     setup_ncf
+    test_ncf
+    ;;
+  "test-pr")
+    SERVER="localhost"
+    setup_ncf
+    checkout_pr
     test_ncf
     ;;
   *)

@@ -96,3 +96,9 @@ setup_ncf() {
     cp -r /usr/share/ncf/tree/* /var/cfengine/inputs/
   fi
 }
+
+checkout_pr() {
+  cd "${directory}"
+  git fetch origin pull/$PULL_REQUEST/head:local_pr
+  git checkout local_pr
+}
