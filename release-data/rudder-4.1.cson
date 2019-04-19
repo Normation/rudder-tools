@@ -5,9 +5,6 @@ release = "4.1"
 # Status of the release (alpha, beta, rc, final)
 release-status = "final"
 
-# Git branch associated
-git-branch = "branches/rudder/4.1"
-
 # 30th March 2017
 release-date = "2017-03-30"
 

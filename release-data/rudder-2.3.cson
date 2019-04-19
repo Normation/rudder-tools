@@ -5,5 +5,3 @@ release-status = "final"
 release-date = "2011-10-31"
 eol-date = "2013-06-06"
 
-# Git branch associated
-git-branch = "branches/rudder/2.3"

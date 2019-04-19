@@ -5,9 +5,6 @@ release = "5.1"
 # Status of the release (alpha, beta, rc, final)
 release-status = "alpha"
 
-# Git branch associated
-git-branch = "master"
-
 # Has this version had Long-Term Support (LTS)?
 lts = false
 
