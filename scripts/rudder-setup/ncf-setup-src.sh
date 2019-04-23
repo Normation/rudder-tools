@@ -4,13 +4,16 @@ set -e
 
 # Documentation !
 usage() {
-  echo "Usage $0 [add-repository|setup-local|test-local|test-pr] <ncf_version> <cfengine_version> [test-target|pull_request_id]"
+  echo "Usage $0 [add-repository|setup-local|test-local] <ncf_version> <cfengine_version> [test-target] [--server-spec]"
+  echo "  $0 test-pr <ncf_version> <cfengine_version> <pull_request_id> [test-target] [--server-spec]"
+
   echo "  Adds a repository and setup ncf on your OS" 
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
   echo "  ncf_version ex: 1.0.0.201607292014, rudder-3.1, git@github.com:Normation/ncf.git#master"
   echo "  cfengine_version ex: 3.6.6 3.7.1 rudder-3.1 ci/rudder-3.2.1"
   echo "  test-target: test, test-unsafe"
+  echo "  --server-spec: install ruby and run the ncf tests based on serverspec"
   exit 1
 }
 # GOTO bottom for main()
@@ -39,12 +42,14 @@ setlocal || re_exec "$@"
 SERVERSPEC=0
 for opt in "$@"
 do
+    # Remove first arg of $@
     shift
     case "$opt" in
       --server-spec)
         SERVERSPEC=1
         ;;
       *)
+        # This push $opt at the end of $@
         set -- "$@" "$opt"
         ;;
     esac
@@ -56,16 +61,17 @@ CFENGINE_VERSION="$3"
 
 [ -z "${CFENGINE_VERSION}" ] && usage
 
-if [ -z "$3" ]
-then
-  TEST_TARGET="$3"
-else
-  TEST_TARGET="test-unsafe"
-fi
-
 if [ "$COMMAND" = "test-pr" ]
 then
   PULL_REQUEST="$4"
+  shift
+fi
+
+if [ -z "$4" ]
+then
+  TEST_TARGET="test-unsafe"
+else
+  TEST_TARGET="$4"
 fi
 
 PREFIX=$(echo "${CFENGINE_VERSION}" | cut -f 1 -d "/")
