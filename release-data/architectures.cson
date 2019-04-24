@@ -1,0 +1,25 @@
+i386  = {
+  bits = 32
+  comment = "Not necessarily 386, can be optimized for more recent cpu depending on OS default"
+}
+amd64 = {
+  bits = 64
+  comment = "Also known as x86_64"
+}
+ppc   = {
+  bits = 64
+  comment = "Also known as ppc64, for aix"
+}
+armel = {
+  bits = 32
+  comment = "No FPU, EABI, not yet supported, minimum armv4t, target armv6 on debian"
+}
+armhf = {
+  bits = 32
+  comment = "Hardfloat, raspbian default, minimum armv6, target armv7 on debian (raspberry pi 2 and 3 only), armv6 on raspbian"
+}
+arm64 = {
+  bits = 64
+  comment = "Also known as aarch4, minimum armv8, available on raspberry pi 3 but no OS support"
+}
+
