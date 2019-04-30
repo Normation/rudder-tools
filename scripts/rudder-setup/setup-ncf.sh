@@ -28,10 +28,14 @@ setup_ncf() {
   ${PM_INSTALL} git || ${PM_INSTALL} git-core
   ${PM_INSTALL} make
 
-  if [ $SERVERSPEC -eq 1 ];
+  if [ $TESTINFRA -eq 1 ];
   then
-    ${PM_INSTALL} ruby
-    gem install serverspec
+    # install pip
+    ${PM_INSTALL} python
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+    pip install -U six
+    pip install -U testinfra
   fi
 
 
