@@ -1,0 +1,116 @@
+#!/bin/bash
+# @description rename directives base on a pattern
+# @man Rename directives base on a pattern by another one
+# @man Capturing groups can be used with \1 \2 etc...
+# @man +
+# @man *Arguments*:
+# @man +
+# @man *-o*: old directive pattern
+# @man +
+# @man *-n*: new directive pattern
+# @man +
+# @man *-c*: raw color mode, all output are non-colored text
+# @man +
+# @man *-v*: verbose mode, display more detailed informations of the execution
+# @man +
+# @man *-i|-I*: case insensitive pattern search
+
+. "${BASEDIR}/../lib/api_call.sh"
+. "${BASEDIR}/../lib/common.sh"
+
+TECHNIQUES_DIRECTORY="${CONFIGURATION_DIRECTORY}/technique"
+TOKEN="$(cat /var/rudder/run/api-token)"
+DISPLAY_COMMAND=false
+CASE_INSENSITIVE=""
+
+need_jq
+
+while getopts "iIvdc:o:n:" opt; do
+  case $opt in
+    v|d)
+      DISPLAY_COMMAND=true
+      ;;
+    i|I)
+      CASE_INSENSITIVE="i"
+      ;;
+    o)
+      OLD_PATTERN="${OPTARG}"
+      ;;
+    n)
+      NEW_PATTERN="${OPTARG}"
+      ;;
+    c)
+      clear_colors
+      ;;
+  esac
+done
+# to keep the argument as $1
+shift  $((OPTIND-1))
+
+if [[ -z ${OLD_PATTERN} || -z ${NEW_PATTERN} ]]
+then
+  echo "Usage: rudder server directive-rename [-vd] [-iI] [-c] -o <old-name-pattern> -n <new-name-pattern>"
+  exit 1
+fi
+
+DIRECTIVES=$(filtered_api_call "${API_URL}/api/latest/directives" "${TOKEN}" "GET" "" "${DISPLAY_COMMAND}" | jq -r ".data.directives[] | .id")
+
+# Execute the POST request to rename a directive
+# $1 is directive json
+# $2 is NEW_NAME
+function rename {
+  OLD_JSON=$1
+  NEW_NAME=$2
+  NEW_JSON=$(echo "${JSON}" | jq -r ".displayName = \"${NEW_NAME}\"")
+  result=$(filtered_api_call "${API_URL}/api/latest/directives/${id}" "${TOKEN}" "POST" "-H \"Content-Type: application/json\" -d '${NEW_JSON}'" "${DISPLAY_COMMAND}")
+  code=$?
+
+  if [ ${code} -eq 0 ]
+  then
+    printf -- "${BLUE}-->${GREEN}OK${NORMAL}\n"
+  else
+    printf -- "${BLUE}-->${RED}ERROR ${code}${NORMAL}: Could not rename directive in ${NEW_NAME}\n"
+    echo "  ${result}"
+    exit 1
+  fi
+}
+
+# Pass the directive JSON as $1
+function valid_new_name {
+  JSON=$1
+  OLD_NAME=$(echo "${JSON}" | jq -r '.displayName')
+  NEW_NAME=$(echo "${OLD_NAME}" | perl -pe "s/${OLD_PATTERN}/${NEW_PATTERN}/g${CASE_INSENSITIVE}")
+  printf "${NORMAL}Rename ${GREEN}$OLD_NAME ${NORMAL}in ->${GREEN} $NEW_NAME ${NORMAL}? [y/n]"
+  read yn
+  case $yn in
+      [Yy]* ) rename "${JSON}" "${NEW_NAME}";;
+      [Nn]* ) ;;
+      * ) echo "Please answer yes or no." && valid_new_name "${JSON}";;
+  esac
+}
+
+# Loop over the matching directives and post the new json
+if [ -z "$DIRECTIVES" ]
+then
+  printf "${RED}No directives could be found matching the pattern ${GREEN}${OLD_PATTERN}${NORMAL}\n"
+  exit 1
+fi
+
+# Read in &3 to avoid conflict with the loop over directives id
+while read -r id<&3; do
+    JSON=$(filtered_api_call "${API_URL}/api/latest/directives/${id}" "${TOKEN}" "GET" "" "${DISPLAY_COMMAND}" | jq -r ".data.directives[]")
+    CURRENT_NAME=$(echo "${JSON}" | jq -r ".displayName")
+    if [ "$CASE_INSENSITIVE" = "i" ]
+    then
+      if echo "$CURRENT_NAME" | grep -i -q -E "^${OLD_PATTERN}$"
+      then
+        valid_new_name "${JSON}"
+      fi
+    else
+      if echo "$CURRENT_NAME" | grep -q -E "^${OLD_PATTERN}$"
+      then
+        valid_new_name "${JSON}"
+      fi
+    fi
+done 3<<< "$DIRECTIVES"
+
