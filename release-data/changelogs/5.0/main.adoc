@@ -163,6 +163,189 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.10 (2019-05-14)
+
+=== Changes
+
+==== Packaging
+
+* Beautify pg_hba.conf
+    (https://issues.rudder.io/issues/8901[#8901])
+* Remove version replacement in packages and cleanup RUDDER_VERSION_TO_PACKAGE
+    (https://issues.rudder.io/issues/14659[#14659])
+
+==== Performance and scalability
+
+* Document using pg_repack to prevent large disk usage
+    (https://issues.rudder.io/issues/14450[#14450])
+
+==== Documentation
+
+* Add a debugging guide page to the doc
+    (https://issues.rudder.io/issues/14785[#14785])
+
+==== Web - UI & UX
+
+* Make the Directive and Group sections foldable
+    (https://issues.rudder.io/issues/14783[#14783])
+
+==== Techniques
+
+* Port MOTD Technique to DSC
+    (https://issues.rudder.io/issues/14313[#14313])
+
+==== Generic methods - File Management
+
+* Add acl dedicated body in ncf_lib
+    (https://issues.rudder.io/issues/14815[#14815])
+* Add support for audit mode in "apply_gm" for the ncf tests
+    (https://issues.rudder.io/issues/14635[#14635])
+
+==== Generic methods
+
+* Change all serverspec ncf tests in testinfra ones
+    (https://issues.rudder.io/issues/14799[#14799])
+
+==== Technique editor - UI/UX
+
+* Merge the info and depreciation icon in technique editor
+    (https://issues.rudder.io/issues/14665[#14665])
+
+==== Miscellaneous
+
+* Better Technique editor loading message
+    (https://issues.rudder.io/issues/14622[#14622])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Postgresql is not started properly at postinstall on sles12 
+    (https://issues.rudder.io/issues/14832[#14832])
+* Fixed: Error when upgrading to Rudder 5.0.10 using centos7  with custom postgresql
+    (https://issues.rudder.io/issues/14827[#14827])
+* Fixed: ncf-api-virtualenv does not have a group created
+    (https://issues.rudder.io/issues/11126[#11126])
+* Fixed: Debian 8 server fail to install jdk during build
+    (https://issues.rudder.io/issues/14765[#14765])
+* Fixed: Debian 8 packages fail to build  
+    (https://issues.rudder.io/issues/14754[#14754])
+* Fixed: build-caching fails on builder with python 2.6 
+    (https://issues.rudder.io/issues/14676[#14676])
+* Fixed: Import relay sources into rudder repo
+    (https://issues.rudder.io/issues/14660[#14660])
+
+==== System integration
+
+* Fixed: Postgresql misconfigured when not the default distrib package (ex: Centos 6 with Postgresql 9.3 from pgfoundry.org)
+    (https://issues.rudder.io/issues/6403[#6403])
+
+==== Agent
+
+* Fixed: Script rudder-support-info does not mask credentials
+    (https://issues.rudder.io/issues/13657[#13657])
+* Fixed: Rudder remote run accept an invalid option -b 
+    (https://issues.rudder.io/issues/14852[#14852])
+* Fixed: Rudder commands should use rudder provided binaries when available 
+    (https://issues.rudder.io/issues/14847[#14847])
+* Fixed: When policy cannot be updated, agent says ok: Rudder agent promises were updated. 
+    (https://issues.rudder.io/issues/14824[#14824])
+* Fixed: Rudder agent check cannot restore saved uuid on AIX 
+    (https://issues.rudder.io/issues/14763[#14763])
+* Fixed: Rudder agent check does not repair policies if they are broken 
+    (https://issues.rudder.io/issues/14692[#14692])
+
+==== Documentation
+
+* Fixed: Disk usage in documentation is insuficiently precise 
+    (https://issues.rudder.io/issues/14842[#14842])
+* Fixed: Add 2019 CfgMgmgtCamp videos to the docs 
+    (https://issues.rudder.io/issues/14731[#14731])
+* Fixed: Document that resource file of Techniques are shared to nodes with UTF-8 Encoding *only* (breaks for other encoding)
+    (https://issues.rudder.io/issues/13619[#13619])
+
+==== Performance and scalability
+
+* Fixed: Correct disk usage in rudder configuration file 
+    (https://issues.rudder.io/issues/14844[#14844])
+* Fixed: Default archive retention is too large, which cause very large disk usage 
+    (https://issues.rudder.io/issues/14834[#14834])
+
+==== Web - Config management
+
+* Fixed: A technique can have two agent section for the same kind of agent 
+    (https://issues.rudder.io/issues/14797[#14797])
+* Fixed: Accepting a change request on dynamic group, make the group empty leads an invalid policy generation 
+    (https://issues.rudder.io/issues/14758[#14758])
+* Fixed: When restoring archive (full or groups) dynamic groups are created empty
+    (https://issues.rudder.io/issues/4480[#4480])
+* Fixed: In node compliance, the rule name for root server is "distributePolicy", it should be at least "distribute policy"
+    (https://issues.rudder.io/issues/14689[#14689])
+
+==== Web - Maintenance
+
+* Fixed: Postgres fills up and can't be vaccumed
+    (https://issues.rudder.io/issues/14789[#14789])
+* Fixed: Invalid comparision of String and Option[String] in HistorizationService 
+    (https://issues.rudder.io/issues/14770[#14770])
+
+==== API
+
+* Fixed: API info does not list endpoints in their sorted order 
+    (https://issues.rudder.io/issues/14807[#14807])
+* Fixed: Api ordering and tests are broken  
+    (https://issues.rudder.io/issues/14652[#14652])
+
+==== System techniques
+
+* Fixed: Sometimes, root server shows up with "No machine inventory" after install
+    (https://issues.rudder.io/issues/14627[#14627])
+* Fixed: Syntax error in techniques/system/server-roles/1.0/component-check.st
+    (https://issues.rudder.io/issues/14808[#14808])
+* Fixed: If postgresql is down, agent tried to fix password before checking that its up an running
+    (https://issues.rudder.io/issues/14750[#14750])
+* Fixed: rudder-directives.cf is included twice in policies 
+    (https://issues.rudder.io/issues/14687[#14687])
+
+==== Techniques
+
+* Fixed: Technique "SSH authorized keys" creates home directory with perms root:root when it does not exists yet 
+    (https://issues.rudder.io/issues/14732[#14732])
+
+==== Generic methods
+
+* Fixed: Fix badly translated files for ncf services tests 
+    (https://issues.rudder.io/issues/14804[#14804])
+* Fixed: Missing '_not_kept' state in method outcome 
+    (https://issues.rudder.io/issues/14649[#14649])
+
+==== Technique editor - UI/UX
+
+* Fixed: Having a long Technique name breaks display of title  
+    (https://issues.rudder.io/issues/14663[#14663])
+* Fixed: The deprecated tooltip doesn't say why it is deprecated
+    (https://issues.rudder.io/issues/13031[#13031])
+* Fixed: Improve display of technique list in technique editor
+    (https://issues.rudder.io/issues/14282[#14282])
+
+==== Web - Compliance & node report
+
+* Fixed: Reporting missing if several generic methods with same class_prefix and different condition applied 
+    (https://issues.rudder.io/issues/9130[#9130])
+* Fixed: Reporting missing if several generic methods with same class_prefix and different condition applied 
+    (https://issues.rudder.io/issues/9130[#9130])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* emb3dd3d server
+* Tobias Ell
+* Florian Heigl
+* Janos Mattyasovszky
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.9 (2019-04-15)
 
 === Changes
