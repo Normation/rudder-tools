@@ -62,6 +62,10 @@ class PR:
     self._request_pr()
     return self.info['title']
 
+  def sha(self):
+    self._request_pr()
+    return self.info['head']['sha']
+
   def mergeable(self):
     self._request_pr()
     return self.info['mergeable']

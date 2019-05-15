@@ -1,0 +1,85 @@
+#!/usr/bin/env python
+# coding: utf8
+
+"""
+Pull-request quality testing tool.
+
+You need a configuration file.
+
+Usage:
+        pr-manage set-status <repo> <pr_id> <status> <target_url> <description> <context>
+        pr-manage get-status <repo> <pr_id>
+        pr-manage get-status <repo> <pr_id> [--global]
+        pr-manage get-status <repo> <pr_id> [--context=<context>]
+
+Options:
+        set-status:            set a status to the given pull request on github
+                               see here for details: https://developer.github.com/v3/repos/statuses/#list-statuses-for-a-specific-ref
+
+        get-status:            print the given current statuses for a pull request, if a context is given
+                               it will only print the current status for this context.
+
+        get-status --context:  print the given current status for a pull request on a given context
+
+        get-status --global :  print the global current status for a pull request
+
+"""
+
+from common import *
+from github import *
+
+import docopt # apt-get install python-docopt || pip install docopt
+
+def set_pr_status(repo, pr_id, status, target_url, description, context):
+  assert status in ["error", "failure", "pending", "success"], "Invalid pull request status"
+  pr_url = "https://github.com/Normation/{repo}/pull/{pr_id}".format(repo=repo, pr_id=pr_id)
+  pr = PR(pr_url)
+  api_url = "https://api.github.com/repos/Normation/{repo}/commits/{sha}/statuses".format(repo=repo, sha=pr.sha())
+  post_data = "{\"state\":\"%s\",\"target_url\":\"%s\",\"description\":\"%s\",\"context\":\"%s\"}"%(status, target_url, description, context)
+  response = github_call(api_url, post_data=post_data, method="POST")
+
+def get_pr_global_status(repo, pr_id):
+  pr_url = "https://github.com/Normation/{repo}/pull/{pr_id}".format(repo=repo, pr_id=pr_id)
+  pr = PR(pr_url)
+  api_url = "https://api.github.com/repos/Normation/{repo}/commits/{sha}/status".format(repo=repo, sha=pr.sha())
+  return github_call(api_url, method="GET")['state']
+
+def get_pr_status(repo, pr_id):
+  pr_url = "https://github.com/Normation/{repo}/pull/{pr_id}".format(repo=repo, pr_id=pr_id)
+  pr = PR(pr_url)
+  api_url = "https://api.github.com/repos/Normation/{repo}/commits/{sha}/status".format(repo=repo, sha=pr.sha())
+  statuses = github_call(api_url, method="GET")['statuses']
+  report = []
+  for iStatus in statuses:
+    report.append(dict((k,iStatus[k]) for k in ('context','state') if k in iStatus))
+  return report
+
+def get_pr_status_context(repo, pr_id, context):
+  return get_pr_status(repo, pr_id)
+  
+def print_pr_status(repo, pr_id):
+  print(json.dumps(get_pr_status(repo, pr_id)))
+
+def print_pr_status_context(repo, pr_id, context):
+  statuses = get_pr_status(repo, pr_id)
+  for iStatus in statuses:
+    if iStatus['context'].encode('utf-8') == context:
+      print(json.dumps(iStatus['state']))
+
+def print_pr_global_status(repo, pr_id):
+  print(json.dumps(get_pr_global_status(repo, pr_id)))
+
+if __name__ == "__main__":
+  arguments = docopt.docopt(__doc__)
+  read_configuration()
+
+  if arguments['set-status']:
+    set_pr_status(arguments['<repo>'], arguments['<pr_id>'], arguments['<status>'], arguments['<target_url>'], arguments['<description>'], arguments['<context>'])
+  elif arguments['get-status']:
+    if arguments['--global']:
+      print_pr_global_status(arguments['<repo>'], arguments['<pr_id>'])
+    elif arguments['--context']:
+      print_pr_status_context(arguments['<repo>'], arguments['<pr_id>'], arguments['--context'])
+    else:
+      print_pr_status(arguments['<repo>'], arguments['<pr_id>'])
+     
