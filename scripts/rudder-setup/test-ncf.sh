@@ -1,4 +1,4 @@
-TEST_DEPENDENCIES="curl lsb-release htop python-jinja2 git ntp"
+TEST_DEPENDENCIES="curl lsb-release htop python-jinja2 git ntp acl"
 SLES_DEPENDENCIES="curl lsb-release dos2unix git-core createrepo"
 
 test_ncf() {
