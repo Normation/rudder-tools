@@ -45,7 +45,7 @@ setup_ncf() {
   if echo "${CFENGINE_VERSION}" | grep "rudder" >/dev/null
   then
     # cfengine from Rudder
-    RUDDER_VERSION=$(echo "${CFENGINE_VERSION}" | cut -f 2 -d "-")
+    RUDDER_VERSION=$(echo "${CFENGINE_VERSION}" | cut -f2- -d "-")
     add_repo
     setup_agent || true # To allow failing inventories, when we have no server
     remove_repo

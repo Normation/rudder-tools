@@ -25,11 +25,7 @@ add_repo() {
 
   if [ "${USE_CI}" = "yes" ]
   then
-    if [ -z "$(echo "${RUDDER_VERSION}" | sed -e '/\..*\./d')" ]; then
-      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}-nightly"
-    else
-      $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
-    fi
+    $local URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
   else
     if [ "${USER}" = "" ]; then
       $local URL_BASE="http${S}://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
