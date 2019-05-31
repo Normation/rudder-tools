@@ -1,4 +1,5 @@
 #!/usr/bin/python
+""" Rudder inventory hook script to return information about known CPU vulnerabilities """
 
 import re
 import os
@@ -11,39 +12,47 @@ import sys
 # Details about (some) vulnerabilities
 # https://github.com/torvalds/linux/tree/master/Documentation/admin-guide/hw-vuln
 
-MITIGATED = re.compile("^Mitigation") 
+MITIGATED = re.compile("^Mitigation")
 VULNERABLE = re.compile("^Vulnerable")
 NOT_AFFECTED = re.compile("^Not affected")
 DETAILS = re.compile("(Mitigation|Vulnerable): (.*)$")
 
 VULN_DIR = "/sys/devices/system/cpu/vulnerabilities"
 
-output = {}
-output["cpu_vulnerabilities"] = {}
+def parse_vuln_status(raw_text):
+    """ Parses a CPU vulnerability entry """
+    info = {}
+    data = raw_text.rstrip()
+    if MITIGATED.match(data):
+        info["status"] = "mitigated"
+    elif VULNERABLE.match(data):
+        info["status"] = "vulnerable"
+    elif NOT_AFFECTED.match(data):
+        info["status"] = "not-affected"
+    else:
+        info["status"] = "unknown"
+    # Additionnal information
+    details = DETAILS.search(data)
+    if details:
+        info["details"] = details.group(2)
+    return info
 
-try:
-    vulns = os.listdir(VULN_DIR)
-except:
-    # Not supported on current kernel
-    exit(0)
+def list_vulns(vulns_dir):
+    """ Lists known vulnerabilities """
+    vulns = {}
+    try:
+        for vuln in os.listdir(vulns_dir):
+            vuln_file = open(os.path.join(vulns_dir, vuln), 'r')
+            data = vuln_file.read()
+            vulns[vuln] = parse_vuln_status(data)
+    except Exception as err:
+        print(err)
+        exit(1)
+    return vulns
 
-for vuln in vulns:
-    with open(os.path.join(VULN_DIR, vuln), 'r') as vuln_file:
-        info = {}
-        data = vuln_file.read()
-        data = data.rstrip()
-        if MITIGATED.match(data):
-            info["status"] = "mitigated"
-        elif VULNERABLE.match(data):
-            info["status"] = "vulnerable"
-        elif NOT_AFFECTED.match(data):
-            info["status"] = "not-affected"
-        else:
-            info["status"] = "unknown"
-        # Additionnal information
-        details = DETAILS.search(data)
-        if details:
-            info["details"] = details.group(2)
-        output["cpu_vulnerabilities"][vuln] = info
-
-json.dump(output, sys.stdout)
+if __name__ == "__main__":
+    # Add the property only if supported by kernel
+    if os.path.isdir(VULN_DIR):
+        PROPERTIES = {}
+        PROPERTIES["cpu_vulnerabilities"] = list_vulns(VULN_DIR)
+        json.dump(PROPERTIES, sys.stdout)

@@ -1,7 +1,9 @@
 = Inventory hooks library
 
-This folder contains example inventory extension hooks.
-Feel free to contribute yours!
+This folder contains example inventory extension hooks for Rudder.
+Feel free to contribute yours! Hooks can add information about anything
+and be implemented in any language (shell, python, perl, ...),
+as long as they can be useful for others.
 
 == Installation and usage
 
