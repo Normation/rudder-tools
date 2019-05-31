@@ -1,0 +1,41 @@
+= CPU vulnerabilities
+
+== Goal
+
+This inventory hook allows gathering information about known CPU vulnerabilities, using the interface provided
+by the Linux kernel, in `/sys/devices/system/cpu/vulnerabilities/` (syntax is documented
+https://github.com/torvalds/linux/blob/2f4c53349961c8ca480193e47da4d44fdb8335a8/Documentation/ABI/testing/sysfs-devices-system-cpu#L481[in the kernel]).
+
+Some vulnerabilities and their mitigation are documented in the https://github.com/torvalds/linux/tree/master/Documentation/admin-guide/hw-vuln[kernel admin guide].
+
+== Property
+
+This hook produced a property named `cpu_vulnerabilities` wich contains a list of locally known vulnerabilities.
+For each one, a `status` field indicates the current status, which can be `vulnerable`, `not-affected` or `mitigated`.
+
+If status is `mitigated`, the `details` field contains the applied mitigations.
+
+If status is `vulnerable`, the `details` field can contain more details about current vulnerability status (for example if
+a best effort mitigation is in place but microcode is yet missing an update).
+
+[source,json]
+----
+{
+  "cpu_vulnerabilities": {
+    "spectre_v2": {
+      "status": "vulnerable",
+      "details": "Retpoline without IBPB"
+    },
+    "spectre_v1": {
+      "status": "mitigated",
+      "details": "Load fences"
+    },
+    "meltdown": {
+      "status": "mitigated",
+      "details": "PTI"
+    }
+  }
+}
+----
+
+For example to select nodes known to be vulnerable to spectre v2, use the `cpu_vulnerabilities:$.spectre_v2[?(@.status=='vulnerable')]` JSON path query in group form.

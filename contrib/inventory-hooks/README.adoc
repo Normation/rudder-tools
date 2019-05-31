@@ -1,0 +1,12 @@
+= Inventory hooks library
+
+This folder contains example inventory extension hooks.
+Feel free to contribute yours!
+
+== Installation and usage
+
+To setup an inventory hook, follow the https://docs.rudder.io/reference/current/usage/advanced_node_management.html#extend-nodes-inventory[documentation in the manual].
+
+To create groups based on extended inventory properties, read about the different cases in
+https://docs.rudder.io/reference/5.0/usage/node_management.html#search-nodes-properties-json-path[the nodes porperties usage documentation].
+
