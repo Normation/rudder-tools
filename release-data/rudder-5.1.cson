@@ -72,11 +72,11 @@ tier1 = [
 packages = { 
              "agent-allinone": [ "rudder-agent" ],
              "relay":          [ "rudder-server-relay" ],
-             "server":         [ "rudder-ldap", "rudder-reports", "rudder-server-root", "rudder-webapp" ],
+             "server":         [ "rudder-reports", "rudder-server-root", "rudder-webapp" ],
            }
 
 # Packages that are architecture dependent (others are independent)
-arch-dependent-packages = [ "rudder-agent", "rudder-ldap", "rudder-server-relay" ]
+arch-dependent-packages = [ "rudder-agent", "rudder-webapp", "rudder-server-relay" ]
 
 # Internal components versions
 components = {
