@@ -21,9 +21,12 @@ use_syslog = True
 
 # Proportion of repaired, error and non-compliant reports
 # Betweeen 0 (no such reports) and 1 (only this type of reports)
-repair_proportion = 0.3
-error_proportion = 0.2
-non_compliant_proportion = 0.1
+repair_proportion = 0.05
+error_proportion = 0.02
+non_compliant_proportion = 0.01
+
+# Proportion of poping last report run (to interleave agents runs)
+last_run_frequency = 0.5
 
 import psycopg2
 import json
@@ -41,6 +44,8 @@ if use_syslog:
 
 nodes = {}
 
+# init the last runs object
+lastruns = {}
 
 def init_table():
   print("Creating table oldconfig to store old config id")
@@ -88,6 +93,8 @@ if len(sys.argv) > 1:
   else:
     usage()
   
+startTime = datetime.datetime.now()
+nbReports = 0
 
 cur.execute( "select nodeid, nodeconfigid, begindate, configuration from nodeconfigurations where enddate is null;")
 
@@ -131,6 +138,8 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                         else:
                             status = 'audit_compliant'
 
+                    nbReports += 1
+
                     if use_syslog:
                       syslog_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something'
                       syslog.syslog(syslog.LOG_INFO, syslog_string)
@@ -140,17 +149,42 @@ for nodeid, config, begindate, configuration in cur.fetchall():
 
         # specific report for end of run
         if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
-          if use_syslog:
-            syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + nodeconfigid + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#End execution'
-            syslog.syslog(syslog.LOG_INFO, syslog_string)
-          else:
-            write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, 'run', 'rudder',  '0', 'end', nodeconfigid, reportDate, 'control', '', 'End execution'))
-            #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
-            myConnection.commit()
-            write.close()
+          lastruns[nodeid] = [nodeconfigid, reportDate, nodeid]
+          # add a wait between each agent run
+          sleep(0.070)
+
+    # send end run
+    randomValue = random.random()
+    if (randomValue > (1 - last_run_frequency)):
+      ending = lastruns.popitem()[1]
+      if use_syslog:
+         syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
+         syslog.syslog(syslog.LOG_INFO, syslog_string)
+      else:
+         write = myConnection.cursor()
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
+       #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
+         myConnection.commit()
+         write.close()
+
+# finally, send all remaining endruns
+lastruns[nodeid] = [nodeconfigid, reportDate, nodeid]
+for ending in lastruns.values():
+      if use_syslog:
+         syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
+         syslog.syslog(syslog.LOG_INFO, syslog_string)
+      else:
+         write = myConnection.cursor()
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
+       #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
+         myConnection.commit()
+         write.close()
 
 
 cur.close()
 myConnection.close()
 if use_syslog:
   syslog.closelog()
+
+duration = datetime.datetime.now() - startTime
+print('Sent ', nbReports, ' reports in ', duration, ', finished at', datetime.datetime.now())
