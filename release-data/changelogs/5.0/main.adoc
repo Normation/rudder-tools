@@ -128,9 +128,26 @@ SLES 10-11, Ubuntu 10.04 LTS-12.04 LTS-13.04-15.10, Windows Server 2008R2-2016, 
 Read more about supported operating systems 
 https://docs.rudder.io/reference/5.0/installation/operating_systems.html[in the documentation].
 
-== Known issues in Rudder 5.0.0 to 5.0.2
+== Known issues in Rudder
 
-=== Communication between agents built with 1.1.0 vs. 1.0.x openssl versions
+=== Communication between Rudder server 5.0 and agents 4.3 and older
+
+We have found a communication problem between some versions of rudder
+agent and server due to a bug in OpenSSL library.
+
+The problem occurs when a client using OpenSSL prior to 1.0.2 tries to
+communicate with a server using OpenSSL 1.1.0 or later.
+
+This means that a Rudder agent 4.3 or older on a debian 8, ubuntu 14,
+rhel 6, rhel 7.3 or older, or sles 12SP3 or older cannot communicate
+with Rudder server 5.0 or later.
+
+To work around this problem, you can upgrade the agent in 5.0 first
+since they are compatible with a 4.3 server.
+
+=== Communication between agents 5.0.0 to 5.0.2 and other built with 1.1.0 vs. 1.0.x openssl versions
+
+This is the same problem as above but for differents versions.
 
 We have found a communication problem between some versions of rudder
 agent and server due to a bug in OpenSSL library.
