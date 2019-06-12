@@ -1287,7 +1287,7 @@ def fixup(comment=None):
 
   # Message on PR if there is one
   if 'pr' in issue and issue['pr'] != '':
-    update_pr(issue['pr'], "Commit modified", comment)
+    update_pr(issue['pr'], "PR updated with a new commit", comment)
     print("Done, you can see the PR here: " + issue['pr']) 
   else:
     print("No PR found.")
