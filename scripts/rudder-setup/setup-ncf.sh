@@ -26,7 +26,7 @@ setup_ncf() {
   fi
 
   ${PM_INSTALL} git || ${PM_INSTALL} git-core
-  ${PM_INSTALL} make
+  ${PM_INSTALL} make curl
 
   if [ $TESTINFRA -eq 1 ];
   then
