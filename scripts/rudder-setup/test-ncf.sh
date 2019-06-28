@@ -1,5 +1,5 @@
 TEST_DEPENDENCIES="curl lsb-release htop python-jinja2 git ntp acl"
-SLES_DEPENDENCIES="curl lsb-release dos2unix git-core createrepo createrepo_c"
+SLES_DEPENDENCIES="curl lsb-release dos2unix git-core createrepo createrepo_c acl"
 
 test_ncf() {
     cd "${directory}"
