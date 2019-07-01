@@ -17,27 +17,8 @@ get_cfengine_url() {
 
 setup_ncf() {
 
-  # Install dependencies
-  ${PM_UPDATE}
-  if [ ${OS_NAME} = "CentOS" ];
-  then
-    ${PM_INSTALL} curl libcurl nss
-    ${PM_UPGRADE} curl libcurl nss
-  fi
-
-  ${PM_INSTALL} git || ${PM_INSTALL} git-core
-  ${PM_INSTALL} make curl
-
-  if [ $TESTINFRA -eq 1 ];
-  then
-    # install pip
-    ${PM_INSTALL} python
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python get-pip.py
-    pip install -U six || /bin/true
-    pip install -U testinfra --ignore-installed six
-  fi
-
+  # install dependencies
+  install_test_dependencies
 
   # setup cfengine
 
@@ -59,7 +40,6 @@ setup_ncf() {
   fi
 
   # setup ncf
-
   if echo "${NCF_VERSION}" | grep "^[0-9.\\-]*$" > /dev/null
   then
     # TODO ncf package from repo
@@ -78,12 +58,20 @@ setup_ncf() {
     ${PM_INSTALL} ncf
     remove_repo
   else
-  ## ncf from git
-    git_url=$(echo "${NCF_VERSION}" | cut -f 1 -d "#")
-    git_branch=$(echo "${NCF_VERSION}" | cut -f 2 -d "#")
-    [ -z "${git_branch}" ] && git_branch=master
     directory=$(mktemp -d)
-    git clone -q -b "${git_branch}" "${git_url}" "${directory}"
+
+    ## NCF from local source
+    if [ -d "${NCF_VERSION}" ]
+    then
+      echo "Installing ncf from local source: ${NCF_SOURCE}" 
+      cp -r ${NCF_VERSION}/* ${directory}
+    ## NCF from git
+    else
+      git_url=$(echo "${NCF_VERSION}" | cut -f 1 -d "#")
+      git_branch=$(echo "${NCF_VERSION}" | cut -f 2 -d "#")
+      [ -z "${git_branch}" ] && git_branch=master
+      git clone -q -b "${git_branch}" "${git_url}" "${directory}"
+    fi
 
     cd "${directory}"
     # avoid making doc
