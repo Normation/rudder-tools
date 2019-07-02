@@ -57,7 +57,7 @@ detect_os() {
   elif exists zypper
   then
     PM="zypper"
-    PM_INSTALL="zypper --non-interactive --ignore-unknown install"
+    PM_INSTALL="zypper --non-interactive install"
     PM_UPDATE="zypper --non-interactive refresh"
     PM_UPGRADE="zypper --non-interactive update"
     PM_LOCAL_INSTALL="rpm -i"

@@ -14,7 +14,7 @@ install_test_dependencies() {
     SLES_DEPENDENCIES="dos2unix createrepo createrepo_c acl"
     # Install dependencies
     ${PM_UPDATE}
-    if [ ${OS_NAME} = "CentOS" ];
+    if [ "${OS_NAME}" = "CentOS" ];
     then
       ${PM_INSTALL} curl libcurl nss
       ${PM_UPGRADE} curl libcurl nss
@@ -25,13 +25,15 @@ install_test_dependencies() {
 
     # Install dependencies
     ${PM_UPDATE}
-    if [ ${OS_NAME} = "SuSE" ] || [ ${OS_COMPATIBLE} = "SLES" ];
+    DEPS=${TEST_DEPENDENCIES}
+    if [ "${OS_NAME}" = "SuSE" ] || [ "${OS_COMPATIBLE}" = "SLES" ];
     then
-      # assume that jinja2 is already installed (most likely by pip)
-      ${PM_INSTALL} ${SLES_DEPENDENCIES}
-    else
-      ${PM_INSTALL} ${TEST_DEPENDENCIES}
+      DEPS=${SLES_DEPENDENCIES}
     fi
+
+    for package in ${DEPS}; do
+      ${PM_INSTALL} ${package} || echo "Could not install ${package}"
+    done
 
     if [ $TESTINFRA -eq 1 ];
     then
