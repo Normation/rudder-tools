@@ -163,6 +163,200 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.12 (2019-07-08)
+
+=== Changes
+
+==== Packaging
+
+* Soften Rudder version requirements in dependencies of nightly builds to allow easier testing
+    (https://issues.rudder.io/issues/15079[#15079])
+* Better caching of already built binaries to speed-up builds
+    (https://issues.rudder.io/issues/14955[#14955])
+* Update CFEngine to 3.12.2
+    (https://issues.rudder.io/issues/14921[#14921])
+* Update embedded openssl version to 1.1.1b/1.0.2r
+    (https://issues.rudder.io/issues/14933[#14933])
+
+==== Documentation
+
+* Add a "Rudder by example" to add CPU vulnerabilities status to inventory
+    (https://issues.rudder.io/issues/15008[#15008])
+
+==== Architecture - Internal libs
+
+* Using move into non existing branch failed but delete the source
+    (https://issues.rudder.io/issues/3591[#3591])
+
+==== Web - UI & UX
+
+* Allow to filter by technique name or tag in when managing directives in rule details
+    (https://issues.rudder.io/issues/14803[#14803])
+
+==== Agent
+
+* Add support for rudder commands without subcommands
+    (https://issues.rudder.io/issues/14944[#14944])
+* Add disable date to rudder agent info
+    (https://issues.rudder.io/issues/14929[#14929])
+
+==== Web - Technique editor
+
+* Add visual indication to methods modified since last save
+    (https://issues.rudder.io/issues/14518[#14518])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Libraries sometime fail to load on AIX
+    (https://issues.rudder.io/issues/15133[#15133])
+* Fixed: Error after upgrade from 4.1 to 5.0 on RPM because slapd is not restarted: apiAuthorizationKind: attribute type undefined
+    (https://issues.rudder.io/issues/15120[#15120])
+* Fixed:  Rudder agent fails to build on aix due to unkown cp option
+    (https://issues.rudder.io/issues/15088[#15088])
+* Fixed: Rudder agent fails to build on rhel6 due to missing zlib and bzip2 build dependencies
+    (https://issues.rudder.io/issues/15086[#15086])
+* Fixed: The sourcedir parameter in dh_install needs to be lowercase for debian 10 compatibility
+    (https://issues.rudder.io/issues/15013[#15013])
+* Fixed: Disable shebang mangling in rhel8 to keep generic python shebangs
+    (https://issues.rudder.io/issues/14958[#14958])
+
+==== Performance and scalability
+
+* Fixed: Allow overriding gc options for the webapp JVM to better deal with high volumes
+    (https://issues.rudder.io/issues/15075[#15075])
+* Fixed: Error at the end of a policy generation with too many nodes 
+    (https://issues.rudder.io/issues/15011[#15011])
+* Fixed: Rule changes SQL request and data structure use too much memory 
+    (https://issues.rudder.io/issues/15042[#15042])
+* Fixed: Compute change hook need to be on a dedicated threadpool
+    (https://issues.rudder.io/issues/15096[#15096])
+* Fixed: Hooks need to run on an dedicated thread pool
+    (https://issues.rudder.io/issues/15095[#15095])
+* Fixed: Add switch to disable some compliance and change tracking features for performance
+    (https://issues.rudder.io/issues/15073[#15073])
+* Fixed: Allow only catching up with recent runs in agent report processing batch
+    (https://issues.rudder.io/issues/15062[#15062])
+* Fixed: Make the size of the LDAP connection pool configurable
+    (https://issues.rudder.io/issues/15060[#15060])
+* Fixed: The computation of changes by rules, at start of web interface, is quite slow 
+    (https://issues.rudder.io/issues/15041[#15041])
+* Fixed: Avoid fetching nodeconfigurations twice when when runs processed
+    (https://issues.rudder.io/issues/15035[#15035])
+* Fixed: Deleted node should be periodically fully erased in LDAP (after some ttl)
+    (https://issues.rudder.io/issues/9609[#9609])
+* Fixed: Missing timing logs in ldap queries (especially for dynamic groups) 
+    (https://issues.rudder.io/issues/14922[#14922])
+* Fixed: Improve rsyslog performance by simplifying parsing of reports
+    (https://issues.rudder.io/issues/15028[#15028])
+
+==== Security
+
+* Fixed: Arbitrary command execution in rudder relay API due to missing parameter sanitization
+    (https://issues.rudder.io/issues/14974[#14974])
+
+==== Documentation
+
+* Fixed: Update backup and restore documentation 
+    (https://issues.rudder.io/issues/15033[#15033])
+* Fixed: Update backup and restore documentation 
+    (https://issues.rudder.io/issues/15033[#15033])
+* Fixed: Specify that we need more cpu cores  for Rudder server when managing a lot of nodes 
+    (https://issues.rudder.io/issues/14940[#14940])
+* Fixed: Add a note in the file content methods' docs to indicate they only work in full compliance mode
+    (https://issues.rudder.io/issues/15090[#15090])
+
+==== Web - UI & UX
+
+* Fixed: Missing "disabled"  status information in rules table
+    (https://issues.rudder.io/issues/15101[#15101])
+* Fixed: Menu items can overflow menu width
+    (https://issues.rudder.io/issues/15106[#15106])
+* Fixed: Loading animation on 404 page is broken
+    (https://issues.rudder.io/issues/15105[#15105])
+* Fixed: Make node properties editable on the GUI
+    (https://issues.rudder.io/issues/10612[#10612])
+* Fixed: Font in "recent changes" tooltip on rules page is too big
+    (https://issues.rudder.io/issues/14562[#14562])
+* Fixed: Rule table search filter is broken after creating or deleting a rule
+    (https://issues.rudder.io/issues/15070[#15070])
+* Fixed: Start generation date in status is incorrect (it should not be page load date)
+    (https://issues.rudder.io/issues/14941[#14941])
+* Fixed: Group clone popup does not refresh group list, does not close, and an error when clicking a second time on clone
+    (https://issues.rudder.io/issues/15039[#15039])
+* Fixed: Webapp tries to load a missing angularjs map file
+    (https://issues.rudder.io/issues/14935[#14935])
+
+==== Web - Config management
+
+* Fixed: Clicking on a group in rule configuration does not lead to the group
+    (https://issues.rudder.io/issues/15099[#15099])
+* Fixed: Generation fails with "Task FutureTask rejected from ThreadPoolExecutor" due to timeout in JS computation
+    (https://issues.rudder.io/issues/14465[#14465])
+* Fixed: Generation wronly warns with"non stable policy on node" when the same directive is used in two rules
+    (https://issues.rudder.io/issues/15022[#15022])
+
+==== Web - Compliance & node report
+
+* Fixed: Directive with at least 3 times the same parameterized generic method leads to missing reports
+    (https://issues.rudder.io/issues/15007[#15007])
+
+==== System integration
+
+* Fixed: rudder.auth.admin.password appears in clear text in the logs 
+    (https://issues.rudder.io/issues/14946[#14946])
+
+==== API
+
+* Fixed: Missing rule name in compliance API
+    (https://issues.rudder.io/issues/14241[#14241])
+
+==== Techniques
+
+* Fixed: Use umask defined in /etc/login.defs in Technique "SSH authorized keys"  for creating missing home dir 
+    (https://issues.rudder.io/issues/14916[#14916])
+* Fixed: Unexpected reports in Variable from JSON file(dict) when the json file is not present
+    (https://issues.rudder.io/issues/14605[#14605])
+* Fixed: File download technique generates error report on permissions 
+    (https://issues.rudder.io/issues/14992[#14992])
+
+==== Agent
+
+* Fixed: Agent should trim policy_server.dat content 
+    (https://issues.rudder.io/issues/14930[#14930])
+
+==== Generic methods
+
+* Fixed: We should test sles and suse classes in ncf tests  
+    (https://issues.rudder.io/issues/15110[#15110])
+* Fixed: Style test fails because it parses .pyc files 
+    (https://issues.rudder.io/issues/15061[#15061])
+* Fixed: Syntax error in file_report_content tests on 4.3
+    (https://issues.rudder.io/issues/15053[#15053])
+* Fixed: Normal ordering is not respected in some policies in 4.3 
+    (https://issues.rudder.io/issues/15051[#15051])
+
+==== Generic methods - File Management
+
+* Fixed: permissions_acl_*_absent generic methods report success if no acls binaries are found on the system 
+    (https://issues.rudder.io/issues/15121[#15121])
+* Fixed: On sles15 there is no games user nor games group and we are using it in some acl tests   
+    (https://issues.rudder.io/issues/15112[#15112])
+
+==== Generic methods - Package Management
+
+* Fixed: Improve package management error reporting to suggest avoiding virtual packages
+    (https://issues.rudder.io/issues/14582[#14582])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Janos Mattyasovszky
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.11 (2019-05-21)
 
 === Changes
