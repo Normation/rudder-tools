@@ -1,0 +1,241 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: "this template creates a rudder infrastructure in AWS cloud into Ubuntu image 18.04"
+
+Parameters:
+  
+  AvailabilityZone:
+    Description: The region whose instances will be turning 
+    Type : "AWS::EC2::AvailabilityZone::Name"
+    Default: "eu-west-1a"    
+
+  KeyName:
+    Description: "Name of an existing EC2 key pair for SSH access to the EC2 instance"
+    Type: "AWS::EC2::KeyPair::KeyName"
+
+  InstanceType:
+    Description: "EC2 instance type"
+    Type: "String"
+    Default: "t2.small"
+    AllowedValues:
+    - t1.micro
+    - t2.nano
+    - t2.micro
+    - t2.small
+    - t2.medium
+    - t2.large
+    - m1.small
+    - m1.medium
+    - m1.large
+    - m1.xlarge
+    - m2.xlarge
+    - m2.2xlarge
+    - m2.4xlarge
+    - m3.medium
+    - m3.large
+    - m3.xlarge
+    - m3.2xlarge
+    - m4.large
+    - m4.xlarge
+    - m4.2xlarge
+    - m4.4xlarge
+    - m4.10xlarge
+    - c1.medium
+    - c1.xlarge
+    - c3.large
+    - c3.xlarge
+    - c3.2xlarge
+    - c3.4xlarge
+    - c3.8xlarge
+    - c4.large
+    - c4.xlarge
+    - c4.2xlarge
+    - c4.4xlarge
+    - c4.8xlarge
+    - g2.2xlarge
+    - g2.8xlarge
+    - r3.large
+    - r3.xlarge
+    - r3.2xlarge
+    - r3.4xlarge
+    - r3.8xlarge
+    - i2.xlarge
+    - i2.2xlarge
+    - i2.4xlarge
+    - i2.8xlarge
+    - d2.xlarge
+    - d2.2xlarge
+    - d2.4xlarge
+    - d2.8xlarge
+    - hi1.4xlarge
+    - hs1.8xlarge
+    - cr1.8xlarge
+    - cc2.8xlarge
+    - cg1.4xlarge
+    ConstraintDescription: must be a valid EC2 instance type.
+
+Resources:
+  # This resource instructs CloudFormation to create a VPC resource.
+  VPC:
+    Type: "AWS::EC2::VPC"
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: "true"  
+  
+  # This resource instructs CloudFormation to create a Subnet resource and associate this subnet to availability zone.
+
+  PublicSubnet1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: !Ref AvailabilityZone
+      CidrBlock: 10.0.1.0/24
+      VpcId: !Ref VPC
+
+  PrivateSubnet1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: !Ref AvailabilityZone
+      CidrBlock: 10.0.2.0/24
+      VpcId: !Ref VPC
+
+  # Our VPC will be able to interact with the public internet, we need to connect VPC to the internet.
+  InternetGateway:
+    Type: "AWS::EC2::InternetGateway"
+  AttachInternetGateway:
+    Type: "AWS::EC2::VPCGatewayAttachment"
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+ 
+  # Route table must be associated with a VPC.
+  PublicRouteTable:
+    Type: "AWS::EC2::RouteTable"
+    Properties:
+      VpcId: !Ref VPC
+  
+  # This resource describes an entry in the route table. The entry is associated with the public route table and routes any internet-bound traffic to the internet gateway.
+  PublicRoute:
+    Type: 'AWS::EC2::Route'
+    DependsOn: AttachInternetGateway
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  PublicSubnet1RouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref PublicSubnet1
+      RouteTableId: !Ref PublicRouteTable
+     
+  NatGateway:
+    Type: "AWS::EC2::NatGateway"
+    DependsOn: NatPublicIP
+    Properties:
+      AllocationId: !GetAtt NatPublicIP.AllocationId
+      SubnetId: !Ref PublicSubnet1
+     
+  NatPublicIP:
+    Type: "AWS::EC2::EIP"
+    DependsOn: VPC
+    Properties:
+      Domain: vpc
+     
+  PrivateRouteTable:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref VPC
+          
+      
+  PrivateRoute:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGateway
+     
+  PrivateSubnet1RouteTableAssociation:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref PrivateSubnet1
+      RouteTableId: !Ref PrivateRouteTable
+     
+
+  SecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: TestSG
+      GroupDescription: Test security group
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        CidrIp: 0.0.0.0/0
+        FromPort: 0
+        IpProtocol: tcp
+        ToPort: 65535
+      SecurityGroupEgress:
+        CidrIp: 0.0.0.0/0
+        FromPort: 0
+        IpProtocol: tcp
+        ToPort: 65535
+
+
+  RudderServer:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      AvailabilityZone: !Ref AvailabilityZone
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          sudo wget https://repository.rudder.io/tools/rudder-setup
+          sudo chmod +x rudder-setup
+          sudo ./rudder-setup setup-server latest
+          sudo wget https://github.com/Normation/rudder-tools/blob/master/contrib/inventory-hooks/aws.py
+          sudo mkdir /var/rudder/hooks.d
+          sudo cp aws.py /var/rudder/hooks.d
+          sudo chmod +x aws.py
+          sudo chown root:root aws.py
+          sudo rudder agent inventory 
+      
+      ImageId: ami-08d658f84a6d84a80
+      KeyName: !Ref KeyName
+      InstanceType: !Ref InstanceType
+      NetworkInterfaces:
+        - GroupSet:
+            - !Ref SecurityGroup
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: !Ref PublicSubnet1
+      
+
+  RudderAgent:
+    Type: "AWS::EC2::Instance"
+    DependsOn: RudderServer
+    Properties:
+      AvailabilityZone: !Ref AvailabilityZone
+      UserData:
+        Fn::Base64: !Sub
+          - |
+            #!/bin/bash
+            sudo wget https://repository.rudder.io/tools/rudder-setup
+            sudo chmod +x rudder-setup
+            sudo ./rudder-setup setup-agent latest ${ipaddress}
+            sudo wget https://github.com/Normation/rudder-tools/blob/master/contrib/inventory-hooks/aws.py
+            sudo mkdir /var/rudder/hooks.d
+            sudo cp aws.py /var/rudder/hooks.d
+            sudo chmod +x aws.py
+            sudo chown root:root aws.py
+            sudo rudder agent inventory 
+          - { ipaddress: !GetAtt RudderServer.PrivateIp }
+
+      ImageId: ami-08d658f84a6d84a80
+      KeyName: !Ref KeyName
+      InstanceType: t2.micro
+      NetworkInterfaces:
+        - GroupSet:
+            - !Ref SecurityGroup
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: !Ref PublicSubnet1
+
+
