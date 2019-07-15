@@ -1,6 +1,6 @@
 # Rudder server via terraform
 
-Terraform module which creates EC2 instance(s) on AWS to deploy Rudder 5.0 infrastructure.
+Terraform module which creates EC2 instances on AWS to deploy Rudder 5.0 infrastructure.
 
 Synposis
 ~~~~~~~~
@@ -9,7 +9,7 @@ Synposis
 and AWS credentials.
  
 
-* This example creates AWS VPC resources, making a VPC in eu-west region ans crefate also subnet in 
+* This example creates AWS VPC resources, making a VPC in eu-west region ans create also subnet in 
 VPC. You have possibility to create a set of subnets in differents availability zones.
 
 NOTE: Region : container module for all of the network resources within a region. This is instantiated once per region.
@@ -24,7 +24,7 @@ Terraform, find the appropriate package "https://www.terraform.io/downloads.html
 == Usage
 * To initialize a working directory containing terraform configuration file. This is the first command that should be run.
 
-NOTE: Make sure that tou are in terraform scripts directory
+NOTE: Make sure that you are in terraform scripts directory.
 
 ----
 terraform init
