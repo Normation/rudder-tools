@@ -1,0 +1,64 @@
+= Openscap report
+
+The openscap is a ecosystem that provides several tools to assist admnistrators and auditors with assessment, measurement, and enforcement of security baselines. The openscap allows to use different profiles aligned with different standards such as PCI-DSS.
+
+== Goal
+
+Rudder integrates openscap technique to expressing and manipulating security data for Rudder nodes in order to continious monitoring, vulnerabilty management, and reporting the results of securiry compliance scans. 
+
+== Openscap technique Property
+
+=== Implementation
+
+The implementation of this technique will install the necessary openscap package by generic methods . This will install oscap server/client needed to run the scan as well the security content. 
+
+=== Technique parameters
+
+To implement this technique. There are two main arguments to pass in parameters:
+
+==== SCAP content
+
+
+To see security policies available in the SCAP security guide. For each platform, there are several profiles which provide security policies implemented according to security baselines. You can find this information located on your system at:
+
+----
+/usr/share/xml/scap/ssg/content/
+----
+
+SCAP content refers to document in the XCCDF, OVAL and Source DataStream formats. These documents can be presented in different forms and by different organizations to meet their security automation and technical implementation needs. You can see the following url, this project is to create security policy content for various platforms (Red Hat Enterprise Linux, Fedora, Ubuntu, Debian, ... -- as well as products -- Firefox, Chromium, JRE, ... ). Our aim is to make it as easy as possible to write new and maintain existing security content in all the commonly used formats.
+
+----
+https://github.com/ComplianceAsCode/content
+----
+
+==== Profile
+
+To see the different profiles that can be executed, you can run the following command to output information for your operating system.
+ 
+----
+oscap info /usr/share/xml/scap/ssg/content/$SCAPContent
+----
+
+Once you are selecting the both parameters, openscap technique runs the scan by executing the following command by generic methods. this command will output an html report to /tmp/report.html, and this report allows you to visully see the findings, the scan takes time to complete.
+
+----
+oscap xccdf eval --profile $profile --report /tmp/report.html /usr/share/xml/scap/ssg/content/$SCAPContent
+----
+
+Sending this report to node server it's by "Sharedfile to node" generic method. 
+
+NOTE: you can add a shedule Simple Stateless a generic method which allows you the periodic command execution.
+
+== Report display 
+
+Rudder implement plugin called "Node external reports" which allows to add external, static documents and reports in a new tab in node details. This plugin is configured with a configuration file. To see more information, this plugin is documented: 
+
+https://docs.rudder.io/reference/5.0/plugins/node-external-reports.html#_documents_naming_convention
+
+
+
+
+
+
+
+

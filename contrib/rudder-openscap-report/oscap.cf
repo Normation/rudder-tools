@@ -1,0 +1,17 @@
+# @name oscap
+# @description 
+# @version 1.0
+
+bundle agent oscap
+{
+  methods:
+    "Package present_context_0" usebundle => _method_reporting_context("Package present", "openscap-scanner scap-security-guide");
+    "Package present" usebundle => package_present("openscap-scanner scap-security-guide", "", "", ""),
+      ifvarclass => concat("any");
+    "run scan Openscap_context_1" usebundle => _method_reporting_context("run scan Openscap", "sudo oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_stig-rhel7-disa --report /tmp/report.html /usr/share/xml/scap/ssg/content/ssg-centos7-ds.xml");
+    "run scan Openscap" usebundle => command_execution_result("sudo oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_stig-rhel7-disa --report /tmp/report.html /usr/share/xml/scap/ssg/content/ssg-centos7-ds.xml", "0,2", "254"),
+      ifvarclass => concat("any");
+    "send report to server_context_2" usebundle => _method_reporting_context("send report to server", "report.html");
+    "send report to server" usebundle => sharedfile_to_node("root", "report.html", "/tmp/report.html", "1d"),
+      ifvarclass => concat("any");
+}
