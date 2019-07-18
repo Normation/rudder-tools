@@ -1,0 +1,48 @@
+# Rudder server via CloudFormation
+
+AWS CloudFormation allows us to implement "Infrastructure as Code" in AWS environnement to deploy Rudder 5.0 infrastructure as a "stack" of "resources" in one step.
+
+Synposis
+~~~~~~~~
+
+* This file contains environnement specific configuration like region name, CIDR blocks.
+ 
+* This template creates AWS VPC resources, making a VPC in eu-west region ans create also subnets in VPC. You have possibility to create a set of subnets in differents availability zones.
+NOTE: Region : container module for all of the network resources within a region. This is instantiated once per region.
+
+NOTE: Subnet : presents a subnet within a given availability zone. This is instantiated twice per region, using the first availability zone supported within the target AWS account.
+
+== Installation 
+
+* You may be able to follow along as an IAM user in an AWS account, however you must have permissions to create VPCs, subnets, route tables, EC2 instances, etc.  
+
+== Usage
+
+* CloudFormation supports JSON or YAML files, This follow template are edited with YAML format.
+
+NOTE: Make sure that you have the boileplate for any CloudFormation template: 
+
+----
+AWSTemplateFormatVersion: 2010-09-09
+----
+
+== Running the template
+
+=== From the AWS Management Console 
+
+* From a browser open the CloudFormation AWS Management Console. Once in, click "Create Stack". Select the option to upload template, and hit next. When your stack is running, take a look at the "Events". the events will show you when your resources id being created, and when it was successfully created.
+
+=== From the CLI 
+
+* If you have the AWS CLI installed, and if you have already configured it with your access key and secret key, you can run this command: 
+
+----
+aws cloudformation create-stack --template-body file://config.yml --stack-name rudder-instance --parameters ParameterKey=KeyName,ParameterValue=" YOUR PUBKEY " ParameterKey=InstanceType,ParameterValue="YOUR INSTANCE-TYPE"
+----
+
+== Instance metadata
+
+* Instance metadata is data about your instance that you can use to configure or manage the running instance. Instance metadata is divided into categories. 
+ 
+NOTE: the instance metadata will be present into rudder interface in properties of node. 
+
