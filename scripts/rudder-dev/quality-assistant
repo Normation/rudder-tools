@@ -161,7 +161,7 @@ def repo_merge(repo, alt_dir, jobid):
     if not approved:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
         print("Reassigning unapproved PR: " + pr_info['html_url'])
-      reassign(pr, Config.DISCUSSION_CODE)
+      reassign(pr)
     # Merge approved PR outside of freeze period
     elif not freeze:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
@@ -171,7 +171,7 @@ def repo_merge(repo, alt_dir, jobid):
       print("We are in freeze period, skipping PR: " + pr_info['html_url'])
 
 
-def reassign(pr, status):
+def reassign(pr):
   for title in  pr.commits_titles():
     # find issue matching PR title
     match=re.match(r'^Fixes #(\d+)', title)
@@ -191,7 +191,6 @@ def reassign(pr, status):
         if issue['assigned_to_id'] != uid:
           if Config.LOGLEVEL == "debug":
             print("Found previous owner, reassigning " + pr.url + " to redmine user " + str(uid))
-          issue.to_status(status, uid)
         return
  
 def kant_merge():
@@ -240,7 +239,7 @@ After this, you can remove the """ + Config.BOT_CANNOT_MERGE_LABEL + """ ta
     pr.comment(comment)
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    reassign(pr, Config.DISCUSSION_CODE)
+    reassign(pr)
   elif code != 0:
     # PR must be manually merged
     comment="""This PR is not mergeable to upper versions.
@@ -252,7 +251,7 @@ Since it is "Ready for merge" you must merge it by yourself using the following 
       comment += " (" + str(jobid) + ")"
     pr.comment(comment)
     pr.label(Config.BOT_CANNOT_MERGE_LABEL)
-    reassign(pr, Config.PENDING_MERGE_CODE)
+    reassign(pr)
   else:
     # PR can be automatically merged
     shell(command + redirect, "Automatically merging PR " + url)
