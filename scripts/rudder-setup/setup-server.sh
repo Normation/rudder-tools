@@ -50,11 +50,12 @@ setup_server() {
     grep -q JAVA_OPTIONS /opt/rudder/etc/rudder-jetty.conf || echo "JAVA_OPTIONS='-Duser.timezone=Europe/Paris'" >> /opt/rudder/etc/rudder-jetty.conf
   fi
 
-  # Initialize Rudder
-  echo -n "Running rudder-init..."
-  /opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
-  echo "Done."
-
+  if is_version_valid "${RUDDER_VERSION}" "[* 5.0]"; then
+    # Initialize Rudder
+    echo -n "Running rudder-init..."
+    /opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
+    echo "Done."
+  fi
 }
 
 upgrade_server() {
