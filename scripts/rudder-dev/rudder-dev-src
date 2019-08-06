@@ -492,9 +492,10 @@ def update_nrm_users(project_id):
       id = user['user']['id']
       user_data = requests.get(Config.REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
       user_detail = user_data.json()['user']
-      if 'mail' in user_detail and user_detail['mail'].endswith("normation.com"):
-        trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
-        users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
+      if 'mail' in user_detail:
+        if user_detail['mail'].endswith("normation.com") or user_detail['mail'].endswith("rudder.io"):
+          trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
+          users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
   set_cache_info(Config.REDMINE_API_URL, users)
   return users
 
