@@ -493,6 +493,7 @@ def update_nrm_users(project_id):
       user_data = requests.get(Config.REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
       user_detail = user_data.json()['user']
       if 'mail' in user_detail:
+        # accept both normation.com and rudder.io adresses
         if user_detail['mail'].endswith("normation.com") or user_detail['mail'].endswith("rudder.io"):
           trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
           users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
