@@ -1,0 +1,23 @@
+# @name ansible configuration
+# @description This technique install and deploy a ansible configuration for Rudder nodes and send a report to rudder interface.
+# @version 1.0
+# @parameter {"id": "75446b85-a317-4398-85e8-80eb1cd4021c", "name": "PathPlaybookServer", "constraints": {"allow_whitespace_string": false, "allow_empty_string": false, "max_length": 16384}}
+# @parameter {"id": "dd26d25f-4315-41e6-9387-8df289710de4", "name": "PathPlaybookAgent", "constraints": {"allow_whitespace_string": false, "allow_empty_string": false, "max_length": 16384}}
+
+bundle agent ansible(PathPlaybookServer, PathPlaybookAgent)
+{
+  methods:
+    "Package present_context_0" usebundle => _method_reporting_context("Package present", "ansible");
+    "Package present" usebundle => package_present("ansible", "", "", ""),
+      ifvarclass => concat("any");
+    "File copy from Rudder shared folder_context_1" usebundle => _method_reporting_context("File copy from Rudder shared folder", "${PathPlaybookAgent}");
+    "File copy from Rudder shared folder" usebundle => file_from_shared_folder("${PathPlaybookServer}", "${PathPlaybookAgent}", "sha256"),
+      ifvarclass => concat("any");
+    "Command execution result_context_2" usebundle => _method_reporting_context("Command execution result", "ansible-playbook ${PathPlaybookAgent}/playbook2.yml | tee /var/rudder/tmp/ansible-output.${this.promiser_pid} | grep \"changed\"");
+    "Command execution result" usebundle => command_execution_result("ansible-playbook ${PathPlaybookAgent}/playbook2.yml | tee /var/rudder/tmp/ansible-output.${this.promiser_pid} | grep \"changed\"", "0", "1"),
+      ifvarclass => concat("any");
+    "File report content_context_3" usebundle => _method_reporting_context("File report content", "/var/rudder/tmp/ansible-output");
+    "File report content" usebundle => file_report_content("/var/rudder/tmp/ansible-output", "", ""),
+      ifvarclass => concat("any");
+}
+~      
