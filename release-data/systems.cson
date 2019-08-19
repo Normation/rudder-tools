@@ -1,7 +1,7 @@
 # List operating systems properties
 
 debian = { 
-  aliases = [ "armbian" ]
+  aliases = [ ]
   package-format = "dpkg"
   name = "Debian"
   codenames = {
@@ -9,8 +9,24 @@ debian = {
     "6": "squeeze",
     "7": "wheezy",
     "8": "jessie",
-    "9": "stretch"
-    "10": "buster"
+    "9": "stretch",
+    "10": "buster",
+    "11": "bullseye"
+  }
+}
+
+armbian = { 
+  aliases = [ ]
+  package-format = "dpkg"
+  name = "Armbian"
+  codenames = {
+    "5": "lenny",
+    "6": "squeeze",
+    "7": "wheezy",
+    "8": "jessie",
+    "9": "stretch",
+    "10": "buster",
+    "11": "bullseye"
   }
 }
 
