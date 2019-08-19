@@ -13,6 +13,9 @@ lts = true
 
 # Supported architecture for each distribution
 architectures = { 
+                  "armbian-8":      [ "armhf" ],
+                  "armbian-9":      [ "armhf" ],
+                  "armbian-10":     [ "armhf" ],
                   "debian-6":       [ "i386", "amd64" ],
                   "debian-7":       [ "i386", "amd64" ],
                   "debian-8":       [ "i386", "amd64" ],

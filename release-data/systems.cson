@@ -1,7 +1,7 @@
 # List operating systems properties
 
 debian = { 
-  aliases = [ ]
+  aliases = [ "armbian" ]
   package-format = "dpkg"
   name = "Debian"
   codenames = {
