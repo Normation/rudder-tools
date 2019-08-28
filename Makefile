@@ -1,5 +1,5 @@
 # List all single files that must be published here
-PUBLISH := scripts/rudder-dev/rudder-dev scripts/rudder-setup/rudder-setup scripts/rudder-setup/ncf-setup scripts/technique-files
+PUBLISH := scripts/rudder-dev/rudder-dev scripts/rudder-setup/rudder-setup scripts/rudder-setup/ncf-setup scripts/technique-files contrib/inventory-hooks/aws.py
 
 # This target will be called when we want to build everything
 all: $(PUBLISH)
@@ -13,6 +13,8 @@ scripts/rudder-setup/rudder-setup:
 
 scripts/rudder-setup/ncf-setup:
 	cd scripts/rudder-setup && $(MAKE) ncf-setup
+
+contrib/inventory-hooks/aws.py:
 
 clean:
 	rm $(PUBLISH)
