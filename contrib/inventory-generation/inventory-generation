@@ -1,0 +1,289 @@
+#!/bin/bash
+# @description Generate inventories for Rudder
+# @man This command allows to generate the data to create inventories
+# @man and to use these data to create inventories
+
+# @man +
+# @man *Options*:
+# @man +
+# @man *-d --data*: generate the given number of data for inventories
+# @man +
+# @man *-g --generate*: generate inventories from the data
+# @man +
+# @man *-w --wipe*: wipe all the generated data
+# @man +
+# @man *-t --template*: use the given template for inventory generation
+# @man +
+# @man *-p --path*: use the given path to for the data generated
+
+set -e
+
+DATA=false
+NUMBER=0
+GENERATE=false
+WIPE=false
+TEMPLATE=tml.ocs
+DEST_PATH=data
+
+DEST_INVENTORIES=inventories
+DEST_INVENTORIES_TMP=inventories_tmp
+
+# Private key passphrase
+PASSPHRASE="Cfengine passphrase"
+
+# detect if any option has been passed to the script
+ANY_OPTION_DEFINED=false
+
+HASH=sha512
+
+#Definining list of inventory (short & long)
+DEF_LONG_OS_NAME=("Microsoft Windows Server 2019 Standard" "Debian GNU/Linux 9.1 (stretch)" "Debian GNU/Linux 9.2 (stretch)" "Debian GNU/Linux 8.6 (Jessie)" "CentOS Linux release 7.6.1810 (Core)" "CentOS Linux release 7.4.1810 (Core)" "CentOS Linux release 6.10 (Final)")
+DEF_SHORT_OS_NAME=(Windows Debian Debian Debian Centos Centos Centos)
+
+MAX_SOFT_VERSION=100
+
+# Output usage
+function usage()
+{
+  echo "todo"
+}
+
+
+# Ensure that all numbers of an IP is smaller than 254
+function validate_ip {
+
+  if [ ${IP4} -gt 254 ]
+  then
+    IP4=1
+    IP3=$((IP3+1))
+  fi
+
+  if [ ${IP3} -gt 254 ]
+  then
+    IP3=1
+    IP2=$((IP2+1))
+  fi
+
+  if [ ${IP2} -gt 254 ]
+  then
+    IP2=1
+    IP1=$((IP1+1))
+  fi
+
+}
+
+
+# Generate data in DEST_PATH, one folder per node, named by its uuid
+function generate_data {
+
+  mkdir ${DEST_PATH}
+  IP1=192
+  IP2=168
+  IP3=111
+  IP4=1
+
+  for (( i=1; i<=${NUMBER}; i++ ))
+  do
+    UUID=$(uuidgen)
+
+    mkdir ${DEST_PATH}/${UUID} || true
+  
+    openssl genrsa -des3 -out ${DEST_PATH}/${UUID}/localhost.priv -passout "pass:${PASSPHRASE}" 4096
+    openssl rsa -in ${DEST_PATH}/${UUID}/localhost.priv -passin "pass:${PASSPHRASE}" -RSAPublicKey_out -out ${DEST_PATH}/${UUID}/localhost.pub
+
+
+    openssl req -new -sha256 -key ${DEST_PATH}/${UUID}/localhost.priv -out ${DEST_PATH}/${UUID}/agent.cert -passin "pass:${PASSPHRASE}" -x509 -days 3650 -extensions agent_cert -config openssl-agent.cnf -subj "/UID=${UUID}"
+
+    echo "RUDDER_TEST_${i}" > ${DEST_PATH}/${UUID}/hostname
+
+
+    IP4=$((IP4+1))
+    validate_ip
+
+    echo "${UUID}" > ${DEST_PATH}/${UUID}/uuid
+ 
+    echo "${IP1}.${IP2}.${IP3}.${IP4}" > ${DEST_PATH}/${UUID}/ip
+
+    echo "d0:ab:d5:e5:90:e8" > ${DEST_PATH}/${UUID}/mac
+
+    echo "CentOS" > ${DEST_PATH}/${UUID}/osname
+
+    echo "CentOS release 6.6 (Final)" > ${DEST_PATH}/${UUID}/fullosname
+
+    echo "5.1.0-beta" >  ${DEST_PATH}/${UUID}/agent_version
+  done
+
+
+}
+
+function create_inventory {
+  mkdir ${DEST_INVENTORIES} || true
+  mkdir ${DEST_INVENTORIES_TMP} || true
+
+  echo "Creating inventories based on the folders in ${DEST_PATH}"
+
+  # compute numer of OSs
+  os_list_size=${#DEF_LONG_OS_NAME[@]}
+  echo $os_list_size
+
+  # List all data 
+  for d in ${DEST_PATH}/*; do
+    if [ -d "$d" ]; then
+
+      # File path in the rudder utilities format (for better maintenance)
+      CERT=$d/agent.cert
+      PRIVKEY=$d/localhost.priv
+      PUBKEY=$d/localhost.pub
+
+      # read variables    
+      UUID=$(<$d/uuid)
+      IP=$(<$d/ip)
+      MAC=$(<$d/mac)
+      OS_NAME=$(<$d/osname)
+      FULL_OS_NAME=$(<$d/fullosname)
+      AGENT_VERSION=$(<$d/agent_version)
+      RUDDER_HOSTNAME=$(<$d/hostname)
+
+      PUBLIC_KEY=$(<$d/localhost.pub)
+      AGENT_CERT=$(<$CERT)
+      #Random value
+      RAND_OS_VAL=$((RANDOM%$os_list_size))
+      RAND_OS_NAME=${DEF_SHORT_OS_NAME[$RAND_OS_VAL]}
+      RAND_FULL_OS_NAME=${DEF_LONG_OS_NAME[$RAND_OS_VAL]}     
+
+      RAND_SOFT_VERSION=$(($RANDOM%$MAX_SOFT_VERSION))
+
+      FILENAME=${RUDDER_HOSTNAME}-${UUID}.ocs
+
+      FILE=${DEST_INVENTORIES}/${FILENAME}
+      READY_FILE=${DEST_INVENTORIES}/${FILENAME}.gz
+
+      # replace values in template and create temp file
+      eval "cat <<EOF
+$(<template/RUDDER-Template.ocs) 
+EOF" > ${FILE}
+
+      # sign it
+      SIGNATURE=`openssl dgst -passin "pass:${PASSPHRASE}" -${HASH} -hex -sign "${PRIVKEY}" < "${FILE}" | sed -e 's/.*= //'`
+
+      # Private key modification date
+      KEYDATE=`stat -c %y ${PRIVKEY}`
+
+      # Public key identifier (last 4 bytes of the modulus)
+      KEYID=`openssl rsa -passin "pass:${PASSPHRASE}" -in "${PRIVKEY}" -noout -modulus | sed 's/.*\(........\)$/\1/'`
+
+      cat > "${FILE}.sign" <<EOF
+header=rudder-signature-v1
+algorithm=${HASH}
+digest=${SIGNATURE}
+hostname=${HOSTNAME}
+keydate=${KEYDATE}
+keyid=${KEYID}
+EOF
+ 
+     # Compress inventories
+     gzip -fq ${FILE}
+    fi
+  done
+
+  # Finally, cleaning all temporary data
+  #rm -rf ${DEST_INVENTORY_TMP}
+  echo "Done!"
+
+}
+function wipe {
+  echo "Wipping folder ${DEST_PATH}"
+  echo "Type ctrl-c to abort now and return to continue."
+  read a
+ 
+  rm -rf ${DEST_PATH}
+}
+
+
+# Defines available options
+OPTIONS=d:gwt:p:
+LONGOPTS=data:,generate,wipe,template:,path:
+
+# Use ! to avoid failing with set -e
+# Use $PIPESTATUS to get the right return code even with !
+! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+
+
+
+if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+    # Wrong arguments 
+    echo "Wrong parameters for command inventory-generation"
+    usage
+    exit 1
+fi
+
+
+eval set -- "$PARSED"
+
+
+while true; do
+  case "$1" in
+    -d|--data)
+      NUMBER="$2"
+      DATA=true
+      ANY_OPTION_DEFINED=true
+      shift 2
+      ;;
+
+    -g |--generate)
+      GENERATE=true
+      ANY_OPTION_DEFINED=true
+      shift
+      ;;
+    -w |--wipe)
+      WIPE=true
+      ANY_OPTION_DEFINED=true
+      shift
+      ;;
+    -t |--template)
+      TEMPLATE="$2"
+      ANY_OPTION_DEFINED=true
+      shift
+      ;;
+    -p |--path)
+      DEST_PATH="$2"
+      ANY_OPTION_DEFINED=true
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Programming error - option not correctly handled"
+      exit 2
+      ;;
+  esac
+done
+
+# No option given, need to show usage
+if [ "${ANY_OPTION_DEFINED}" = "false" ]
+then
+  usage
+  exit 1
+fi
+
+
+# Wipe existing data ?
+if [ "${WIPE}" = "true" ]
+then
+  wipe
+fi
+
+# Generate the data
+if [ "${DATA}" = "true" ]
+then
+  generate_data
+fi
+
+
+# Generate the data
+if [ "${GENERATE}" = "true" ]
+then
+  create_inventory
+fi
