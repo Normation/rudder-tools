@@ -1,9 +1,9 @@
 # Release data file
 
-release = "5.1"
+release = "5.2"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "beta"
+release-status = "alpha"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
@@ -70,7 +70,7 @@ roles = {
 # tier 1 are systems that must not fail during a release (community supported or subscription paid)
 # tier 2 are systems that are built but may fail to release
 tier1 = [
-          "debian-8", "debian-9", "debian-10",
+          "debian-9", "debian-10",
           "ubuntu-13.04", "ubuntu-14.04", "ubuntu-15.10", "ubuntu-16.04", "ubuntu-18.04",
           "rhel-6", "rhel-7", "rhel-8",
           "sles-11", "sles-12", "sles-15",
@@ -97,5 +97,5 @@ components = {
 compatible-agents = [ "4.3", "5.0", "5.1", "5.2" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "4.3", "5.0", "5.1" ]
+supported-upgrade = [ "5.0", "5.1", "5.2" ]
 
