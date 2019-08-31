@@ -8,6 +8,12 @@
 
 from __future__ import print_function
 
+import sys, os
+
+# Get path from script
+path_name = os.path.dirname(sys.argv[0])        
+report_path = path_name + "/reports/"
+
 ## Configuration part
 # Access to the database
 hostname = 'localhost'
@@ -17,10 +23,8 @@ database = 'rudder'
 port_database = 5432
 
 # Use syslog rather than database
-use_syslog = True
-
-# Select change only mode or full compliance - change only sends only non success reports
-mode_full_compliance = True
+use_syslog = False
+use_https  = True
 
 # Proportion of repaired, error and non-compliant reports
 # Betweeen 0 (no such reports) and 1 (only this type of reports)
@@ -34,7 +38,7 @@ last_run_frequency = 0.5
 sleep_between_run=0.050
 
 
-
+import os
 import psycopg2
 import json
 import random
@@ -117,6 +121,16 @@ for nodeid, config, begindate, configuration in cur.fetchall():
     d = json.loads(configuration)
     #d = configuration
 
+    # Open the file if using HTTPS
+    if use_https:
+      try:
+        os.mkdir(report_path+nodeid)
+      except OSError, e:
+        if e.errno != os.errno.EEXIST:
+            raise
+      formatted_date = reportDate.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+      report_file = open(report_path+nodeid+"/" + formatted_date + "@" + nodeid + ".log", "w")
+
     for rules in d['rules']:
         # We commit rule per rule, as in real world, reports are added one by one
         write = myConnection.cursor()
@@ -147,13 +161,16 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                             status = 'audit_compliant'
 
                     nbReports += 1
-                    if full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
-                      if use_syslog:
-                        syslog_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something'
-                        syslog.syslog(syslog.LOG_INFO, syslog_string)
-                      else:
-                        write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
-                      #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
+                    report_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
+                    if use_https:
+                      report_file.write(report_string)
+
+                    if use_syslog:
+                      syslog.syslog(syslog.LOG_INFO, report_string)
+
+                    if (not use_syslog and not use_https):
+                      write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
+                    #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
 
         # specific report for end of run
         if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
@@ -161,19 +178,27 @@ for nodeid, config, begindate, configuration in cur.fetchall():
           # add a wait between each agent run
           sleep(sleep_between_run)
 
-    # send end run
-    randomValue = random.random()
-    if (randomValue > (1 - last_run_frequency)):
+    if (use_https):
+      # always send last message with rest in https
       ending = lastruns.popitem()[1]
-      if use_syslog:
-         syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
-         syslog.syslog(syslog.LOG_INFO, syslog_string)
-      else:
-         write = myConnection.cursor()
-         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
+      report_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution\n'
+      report_file.write(report_string)
+      report_file.close()
+
+    else:
+      # send end run
+      randomValue = random.random()
+      if (randomValue > (1 - last_run_frequency)):
+        ending = lastruns.popitem()[1]
+        if use_syslog:
+           syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
+           syslog.syslog(syslog.LOG_INFO, syslog_string)
+        else:
+           write = myConnection.cursor()
+           write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
        #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
-         myConnection.commit()
-         write.close()
+           myConnection.commit()
+           write.close()
 
 # finally, send all remaining endruns
 lastruns[nodeid] = [nodeconfigid, reportDate, nodeid]
