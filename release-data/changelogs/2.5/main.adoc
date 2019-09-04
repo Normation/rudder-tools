@@ -12,8 +12,8 @@ Documentation to
 http://www.rudder-project.org/rudder-doc-2.5/rudder-doc.html#_install_rudder_server[Install]
 and
 http://www.rudder-project.org/rudder-doc-2.5/rudder-doc.html#_upgrade_rudder[Upgrade]
-is available online. The link:../../Download/WebHome[Download] page sums
-up URLs. We also recommend using the
+is available online.
+We also recommend using the
 https://github.com/normation/rudder-vagrant/[Rudder Vagrant config] if
 you want a quick and easy way to get an installation for testing.
 
@@ -515,8 +515,7 @@ the !OpenSSH server Technique
 ==== Documentation
 
 * Document best practices for Techniques development on Rudder Project
-wiki (https://issues.rudder.io/issues/3105[#3105]) =>
-(link:bin.view.Development.TechniqueBestPractices[TechniqueBestPractices]
+wiki (https://issues.rudder.io/issues/3105[#3105])
 
 ==== Inventory (webapp, Fusion)
 

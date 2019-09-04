@@ -1327,10 +1327,6 @@ success.
 
 === Changes
 
-It is impossible to list every change here (check out the
-link:../../../redmine/projects/rudder/roadmap?completed=1[Redmine
-roadmap] for that), but here is an overview of the major changes:
-
 * Core concepts renamed for clarity – Configuration Rules, Policy
 Instances and Policy Templates are now Rules, Directives and Techniques
 * REST API
