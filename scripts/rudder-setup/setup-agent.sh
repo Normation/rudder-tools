@@ -38,9 +38,15 @@ setup_agent() {
     $local fields="`echo "${RUDDER_VERSION}" | tr . ' ' | wc -w`"
     if [ "${fields}" -eq 2 ]
     then
-      RUDDER_VERSION=`get - "https://www.rudder-project.org/release-info/rudder/versions/${RUDDER_VERSION}/next"`
+      if echo "${RUDDER_VERSION}" | grep nightly > /dev/null
+      then
+        file=`get - "${URL_BASE}/ppc/" | sed -n '/href="rudder-agent/s/.*href="\(.*\)">rudder.*/\1/p' | tail -n 1`
+      else
+        RUDDER_VERSION=`get - "https://www.rudder-project.org/release-info/rudder/versions/${RUDDER_VERSION}/next"`
+        file="rudder-agent-${RUDDER_VERSION}.release-1.AIX.5.3.aix5.3.ppc.rpm"
+      fi
     fi
-    ${PM_INSTALL} "${URL_BASE}/ppc/rudder-agent-${RUDDER_VERSION}.release-1.AIX.5.3.aix5.3.ppc.rpm"
+    ${PM_INSTALL} "${URL_BASE}/ppc/${file}"
   else
     # Install
     ${PM_INSTALL} rudder-agent
