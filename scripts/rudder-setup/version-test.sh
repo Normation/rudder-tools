@@ -25,8 +25,8 @@ component_cmp() {
   $local version_component="$1"
   $local operator="$2"
   $local spec_component="$3"
-  $local alpha_version=`echo -n "${version_component}" | grep "[^0-9]" || true`
-  $local alpha_spec=`echo -n "${spec_component}" | grep "[^0-9]" || true`
+  $local alpha_version="`echo -n "${version_component}" | grep "[^0-9]" || true`"
+  $local alpha_spec="`echo -n "${spec_component}" | grep "[^0-9]" || true`"
   if [ -z "${spec_component}" ] # no spec -> match
   then
     echo "yes"
@@ -79,13 +79,13 @@ version_cmp() {
   # Iterate over components and stop on first component not matching
   for i in 1 2 3 4 5 6 7 8 9 # maximum 9 components
   do
-    $local version_component=`get_component "${version}" "${i}"`
-    $local spec_component=`get_component "${spec}" "${i}"`
+    $local version_component="`get_component "${version}" "${i}"`"
+    $local spec_component="`get_component "${spec}" "${i}"`"
 
     # if we have a spec component, test against the matching one in version
     if [ -n "${spec_component}" ]
     then
-      cmp=`component_cmp "${version_component}" "${operator}" "${spec_component}"`
+      cmp="`component_cmp "${version_component}" "${operator}" "${spec_component}"`"
       if [ "${cmp}" = "yes" ]
       then
         return 0 # match
@@ -123,7 +123,7 @@ is_version_valid() {
 # test function for component specification
 test_component() {
   $local retval="$1"
-  $local ret=`component_cmp "$2" "$3" "$4"`
+  $local ret="`component_cmp "$2" "$3" "$4"`"
   if [ "${ret}" = "${retval}" ]
   then
     echo "$2 $3 $4 = $1 -> PASS" 
@@ -228,7 +228,7 @@ rudder_compatibility_check() {
 }
 
 rudder_real_version() {
-  $local version=`echo "$1" | tr '[A-Z]' '[a-z]'`
+  $local version="`echo "$1" | tr '[A-Z]' '[a-z]'`"
   if [ "${version}" = "lts" ] || [ "${version}" = "latest" ]
   then
     get - "https://www.rudder-project.org/release-info/rudder/versions/${version}"
