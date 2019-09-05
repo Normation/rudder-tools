@@ -35,7 +35,7 @@ add_repo() {
     fi
   fi
 
-  if [ "${PM}" = "yum" ]
+  if [ "${PM}" = "yum" ] || [ "${PM}" = "rpm" ]
   then
     URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
   elif [ "${PM}" = "zypper" ]
@@ -80,6 +80,10 @@ EOF
     zypper removerepo Rudder || true
     zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}/" Rudder || true
     zypper --non-interactive refresh
+    return 0
+  elif [ "${PM}" = "rpm" ]
+  then
+    # No repo management, install directly
     return 0
   elif [ "${PM}" = "pkg" ]
   then

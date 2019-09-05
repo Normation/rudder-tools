@@ -95,9 +95,9 @@ service_cmd() {
     cmd="$2"
     shift 2
     if [ "${cmd}" = "start" ]; then
-      startsrc "${name}"
+      startsrc -s "${name}"
     elif [ "${cmd}" = "stop" ];then
-      stopsrc "${name}"
+      stopsrc -s "${name}"
     else
       echo "Don't know how to manage service $@"
     fi

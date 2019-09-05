@@ -110,8 +110,8 @@ version_cmp() {
 is_version_valid() {
   $local version_isok="$1"
   $local specification="$2"
-  $local v1=`echo "${specification}" | sed 's/[][]//g' | cut -d' ' -f1`
-  $local v2=`echo "${specification}" | sed 's/[][]//g' | cut -d' ' -f2`
+  $local v1="`echo "${specification}" | sed 's/[][]//g' | cut -d' ' -f1`"
+  $local v2="`echo "${specification}" | sed 's/[][]//g' | cut -d' ' -f2`"
   if [ -z "${v2}" ]
   then
     version_cmp "${version_isok}" "-eq" "${v1}"

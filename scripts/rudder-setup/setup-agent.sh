@@ -12,6 +12,12 @@ setup_agent() {
     exit 4
   fi
 
+  if [ -n "${SERVER}" ]
+  then
+    mkdir -p /var/rudder/cfengine-community/
+    echo "${SERVER}" > /var/rudder/cfengine-community/policy_server.dat
+  fi
+
   # The version given is a file or a URL
   if [ -f "${RUDDER_VERSION}" ] || echo "${RUDDER_VERSION}" | grep "^http" > /dev/null || echo "${RUDDER_VERSION}" | grep "^ftp" > /dev/null
   then
@@ -28,14 +34,14 @@ setup_agent() {
       ${PM_LOCAL_INSTALL} "${RUDDER_VERSION}"
     fi
   # remote install without repository manager
-  elif [ "${PM}" = "rpm" ]
+  elif [ "${PM}" = "rpm" ] && [ "${OS_COMPATIBLE}" = "AIX" ]
   then
-    $local fields=`echo "${RUDDER_VERSION}" | tr . ' ' | wc -w`
+    $local fields="`echo "${RUDDER_VERSION}" | tr . ' ' | wc -w`"
     if [ "${fields}" -eq 2 ]
     then
       RUDDER_VERSION=`get - "https://www.rudder-project.org/release-info/rudder/versions/${RUDDER_VERSION}/next"`
     fi
-    ${PM_INSTALL} "${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}/ppc/rudder-agent-${RUDDER_VERSION}.release-1.AIX.5.3.aix5.3.ppc.rpm"
+    ${PM_INSTALL} "${URL_BASE}/ppc/rudder-agent-${RUDDER_VERSION}.release-1.AIX.5.3.aix5.3.ppc.rpm"
   else
     # Install
     ${PM_INSTALL} rudder-agent
@@ -47,19 +53,19 @@ setup_agent() {
   # TODO rhel5 only
   #${PM_INSTALL} pcre openssl db4-devel
 
-  if [ -n "${SERVER}" ]
+  if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"
   then
-    echo "${SERVER}" > /var/rudder/cfengine-community/policy_server.dat
-    if is_version_valid "${RUDDER_VERSION}" "[3.0 *]"
-    then
-      rudder agent run
-    else
-      cf-agent -K -D force_inventory -b doInventory
-    fi
+    rudder agent inventory
+  else
+    cf-agent -K -D force_inventory -b doInventory
   fi
 
-  service_cmd rudder-agent start
-
+  if is_version_valid "${RUDDER_VERSION}" "[4.1 *]"
+  then
+    rudder agent start
+  else
+    service_cmd rudder-agent start
+  fi
 }
 
 upgrade_agent() {
