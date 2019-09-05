@@ -2,16 +2,6 @@
 # Setup rudder server #
 #######################
 setup_server() {
-
-  if is_version_valid "${RUDDER_VERSION}" "[1.0 3.0]"; then
-    # Disable SELinux on Rudder server < 3.1
-    if [ -e /etc/sysconfig/selinux ]
-    then
-      setenforce 0 2>/dev/null
-      sed -i -e 's/^SELINUX=.*/SELINUX=disabled/' /etc/sysconfig/selinux
-    fi
-  fi
-
   # Install via package manager only
   if [ -z "${PM}" ]
   then
@@ -59,7 +49,6 @@ setup_server() {
 }
 
 upgrade_server() {
-
   # Upgrade via package manager only
   if [ -z "${PM}" ]
   then
@@ -76,11 +65,9 @@ upgrade_server() {
   fi
 
   service_cmd rudder-jetty restart
-
 }
 
 upgrade_techniques() {
-
   cd /var/rudder/configuration-repository && cp -a /opt/rudder/share/techniques/* techniques/
 
   git add -u techniques
@@ -89,5 +76,4 @@ upgrade_techniques() {
 
   curl -s -f -k "https://localhost/rudder/api/techniqueLibrary/reload"
   echo ""
-
 }
