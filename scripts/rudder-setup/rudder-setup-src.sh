@@ -20,7 +20,7 @@ usage() {
   echo "       latest:         the latest stable version"
   echo ""
   echo "  Environment variables"
-  echo "    USE_HTTPS=true        use https in repository source (default false)"
+  echo "    USE_HTTPS=true        use https in repository source (default true)"
   echo "    DOWNLOAD_USER=...     download from private repository with this user"
   echo "    DOWNLOAD_PASSWORD=... use this password for private repository"
   exit 1

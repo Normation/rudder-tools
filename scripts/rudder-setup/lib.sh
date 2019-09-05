@@ -1,11 +1,11 @@
 # use local or typeset to define a local variable
 setlocal() {
-  if eval local x=1 2>/dev/null
-  then
-    local="local"
-  elif eval typeset x=1 2>/dev/null
+  if eval typeset x=1 2>/dev/null
   then
     local="typeset"
+  elif eval local x=1 2>/dev/null
+  then
+    local="local"
   else
     # unsupported
     return 1
@@ -29,10 +29,7 @@ re_exec()
 
 # return true if the command exists
 exists() {
-  if sh -c "hash '$1'" >/dev/null 2>/dev/null
-  then
-    return 0
-  elif type  "$1" >/dev/null 2>/dev/null
+  if type  "$1" >/dev/null 2>/dev/null
   then
     return 0
   else
@@ -65,8 +62,14 @@ get() {
   if type curl >/dev/null 2>/dev/null
   then
     ${CURL} "$@"
-  else
+  elif type wget >/dev/null 2>/dev/null
+  then
     ${WGET} "$@"
+  elif [ "$1" = "-" ]
+  then
+    perl -MLWP::UserAgent -e '$r=LWP::UserAgent->new()->get(shift);if($r->is_success()){print $r->content()}else{exit 1}' "$2"
+  else
+    perl -MLWP::UserAgent -e '$r=LWP::UserAgent->new()->get(shift);if($r->is_success()){print $r->content()}else{exit 1}' "$2" > "$1"
   fi
 }
 
@@ -77,14 +80,28 @@ service_cmd() {
     name="$1"
     shift
     "/etc/init.d/${name}" "$@"
-  elif type systemctl >/dev/null 2>/dev/null
+  elif exists systemctl
   then
     name="$1"
-    shift
-    cmd="$1"
-    shift
+    cmd="$2"
+    shift 2
     systemctl "${cmd}" "${name}" "$@"
-  else
+  elif exists service
+  then
     service "$@"
+  elif exists startsrc
+  then
+    name="$1"
+    cmd="$2"
+    shift 2
+    if [ "${cmd}" = "start" ]; then
+      startsrc "${name}"
+    elif [ "${cmd}" = "stop" ];then
+      stopsrc "${name}"
+    else
+      echo "Don't know how to manage service $@"
+    fi
+  else
+    echo "Don't know how to manage service $@"
   fi
 }

@@ -27,6 +27,15 @@ setup_agent() {
     else
       ${PM_LOCAL_INSTALL} "${RUDDER_VERSION}"
     fi
+  # remote install without repository manager
+  elif [ "${PM}" = "rpm" ]
+  then
+    $local fields=`echo "${RUDDER_VERSION}" | tr . ' ' | wc -w`
+    if [ "${fields}" -eq 2 ]
+    then
+      RUDDER_VERSION=`get - "https://www.rudder-project.org/release-info/rudder/versions/${RUDDER_VERSION}/next"`
+    fi
+    ${PM_INSTALL} "${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}/ppc/rudder-agent-${RUDDER_VERSION}.release-1.AIX.5.3.aix5.3.ppc.rpm"
   else
     # Install
     ${PM_INSTALL} rudder-agent
