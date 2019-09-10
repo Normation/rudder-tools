@@ -23,6 +23,7 @@ usage() {
   echo "    USE_HTTPS=true        use https in repository source (default true)"
   echo "    DOWNLOAD_USER=...     download from private repository with this user"
   echo "    DOWNLOAD_PASSWORD=... use this password for private repository"
+  echo "    DEV_MODE=true         permit external access to server and databases (default false)"
   exit 1
 }
 # GOTO bottom for main()

@@ -24,6 +24,9 @@ setup_server() {
     else
       $local ALLOWEDNETWORK='127.0.0.1/24'
     fi
+  elif [ "${DEV_MODE}" = "true" ]
+  then
+    $local ALLOWEDNETWORK='192.168.0.0/16'
   fi
 
   # Install rudder-server-root
@@ -46,6 +49,8 @@ setup_server() {
     /opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
     echo "Done."
   fi
+
+  [ "${DEV_MODE}" = "true" ] && setup_dev_mode
 }
 
 upgrade_server() {
@@ -76,4 +81,51 @@ upgrade_techniques() {
 
   curl -s -f -k "https://localhost/rudder/api/techniqueLibrary/reload"
   echo ""
+}
+
+setup_dev_mode() {
+  # Permit LDAP access from outside
+  [ -f /opt/rudder/etc/rudder-slapd.conf ] && sed -i "s/^IP=.*$/IP=*/" /opt/rudder/etc/rudder-slapd.conf
+  [ -f /opt/rudder/etc/rudder-slapd.conf ] && sed -i "s/^#IP=.*$/IP=*/" /etc/default/rudder-slapd
+  if [ -f /usr/lib/systemd/system/rudder-slapd.service ]; then
+  then
+    mkdir -p /etc/systemd/system/rudder-slapd.service.d
+    cat > /etc/systemd/system/rudder-slapd.service.d/override.conf <<EOF
+[Service]
+ExecStart=/opt/rudder/libexec/slapd -n rudder-slapd -u rudder-slapd -f /opt/rudder/etc/openldap/slapd.conf -h "ldap://0.0.0.0:389/"
+EOF
+  fi
+  service_cmd rudder-slapd restart
+  
+  # Permit PostgreSQL access from outside
+  PG_HBA_FILE=$(su - postgres -c "psql -t -P format=unaligned -c 'show hba_file';")
+  if [ $? -ne 0 ]; then
+    echo "Postgresql failed to start! Halting"
+    exit 1
+  fi
+  
+  PG_CONF_FILE=$(su - postgres -c "psql -t -P format=unaligned -c 'show config_file';")
+  if [ $? -ne 0 ]; then
+    echo "Postgresql failed to start! Halting"
+    exit 1
+  fi
+  
+  echo "listen_addresses = '*'" >> ${PG_CONF_FILE}
+  echo "host    all         all         192.168.0.0/16    trust" >> ${PG_HBA_FILE}
+  echo "host    all         all         10.0.0.0/16       trust" >> ${PG_HBA_FILE}
+
+  POSTGRESQL_SERVICE_NAME=$(systemctl list-unit-files --type service | awk -F'.' '{print $1}' | grep -E "^postgresql-?[0-9]*$" | tail -n 1)
+  if [ -z "${POSTGRESQL_SERVICE_NAME}" ]; then
+    POSTGRESQL_SERVICE_NAME="postgresql"
+  fi
+  service_cmd ${POSTGRESQL_SERVICE_NAME} restart
+
+
+  if [ -e /opt/rudder/etc/rudder-passwords.conf ] ; then
+    sed -i "s/\(RUDDER_WEBDAV_PASSWORD:\).*/\1rudder/" /opt/rudder/etc/rudder-passwords.conf
+    sed -i "s/\(RUDDER_PSQL_PASSWORD:\).*/\1Normation/" /opt/rudder/etc/rudder-passwords.conf
+    sed -i "s/\(RUDDER_OPENLDAP_BIND_PASSWORD:\).*/\1secret/" /opt/rudder/etc/rudder-passwords.conf
+  fi
+  
+  rudder agent run
 }
