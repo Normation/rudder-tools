@@ -88,7 +88,6 @@ setup_dev_mode() {
   [ -f /opt/rudder/etc/rudder-slapd.conf ] && sed -i "s/^IP=.*$/IP=*/" /opt/rudder/etc/rudder-slapd.conf
   [ -f /opt/rudder/etc/rudder-slapd.conf ] && sed -i "s/^#IP=.*$/IP=*/" /etc/default/rudder-slapd
   if [ -f /usr/lib/systemd/system/rudder-slapd.service ]; then
-  then
     mkdir -p /etc/systemd/system/rudder-slapd.service.d
     cat > /etc/systemd/system/rudder-slapd.service.d/override.conf <<EOF
 [Service]
