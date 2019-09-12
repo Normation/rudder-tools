@@ -163,6 +163,237 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.13 (2019-09-12)
+
+=== Changes
+
+==== Documentation
+
+* Update list of supported OS
+    (https://issues.rudder.io/issues/15443[#15443])
+* Add a variable documentation page
+    (https://issues.rudder.io/issues/15115[#15115])
+
+==== Web - Config management
+
+* Allow to get informations from the node inventory to use them in Directives and ncf techniques
+    (https://issues.rudder.io/issues/3112[#3112])
+
+==== Generic methods
+
+* Add a GM to ensure that a kernel module is enable at boot
+    (https://issues.rudder.io/issues/15220[#15220])
+* Add a generic method to ensure that a kernel module is not loaded
+    (https://issues.rudder.io/issues/15222[#15222])
+* Add a generic method to ensure that a kernel module is not loaded
+    (https://issues.rudder.io/issues/15222[#15222])
+* Add a generic method to ensure that a kernel module is loaded
+    (https://issues.rudder.io/issues/15216[#15216])
+* Add a generic method to ensure that a kernel module is loaded
+    (https://issues.rudder.io/issues/15216[#15216])
+* Add a Generic Method to ensure that a kernel module modprobe configuration is correct
+    (https://issues.rudder.io/issues/15430[#15430])
+* Add automatic class_prefix and old_class_prefix for all methods in 30_generic_methods
+    (https://issues.rudder.io/issues/15161[#15161])
+* Improve and correct tests for command_execution GM
+    (https://issues.rudder.io/issues/15166[#15166])
+* Improve and correct tests for command_execution_result GM
+    (https://issues.rudder.io/issues/15179[#15179])
+* Improve and correct tests for condition_from_command.cf GM
+    (https://issues.rudder.io/issues/15184[#15184])
+* Extend variable_dict_from_file to allow reading yaml and csv files
+    (https://issues.rudder.io/issues/10142[#10142])
+* Extend variable_dict_from_file to allow reading yaml and csv files
+    (https://issues.rudder.io/issues/10142[#10142])
+* Add methods to define variables from osquery queries
+    (https://issues.rudder.io/issues/15155[#15155])
+
+==== Technique editor - UI/UX
+
+* Make the focus on the generic method we just added 
+    (https://issues.rudder.io/issues/15139[#15139])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Hooks content/permissions are changed during Rudder upgrade (for ex  /opt/rudder/etc/hooks.d/policy-generation-node-ready/10-cf-promise-check is replaced)
+    (https://issues.rudder.io/issues/10623[#10623])
+* Fixed: Perl dependency in the agent package is not in dependencies directory
+    (https://issues.rudder.io/issues/15662[#15662])
+* Fixed: Fixes to allow building the agent on Fedora 30
+    (https://issues.rudder.io/issues/15454[#15454])
+* Fixed: Add set -e in the qa-test of rudder-packages
+    (https://issues.rudder.io/issues/15250[#15250])
+* Fixed: qa test are failing in rudder-packages
+    (https://issues.rudder.io/issues/15256[#15256])
+* Fixed: qa tests in ncf does not fail if there is an error in the tests
+    (https://issues.rudder.io/issues/15248[#15248])
+
+==== Agent
+
+* Fixed: Uuid generation fails on AIX 7.2
+    (https://issues.rudder.io/issues/15586[#15586])
+* Fixed: Double logs when running the agent in "-r"
+    (https://issues.rudder.io/issues/15471[#15471])
+* Fixed: Rudder agent disable command has a -s option, that is not parsed
+    (https://issues.rudder.io/issues/15460[#15460])
+
+==== System integration
+
+* Fixed: Remove warning: "Nashorn engine is planned to be removed from a future JDK release " 
+    (https://issues.rudder.io/issues/14822[#14822])
+* Fixed: Autovacuum may never finish, or take more than one day, on busy Rudder instance, because of resources attrition
+    (https://issues.rudder.io/issues/15413[#15413])
+* Fixed: Clean-up Jetty abort on boot
+    (https://issues.rudder.io/issues/15387[#15387])
+
+==== Server components
+
+* Fixed: support-info script doesn't correctly detect jetty process with Rudder 4.3+
+    (https://issues.rudder.io/issues/13072[#13072])
+
+==== Documentation
+
+* Fixed: Correct archives procedure to include a 'technique reload'
+    (https://issues.rudder.io/issues/15180[#15180])
+* Fixed: Update link in readme to rudder.io
+    (https://issues.rudder.io/issues/15305[#15305])
+
+==== Performance and scalability
+
+* Fixed: Reduce number of Loggable class instance
+    (https://issues.rudder.io/issues/15665[#15665])
+* Fixed: Huge quantity of memory not released after generation
+    (https://issues.rudder.io/issues/15646[#15646])
+* Fixed: Missing logs on NodeCompliance archive/deletion
+    (https://issues.rudder.io/issues/15372[#15372])
+
+==== Relay server or API
+
+* Fixed: When creating a rule via the API the id parameter is only read from url parameters, and not from json
+    (https://issues.rudder.io/issues/15608[#15608])
+
+==== Web - UI & UX
+
+* Fixed: Tags are not properly set when changing only value field before new insertion
+    (https://issues.rudder.io/issues/15419[#15419])
+* Fixed: Filtering tags with more than one tag with same "key" did not return correct results
+    (https://issues.rudder.io/issues/15423[#15423])
+* Fixed: Navigation menu is broken when it is folded
+    (https://issues.rudder.io/issues/15328[#15328])
+* Fixed: When we have a branding header, an annoying scrollbar appears on the technique editor page
+    (https://issues.rudder.io/issues/15158[#15158])
+* Fixed: "node management" and "config policy" menus should always be open
+    (https://issues.rudder.io/issues/15203[#15203])
+* Fixed: Quicksearch bar is misplaced when branding plugin is enabled
+    (https://issues.rudder.io/issues/15165[#15165])
+
+==== Web - Config management
+
+* Fixed: Problem when updating a category name for Technique Management in /var/rudder
+    (https://issues.rudder.io/issues/2613[#2613])
+* Fixed: Avoid duplicating technique category when changing category name
+    (https://issues.rudder.io/issues/15575[#15575])
+
+==== Web - Maintenance
+
+* Fixed: If we filter event logs with only a start or end date, we get a super ugly error
+    (https://issues.rudder.io/issues/9445[#9445])
+
+==== Web - Nodes & inventories
+
+* Fixed: It is possible to download policies from any Windows node knowing its id by getting a forged inventory accepted 
+    (https://issues.rudder.io/issues/14866[#14866])
+
+==== Web - Compliance & node report
+
+* Fixed: Error when modifying a Directive when having the Change Request plugin
+    (https://issues.rudder.io/issues/15207[#15207])
+
+==== Miscellaneous
+
+* Fixed: Parameters of a directive are not correctly checked by change requests
+    (https://issues.rudder.io/issues/15187[#15187])
+
+==== Architecture - Dependencies
+
+* Fixed: Duplicate dependency "jsr305" in rudder-core/pom.xml
+    (https://issues.rudder.io/issues/14389[#14389])
+
+==== System techniques
+
+* Fixed: Wrong exclusion of folder in update.cf for common ncf
+    (https://issues.rudder.io/issues/15428[#15428])
+
+==== Techniques
+
+* Fixed: It's not possible to use $(match.o) anymore in directives/techniques 
+    (https://issues.rudder.io/issues/15029[#15029])
+* Fixed: Invalid detection of empty strings for edition in Techniques
+    (https://issues.rudder.io/issues/15167[#15167])
+* Fixed: Rudder directives posthook can not support multilines command execution
+    (https://issues.rudder.io/issues/15174[#15174])
+* Fixed: Multi-line command in post-modification hooks works incorrectly
+    (https://issues.rudder.io/issues/8933[#8933])
+* Fixed: Rudder technique User management 6.0 ends with status repaired if user's comment field contains a comma ","
+    (https://issues.rudder.io/issues/10156[#10156])
+* Fixed: User Management doesn't report when we request a change of user home directory and it fails to change its home
+    (https://issues.rudder.io/issues/15163[#15163])
+
+==== Technique editor - Techniques
+
+* Fixed: typo in "Variable dict from file'  method description
+    (https://issues.rudder.io/issues/15654[#15654])
+* Fixed: Reporting context is not re-evaluated when using multiple directives of the same technique
+    (https://issues.rudder.io/issues/15572[#15572])
+
+==== Technique editor - UI/UX
+
+* Fixed: Missing components when exporting technique from the technique editor
+    (https://issues.rudder.io/issues/15606[#15606])
+* Fixed: Technique Editor accept invalid character (-) in condition
+    (https://issues.rudder.io/issues/15504[#15504])
+
+==== Generic methods - Package Management
+
+* Fixed: Make zypper_pattern compatible with python2.6
+    (https://issues.rudder.io/issues/15524[#15524])
+* Fixed: zypper_pattern module does not work in python3
+    (https://issues.rudder.io/issues/15522[#15522])
+* Fixed: Fix zypper pattern module tests
+    (https://issues.rudder.io/issues/15457[#15457])
+* Fixed: package management reporting broken when trying to use latest version and absent state  
+    (https://issues.rudder.io/issues/15149[#15149])
+
+==== Generic methods
+
+* Fixed: broken command execution tests in 5.1
+    (https://issues.rudder.io/issues/15312[#15312])
+* Fixed: Improve and correct tests for condition_from_variable_existence GM
+    (https://issues.rudder.io/issues/15198[#15198])
+* Fixed: Improve and correct tests for condition_from_expression GM
+    (https://issues.rudder.io/issues/15197[#15197])
+* Fixed: Modify ncf tests bundles to better handle the dry run stack
+    (https://issues.rudder.io/issues/15192[#15192])
+* Fixed: Reformat some classes bodies in ncf_lib.ncf
+    (https://issues.rudder.io/issues/15169[#15169])
+* Fixed: Improve and correct tests for condition_from_variable_match GM
+    (https://issues.rudder.io/issues/15157[#15157])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Dmitry Svyatogorov
+* Nicolas PERRON
+* Ferenc Ulrich
+* Jean VILVER
+* Alexander Brunhirl
+* Ilan COSTA
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.12 (2019-07-08)
 
 === Changes
