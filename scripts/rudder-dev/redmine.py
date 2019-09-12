@@ -147,13 +147,14 @@ class Issue:
 
     # Get ticket's last assignment besides me
     my_id = self.server.get_redmine_uid()
-    if 'journals' in issue:
-      for journal in issue['journals']:
-        if 'details' in journal:
-          for detail in journal['details']:
-            if detail['name'] == 'assigned_to_id' and 'old_value' in detail and detail['old_value'] is not None and detail['old_value'] != '':
-              if int(detail['old_value']) != my_id:
-                info['last_assignee'] = int(detail['old_value'])
+    if my_id is not None:
+      if 'journals' in issue:
+        for journal in issue['journals']:
+          if 'details' in journal:
+            for detail in journal['details']:
+              if detail['name'] == 'assigned_to_id' and 'old_value' in detail and detail['old_value'] is not None and detail['old_value'] != '':
+                if int(detail['old_value']) != my_id:
+                  info['last_assignee'] = int(detail['old_value'])
 
     self.info = info
     return info
@@ -308,6 +309,8 @@ class Redmine:
     """ Return true if the current user can modify an issue in the given project """
     if self.can_modify is not None:
       return self.can_modify
+    if self.token is None or self.token == "":
+      return False
     user = self._query("/users/current.json?include=memberships").json()
     for membership in user['user']['memberships']:
       if membership['project']['id'] == project_id:
@@ -333,6 +336,8 @@ class Redmine:
 
   def get_redmine_uid(self):
     """ Get current redmine user """
+    if self.token is None or self.token == "":
+      return None
     user = self._query("/users/current.json")
     return user.json()['user']['id']
 
