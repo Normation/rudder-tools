@@ -119,7 +119,7 @@ EOF
   fi
   service_cmd ${POSTGRESQL_SERVICE_NAME} restart
 
-
+  # Replace passwords with easy ones
   if [ -e /opt/rudder/etc/rudder-passwords.conf ] ; then
     sed -i "s/\(RUDDER_WEBDAV_PASSWORD:\).*/\1rudder/" /opt/rudder/etc/rudder-passwords.conf
     sed -i "s/\(RUDDER_PSQL_PASSWORD:\).*/\1Normation/" /opt/rudder/etc/rudder-passwords.conf
@@ -127,4 +127,16 @@ EOF
   fi
   
   rudder agent run
+
+  # insert sample inventories
+  $local MAJOR_VERSION=$(echo "${RUDDER_VERSION}"| cut -d '-' -f 1 | cut -f 1-2 -d .)
+  cd /tmp
+  git clone --depth=1 git@github.com:Normation/rudder.git
+  git checkout branches/rudder/${MAJOR_VERSION}
+  cd rudder/rudder/webapp/sources/ldap-inventory/inventory-fusion/src/test/resources/fusion-report
+  for dir in $(find .  -maxdepth 1 -type d -name '[0-9]*')
+  do
+    cp ${dir}/* /var/rudder/inventories/incoming/
+  done
+  rm -rf /tmp/rudder
 }
