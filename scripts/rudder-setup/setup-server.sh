@@ -141,5 +141,6 @@ EOF
   do
     cp ${dir}/* /var/rudder/inventories/incoming/
   done
+  cd 
   rm -rf /tmp/rudder
 }
