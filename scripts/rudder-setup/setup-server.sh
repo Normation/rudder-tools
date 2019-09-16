@@ -132,8 +132,9 @@ EOF
   $local MAJOR_VERSION=$(echo "${RUDDER_VERSION}"| cut -d '-' -f 1 | cut -f 1-2 -d .)
   cd /tmp
   git clone --depth=1 git@github.com:Normation/rudder.git
+  cd rudder
   git checkout branches/rudder/${MAJOR_VERSION}
-  cd rudder/rudder/webapp/sources/ldap-inventory/inventory-fusion/src/test/resources/fusion-report
+  cd webapp/sources/ldap-inventory/inventory-fusion/src/test/resources/fusion-report
   for dir in $(find .  -maxdepth 1 -type d -name '[0-9]*')
   do
     cp ${dir}/* /var/rudder/inventories/incoming/
