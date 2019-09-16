@@ -51,6 +51,10 @@ setup_server() {
   fi
 
   [ "${DEV_MODE}" = "true" ] && setup_dev_mode
+
+  if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
+    rudder server health -w
+  fi
 }
 
 upgrade_server() {
@@ -79,7 +83,7 @@ upgrade_techniques() {
   git add techniques
   git commit -m "Technique upgrade to version ${RUDDER_VERSION}"
 
-  curl -s -f -k "https://localhost/rudder/api/techniqueLibrary/reload"
+  curl --silent --fail --insecure "https://localhost/rudder/api/techniqueLibrary/reload"
   echo ""
 }
 

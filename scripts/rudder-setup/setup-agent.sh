@@ -66,6 +66,10 @@ setup_agent() {
   else
     service_cmd rudder-agent start
   fi
+
+  if is_version_valid "${RUDDER_VERSION}" "[4.0 *]"; then
+    rudder agent health
+  fi
 }
 
 upgrade_agent() {
