@@ -1,6 +1,6 @@
-= Change logs for Rudder 5.1
+= Change logs for Rudder 6.0
 
-Rudder 5.1 is currently a development version of Rudder.
+Rudder 6.0 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
@@ -26,11 +26,11 @@ is no longer, the best suited.
 *Installing, upgrading and testing*
 
 * Install docs:
-** https://docs.rudder.io/reference/5.1/installation/server/debian.html[Debian/Ubuntu]
-** https://docs.rudder.io/reference/5.1/installation/server/rhel.html[RHEL/centOS]
-** https://docs.rudder.io/reference/5.1/installation/server/sles.html[SLES]
-* https://docs.rudder.io/reference/5.1/installation/upgrade.html[Upgrade docs]
-* https://docs.rudder.io/reference/5.1/installation/versions.html#_versions[Download links]
+** https://docs.rudder.io/reference/6.0/installation/server/debian.html[Debian/Ubuntu]
+** https://docs.rudder.io/reference/6.0/installation/server/rhel.html[RHEL/centOS]
+** https://docs.rudder.io/reference/6.0/installation/server/sles.html[SLES]
+* https://docs.rudder.io/reference/6.0/installation/upgrade.html[Upgrade docs]
+* https://docs.rudder.io/reference/6.0/installation/versions.html#_versions[Download links]
 
 We also recommend using the
 https://github.com/Normation/rudder-vagrant[Rudder Vagrant] config if
@@ -48,5 +48,5 @@ SLES 10-11, Ubuntu 10.04 LTS-12.04 LTS-13.04-15.10, Windows Server 2008R2-2016, 
 5-6-7, Slackware 14*
 
 Read more about supported operating systems 
-https://docs.rudder.io/reference/5.1/installation/operating_systems.html[in the documentation].
+https://docs.rudder.io/reference/6.0/installation/operating_systems.html[in the documentation].
 

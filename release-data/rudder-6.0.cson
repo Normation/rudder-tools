@@ -1,9 +1,9 @@
 # Release data file
 
-release = "5.2"
+release = "6.0"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
@@ -70,7 +70,7 @@ roles = {
 # tier 1 are systems that must not fail during a release (community supported or subscription paid)
 # tier 2 are systems that are built but may fail to release
 tier1 = [
-          "debian-9", "debian-10",
+          "debian-8", "debian-9", "debian-10",
           "ubuntu-13.04", "ubuntu-14.04", "ubuntu-15.10", "ubuntu-16.04", "ubuntu-18.04",
           "rhel-6", "rhel-7", "rhel-8",
           "sles-11", "sles-12", "sles-15",
@@ -82,7 +82,7 @@ tier1 = [
 packages = { 
              "agent-allinone": [ "rudder-agent" ],
              "relay":          [ "rudder-server-relay" ],
-             "server":         [ "rudder-reports", "rudder-server-root", "rudder-webapp" ],
+             "server":         [ "rudder-reports", "rudder-server-root", "rudder-webapp", "rudder-api-client" ],
            }
 
 # Packages that are architecture dependent (others are independent)
@@ -94,8 +94,8 @@ components = {
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "4.3", "5.0", "5.1", "5.2" ]
+compatible-agents = [ "4.3", "5.0", "6.0", "6.1" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "5.0", "5.1", "5.2" ]
+supported-upgrade = [ "4.3", "5.0", "6.0" ]
 
