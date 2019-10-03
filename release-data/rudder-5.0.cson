@@ -40,6 +40,7 @@ architectures = {
                   "slackware-14.1": [ "amd64" ],
                   "slackware-14.2": [ "amd64" ],
                   "aix-5":          [ "ppc" ],
+                  "windows-2008r2": [ "amd64" ],
                 }
 
 # Roles are package groups
@@ -72,6 +73,7 @@ roles = {
           "aix-5":          [ "agent-allinone" ],
           "slackware-14.1": [ "agent-allinone" ],
           "slackware-14.2": [ "agent-allinone" ],
+          "windows-2008r2": [ "agent-allinone" ],
         }
 
 # tier 1 are systems that must not fail during a release (community supported or subscription paid)
@@ -101,7 +103,7 @@ components = {
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "4.1", "4.2", "4.3", "5.0", "5.1" ]
+compatible-agents = [ "4.1", "4.2", "4.3", "5.0", "6.0" ]
 
 # Versions you can upgrade from directly
 supported-upgrade = [ "4.1", "4.2", "4.3", "5.0" ]
