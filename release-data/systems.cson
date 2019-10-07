@@ -110,7 +110,7 @@ aix = {
 
 windows = {
   aliases = [ ]
-  package-format = ""
+  package-format = "exe"
   name = "Windows"
 }
 
