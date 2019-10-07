@@ -99,5 +99,5 @@ components = {
 compatible-agents = [ "4.3", "5.0", "6.0", "6.1" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "4.3", "5.0", "6.0" ]
+supported-upgrade = [ "5.0", "6.0" ]
 
