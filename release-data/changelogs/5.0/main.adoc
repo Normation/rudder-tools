@@ -163,6 +163,211 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.14 (2019-10-10)
+
+=== Changes
+
+==== Packaging
+
+* Prepare the future build of rudder-api-client in 5.0
+    (https://issues.rudder.io/issues/15815[#15815])
+
+==== Architecture - Dependencies
+
+* Update scala to 2.12.10
+    (https://issues.rudder.io/issues/15741[#15741])
+
+==== System integration
+
+* Add test inventories for each major Rudder version
+    (https://issues.rudder.io/issues/15705[#15705])
+
+==== Agent
+
+* Add a "rudder server health" command
+    (https://issues.rudder.io/issues/15715[#15715])
+
+==== Generic methods
+
+* Add a check_variable_match method
+    (https://issues.rudder.io/issues/15200[#15200])
+
+==== Documentation
+
+* Precise the documentation of user_present about user primary group
+    (https://issues.rudder.io/issues/15764[#15764])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: On sles12 the webapp gives "access denied" error after fresh install
+    (https://issues.rudder.io/issues/15914[#15914])
+* Fixed: Better sources clean in rudder-agent makefile
+    (https://issues.rudder.io/issues/15787[#15787])
+* Fixed: Create /opt/rudder/etc/plugins/licenses at server install
+    (https://issues.rudder.io/issues/15763[#15763])
+* Fixed: Add -XX:+UseStringDeduplication in G1GC optionnal config
+    (https://issues.rudder.io/issues/15758[#15758])
+* Fixed: rhel5 fails to get sources
+    (https://issues.rudder.io/issues/15754[#15754])
+* Fixed: Agent fail to build on slackware 14.1
+    (https://issues.rudder.io/issues/15736[#15736])
+* Fixed: Prerm does not backup ppkeys
+    (https://issues.rudder.io/issues/15703[#15703])
+
+==== Web - Nodes & inventories
+
+* Fixed: Invalid json in Rudder inventory hooks fails to log the problem 
+    (https://issues.rudder.io/issues/13866[#13866])
+* Fixed: Job to clean unreference software may delete software for pending nodes
+    (https://issues.rudder.io/issues/15827[#15827])
+* Fixed: Virtuozzo Virtual machine reported as "Unknown type"
+    (https://issues.rudder.io/issues/15488[#15488])
+* Fixed: Impossible to reset the status of a Node using rudder-keys cli
+    (https://issues.rudder.io/issues/14209[#14209])
+
+==== Documentation
+
+* Fixed: In the embedded docs the link to changelogs is broken
+    (https://issues.rudder.io/issues/14222[#14222])
+* Fixed: Port 5310 is only used internally, no need to open it on the server
+    (https://issues.rudder.io/issues/14159[#14159])
+* Fixed: Add a section in plugin documentation about plugin licenses installation
+    (https://issues.rudder.io/issues/15793[#15793])
+* Fixed: Display a warning in relay server documentatin that it needs a plugin to work
+    (https://issues.rudder.io/issues/15751[#15751])
+* Fixed: improve documentation on memory requirement
+    (https://issues.rudder.io/issues/15702[#15702])
+
+==== Architecture - Refactoring
+
+* Fixed: Fix "Non exhaustive pattern match" warning
+    (https://issues.rudder.io/issues/15893[#15893])
+
+==== Performance and scalability
+
+* Fixed: Clean up reports with log_* types more than once a day
+    (https://issues.rudder.io/issues/15802[#15802])
+* Fixed: When writing policies, we replace the RudderUniqueId with replaceAll which is twice as slow as StringUtils.replace
+    (https://issues.rudder.io/issues/15792[#15792])
+* Fixed: 'Nodes Configurations' ldap entry is too big
+    (https://issues.rudder.io/issues/15609[#15609])
+* Fixed: When computing system variables for each node, we compute the full "nodes<->policy server" mapping
+    (https://issues.rudder.io/issues/15786[#15786])
+* Fixed: When receving plenty of inventories at the same time, the web interface starts to parse them all at once (branch 5.0)
+    (https://issues.rudder.io/issues/15747[#15747])
+* Fixed: Make inventory processing less memory consuming
+    (https://issues.rudder.io/issues/15768[#15768])
+* Fixed: Use less memory in PreUnmarshallCheckConsistency
+    (https://issues.rudder.io/issues/15749[#15749])
+
+==== Web - UI & UX
+
+* Fixed: Rules are shown in "Applied rules" on groups where they are not applied
+    (https://issues.rudder.io/issues/15599[#15599])
+* Fixed: if screen height is too small, it's impossible to access settings in the rudder menu
+    (https://issues.rudder.io/issues/15795[#15795])
+
+==== Security
+
+* Fixed: A user with read only access can global parameters
+    (https://issues.rudder.io/issues/15104[#15104])
+
+==== Web - Config management
+
+* Fixed: Webapp does not wait long enough for technique editor API response, which can break startup
+    (https://issues.rudder.io/issues/15809[#15809])
+* Fixed: Webapp does not wait long enough for technique editor API response, which can break startup
+    (https://issues.rudder.io/issues/15809[#15809])
+* Fixed: Missing generation failure hook
+    (https://issues.rudder.io/issues/15791[#15791])
+
+==== API
+
+* Fixed: Cannot get Rule tree with the API
+    (https://issues.rudder.io/issues/15171[#15171])
+* Fixed: Rudder authentication api refuse api account even if they have correct access rights set
+    (https://issues.rudder.io/issues/15790[#15790])
+
+==== Web - Maintenance
+
+* Fixed: Batch to purge deleted inventories starts 10 minutes after startup, rather than the defined interval after startup
+    (https://issues.rudder.io/issues/15710[#15710])
+
+==== Techniques
+
+* Fixed: Broken indentation in fileManagement posthook
+    (https://issues.rudder.io/issues/15841[#15841])
+* Fixed: fileManagement can not remove files with last modification date in the future
+    (https://issues.rudder.io/issues/15840[#15840])
+* Fixed: Rename services techniques to make the difference clearer
+    (https://issues.rudder.io/issues/15839[#15839])
+* Fixed: sshKeyDistribution breaks root perms when target user has no home defined
+    (https://issues.rudder.io/issues/15738[#15738])
+
+==== System techniques
+
+* Fixed: Rudder agent cannot copy the certificate if the user defined one that is a link to a file in a different mount point
+    (https://issues.rudder.io/issues/15801[#15801])
+* Fixed: rudder-vars.json is read but absent in initial promises
+    (https://issues.rudder.io/issues/15692[#15692])
+* Fixed: System technique try to edit pg_hba file only on SUSE, but packaging takes care of this part
+    (https://issues.rudder.io/issues/14296[#14296])
+
+==== Agent
+
+* Fixed: Command not found when running "rudder agent enable -s"
+    (https://issues.rudder.io/issues/15697[#15697])
+
+==== Generic methods
+
+* Fixed: Missing usermod path in stdlib on redhat-based distros
+    (https://issues.rudder.io/issues/15804[#15804])
+
+==== Generic methods - File Management
+
+* Fixed: jinja templating does not clean up the temp files properly
+    (https://issues.rudder.io/issues/15800[#15800])
+
+==== Technique editor - API
+
+* Fixed: Technique editor does not handle errors from rudder authentication api correctly
+    (https://issues.rudder.io/issues/15789[#15789])
+
+==== Technique editor - UI/UX
+
+* Fixed: Cannot create 'or' condition in technique editor (using | character)
+    (https://issues.rudder.io/issues/15770[#15770])
+
+==== Generic methods - User Management
+
+* Fixed: user_primary_group tests method does not properly clean up all potentially created groups
+    (https://issues.rudder.io/issues/15780[#15780])
+* Fixed: user_primary_group test fails on sles11
+    (https://issues.rudder.io/issues/15769[#15769])
+
+==== System integration
+
+* Fixed: InsecureRequestWarning pollute technique editor's logs
+    (https://issues.rudder.io/issues/15777[#15777])
+
+==== Generic methods - Service Management
+
+* Fixed: Test for service_check_running_ps fails on centos6
+    (https://issues.rudder.io/issues/15771[#15771])
+* Fixed: Wrong service path used in method test
+    (https://issues.rudder.io/issues/15760[#15760])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Victor Héry
+* Philip Seeger
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.13 (2019-09-12)
 
 === Changes
