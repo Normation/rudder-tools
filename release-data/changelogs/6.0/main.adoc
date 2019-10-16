@@ -5,25 +5,69 @@ Rudder 6.0 is currently a development version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
-*Warning*: The following features are now provided as plugins and no
-more available as part of default Rudder installation starting from 5.0:
+== What's new?
 
-* LDAP-based authentication
-* Relay servers
-* Changes validation workflow (change requests)
+*A lot!* More than a year after 5.0 and the creation of the plugin ecosystem, Rudder 6.0 improves core components, and sets the basis for future exciting features. Changes happened at all levels, from the communication protocol between nodes and server to major UI improvements. Major features will get detailed announcements on our blog.
 
-If you were using them, upgrade will disable them and you will have to
-install the plugin. Read the http://rudder.io/plugins[plugins page on
-our website] for more information.
+NOTE: Some of these are still not totally documented, but stay tuned, we are working on it for the next beta!
 
-The initial RUDDER model consisting of a single software block which
-includes all features, thus imposing a greater and greater complexity on
-all of our users, has reached its limits. We have now reached a
-sufficient understanding of the domain, its challenges, and the way
-RUDDER is used, to make us realize that this all-in-one model is not, or
-is no longer, the best suited.
+=== Security features - plugins
 
-*Installing, upgrading and testing*
+* CIS policy pack: Allows to apply pre-made CIS policies using Rudder
+* CVE management: Reports CVEs affecting installed packages
+* OpenSCAP: Run OpenSCAP audits and collect and expose them in the web interface
+
+=== Polishing the web interface
+
+* Generalization of notifications: success popups have been replaced by self-disappearing notifications
+* Nicer tables (in technical logs, inventory details, etc.), and various style improvements
+* You can now explore the whole history of event logs, instead of being limited to 500 events! Thanks to server side pagination, loading only elements you are currently looking to. This opens to pagination of other tables in Rudder Web application, like changes or compliance reports
+
+=== Policy design: Technique resources and a big UI/UX rework
+
+The technique editor received a lot of attention, with major productivity and usability improvements.
+
+Techniques built with the technique editor can now include files (typically configuration file templates), called _technique resources_. They are managed and viewable directly from the web interface. This will allow storing everything in one place, and avoid copying them manually from the shared-files. (This _may_ also be a first step for future technique packages).
+
+The editor itself has been revamped, you now have foldable left and right menus, the ability to edit several methods at the same time, and much more!
+
+=== New reporting protocol
+
+Rudder 6.0 introduces a new protocol for reporting, that will eventually replace syslog. It uses HTTPS for transport, and all reports are signed by the agent and validated by the server before inserting them into the database.
+
+Syslog stays the default for now, and the HTTPS reporting does not support "changes-only" reporting mode for now.
+
+The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. This will continue improving in minor releases.
+
+=== Security
+
+Besides the security improvements made possible by the new reporting protocol, we also worked on other security features:
+
+* All nodes now have proper certificates, and the webapp provides an API to manage them.
+* All client-server communications are now made inside TLS1.2+ (except for syslog reporting).
+* It is now possible to configure your own server certificates (based on an existing PKI) to allow verifying the certificates of the policy server when seding inventories or reports.
+* We improved our services with finer privilege separation, and for the new relayd component, SELinux and namespace/seccomp sandboxing profiles.
+    
+=== User experience improvements
+
+* After first installation, the Rudder root server will initialize everything by itself. No need to execute an initialization script anymore (i.e. 👋 `rudder-init`)
+* The server packages have been merged into one: everything (except for `rudder-reports` which can be installed on a separate database server) is part of `rudder-webapp`. This is clearer, and will fix several bugs that were due to the non-atomic upgrade.
+* The `/opt/rudder/bin/rudder-pkg` command, used to manage plugins in 5.0, is replaced by a new `rudder package` subcommand, that now supports downloading plugins directly from our servers.
+* All Rudder services are now systemd units (except the agent on non-systemd systems, of course!).
+* It is now possible to execute only a specific directive on a node (with `rudder directive list|run` commands), to quicken and ease debugging of a particular policy.
+* Agent trigger from the server, that was previously only available from the API, is now directly accessible from node details. If the port is open on the node, your can trigger is and the live agent output in the web interface.
+
+=== Internals
+
+* Initial policies are now downloaded from the server. This will avoid compatibility issues, and will allow future customization of initial policies.
+* The new reporting protocol required to develop a new server component. Instead of existending the existing relay-api (written in Python), we decided to replace it by a new component written in Rust, that will handle relay features (called rudder-relayd), currently the relay api for remote agent trigger and file sharing between nodes, plus reports and inventory forwarding to root server.
+* Rudder's core is written in Scala since the beginning (and was among the first), and continues to evolve, and has moved to ZIO for error management and concurrency. More details to come (and a https://schedule.scala.io/#/talk/87439[talk at scala.io]).
+
+== What's new in the plugin ecosystem?
+
+To be announced, stay tuned!
+
+== Installing, upgrading and testing
 
 * Install docs:
 ** https://docs.rudder.io/reference/6.0/installation/server/debian.html[Debian/Ubuntu]
@@ -36,7 +80,7 @@ We also recommend using the
 https://github.com/Normation/rudder-vagrant[Rudder Vagrant] config if
 you want a quick and easy way to get an installation for testing.
 
-*Supported operating systems*
+== Supported operating systems
 
 This version provides packages for these operating systems:
 
