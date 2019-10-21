@@ -1,64 +1,49 @@
-= Openscap report
+= OpenSCAP plugin
 
-The openscap is a ecosystem that provides several tools to assist admnistrators and auditors with assessment, measurement, and enforcement of security baselines. The openscap allows to use different profiles aligned with different standards such as PCI-DSS.
+OpenSCAP is an ecosystem that provides several tools to assist admnistrators and auditors with assessment, measurement, and enforcement of security baselines. It allows the use of different profiles aligned with different standards such as PCI-DSS.
 
-== Goal
+The plugin aims to upload automatically the openSCAP auditing results to the Rudder Server, and, if you have the `external-reports-plugin`, to integrate these reports directly in the Rudder node webpage.
 
-Rudder integrates openscap technique to expressing and manipulating security data for Rudder nodes in order to continious monitoring, vulnerabilty management, and reporting the results of securiry compliance scans. 
+== Installation
 
-== Openscap technique Property
+As most of the Rudder plugins, you must install the plugin with the rudder-pkg tool on your Server Rudder.
 
-=== Implementation
+....
+/opt/rudder/bin/rudder-pkg install-file <path to the rpkg>
+....
 
-The implementation of this technique will install the necessary openscap package by generic methods . This will install oscap server/client needed to run the scan as well the security content. 
-
-=== Technique parameters
-
-To implement this technique. There are two main arguments to pass in parameters:
-
-==== SCAP content
+This will *add one Rudder Rule to your Rudder Server*.
 
 
-To see security policies available in the SCAP security guide. For each platform, there are several profiles which provide security policies implemented according to security baselines. You can find this information located on your system at:
+=== Usage
 
-----
-/usr/share/xml/scap/ssg/content/
-----
+In order to use the Technique provided and get reports from your nodes, you will need to decline it in different Directives following your requirements.
 
-SCAP content refers to document in the XCCDF, OVAL and Source DataStream formats. These documents can be presented in different forms and by different organizations to meet their security automation and technical implementation needs. You can see the following url, this project is to create security policy content for various platforms (Red Hat Enterprise Linux, Fedora, Ubuntu, Debian, ... -- as well as products -- Firefox, Chromium, JRE, ... ). Our aim is to make it as easy as possible to write new and maintain existing security content in all the commonly used formats.
+The Technique comes with two parameters:
 
-----
-https://github.com/ComplianceAsCode/content
-----
+* `profile` which is the profile name you want to audit
+* `scap_file` which is the absolute path (on the node) of the SCAP content from which you will base the audit on
 
-==== Profile
+SCAP content refers to document in the XCCDF, OVAL and Source DataStream formats. These documents can be presented in different forms and by different organizations to meet their security automation and technical implementation needs. You can find more informations on the https://github.com/ComplianceAsCode/content[ComplianceAsCode]  GitHub project.
 
-To see the different profiles that can be executed, you can run the following command to output information for your operating system.
- 
-----
-oscap info /usr/share/xml/scap/ssg/content/$SCAPContent
-----
-
-Once you are selecting the both parameters, openscap technique runs the scan by executing the following command by generic methods. this command will output an html report to /tmp/report.html, and this report allows you to visully see the findings, the scan takes time to complete.
+By default, available `scap_files` are located on `/usr/share/xml/scap/ssg/content/` after install of the openSCAP agent on the nodes. Given profiles for specific scap_files can be obtain with the command:
 
 ----
-oscap xccdf eval --profile $profile --report /tmp/report.html /usr/share/xml/scap/ssg/content/$SCAPContent
+oscap info <scap_file>
 ----
 
-Sending this report to node server it's by "Sharedfile to node" generic method. 
+The Technique will take care of the openSCAP agent installation and will by default, trigger an audit every hour on your nodes. The reporting file will then be uploaded on your Rudder Server under the folder:
 
-NOTE: you can add a shedule Simple Stateless a generic method which allows you the periodic command execution.
-
-== Report display 
-
-Rudder implement plugin called "Node external reports" which allows to add external, static documents and reports in a new tab in node details. This plugin is configured with a configuration file. To see more information, this plugin is documented: 
-
-https://docs.rudder.io/reference/5.0/plugins/node-external-reports.html#_documents_naming_convention
+----
+/var/rudder/shared-files/root/files/<node-id>/openscap_report.html
+----
 
 
+== Rudder Webapp integration
+
+With the Rudder plugin `Node external reports` which allows to add external, static documents and reports in a new tab in the `node details` webpage, this plugin will display the reports directly in the web interface.
+
+This is managed by a config file on your Rudder Server under `/opt/rudder/share/plugins/node-external-reports/node-external-reports.properties.d`.
 
 
-
-
-
-
+The complete documentation of the node-external-reports plugin is available https://docs.rudder.io/reference/5.0/plugins/node-external-reports.html#_documents_naming_convention[here].
