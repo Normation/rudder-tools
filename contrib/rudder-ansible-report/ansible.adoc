@@ -1,40 +1,34 @@
-= Ansible report
+= Ansible report plugin
 
 Ansible is an IT automation tool. It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments.
+This Rudder technique aims to integrate the execution and reporting of an Ansible agent in the Rudder one.
 
-== Goal
+Basically, when assigning a directive declined from this technique to a node, it will:
 
-Rudder integrates Ansible technique to expressing and manipulating security data for Rudder nodes in order to continious monitoring, and reporting the results into node compliance reports. 
+* Make sure the Ansible package is installed
+* Download a playbook from your Rudder Server to the node
+* Execute this playbook from the target node
+* Report back the execution to the Rudder Server
 
-== Ansible technique Property
+== Usage
 
-=== Pre-requisite
+Make sure that the target node has SSH access to every Ansible targetted hosts.
+The technique takes two arguments:
 
-This technique will install the necessary Ansible package by generic methods.
+* `PathPlaybookServer` Relative path (relative to `/var/rudder/configuration-repository/shared-files/`) to the playbook that will be downloaded on your executioner.
+* `PathPlaybookAgent` Absolute path where to put the playbook on the node.
 
-The SSH connection allows Ansible to communicate to the target machines via ssh command line and install Python package for Ansible plugin.
+NOTE: To trigger periodic playbooks execution you can use the `Schedule Simple Stateless` generic method.
 
-Rudder implement an inventory plugin for Ansible. The Ansible plugin makes possible to use Rudder inventory (including groups, nodes, group ids, node ids, and node properties) as inventory for Ansible, for example for orchestration tasks on your platform. An inventory in Ansible is the list of managed nodes, their groups and some pre-defined variables.
+There is also an Ansible plugin available to use the Rudder inventory, groups and node properties in your Ansible playbooks.
 
-Step 1: Configure SSH key authentication in your rudder node on which the technique will be applied.
-Step 2: Install python package for Ansible plugin.
-Step 3: Install Ansible plugin https://github.com/Normation/rudder-tools/blob/master/scripts/Ansible
-	
-To see more information, this plugin is documented: 
- 
-https://docs.rudder.io/reference/5.0/administration/integration.html
+To get more information about it, see the https://docs.rudder.io/reference/5.0/administration/integration.html[dedicated documentation]
 
-=== Technique parameters
+==== Reference
 
-To implement this technique. There are some main arguments to pass in parameters:
+Ansible playbooks can configure and orchestrate steps of any manual ordered process and they can launch tasks synchronously or asynchronously.
 
-==== Playbook path
-
-Playbooks can declare configurations, orchestrate steps of any manual ordered process and they can launch tasks synchronously or asynchronously. Playbooks are expressed in YAML format and have a minimum of syntaxe.
-
-You need to use the playbook absolute path from Rudder node which runs playbook tasks.
-
-An example of playbook file
+An example of a basic playbook to check the status of services and report the hostname of the target:
 
 ----
 
@@ -55,11 +49,10 @@ An example of playbook file
 
 ----
 
-==== Ansible report path
+At runtime, the technique will store the Ansible output in a local temporary file under `/var/rudder/tmp/ansible_report`. It will then be reported in a classic Rudder report to be available in the Rudder interface by using the generic method `File report content`.
+The execution is done through the `Command execution result` generic method to differentiate the repaired/kept cases. If the Ansible runner did make a change on the system, it will report a repaired, else, a kept report.
 
-This technique is implemented not just to deploy configurations but also to register Ansible output into a file. Then display it into node compliance reports in the Rudder web interface. For that you can use the generic method called "Command excution result" and you send this file as a report to node server via "File report content" generic method. 
-
-An example of Ansible output
+An example of Ansible runner output
 
 ----
 
@@ -76,28 +69,7 @@ changed: [127.0.0.1] => (item=apache2)
 changed: [127.0.0.1] => (item=sshd)
 
 PLAY RECAP *********************************************************************
-127.0.0.1                  : ok=3    changed=2    unreachable=0    failed=0   
+127.0.0.1                  : ok=3    changed=2    unreachable=0    failed=0
 
 ----
-
-
-==== Targets 
-
-The targets are especially the Rudder groups whom the technique will be applied. You can generally be "id" or "displayName".
-
-
-NOTE: To trigger periodic playbooks execution you can use theSchedule Simple Stateless generic method.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
