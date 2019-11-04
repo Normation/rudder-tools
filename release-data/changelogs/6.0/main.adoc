@@ -25,19 +25,19 @@ NOTE: Some of these are still not totally documented, but stay tuned, we are wor
 
 === Policy design: Technique resources and a big UI/UX rework
 
-The technique editor received a lot of attention, with major productivity and usability improvements.
+* The technique editor received a lot of attention, with major productivity and usability improvements.
 
-Techniques built with the technique editor can now include files (typically configuration file templates), called _technique resources_. They are managed and viewable directly from the web interface. This will allow storing everything in one place, and avoid copying them manually from the shared-files. (This _may_ also be a first step for future technique packages).
+* Techniques built with the technique editor can now include files (typically configuration file templates), called _technique resources_. They are managed and viewable directly from the web interface. This will allow storing everything in one place, and avoid copying them manually from the shared-files. (This _may_ also be a first step for future technique packages).
 
-The editor itself has been revamped, you now have foldable left and right menus, the ability to edit several methods at the same time, and much more!
+* The editor itself has been revamped, you now have foldable left and right menus, the ability to edit several methods at the same time, and much more!
 
 === New reporting protocol
 
-Rudder 6.0 introduces a new protocol for reporting, that will eventually replace syslog. It uses HTTPS for transport, and all reports are signed by the agent and validated by the server before inserting them into the database.
+* Rudder 6.0 introduces a new protocol for reporting, that will eventually replace syslog. It uses HTTPS for transport, and all reports are signed by the agent and validated by the server before inserting them into the database.
 
-Syslog stays the default for now, and the HTTPS reporting does not support "changes-only" reporting mode for now.
+* Syslog stays the default for now, and the HTTPS reporting does not support "changes-only" reporting mode for now.
 
-The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. This will continue improving in minor releases.
+* The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. This will continue improving in minor releases.
 
 === Security
 
@@ -61,13 +61,24 @@ Besides the security improvements made possible by the new reporting protocol, w
 
 * Initial policies are now downloaded from the server. This will avoid compatibility issues, and will allow future customization of initial policies.
 * The new reporting protocol required to develop a new server component. Instead of existending the existing relay-api (written in Python), we decided to replace it by a new component written in Rust, that will handle relay features (called rudder-relayd), currently the relay api for remote agent trigger and file sharing between nodes, plus reports and inventory forwarding to root server.
-* Rudder's core is written in Scala since the beginning (and was among the first), and continues to evolve, and has moved to ZIO for error management and concurrency. More details to come (and a https://schedule.scala.io/#/talk/87439[talk at scala.io]).
-
-== What's new in the plugin ecosystem?
-
-To be announced, stay tuned!
+* Rudder's core is written in Scala since the beginning, and continues to evolve. We have moved to ZIO for error management and concurrency, learn more in the https://www.slideshare.net/fanf42/systematic-error-management-we-ported-rudder-to-zio[talk given at scala.io].
 
 == Installing, upgrading and testing
+
+[WARNING]
+====
+
+Rudder 6.0 is still in development and only provided for testing purposes,
+you should *NOT* install it on productions machines.
+
+====
+
+[NOTE]
+====
+
+If you are upgrading an existing server, carefully read https://docs.rudder.io/reference/6.0/installation/upgrade.html[the upgrade notes] before.
+
+====
 
 * Install docs:
 ** https://docs.rudder.io/reference/6.0/installation/server/debian.html[Debian/Ubuntu]
