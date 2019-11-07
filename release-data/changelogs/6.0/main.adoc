@@ -21,7 +21,7 @@ NOTE: Some of these are still not totally documented, but stay tuned, we are wor
 
 * Generalization of notifications: success popups have been replaced by self-disappearing notifications
 * Nicer tables (in technical logs, inventory details, etc.), and various style improvements
-* You can now explore the whole history of event logs, instead of being limited to 500 events! Thanks to server side pagination, loading only elements you are currently looking to. This opens to pagination of other tables in Rudder Web application, like changes or compliance reports
+* You can now explore the whole history of event logs, instead of being limited to 500 events! Thanks to server side pagination, loading only elements you are currently looking to. This opens to pagination of other tables in Rudder Web application, like changes or compliance reports.
 
 === Policy design: Technique resources and a big UI/UX rework
 
@@ -31,13 +31,15 @@ NOTE: Some of these are still not totally documented, but stay tuned, we are wor
 
 * The editor itself has been revamped, you now have foldable left and right menus, the ability to edit several methods at the same time, and much more!
 
+* We added access to a part of the inventory content as https://docs.rudder.io/reference/6.0/reference/variables.html#_inventory_variables[system variables]: hostname, cpu architecture, RAM size, timezone, operating system details and machine type are now available directly in your policies.
+
 === New reporting protocol
 
 * Rudder 6.0 introduces a new protocol for reporting, that will eventually replace syslog. It uses HTTPS for transport, and all reports are signed by the agent and validated by the server before inserting them into the database.
 
 * Syslog stays the default for now, and the HTTPS reporting does not support "changes-only" reporting mode for now.
 
-* The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. This will continue improving in minor releases.
+* The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. The precision of these information will continue improving in the future.
 
 === Security
 
@@ -45,7 +47,7 @@ Besides the security improvements made possible by the new reporting protocol, w
 
 * All nodes now have proper certificates, and the webapp provides an API to manage them.
 * All client-server communications are now made inside TLS1.2+ (except for syslog reporting).
-* It is now possible to configure your own server certificates (based on an existing PKI) to allow verifying the certificates of the policy server when seding inventories or reports.
+* It is now possible to configure your own server certificates (based on an existing PKI) to allow verifying the certificates of the policy server when sending inventories or reports.
 * We improved our services with finer privilege separation, and for the new relayd component, SELinux and namespace/seccomp sandboxing profiles.
     
 === User experience improvements
