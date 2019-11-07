@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+""" Rudder inventory hook script to return EC2 metadata """
 
 import json
 try:
