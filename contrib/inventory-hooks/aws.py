@@ -38,7 +38,7 @@ def dataparse(url,k):
         if not key:
             continue
 
-        if key in [ "rsa2048", "pkcs7", "signature", "security-credentials/" ]:
+        if key in [ "rsa2048", "pkcs7", "signature", "security-credentials/", "user-data" ]:
             continue
 
         newurl = '{0}{1}'.format(url, key)
