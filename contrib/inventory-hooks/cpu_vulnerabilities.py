@@ -56,3 +56,5 @@ if __name__ == "__main__":
         PROPERTIES = {}
         PROPERTIES["cpu_vulnerabilities"] = list_vulns(VULN_DIR)
         json.dump(PROPERTIES, sys.stdout)
+    else:
+        print("{}")
