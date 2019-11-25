@@ -22,23 +22,20 @@ NOTE: Some of these are still not totally documented, but stay tuned, we are wor
 * Generalization of notifications: success popups have been replaced by self-disappearing notifications
 * Nicer tables (in technical logs, inventory details, etc.), and various style improvements
 * You can now explore the whole history of event logs, instead of being limited to 500 events! Thanks to server side pagination, loading only elements you are currently looking to. This opens to pagination of other tables in Rudder Web application, like changes or compliance reports.
+* A new look for the node detail's summary page, which better information hierarchy
 
 === Policy design: Technique resources and a big UI/UX rework
 
 * The technique editor received a lot of attention, with major productivity and usability improvements.
-
 * Techniques built with the technique editor can now include files (typically configuration file templates), called _technique resources_. They are managed and viewable directly from the web interface. This will allow storing everything in one place, and avoid copying them manually from the shared-files. (This _may_ also be a first step for future technique packages).
-
 * The editor itself has been revamped, you now have foldable left and right menus, the ability to edit several methods at the same time, and much more!
-
 * We added access to a part of the inventory content as https://docs.rudder.io/reference/6.0/reference/variables.html#_inventory_variables[system variables]: hostname, cpu architecture, RAM size, timezone, operating system details and machine type are now available directly in your policies.
+* The documentation field of directives, groups and rules now supports Markdown syntax for formatted text (including external links!)
 
 === New reporting protocol
 
 * Rudder 6.0 introduces a new protocol for reporting, that will eventually replace syslog. It uses HTTPS for transport, and all reports are signed by the agent and validated by the server before inserting them into the database.
-
-* Syslog stays the default for now, and the HTTPS reporting does not support "changes-only" reporting mode for now.
-
+* The new protocol will be used by default on new installations, but upgraded servers will continue to use syslog by default. HTTPS reporting does not support "changes-only" reporting mode yet, so you won't be able to switch for now if you are using it.
 * The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. The precision of these information will continue improving in the future.
 
 === Security
@@ -64,6 +61,7 @@ Besides the security improvements made possible by the new reporting protocol, w
 * Initial policies are now downloaded from the server. This will avoid compatibility issues, and will allow future customization of initial policies.
 * The new reporting protocol required to develop a new server component. Instead of existending the existing relay-api (written in Python), we decided to replace it by a new component written in Rust, that will handle relay features (called rudder-relayd), currently the relay api for remote agent trigger and file sharing between nodes, plus reports and inventory forwarding to root server.
 * Rudder's core is written in Scala since the beginning, and continues to evolve. We have moved to ZIO for error management and concurrency, learn more in the https://www.slideshare.net/fanf42/systematic-error-management-we-ported-rudder-to-zio[talk given at scala.io].
+* The package installation troubleshooting is greatly improving, as package manager errors are now displayed in agent output and reported to the server (for now, only for `zypper` and `zypper-pattern`, with more to come)
 
 == Installing, upgrading and testing
 
