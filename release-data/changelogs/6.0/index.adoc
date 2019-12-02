@@ -2,15 +2,15 @@
 
 == What's new?
 
-*A lot!* More than a year after 5.0 and the creation of the plugin ecosystem, Rudder 6.0 improves core components, and sets the basis for future exciting features. Changes happened at all levels, from the communication protocol between nodes and server to major UI improvements. Major features will get detailed announcements on our blog.
+*A lot!* More than a year after 5.0 and the creation of the plugin ecosystem, Rudder 6.0 improves core components, and sets the basis for future exciting features. Changes happened at all levels, from the communication protocol between nodes and server to major UI improvements. Key features will get detailed announcements on our blog.
 
 NOTE: Some of these are still not totally documented, but stay tuned, we are working on it for the final release!
 
-=== Security features - plugins
+=== New security features (through plugins)
 
-* CIS policy pack: Allows to apply pre-made CIS policies using Rudder
+* CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder
 * CVE management: Reports CVEs affecting installed packages
-* OpenSCAP: Run OpenSCAP audits and collect and expose them in the web interface
+* OpenSCAP: Runs OpenSCAP audits, collects and exposes them in the web interface
 
 === Polishing the web interface
 
@@ -31,7 +31,7 @@ NOTE: Some of these are still not totally documented, but stay tuned, we are wor
 
 * Rudder 6.0 introduces a new protocol for reporting, that will eventually replace syslog. It uses HTTPS for transport, and all reports are signed by the agent and validated by the server before inserting them into the database.
 * The new protocol will be used by default on new installations, but upgraded servers will continue to use syslog by default. HTTPS reporting does not support "changes-only" reporting mode yet, so you won't be able to switch for now if you are using it.
-* The new protocol also allows getting much more information about the state of the node and what happened with additionnal logs, particularly about what has been changed, what is not compliant, or why changes could not be made. The precision of these information will continue improving in the future.
+* The new protocol also allows getting much more information about the state of the node and what happened with additional logs, particularly about what has been changed, what is not compliant, or why changes could not be made. The precision of these information will continue improving in the future.
 
 === Security
 
@@ -46,7 +46,7 @@ Besides the security improvements made possible by the new reporting protocol, w
 
 * After first installation, the Rudder root server will initialize everything by itself. No need to execute an initialization script anymore (i.e. 👋 `rudder-init`)
 * The server packages have been merged into one: everything (except for `rudder-reports` which can be installed on a separate database server) is part of `rudder-webapp`. This is clearer, and will fix several bugs that were due to the non-atomic upgrade.
-* The `/opt/rudder/bin/rudder-pkg` command, used to manage plugins in 5.0, is replaced by a new `rudder package` subcommand, that now supports downloading plugins directly from our servers.
+* The `/opt/rudder/bin/rudder-pkg` command, used to manage plugins in 5.0, is replaced by a new `rudder package` sub command, that now supports downloading plugins directly from our servers.
 * All Rudder services are now systemd units (except the agent on non-systemd systems, of course!).
 * It is now possible to execute only a specific directive on a node (with `rudder directive list|run` commands), to quicken and ease debugging of a particular policy.
 * Agent trigger from the server, that was previously only available from the API, is now directly accessible from node details. If the port is open on the node, your can trigger is and the live agent output in the web interface.
@@ -54,7 +54,7 @@ Besides the security improvements made possible by the new reporting protocol, w
 === Internals
 
 * Initial policies are now downloaded from the server. This will avoid compatibility issues, and will allow future customization of initial policies.
-* The new reporting protocol required to develop a new server component. Instead of existending the existing relay-api (written in Python), we decided to replace it by a new component written in Rust, that will handle relay features (called rudder-relayd), currently the relay api for remote agent trigger and file sharing between nodes, plus reports and inventory forwarding to root server.
+* The new reporting protocol required to develop a new server component. Instead of extending the existing relay-api (written in Python), we decided to replace it by a new component written in Rust, that will handle relay features (called rudder-relayd), currently the relay api for remote agent trigger and file sharing between nodes, plus reports and inventory forwarding to root server.
 * Rudder's core is written in Scala since the beginning, and continues to evolve. We have moved to ZIO for error management and concurrency, learn more in the https://www.slideshare.net/fanf42/systematic-error-management-we-ported-rudder-to-zio[talk given at scala.io].
 * The package installation troubleshooting is greatly improving, as package manager errors are now displayed in agent output and reported to the server (for now, only for `zypper` and `zypper-pattern`, with more to come)
 
@@ -75,11 +75,10 @@ If you are upgrading an existing server, carefully read https://docs.rudder.io/r
 
 ====
 
-* Install docs:
-** https://docs.rudder.io/reference/6.0/installation/server/debian.html[Debian/Ubuntu]
-** https://docs.rudder.io/reference/6.0/installation/server/rhel.html[RHEL/centOS]
-** https://docs.rudder.io/reference/6.0/installation/server/sles.html[SLES]
-* https://docs.rudder.io/reference/6.0/installation/upgrade.html[Upgrade docs]
+* Install docs for https://docs.rudder.io/reference/6.0/installation/server/debian.html[Debian/Ubuntu],
+https://docs.rudder.io/reference/6.0/installation/server/rhel.html[RHEL/centOS] and 
+https://docs.rudder.io/reference/6.0/installation/server/sles.html[SLES]
+* https://docs.rudder.io/reference/6.0/installation/upgrade.html[Upgrade nodes and doc]
 * https://docs.rudder.io/reference/6.0/installation/versions.html#_versions[Download links]
 
 We also recommend using the
