@@ -1,5 +1,48 @@
 = Change logs for user-management plugin 5.0
 
+== user-management-5.0-1.3 (2019-12-09)
+
+=== Changes
+
+==== Miscellaneous
+
+* Manage users infos from API and UI
+    (https://issues.rudder.io/issues/15147[#15147])
+* Correct API order in plugins  
+    (https://issues.rudder.io/issues/14810[#14810])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: move historical doc to the dedicated plugin documentation
+    (https://issues.rudder.io/issues/16190[#16190])
+* Fixed: Missing better-files depenency in pom-template
+    (https://issues.rudder.io/issues/15594[#15594])
+* Fixed: Wrong import in RoleComputationTest
+    (https://issues.rudder.io/issues/15593[#15593])
+* Fixed: Port user-management to elm 0.19
+    (https://issues.rudder.io/issues/14542[#14542])
+
+==== Packaging
+
+* Fixed: Wrong README extension for branding  scale-out-relay user-management
+    (https://issues.rudder.io/issues/15394[#15394])
+
+==== Documentation
+
+* Fixed:  Update link in readme to rudder.io and missing smarttag for create-node-api
+    (https://issues.rudder.io/issues/15306[#15306])
+* Fixed:  Update link in readme to rudder.io and missing smarttag for create-node-api
+    (https://issues.rudder.io/issues/15306[#15306])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-5.0-1.2 (2019-12-09)
 
 === Changes
