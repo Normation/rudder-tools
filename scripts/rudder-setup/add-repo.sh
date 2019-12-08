@@ -15,6 +15,7 @@ add_repo() {
   [ "${PM}" = "rpm" ] && REPO_TYPE="rpm"
   if [ "${USE_HTTPS}" != "false" ]; then
     S="s"
+    [ "${PM}" = "apt" ] && ${PM_INSTALL} apt-transport-https
   else
     S=""
   fi
