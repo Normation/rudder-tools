@@ -1,5 +1,34 @@
 = Changelogs for Rudder plugin create-node-api 5.0.\* versions
 
+== create-node-api-5.0-1.1 (2019-12-09)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Invalid name for certificate value in JSON
+    (https://issues.rudder.io/issues/15395[#15395])
+* Fixed: Wrong README extension
+    (https://issues.rudder.io/issues/15371[#15371])
+* Fixed: API must be consistant with node agent key management
+    (https://issues.rudder.io/issues/15346[#15346])
+
+==== Documentation
+
+* Fixed:  Update link in readme to rudder.io and missing smarttag for create-node-api
+    (https://issues.rudder.io/issues/15306[#15306])
+* Fixed:  Update link in readme to rudder.io and missing smarttag for create-node-api
+    (https://issues.rudder.io/issues/15306[#15306])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == create-node-api-5.0-1.0 (2019-12-09)
 
 === Changes
