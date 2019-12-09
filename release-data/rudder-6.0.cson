@@ -3,10 +3,13 @@
 release = "6.0"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "beta"
+release-status = "final"
+
+# 9th December 2019
+release-date = "2019-12-09"
 
 # Has this version had Long-Term Support (LTS)?
-lts = false
+lts = true
 
 # Supported architecture for each distribution
 architectures = { 

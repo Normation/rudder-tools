@@ -8,6 +8,12 @@ release-status = "final"
 # 26th September 2018
 release-date = "2018-09-26"
 
+# 9th March 2020
+extended-support-date = "2020-03-09"
+
+# 9th September 2020
+eol-date = "2020-09-09"
+
 # Has this version had Long-Term Support (LTS)?
 lts = true
 
