@@ -5,6 +5,483 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.0 (2019-12-09)
+
+=== Changes
+
+==== Packaging
+
+* Reduplicate cfengine binaries
+    (https://issues.rudder.io/issues/16344[#16344])
+* Use system curl and openssl on RHEL8
+    (https://issues.rudder.io/issues/16080[#16080])
+* Automatically restart relayd in case of crash
+    (https://issues.rudder.io/issues/16081[#16081])
+* Stop listenning for inventories on port 80
+    (https://issues.rudder.io/issues/16122[#16122])
+
+==== Documentation
+
+* 6.0 release in docs
+    (https://issues.rudder.io/issues/16375[#16375])
+* Render release notes in the changelog
+    (https://issues.rudder.io/issues/16300[#16300])
+* relayd admin guide
+    (https://issues.rudder.io/issues/16217[#16217])
+* Remove multiserver install procedure
+    (https://issues.rudder.io/issues/16209[#16209])
+* Document new reporting protocol
+    (https://issues.rudder.io/issues/16202[#16202])
+* Document inventory variables
+    (https://issues.rudder.io/issues/15596[#15596])
+* Update URL of our GPG key
+    (https://issues.rudder.io/issues/16329[#16329])
+* Update Rust environment setup instructions
+    (https://issues.rudder.io/issues/16196[#16196])
+* Update ncf README after merge into Rudder
+    (https://issues.rudder.io/issues/16097[#16097])
+* Fix link to external doc in technique editor
+    (https://issues.rudder.io/issues/16098[#16098])
+
+==== Rudder language
+
+* Add license information to rudder-lang
+    (https://issues.rudder.io/issues/16305[#16305])
+* Improve rendering of rudder-lang readme
+    (https://issues.rudder.io/issues/16304[#16304])
+
+==== Web - Config management
+
+* Add rollback to event log pagination
+    (https://issues.rudder.io/issues/15733[#15733])
+* Unsigned inventories must not be accepted anymore in 6.0
+    (https://issues.rudder.io/issues/16260[#16260])
+* Display 'long' description  as markdown
+    (https://issues.rudder.io/issues/16216[#16216])
+
+==== Web - UI & UX
+
+* Regroup tabs from "Hardware" to "Virtual Machines" into one
+    (https://issues.rudder.io/issues/16223[#16223])
+* Make the "Add node property" form more visible
+    (https://issues.rudder.io/issues/16194[#16194])
+* Remove unnecessary borders and padding around the Technique Editor
+    (https://issues.rudder.io/issues/16188[#16188])
+* Improve current node details UI
+    (https://issues.rudder.io/issues/16087[#16087])
+* Update URLs to our websites
+    (https://issues.rudder.io/issues/16121[#16121])
+
+==== Architecture - Dependencies
+
+* Upgrade to ZIO 1.0-RC17
+    (https://issues.rudder.io/issues/16206[#16206])
+
+==== System techniques
+
+* OpenSUSE should be detected as "suse" os family
+    (https://issues.rudder.io/issues/16249[#16249])
+
+==== Technique editor - API
+
+* Type for parameters of methods in technique editor
+    (https://issues.rudder.io/issues/16314[#16314])
+* Make ncf.py usable by rudder-lang
+    (https://issues.rudder.io/issues/15933[#15933])
+
+==== Generic methods
+
+* Add verbosity level in the rudder logger
+    (https://issues.rudder.io/issues/15126[#15126])
+
+==== Technique editor - UI/UX
+
+* Improve display of parameter name in technique editor
+    (https://issues.rudder.io/issues/16277[#16277])
+
+==== Generic methods - Package Management
+
+* Improve zypper pattern error log
+    (https://issues.rudder.io/issues/15447[#15447])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Debian 10 doesn't know how to install java if it's not already installed
+    (https://issues.rudder.io/issues/16366[#16366])
+* Fixed: service rudder-jetty is not activated after upgrade from 5.0 to 6.0 on centos7
+    (https://issues.rudder.io/issues/16364[#16364])
+* Fixed: Upgrade script fails on unkown git branch
+    (https://issues.rudder.io/issues/16363[#16363])
+* Fixed: Empty maxsize parameter in ldap conf after update to 6.0
+    (https://issues.rudder.io/issues/16350[#16350])
+* Fixed: rudder-webapp should obsolete rudder-inventory-endpoint
+    (https://issues.rudder.io/issues/16343[#16343])
+* Fixed: Add a dependency on semanage for relay on RHEL
+    (https://issues.rudder.io/issues/16335[#16335])
+* Fixed: LDAP error during upgrade
+    (https://issues.rudder.io/issues/15533[#15533])
+* Fixed: Missing dependency on systemd for recent Ubuntu/Debian systems
+    (https://issues.rudder.io/issues/14653[#14653])
+* Fixed: Postrm script want to use systemd on Ubuntu 14.04
+    (https://issues.rudder.io/issues/14139[#14139])
+* Fixed: Inventory should not require the presence of /etc/profile
+    (https://issues.rudder.io/issues/16162[#16162])
+* Fixed: Upgrading Rudder 5.0.12 to 5.1-nightly on Debian9 fails
+    (https://issues.rudder.io/issues/15569[#15569])
+* Fixed: Metrics reporting is broken on CentOS 7
+    (https://issues.rudder.io/issues/14798[#14798])
+* Fixed: Remove unused 'argparse' dependency in rudder-pkg
+    (https://issues.rudder.io/issues/11150[#11150])
+* Fixed: rudder-api-client is missing basic dh rule in its rule file
+    (https://issues.rudder.io/issues/16150[#16150])
+* Fixed: rudder-init reports that it is a distributed setup when its not with rudder 6.0
+    (https://issues.rudder.io/issues/15987[#15987])
+* Fixed: On error, rudder-upgrade stops without error message
+    (https://issues.rudder.io/issues/14560[#14560])
+* Fixed: Broken relay shared-files cleanup cron
+    (https://issues.rudder.io/issues/16149[#16149])
+* Fixed: relay postinst fails on SLES15
+    (https://issues.rudder.io/issues/16108[#16108])
+* Fixed: Systemd sandboxing options prevent remote-run from executing
+    (https://issues.rudder.io/issues/16148[#16148])
+
+==== Agent
+
+* Fixed: At  install agents are not printing anymore the mandatory configuration to do
+    (https://issues.rudder.io/issues/16318[#16318])
+* Fixed: Recommend bash-completion package with rudder-agent
+    (https://issues.rudder.io/issues/16239[#16239])
+* Fixed: Add http reporting agent capability
+    (https://issues.rudder.io/issues/16173[#16173])
+* Fixed: Allow disabling the agent without stopping cf-serverd
+    (https://issues.rudder.io/issues/15188[#15188])
+* Fixed: Remove wsgi from relay dependencies
+    (https://issues.rudder.io/issues/16157[#16157])
+* Fixed: Running /opt/rudder/bin/rudder-debug-info outside of /opt/rudder/bin fails 
+    (https://issues.rudder.io/issues/14830[#14830])
+* Fixed: Rudder-metrics-report does not work in python3
+    (https://issues.rudder.io/issues/16140[#16140])
+* Fixed: File content directive - Audit mode is not correctly supported
+    (https://issues.rudder.io/issues/11086[#11086])
+* Fixed: File content directive - Audit mode is not correctly supported
+    (https://issues.rudder.io/issues/11086[#11086])
+* Fixed: Add capabilities as base conditions
+    (https://issues.rudder.io/issues/15032[#15032])
+* Fixed: In https reporting mode, the agent outputs html raw text at the end of output
+    (https://issues.rudder.io/issues/16355[#16355])
+* Fixed: rudder agent script should reset locale to C
+    (https://issues.rudder.io/issues/16333[#16333])
+* Fixed: Rudder autocompletion does not complete automatically the inputs
+    (https://issues.rudder.io/issues/16250[#16250])
+* Fixed: Typo in rudder agent health output
+    (https://issues.rudder.io/issues/16229[#16229])
+* Fixed: Command rudder agent start shoud list activated/deactivated services
+    (https://issues.rudder.io/issues/16145[#16145])
+* Fixed: Cleanup disable server flag
+    (https://issues.rudder.io/issues/16170[#16170])
+* Fixed: "rudder server trigger-policy-generation/reload-groups" output a curl error if apache is stopped
+    (https://issues.rudder.io/issues/15535[#15535])
+* Fixed: We should not start agent daemons outside of the service
+    (https://issues.rudder.io/issues/16128[#16128])
+* Fixed: factory-reset does not work on AIX
+    (https://issues.rudder.io/issues/14574[#14574])
+* Fixed: Negative execution time on AIX
+    (https://issues.rudder.io/issues/12996[#12996])
+* Fixed: "rudder agent check" should not require /etc/profile presence
+    (https://issues.rudder.io/issues/16160[#16160])
+* Fixed: rudder relay start syntax error
+    (https://issues.rudder.io/issues/16159[#16159])
+* Fixed: Even when rudder agent is disabled, it runs cf-promises every 5 minutes
+    (https://issues.rudder.io/issues/15854[#15854])
+
+==== Performance and scalability
+
+* Fixed: When the number of file descriptor openable at the same time is too low, we can get a confusing error at policy generation
+    (https://issues.rudder.io/issues/15630[#15630])
+* Fixed: On a loaded system, the compliance computation is fairly expensive
+    (https://issues.rudder.io/issues/16208[#16208])
+* Fixed: Log metrics about configuration object at start of generation
+    (https://issues.rudder.io/issues/16213[#16213])
+* Fixed: Inefficient computing of compliance on home page
+    (https://issues.rudder.io/issues/16201[#16201])
+* Fixed: Missing timing info in logs for Home Page
+    (https://issues.rudder.io/issues/16199[#16199])
+* Fixed: Big memory usage when fetching/writing node configuration and expected reports
+    (https://issues.rudder.io/issues/16083[#16083])
+* Fixed: Improve documentation in rudder-web.properties about backup folder
+    (https://issues.rudder.io/issues/16072[#16072])
+* Fixed: Rationalize the handling of variables during policy generation
+    (https://issues.rudder.io/issues/15798[#15798])
+* Fixed: Improve performance of logs parsing by rsyslog
+    (https://issues.rudder.io/issues/16255[#16255])
+
+==== Relay server or API
+
+* Fixed: On relays /var/rudder/share files are not executable for group
+    (https://issues.rudder.io/issues/16136[#16136])
+* Fixed: Missing SELinux/systemd context for relayd on shared-files folder
+    (https://issues.rudder.io/issues/16227[#16227])
+
+==== Documentation
+
+* Fixed: Document reporting protocol options
+    (https://issues.rudder.io/issues/16284[#16284])
+* Fixed: Missing documentation on openssl incompatibilities between 4.x and 5.0
+    (https://issues.rudder.io/issues/16224[#16224])
+* Fixed: Troubleshooting agent-server communication issues section in the doc is empty
+    (https://issues.rudder.io/issues/16268[#16268])
+* Fixed: Docs recommend using multiserver setup while its benefit may be dubious
+    (https://issues.rudder.io/issues/16207[#16207])
+* Fixed: Backup procedure documentation is incorrect
+    (https://issues.rudder.io/issues/15271[#15271])
+* Fixed: Debian/Ubuntu install doc fails if lsb_release is not installed
+    (https://issues.rudder.io/issues/14632[#14632])
+* Fixed: Document that a plugin is required for user roles and LDAP authentification
+    (https://issues.rudder.io/issues/14812[#14812])
+* Fixed: Document the usage of environment variables during installation
+    (https://issues.rudder.io/issues/10015[#10015])
+* Fixed: Typo in link to mustache method
+    (https://issues.rudder.io/issues/14633[#14633])
+* Fixed: Display 6.0 as 6.0-beta in doc menu
+    (https://issues.rudder.io/issues/16156[#16156])
+* Fixed: Missing link to the beginning of the guide in getting strated home page
+    (https://issues.rudder.io/issues/15408[#15408])
+* Fixed: Document that a full policy regeneration is necessary after a backup restauration
+    (https://issues.rudder.io/issues/15984[#15984])
+* Fixed: Use MB instead of mB for megabytes in the doc
+    (https://issues.rudder.io/issues/14161[#14161])
+* Fixed: Document specific purging configuration for log_* reports
+    (https://issues.rudder.io/issues/15974[#15974])
+* Fixed: Document the hook that triggers an agent run on update
+    (https://issues.rudder.io/issues/14332[#14332])
+* Fixed: How to setup a development's environment doc
+    (https://issues.rudder.io/issues/16141[#16141])
+* Fixed: Document that variable_dict_from_file_type#csv needs CRLF
+    (https://issues.rudder.io/issues/15657[#15657])
+* Fixed: Fix internal doc links in generic methods
+    (https://issues.rudder.io/issues/16092[#16092])
+
+==== Web - Config management
+
+* Fixed: Race condition in technique variable filling
+    (https://issues.rudder.io/issues/16374[#16374])
+* Fixed: policy generation logs still mention promises
+    (https://issues.rudder.io/issues/16307[#16307])
+* Fixed: The "migrate" field should not be displayed on directive creation
+    (https://issues.rudder.io/issues/14859[#14859])
+* Fixed: Audit/Enforce button in directive page should be similar to node page
+    (https://issues.rudder.io/issues/13531[#13531])
+* Fixed: Mark configuration-repository git repo options deprecated 
+    (https://issues.rudder.io/issues/13870[#13870])
+* Fixed: Dubious duplicate log message about hook
+    (https://issues.rudder.io/issues/16091[#16091])
+
+==== Web - Compliance & node report
+
+* Fixed: error when searching by date on Technical Logs
+    (https://issues.rudder.io/issues/16353[#16353])
+* Fixed: Deadlock on compliance computing
+    (https://issues.rudder.io/issues/16256[#16256])
+* Fixed: Error when retrieving reports at application start
+    (https://issues.rudder.io/issues/16189[#16189])
+* Fixed: Directive appear in "mixed" mode in a rule applied on only one node
+    (https://issues.rudder.io/issues/14379[#14379])
+* Fixed: Rule tag is "Enforce" whereas it has both enforce and audit nodes
+    (https://issues.rudder.io/issues/15124[#15124])
+* Fixed: Deleted directives are not always removed from rule (and are then not actionnable)
+    (https://issues.rudder.io/issues/14790[#14790])
+* Fixed: No compliance from a Rule with only one Directive (from a technique created in the editor) when the Directive is also applied in another Rule
+    (https://issues.rudder.io/issues/11917[#11917])
+
+==== Web - Technique editor
+
+* Fixed: Default values of parameters in methods cannot be used in technique editor
+    (https://issues.rudder.io/issues/16316[#16316])
+* Fixed: Close button in Generic Method tab is not working
+    (https://issues.rudder.io/issues/16019[#16019])
+* Fixed: We can save a technique with empty name when we add a resource
+    (https://issues.rudder.io/issues/16135[#16135])
+
+==== Web - Nodes & inventories
+
+* Fixed: UI settings for new certificate validation system variable
+    (https://issues.rudder.io/issues/16306[#16306])
+* Fixed: Exception "fiberFailed" when running agent from UI
+    (https://issues.rudder.io/issues/16222[#16222])
+* Fixed: Error in group page when searching "Last inventory date" + "is defined"
+    (https://issues.rudder.io/issues/14267[#14267])
+* Fixed: In node details, clicking on policy server id redirect to original node
+    (https://issues.rudder.io/issues/15953[#15953])
+
+==== System integration
+
+* Fixed: Set HTTP reporting protocol by default on new rudder 6.0 installation
+    (https://issues.rudder.io/issues/16294[#16294])
+* Fixed: Nova license path in log is misleading for plugin licenses
+    (https://issues.rudder.io/issues/15989[#15989])
+* Fixed:  Remove deprecated rudder property configuration options
+    (https://issues.rudder.io/issues/16166[#16166])
+* Fixed: We still have an LDAP entry "ou=Nodes Configuration,..." which is not used anymore
+    (https://issues.rudder.io/issues/15878[#15878])
+* Fixed: os.makedirs 'exist_ok' parameter does not exist in python 2.7
+    (https://issues.rudder.io/issues/16161[#16161])
+* Fixed: Not all rudder-related reports are sent to /var/log/rudder/reports/all.log
+    (https://issues.rudder.io/issues/16214[#16214])
+* Fixed: On centos7 fresh install, generation fails because relayd is not started
+    (https://issues.rudder.io/issues/16104[#16104])
+
+==== Rudder language
+
+* Fixed: Fix warnings in rudder-language
+    (https://issues.rudder.io/issues/16308[#16308])
+
+==== Web - Maintenance
+
+* Fixed: Filtering on eventlogs doesn't filter
+    (https://issues.rudder.io/issues/15944[#15944])
+* Fixed: JS Error when setting the "Send anonymous usage statistics " value
+    (https://issues.rudder.io/issues/13508[#13508])
+
+==== Architecture - Internal libs
+
+* Fixed: Deadlock when application starts
+    (https://issues.rudder.io/issues/16291[#16291])
+
+==== API
+
+* Fixed: Could not get Group tree details through API
+    (https://issues.rudder.io/issues/16269[#16269])
+* Fixed: We cannot get the rules categories with the API
+    (https://issues.rudder.io/issues/16164[#16164])
+
+==== Plugins integration
+
+* Fixed: Rudder package fails on a python error
+    (https://issues.rudder.io/issues/16261[#16261])
+* Fixed: Plugin id on plugin page should be more human-friendly
+    (https://issues.rudder.io/issues/11101[#11101])
+
+==== Web - UI & UX
+
+* Fixed: Inconsistent capitalization in menu items
+    (https://issues.rudder.io/issues/16210[#16210])
+* Fixed: In Node settings, "override global value" fields should have the same display 
+    (https://issues.rudder.io/issues/16191[#16191])
+* Fixed: Accepted inventory without matching rudder node appears in quicksearch
+    (https://issues.rudder.io/issues/14431[#14431])
+* Fixed: OS version sort in nodes list is broken
+    (https://issues.rudder.io/issues/14433[#14433])
+* Fixed: Folded subsections in directive forms are not visible enough
+    (https://issues.rudder.io/issues/15107[#15107])
+* Fixed: If an LDAP attribute is missing the related LDAP errors are not reported in UI (silent fail)
+    (https://issues.rudder.io/issues/10067[#10067])
+* Fixed: Improve Rules tabs visibility
+    (https://issues.rudder.io/issues/11644[#11644])
+
+==== Server components
+
+* Fixed: If a relay is deleted (via node->delete), its system rule remains
+    (https://issues.rudder.io/issues/14464[#14464])
+* Fixed: Remote run does not try to use the system token
+    (https://issues.rudder.io/issues/13825[#13825])
+
+==== Miscellaneous
+
+* Fixed: When the api authorization plugin is disabled tokens become read only
+    (https://issues.rudder.io/issues/12440[#12440])
+
+==== System techniques
+
+* Fixed: We need to restart rudder-jetty when ldap password is updated
+    (https://issues.rudder.io/issues/16332[#16332])
+* Fixed: Agent policy loading is done in the wrong order
+    (https://issues.rudder.io/issues/16288[#16288])
+* Fixed: Agent is not correctly aborted when repaired is happening in audit mode
+    (https://issues.rudder.io/issues/16178[#16178])
+* Fixed: system technique to update ldap passwords fails
+    (https://issues.rudder.io/issues/16107[#16107])
+
+==== Techniques
+
+* Fixed: Creating a user without home directory fails
+    (https://issues.rudder.io/issues/11013[#11013])
+* Fixed: The file from Rudder server technique may change permission of the destination parent directory instead of the file
+    (https://issues.rudder.io/issues/13612[#13612])
+
+==== Generic methods
+
+* Fixed: condition_from_commands is not running any command in audit mode
+    (https://issues.rudder.io/issues/16359[#16359])
+* Fixed: Add a generic method to escape regex chars in a string
+    (https://issues.rudder.io/issues/16275[#16275])
+* Fixed: Using ${match.x} in generic method causes an error message in the agent output, and prevents multiple reporting based on this generic method
+    (https://issues.rudder.io/issues/14286[#14286])
+* Fixed: Missing edit_lines promises in dry-run lib
+    (https://issues.rudder.io/issues/16181[#16181])
+* Fixed: http_request_content_headers test tries to get content from a removed site
+    (https://issues.rudder.io/issues/16082[#16082])
+* Fixed: Fix unexpected report in osquery method
+    (https://issues.rudder.io/issues/15658[#15658])
+
+==== Technique editor - UI/UX
+
+* Fixed: Clicking twice on "New technique" in the editor breaks the method drag and drop
+    (https://issues.rudder.io/issues/16118[#16118])
+* Fixed: Technique editor is broken due to a js error
+    (https://issues.rudder.io/issues/16187[#16187])
+* Fixed: Deleting a technique in the technique editor just after its creation fails
+    (https://issues.rudder.io/issues/15178[#15178])
+
+==== Technique editor - API
+
+* Fixed: Custom methods don't appear in technique editor anymore
+    (https://issues.rudder.io/issues/16336[#16336])
+* Fixed: Wrong condition on component used when importing technique
+    (https://issues.rudder.io/issues/16323[#16323])
+* Fixed: Prevent setting an empty report component
+    (https://issues.rudder.io/issues/15509[#15509])
+
+==== Generic methods - File Management
+
+* Fixed: ACLS methods are not working in recurse mode
+    (https://issues.rudder.io/issues/16220[#16220])
+* Fixed: Copying a file to a directory using the "file_from_shared_folder" method results in a success report even if nothing is done
+    (https://issues.rudder.io/issues/16267[#16267])
+* Fixed: Do not store response when response code is an error in file_fom_http_server
+    (https://issues.rudder.io/issues/12780[#12780])
+
+==== Generic methods - Service Management
+
+* Fixed: Service reload tests are failing in 6.0 on debian like systems
+    (https://issues.rudder.io/issues/16271[#16271])
+* Fixed: Ensure service (re)started does now work if systemd hit "start-limit"
+    (https://issues.rudder.io/issues/11587[#11587])
+
+==== Generic methods - Package Management
+
+* Fixed: Missing report in "Package check installed" generic methods
+    (https://issues.rudder.io/issues/16137[#16137])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Tobias Ell
+* Janos Mattyasovszky
+* P C
+* Hamlyn Mootoo
+* Jean Cardona
+* Jérémy HOCDÉ
+* Mikaël Mantel
+* Didier METRAL
+* Nigel Mundy
+* Alexandre BRIANCEAU
+* Florian Heigl
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.0.beta1 (2019-11-04)
 
 === Changes
