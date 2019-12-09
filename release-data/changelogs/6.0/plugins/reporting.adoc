@@ -1,0 +1,34 @@
+= Changelogs for Rudder plugin reporting 6.0.\* versions
+
+== reporting-6.0-1.2 (2019-12-09)
+
+=== Changes
+
+==== Miscellaneous
+
+* Set-up project
+    (https://issues.rudder.io/issues/14504[#14504])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed:  Take care of number of nodes in plugin license check (private plugins)
+    (https://issues.rudder.io/issues/15288[#15288])
+
+==== Miscellaneous
+
+* Fixed:  Correct API order in plugins privates
+    (https://issues.rudder.io/issues/14811[#14811])
+* Fixed: Visible notifications are displayed in reports
+    (https://issues.rudder.io/issues/14545[#14545])
+* Fixed: Report plugin doesn't support separated installation
+    (https://issues.rudder.io/issues/14524[#14524])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
