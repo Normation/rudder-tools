@@ -11,8 +11,8 @@ release-date = "2017-03-30"
 # 11th April 2019
 extended-support-date = "2019-04-11"
 
-# Not known yet
-#eol-date = ""
+# 8th July 2019
+eol-date = "2019-07-08"
 
 # Has this version had Long-Term Support (LTS)?
 lts = true
