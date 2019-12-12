@@ -4,8 +4,6 @@
 
 *A lot!* More than a year after 5.0 and the creation of the plugin ecosystem, Rudder 6.0 improves core components, and sets the basis for future exciting features. Changes happened at all levels, from the communication protocol between nodes and server to major UI improvements. Key features will get detailed announcements on our blog.
 
-NOTE: Some of these are still not totally documented, but stay tuned, we are working on it for the final release!
-
 === New security features (through plugins)
 
 * CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder
