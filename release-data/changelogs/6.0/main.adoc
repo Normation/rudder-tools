@@ -5,6 +5,123 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.1 (2019-12-20)
+
+=== Changes
+
+==== Packaging
+
+* Upgrade agent to CFEngine 3.12.3
+    (https://issues.rudder.io/issues/16369[#16369])
+
+==== Agent
+
+* Add a test for CFEngine errors in relayd parser
+    (https://issues.rudder.io/issues/16302[#16302])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: try stopping jetty and slapd with init script before enabling then through systemd
+    (https://issues.rudder.io/issues/16426[#16426])
+* Fixed: rudder-server-relay has a non-existing dependency on RHEL8
+    (https://issues.rudder.io/issues/16415[#16415])
+* Fixed: Upgrade script fails when some properties are missing from the inventory conf file
+    (https://issues.rudder.io/issues/16388[#16388])
+* Fixed: Rudder-agent postinst fails on non-systemd OS
+    (https://issues.rudder.io/issues/16387[#16387])
+
+==== Web - Technique editor
+
+* Fixed: Technique are lost when a new one is created because of selinux (centos 7 and 8)
+    (https://issues.rudder.io/issues/16393[#16393])
+* Fixed: Technique editor access authorization seems incorect 
+    (https://issues.rudder.io/issues/16386[#16386])
+
+==== Documentation
+
+* Fixed: Warn people that for now, upgrade of Rudder from 5.0 is broken
+    (https://issues.rudder.io/issues/16431[#16431])
+* Fixed: Update rudder-setup doc
+    (https://issues.rudder.io/issues/16373[#16373])
+* Fixed: Update release policy
+    (https://issues.rudder.io/issues/16358[#16358])
+
+==== Techniques
+
+* Fixed: Technique resource are not copied to the correct path
+    (https://issues.rudder.io/issues/16446[#16446])
+* Fixed: Missing report for "Installation" conponent in ssh technique
+    (https://issues.rudder.io/issues/16385[#16385])
+
+==== Web - UI & UX
+
+* Fixed: Missing timezone in generation "started at" 
+    (https://issues.rudder.io/issues/16392[#16392])
+* Fixed:  scroll-issue after policy-rebuild on the GUI
+    (https://issues.rudder.io/issues/16434[#16434])
+* Fixed: Wrong vertical alignement of numerous items
+    (https://issues.rudder.io/issues/16406[#16406])
+* Fixed: Incorrect hour display in node list's last seen column
+    (https://issues.rudder.io/issues/16389[#16389])
+* Fixed: Title are too big in doc blocks of the settings page
+    (https://issues.rudder.io/issues/16113[#16113])
+* Fixed: "Reload techniques" button has a slighly different color
+    (https://issues.rudder.io/issues/16320[#16320])
+
+==== Web - Compliance & node report
+
+* Fixed: Not report compliance because of scala.UninitializedFieldError
+    (https://issues.rudder.io/issues/16439[#16439])
+
+==== Plugins integration
+
+* Fixed: Rudder-pkg fails to parse new plugin nightly version
+    (https://issues.rudder.io/issues/16422[#16422])
+* Fixed: Rudder-pkg fails to show installed plugins when they are not available in the configurated repo if any
+    (https://issues.rudder.io/issues/16398[#16398])
+
+==== Server components
+
+* Fixed: Rudder package list command should not list plugins that are not available for the user
+    (https://issues.rudder.io/issues/16391[#16391])
+
+==== Web - Config management
+
+* Fixed: Invalid value in class prefix when there is a double quote in parameter
+    (https://issues.rudder.io/issues/16384[#16384])
+
+==== System techniques
+
+* Fixed: System techniques still refer to an historical file
+    (https://issues.rudder.io/issues/16436[#16436])
+
+==== Agent
+
+* Fixed: syntax error in rudder server-disable-policy-distribution
+    (https://issues.rudder.io/issues/16444[#16444])
+
+==== Technique editor - API
+
+* Fixed: Technique does not appear anymore if some ressources are defined
+    (https://issues.rudder.io/issues/16425[#16425])
+
+==== Technique editor - UI/UX
+
+* Fixed: Make Result condition fields more readable
+    (https://issues.rudder.io/issues/16330[#16330])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Nigel Mundy
+* Marius Rieck
+* Romain Brucker
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.0 (2019-12-09)
 
 === Changes
