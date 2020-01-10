@@ -5,6 +5,175 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.2 (2020-01-10)
+
+=== Changes
+
+==== Documentation
+
+* Document Amazon Linux support state
+    (https://issues.rudder.io/issues/16487[#16487])
+
+==== Relay server or API
+
+* Add default values for relayd configs whenever possible
+    (https://issues.rudder.io/issues/16480[#16480])
+* Add a cleanup job for old reports and inventories in relayd
+    (https://issues.rudder.io/issues/16479[#16479])
+
+==== Web - UI & UX
+
+* Display compliance bar in Node details
+    (https://issues.rudder.io/issues/16326[#16326])
+* Improve display of status in technical logs table
+    (https://issues.rudder.io/issues/15964[#15964])
+
+==== Rudder language
+
+* Prettify output of rudder-lang compiler
+    (https://issues.rudder.io/issues/16461[#16461])
+* fuzzy matching to help with error messages
+    (https://issues.rudder.io/issues/16449[#16449])
+
+==== Performance and scalability
+
+* Backport test on Hooks to 5.0
+    (https://issues.rudder.io/issues/16438[#16438])
+
+==== Web - Config management
+
+* Markdown numbered list description are not correctly rendered
+    (https://issues.rudder.io/issues/16303[#16303])
+
+==== Agent
+
+* Add a cleanup job for old reports that have not been sent
+    (https://issues.rudder.io/issues/16242[#16242])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Upgrade from 5.0.x to 6.0.x on debian fail because of conflicting file
+    (https://issues.rudder.io/issues/16500[#16500])
+* Fixed: Missing recursive option when removing old ncf hooks at rudder-upgrade
+    (https://issues.rudder.io/issues/16482[#16482])
+* Fixed: Remove unused webapp postinst parameters
+    (https://issues.rudder.io/issues/16471[#16471])
+* Fixed: Use binaries from /opt/rudder/bin in systemd services
+    (https://issues.rudder.io/issues/16459[#16459])
+* Fixed: We mention HTTP/S instead of HTTPS in install logs
+    (https://issues.rudder.io/issues/16485[#16485])
+* Fixed: Add Amazon Linux support to ncf and techniques
+    (https://issues.rudder.io/issues/12990[#12990])
+
+==== Agent
+
+* Fixed: Inventory fails with errors on CentOS/RHEL 8
+    (https://issues.rudder.io/issues/16457[#16457])
+
+==== System integration
+
+* Fixed: Error about /var/rudder/reports/ready/ on CentOS when migrating from Rudder 5.0 to 6.0
+    (https://issues.rudder.io/issues/16443[#16443])
+* Fixed: Webapp can't connect to postgres before first agent run
+    (https://issues.rudder.io/issues/16450[#16450])
+
+==== Server components
+
+* Fixed: Policy generation impossible after fresh install on Ubuntu 16.04 (due to ubuntu's Java 9 package)
+    (https://issues.rudder.io/issues/16466[#16466])
+* Fixed: Output redirection of rudder-init is broken
+    (https://issues.rudder.io/issues/16472[#16472])
+* Fixed: Upgrade fails because we try to insert an LDAP property that is already there
+    (https://issues.rudder.io/issues/16464[#16464])
+
+==== Documentation
+
+* Fixed: Server install doc still mentions SLES 11 which is not supported anymore
+    (https://issues.rudder.io/issues/16469[#16469])
+* Fixed: Warn user about know bug in 6.0.1 and installation workaround
+    (https://issues.rudder.io/issues/16451[#16451])
+
+==== Architecture - Refactoring
+
+* Fixed: We use not the correct InputStream at several place
+    (https://issues.rudder.io/issues/16492[#16492])
+
+==== Web - Config management
+
+* Fixed: Missing stored git commit leads to fatal exception
+    (https://issues.rudder.io/issues/16493[#16493])
+* Fixed: Set HTTPS mode by default for new install, keep syslog for upgrade
+    (https://issues.rudder.io/issues/16458[#16458])
+* Fixed: Cannot import technique with missing component in 6.0
+    (https://issues.rudder.io/issues/16383[#16383])
+* Fixed: Cannot add a parameter to an existing technique
+    (https://issues.rudder.io/issues/16453[#16453])
+
+==== Web - Nodes & inventories
+
+* Fixed: Amazon Linux appears as "Other Linux 2" in nodes list
+    (https://issues.rudder.io/issues/16486[#16486])
+
+==== Performance and scalability
+
+* Fixed: Computation of ComplianceLevel generates too many objects
+    (https://issues.rudder.io/issues/16468[#16468])
+* Fixed: A lot of data is computed and stored in Policy object, that is either never used, or used only once
+    (https://issues.rudder.io/issues/16467[#16467])
+
+==== API
+
+* Fixed: HTTPS reporting setting not working
+    (https://issues.rudder.io/issues/16465[#16465])
+
+==== Web - UI & UX
+
+* Fixed: Title are too big in doc blocks of the settings page
+    (https://issues.rudder.io/issues/16113[#16113])
+* Fixed: Technique editor truncates the text in the generic method, even if the space is still available
+    (https://issues.rudder.io/issues/16101[#16101])
+
+==== Rudder language
+
+* Fixed: Make paths configurable in the rudder-lang tester script
+    (https://issues.rudder.io/issues/16334[#16334])
+
+==== System techniques
+
+* Fixed: Postinst scripts do not set the postgres password
+    (https://issues.rudder.io/issues/16475[#16475])
+* Fixed: Postgresql service name is not detected properly on SLES 12 
+    (https://issues.rudder.io/issues/16470[#16470])
+* Fixed: When syslog reporting is disabled, we should also remove remove_limits.conf from rsyslog config
+    (https://issues.rudder.io/issues/16116[#16116])
+
+==== Techniques
+
+* Fixed: Syntax error in clockConfiguration.cf line 99
+    (https://issues.rudder.io/issues/16462[#16462])
+
+==== Generic methods - Package Management
+
+* Fixed: zypper_pattern module does not work in python3
+    (https://issues.rudder.io/issues/16278[#16278])
+
+==== Technique editor - UI/UX
+
+* Fixed: "Technique diverges" popup is broken
+    (https://issues.rudder.io/issues/15558[#15558])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Laurent Santoul
+* Marius Rieck
+* Mike Kingsbury
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.1 (2019-12-20)
 
 === Changes
