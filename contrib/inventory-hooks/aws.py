@@ -23,9 +23,12 @@ METAURL = 'http://169.254.169.254/latest'
 def is_ec2():
     # Not perfect
     # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify_ec2_instances.html
-    with open("/sys/hypervisor/uuid") as f:
-        if f.read(3).lower() != "ec2":
-            return False
+    try:
+        with open("/sys/hypervisor/uuid") as f:
+            if f.read(3).lower() != "ec2":
+                return False
+    except:
+        pass
     return requests.get(METAURL).status_code == 200
 
 def load():
