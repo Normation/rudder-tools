@@ -17,7 +17,7 @@ import os.path
 import json
 try:
     import requests
-except: 
+except:
     print("Install python-requests OR use python3")
 
 # The following url for viewing all categories of instance metadata from within a running instance.
@@ -41,10 +41,10 @@ def load():
     for subsect in metadict.keys():
         dataparse('{0}/{1}/'.format(METAURL, subsect), metadict[subsect])
 
-    newdict = metadict
-    for key in newdict.keys():
+    newdict = {}
+    for key in metadict.keys():
         try:
-            newdict['AWS-'+key] = newdict.pop(key)
+            newdict['AWS-'+key] = metadict.get(key)
         except KeyError:
             pass
 
@@ -55,7 +55,7 @@ def dataparse(url,k):
     if data.status_code == 404:
         return
 
-    for key in data.text.split('\n'): 
+    for key in data.text.split('\n'):
         if not key:
             continue
 
