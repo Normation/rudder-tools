@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin user-management 6.0.\* versions
 
+== user-management-6.0-1.4 (2020-01-14)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: IllegalArgumentException: Missing scheme when deleting user
+    (https://issues.rudder.io/issues/15822[#15822])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-6.0-1.3 (2019-12-09)
 
 === Changes
