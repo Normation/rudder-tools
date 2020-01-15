@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_LIST="rudder ncf rudder-packages rudder-agent rudder-techniques ldap-inventory cf-clerk rudder-commons scala-ldap rudder-parent-pom rudder-tests rudder-api-client rudder-doc"
+REPO_LIST="rudder ncf rudder-packages rudder-agent rudder-techniques rudder-parent-pom rudder-tests rudder-api-client rudder-doc"
 
 if type curl 2> /dev/null >/dev/null; then
   GET="curl -s -H 'Content-Type: application/json' -H"

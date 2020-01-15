@@ -178,7 +178,7 @@ class Issue:
     if Config.REDMINE_TOKEN is None:
       return False
     # prepare info
-    if self.server.can_modify_issues(self['project_id']):
+    if self.can_modify():
       info = { 'issue': change }
       if message is not None:
         info['issue']['notes'] = message
@@ -260,6 +260,26 @@ class Issue:
 
   def url(self):
     return self.api_url+"/issues/"+str(self.id)
+
+  def can_modify(self):
+    return self.server.can_modify_issues(self.info['project_id'])
+
+  def update_version(self, version):
+    if not self.can_modify():
+      logfail("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
+      exit(13)
+  
+    # list all versions
+    versions = self.server.version_list(self.info['project_id'])
+    # keep versions that match and that are still open
+    valid_versions = [ v for v in versions.json()['versions'] if v['status'] == 'open' and v['name'].startswith(version) ]
+    # there should only only, but in doubt keep the last one
+    final_version = valid_versions[-1]
+  
+    # set the version
+    self._update_issue({ 'issue': { 'fixed_version_id': final_version['id'] } })
+    self.info['fixed_version'] = final_version
+    (info['version_id'],info['version']) = self._get_version(self.info)
 
 
 class Redmine:

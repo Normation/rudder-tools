@@ -307,173 +307,6 @@ def get_version(ticket, error_fail=True):
     return None
  
 
-# Get informations about a ticket from redmine
-# Deprecated, use Issue()['field']
-def get_ticket_info(ticket_id, internal=False, must_be_open=True):
-  # Find ticket in redmine
-  print("Looking for Redmine ticket #" + str(ticket_id) + "... ", end=' ')
-  sys.stdout.flush() # to display previous unfinished line
-  tickets_req = requests.get(Config.REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json?include=journals", 
-                             headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' })
-  ticket = tickets_req.json()['issue'] if tickets_req.status_code == requests.codes.ok else None
-  if not ticket:
-    print("Not found!")
-    logfail("***** ERROR: ticket not found. Exiting.")
-    if not Config.force:
-      exit(2)
-  else:
-    print("Done")
-  
-  # Check ticket type
-  if ticket['tracker'] in Config.REDMINE_META_TRACKERS:
-    print("This is a question ticket! You cannot make a pull request on this ticket.")
-    logfail("***** ERROR: This is a question ticket. Exiting.")
-    if not Config.force:
-      exit(2)
-
-  # Check ticket status
-  if must_be_open and ticket['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
-    print("This ticket is closed! You cannot make a pull request on this ticket.")
-    logfail("***** ERROR: Closed ticket. Exiting.")
-    if not Config.force:
-      exit(2)
-
-  if 'fixed_version' not in ticket:
-    print("This ticket has no target version! I can't make a branch against its repository.")
-    logfail("***** ERROR: Missing target version. Exiting.")
-    if not Config.force:
-      exit(2)
-
-  # TODO check assignment ? project ?
-
-  # Get ticket elements
-  info = {}
-  info['id'] = ticket_id
-  info['type'] = ticket['tracker']['name']
-  info['name'] = ticket['subject']
-  info['version'] = get_version(ticket)
-  info['project_id'] = ticket['project']['id']
-  info['internal'] = internal
-  info['tracker_id'] = ticket['tracker']['id']
-  info['priority_id'] = ticket['priority']['id']
-  info['subject'] = ticket['subject']
-  info['description'] = ticket['description']
-  info['private'] = 'is_private' in ticket and ticket['is_private']
-  if 'category' in ticket:
-    info['category_id'] = ticket['category']['id']
-  if 'is_private' in ticket:
-    info['is_private'] = ticket['is_private']
-  if 'custom_fields' in ticket:
-    for field in ticket['custom_fields']:
-      if field['id'] == Config.CUSTOM_FIELD_PR and 'value' in field:
-        info['pr'] = field['value']
-
-  # Get ticket's last assignment besides me
-  my_id = get_redmine_uid()
-  if 'journals' in ticket:
-    for journal in ticket['journals']:
-      if 'details' in journal:
-        for detail in journal['details']:
-          if detail['name'] == 'assigned_to_id' and 'old_value' in detail and detail['old_value'] is not None:
-            if int(detail['old_value']) != my_id:
-              info['last_assignee'] = int(detail['old_value'])
-
-  return info
-
-
-# Return true if the current user can modify an issue in the given project
-# Deprecated, use Redmine.can_modify_issues()
-Config.REDMINE_CAN_MODIFY=None
-def can_modify_issues(project_id):
-  if Config.REDMINE_CAN_MODIFY is not None:
-    return Config.REDMINE_CAN_MODIFY
-  data = requests.get(Config.REDMINE_API_URL + "/users/current.json?include=memberships", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
-  user = data.json()
-  for membership in user['user']['memberships']:
-    if membership['project']['id'] == project_id:
-      for role in membership['roles']:
-        if role['id'] in Config.ACCESS_ROLE_LIST:
-          Config.REDMINE_CAN_MODIFY = True
-          return True
-  Config.REDMINE_CAN_MODIFY = False
-  return False
-
-
-# Change a ticket version to the closest version available
-def update_ticket_version(info, version):
-  if not can_modify_issues(info['project_id']):
-    logfail("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
-    exit(13)
-
-  # list all versions
-  versions = requests.get(Config.REDMINE_API_URL + "/projects/" + str(info['project_id']) + "/versions.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
-  # keep versions that match and that are still open
-  valid_versions = [ v for v in versions.json()['versions'] if v['status'] == 'open' and v['name'].startswith(version) ]
-  # there should only only, but in doubt keep the last one
-  final_version = valid_versions[-1]
-
-  # set the version
-  ticket_info = { 'issue': { 'fixed_version_id': final_version['id'] } }
-  url = Config.REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
-  ticket_json = json.dumps(ticket_info)
-  ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-  if ret.status_code != 200:
-    logfail("Ticket Update error: " + ret.reason)
-    print(ret.text)
-    if not Config.force:
-      exit(3)
-  info['version'] = get_version( { 'fixed_version': final_version } )
-
-
-# Change ticket state to technical review
-# Deprecated, use Issue.update()
-def ticket_to_TR(info, user_id=None, pr_url=None, message=None):
-  # Create note content
-  note = None
-  if pr_url is not None:
-    note = "PR " + pr_url
-  if message is not None:
-    if note is None:
-      note = message
-    else:
-      note += "\n" + message
-
-  if can_modify_issues(info['project_id']):
-    # fill ticket data with developer available content
-    ticket_info = { 
-            'issue': {
-                'status_id': Config.PENDING_TR_CODE,
-            }
-        }
-    if user_id is not None:
-      ticket_info['issue']['assigned_to_id'] = user_id
-    if note is not None:
-      ticket_info['issue']['notes'] = note
-    if pr_url is not None:
-      ticket_info['issue']['custom_fields'] = [ { 'id': Config.CUSTOM_FIELD_PR, 'value': pr_url } ]
-
-  else:
-    # just append the note to ticket
-    if note is None:
-      return
-    else:
-      ticket_info = {
-              'issue': {
-                'notes': note,
-              }
-          }
-  
-  # call the api
-  url = Config.REDMINE_API_URL + "/issues/" + str(info['id']) + ".json"
-  ticket_json = json.dumps(ticket_info)
-  ret = requests.put(url, headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' }, data=ticket_json )
-  if ret.status_code != 200:
-    logfail("Ticket Update error: " + ret.reason)
-    print(ret.text)
-    if not Config.force:
-      exit(3)
-
-
 # get current redmine user
 def get_redmine_uid():
   user = requests.get(Config.REDMINE_API_URL + "/users/current.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
@@ -528,18 +361,6 @@ def ask_username(project_id, trigraph):
     if trigraph == 'NON':
       return None
   return user_ids[trigraph]['id']
-
-
-# Find a ticket id in a branch name
-# Deprecated: use issue_from_branch
-def ticket_from_branch(branch, must_be_open=True):
-  match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
-  if match:
-    (ticket_id, internal) = parse_ticket_id(match.group(1))
-    return get_ticket_info(ticket_id, internal, must_be_open)
-  else:
-    logfail("***** ERROR: This is not a ticket branch: " + branch)
-    exit(4)
 
 
 # Get an issue object from a branch name
@@ -659,21 +480,6 @@ def version_from_branch(branch):
   return None
 
 
-# Calculate branch name from a ticket
-# Deprecated: use issue.branch_name()
-def branch_from_ticket(info):
-  branchified_ticket_name = re.sub("__+", "_", re.sub("[^" + string.ascii_letters + string.digits + "]", "_", info['name'].strip().lower())).strip("_")
-  if info['internal']:
-    id = 'i' + str(info['id'])
-  else:
-    id = str(info['id'])
-  if info['private']:
-    branch_name = Config.TRACKER_NAME_MAPPING[info['type']] + "_" + id + "/_"
-  else:
-    branch_name = Config.TRACKER_NAME_MAPPING[info['type']] + "_" + id + "/" + branchified_ticket_name
-  return branch_name
-
-
 # Find an existing branch for a ticket id
 def branch_from_ticket_id(ticket_id, internal):
   for line in os.popen("git branch --no-color --list"):
@@ -701,18 +507,18 @@ def remote_repo():
 
 
 # create a new PR
-def create_pr(master_branch, info, message):
+def create_pr(master_branch, issue, message):
   url = "https://api.github.com/repos/Normation/{repo}/pulls"
   user = get_github_user()
-  body = Config.REDMINE_API_URL + "/issues/" + str(info['id'])
+  body = Config.REDMINE_API_URL + "/issues/" + str(issue.id)
   if message is not None:
     body += "\n\n" + message + "\n"
 
-  if info['private']:
+  if issue['private']:
     title = ''
   else:
-    title = info['name']
-  pr = '{ "title": ' + json.dumps('Fixes #' + str(info['id']) + ": " + title) + ','
+    title = issue['name']
+  pr = '{ "title": ' + json.dumps('Fixes #' + str(issue.id) + ": " + title) + ','
   pr += ' "body": ' + json.dumps(body) + ','
   pr += ' "head": "' + user + ':' + current_branch + '",'
   pr += ' "base": "' + master_branch + '" }'
@@ -761,13 +567,6 @@ def get_pr_upstream(pr_url):
   pr = github_request(url, None, pr_url)
   return pr['base']['ref']
   
-# get PR source informations
-# Deprecated: use PR.repo() and PR.remote_branch()
-def get_pr_source(pr_url):
-  url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
-  pr = github_request(url, None, pr_url)
-  return (pr['head']['repo']['ssh_url'], pr['head']['ref'])
-
 # get PR merge commit
 def get_pr_merge_commit(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/events"
@@ -858,26 +657,6 @@ def fetch_branch_from_issue(issue):
   new_name = issue.branch_name()
   fetch_branch_from_pr_as(pr, new_name)
   return new_name
-
-
-# fetch a branch from a PR given in a ticket
-# Deprecated: use fetch_branch_from_issue
-def fetch_branch_from_ticket(ticket):
-  # extract ticket info
-  (ticket_id, internal) = parse_ticket_id(ticket)
-  info = get_ticket_info(ticket_id, internal)
-  if 'pr' not in info or info['pr'] == '':
-    logfail("There is no PR in this ticket " + ticket)
-    exit(15)
-
-  # look for PR
-  (repo, remote_branch) = get_pr_source(info['pr'])
-
-  # fetch remote branch
-  branch_name = branch_from_ticket(info)
-  shell("git fetch --update-head-ok " + repo + " " + remote_branch + ":" + branch_name, "Fetching branch from remote " + repo)
-
-  return branch_name
 
 
 def github_fork():
@@ -1000,7 +779,7 @@ def create_branch(ticket, base=None):
   if base is not None:
     if re.match(r'^.\d*$', base):
       # fetch base branch
-      branch_name = fetch_branch_from_ticket(base)
+      branch_name = fetch_branch_from_issue(Issue(base))
     else:
       branch_name = base
     # checkout the new branch
@@ -1052,7 +831,7 @@ def technique(version, message):
     exit(7)
   
   # check branch info
-  info = ticket_from_branch(current_branch)
+  issue = issue_from_branch(current_branch)
 
   # new version
   shell("cp -r " + last_version + " " + version, "Creating the version " + version)
@@ -1085,7 +864,7 @@ def technique(version, message):
   # commit
   shell("git add " + version, "Adding next version")
   technique = os.path.basename(cwd)
-  commit_cmd = "git commit -m \"Refs #" + str(info['id']) + ": Creation of " + technique + " version " + version + " from " + last_version + "\""
+  commit_cmd = "git commit -m \"Refs #" + str(issue.id) + ": Creation of " + technique + " version " + version + " from " + last_version + "\""
   shell(commit_cmd, "Commiting")
 
 
@@ -1199,38 +978,38 @@ def quick_fix_local(filename, subject, trigraph=None):
 
 # Commit, push, create pull-request, update ticket
 def commit(trigraph=None, message=None, nopr=False):
-  info = ticket_from_branch(current_branch)
-  master_branch = branch_from_version(info['version'])
+  issue = issue_from_branch(current_branch)
+  master_branch = branch_from_version(issue['version'])
 
   # commit and push
-  if info['private']:
+  if issue['private']:
     title = ''
   else:
-    title = info['name'].replace("\"", "\\\"")
+    title = issue['name'].replace("\"", "\\\"")
   if nopr is True:
     prefix = "Refs"
   else:
     prefix = "Fixes"
-  commit_push(current_branch, prefix + " #" + str(info['id']) + ": " + title)
+  commit_push(current_branch, prefix + " #" + str(issue.id) + ": " + title)
 
   if nopr is True:
     return
 
   # create PR
-  pr_url = create_pr(master_branch, info, message)
+  pr_url = create_pr(master_branch, issue, message)
   print("PR URL: " + str(pr_url))
 
   # update ticket
   if Config.REDMINE_TOKEN is not None:
-    if can_modify_issues(info['project_id']):
-      user = ask_username(info['project_id'], trigraph)
+    if issue.can_modify():
+      user = ask_username(issue['project_id'], trigraph)
     else:
       user = None
-    print("Updating ticket #" + str(info['id']))
-    ticket_to_TR(info, user, pr_url, message)
-    print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + info['id'])
+    print("Updating ticket #" + str(issue.id))
+    issue.update(user, pr_url, message)
+    print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
   else:
-    print("You can now update the ticket here " + Config.REDMINE_API_URL + "/issues/" + info['id'])
+    print("You can now update the ticket here " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
 
 
 # amend commit, push -f, comment PR
@@ -1309,7 +1088,7 @@ def rebase(comment=None, base=None):
   if base is not None:
     if re.match(r'^.\d*$', base):
       # base branch from ticket id
-      branch_name = fetch_branch_from_ticket(base)
+      branch_name = fetch_branch_from_issue(Issue(base))
     else:
       # base branch from branch name
       branch_name = base
@@ -1353,18 +1132,18 @@ perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
 
 # close PR, rebase, push -f, create PR, update ticket
 def retarget(version=None):
-  info = ticket_from_branch(current_branch)
+  issue = issue_from_branch(current_branch)
 
   # update ticket if required
   if version is not None:
     print("Changing target version in the ticket to " + version)
-    update_ticket_version(info, version)
-    print("New version " + info['version'])
+    issue.update_version(version)
+    print("New version " + issue['version'])
 
-  ticket_branch = branch_from_version(info['version'])
+  ticket_branch = branch_from_version(issue['version'])
 
-  if 'pr' in info and info['pr'] != '':
-    upstream_branch = get_pr_upstream(info['pr'])
+  if 'pr' in issue and issue['pr'] != '':
+    upstream_branch = get_pr_upstream(issue['pr'])
     if ticket_branch == upstream_branch:
       print("Ticket branch and PR branch match (" + upstream_branch + "), no need to retarget!")
       return
@@ -1375,22 +1154,22 @@ def retarget(version=None):
   # interactive rebase
   shell("git rebase -i " + Config.UPSTREAM_REPOSITORY + "/" + ticket_branch, "Rebasing")
 
-  if 'pr' in info and info['pr'] != '':
+  if 'pr' in issue and issue['pr'] != '':
     # if OK: continue
     shell("git push --force " + Config.OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
     # create new PR 
-    pr_url = create_pr(ticket_branch, info, "Replacing previous PR: " +  info['pr'])
+    pr_url = create_pr(ticket_branch, issue, "Replacing previous PR: " +  issue['pr'])
 
     if pr_url:
       # close old PR
-      close_pr(info['pr'], "PR replaced by " + pr_url)
+      close_pr(issue['pr'], "PR replaced by " + pr_url)
 
       # update ticket
       user = None
-      if 'last_assignee' in info:
-        user = info['last_assignee']
-      ticket_to_TR(info, user, pr_url)
+      if 'last_assignee' in issue:
+        user = issue['last_assignee']
+      issue.update(user, pr_url)
       print("New PR URL: " + pr_url)
 
 
@@ -1593,28 +1372,27 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True,
 
 # Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
 def revert(ticket, retarget = False):
-  (ticket_id, internal) = parse_ticket_id(ticket)
-  info = get_ticket_info(ticket_id, internal, False)
+  issue = Issue(ticket, False)
 
   # Find merge commit id
-  if 'pr' in info and info['pr'] != '':
-    commit = get_pr_merge_commit(info['pr'])
+  if 'pr' in issue and issue['pr'] != '':
+    commit = get_pr_merge_commit(issue['pr'])
   else:
     logfail("There is no pull request linked to that issue, abort reverting")
     exit(1)
 
-  pull(info['version'])
+  pull(issue['version'])
   # If we retarget a change, we want only this change to be reverted, so ensure we have already merged the branch correctly
   if retarget: 
-    merge_to_next(info['version'])
+    merge_to_next(issue['version'])
   
   # Reverting
-  shell("git revert -m1 " + commit, "Reverting issue #" + info["id"] + ":" + info["name"]+ ", commit: " + commit  )
+  shell("git revert -m1 " + commit, "Reverting issue #" + str(issue.id) + ":" + issue["name"]+ ", commit: " + commit  )
   shell("git push " + Config.UPSTREAM_REPOSITORY, "Updating " + Config.UPSTREAM_REPOSITORY)
 
   # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version 
   if retarget: 
-    merge_to_next(info['version'], "ours")
+    merge_to_next(issue['version'], "ours")
 
 
 # Run a command on all branches
