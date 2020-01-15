@@ -32,7 +32,7 @@ def is_ec2():
             if f.read(3).lower() != "ec2":
                 return False
     except:
-        pass
+        return False
     return requests.get(METAURL).status_code == 200
 
 def load():
