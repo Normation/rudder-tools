@@ -95,6 +95,7 @@ setup_dev_mode() {
     mkdir -p /etc/systemd/system/rudder-slapd.service.d
     cat > /etc/systemd/system/rudder-slapd.service.d/override.conf <<EOF
 [Service]
+ExecStart=
 ExecStart=/opt/rudder/libexec/slapd -n rudder-slapd -u rudder-slapd -f /opt/rudder/etc/openldap/slapd.conf -h "ldap://0.0.0.0:389/"
 EOF
   fi
