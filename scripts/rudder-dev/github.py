@@ -1,4 +1,3 @@
-import sys
 import json
 import re
 import requests # apt-get install python-requests || pip install requests
@@ -202,8 +201,6 @@ def github_call(url, post_data=None, fail_ok=False, method=None):
   token = get_github_token()
   # make query
   if post_data is not None:
-    if sys.version_info[0] == 2:
-      post_data = post_data.encode('utf-8')
     if method is None or method == "POST":
       ret = requests.post(url, headers = {'Authorization': 'token ' + token, 'Content-Type': 'application/json' }, data=post_data)
     elif method == "PATCH":

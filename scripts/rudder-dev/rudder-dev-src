@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Rudder development tool.
@@ -229,16 +229,13 @@ BLAME
     - changed after and before are incompatible
 """
 
-from __future__ import print_function
 import sys
 import os
 import re
 import string
-import webbrowser
 import locale
 import time
 import json
-from distutils.version import LooseVersion
 from pprint import pprint
 from tempfile import NamedTemporaryFile
 
@@ -253,11 +250,12 @@ import docopt # apt-get install python-docopt || pip install docopt
 from common import *  # fake import
 from github import *  # fake import
 from redmine import * # fake import
+from versions import * # fake import
 
 
 ## GLOBAL VARIABLES
 Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
-Config.WARN_FOR_UPDATE_AFTER = 15 # days
+Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
 Config.LIFECYCLES = [ { "name": "rudder",
                  "project_id": "21",
@@ -274,45 +272,6 @@ Config.LIFECYCLES = [ { "name": "rudder",
 ###  Internal functions
 ### 
 
-def parse_ticket_id(ticket_id):
-  if ticket_id.startswith('#'):
-    ticket_id = ticket_id[1:]
-  internal = False
-  match = re.match(r'i(\d+)', ticket_id)
-  if match:
-    ticket_id = match.group(1)
-    Config.REDMINE_TOKEN = Config.REDMINE_ALT_TOKEN
-    Config.REDMINE_API_URL = Config.REDMINE_ALT_API_URL
-    Config.CUSTOM_FIELD_PR = Config.ALT_CUSTOM_FIELD_PR
-    internal = True
-  return (ticket_id, internal)
-
-
-# Get the version included in a ticket
-# Deprecated, use Issue['version'] or Issue._get_version()
-def get_version(ticket, error_fail=True):
-  if 'fixed_version' not in ticket:
-    if error_fail:
-      logfail("***** BUG: Can't extract version from #" + str(ticket['id']))
-      exit(2)
-    else:
-      return None
-  for k,v in Config.REDMINE_VERSION_DETECTOR:
-    if re.match(k, ticket['fixed_version']['name']):
-      return re.sub(k, v, ticket['fixed_version']['name'])
-  if error_fail:
-    logfail("***** BUG: Can't extract version from " + ticket['fixed_version']['name'])
-    exit(2)
-  else:
-    return None
- 
-
-# get current redmine user
-def get_redmine_uid():
-  user = requests.get(Config.REDMINE_API_URL + "/users/current.json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
-  return user.json()['user']['id']
-
-
 # update normation user list cache and return updated user list
 def update_nrm_users(project_id):
   users = get_cache_info(Config.REDMINE_API_URL)
@@ -324,7 +283,11 @@ def update_nrm_users(project_id):
     if 'user' in user: # it can be a user or a group
       id = user['user']['id']
       user_data = requests.get(Config.REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
-      user_detail = user_data.json()['user']
+      try:
+        user_detail = user_data.json()['user']
+      # some user cannot get info on some other users, but not all
+      except ValueError:
+        continue
       if 'mail' in user_detail:
         # accept both normation.com and rudder.io adresses
         if user_detail['mail'].endswith("normation.com") or user_detail['mail'].endswith("rudder.io"):
@@ -426,16 +389,8 @@ def get_versions(internal=False):
   
   # keep unique name and sort
   version_list = list(set(redmine_version_list))
-  try:
-    # order is the right one because x.y < 'master' < 'prototype'
-    version_list.sort(key=LooseVersion)
-  except TypeError as e:
-    import distutils.version
-    filename = distutils.version.__file__
-    logfail("You are using python 3 with an unpatched LooseVersion, merge functions won't work")
-    logfail("You need to patch " + filename + " with http://bugs.python.org/file25808/14894.patch to make it work")
-    logfail("Sorry for the inconvenience")
-    exit(16)
+  # order is the right one because x.y < 'master' < 'prototype'
+  version_list.sort(key=LooseVersion)
   return (version_list, version_dict)
 
 
@@ -477,19 +432,6 @@ def version_from_branch(branch):
     m = re.match(lifecycle["format"].format('(.*)'), branch)
     if m:
       return m.group(1)
-  return None
-
-
-# Find an existing branch for a ticket id
-def branch_from_ticket_id(ticket_id, internal):
-  for line in os.popen("git branch --no-color --list"):
-    if internal:
-      ticket = 'i'+str(ticket_id)
-    else:
-      ticket = str(ticket_id)
-    match = re.search(r'^\*?\s*(\w+_' + ticket + r'/.*?)\n', line)
-    if match:
-      return match.group(1)
   return None
 
 
@@ -750,15 +692,14 @@ def stash_info():
 # Create a branch from a ticket id
 def create_branch(ticket, base=None):
   global current_branch
-  (ticket_id, internal) = parse_ticket_id(ticket)
+  issue = Issue(ticket)
 
-  existing_branch = branch_from_ticket_id(ticket_id, internal)
+  existing_branch = issue.existing_branch()
   if existing_branch is not None:
     shell("git checkout " + existing_branch, "Found existing branch, checkouting " + existing_branch)
     return
 
   # get ticket info
-  issue = Issue(ticket)
   print("* Found " + issue['type'] + " #" + str(issue.id) + ": " + issue['name'])
   print("* Target: " + issue['version'])
   print("* URL: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
@@ -1221,8 +1162,7 @@ def takeover(ticket):
   global current_branch
   issue = Issue(ticket)
 
-  (ticket_id, internal) = parse_ticket_id(ticket)
-  existing_branch = branch_from_ticket_id(ticket_id, internal)
+  existing_branch = issue.existing_branch()
   if existing_branch is not None:
     logfail("***** ERROR: Can't take over a ticket with a matching branch already existing in your repository")
     exit(12)
@@ -1419,7 +1359,8 @@ def cleanup(more=False, dry=False):
       branch=m.group(1)
       ticket_id = m.group(2)
       print("#" + ticket_id + ": ", end='')
-      tickets_req = requests.get(Config.REDMINE_API_URL + "/issues/" + str(ticket_id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN, 'Content-Type': 'application/json' })
+      issue = Issue(ticket_id)
+      tickets_req = issue.self.server._query("/issues/" + str(ticket_id) + ".json")
       remove = False
 
       # guess if we should remove the branch
@@ -1428,7 +1369,11 @@ def cleanup(more=False, dry=False):
         # The ticket is closed -> probably
         if ticket['status']['id'] in Config.REDMINE_CLOSED_STATUSES:
           print("ticket closed, ", end='')
-          version = get_version(ticket, False)
+          version = None
+          if 'fixed_version' in ticket:
+            for k,v in Config.REDMINE_VERSION_DETECTOR:
+              if re.match(k, ticket['fixed_version']['name']):
+                 version = re.sub(k, v, ticket['fixed_version']['name'])
           should_ask = False
           if version is not None:
             upstream = Config.UPSTREAM_REPOSITORY + '/' + branch_from_version(version)

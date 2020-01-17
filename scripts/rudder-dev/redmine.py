@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys
 import requests
 import json
@@ -90,8 +89,7 @@ class Issue:
     # Find issue in redmine
     print("Looking for Redmine ticket #" + self.name + "... ", end=' ')
     sys.stdout.flush() # to display previous unfinished line
-    issues_req = requests.get(self.api_url + "/issues/" + str(self.id) + ".json?include=journals",
-                              headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' })
+    issues_req = self.server._query("/issues/" + str(self.id) + ".json?include=journals")
     issue = issues_req.json()['issue'] if issues_req.status_code == requests.codes.ok else None
     if not issue:
       print("Not found!")
@@ -172,6 +170,19 @@ class Issue:
       branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/" + branchified_name
     return branch_name
 
+  def existing_branch(self):
+    """Check if a branch already exists fir this issue"""
+    for line in os.popen("git branch --no-color --list"):
+      if self.internal:
+        ticket = 'i'+str(self.id)
+      else:
+        ticket = str(self.id)
+      match = re.search(r'^\*?\s*(\w+_' + ticket + r'/.*?)\n', line)
+      if match:
+        return match.group(1)
+    return None
+
+
   # Beware, we don't update in memory status, throw away 'self' after calling this
   def _update_issue(self, change, message=None, alt_message=None):
     """Change the ticket content if possible"""
@@ -228,7 +239,7 @@ class Issue:
             'status_id': Config.IN_PROGRESS_CODE,
             }
     if Config.REDMINE_TOKEN is not None:
-      change['assigned_to_id'] = get_redmine_uid()
+      change['assigned_to_id'] = self.server.get_redmine_uid()
     self._update_issue(change, message)
 
   def to_status(self, status, assign_to, message=None):
@@ -303,7 +314,7 @@ class Redmine:
     elif put_data is not None:
       ret = requests.put(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = put_data)
     else:
-      ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token })
+      ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' })
     return ret
 
   def create_issue(self, project_id, subject, description, tracker_id, version_id):

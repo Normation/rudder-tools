@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf8
 
 """
@@ -10,7 +10,6 @@ Usage:
     rudder-dashboard
 """
 
-from __future__ import print_function
 import json
 import os
 import re
@@ -23,17 +22,10 @@ from pprint import pprint
 import requests # apt-get install python-requests || pip install requests
 import docopt # apt-get install python-docopt || pip install docopt
 
-try: # python 2 / 3
-  from urllib import urlencode
-except ImportError:
-  from urllib.parse import urlencode
-try:
-  import configparser
-  config = configparser.ConfigParser()
-except ImportError:
-  import ConfigParser
-  config = ConfigParser.ConfigParser()
-        
+from urllib.parse import urlencode
+import configparser
+config = configparser.ConfigParser()
+
 CONFIG_FILE = "~/.rudder-dev"
 
 MAX_DAYS = 7 
