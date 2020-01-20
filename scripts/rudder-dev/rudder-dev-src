@@ -292,7 +292,11 @@ def update_nrm_users(project_id):
         # accept both normation.com and rudder.io adresses
         if user_detail['mail'].endswith("normation.com") or user_detail['mail'].endswith("rudder.io"):
           trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
-          users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'] }
+          github_account = ''
+          for field in user_detail['custom_fields']:
+            if field['name'] == "GitHub":
+              github_account = field['value']
+          users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'], 'github':github_account }
   set_cache_info(Config.REDMINE_API_URL, users)
   return users
 
@@ -320,10 +324,13 @@ def ask_username(project_id, trigraph):
     sys.stdout.flush() # to display previous unfinished line
     trigraph = sys.stdin.readline().strip().upper()
     if trigraph == 'R':
-      user_ids = update_nrm_users(project_id)[Config.REDMINE_API_URL]
+      user_ids = update_nrm_users(project_id)
     if trigraph == 'NON':
       return None
-  return user_ids[trigraph]['id']
+  # update cache if it was created by an old rudder_dev
+  if 'github' not in user_ids[trigraph]:
+    user_ids = update_nrm_users(project_id)
+  return (user_ids[trigraph]['id'], user_ids[trigraph]['github'])
 
 
 # Get an issue object from a branch name
@@ -961,12 +968,15 @@ def commit(trigraph=None, message=None, nopr=False):
   # update ticket
   if Config.REDMINE_TOKEN is not None:
     if issue.can_modify():
-      user = ask_username(issue['project_id'], trigraph)
+      (user, github) = ask_username(issue['project_id'], trigraph)
     else:
-      user = None
+      (user, github) = (None, '')
     print("Updating ticket #" + str(issue.id))
     issue.update(user, pr_url, message)
     print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
+    if github != '':
+      print("Updating issuer")
+      PR(pr_url).set_reviewer(github)
   else:
     print("You can now update the ticket here " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
   print("PR URL: " + str(pr_url))

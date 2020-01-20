@@ -125,6 +125,11 @@ class PR:
           })
     return comments
 
+  def set_reviewer(self, reviewer):
+    url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}/requested_reviewers"
+    data = { "reviewers": [ reviewer ] }
+    github_request(url, "Setting reviewer on github to "+reviewer, self.url, repo=self.repo_name, post_data=json.dumps(data))
+
   def review_approval(self):
     """ Returns True (approved), False (not approved) or None (no review) """
     # list reviews of this PR (always in chronological order)
