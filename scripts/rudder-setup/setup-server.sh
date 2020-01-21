@@ -53,6 +53,7 @@ setup_server() {
   [ "${DEV_MODE}" = "true" ] && setup_dev_mode
 
   if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
+    sleep 10
     rudder server health -w
   fi
 }
