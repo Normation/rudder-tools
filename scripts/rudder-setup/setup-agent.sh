@@ -60,11 +60,15 @@ setup_agent() {
 
   rudder agent inventory
 
-  if is_version_valid "${RUDDER_VERSION}" "[4.1 *]"
+  # No start needed anymore in 6.0
+  if is_version_valid "${RUDDER_VERSION}" "[* 5.0]"
   then
-    rudder agent start
-  else
-    service_cmd rudder-agent start
+    if is_version_valid "${RUDDER_VERSION}" "[4.1 *]"
+    then
+      rudder agent start
+    else
+      service_cmd rudder-agent start
+    fi
   fi
 
   if is_version_valid "${RUDDER_VERSION}" "[4.0 *]"; then
