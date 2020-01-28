@@ -938,7 +938,6 @@ def commit(trigraph=None, message=None, nopr=False):
 
   # create PR
   pr_url = create_pr(master_branch, issue, message)
-  print("PR URL: " + str(pr_url))
 
   # update ticket
   if Config.REDMINE_TOKEN is not None:
@@ -951,6 +950,7 @@ def commit(trigraph=None, message=None, nopr=False):
     print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
   else:
     print("You can now update the ticket here " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
+  print("PR URL: " + str(pr_url))
 
 
 # amend commit, push -f, comment PR
