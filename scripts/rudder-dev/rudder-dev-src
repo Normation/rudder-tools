@@ -527,6 +527,25 @@ def commit_push(branch, message, force_amend=False, fixup=False):
     # github fork is asynchronous but pretty fast, this should be sufficient
     time.sleep(2)
 
+  # in case of amend, check that we have a base commit
+  if force_amend:
+    # get commit message
+    commit = shell("git show --oneline -s ", keep_output=True).strip()
+    # extract issue id from commit
+    match = re.match(r'.* Fixes #(i?\d+):.*', commit, flags=re.IGNORECASE)
+    if match:
+      commit_issue_id = match.group(1)
+    # extract issue id from branch
+    branch_issue_id = issue_from_branch(current_branch).id
+    # refuse wrong amend unless forced
+    if commit_issue_id != branch_issue_id:
+      print("You are trying to ammend on a commit that is not on the same branch as your issue, this is likely an error !")
+      print("  Commit: " + commit)
+      print("  Branch: " + current_branch)
+      print("You may want to do a 'rudder-dev commit' first")
+      if not Config.force:
+        exit(1)
+
   # git add if needed
   files = shell("git status --untracked-files=no --porcelain", keep_output=True)
   # git status returns a space at beginning of a line if the file is not indexed
