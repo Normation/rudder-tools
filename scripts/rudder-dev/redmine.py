@@ -273,7 +273,7 @@ class Issue:
     return self.api_url+"/issues/"+str(self.id)
 
   def can_modify(self):
-    return self.server.can_modify_issues(self.info['project_id'])
+    return self.server.can_modify_issues(self['project_id'])
 
   def update_version(self, version):
     if not self.can_modify():
