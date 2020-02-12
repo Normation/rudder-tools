@@ -407,4 +407,3 @@ def issue_from_branch(branch):
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
 
-

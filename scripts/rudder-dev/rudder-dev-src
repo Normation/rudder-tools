@@ -333,16 +333,6 @@ def ask_username(project_id, trigraph):
   return (user_ids[trigraph]['id'], user_ids[trigraph]['github'])
 
 
-# Get an issue object from a branch name
-def issue_from_branch(branch, must_be_open=True):
-  match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
-  if match:
-    return Issue(match.group(1), must_be_open)
-  else:
-    logfail("***** ERROR: This is not a ticket branch: " + branch)
-    exit(4)
-
-
 current_lifecycle = None
 # Get the current lifecycle
 def get_lifecycle():
@@ -539,7 +529,7 @@ def commit_push(branch, message, force_amend=False, fixup=False):
     # extract issue id from commit
     match = re.match(r'.* Fixes #(i?\d+):.*', commit, flags=re.IGNORECASE)
     if match:
-      commit_issue_id = match.group(1)
+      commit_issue_id = int(match.group(1))
     # extract issue id from branch
     branch_issue_id = issue_from_branch(current_branch).id
     # refuse wrong amend unless forced
