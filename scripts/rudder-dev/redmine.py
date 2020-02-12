@@ -16,8 +16,6 @@ Config.ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum
 Config.REDMINE_NRM_GROUP = 314
 Config.REDMINE_ALT_NRM_GROUP = 36
 
-# Keeping old version for reference
-#TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'Implementation (development)': 'dev', 'Implementation (integration)': 'int' }
 Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
 Config.PENDING_TR_CODE = 3
 Config.IN_PROGRESS_CODE = 9
@@ -27,7 +25,7 @@ Config.BUG_TACKER_ID = 1
 Config.PENDING_MERGE_CODE = 12
 Config.DISCUSSION_CODE = 4
 
-Config.REDMINE_VERSION_DETECTOR = [ (r'master|.*~alpha\d+', r'master'), (r'4.2.0~prototype', r'prototype'), (r'(\d+\.\w\d*).*', r'\1') ]
+Config.REDMINE_VERSION_DETECTOR = [ (r'master|.*~alpha\d+', r'master', False), (r'(\d+\.\d+)-.*', r'\1', True), (r'(\d+\.\d+).*', r'\1', False) ]
 
 class Issue:
   """Class to hold informations about a single issue"""
@@ -73,10 +71,10 @@ class Issue:
         exit(2)
       else:
         return None
-    for k,v in Config.REDMINE_VERSION_DETECTOR:
-      if re.match(k, issue_info['fixed_version']['name']):
-        return (issue_info['fixed_version']['id'], re.sub(k, v, issue_info['fixed_version']['name']))
-    if error_fail:
+    version = self.server.major_or_master(issue_info['fixed_version']['name'])
+    if version is not None:
+      return (issue_info['fixed_version']['id'], version)
+    elif error_fail:
       logfail("***** BUG: Can't extract version from " + issue_info['fixed_version']['name'] + " in #" + self.name)
       exit(2)
     else:
@@ -371,6 +369,34 @@ class Redmine:
       return None
     user = self._query("/users/current.json")
     return user.json()['user']['id']
+
+  def major_or_master(self, version):
+    """ Return the major version or "master" if it is in alpha status """
+    for k,v,recheck in Config.REDMINE_VERSION_DETECTOR:
+      if re.match(k, version):
+        major = re.sub(k, v, version)
+        if recheck:
+          # we d n't know the alpha status, let's check it agains the rudder project
+          alpha = False
+          for v in self.version_list("rudder"):
+            if v["status"] == "closed":
+              continue
+            # stop if we found a version matching major that is not alpha
+            if v["name"].startswith(major):
+              if re.search(r"alpha", v["name"]):
+                alpha = True
+              else:
+                return major
+          # If there is only alpha then it is currently alpha
+          if alpha:
+            return "master"
+          # If it is not declared -> ??
+          else:
+            logfail("***** ERROR: Cannot find version status " + versions)
+            exit(4)
+        return major
+    return None
+
 
 def issue_from_branch(branch):
   """ Create issue object from given branch """

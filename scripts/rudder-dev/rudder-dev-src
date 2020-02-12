@@ -386,17 +386,19 @@ def get_versions(internal=False):
     if version['status'] != 'open':
       continue
     v = None
-    for k,val in Config.REDMINE_VERSION_DETECTOR:
+    for k,val,recheck in Config.REDMINE_VERSION_DETECTOR:
       if re.match(k, version['name']):
+        if recheck:
+          logfail("***** ERROR: There should not be any version in the rudder project that looks like a plugin version")
         v = re.sub(k, val, version['name'])
         break
-    if v in git_version_list or v == 'master' or v == 'prototype':
+    if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
   
   # keep unique name and sort
   version_list = list(set(redmine_version_list))
-  # order is the right one because x.y < 'master' < 'prototype'
+  # order is the right one because x.y < 'master'
   version_list.sort(key=LooseVersion)
   return (version_list, version_dict)
 
@@ -417,25 +419,21 @@ def get_next_version(old, internal=False):
 
 # Get branch name from version
 def branch_from_version(version):
-  # detect lifecycle and base the name on it
-  lifecycle = get_lifecycle()
   if version == "master":
     return version
-  elif version == "prototype":
-    return "prototype/windows-dsc"
   else:
+    # detect lifecycle and base the name on it
+    lifecycle = get_lifecycle()
     return lifecycle['format'].format(version)
 
 
 # Get a version from a branch name
 def version_from_branch(branch):
-  # detect lifecycle and extract the name
-  lifecycle = get_lifecycle()
   if branch == "master":
     return branch
-  elif branch == "prototype/windows-dsc":
-    return "prototype"
   else:
+    # detect lifecycle and extract the name
+    lifecycle = get_lifecycle()
     m = re.match(lifecycle["format"].format('(.*)'), branch)
     if m:
       return m.group(1)
@@ -1400,9 +1398,7 @@ def cleanup(more=False, dry=False):
           print("ticket closed, ", end='')
           version = None
           if 'fixed_version' in ticket:
-            for k,v in Config.REDMINE_VERSION_DETECTOR:
-              if re.match(k, ticket['fixed_version']['name']):
-                 version = re.sub(k, v, ticket['fixed_version']['name'])
+            version = issue.server.major_or_master(ticket['fixed_version']['name'])
           should_ask = False
           if version is not None:
             upstream = Config.UPSTREAM_REPOSITORY + '/' + branch_from_version(version)
