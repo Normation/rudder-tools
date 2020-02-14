@@ -10,6 +10,7 @@ Only works on Rudder 6.0+
 Usage:
     rudder-synchronize export <rudder_item> <uuid> <path> [--debug]
     rudder-synchronize import <rudder_item> <path> [--debug]
+    rudder-synchronize delete <rudder_item> <uuid> [--debug] [--yes]
 
 """
 
@@ -27,6 +28,7 @@ import docopt
 from rudder import RudderEndPoint, RudderError
 
 LOG_PATH="./run.log"
+YES = None
 
 class colors:
   BLUE = '\033[94m'
@@ -74,6 +76,29 @@ def make_jsonfile(filename, content):
     os.makedirs(os.path.dirname(filename))
   with open(filename, "w") as fd:
     fd.write(json.dumps(content, sort_keys=True, indent=2, separators=(',', ': ')))
+
+def queryYesNo(question, answer=None):
+    if YES:
+        return (YES, YES)
+    valid = {"yes": True, "y": True, "ye": True,
+             "no": False, "n": False}
+    if answer == None:
+        while True:
+            sys.stdout.write(question)
+            choice = raw_input()
+
+            if choice == "Y":
+                return (True, True)
+            elif choice == "N":
+                return (False, False)
+            elif choice in valid:
+                return (answer, valid[choice])
+            else:
+                sys.stdout.write("Please respond with 'y' or 'no' "
+                                 "(or 'Y' or 'N' for all next inputs).\n")
+    else:
+        return (answer, answer)
+
 
 def is_directive(data):
     if "techniqueName" in data and "techniqueVersion" in data:
@@ -237,6 +262,46 @@ def get_all_techniques():
     get_all_ncf()
     return NCF_CACHE["techniques"]
 
+def remove_rule(rule):
+    try:
+        delete = endpoint.delete_rule(rule)
+        logging.info(colors.GREEN + "Successfully removed rule %s"%(colors.YELLOW + "\"" + rule + "\"" + colors.ENDC))
+    except RudderError as e:
+        logging.info(colors.RED + e.message + colors.ENDC)
+
+def remove_directive(directive):
+    try:
+        delete = endpoint.delete_directive(directive)
+        logging.info(colors.GREEN + "Successfully removed directive %s"%(colors.YELLOW + "\"" + directive + "\"" + colors.ENDC))
+    except RudderError as e:
+        logging.info(colors.RED + e.message + colors.ENDC)
+
+"""
+    Ask for the removal of each directive based on the target technique.
+    If a removal is refused, it will keep the technique and the selected directives.
+"""
+def remove_technique(techniqueName, techniqueVersion="1.0", force=False):
+    removeTechnique = True
+    answer = None
+    try:
+        if techniqueName in get_all_techniques().keys():
+            directives = endpoint.list_directives_version(techniqueName, techniqueVersion)['directives']
+            for d in directives:
+                (answer, remove) = queryYesNo("The directive %s \"%s\" %s with id %s \"%s\" %s is defined and base from the technique %s, do you really want to delete it? [y/n/Y/N]"%(colors.YELLOW, d['id'], colors.ENDC, colors.YELLOW, d['displayName'], colors.ENDC, techniqueName), answer)
+                if remove:
+                    remove_directive(d['id'])
+                else:
+                    removeTechnique = False
+            if removeTechnique:
+                headers = { "X-API-Token": TOKEN }
+                r = requests.delete(RUDDER_URL + "/api/latest/techniques/" + techniqueName + "/" + techniqueVersion, params={'force':'false'}, verify=False, headers=headers)
+                logging.info(colors.GREEN + "Successfully removed technique %s"%(colors.YELLOW + "\"" + techniqueName + "\"" + colors.ENDC))
+            else:
+                logging.info(colors.GREEN + "Keeping technique %s since some directives are still using it"%(colors.YELLOW + "\"" + techniqueName + "\"" + colors.ENDC))
+        else:
+            logging.info(colors.GREEN + "The technique %s could not be found on the server"%(colors.YELLOW + "\"" + techniqueName + "\"" + colors.GREEN) + colors.ENDC)
+    except Exception as e:
+        fail("Error while removing technique %s:\n%s"%(colors.YELLOW + "\"" + techniqueName + "\"" + colors.ENDC, e.message))
 
 ##########################
 # Command line interface #
@@ -248,6 +313,9 @@ if __name__ == "__main__":
       startLogger('DEBUG')
   else:
       startLogger('INFO')
+
+  if args['--yes']:
+      YES = True
 
   if args['export']:
       if args['<rudder_item>'] == "technique":
@@ -265,5 +333,15 @@ if __name__ == "__main__":
           import_directives(args['<path>']),
       elif args['<rudder_item>'] == "rule":
           import_rules(args['<path>']),
+      else:
+          fail("Unknown Rudder Item %s"%args['<rudder_item>'])
+
+  elif args['delete'] and args['delete']:
+      if args['<rudder_item>'] == "technique":
+          remove_technique(args['<uuid>']),
+      elif args['<rudder_item>'] == "directive":
+          remove_directive(args['<uuid>']),
+      elif args['<rudder_item>'] == "rule":
+          remove_rule(args['<uuid>']),
       else:
           fail("Unknown Rudder Item %s"%args['<rudder_item>'])
