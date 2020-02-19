@@ -66,14 +66,7 @@ upgrade_server() {
   fi
 
   # Upgrade
-  if [ "${PM}" = "apt" ]
-  then
-    ${PM_UPGRADE} rudder-server-root ncf ncf-api-virtualenv
-  else
-    ${PM_UPGRADE} "rudder-*" "ncf*"
-  fi
-
-  service_cmd rudder-jetty restart
+  ${PM_UPGRADE} rudder-server-root
 }
 
 upgrade_techniques() {
