@@ -58,14 +58,6 @@ Besides the security improvements made possible by the new reporting protocol, w
 
 == Installing, upgrading and testing
 
-[WARNING]
-====
-
-Rudder 6.0 is still in development and only provided for testing purposes,
-you should *NOT* install it on productions machines.
-
-====
-
 [NOTE]
 ====
 
