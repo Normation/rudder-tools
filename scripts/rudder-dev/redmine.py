@@ -199,7 +199,7 @@ class Issue:
 
     # send info
     ret = self.server._query("/issues/" + str(self.id) + ".json", put_data=json.dumps(info))
-    if ret.status_code != 200:
+    if ret.status_code < 200 or ret.status_code >= 300:
       logfail("Issue Update error: " + ret.reason)
       print(ret.text)
       if not Config.force:
