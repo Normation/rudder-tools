@@ -5,6 +5,306 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.3 (2020-02-27)
+
+=== Changes
+
+==== Documentation
+
+* Update security doc after 6.0
+    (https://issues.rudder.io/issues/16572[#16572])
+
+==== Web - UI & UX
+
+* Make some changes to facilitate the integration of plugins
+    (https://issues.rudder.io/issues/16781[#16781])
+
+==== Web - Nodes & inventories
+
+* Remove agent type from node details
+    (https://issues.rudder.io/issues/16627[#16627])
+
+==== Packaging
+
+* Add github status for rudder-language build
+    (https://issues.rudder.io/issues/16617[#16617])
+
+==== Rudder language
+
+* rl logger
+    (https://issues.rudder.io/issues/16583[#16583])
+* Replace file headers to shorter spdx license identifier
+    (https://issues.rudder.io/issues/16593[#16593])
+* rl integration tests cleaned
+    (https://issues.rudder.io/issues/16580[#16580])
+* rl integration tests
+    (https://issues.rudder.io/issues/16484[#16484])
+* RL error handling - non blocking errors tool and error context capture
+    (https://issues.rudder.io/issues/16483[#16483])
+
+==== Web - Config management
+
+* Add basic support for categories in techniques from technique editor
+    (https://issues.rudder.io/issues/16598[#16598])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: After upgrading from 5.0.16 to 6.0.3 on centos7 with plugins, jetty is stopped
+    (https://issues.rudder.io/issues/16797[#16797])
+* Fixed: Avoid moving ncf-api-venv config on SLES
+    (https://issues.rudder.io/issues/16796[#16796])
+* Fixed: When upgrading to 6.0.3 the packaging should disable all installed plugins
+    (https://issues.rudder.io/issues/16792[#16792])
+* Fixed: Error on plugins compatibility on upgrade cause the technique to not be updated
+    (https://issues.rudder.io/issues/16782[#16782])
+* Fixed: Missing restorecon in relay postinst for relayd file
+    (https://issues.rudder.io/issues/16766[#16766])
+* Fixed: rudder-upgrade refers to /opt/rudder/bin/rudder-pkg which doesn't exists in 6.0
+    (https://issues.rudder.io/issues/16761[#16761])
+* Fixed: When upgrading from 5.0 to 6.0 (on centos7), incompatible plugins are not disabled
+    (https://issues.rudder.io/issues/16735[#16735])
+* Fixed: After upgrade from 5.0 to 6.0 on centos7, rudder-slapd is not started
+    (https://issues.rudder.io/issues/16707[#16707])
+* Fixed: Getfacl warning at upgrade time
+    (https://issues.rudder.io/issues/16698[#16698])
+* Fixed: During upgrade, jetty doesn't seems to always restart correctly 
+    (https://issues.rudder.io/issues/12911[#12911])
+* Fixed: rudder-init fails when there are only IPv6 addresses
+    (https://issues.rudder.io/issues/16680[#16680])
+* Fixed: Restart rudder-jetty at the end of rudder-webapp postinst
+    (https://issues.rudder.io/issues/16642[#16642])
+* Fixed: Webapp postinst script in upgrade can fail with an agent error
+    (https://issues.rudder.io/issues/16631[#16631])
+* Fixed: In some upgrade paths, the Rudder config in /etc/ld.so.conf.d/ stays present
+    (https://issues.rudder.io/issues/16596[#16596])
+* Fixed: Typo in the rudder-server-relay rule file
+    (https://issues.rudder.io/issues/16571[#16571])
+* Fixed: At upgrade apache restart fail since webapp files are already unpacked
+    (https://issues.rudder.io/issues/16560[#16560])
+* Fixed: Missing failed folder for inventories on relays
+    (https://issues.rudder.io/issues/16550[#16550])
+* Fixed: Install logs of rudder-webapp are overwritten at the last install step
+    (https://issues.rudder.io/issues/16528[#16528])
+* Fixed: rudder reports installation fails on CentOS 7.7 because /var/log/rudder/install directory does not exist
+    (https://issues.rudder.io/issues/16519[#16519])
+* Fixed: Missing SELinux context on relayd config
+    (https://issues.rudder.io/issues/16771[#16771])
+* Fixed: We should not display logs about password creation by htpasswd in relay postinst
+    (https://issues.rudder.io/issues/16765[#16765])
+* Fixed: Use HTTPS repository URLs in maven configuration
+    (https://issues.rudder.io/issues/16651[#16651])
+* Fixed: Debian9 install fails due to rudder-init
+    (https://issues.rudder.io/issues/16561[#16561])
+* Fixed: Rudder agent 5.x package not compatible with Centos8
+    (https://issues.rudder.io/issues/16521[#16521])
+* Fixed: Restore SELinux context for cert and nodeslist in reload script
+    (https://issues.rudder.io/issues/16769[#16769])
+
+==== Server components
+
+* Fixed: 6.0 agents are unable to download their policies from a 5.0 server
+    (https://issues.rudder.io/issues/16576[#16576])
+* Fixed: Can not apply directives based on technique built only for non Linux systems if they do not contains conditions
+    (https://issues.rudder.io/issues/16810[#16810])
+* Fixed: Add an "upgrade-all" command to rudder-pkg
+    (https://issues.rudder.io/issues/16569[#16569])
+
+==== Agent
+
+* Fixed: At install rudder-agent does not prompt the necessary steps to configure the agent
+    (https://issues.rudder.io/issues/16533[#16533])
+* Fixed: Method "exist_or_restore" in rudder agent check outputs an error message if the backup doesn't exist
+    (https://issues.rudder.io/issues/16703[#16703])
+* Fixed: rudder agent health does not work on agent bootstrap nor on server before first run
+    (https://issues.rudder.io/issues/16588[#16588])
+
+==== Documentation
+
+* Fixed: Update install/upgrade docs for 6.0.3
+    (https://issues.rudder.io/issues/16779[#16779])
+* Fixed: Inventory workflow schema is not up to date in 6.0
+    (https://issues.rudder.io/issues/16708[#16708])
+* Fixed: Plugins architecture documentation is hard to find
+    (https://issues.rudder.io/issues/16639[#16639])
+* Fixed: Inventory workflow documentation outdated for Rudder 5.0
+    (https://issues.rudder.io/issues/16679[#16679])
+* Fixed: Install command for plugin is wrong in the doc
+    (https://issues.rudder.io/issues/16545[#16545])
+* Fixed: Do not advise to run "rudder agent start" after installation
+    (https://issues.rudder.io/issues/16544[#16544])
+
+==== Web - Technique editor
+
+* Fixed: HereString are not generated properly
+    (https://issues.rudder.io/issues/16817[#16817])
+
+==== Web - Maintenance
+
+* Fixed: Error when restoring an archive in 6.0
+    (https://issues.rudder.io/issues/16816[#16816])
+* Fixed: In zip archive, all files have size 0
+    (https://issues.rudder.io/issues/16805[#16805])
+
+==== Web - Nodes & inventories
+
+* Fixed: Add 6.0 inventories in rudder fusion test folder
+    (https://issues.rudder.io/issues/16804[#16804])
+* Fixed: If an inventory has no signature, the error message in log is thousands of line long
+    (https://issues.rudder.io/issues/16783[#16783])
+* Fixed: Missing log when inventory signature check fails
+    (https://issues.rudder.io/issues/16624[#16624])
+
+==== Web - UI & UX
+
+* Fixed: Missing timezone in reports caption header
+    (https://issues.rudder.io/issues/16777[#16777])
+* Fixed: Updating some settings leads to an eventlog with empty  "Value" field
+    (https://issues.rudder.io/issues/16354[#16354])
+
+==== Relay server or API
+
+* Fixed: Remote run always timeout for nodes behing relays
+    (https://issues.rudder.io/issues/16760[#16760])
+* Fixed: Parsing error of agent output when it contains warn of info logs
+    (https://issues.rudder.io/issues/16644[#16644])
+* Fixed: On centos8 relay, service relayd is not started after installation
+    (https://issues.rudder.io/issues/16509[#16509])
+* Fixed: Default relayd config should have disabled reporting output
+    (https://issues.rudder.io/issues/16511[#16511])
+
+==== Architecture - Refactoring
+
+* Fixed: Compilation warning for unused variable in WriteTechniquesTest.scala
+    (https://issues.rudder.io/issues/16759[#16759])
+
+==== Web - Compliance & node report
+
+* Fixed: Trigger remote run in node details says it timeouts
+    (https://issues.rudder.io/issues/16448[#16448])
+* Fixed: Set HTTPS mode to pure HTTPS for install, rather than HTTPS+syslogcompat
+    (https://issues.rudder.io/issues/16527[#16527])
+
+==== System integration
+
+* Fixed: We still talk about cmdb-endpoint in rudder 6.0 properties
+    (https://issues.rudder.io/issues/16715[#16715])
+
+==== Web - Config management
+
+* Fixed: Garbled generated policies in 6.0
+    (https://issues.rudder.io/issues/16700[#16700])
+* Fixed: Archive of techniques miss some files needed for a the technique editor
+    (https://issues.rudder.io/issues/16582[#16582])
+
+==== API
+
+* Fixed: Add authorized network configuration in settings api
+    (https://issues.rudder.io/issues/16667[#16667])
+* Fixed: Error when creating a directive with a given id from the API
+    (https://issues.rudder.io/issues/16592[#16592])
+* Fixed: Technique editor fails with internal error
+    (https://issues.rudder.io/issues/16701[#16701])
+
+==== Performance and scalability
+
+* Fixed: NullPointerException with hundreds of inventories at once
+    (https://issues.rudder.io/issues/14991[#14991])
+* Fixed: Unecessary compliance computations when historization of Node Compliance is disabled
+    (https://issues.rudder.io/issues/16643[#16643])
+* Fixed: Unecessary compliance computations when historization of Node Compliance is disabled
+    (https://issues.rudder.io/issues/16643[#16643])
+* Fixed: CachedFindRuleNodeStatusReports is a huge source of contention
+    (https://issues.rudder.io/issues/16557[#16557])
+* Fixed: Unecessary call to trim on empty string when creating executionBatch
+    (https://issues.rudder.io/issues/16522[#16522])
+* Fixed: Node never updated because of nonEmpty in place of isEmpty
+    (https://issues.rudder.io/issues/16537[#16537])
+* Fixed: we should not use .size to check if a collection is empty
+    (https://issues.rudder.io/issues/16524[#16524])
+* Fixed: JVM GC cannot clean objects in scope in a for { } yield {} even if they are not referenced anymore
+    (https://issues.rudder.io/issues/16513[#16513])
+* Fixed: StatusReportTest leads to inconsistant results
+    (https://issues.rudder.io/issues/16496[#16496])
+
+==== Miscellaneous
+
+* Fixed: Improve performance of policy generation writer
+    (https://issues.rudder.io/issues/16382[#16382])
+* Fixed: Message indicating plugin is incompatible at the end of every plugin install from the repo
+    (https://issues.rudder.io/issues/16630[#16630])
+* Fixed: Timeout for `NuCommand` test is too short
+    (https://issues.rudder.io/issues/16622[#16622])
+* Fixed: Merge error in #16606
+    (https://issues.rudder.io/issues/16607[#16607])
+
+==== Architecture - Dependencies
+
+* Fixed: Port Rudder to Scala 2.13
+    (https://issues.rudder.io/issues/16491[#16491])
+
+==== Security
+
+* Fixed: 5.0.15 and lower agents can not update when managed by a 6.0+ server or relay
+    (https://issues.rudder.io/issues/16716[#16716])
+
+==== System techniques
+
+* Fixed: Relays in 5.0 managed by a 6.0 root server are unable to send their reports
+    (https://issues.rudder.io/issues/16744[#16744])
+* Fixed: In HTTPS + syslog mode, agents without the http support (like 5.0) don't have their syslog configured
+    (https://issues.rudder.io/issues/16710[#16710])
+* Fixed: After first relay configuration, allowed networks are not taken into account
+    (https://issues.rudder.io/issues/16553[#16553])
+* Fixed: Shared files are broken in relayd
+    (https://issues.rudder.io/issues/16549[#16549])
+* Fixed: Unexpected reports on postgresql when changing allowed network in 6.0
+    (https://issues.rudder.io/issues/16530[#16530])
+* Fixed: Missing report on "Synchronize files" on simple relays when shared-files are empty
+    (https://issues.rudder.io/issues/16518[#16518])
+
+==== Techniques
+
+* Fixed: Technique SNMP installation doesn't work on non-debian like system
+    (https://issues.rudder.io/issues/16689[#16689])
+
+==== Generic methods
+
+* Fixed: New parameter_type option for GM are not detected
+    (https://issues.rudder.io/issues/16812[#16812])
+* Fixed: Command parameter should not be called "Command name"
+    (https://issues.rudder.io/issues/16645[#16645])
+* Fixed: Make error in no-reporting mode info instead of warns
+    (https://issues.rudder.io/issues/16608[#16608])
+
+==== Technique editor - UI/UX
+
+* Fixed: Technique resource modifications do not activate the save button
+    (https://issues.rudder.io/issues/16573[#16573])
+
+==== Generic methods - File Management
+
+* Fixed: Jinja2 templating script is always run with /usr/bin/python
+    (https://issues.rudder.io/issues/16120[#16120])
+
+==== Generic methods - Package Management
+
+* Fixed:  Package modules shebangs do not work when python3 is not installed in 6.0
+    (https://issues.rudder.io/issues/16542[#16542])
+* Fixed: Package modules shebangs do not work when python3 is not installed
+    (https://issues.rudder.io/issues/16541[#16541])
+* Fixed: yum package module is not compatible with systems having only python2
+    (https://issues.rudder.io/issues/16534[#16534])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Romain Brucker
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.3 (2020-02-24)
 
 === Changes
