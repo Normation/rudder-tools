@@ -530,7 +530,7 @@ def commit_push(branch, message, force_amend=False, fixup=False):
     match = re.match(r'.* Fixes #(i?\d+):.*', commit, flags=re.IGNORECASE)
     if match:
       commit_issue_id = int(match.group(1))
-    else
+    else:
       commit_issue_id = 0
     # extract issue id from branch
     branch_issue_id = issue_from_branch(current_branch).id
