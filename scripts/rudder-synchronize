@@ -30,12 +30,17 @@ from rudder import RudderEndPoint, RudderError
 LOG_PATH="./run.log"
 YES = None
 
+try:
+    input = raw_input
+except NameError:
+    pass
+
 class colors:
-  BLUE = '\033[94m'
-  GREEN = '\033[92m'
-  YELLOW = '\033[93m'
-  RED = '\033[91m'
-  ENDC = '\033[0m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    ENDC = '\033[0m'
 
 with open('/var/rudder/run/api-token') as ftoken:
     TOKEN = ftoken.read()
@@ -85,7 +90,7 @@ def queryYesNo(question, answer=None):
     if answer == None:
         while True:
             sys.stdout.write(question)
-            choice = raw_input()
+            choice = input()
 
             if choice == "Y":
                 return (True, True)
