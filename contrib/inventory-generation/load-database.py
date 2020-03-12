@@ -25,6 +25,7 @@ port_database = 5432
 # Use syslog rather than database
 use_syslog = False
 use_https  = True
+send_reports_https = True # if true, will call the script to send inventory itself
 
 # Proportion of repaired, error and non-compliant reports
 # Betweeen 0 (no such reports) and 1 (only this type of reports)
@@ -107,6 +108,7 @@ if len(sys.argv) > 1:
   
 startTime = datetime.datetime.now()
 nbReports = 0
+formatedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 cur.execute( "select nodeid, nodeconfigid, begindate, configuration from nodeconfigurations where enddate is null;")
 
@@ -163,7 +165,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                     nbReports += 1
                     report_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                     if use_https:
-                      report_file.write(report_string)
+                      report_file.write(formatedStartTime + ' ' +report_string)
 
                     if use_syslog:
                       syslog.syslog(syslog.LOG_INFO, report_string)
@@ -181,10 +183,11 @@ for nodeid, config, begindate, configuration in cur.fetchall():
     if (use_https):
       # always send last message with rest in https
       ending = lastruns.popitem()[1]
-      report_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution\n'
+      report_string = formatedStartTime +' R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution\n'
       report_file.write(report_string)
       report_file.close()
-
+      if (send_reports_https):
+        os.system(os.getcwd() + '/sign-and-send-reports.sh -u ' + nodeid + ' -s ' + hostname)
     else:
       # send end run
       randomValue = random.random()

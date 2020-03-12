@@ -15,8 +15,8 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-set -e
-CLEAN=true
+#set -e
+CLEAN="true"
 DATA_PATH=$DIR/data
 REPORTS_PATH=$DIR/reports
 SERVER=""
@@ -64,7 +64,7 @@ while true; do
       shift 2
       ;;
     -k |--keep)
-      CLEAN=false
+      CLEAN="false"
       ANY_OPTION_DEFINED=true
       shift
       ;;
@@ -117,15 +117,12 @@ function compress_and_sign {
 
     mv "${SOURCE_FILE}.signed.gz" "${SOURCE_FILE}.gz"
 
-    curl --tlsv1.2 -k -s  --fail  --proxy '' --user "rudder:rudder" --upload-file "${SOURCE_FILE}.gz" https://${SERVER}/reports/
+    curl --tlsv1.2 -k -s  --fail  --proxy '' --user "rudder:rudder" --upload-file "${SOURCE_FILE}.gz" https://${SERVER}/reports/ > /dev/null
 
-    if [ ${?} -eq 0 ]
+    NB_REPORT_SENT=$((NB_REPORT_SENT+1))
+    if [ "${CLEAN}" = "true" ]
     then
-      NB_REPORT_SENT=$((NB_REPORT_SENT+1))
-      if [ "${CLEAN}" = "true" ]
-      then
-        rm -rf "${REPORTS_PATH}/${CURRENT_NODE}/*"
-      fi
+      rm -rf "${REPORTS_PATH}/${CURRENT_NODE}/*"
     fi
   fi
 }
@@ -143,9 +140,10 @@ then
     # remove trailing /
     reportdir=${reportdir%*/}
     UUID=${reportdir##*/}
+    #compress_and_sign ${UUID}
     compress_and_sign ${UUID} &
     NB_THREAD=$((NB_THREAD+1))
-    if [ 4 -lt $NB_THREAD ]
+    if [ 2 -lt $NB_THREAD ]
     then
       wait
       NB_THREAD=0
