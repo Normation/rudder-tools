@@ -107,14 +107,20 @@ for nodeid, config, begindate, configuration in cur.fetchall():
     reportDate = (datetime.datetime.now()+datetime.timedelta(0, skew)).replace(microsecond=0)
 
     d = json.loads(configuration)
-    #d = configuration
+
+    globalAudit = d['modes']['globalPolicyMode']['mode']
+    nodeMode = d['modes'].get('nodePolicyMode', 'enforce')
+    resultingAudit = False
+    if globalAudit == 'audit' or nodeMode == 'audit':
+        resultingAudit = True
+
 
     for rules in d['rules']:
         # We commit rule per rule, as in real world, reports are added one by one
         write = myConnection.cursor()
 
         for directives in rules['directives']:
-            audit = False
+            audit = resultingAudit
             if 'policyMode' in directives.keys():
                 if directives['policyMode'] == 'audit':
                     audit = True
