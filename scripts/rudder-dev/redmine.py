@@ -281,14 +281,14 @@ class Issue:
     # list all versions
     versions = self.server.version_list(self.info['project_id'])
     # keep versions that match and that are still open
-    valid_versions = [ v for v in versions.json()['versions'] if v['status'] == 'open' and v['name'].startswith(version) ]
+    valid_versions = [ v for v in versions if v['status'] == 'open' and v['name'].startswith(version) ]
     # there should only only, but in doubt keep the last one
     final_version = valid_versions[-1]
   
     # set the version
     self._update_issue({ 'issue': { 'fixed_version_id': final_version['id'] } })
     self.info['fixed_version'] = final_version
-    (info['version_id'],info['version']) = self._get_version(self.info)
+    (self.info['version_id'],self.info['version']) = self._get_version(self.info)
 
 
 class Redmine:
@@ -355,7 +355,7 @@ class Redmine:
 
   def version_list(self, project):
     """ Return a list of version as given by the redmine API """
-    return self._query("/projects/" + project + "/versions.json").json()['versions']
+    return self._query("/projects/" + str(project) + "/versions.json").json()['versions']
 
   def has_locked_version(self, project):
     """ True if there is at least one locked version for this project """
