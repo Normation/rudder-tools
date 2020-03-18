@@ -187,7 +187,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
       report_file.write(report_string)
       report_file.close()
       if (send_reports_https):
-        os.system(os.getcwd() + '/sign-and-send-reports.sh -u ' + nodeid + ' -s ' + hostname)
+        os.system(os.path.dirname(os.path.realpath(__file__)) + '/sign-and-send-reports.sh -u ' + nodeid + ' -s ' + hostname)
     else:
       # send end run
       randomValue = random.random()
