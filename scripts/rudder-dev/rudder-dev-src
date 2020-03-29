@@ -1058,18 +1058,18 @@ def rebase(comment=None, base=None):
     origin_branch = branch_from_version(issue['version'])
     branch_name = Config.UPSTREAM_REPOSITORY + "/" + origin_branch
 
-  # First rebase without commits from source branch
-  # This is necessary because we may have modified the original commit and force pushed it
-  with NamedTemporaryFile(delete=False) as tmpscript:
-    script = """#!/bin/sh
-perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
-""" % { "ticket": str(issue.id)}
-    tmpscript.write(script.encode("utf-8"))
-    tmpscript.close()
-    os.system("chmod +x " + tmpscript.name)
-    # If it fails, let the interactive rebase try to fix it
-    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + str(issue.id) + "\" lines)", fail_exit=False)
-    os.unlink(tmpscript.name)
+#  # First rebase without commits from source branch
+#  # This is necessary because we may have modified the original commit and force pushed it
+#  with NamedTemporaryFile(delete=False) as tmpscript:
+#    script = """#!/bin/sh
+#perl -i -ne "print unless s/^pick \w+ Fixes #(?!%(ticket)s)//" "$1"
+#""" % { "ticket": str(issue.id)}
+#    tmpscript.write(script.encode("utf-8"))
+#    tmpscript.close()
+#    os.system("chmod +x " + tmpscript.name)
+#    # If it fails, let the interactive rebase try to fix it
+#    shell("EDITOR=" + tmpscript.name + " git rebase -i " + branch_name, "First rebase to remove parent commits (EDITOR keeps only  \"pick Fixes #" + str(issue.id) + "\" lines)", fail_exit=False)
+#    os.unlink(tmpscript.name)
 
 
   # Then interactive rebase
