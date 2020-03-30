@@ -909,7 +909,7 @@ def quick_fix_pr(pr_url, trigraph=None, merge=False):
   issue = server.create_issue(project_id, title, "Automatically opened by rudder-dev", Config.BUG_TACKER_ID, version_id)
   print("Opened issue #" + str(issue.id))
   # set pr url
-  issue.update(pr_url=pr_url)
+  issue.update(pr_url=pr_url, status=Config.PENDING_TR_CODE)
   # add issue to pr
   pr.comment(issue.url());
   # Take over the issue
@@ -962,7 +962,7 @@ def commit(trigraph=None, message=None, nopr=False):
     else:
       (user, github) = (None, '')
     print("Updating ticket #" + str(issue.id))
-    issue.update(user, pr_url, message)
+    issue.update(user, pr_url, message, status=Config.PENDING_TR_CODE)
     print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
     if github != '':
       print("Updating issuer")
