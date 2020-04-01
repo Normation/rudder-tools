@@ -398,11 +398,11 @@ class Redmine:
     return None
 
 
-def issue_from_branch(branch):
+def issue_from_branch(branch, must_be_open=True):
   """ Create issue object from given branch """
   match = re.match(r'[A-Za-z]+_(i?\d+)/.*', branch)
   if match:
-    return Issue(match.group(1))
+    return Issue(match.group(1), must_be_open)
   else:
     logfail("***** ERROR: This is not a ticket branch: " + branch)
     exit(4)
