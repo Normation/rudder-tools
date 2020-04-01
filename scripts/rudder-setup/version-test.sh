@@ -218,9 +218,9 @@ rudder_compatibility_check() {
   then
     return
   fi
-  if ! rudder_is_compatible "${ROLE}" "${RUDDER_VERSION}" "${OS_COMPATIBLE}" "${OS_VERSION}"
+  if ! rudder_is_compatible "${ROLE}" "${RUDDER_VERSION}" "${OS_COMPATIBLE}" "${OS_COMPATIBLE_VERSION}"
   then
-    echo "Your installation: Rudder ${RUDDER_VERSION} ${ROLE} for ${OS_COMPATIBLE} - ${OS_VERSION} is not supported."
+    echo "Your installation: Rudder ${RUDDER_VERSION} ${ROLE} for ${OS_COMPATIBLE} - ${OS_COMPATIBLE_VERSION} is not supported."
     echo "Aborting."
     echo "export UNSUPPORTED=y to remove this check"
     exit 1

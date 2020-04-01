@@ -85,10 +85,6 @@ detect_os() {
     OS_NAME="AIX"
     # Format: Major.Minor (Ex: 5.3)
     OS_VERSION="$(uname -v).$(uname -r)"
-    # All AIX > 5 should use AIX-5 version
-    if [ "${OS_VERSION}" -gt 5 ]; then
-      OS_VERSION=5
-    fi
     PM="rpm"
     PM_INSTALL="rpm -i"
     PM_UPGRADE="rpm -u"
@@ -128,6 +124,7 @@ detect_os() {
   OS_COMPATIBLE=`echo "${OS_NAME}" | tr '[a-z]' '[A-Z]'`
   OS_COMPATIBLE_VERSION="${OS_VERSION}"
   case "${OS_NAME}" in
+    AIX)    OS_COMPATIBLE_VERSION=5;;
     RedHat) OS_COMPATIBLE="RHEL" ;;
     RedHatEnterprise*) OS_COMPATIBLE="RHEL" ;;
     Oracle) OS_COMPATIBLE="RHEL" ;;
