@@ -84,7 +84,7 @@ tier1 = [
 packages = { 
              "agent-allinone": [ "rudder-agent" ],
              "relay":          [ "rudder-server-relay" ],
-             "server":         [ "rudder-reports", "rudder-server-root", "rudder-webapp" ],
+             "server":         [ "rudder-reports", "rudder-server-root", "rudder-webapp", "rudder-api-client" ],
            }
 
 # Packages that are architecture dependent (others are independent)
