@@ -92,11 +92,11 @@ arch-dependent-packages = [ "rudder-agent", "rudder-webapp", "rudder-server-rela
 
 # Internal components versions
 components = {
-               "cfengine": "3.12"
+               "cfengine": "3.15"
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "4.3", "5.0", "6.0", "6.1" ]
+compatible-agents = [ "5.0", "6.0", "6.1" ]
 
 # Versions you can upgrade from directly
 supported-upgrade = [ "5.0", "6.0", "6.1" ]

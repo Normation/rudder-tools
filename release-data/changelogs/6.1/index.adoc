@@ -1,0 +1,61 @@
+= Rudder 6.1 release notes
+
+== What's new?
+
+=== New security features (through plugins)
+
+* CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder
+* CVE management: Reports CVEs affecting installed packages
+* OpenSCAP: Runs OpenSCAP audits, collects and exposes them in the web interface
+
+=== Policy design: Global and group properties
+
+* In addition to node properties, we added group properties, and improved global
+  parameters. This allows powerful hierarchized variable definition, with easy
+  overrides.
+
+=== User experience improvements
+
+* The groups page has been redesigned with a much cleaner interface
+
+=== Security
+
+* The local passwords are now hashed with bcrypt by default
+* A new `rudder server create-user` allows easily creating local users
+
+=== Internals
+
+* HTTPS reporting is now available in changes-only mode, and for Windows agents.
+  syslog reporting mechanism is now deprecated.
+* The first part of the Rudder language infrastructure is added to 6.1, but not visible to users for now. Our goal is to test existing configuration parsing and
+  migration to prepare the future switch of configuration format.
+
+== Installing, upgrading and testing
+
+[WARNING]
+====
+
+This is still a development version, it should not be used on production systems. 
+
+====
+
+* Install docs for https://docs.rudder.io/reference/6.1/installation/server/debian.html[Debian/Ubuntu],
+https://docs.rudder.io/reference/6.1/installation/server/rhel.html[RHEL/centOS] and 
+https://docs.rudder.io/reference/6.1/installation/server/sles.html[SLES]
+* https://docs.rudder.io/reference/6.1/installation/upgrade.html[Upgrade nodes and doc]
+* https://docs.rudder.io/reference/6.1/installation/versions.html#_versions[Download links]
+
+== Supported operating systems
+
+This version provides packages for these operating systems:
+
+* Rudder server and Rudder relay: *Debian 9-10, RHEL/CentOS 7-8 (64 bits),
+SLES 12-15, Ubuntu 16.04 LTS-18.04 LTS*
+* Rudder agent: all of the above plus *Debian 8, RHEL/CentOS 6, Ubuntu 14.04 LTS*
+* Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-7, RHEL/CentOS 3-5,
+SLES 10-11, Ubuntu 10.04 LTS-12.04 LTS-13.04-15.10, Windows Server 2008R2-2016, AIX
+5-6-7, Slackware 14*
+
+Read more about supported operating systems 
+https://docs.rudder.io/reference/6.1/installation/operating_systems.html[in the documentation].
+
