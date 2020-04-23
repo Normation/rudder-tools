@@ -5,6 +5,231 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.5 (2020-04-23)
+
+=== Changes
+
+==== Documentation
+
+* Add a page about pre-releases
+    (https://issues.rudder.io/issues/17091[#17091])
+* Change path for plugin images
+    (https://issues.rudder.io/issues/16990[#16990])
+* Redirect video page from the doc to the youtube playlists
+    (https://issues.rudder.io/issues/17002[#17002])
+* Move upgrade notes into "upgrade rudder"
+    (https://issues.rudder.io/issues/16947[#16947])
+* Add new API docs to the main doc menu
+    (https://issues.rudder.io/issues/16865[#16865])
+* Explains how to change requestHeaderSize in Rudder 5.0
+    (https://issues.rudder.io/issues/16677[#16677])
+* Publish arch-doc for http reporting/relayd in the repo
+    (https://issues.rudder.io/issues/16623[#16623])
+
+==== Web - UI & UX
+
+* Folded categories in the Directive tree should be kept between sessions
+    (https://issues.rudder.io/issues/16258[#16258])
+
+==== Packaging
+
+* Add a rust-toolchain file in relayd
+    (https://issues.rudder.io/issues/16957[#16957])
+
+==== Web - Compliance & node report
+
+* Better tracking of last seen state
+    (https://issues.rudder.io/issues/8069[#8069])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: Align Unix agent certificate configuration on the one used by Windows agents
+    (https://issues.rudder.io/issues/17043[#17043])
+* Fixed: Upgrade to CFEngine 3.12.4
+    (https://issues.rudder.io/issues/16978[#16978])
+* Fixed: Agent check splaytime is not actually random
+    (https://issues.rudder.io/issues/17082[#17082])
+* Fixed: "rudder agent factory-reset" restores old uuid instead of changing it
+    (https://issues.rudder.io/issues/16900[#16900])
+* Fixed: rudder agent reset does not ensure that ncf is up to date on the server
+    (https://issues.rudder.io/issues/16826[#16826])
+
+==== Packaging
+
+* Fixed: When installing rudder-server-root on RPM-based systems, it asks about running rudder-node-to-relay
+    (https://issues.rudder.io/issues/14600[#14600])
+* Fixed: shared-files are not writable by relayd on upgraded servers
+    (https://issues.rudder.io/issues/16923[#16923])
+* Fixed: Slow permissions change of /var/rudder/share during upgrade
+    (https://issues.rudder.io/issues/16907[#16907])
+* Fixed: Inconsistent path for nodeslist.pem
+    (https://issues.rudder.io/issues/16762[#16762])
+
+==== Web - Nodes & inventories
+
+* Fixed: In SLES 15, SP is view as part of version
+    (https://issues.rudder.io/issues/16803[#16803])
+
+==== Plugins integration
+
+* Fixed: Remove old rudder-plugin script
+    (https://issues.rudder.io/issues/16755[#16755])
+
+==== Documentation
+
+* Fixed: Add documentation on generic methods writing
+    (https://issues.rudder.io/issues/16988[#16988])
+* Fixed: Add better documentation on how to access technique parameter within a technique
+    (https://issues.rudder.io/issues/17034[#17034])
+* Fixed: Precise in the documentation that the Windows agent does not currently support HTTPS report mode
+    (https://issues.rudder.io/issues/17018[#17018])
+* Fixed: Add a reference documentation about methods writing
+    (https://issues.rudder.io/issues/16999[#16999])
+* Fixed: Remove debian 5 from the list of supported os
+    (https://issues.rudder.io/issues/17005[#17005])
+* Fixed: Add a logs documentation page
+    (https://issues.rudder.io/issues/16602[#16602])
+* Fixed: Broken formatting of network requirements
+    (https://issues.rudder.io/issues/16970[#16970])
+* Fixed: Documentation for variables is "splitted" in two
+    (https://issues.rudder.io/issues/16933[#16933])
+* Fixed: Typo in Variable doc: hsotname
+    (https://issues.rudder.io/issues/16918[#16918])
+* Fixed: Document /var/rudder/policy-generation-info
+    (https://issues.rudder.io/issues/16903[#16903])
+* Fixed: Add an example on how to apply condition_from_variable_match_regex to a technique parameter
+    (https://issues.rudder.io/issues/17035[#17035])
+
+==== Miscellaneous
+
+* Fixed: Add DSC inventory hook documentation
+    (https://issues.rudder.io/issues/16940[#16940])
+
+==== Technique editor - UI/UX
+
+* Fixed: When we add a multiline description in a technique, it breaks policy generation and technique loadingg
+    (https://issues.rudder.io/issues/17141[#17141])
+* Fixed: "Technique diverges" bug still persists
+    (https://issues.rudder.io/issues/16691[#16691])
+
+==== Web - Maintenance
+
+* Fixed: When deletion of reports fails, we don't get meaningful message, and it fails when ComplianceLevels are disabled
+    (https://issues.rudder.io/issues/17129[#17129])
+* Fixed: Purge of unreferenced software may fail on very large system
+    (https://issues.rudder.io/issues/16636[#16636])
+
+==== Web - UI & UX
+
+* Fixed: Some alignement issues in the interface
+    (https://issues.rudder.io/issues/16430[#16430])
+* Fixed: Generation status color must not be grey
+    (https://issues.rudder.io/issues/17104[#17104])
+* Fixed: Users with readonly rights should be able to view the node properties and their value
+    (https://issues.rudder.io/issues/16854[#16854])
+* Fixed: Menu scroll is broken
+    (https://issues.rudder.io/issues/17056[#17056])
+* Fixed: Hide remote run button for Windows agent
+    (https://issues.rudder.io/issues/16898[#16898])
+
+==== Relay server or API
+
+* Fixed: Systemd hardening generates error message on remote-run
+    (https://issues.rudder.io/issues/17107[#17107])
+* Fixed: Windows agents are unable to access shared-folder
+    (https://issues.rudder.io/issues/17041[#17041])
+* Fixed: Vulnerability in a dependency of relayd benchmarking tool
+    (https://issues.rudder.io/issues/16975[#16975])
+* Fixed: Broken parsing of openscap technique report
+    (https://issues.rudder.io/issues/16961[#16961])
+
+==== System integration
+
+* Fixed: Test files are not correctly clean
+    (https://issues.rudder.io/issues/17079[#17079])
+* Fixed: Trace log in policy generation is displaying the same value for two differents entries
+    (https://issues.rudder.io/issues/16916[#16916])
+
+==== Web - Config management
+
+* Fixed: Policy generation must fail when report is HTTPS only and old agent are present
+    (https://issues.rudder.io/issues/17019[#17019])
+* Fixed: Agent 6.0 can't update policies from Rudder 5.0
+    (https://issues.rudder.io/issues/17081[#17081])
+* Fixed: Technique resources are not provided to Windows agent
+    (https://issues.rudder.io/issues/17062[#17062])
+
+==== Techniques
+
+* Fixed: Webdav password is ignored and access is granted for all nodes in allowed networks
+    (https://issues.rudder.io/issues/16552[#16552])
+* Fixed: duplicate RudderUniqueID on one entry on UserManagement v9
+    (https://issues.rudder.io/issues/16881[#16881])
+* Fixed: When using twice directive packageManagement 1.2, once to ensure presence of a package, and second one to upgrade the package, reporting and posthook is wrong on the second one
+    (https://issues.rudder.io/issues/16849[#16849])
+
+==== Architecture - Dependencies
+
+* Fixed: Upgrade Bouncy Castle GPG to latest minor version
+    (https://issues.rudder.io/issues/17006[#17006])
+
+==== Performance and scalability
+
+* Fixed: Infinite loop in `for` may leak memory
+    (https://issues.rudder.io/issues/16946[#16946])
+* Fixed: Git configuration-repository object is created at each evaluation, impacting performance
+    (https://issues.rudder.io/issues/16929[#16929])
+* Fixed: Inneficient computation of RuleStatusReports and NodeStatusReports
+    (https://issues.rudder.io/issues/16661[#16661])
+
+==== API
+
+* Fixed: Add openapi 11 version of the API doc
+    (https://issues.rudder.io/issues/16852[#16852])
+
+==== Generic methods - Package Management
+
+* Fixed: Update package modules to 3.12.4
+    (https://issues.rudder.io/issues/17111[#17111])
+* Fixed: package_state_options doesn't properly defines outcome classes when called twice with same package name
+    (https://issues.rudder.io/issues/16850[#16850])
+
+==== Generic methods
+
+* Fixed: Use a valid URL to test http methods
+    (https://issues.rudder.io/issues/17098[#17098])
+* Fixed: Broken tests for user group
+    (https://issues.rudder.io/issues/17008[#17008])
+* Fixed: Permissions dirs recursive doesn't allow to set only owner, or group, or mode
+    (https://issues.rudder.io/issues/16917[#16917])
+* Fixed: Generic method  sysctl_value
+    (https://issues.rudder.io/issues/16882[#16882])
+
+==== Web - Technique editor
+
+* Fixed: Can't insert method to end of method list in technique editor
+    (https://issues.rudder.io/issues/16993[#16993])
+* Fixed: Technique editor does not prevent user from cloning a technique with an already existing id
+    (https://issues.rudder.io/issues/17030[#17030])
+* Fixed: When editing the content of a ressource, the "save" button is lowercase
+    (https://issues.rudder.io/issues/16722[#16722])
+
+==== Generic methods - User Management
+
+* Fixed: There is no method to handle secondary groups of a user in the technique editor
+    (https://issues.rudder.io/issues/16325[#16325])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Tim Taler
+* Florian Heigl
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.4 (2020-03-03)
 
 === Changes
