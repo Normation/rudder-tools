@@ -54,7 +54,7 @@ roles = {
           "ubuntu-13.04":   [ "agent-allinone" ],
           "ubuntu-14.04":   [ "agent-allinone" ],
           "ubuntu-15.10":   [ "agent-allinone" ],
-          "ubuntu-16.04":   [ "agent-allinone", "relay", "server" ],
+          "ubuntu-16.04":   [ "agent-allinone" ],
           "ubuntu-18.04":   [ "agent-allinone", "relay", "server" ],
           "rhel-5":         [ "agent-allinone" ],
           "rhel-6":         [ "agent-allinone" ],
