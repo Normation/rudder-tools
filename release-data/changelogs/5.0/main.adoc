@@ -163,6 +163,131 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.17 (2020-04-23)
+
+=== Changes
+
+==== Documentation
+
+* Change path for plugin images
+    (https://issues.rudder.io/issues/16990[#16990])
+* Redirect video page from the doc to the youtube playlists
+    (https://issues.rudder.io/issues/17002[#17002])
+* Explains how to change requestHeaderSize in Rudder 5.0
+    (https://issues.rudder.io/issues/16677[#16677])
+
+==== Web - UI & UX
+
+* Folded categories in the Directive tree should be kept between sessions
+    (https://issues.rudder.io/issues/16258[#16258])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: Upgrade to CFEngine 3.12.4
+    (https://issues.rudder.io/issues/16978[#16978])
+* Fixed: Agent check splaytime is not actually random
+    (https://issues.rudder.io/issues/17082[#17082])
+
+==== Packaging
+
+* Fixed: When installing rudder-server-root on RPM-based systems, it asks about running rudder-node-to-relay
+    (https://issues.rudder.io/issues/14600[#14600])
+* Fixed: Rudder agent 5.x package not compatible with Centos8
+    (https://issues.rudder.io/issues/16521[#16521])
+
+==== Web - Nodes & inventories
+
+* Fixed: In SLES 15, SP is view as part of version
+    (https://issues.rudder.io/issues/16803[#16803])
+
+==== Plugins integration
+
+* Fixed: Remove old rudder-plugin script
+    (https://issues.rudder.io/issues/16755[#16755])
+
+==== Documentation
+
+* Fixed: Typo in Variable doc: hsotname
+    (https://issues.rudder.io/issues/16918[#16918])
+* Fixed: Document /var/rudder/policy-generation-info
+    (https://issues.rudder.io/issues/16903[#16903])
+
+==== Web - Maintenance
+
+* Fixed: When deletion of reports fails, we don't get meaningful message, and it fails when ComplianceLevels are disabled
+    (https://issues.rudder.io/issues/17129[#17129])
+* Fixed: Purge of unreferenced software may fail on very large system
+    (https://issues.rudder.io/issues/16636[#16636])
+
+==== Web - UI & UX
+
+* Fixed: Generation status color must not be grey
+    (https://issues.rudder.io/issues/17104[#17104])
+* Fixed: Users with readonly rights should be able to view the node properties and their value
+    (https://issues.rudder.io/issues/16854[#16854])
+* Fixed: Missing timezone in reports caption header
+    (https://issues.rudder.io/issues/16777[#16777])
+
+==== System integration
+
+* Fixed: Test files are not correctly clean
+    (https://issues.rudder.io/issues/17079[#17079])
+
+==== Web - Config management
+
+* Fixed: Agent 6.0 can't update policies from Rudder 5.0
+    (https://issues.rudder.io/issues/17081[#17081])
+
+==== Performance and scalability
+
+* Fixed: Inneficient computation of RuleStatusReports and NodeStatusReports
+    (https://issues.rudder.io/issues/16661[#16661])
+
+==== API
+
+* Fixed: Add openapi 11 version of the API doc
+    (https://issues.rudder.io/issues/16852[#16852])
+
+==== Techniques
+
+* Fixed: duplicate RudderUniqueID on one entry on UserManagement v9
+    (https://issues.rudder.io/issues/16881[#16881])
+* Fixed: When using twice directive packageManagement 1.2, once to ensure presence of a package, and second one to upgrade the package, reporting and posthook is wrong on the second one
+    (https://issues.rudder.io/issues/16849[#16849])
+
+==== Generic methods - Package Management
+
+* Fixed: Update package modules to 3.12.4
+    (https://issues.rudder.io/issues/17111[#17111])
+* Fixed: package_state_options doesn't properly defines outcome classes when called twice with same package name
+    (https://issues.rudder.io/issues/16850[#16850])
+
+==== Generic methods
+
+* Fixed: Use a valid URL to test http methods
+    (https://issues.rudder.io/issues/17098[#17098])
+* Fixed: Broken tests for user group
+    (https://issues.rudder.io/issues/17008[#17008])
+* Fixed: Permissions dirs recursive doesn't allow to set only owner, or group, or mode
+    (https://issues.rudder.io/issues/16917[#16917])
+* Fixed: Generic method  sysctl_value
+    (https://issues.rudder.io/issues/16882[#16882])
+
+==== Generic methods - User Management
+
+* Fixed: There is no method to handle secondary groups of a user in the technique editor
+    (https://issues.rudder.io/issues/16325[#16325])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Romain Brucker
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.16 (2020-02-17)
 
 === Changes
