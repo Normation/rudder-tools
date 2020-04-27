@@ -2,33 +2,60 @@
 
 == What's new?
 
-=== New security features (through plugins)
+Rudder 6.1 improves and refines the new Rudder 6 features, but also
+provides major improvements for policy modelization by introducing a new
+hierarchic property system, extending node properties to
+global and group properties.
 
-* CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder
-* CVE management: Reports CVEs affecting installed packages
-* OpenSCAP: Runs OpenSCAP audits, collects and exposes them in the web interface
+Security-oriented features have been polished, with new operating systems supported in
+the CIS plugin, redesigned interface for the OpenSCAP plugin and better CVE fetching.
 
-=== Policy design: Global and group properties
+=== Plugins for IT security
 
-* In addition to node properties, we added group properties, and improved global
-  parameters. This allows powerful hierarchized variable definition, with easy
+* CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder. Now supports
+  Debian 9 and Ubuntu 18.04 LTS in addition to RHEL/CentOS7.
+* CVE management: Reports CVEs affecting installed packages.
+* OpenSCAP: Runs OpenSCAP audits, collects and exposes them in the web interface. The UI has been been
+  redesigned for easier use.
+
+=== Policy design: Hierarchic properties and improved technique editor
+
+* In addition to existing node properties, we added group properties, and improved global
+  parameters. This allows powerful hierarchic variable definition, with easy
   overrides.
+* Several improvements for techniques created with the technique editor:
+
+ ** Technique description is now rendered as markdown in the directive form, allowing to document
+    the technique for its users.
+ ** The technique parameter now have a description field, to help the user fill the form, like already existed
+    for build-in techniques.
+ ** You can chose the category you put your techniques in directly from the editor.
 
 === User experience improvements
 
-* The groups page has been redesigned with a much cleaner interface
+* The groups page has been redesigned with a much cleaner interface.
+* The resource manager in the technique editor has been improved.
+* New useful commands:
 
-=== Security
+ ** `rudder server create-user` to create admin users,
+ ** `rudder agent policy-server` to manage an agent's policy server.
 
-* The local passwords are now hashed with bcrypt by default
-* A new `rudder server create-user` allows easily creating local users
+=== Documentation
+
+* The API documentation has been migrated to OpenAPI and its content was updated and improved.
+* The navigation of the documentation has been improved to provide easier access to Rudder resources.
 
 === Internals
 
+* The local passwords are now hashed with _bcrypt_ by default.
+* There is now no default admin account after installation (but a new `rudder server create-user` command allows easily creating local users).
 * HTTPS reporting is now available in changes-only mode, and for Windows agents.
-  syslog reporting mechanism is now deprecated.
+  Syslog reporting mechanism is now deprecated, and will be removed in a future major release.
 * The first part of the Rudder language infrastructure is added to 6.1, but not visible to users for now. Our goal is to test existing configuration parsing and
   migration to prepare the future switch of configuration format.
+* `jq` is now available on all agents to allow easy JSON manipulation.
+* The technique editor is not a separate application anymore, but becomes a part of the
+  main web application.
 
 == Installing, upgrading and testing
 
@@ -50,8 +77,8 @@ https://docs.rudder.io/reference/6.1/installation/server/sles.html[SLES]
 This version provides packages for these operating systems:
 
 * Rudder server and Rudder relay: *Debian 9-10, RHEL/CentOS 7-8 (64 bits),
-SLES 12-15, Ubuntu 18.04 LTS*
-* Rudder agent: all of the above plus *Debian 8, RHEL/CentOS 6, Ubuntu 14.04 LTS*
+SLES 12-15, Ubuntu 18.04 LTS and 20.04 LTS*
+* Rudder agent: all of the above plus *Debian 8, RHEL/CentOS 6, Ubuntu 14.04 LTS, Ubuntu 16.04 LTS*
 * Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-7, RHEL/CentOS 3-5,
 SLES 10-11, Ubuntu 10.04 LTS-12.04 LTS-13.04-15.10, Windows Server 2008R2-2016, AIX
 5-6-7, Slackware 14*
