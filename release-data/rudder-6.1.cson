@@ -3,7 +3,7 @@
 release = "6.1"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
@@ -25,6 +25,7 @@ architectures = {
                   "ubuntu-15.10":   [ "i386", "amd64" ],
                   "ubuntu-16.04":   [ "i386", "amd64" ],
                   "ubuntu-18.04":   [ "amd64" ],
+                  "ubuntu-20.04":   [ "amd64" ],
                   "rhel-5":         [ "i386", "amd64" ],
                   "rhel-6":         [ "i386", "amd64" ],
                   "rhel-7":         [ "i386", "amd64" ],
@@ -74,7 +75,7 @@ roles = {
 # tier 2 are systems that are built but may fail to release
 tier1 = [
           "debian-9", "debian-10",
-          "ubuntu-13.04", "ubuntu-14.04", "ubuntu-15.10", "ubuntu-16.04", "ubuntu-18.04",
+          "ubuntu-13.04", "ubuntu-14.04", "ubuntu-15.10", "ubuntu-18.04", "ubuntu-20.04"
           "rhel-6", "rhel-7", "rhel-8",
           "sles-11", "sles-12", "sles-15",
           "aix-5",
