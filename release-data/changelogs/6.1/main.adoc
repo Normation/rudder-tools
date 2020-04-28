@@ -3,4 +3,400 @@
 Rudder 6.1 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
+== Rudder 6.1.0.beta1 (2020-04-28)
+
+=== Changes
+
+==== Packaging
+
+* Embed openssl 1.1.1 on every OS
+    (https://issues.rudder.io/issues/17233[#17233])
+* Do not embed openssl and curl on distribution with a recent openssl
+    (https://issues.rudder.io/issues/17231[#17231])
+* Replace node-to-relay script from rudder-package
+    (https://issues.rudder.io/issues/17217[#17217])
+* Replace node-to-relay script from rudder-package
+    (https://issues.rudder.io/issues/17217[#17217])
+* add jq to rudder agent
+    (https://issues.rudder.io/issues/17139[#17139])
+* Add systemd hardening config for slapd
+    (https://issues.rudder.io/issues/17055[#17055])
+* Upgrade Jetty to latest version
+    (https://issues.rudder.io/issues/16905[#16905])
+* It should be impossible to connect with "admin" password with default config
+    (https://issues.rudder.io/issues/16732[#16732])
+* Display Rust tooling version in build
+    (https://issues.rudder.io/issues/16969[#16969])
+* Use SPDX headers in relay
+    (https://issues.rudder.io/issues/16834[#16834])
+
+==== Performance and scalability
+
+* review index for LDAP
+    (https://issues.rudder.io/issues/17128[#17128])
+* Do not compute dynamic groups if nothing changed in LDAP
+    (https://issues.rudder.io/issues/17237[#17237])
+* By default we should not archive reports
+    (https://issues.rudder.io/issues/16931[#16931])
+* Don't replace RudderUniqueId in generated policies with a replace, but with StringTemplate
+    (https://issues.rudder.io/issues/16856[#16856])
+
+==== Agent
+
+* Make agents preserve perm on copy to keep previous behavior (patch for CFEngine 3.15)
+    (https://issues.rudder.io/issues/17124[#17124])
+* Update agent to CFEngine 3.15.1
+    (https://issues.rudder.io/issues/16734[#16734])
+* Add a command to set policy server on agents
+    (https://issues.rudder.io/issues/16529[#16529])
+* Add support for HTTP reporting in changes-only mode
+    (https://issues.rudder.io/issues/17153[#17153])
+
+==== Documentation
+
+* Improve doc related to plugins/subscriptions
+    (https://issues.rudder.io/issues/17144[#17144])
+* Update doc for initial user account
+    (https://issues.rudder.io/issues/17174[#17174])
+* Prepare doc for 6.1
+    (https://issues.rudder.io/issues/17130[#17130])
+* Update content of docs menus
+    (https://issues.rudder.io/issues/17033[#17033])
+* Improve accessibility of documentation site's menu
+    (https://issues.rudder.io/issues/16984[#16984])
+* Update get-started for 6.0
+    (https://issues.rudder.io/issues/16986[#16986])
+* Update screenshots in "Install relay server" section
+    (https://issues.rudder.io/issues/16945[#16945])
+* Update screenshot in the documentation
+    (https://issues.rudder.io/issues/16752[#16752])
+* Add upgrade note to document how to switch from previous hash function to BCrypt
+    (https://issues.rudder.io/issues/16729[#16729])
+* Add Bcrypt support informations 
+    (https://issues.rudder.io/issues/16724[#16724])
+* Adapt doc for 6.1
+    (https://issues.rudder.io/issues/15846[#15846])
+* Add promote to relay endpoint in API documentation
+    (https://issues.rudder.io/issues/17162[#17162])
+* Clarify webapp contributing documentation
+    (https://issues.rudder.io/issues/16914[#16914])
+* Add spdx licenses for api doc
+    (https://issues.rudder.io/issues/16883[#16883])
+* Documentation is outdated for development
+    (https://issues.rudder.io/issues/16932[#16932])
+
+==== Web - Config management
+
+* Initialize `rudder` global parameter to default value at boot
+    (https://issues.rudder.io/issues/17251[#17251])
+* Display node properties inherited from group/global
+    (https://issues.rudder.io/issues/17173[#17173])
+* Display technique description in directive form as markdown
+    (https://issues.rudder.io/issues/17238[#17238])
+* Rudder should be able to read techniques by itself and not rely on legacy ncf rest api
+    (https://issues.rudder.io/issues/17133[#17133])
+* Add JSON support for global parameters
+    (https://issues.rudder.io/issues/16301[#16301])
+* Group properties
+    (https://issues.rudder.io/issues/16347[#16347])
+
+==== Architecture - Refactoring
+
+* Update some libraries for 6.1
+    (https://issues.rudder.io/issues/17224[#17224])
+* Dead code: com.normation.rudder.domain.system
+    (https://issues.rudder.io/issues/17189[#17189])
+* Clarify code of rollback events parsing
+    (https://issues.rudder.io/issues/16603[#16603])
+
+==== Web - UI & UX
+
+* Update links in login page
+    (https://issues.rudder.io/issues/17218[#17218])
+* Beautify banner warning for expired plugin
+    (https://issues.rudder.io/issues/16910[#16910])
+* Display a warning in place of login form if no user are defined
+    (https://issues.rudder.io/issues/17070[#17070])
+* Display directive tags inside Compliance tables
+    (https://issues.rudder.io/issues/16869[#16869])
+* Display tags when listing directives
+    (https://issues.rudder.io/issues/16346[#16346])
+* Adapt user configuration file to remove default admin credentials
+    (https://issues.rudder.io/issues/16731[#16731])
+* Update users configuration file to add BCrypt support
+    (https://issues.rudder.io/issues/16730[#16730])
+* Update UI for group page to new template
+    (https://issues.rudder.io/issues/16473[#16473])
+
+==== API
+
+* Add Usermanagement endpoints in API documentation
+    (https://issues.rudder.io/issues/17164[#17164])
+* Be able to save in LDAP a Policy Server Target
+    (https://issues.rudder.io/issues/16906[#16906])
+* Be able to save in LDAP a Policy Server Target
+    (https://issues.rudder.io/issues/16906[#16906])
+
+==== System integration
+
+* Historize node count information
+    (https://issues.rudder.io/issues/17161[#17161])
+
+==== Miscellaneous
+
+* Missing LDAP write operations to promote a node to relay
+    (https://issues.rudder.io/issues/17112[#17112])
+* Missing LDAP write operations to promote a node to relay
+    (https://issues.rudder.io/issues/17112[#17112])
+
+==== Plugins integration
+
+* Add "technical preview" status for plugins
+    (https://issues.rudder.io/issues/17093[#17093])
+
+==== Rudder language
+
+* make translate methods use stdlib rather than regexes
+    (https://issues.rudder.io/issues/17115[#17115])
+* logging adjustments for integration test loop
+    (https://issues.rudder.io/issues/17114[#17114])
+* test loop integration
+    (https://issues.rudder.io/issues/16902[#16902])
+* Full review of rudder-lang suported systems
+    (https://issues.rudder.io/issues/16974[#16974])
+* Rework os class translation into rudder-lang
+    (https://issues.rudder.io/issues/17052[#17052])
+* Implement metadata for enums
+    (https://issues.rudder.io/issues/17049[#17049])
+* Load all files from stdlib automatically
+    (https://issues.rudder.io/issues/17047[#17047])
+* Replace SourceList with a typed arena
+    (https://issues.rudder.io/issues/17046[#17046])
+* Cleanup rudder-lang tester
+    (https://issues.rudder.io/issues/17010[#17010])
+* non global items can have duplicate names
+    (https://issues.rudder.io/issues/16992[#16992])
+* Add enum aliases in rudder lang
+    (https://issues.rudder.io/issues/16972[#16972])
+* Add range to enum expressions
+    (https://issues.rudder.io/issues/16928[#16928])
+* rudder-lang packaging changes
+    (https://issues.rudder.io/issues/16967[#16967])
+* rudder-lang packaging update
+    (https://issues.rudder.io/issues/16886[#16886])
+* Fix clippy warnings in rudder-lang
+    (https://issues.rudder.io/issues/16943[#16943])
+* Improve compiler options
+    (https://issues.rudder.io/issues/16938[#16938])
+* Prepare documentation layout for rudder-lang
+    (https://issues.rudder.io/issues/16934[#16934])
+* Prepare documentation layout for rudder-lang
+    (https://issues.rudder.io/issues/16934[#16934])
+* Reimplement enums
+    (https://issues.rudder.io/issues/16924[#16924])
+* tests changes to prepare rudder-lang integration
+    (https://issues.rudder.io/issues/16846[#16846])
+* rl add cfengine_core to libs, which declares global variables
+    (https://issues.rudder.io/issues/16807[#16807])
+* rl add an optional path for compilation and translation
+    (https://issues.rudder.io/issues/16775[#16775])
+* rl allow splitted global variables declaration
+    (https://issues.rudder.io/issues/16774[#16774])
+* rl enchance variables handling 
+    (https://issues.rudder.io/issues/16728[#16728])
+* rl enchance variables handling 
+    (https://issues.rudder.io/issues/16728[#16728])
+* rl generate enum mappings from os tree
+    (https://issues.rudder.io/issues/16717[#16717])
+* rl improve output fidelity of generated cf files
+    (https://issues.rudder.io/issues/16658[#16658])
+* rl add non terminating errors and related integration tests
+    (https://issues.rudder.io/issues/16616[#16616])
+* format entire rudderlang code according to style guidelines 
+    (https://issues.rudder.io/issues/16614[#16614])
+
+==== Web - Nodes & inventories
+
+* Agent capabilities in inventory are not parsed
+    (https://issues.rudder.io/issues/12109[#12109])
+
+==== Relay server or API
+
+* Add support for parsing HTTP logs from Windows
+    (https://issues.rudder.io/issues/17073[#17073])
+
+==== Security
+
+* Allow content to be shown in iframe
+    (https://issues.rudder.io/issues/17072[#17072])
+* We should use BCrypt by default for storing user's local password
+    (https://issues.rudder.io/issues/16674[#16674])
+* Add a command to generate user accounts after installation
+    (https://issues.rudder.io/issues/16620[#16620])
+
+==== Architecture - Internal libs
+
+* Upgrade to ZIO RC18
+    (https://issues.rudder.io/issues/16892[#16892])
+
+==== Techniques
+
+* Delete deprecated techniques, and deprecate techniques in 6.1
+    (https://issues.rudder.io/issues/17159[#17159])
+
+==== Generic methods - Package Management
+
+* Make the package_module bodies configurable
+    (https://issues.rudder.io/issues/9110[#9110])
+
+==== Technique editor - UI/UX
+
+* Define the category of a technique
+    (https://issues.rudder.io/issues/16345[#16345])
+* Add description of technique parameters
+    (https://issues.rudder.io/issues/17239[#17239])
+* Improve UX for technique resource files
+    (https://issues.rudder.io/issues/17078[#17078])
+
+==== Generic methods
+
+* Sync stdlib with 3.15.1
+    (https://issues.rudder.io/issues/17229[#17229])
+* Add verbosity level in the rudder logger
+    (https://issues.rudder.io/issues/15126[#15126])
+
+==== Web - Technique editor
+
+* Add fully qualified name of technique parameter
+    (https://issues.rudder.io/issues/17029[#17029])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Our agent package contains CFEngine systemd units
+    (https://issues.rudder.io/issues/16790[#16790])
+* Fixed: We need to stop apache before removing ncf-api-venv user
+    (https://issues.rudder.io/issues/17198[#17198])
+* Fixed: rudderlang makefile integration
+    (https://issues.rudder.io/issues/17187[#17187])
+* Fixed: package fails to build jq
+    (https://issues.rudder.io/issues/17175[#17175])
+* Fixed: jq fails to build on old distro
+    (https://issues.rudder.io/issues/17169[#17169])
+* Fixed: make clean should not remove source in rudder-packages
+    (https://issues.rudder.io/issues/17140[#17140])
+* Fixed: rudder-webapp fails to build on 6.1
+    (https://issues.rudder.io/issues/17125[#17125])
+* Fixed: After server install, the "no user" login page link to a 404 documentation page
+    (https://issues.rudder.io/issues/17163[#17163])
+* Fixed: After server install, the "no user" login page link to a 404 documentation page
+    (https://issues.rudder.io/issues/17163[#17163])
+
+==== Agent
+
+* Fixed: Update embedded openssl version to 1.1.1g
+    (https://issues.rudder.io/issues/17178[#17178])
+* Fixed: When in changes-only and nothing needs to be sent an empty invalid report is sent
+    (https://issues.rudder.io/issues/17193[#17193])
+* Fixed: Restart the webapp after creating a user
+    (https://issues.rudder.io/issues/17190[#17190])
+* Fixed: HTTP report PUT prints useless messages at the end of the run
+    (https://issues.rudder.io/issues/16112[#16112])
+
+==== Documentation
+
+* Fixed: Add a link to upgrade notes at the beginning of each upgrade doc page
+    (https://issues.rudder.io/issues/17219[#17219])
+* Fixed: Fix 6.1 doc build
+    (https://issues.rudder.io/issues/17207[#17207])
+* Fixed: Fix links in 6.1 homepage
+    (https://issues.rudder.io/issues/17200[#17200])
+* Fixed: Plugins menu in the documentation should be in alphabetical order
+    (https://issues.rudder.io/issues/16808[#16808])
+* Fixed: Add Create Node endpoint in API documentation
+    (https://issues.rudder.io/issues/17183[#17183])
+
+==== Web - Maintenance
+
+* Fixed: Rudder 6.1 does not start anymore
+    (https://issues.rudder.io/issues/17228[#17228])
+* Fixed: Rudder 6.1 does not start anymore
+    (https://issues.rudder.io/issues/17228[#17228])
+
+==== Web - Nodes & inventories
+
+* Fixed: when a node is removed from a dynamc group, it log "adding nothing, removing nothing"
+    (https://issues.rudder.io/issues/17220[#17220])
+* Fixed: Concurrent access to node info cache cause exception to be thrown when accessing cache content
+    (https://issues.rudder.io/issues/17172[#17172])
+* Fixed: Search does not work in group criteria
+    (https://issues.rudder.io/issues/17203[#17203])
+
+==== Web - Config management
+
+* Fixed: TechniqueVersion ordering algorithm is incorrect
+    (https://issues.rudder.io/issues/17157[#17157])
+* Fixed: cannot add directives to a rules
+    (https://issues.rudder.io/issues/17099[#17099])
+* Fixed: Don't fail generation for HTTPS only reports with  DSC/6.1
+    (https://issues.rudder.io/issues/17085[#17085])
+
+==== Performance and scalability
+
+* Fixed: chmod at the end of policy generation is painfully slow
+    (https://issues.rudder.io/issues/17214[#17214])
+
+==== Web - UI & UX
+
+* Fixed: rudder version is wrong in the login page
+    (https://issues.rudder.io/issues/17201[#17201])
+* Fixed: Not all tags have the same appearance
+    (https://issues.rudder.io/issues/16897[#16897])
+
+==== Architecture - Refactoring
+
+* Fixed: Remove warning and "Inconsistance" typo compilation error
+    (https://issues.rudder.io/issues/17156[#17156])
+* Fixed: Inconsistency error is mispelled
+    (https://issues.rudder.io/issues/17110[#17110])
+
+==== Security
+
+* Fixed: cannot login in Rudder 6.1
+    (https://issues.rudder.io/issues/17108[#17108])
+
+==== Rudder language
+
+* Fixed: Compilation output file is not generated when input file is a path
+    (https://issues.rudder.io/issues/17094[#17094])
+* Fixed: translation into rudder-lang doesn't handle any class
+    (https://issues.rudder.io/issues/17075[#17075])
+* Fixed: Use Pin tu fix source code address
+    (https://issues.rudder.io/issues/16998[#16998])
+* Fixed: fix generation of parameters and conditions from cfengine files
+    (https://issues.rudder.io/issues/16878[#16878])
+* Fixed: rl compile fix enum logical expressions
+    (https://issues.rudder.io/issues/16713[#16713])
+* Fixed: rl translate add exception for kernel_module resource parsing
+    (https://issues.rudder.io/issues/16711[#16711])
+
+==== System techniques
+
+* Fixed: Runlog catchup does not work on linux
+    (https://issues.rudder.io/issues/17192[#17192])
+
+==== Technique editor - UI/UX
+
+* Fixed: Text &  Boxes jump when displaying missing inputs
+    (https://issues.rudder.io/issues/16235[#16235])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 and rc versions are listed below for convenience.
