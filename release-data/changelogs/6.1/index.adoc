@@ -69,7 +69,7 @@ This is still a development version, it should not be used on production systems
 * Install docs for https://docs.rudder.io/reference/6.1/installation/server/debian.html[Debian/Ubuntu],
 https://docs.rudder.io/reference/6.1/installation/server/rhel.html[RHEL/centOS] and 
 https://docs.rudder.io/reference/6.1/installation/server/sles.html[SLES]
-* https://docs.rudder.io/reference/6.1/installation/upgrade.html[Upgrade nodes and doc]
+* https://docs.rudder.io/reference/6.1/installation/upgrade/notes.html[Upgrade nodes and doc]
 * https://docs.rudder.io/reference/6.1/installation/versions.html#_versions[Download links]
 
 == Supported operating systems
