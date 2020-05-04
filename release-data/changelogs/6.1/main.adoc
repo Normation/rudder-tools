@@ -3,6 +3,7 @@
 Rudder 6.1 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
+
 == Rudder 6.1.0.beta2 (2020-05-04)
 
 === Changes
