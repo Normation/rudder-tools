@@ -3,6 +3,68 @@
 Rudder 6.1 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
+== Rudder 6.1.0.beta2 (2020-05-04)
+
+=== Changes
+
+==== Documentation
+
+* Document that Rudder servers should not be exposed on the Internet
+    (https://issues.rudder.io/issues/17316[#17316])
+
+==== Rudder language
+
+* rename stdlib to resourcelib
+    (https://issues.rudder.io/issues/17254[#17254])
+* rename stdlib to resourcelib
+    (https://issues.rudder.io/issues/17254[#17254])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: jq is not available in the base repositories on SLES15 and should be embedded with the agent package
+    (https://issues.rudder.io/issues/17318[#17318])
+* Fixed: installing rudder server 6.1.0~beta1 on debian 9 fails
+    (https://issues.rudder.io/issues/17280[#17280])
+* Fixed: openssl fails to build on aix
+    (https://issues.rudder.io/issues/17262[#17262])
+
+==== API
+
+* Fixed: API documentation omits the policymode parameter of directives
+    (https://issues.rudder.io/issues/17301[#17301])
+
+==== Web - UI & UX
+
+* Fixed: Page for node not found is too minimalist
+    (https://issues.rudder.io/issues/16515[#16515])
+* Fixed: RuleID is not trimmed when copied from the GUI
+    (https://issues.rudder.io/issues/17290[#17290])
+
+==== Security
+
+* Fixed: exception in ldap search are not correctly caught
+    (https://issues.rudder.io/issues/17267[#17267])
+
+==== Documentation
+
+* Fixed: API documentation is lacking of a Json based update of rule/directive
+    (https://issues.rudder.io/issues/17292[#17292])
+
+==== Agent
+
+* Fixed: rudder agent run returns exit code 1 when everything is ok
+    (https://issues.rudder.io/issues/17268[#17268])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Victor Héry
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.0.beta1 (2020-04-28)
 
 === Changes
