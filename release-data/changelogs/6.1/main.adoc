@@ -4,6 +4,112 @@ Rudder 6.1 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.0.beta3 (2020-05-11)
+
+=== Changes
+
+==== Documentation
+
+* Documentation for group properties
+    (https://issues.rudder.io/issues/17282[#17282])
+
+==== Web - Config management
+
+* Prevent removal of 'system' global and group properties
+    (https://issues.rudder.io/issues/17227[#17227])
+
+==== Packaging
+
+* Add auto reload of welcome page
+    (https://issues.rudder.io/issues/17317[#17317])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: strip calls fail on aix
+    (https://issues.rudder.io/issues/17365[#17365])
+* Fixed: rpm build logs are huge
+    (https://issues.rudder.io/issues/17360[#17360])
+* Fixed: 6.1 fails to build on aix
+    (https://issues.rudder.io/issues/17357[#17357])
+* Fixed: create migration script for LDAP indexes
+    (https://issues.rudder.io/issues/17215[#17215])
+* Fixed: create migration script for LDAP indexes
+    (https://issues.rudder.io/issues/17215[#17215])
+* Fixed: rudder fails to build in 6.0
+    (https://issues.rudder.io/issues/17339[#17339])
+* Fixed: Package cache is updated at each run
+    (https://issues.rudder.io/issues/17337[#17337])
+* Fixed: cf-agent writes a lot of times to performance db
+    (https://issues.rudder.io/issues/17335[#17335])
+* Fixed: At relay install time, if the domain is not defined the server certificate can not be issued
+    (https://issues.rudder.io/issues/17332[#17332])
+
+==== Documentation
+
+* Fixed: Move variables doc into "usge" category
+    (https://issues.rudder.io/issues/17368[#17368])
+* Fixed: improve documentation on "default" for variable to state that it should be quoted
+    (https://issues.rudder.io/issues/17352[#17352])
+* Fixed: Doc about missing uuid.hive at upgrade was not upmerged
+    (https://issues.rudder.io/issues/17299[#17299])
+
+==== Web - Compliance & node report
+
+* Fixed: Inconsistant syntax for global parameter in directive incompatible with JSON values
+    (https://issues.rudder.io/issues/17350[#17350])
+* Fixed: JSON global parameter are inherited as string
+    (https://issues.rudder.io/issues/17326[#17326])
+
+==== Technique editor - API
+
+* Fixed: When defining a category for a new technique, the files are not placed on the correct path in the git repo
+    (https://issues.rudder.io/issues/17338[#17338])
+
+==== Web - UI & UX
+
+* Fixed: The generic methods documentation is no longer accessible from the technique editor
+    (https://issues.rudder.io/issues/17321[#17321])
+* Fixed: main parameter of a method is not displayed anymore, and result classes are not ok anymore
+    (https://issues.rudder.io/issues/17329[#17329])
+
+==== API
+
+* Fixed: when importing a technique with  /api/internal/techniques, the order of parameters is not respected
+    (https://issues.rudder.io/issues/17348[#17348])
+
+==== Web - Config management
+
+* Fixed: Data for reporting plugin are not generated anymore
+    (https://issues.rudder.io/issues/17341[#17341])
+* Fixed: Property name aren't limited to ascii
+    (https://issues.rudder.io/issues/17334[#17334])
+* Fixed: Group properties inheritance error when it should not
+    (https://issues.rudder.io/issues/17324[#17324])
+
+==== System techniques
+
+* Fixed: Disable sending old reports from relayd
+    (https://issues.rudder.io/issues/17349[#17349])
+
+==== Web - Technique editor
+
+* Fixed: Resource manager should talk about saved/unsaved and not commited/not commited
+    (https://issues.rudder.io/issues/17328[#17328])
+
+==== Technique editor - UI/UX
+
+* Fixed: Tooltips not showing up
+    (https://issues.rudder.io/issues/17333[#17333])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.0.beta2 (2020-05-04)
 
 === Changes
