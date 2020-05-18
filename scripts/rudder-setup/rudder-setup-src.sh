@@ -4,7 +4,7 @@ set -e
 
 # Documentation !
 usage() {
-  echo "Usage $0 (add-repository|setup-agent|setup-server|upgrade-agent|upgrade-server) <rudder_version> [<policy_server>]"
+  echo "Usage $0 (add-repository|setup-agent|setup-server|upgrade-agent|upgrade-server) <rudder_version> [<policy_server>] ['<plugins>']"
   echo "  Adds a repository and setup rudder on your OS" 
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
@@ -19,11 +19,16 @@ usage() {
   echo "       ci/x.y-nightly: the latest development x.y nightly build (ex: ci/5.1-nightly)"
   echo "       latest:         the latest stable version"
   echo ""
+  echo "  plugins: 'all' or a list of plugin names between ''"
+  echo ""
   echo "  Environment variables"
-  echo "    USE_HTTPS=true        use https in repository source (default true)"
-  echo "    DOWNLOAD_USER=...     download from private repository with this user"
-  echo "    DOWNLOAD_PASSWORD=... use this password for private repository"
-  echo "    DEV_MODE=true         permit external access to server and databases (default false)"
+  echo "    USE_HTTPS=true          use https in repository source (default true)"
+  echo "    DOWNLOAD_USER=...       download from private repository with this user"
+  echo "    DOWNLOAD_PASSWORD=...   use this password for private repository"
+  echo "    PLUGINS_URL=...         use this URL for plugin repository"
+  echo "    PLUGINS_VERSION=nightly download nightly version of plugins"
+  echo "    FORGET_CREDENTIALS=true remove credentials after installing plugins and licenses"
+  echo "    DEV_MODE=true           permit external access to server and databases (default false)"
   exit 1
 }
 # GOTO bottom for main()
@@ -39,8 +44,6 @@ usage() {
 # Include: setup-agent.sh
 
 # Include: setup-server.sh
-
-# Include: setup-plugins.sh
 
 ########
 # MAIN #
@@ -63,6 +66,7 @@ setlocal || re_exec "$@"
 COMMAND="$1"
 RUDDER_VERSION=`rudder_real_version "$2"`
 SERVER="$3"
+PLUGINS="$3"
 
 PREFIX=$(echo "${RUDDER_VERSION}" | cut -f 1 -d "/")
 if [ "${PREFIX}" = "ci" ]
@@ -97,6 +101,7 @@ case "${COMMAND}" in
     preinst_check "agent-allinone"
     add_repo
     setup_agent
+    can_remove_repo
     ;;
   "setup-relay")
     rudder_compatibility_check "relay"
@@ -104,37 +109,36 @@ case "${COMMAND}" in
     add_repo
     setup_agent
     setup_relay
+    can_remove_repo
     ;;
   "setup-server")
     rudder_compatibility_check "server"
     preinst_check "server"
     add_repo
     setup_server
+    can_remove_repo
     ;;
   "upgrade-agent")
     rudder_compatibility_check "agent-allinone"
     add_repo
     upgrade_agent
+    can_remove_repo
     ;;
   "upgrade-relay")
     rudder_compatibility_check "relay"
     add_repo
     upgrade_agent
     upgrade_relay
+    can_remove_repo
     ;;
   "upgrade-server")
     rudder_compatibility_check "server"
     add_repo
     upgrade_server
+    can_remove_repo
     ;;
   "upgrade-techniques")
     upgrade_techniques
-    ;;
-  "windows-plugin")
-    install_windows_plugin "$2"
-    ;;
-  "reporting-plugin")
-    install_advanced_reporting "$2"
     ;;
   *)
     usage

@@ -111,3 +111,10 @@ remove_repo() {
     zypper removerepo Rudder || true
   fi
 }
+
+can_remove_repo() {
+  if [ "${FORGET_CREDENTIALS}" = "true" ]
+  then
+    remove_repo
+  fi
+}

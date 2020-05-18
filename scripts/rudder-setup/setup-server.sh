@@ -52,6 +52,45 @@ setup_server() {
 
   [ "${DEV_MODE}" = "true" ] && setup_dev_mode
 
+  # install plugins
+  if is_version_valid "${RUDDER_VERSION}" "[6.0 *]"; then
+    if [ "${PLUGINS}" != "" ]; then
+      # Configure "rudder package"
+      if [ "${PLUGINS_URL}" = "" ]; then
+        url="https://download.rudder.io/plugins"
+      else
+        url="${PLUGINS_URL}"
+      fi
+      cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
+[Rudder]
+url = ${url}
+username = ${DOWNLOAD_USER}
+password = ${DOWNLOAD_PASSWORD}
+EOF
+
+      # list available packages
+      rudder package update
+      [ "${PLUGINS}" = "all" ] && PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
+
+      # licences
+      rudder package licenses
+
+      # install plugins
+      if [ "${PLUGINS_VERSION}" = "nightly" ]; then
+        nightly_plugins="--nighty"
+      fi
+      for p in ${PLUGINS}
+      do
+        rudder package install "${p}" ${nightly_plugins} || true # accept plugin install to fail
+      done
+
+      # remove credentials if needed
+      if [ "${FORGET_CREDENTIALS}" = "true" ]; then
+        rm -f /opt/rudder/etc/rudder-pkg/rudder-pkg.conf
+      fi
+    fi
+  fi
+
   if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
     rudder server health -w
   fi
