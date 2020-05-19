@@ -32,7 +32,7 @@ add_repo() {
     if [ "${USER}" = "" ]; then
       URL_BASE="http${S}://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
     else
-      URL_BASE="http${S}://${USER}downloads.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
+      URL_BASE="http${S}://${USER}download.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
     fi
   fi
 
