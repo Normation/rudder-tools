@@ -55,11 +55,28 @@ setup_server() {
   # install plugins
   if is_version_valid "${RUDDER_VERSION}" "[6.0 *]"; then
     if [ "${PLUGINS}" != "" ]; then
-      # Configure "rudder package"
-      if [ "${PLUGINS_URL}" = "" ]; then
+      # get licenses
+      if [ "${DOWNLOAD_USER}" != "" ]
+      then
+        cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
+[Rudder]
+url = https://download.rudder.io/plugins
+username = ${DOWNLOAD_USER}
+password = ${DOWNLOAD_PASSWORD}
+EOF
+        rudder package licenses
+    fi
+
+      # Configure plugins
+      if  [ "$(echo ${PLUGINS_VERSION} | sed  's|.*/||')" = "nightly" ]; then
+        nightly_plugins="--nighty"
+      fi
+      if [ "$(echo ${PLUGINS_VERSION} | sed  's|/.*||')" = "ci" ]; then
+        url="https://publisher.normation.com/plugins/"
+      elif if [ "${DOWNLOAD_USER}" = "" ]; then
+        url="https://repository.rudder.io/plugins/"
+      else 
         url="https://download.rudder.io/plugins"
-      else
-        url="${PLUGINS_URL}"
       fi
       cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
 [Rudder]
@@ -71,9 +88,6 @@ EOF
       # list available packages
       rudder package update
       [ "${PLUGINS}" = "all" ] && PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
-
-      # licences
-      rudder package licenses
 
       # install plugins
       if [ "${PLUGINS_VERSION}" = "nightly" ]; then
