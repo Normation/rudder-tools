@@ -105,7 +105,7 @@ EOF
   fi
 
   if [ "${ADMIN_PASSWORD}" != "" ] && is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
-    hash=$(htpasswd -nBC 12 "" "${ADMIN_PASSWORD}" | tr -d ':\n')
+    hash=$(htpasswd -nbBC 12 "" "${ADMIN_PASSWORD}" | tr -d ':\n')
     details="<user name=\"admin\" password=\"${hash}\" role=\"administrator\" />"
     sed -i "/^[[:space:]]*<\/authentication>/i ${details}" "/opt/rudder/etc/rudder-users.xml"
   fi
