@@ -108,6 +108,7 @@ EOF
     hash=$(htpasswd -nbBC 12 "" "${ADMIN_PASSWORD}" | tr -d ':\n')
     details="<user name=\"admin\" password=\"${hash}\" role=\"administrator\" />"
     sed -i "/^[[:space:]]*<\/authentication>/i ${details}" "/opt/rudder/etc/rudder-users.xml"
+    systemctl restart rudder-jetty
   fi
 
   if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
