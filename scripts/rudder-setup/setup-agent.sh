@@ -87,14 +87,13 @@ upgrade_agent() {
 }
 
 setup_relay() {
-  # Upgrade via package manager only
+  # Install via package manager only
   if [ -z "${PM}" ]
   then
     echo "Sorry your System is not *yet* supported !"
     exit 4
   fi
   ${PM_INSTALL} rudder-server-relay
-  rudder agent run
 }
 
 upgrade_relay() {
