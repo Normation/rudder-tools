@@ -44,6 +44,10 @@ setup_server() {
   fi
 
   if is_version_valid "${RUDDER_VERSION}" "[* 5.0]"; then
+    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
+      quiet_arg="--quiet"
+    fi
+
     # Initialize Rudder
     echo -n "Running rudder-init..."
     /opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
@@ -63,7 +67,7 @@ url = https://download.rudder.io/plugins
 username = ${DOWNLOAD_USER}
 password = ${DOWNLOAD_PASSWORD}
 EOF
-      rudder package licenses
+      rudder package licenses ${quiet_arg}
     fi
 
     # Configure plugins
@@ -85,15 +89,14 @@ password = ${DOWNLOAD_PASSWORD}
 EOF
 
     # list available packages
-    rudder package update
-    [ "${PLUGINS}" = "all" ] && PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
+    rudder package update ${quiet_arg}
+    if [ "${PLUGINS}" = "all" ]; then
+      PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
+    fi
 
     # install plugins
     if [ "${PLUGINS_VERSION}" = "nightly" ]; then
       nightly_plugins="--nightly"
-    fi
-    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
-      quiet_arg="--quiet"
     fi
     for p in ${PLUGINS}
     do
@@ -137,6 +140,7 @@ upgrade_server() {
     if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
       quiet_arg="--quiet"
     fi
+    rudder package update ${quiet_arg}
     rudder package upgrade-all ${nightly_plugins} ${quiet_arg}
   fi
 }
