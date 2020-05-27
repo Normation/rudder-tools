@@ -12,7 +12,7 @@ Usage:
     rudder-dev [-d|--debug] [-f|--force] branch <ticket_id> [--base=<ticket_id>]
     rudder-dev [-d|--debug] [-f|--force] quickfix <pr_url/file> [<subject>|<trigraph>] [--merge]
     rudder-dev [-d|--debug] [-f|--force] technique <version> <comment>
-    rudder-dev [-d|--debug] [-f|--force] subtask [<next_branch>] [--base=<ticket_id>] --title=<new_title> [--bug]
+    rudder-dev [-d|--debug] [-f|--force] subtask [<next_branch>] [--base=<ticket_id>] [--title=<new_title>] [--bug]
     rudder-dev [-d|--debug] [-f|--force] wip
     rudder-dev [-d|--debug] [-f|--force] commit [--nopr|<trigraph> [<PR_comment>]]
     rudder-dev [-d|--debug] [-f|--force] amend [<PR_comment>]
@@ -1596,9 +1596,6 @@ if __name__ == "__main__":
   elif arguments['technique']:
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['subtask']:
-    if arguments['--title'] is None:
-      logfail("You must set a title when creating a subtask")
-      exit(3)
     stash()
     subtask(arguments['<next_branch>'], arguments['--title'], arguments['--base'], arguments['--bug'])
     unstash()
