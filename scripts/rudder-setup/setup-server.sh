@@ -53,54 +53,56 @@ setup_server() {
   [ "${DEV_MODE}" = "true" ] && setup_dev_mode
 
   # install plugins
-  if is_version_valid "${RUDDER_VERSION}" "[6.0 *]"; then
-    if [ "${PLUGINS}" != "" ]; then
-      # get licenses
-      if [ "${DOWNLOAD_USER}" != "" ]; then
-        cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
+  if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
+  then
+    # get licenses
+    if [ "${DOWNLOAD_USER}" != "" ]; then
+      cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
 [Rudder]
 url = https://download.rudder.io/plugins
 username = ${DOWNLOAD_USER}
 password = ${DOWNLOAD_PASSWORD}
 EOF
-        rudder package licenses
-      fi
+      rudder package licenses
+    fi
 
-      # Configure plugins
-      if  [ "$(echo ${PLUGINS_VERSION} | sed  's|.*/||')" = "nightly" ]; then
-        nightly_plugins="--nighty"
-      fi
-      if [ "$(echo ${PLUGINS_VERSION} | sed  's|/.*||')" = "ci" ]; then
-        url="https://publisher.normation.com/plugins/"
-      elif [ "${DOWNLOAD_USER}" = "" ]; then
-        url="https://repository.rudder.io/plugins/"
-      else 
-        url="https://download.rudder.io/plugins"
-      fi
-      cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
+    # Configure plugins
+    if  [ "$(echo ${PLUGINS_VERSION} | sed  's|.*/||')" = "nightly" ]; then
+      nightly_plugins="--nighty"
+    fi
+    if [ "$(echo ${PLUGINS_VERSION} | sed  's|/.*||')" = "ci" ]; then
+      url="https://publisher.normation.com/plugins/"
+    elif [ "${DOWNLOAD_USER}" = "" ]; then
+      url="https://repository.rudder.io/plugins/"
+    else 
+      url="https://download.rudder.io/plugins"
+    fi
+    cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
 [Rudder]
 url = ${url}
 username = ${DOWNLOAD_USER}
 password = ${DOWNLOAD_PASSWORD}
 EOF
 
-      # list available packages
-      rudder package update
-      [ "${PLUGINS}" = "all" ] && PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
+    # list available packages
+    rudder package update
+    [ "${PLUGINS}" = "all" ] && PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
 
-      # install plugins
-      if [ "${PLUGINS_VERSION}" = "nightly" ]; then
-        nightly_plugins="--nighty"
-      fi
-      for p in ${PLUGINS}
-      do
-        rudder package install "${p}" ${nightly_plugins} || true # accept plugin install to fail
-      done
+    # install plugins
+    if [ "${PLUGINS_VERSION}" = "nightly" ]; then
+      nightly_plugins="--nightly"
+    fi
+    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
+      quiet_arg="--quiet"
+    fi
+    for p in ${PLUGINS}
+    do
+      rudder package install "${p}" ${nightly_plugins} ${quiet_arg} || true # accept plugin install to fail
+    done
 
-      # remove credentials if needed
-      if [ "${FORGET_CREDENTIALS}" = "true" ]; then
-        rm -f /opt/rudder/etc/rudder-pkg/rudder-pkg.conf
-      fi
+    # remove credentials if needed
+    if [ "${FORGET_CREDENTIALS}" = "true" ]; then
+      rm -f /opt/rudder/etc/rudder-pkg/rudder-pkg.conf
     fi
   fi
 
@@ -126,6 +128,17 @@ upgrade_server() {
 
   # Upgrade
   ${PM_UPGRADE} rudder-server-root
+
+  if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
+  then
+    if [ "${PLUGINS_VERSION}" = "nightly" ]; then
+      nightly_plugins="--nightly"
+    fi
+    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
+      quiet_arg="--quiet"
+    fi
+    rudder package upgrade-all ${nightly_plugins} ${quiet_arg}
+  fi
 }
 
 upgrade_techniques() {
