@@ -44,10 +44,6 @@ setup_server() {
   fi
 
   if is_version_valid "${RUDDER_VERSION}" "[* 5.0]"; then
-    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
-      quiet_arg="--quiet"
-    fi
-
     # Initialize Rudder
     echo -n "Running rudder-init..."
     /opt/rudder/bin/rudder-init ${LDAPRESET} ${ALLOWEDNETWORK} < /dev/null > /dev/null 2>&1
@@ -59,6 +55,10 @@ setup_server() {
   # install plugins
   if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
   then
+    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
+      quiet_arg="--quiet"
+    fi
+
     # get licenses
     if [ "${DOWNLOAD_USER}" != "" ]; then
       cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
