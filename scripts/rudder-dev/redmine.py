@@ -261,7 +261,11 @@ class Issue:
       new_info['description'] = "There was a bug in the resolution of #" + str(self.id)
     if new_title is not None:
       if new_title.startswith('+'):
-        new_info['subject'] += new_title.replace('+', ' ', 1)
+        subject = new_info['subject']
+        m = re.match("(.*) - .*", subject)
+        if m:
+          subject = m.group(1)
+        new_info['subject'] = subject + " - " + new_title.replace('+', ' ', 1)
       else:
         new_info['subject'] = new_title
     new_info['fixed_version_id'] = version_id
