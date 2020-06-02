@@ -4,12 +4,6 @@
 
 *A lot!* More than a year after 5.0 and the creation of the plugin ecosystem, Rudder 6.0 improves core components, and sets the basis for future exciting features. Changes happened at all levels, from the communication protocol between nodes and server to major UI improvements. Key features will get detailed announcements on our blog.
 
-=== New security features (through plugins)
-
-* CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder
-* CVE management: Reports CVEs affecting installed packages
-* OpenSCAP: Runs OpenSCAP audits, collects and exposes them in the web interface
-
 === Polishing the web interface
 
 * Generalization of notifications: success popups have been replaced by self-disappearing notifications
@@ -48,6 +42,12 @@ Besides the security improvements made possible by the new reporting protocol, w
 * All Rudder services are now systemd units (except the agent on non-systemd systems, of course!).
 * It is now possible to execute only a specific directive on a node (with `rudder directive list|run` commands), to quicken and ease debugging of a particular policy.
 * Agent trigger from the server, that was previously only available from the API, is now directly accessible from node details. If the port is open on the node, your can trigger is and the live agent output in the web interface.
+
+=== Technical preview releases of new security features (through plugins)
+
+* CIS policy pack: Allows to apply pre-made CIS policies in one click using Rudder
+* CVE management: Reports CVEs affecting installed packages
+* OpenSCAP: Runs OpenSCAP audits, collects and exposes them in the web interface
 
 === Internals
 
