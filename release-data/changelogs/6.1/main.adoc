@@ -4,6 +4,88 @@ Rudder 6.1 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.0.rc2 (2020-06-04)
+
+=== Changes
+
+==== Rudder language
+
+* refactoring io usage and configuration
+    (https://issues.rudder.io/issues/17403[#17403])
+
+==== Plugins integration
+
+* Rudder package list should display plugin status
+    (https://issues.rudder.io/issues/16793[#16793])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Apache reload error during root server setup
+    (https://issues.rudder.io/issues/17565[#17565])
+* Fixed:  apache acl are still empty after installation
+    (https://issues.rudder.io/issues/17564[#17564])
+* Fixed: rudder init syntax error
+    (https://issues.rudder.io/issues/17560[#17560])
+* Fixed: postgresl client in relayd tries to read krb conf
+    (https://issues.rudder.io/issues/17518[#17518])
+* Fixed: First inventory fails when installing root server
+    (https://issues.rudder.io/issues/17567[#17567])
+
+==== Relay server or API
+
+* Fixed: old rudder-node-to-relay fails to redirect to new one
+    (https://issues.rudder.io/issues/17566[#17566])
+
+==== Web - Config management
+
+* Fixed: Multiple problems with inherited (group, node) properties
+    (https://issues.rudder.io/issues/17547[#17547])
+* Fixed: Property error message for group with parent group
+    (https://issues.rudder.io/issues/17549[#17549])
+* Fixed: error in webapp log after upgrade to 6.1-rc1
+    (https://issues.rudder.io/issues/17555[#17555])
+
+==== Web - Technique editor
+
+* Fixed: Allow to regenerate generic methods when there is a new one
+    (https://issues.rudder.io/issues/17568[#17568])
+* Fixed: No techniques in technique editor after upgrade from 5.0.18 to 6.1-rc1 on debian9
+    (https://issues.rudder.io/issues/17572[#17572])
+* Fixed: GM documentation is not rendered anymore
+    (https://issues.rudder.io/issues/17563[#17563])
+
+==== Rudder language
+
+* Fixed: documentation quick update
+    (https://issues.rudder.io/issues/17583[#17583])
+
+==== Web - UI & UX
+
+* Fixed: Plugin names are not displayed
+    (https://issues.rudder.io/issues/17544[#17544])
+* Fixed: Broken appearance of hover details in node details
+    (https://issues.rudder.io/issues/17553[#17553])
+* Fixed: Group property inherited tooltip is not visible
+    (https://issues.rudder.io/issues/17546[#17546])
+
+==== System techniques
+
+* Fixed: rudder agent reset fails on root server
+    (https://issues.rudder.io/issues/17580[#17580])
+
+==== Agent
+
+* Fixed: rudder agent run should not always return ok when there is no log
+    (https://issues.rudder.io/issues/17571[#17571])
+* Fixed: rudder agent stop displays the list of service event when quiet is required
+    (https://issues.rudder.io/issues/17561[#17561])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.0.rc1 (2020-05-28)
 
 === Changes
