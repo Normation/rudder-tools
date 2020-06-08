@@ -4,6 +4,135 @@ Rudder 6.1 is currently a development version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.0.rc3 (2020-06-08)
+
+=== Changes
+
+==== Miscellaneous
+
+* Dockerizing Rudder agent 
+    (https://issues.rudder.io/issues/17604[#17604])
+* Dockerizing Rudder agent 
+    (https://issues.rudder.io/issues/17604[#17604])
+* Dockerizing Rudder agent 
+    (https://issues.rudder.io/issues/17604[#17604])
+* Dockerizing Rudder agent 
+    (https://issues.rudder.io/issues/17604[#17604])
+* Dockerizing Rudder agent 
+    (https://issues.rudder.io/issues/17604[#17604])
+
+==== Rudder language
+
+* Improve rudder-lang doc
+    (https://issues.rudder.io/issues/16944[#16944])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: error at install of rudder 6.1 on debian9
+    (https://issues.rudder.io/issues/17636[#17636])
+* Fixed: AIX builds fails on invalid or condition
+    (https://issues.rudder.io/issues/17635[#17635])
+* Fixed: Agent uses "cmp" command but it is not a dependency
+    (https://issues.rudder.io/issues/17606[#17606])
+* Fixed: The webapp is unable to start after a fresh install
+    (https://issues.rudder.io/issues/17591[#17591])
+* Fixed: ruder package command fails to run in automated setup
+    (https://issues.rudder.io/issues/17645[#17645])
+* Fixed: ruder package command fails to run in automated setup
+    (https://issues.rudder.io/issues/17645[#17645])
+
+==== Documentation
+
+* Fixed: Update documentation about variable (condition)
+    (https://issues.rudder.io/issues/17629[#17629])
+
+==== Web - UI & UX
+
+* Fixed: Clicking on the warning icon is node list should lead to system status page
+    (https://issues.rudder.io/issues/17646[#17646])
+* Fixed: Group value should only display value for that element in main table
+    (https://issues.rudder.io/issues/17625[#17625])
+* Fixed: Plugin expiration warning misalignement problem
+    (https://issues.rudder.io/issues/17619[#17619])
+* Fixed: Overriden pop-up top is missing
+    (https://issues.rudder.io/issues/17623[#17623])
+* Fixed: tooltip for node properties does not show
+    (https://issues.rudder.io/issues/17550[#17550])
+* Fixed: when searching nodes, on the search page, the checkbox "Include Rudder server components" if briefly checked and unchecked
+    (https://issues.rudder.io/issues/17575[#17575])
+* Fixed: Rudder logo appears in remote-run error message
+    (https://issues.rudder.io/issues/17556[#17556])
+
+==== Security
+
+* Fixed: description in directives and groups are evaluated, and we can inject whatever we want
+    (https://issues.rudder.io/issues/17641[#17641])
+
+==== Rudder language
+
+* Fixed: doc conflicting with tests
+    (https://issues.rudder.io/issues/17649[#17649])
+* Fixed: fix doc configuration files
+    (https://issues.rudder.io/issues/17614[#17614])
+
+==== Web - Compliance & node report
+
+* Fixed: text explaining hierarchy of groups always shows up for system group
+    (https://issues.rudder.io/issues/17638[#17638])
+* Fixed: policy generation fails if we put a " in the directive name
+    (https://issues.rudder.io/issues/17628[#17628])
+
+==== Plugins integration
+
+* Fixed: rudder package logs are inconsistent
+    (https://issues.rudder.io/issues/17600[#17600])
+
+==== Web - Nodes & inventories
+
+* Fixed: compilation error in 6.0 because of absence of typo in Inconsistency
+    (https://issues.rudder.io/issues/17605[#17605])
+* Fixed: no policy generation after accepting many nodes in 6.1
+    (https://issues.rudder.io/issues/17594[#17594])
+
+==== Web - Maintenance
+
+* Fixed: NPE when agent key is malformed
+    (https://issues.rudder.io/issues/17597[#17597])
+
+==== Web - Config management
+
+* Fixed: when a policy generation is triggered by a dynamic group update, it states in event logs "Manually update policies"
+    (https://issues.rudder.io/issues/17595[#17595])
+
+==== Web - Technique editor
+
+* Fixed: User with some to access technique editor api
+    (https://issues.rudder.io/issues/17596[#17596])
+
+==== System techniques
+
+* Fixed: system techniques start rudder-relayd before setting postgresql passwords
+    (https://issues.rudder.io/issues/17612[#17612])
+* Fixed: inventory should be copied to /var/rudder/inventories/accepted-nodes-updates rather than uploaded on root server
+    (https://issues.rudder.io/issues/17616[#17616])
+
+==== Agent
+
+* Fixed: error at install of rudder 6.1 server on debian 9
+    (https://issues.rudder.io/issues/17637[#17637])
+* Fixed: Warning message in relayd logs when reloading
+    (https://issues.rudder.io/issues/17630[#17630])
+* Fixed: rudder server root tries to set initial promises while they are not installed
+    (https://issues.rudder.io/issues/17611[#17611])
+* Fixed: possible use of undefined variable in lib/common.sh
+    (https://issues.rudder.io/issues/17610[#17610])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.0.rc2 (2020-06-04)
 
 === Changes
