@@ -137,6 +137,15 @@ detect_os() {
   esac
   OS_MAJOR_VERSION=`echo "${OS_COMPATIBLE_VERSION}" | sed 's/[^0-9].*//'`
 
+  # Package manager fixup
+  #######################
+  # Debian 6 gpg key has expired will not be updated anymore
+  if [ "${OS_CODENAME}" = "squeeze" ]
+  then
+    PM_INSTALL="${PM_INSTALL} --allow-unauthenticated"
+    PM_UPGRADE="${PM_UPGRADE} --allow-unauthenticated"
+  fi
+
   export OS_NAME OS_COMPATIBLE OS_VERSION OS_COMPATIBLE_VERSION OS_MAJOR_VERSION PM PM_INSTALL
 }
 
