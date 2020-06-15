@@ -3,7 +3,7 @@
 release = "6.1"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "beta"
+release-status = "final"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
