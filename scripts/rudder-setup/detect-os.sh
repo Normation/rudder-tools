@@ -132,6 +132,7 @@ detect_os() {
     Amazon) OS_COMPATIBLE="RHEL"
             OS_COMPATIBLE_VERSION=6;;
     SuSE)   OS_COMPATIBLE="SLES" ;;
+    SUSE)   OS_COMPATIBLE="SLES" ;;
     "SLES") OS_COMPATIBLE="SLES" ;;
     "SUSE LINUX")   OS_COMPATIBLE="SLES" ;;
   esac
