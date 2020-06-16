@@ -108,7 +108,6 @@ case "${COMMAND}" in
     rudder_compatibility_check "relay"
     preinst_check "relay"
     add_repo
-    setup_agent
     setup_relay
     can_remove_repo
     ;;
@@ -121,20 +120,19 @@ case "${COMMAND}" in
     ;;
   "upgrade-agent")
     rudder_compatibility_check "agent-allinone"
-    add_repo
+    update_repo
     upgrade_agent
     can_remove_repo
     ;;
   "upgrade-relay")
     rudder_compatibility_check "relay"
-    add_repo
-    upgrade_agent
+    update_repo
     upgrade_relay
     can_remove_repo
     ;;
   "upgrade-server")
     rudder_compatibility_check "server"
-    add_repo
+    update_repo
     upgrade_server
     can_remove_repo
     ;;

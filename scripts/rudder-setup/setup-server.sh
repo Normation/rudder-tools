@@ -109,15 +109,19 @@ EOF
     fi
   fi
 
+  reset_admin
+
+  if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
+    rudder server health -w
+  fi
+}
+
+reset_admin() {
   if [ "${ADMIN_PASSWORD}" != "" ] && is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
     hash=$(htpasswd -nbBC 12 "" "${ADMIN_PASSWORD}" | tr -d ':\n')
     details="<user name=\"admin\" password=\"${hash}\" role=\"administrator\" />"
     sed -i "/^[[:space:]]*<\/authentication>/i ${details}" "/opt/rudder/etc/rudder-users.xml"
     systemctl restart rudder-jetty
-  fi
-
-  if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
-    rudder server health -w
   fi
 }
 
@@ -142,6 +146,12 @@ upgrade_server() {
     fi
     rudder package update ${quiet_arg}
     rudder package upgrade-all ${nightly_plugins} ${quiet_arg}
+  fi
+
+  reset_admin
+
+  if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
+    rudder server health -w
   fi
 }
 

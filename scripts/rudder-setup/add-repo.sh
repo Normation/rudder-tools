@@ -94,12 +94,59 @@ EOF
   fi
 
   # TODO pkgng emerge pacman smartos
-  # There is help in Fusion Inventory lib/FusionInventory/Agent/Task/Inventory/Linux/Distro/NonLSB.pm
   echo "Sorry your Package Manager is not *yet* supported !"
   return 1
 }
 
+update_repo() {
+  # nothing to update
+  if [ "${RUDDER_VERSION}" = "" ]
+  then
+    return
+  fi
+
+  # if the version is a file or a URL stop here
+  if [ -f "${RUDDER_VERSION}" ] || echo "${RUDDER_VERSION}" | grep "^http" > /dev/null
+  then
+    return
+  fi
+
+  if [ "${PM}" = "apt" ]
+  then
+    file=/etc/apt/sources.list.d/rudder.list
+    REPO_TYPE="apt"
+  elif [ "${PM}" = "yum" ]
+  then
+    file=/etc/yum.repos.d/rudder.repo
+    REPO_TYPE="rpm"
+  elif [ "${PM}" = "zypper" ]
+  then
+    file=/etc/zypp/repos.d/Rudder.repo
+    REPO_TYPE="rpm"
+  else
+    echo "Sorry your Package Manager is not *yet* supported !"
+    return 1
+  fi
+
+  # The real edit
+  sed -i "s%${REPO_TYPE}/\(latest\|nightly\|[0-9.]\+\(-nightly\|~beta[0-9]\+\|~rc[0-9]\+\)\?\)/%${REPO_TYPE}/${RUDDER_VERSION}/%" "${file}"
+
+  if [ "${PM}" = "apt" ]
+  then
+    apt-get update
+  elif [ "${PM}" = "zypper" ]
+  then
+    zypper --non-interactive refresh
+  fi
+}
+
 remove_repo() {
+  # if the version is a file or a URL stop here
+  if [ -f "${RUDDER_VERSION}" ] || echo "${RUDDER_VERSION}" | grep "^http" > /dev/null
+  then
+    return
+  fi
+
   if [ "${PM}" = "apt" ]
   then
     rm -f /etc/apt/sources.list.d/rudder.list
