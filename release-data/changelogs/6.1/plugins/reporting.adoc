@@ -1,0 +1,17 @@
+= Changelogs for Rudder plugin reporting 6.1.\* versions
+
+== reporting-6.1-1.4 (2020-06-17)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Adapt Reporting plugin to 6.1
+    (https://issues.rudder.io/issues/17286[#17286])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
