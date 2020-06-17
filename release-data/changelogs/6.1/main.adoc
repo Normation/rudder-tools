@@ -4,6 +4,62 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.0 (2020-06-17)
+
+=== Changes
+
+==== Miscellaneous
+
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+
+==== Documentation
+
+* Prepare doc for final 6.1 release
+    (https://issues.rudder.io/issues/17648[#17648])
+
+==== Containers
+
+* Dockerize Rudder Relay Server
+    (https://issues.rudder.io/issues/17732[#17732])
+* Dockerize Rudder Relay Server
+    (https://issues.rudder.io/issues/17732[#17732])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: systemd detection fails when init has parameters
+    (https://issues.rudder.io/issues/17717[#17717])
+
+==== Documentation
+
+* Fixed: broken doc build because of spaces in file name
+    (https://issues.rudder.io/issues/17751[#17751])
+* Fixed: Broken links in rudder-by-example
+    (https://issues.rudder.io/issues/17735[#17735])
+* Fixed: Missing documentation for overriding jetty system properties in start.ini
+    (https://issues.rudder.io/issues/17719[#17719])
+* Fixed: Document access to `ipv4[eth0]` system variable
+    (https://issues.rudder.io/issues/17705[#17705])
+* Fixed: Add a `rudder-by-example` for rudder-agent package update
+    (https://issues.rudder.io/issues/17686[#17686])
+
+==== Technique editor - UI/UX
+
+* Fixed: Filter on agent type also filter generic methods in technique
+    (https://issues.rudder.io/issues/17749[#17749])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.0.rc4 (2020-06-11)
 
 === Changes
