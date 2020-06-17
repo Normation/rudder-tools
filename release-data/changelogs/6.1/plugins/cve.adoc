@@ -1,0 +1,38 @@
+= Changelogs for Rudder plugin cve 6.1.\* versions
+
+== cve-6.1-1.0 (2020-06-17)
+
+=== Changes
+
+==== Miscellaneous
+
+* Add documentation to CVE plugin 
+    (https://issues.rudder.io/issues/17450[#17450])
+* Add introduction to cve page and minor improvements
+    (https://issues.rudder.io/issues/17449[#17449])
+* Remove all mentions to Vulners in code and log
+    (https://issues.rudder.io/issues/17327[#17327])
+* Add notification to CVE plugin
+    (https://issues.rudder.io/issues/17014[#17014])
+* Configure Vulners within the UI
+    (https://issues.rudder.io/issues/16982[#16982])
+* Update cve by downloading CVE definition file
+    (https://issues.rudder.io/issues/16901[#16901])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Adapt CVE plugin to 6.1
+    (https://issues.rudder.io/issues/17284[#17284])
+* Fixed: Trigger cve check on node update / new node acceptation
+    (https://issues.rudder.io/issues/17076[#17076])
+* Fixed: Use vulners API key and adapt to nvd new json format
+    (https://issues.rudder.io/issues/16893[#16893])
+* Fixed: Display hostname first before node id in cve lists
+    (https://issues.rudder.io/issues/16894[#16894])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
