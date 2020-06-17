@@ -573,6 +573,15 @@ def commit_push(branch, message, force_amend=False, fixup=False):
     push_cmd += " --force"
   shell(push_cmd, "Pushing to " + Config.OWN_REPOSITORY + " ... ")
 
+  # Set the Trigger test label
+  issue = issue_from_branch(current_branch)
+  if 'pr' in issue and issue['pr'] != '':
+    pr = PR(issue['pr'])
+    if "Normation" in get_github_orgs():
+      print("Reset the \"Trigger test\" label")
+      pr.unlabel(Config.TRIGGER_TEST_LABEL)
+      pr.label(Config.TRIGGER_TEST_LABEL)
+
 
 # insert a line in a file after a regex has matched
 def insert_line(filename, regex, text):

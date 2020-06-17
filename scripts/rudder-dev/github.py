@@ -10,6 +10,7 @@ if 'Config' not in vars():
 Config.HUB_CONFIG_FILE = "~/.config/hub"
 Config.PR_VALIDATED_LABEL = "Ready for merge"
 Config.PR_VALIDATED_COLOR = "0e8a16"
+Config.TRIGGER_TEST_LABEL = "Trigger test"
 Config.BOT_CANNOT_MERGE_LABEL = "qa: Can't merge"
 Config.BOT_CANNOT_MERGE_COLOR = "ededed"
 Config.PR_TOO_OLD_LABEL = "Very old PR"
@@ -234,3 +235,11 @@ def github_call(url, post_data=None, fail_ok=False, method=None):
   # return result
   return ret.json()
 
+# Retrieve current user organizations
+def get_github_orgs():
+    orgs = []
+    data = github_call("https://api.github.com/user/orgs", fail_ok=True, method="GET")
+    if data is not None:
+        for org in data:
+            orgs.append(org["login"])
+    return orgs
