@@ -1,0 +1,74 @@
+= Changelogs for Rudder plugin cis 6.1.\* versions
+
+== cis-6.1-1.1 (2020-06-18)
+
+=== Changes
+
+==== Miscellaneous
+
+* backport category creation to 5.0
+    (https://issues.rudder.io/issues/16365[#16365])
+* Add technique export to rudder-synchronize
+    (https://issues.rudder.io/issues/15837[#15837])
+* Document the plugin
+    (https://issues.rudder.io/issues/15812[#15812])
+* Add more items to the CIS plugin
+    (https://issues.rudder.io/issues/15796[#15796])
+* Add support for multi-OS benchmark
+    (https://issues.rudder.io/issues/15718[#15718])
+* Create the plugin base
+    (https://issues.rudder.io/issues/15553[#15553])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: cleanup the documentation
+    (https://issues.rudder.io/issues/17419[#17419])
+* Fixed: Starting 6.1 the plugin should use the rudder_synchronize builtin the rudder server
+    (https://issues.rudder.io/issues/17391[#17391])
+* Fixed: The plugin check for module freexvfs instead of freevxfs
+    (https://issues.rudder.io/issues/17302[#17302])
+* Fixed: Cleanup the uninstall process
+    (https://issues.rudder.io/issues/16948[#16948])
+* Fixed: Add dedicated techniques on a per benchmark basis
+    (https://issues.rudder.io/issues/16958[#16958])
+* Fixed: Adapt plugin build to the new separate benchmarks
+    (https://issues.rudder.io/issues/16935[#16935])
+* Fixed: Split the configuration build from the plugin build
+    (https://issues.rudder.io/issues/16921[#16921])
+* Fixed: Add Ubuntu18 benchmark support
+    (https://issues.rudder.io/issues/16920[#16920])
+* Fixed: Add a CIS category and put everything in it
+    (https://issues.rudder.io/issues/16103[#16103])
+* Fixed: Readme does not follow the correct syntax policy
+    (https://issues.rudder.io/issues/16423[#16423])
+* Fixed: Modify makefile to use pdfs from our private repos
+    (https://issues.rudder.io/issues/16381[#16381])
+* Fixed: Lots of directives in CIS are not working in Audit mode
+    (https://issues.rudder.io/issues/16378[#16378])
+* Fixed: Improve CIS documentation
+    (https://issues.rudder.io/issues/15942[#15942])
+* Fixed: Limit the usage of global variables in rudder-synchronize
+    (https://issues.rudder.io/issues/15848[#15848])
+* Fixed: As guarding class for skipping item we are using skip_item_${report_data.directive_id} instead of skip_item_${report_data.canonified_directive_id}
+    (https://issues.rudder.io/issues/15813[#15813])
+* Fixed: Add sysctl IPV4 cis items
+    (https://issues.rudder.io/issues/15807[#15807])
+
+==== Documentation
+
+* Fixed: Clean pugin install docs
+    (https://issues.rudder.io/issues/17276[#17276])
+* Fixed: Make images displayable in plugin doc on github
+    (https://issues.rudder.io/issues/16989[#16989])
+
+==== Packaging
+
+* Fixed: Change the Makefile command to find all plugin folder
+    (https://issues.rudder.io/issues/17036[#17036])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
