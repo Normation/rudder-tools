@@ -1,0 +1,24 @@
+= Changelogs for Rudder plugin user-management 6.1.\* versions
+
+== user-management-6.1-1.7 (2020-06-18)
+
+=== Changes
+
+==== Miscellaneous
+
+* Add BCrypt support for password encoder message box
+    (https://issues.rudder.io/issues/16720[#16720])
+* Update documentation with missing informations
+    (https://issues.rudder.io/issues/16723[#16723])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Update documentation about custom roles
+    (https://issues.rudder.io/issues/17343[#17343])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
