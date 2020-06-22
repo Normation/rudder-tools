@@ -2,6 +2,8 @@
 # Setup rudder agent #
 ######################
 setup_agent() {
+  package="$1"
+  [ -z "${package}" ] && package="rudder-agent"
   [ -z "${SERVER}" ] && SERVER="rudder"
 
   # Install via package manager only
@@ -49,7 +51,7 @@ setup_agent() {
     ${PM_INSTALL} "${URL_BASE}/ppc/${file}"
   else
     # Install
-    ${PM_INSTALL} rudder-agent
+    ${PM_INSTALL} "${package}"
   fi
 
   # System specific behavior
@@ -77,31 +79,14 @@ setup_agent() {
 }
 
 upgrade_agent() {
+  package="$1"
+  [ -z "${package}" ] && package="rudder-agent"
+
   # Upgrade via package manager only
   if [ -z "${PM}" ]
   then
     echo "Sorry your System is not *yet* supported !"
     exit 4
   fi
-  ${PM_UPGRADE} rudder-agent
-}
-
-setup_relay() {
-  # Install via package manager only
-  if [ -z "${PM}" ]
-  then
-    echo "Sorry your System is not *yet* supported !"
-    exit 4
-  fi
-  ${PM_INSTALL} rudder-server-relay
-}
-
-upgrade_relay() {
-  # Upgrade via package manager only
-  if [ -z "${PM}" ]
-  then
-    echo "Sorry your System is not *yet* supported !"
-    exit 4
-  fi
-  ${PM_UPGRADE} rudder-server-relay
+  ${PM_UPGRADE} "${package}"
 }

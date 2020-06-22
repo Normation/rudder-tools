@@ -101,14 +101,14 @@ case "${COMMAND}" in
     rudder_compatibility_check "agent-allinone"
     preinst_check "agent-allinone"
     add_repo
-    setup_agent
+    setup_agent "rudder-agent"
     can_remove_repo
     ;;
   "setup-relay")
     rudder_compatibility_check "relay"
     preinst_check "relay"
     add_repo
-    setup_relay
+    setup_agent "rudder-server-relay"
     can_remove_repo
     ;;
   "setup-server")
@@ -121,13 +121,13 @@ case "${COMMAND}" in
   "upgrade-agent")
     rudder_compatibility_check "agent-allinone"
     update_repo
-    upgrade_agent
+    upgrade_agent "rudder-agent"
     can_remove_repo
     ;;
   "upgrade-relay")
     rudder_compatibility_check "relay"
     update_repo
-    upgrade_relay
+    upgrade_agent "rudder-server-relay"
     can_remove_repo
     ;;
   "upgrade-server")
