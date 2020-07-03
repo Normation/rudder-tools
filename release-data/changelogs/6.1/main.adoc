@@ -4,6 +4,212 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.1 (2020-07-03)
+
+=== Changes
+
+==== Documentation
+
+* Add a Rudder by example for using Rudder server/relays as file mirror (for repos)
+    (https://issues.rudder.io/issues/17858[#17858])
+* Add docs about configuration-repository, how to sync it and what can be modified or not from outside
+    (https://issues.rudder.io/issues/17865[#17865])
+* Add doc about network resiliency
+    (https://issues.rudder.io/issues/17880[#17880])
+* Improve documentation about communication security
+    (https://issues.rudder.io/issues/17834[#17834])
+* Add a rudder-by-example for git sync in shared-files
+    (https://issues.rudder.io/issues/17840[#17840])
+* Document how to use custom certificates
+    (https://issues.rudder.io/issues/14206[#14206])
+* Document how to use custom certificates
+    (https://issues.rudder.io/issues/14206[#14206])
+* Missing uninstall doc for agent
+    (https://issues.rudder.io/issues/17790[#17790])
+* Add screenshots for technique editor with annotation in get started documentation
+    (https://issues.rudder.io/issues/17781[#17781])
+
+==== Web - UI & UX
+
+* Inconsistent fonts in technical logs
+    (https://issues.rudder.io/issues/16032[#16032])
+
+==== Rudder language
+
+* add doc about logs and generated techniques 
+    (https://issues.rudder.io/issues/17738[#17738])
+
+==== Techniques
+
+* Firewall technique
+    (https://issues.rudder.io/issues/16915[#16915])
+
+=== Bug fixes
+
+==== Web - Technique editor
+
+* Fixed: Can't access on technique editor
+    (https://issues.rudder.io/issues/17883[#17883])
+* Fixed: "unsaved changed" technique editor pop-up appears when not needed
+    (https://issues.rudder.io/issues/17750[#17750])
+* Fixed: Resource path of a technique with a category different thant default category are wrong
+    (https://issues.rudder.io/issues/17747[#17747])
+* Fixed: When removing and adding a new method, the save button is disabled
+    (https://issues.rudder.io/issues/17776[#17776])
+
+==== Packaging
+
+* Fixed: SLES12 upgrade error 6.0 to 6.1
+    (https://issues.rudder.io/issues/17873[#17873])
+* Fixed: some errors when upgrading from 5.0.18nightly to 6.1-nightly on debian9 and 10
+    (https://issues.rudder.io/issues/17644[#17644])
+* Fixed: Optimize elm application
+    (https://issues.rudder.io/issues/17888[#17888])
+* Fixed: shared-files acls are incorrect on relays, preventing the windows nodes from downloading them
+    (https://issues.rudder.io/issues/17802[#17802])
+
+==== Documentation
+
+* Fixed: Add support of Ubuntu 20 in doc
+    (https://issues.rudder.io/issues/17874[#17874])
+* Fixed: Typo in network resiliency documentation
+    (https://issues.rudder.io/issues/17892[#17892])
+* Fixed: Add trigger agent run feature from UI in get started 
+    (https://issues.rudder.io/issues/17855[#17855])
+* Fixed: remove pg_repack from documentation
+    (https://issues.rudder.io/issues/17839[#17839])
+* Fixed: Update screenshots in usage doc section 
+    (https://issues.rudder.io/issues/17843[#17843])
+* Fixed: Missing doc about root-relay communication flows
+    (https://issues.rudder.io/issues/17837[#17837])
+* Fixed: Missing ressources feature in technique editor doc
+    (https://issues.rudder.io/issues/17787[#17787])
+* Fixed: Broken link in apply advanced configuration get started doc
+    (https://issues.rudder.io/issues/17792[#17792])
+* Fixed: Missing markdown support for description in technique editor doc
+    (https://issues.rudder.io/issues/17788[#17788])
+* Fixed: Missing parameters feature in technique editor doc
+    (https://issues.rudder.io/issues/17786[#17786])
+* Fixed: Add link to further information in get started section
+    (https://issues.rudder.io/issues/17771[#17771])
+* Fixed: Replace deprecated generic methods in technique editor documentation usage
+    (https://issues.rudder.io/issues/17768[#17768])
+* Fixed: Documentation should state that SSD is recommended for more than 50 nodes
+    (https://issues.rudder.io/issues/17761[#17761])
+* Fixed: Refresh screenshots for technique editor
+    (https://issues.rudder.io/issues/17746[#17746])
+
+==== Miscellaneous
+
+* Fixed: Typos in directive documentation
+    (https://issues.rudder.io/issues/17762[#17762])
+* Fixed: Typos in technique editor documentation
+    (https://issues.rudder.io/issues/17760[#17760])
+
+==== Relay server or API
+
+* Fixed: Shared-files correction in postinst must be recursive
+    (https://issues.rudder.io/issues/17882[#17882])
+
+==== Rudder language
+
+* Fixed: make use of parameters instead of args
+    (https://issues.rudder.io/issues/17885[#17885])
+* Fixed: fix nasty random generation failure
+    (https://issues.rudder.io/issues/17811[#17811])
+* Fixed: handle techniques location path properly
+    (https://issues.rudder.io/issues/17737[#17737])
+* Fixed: error about rudder-lang in logs
+    (https://issues.rudder.io/issues/17724[#17724])
+
+==== Web - Config management
+
+* Fixed: Wrong error message when policy server of a Node is not found during generation 
+    (https://issues.rudder.io/issues/17851[#17851])
+* Fixed: Trying to add a group property with change request plugin enabled lead to blank property
+    (https://issues.rudder.io/issues/17804[#17804])
+* Fixed: Upgrading from rudder 5.0 to 6.0 leads to `distributePolicy not available` error
+    (https://issues.rudder.io/issues/17836[#17836])
+* Fixed: Updating property merge them in place of replacing them
+    (https://issues.rudder.io/issues/17830[#17830])
+* Fixed: When there is a serialisation error for parameter, their edit screen is unavaible
+    (https://issues.rudder.io/issues/17702[#17702])
+* Fixed: Duplicate category name error when saving a new user technique
+    (https://issues.rudder.io/issues/17774[#17774])
+* Fixed: Uncommited generic_methods.json in configuration repo
+    (https://issues.rudder.io/issues/17775[#17775])
+* Fixed: Auto-archive gitRepo.git failure warning is not actionnable, should be info or debug
+    (https://issues.rudder.io/issues/17777[#17777])
+* Fixed: description of global parameter "rudder" is misleading
+    (https://issues.rudder.io/issues/17700[#17700])
+
+==== API
+
+* Fixed: Missing doc for group properties and json global parameters
+    (https://issues.rudder.io/issues/17818[#17818])
+* Fixed: Group API compatibility broken as it now always expects "properties"
+    (https://issues.rudder.io/issues/17815[#17815])
+* Fixed: 'policyMode' vs. 'policy' in node settings API
+    (https://issues.rudder.io/issues/17817[#17817])
+
+==== Web - Compliance & node report
+
+* Fixed: Node details summary compliance contains system rules
+    (https://issues.rudder.io/issues/17660[#17660])
+
+==== Web - UI & UX
+
+* Fixed: user with read_only right has button that allows write actions 
+    (https://issues.rudder.io/issues/17725[#17725])
+* Fixed: Select node state in settings is confusiing for read_only user 
+    (https://issues.rudder.io/issues/17627[#17627])
+* Fixed: when we create a group, we should go directly to the criteria page
+    (https://issues.rudder.io/issues/17678[#17678])
+* Fixed: Content in header of plugin page overflows when custom from branding is activate
+    (https://issues.rudder.io/issues/17731[#17731])
+
+==== Performance and scalability
+
+* Fixed: table nodes contains on entry per node per generation, which is too much
+    (https://issues.rudder.io/issues/17778[#17778])
+* Fixed: table nodes contains on entry per node per generation, which is too much
+    (https://issues.rudder.io/issues/17778[#17778])
+
+==== Techniques
+
+* Fixed: clockConfiguration is not compatible with systemd-based systems
+    (https://issues.rudder.io/issues/6772[#6772])
+
+==== System techniques
+
+* Fixed: Rudder 6 check postgresql process failes
+    (https://issues.rudder.io/issues/17145[#17145])
+* Fixed: error when installing rudder server root on debian 9 - 6.1
+    (https://issues.rudder.io/issues/17765[#17765])
+* Fixed: Initial promises warning during agent setup
+    (https://issues.rudder.io/issues/17722[#17722])
+
+==== Technique editor - UI/UX
+
+* Fixed: Save button is disable when a technique is imported
+    (https://issues.rudder.io/issues/17897[#17897])
+* Fixed: Gear icon in save button always displayed
+    (https://issues.rudder.io/issues/17745[#17745])
+
+==== Technique editor - Techniques
+
+* Fixed: Importing technique leads to a blocked editor
+    (https://issues.rudder.io/issues/17793[#17793])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Tristan Le Chanony
+* Alexander Brunhirl
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.0 (2020-06-17)
 
 === Changes
