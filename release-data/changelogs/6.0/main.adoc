@@ -5,6 +5,175 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.7 (2020-07-03)
+
+=== Changes
+
+==== Documentation
+
+* Missing uninstall doc for agent
+    (https://issues.rudder.io/issues/17790[#17790])
+
+==== Miscellaneous
+
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+* Add a 'Rudder by example' best practice use case
+    (https://issues.rudder.io/issues/17715[#17715])
+
+==== Plugins integration
+
+* Rudder package list should display plugin status
+    (https://issues.rudder.io/issues/16793[#16793])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Rudder-agent needs libxml-treepp-perl dependency to work on minimal Debian
+    (https://issues.rudder.io/issues/17699[#17699])
+* Fixed: /opt/rudder/etc/rudder-pkg comes with the wrong permissions
+    (https://issues.rudder.io/issues/17695[#17695])
+* Fixed: Agent uses "cmp" command but it is not a dependency
+    (https://issues.rudder.io/issues/17606[#17606])
+* Fixed: shared-files acls are incorrect on relays, preventing the windows nodes from downloading them
+    (https://issues.rudder.io/issues/17802[#17802])
+* Fixed: ruder package command fails to run in automated setup
+    (https://issues.rudder.io/issues/17645[#17645])
+* Fixed: ruder package command fails to run in automated setup
+    (https://issues.rudder.io/issues/17645[#17645])
+
+==== Documentation
+
+* Fixed: remove pg_repack from documentation
+    (https://issues.rudder.io/issues/17839[#17839])
+* Fixed: Missing doc about root-relay communication flows
+    (https://issues.rudder.io/issues/17837[#17837])
+* Fixed: Documentation should state that SSD is recommended for more than 50 nodes
+    (https://issues.rudder.io/issues/17761[#17761])
+* Fixed: Missing documentation for overriding jetty system properties in start.ini
+    (https://issues.rudder.io/issues/17719[#17719])
+* Fixed: Inconsistent commands for service management
+    (https://issues.rudder.io/issues/17529[#17529])
+* Fixed: Images from private plugins are not visible
+    (https://issues.rudder.io/issues/17498[#17498])
+
+==== Relay server or API
+
+* Fixed: Shared-files correction in postinst must be recursive
+    (https://issues.rudder.io/issues/17882[#17882])
+* Fixed: Ignore invalid hash in nodeslist
+    (https://issues.rudder.io/issues/17458[#17458])
+
+==== Web - Config management
+
+* Fixed: Wrong error message when policy server of a Node is not found during generation 
+    (https://issues.rudder.io/issues/17851[#17851])
+* Fixed: Upgrading from rudder 5.0 to 6.0 leads to `distributePolicy not available` error
+    (https://issues.rudder.io/issues/17836[#17836])
+* Fixed: Duplicate category name error when saving a new user technique
+    (https://issues.rudder.io/issues/17774[#17774])
+* Fixed: Auto-archive gitRepo.git failure warning is not actionnable, should be info or debug
+    (https://issues.rudder.io/issues/17777[#17777])
+* Fixed: Ignored node lead to an error log during generation
+    (https://issues.rudder.io/issues/17441[#17441])
+
+==== API
+
+* Fixed: 'policyMode' vs. 'policy' in node settings API
+    (https://issues.rudder.io/issues/17817[#17817])
+* Fixed: API documentation on Rules is missing explaination on how to update rule category
+    (https://issues.rudder.io/issues/17409[#17409])
+* Fixed: Bad JSON answer for api PUT /rules
+    (https://issues.rudder.io/issues/17388[#17388])
+
+==== Performance and scalability
+
+* Fixed: table nodes contains on entry per node per generation, which is too much
+    (https://issues.rudder.io/issues/17778[#17778])
+* Fixed: table nodes contains on entry per node per generation, which is too much
+    (https://issues.rudder.io/issues/17778[#17778])
+* Fixed: when running cf-promises, list-compatible-inputs is ran 8 times
+    (https://issues.rudder.io/issues/17481[#17481])
+
+==== System integration
+
+* Fixed: Cannot download licenses if there is a trailing slash in rudder package config url
+    (https://issues.rudder.io/issues/17673[#17673])
+* Fixed: rudder package command fails when not run from a terminal
+    (https://issues.rudder.io/issues/17453[#17453])
+
+==== Plugins integration
+
+* Fixed: Improve rudder package error message when an update is needed
+    (https://issues.rudder.io/issues/17626[#17626])
+* Fixed: rudder package logs are inconsistent
+    (https://issues.rudder.io/issues/17600[#17600])
+
+==== Security
+
+* Fixed: Markdown descriptions in directives and groups are evaluated, resulting in Javascript execution
+    (https://issues.rudder.io/issues/17641[#17641])
+
+==== Web - Compliance & node report
+
+* Fixed: policy generation fails if we put a " in the directive name
+    (https://issues.rudder.io/issues/17628[#17628])
+
+==== Web - Nodes & inventories
+
+* Fixed: compilation error in 6.0 because of absence of typo in Inconsistency
+    (https://issues.rudder.io/issues/17605[#17605])
+* Fixed: Purge of unreferenced software may still fail on very large system
+    (https://issues.rudder.io/issues/17176[#17176])
+
+==== Web - UI & UX
+
+* Fixed: When adding tags, if anything is wrong in the directive form, all unsaved tags are wiped out
+    (https://issues.rudder.io/issues/15557[#15557])
+* Fixed: OS logo is missing in summary node
+    (https://issues.rudder.io/issues/16454[#16454])
+* Fixed: Ignored (disabled) nodes are show as enabled in details
+    (https://issues.rudder.io/issues/17440[#17440])
+
+==== Techniques
+
+* Fixed: clockConfiguration is not compatible with systemd-based systems
+    (https://issues.rudder.io/issues/6772[#6772])
+* Fixed: Rsync commands for shared files are broken
+    (https://issues.rudder.io/issues/17468[#17468])
+
+==== System techniques
+
+* Fixed: Rudder 6 check postgresql process failes
+    (https://issues.rudder.io/issues/17145[#17145])
+* Fixed: Error when setting classes for agent capabilities
+    (https://issues.rudder.io/issues/17480[#17480])
+
+==== Generic methods
+
+* Fixed: Syntax error in shared_file_to_node
+    (https://issues.rudder.io/issues/17667[#17667])
+* Fixed: no reports from sharedfile to node if file is already there
+    (https://issues.rudder.io/issues/17661[#17661])
+
+==== Web - Technique editor
+
+* Fixed: The technique editor struggles to display long line as component
+    (https://issues.rudder.io/issues/17392[#17392])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Alexander Brunhirl
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.6 (2020-05-19)
 
 === Changes
