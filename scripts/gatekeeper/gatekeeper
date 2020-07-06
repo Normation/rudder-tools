@@ -1,0 +1,347 @@
+#!/bin/bash
+
+# FUNCTIONS
+###########
+
+# Check that the configured remote is right
+check_origin() {
+  this_server="$1"
+  origin_server=$(git remote -v  | grep fetch | awk '{print $2}' | sed -e 's/:.*//')
+  if [ "${this_server}" != "${origin_server}" ]
+  then
+    echo "The server configured for the repo in $(pwd) is not the one you asked for (${this_server})."
+    echo "Aborting, please reinitialize your workspace or use another one"
+    exit 3
+  fi
+}
+
+# Check the EUID and abort if this script is run as root
+check_root_id() {
+if [[ $EUID = 0 ]]; then
+   echo "CRITICAL: Do not run $(basename $0) as root! Aborting." 
+   exit 10
+fi
+}
+
+# Check if the variables are set in the configuration file.
+# This function is used within other functions, which rely on the variables.
+check_variables() {
+  if [ ! -f ~/.gatekeeper ]
+  then
+    echo "GateKeeper configuration file doesn't exist at ~/.gatekeeper, aborting."
+    echo "Please run gatekeeper init"
+    exit 10;
+  fi
+
+ if [ -z "$RUDDER_SOURCE" ]
+  then
+    echo "CRITICAL: Unknown variable for RUDDER_GIT_SOURCE, please check the ~/.gatekeeper configuration file."
+    exit 1
+ fi
+
+ if [ -z "$RUDDER_DESTINATION" ]
+  then
+    echo "CRITICAL: Unknown variable for RUDDER_GIT_DESTINATION, please check the ~/.gatekeeper configuration file."
+    exit 1
+ fi
+
+ if [ -z "$BASE_FOLDER" ]
+  then
+    echo "CRITICAL: Unknown variable for GATEKEEPER_BASE_FOLDER, please check the ~/.gatekeeper configuration file."
+    exit 1
+ fi
+
+}
+
+
+# update current git repo
+update() {
+  check_origin "$1"
+  status=$(git status --porcelain)
+  if [ -n "${status}" ]
+  then
+    git status
+    echo ""
+    echo "Your workspace ($(pwd)) is not clean."
+    echo "Aborting, please commit its content or reinitialize your workspace."
+    exit 4
+  fi
+  git pull
+}
+
+# prepare the directory with source and destination
+prepare() {
+  # clone initial git content if needed
+  # Check if the $SRC_FOLDER directory exist
+  if [ ! -d "$SRC_FOLDER" ]
+  then
+     echo "WARNING: Directory $SRC_FOLDER doesn't exist."
+     # if the directory doesn't exist, ask to create it
+     unset yesno
+     read -r -p "Do you want to create $SRC_FOLDER? [y/N] " yesno
+       case $yesno in
+	[Yy] ) 
+	  mkdir -p "$SRC_FOLDER"
+	    if [ $? -ne 0 ]; then
+	      echo "CRITICAL: Cannot create directory $SRC_FOLDER, aborting."
+	      exit 10
+	    else
+	      echo "Directory $SRC_FOLDER created"
+            fi
+	  ;;
+        * )
+	  echo "Not creating directory, aborting."
+	  exit 10
+	  ;;
+       esac
+
+    # git clone from the remote server to the local directory
+    git clone "${SOURCE_SERVER}:/var/rudder/configuration-repository" $SRC_FOLDER
+    if [ $? -ne 0 ]; then
+      echo "Cannot clone repository from ${SOURCE_SERVER}. Please check you can connect to this server, and have the proper credentials"
+      exit 2
+    fi
+  fi
+
+  # Check if the $RUDDER_DESTINATION directory exist
+  if [ ! -d "$DEST_FOLDER" ]
+  then
+    echo "WARNING: Directory $DEST_FOLDER doesn't exist."
+    # if the directory doesn't exist, ask to create it
+     unset yesno
+     read -r -p "Do you want to create $DEST_FOLDER? [y/N] " yesno
+       case $yesno in
+        [Yy] )
+          mkdir -p "$DEST_FOLDER"
+            if [ $? -ne 0 ]; then
+              echo "CRITICAL: Cannot create directory $DEST_FOLDER, aborting."
+              exit 10
+            else
+              echo "Directory $DEST_FOLDER created"
+            fi
+          ;;
+        * )
+          echo "Not creating directory, aborting."
+          exit 10
+          ;;
+       esac
+
+    # git clone from the remote server to the local directory
+    git clone "${DESTINATION_SERVER}:/var/rudder/configuration-repository" $DEST_FOLDER
+    if [ $? -ne 0 ]; then
+      echo "Cannot clone repository from ${DESTINATION_SERVER}. Please check you can connect to this server, and have the proper credentials"
+      exit 2
+    fi
+  fi
+ 
+  # update their content
+  cd "$SRC_FOLDER" && update "${SOURCE_SERVER}"
+  
+  cd "$DEST_FOLDER" && update "${DESTINATION_SERVER}"
+
+  echo "Environment ${environment} successfully prepared in ${ENV_FOLDER}"
+
+}
+
+# commit and push to destination
+commit() {
+  # push to destination
+  cd "$DEST_FOLDER"
+  check_origin "${DESTINATION_SERVER}"
+  git add .
+  git commit -a -m "Merge in ${environment} by $(whoami) on $(date)"
+  git push origin master
+  if [ $? -eq 0 ]; then
+    # reload branch on filesystem
+    ssh "${DESTINATION_SERVER}" 'cd /var/rudder/configuration-repository && git reset --hard'
+    # reload archive 
+    ssh "${DESTINATION_SERVER}" 'curl -f -s "http://localhost:8080/rudder/api/archives/restore/full/latestCommit"'
+    # reload techniques
+    ssh "${DESTINATION_SERVER}" 'curl -f -s "http://localhost:8080/rudder/api/techniqueLibrary/reload"'
+    echo ""
+    echo "Pushed changes for ${environment} ok"
+  else
+    echo "Pushing changes to environment ${environment} failed. The local workspace is probably not up to date"
+    echo "with the distant server (a change may have happened between the preparation and the commit)"
+    echo "You may either reset the environment (and loose all your changes), or try to resynchronize yourself the rudder-destination folder"
+    echo ""
+    echo "To do so, you may run the following commands, and follow git output, and merge any changes:"
+    echo "cd $DEST_FOLDER"
+    echo "git pull origin master"
+    echo ""
+    echo "Then merge any changes that need to be merged (using gatekeeper vimdiff for instance)"
+    echo "and then try to commit again the changes with gatekeeper commit ${environment}"
+    exit 9;
+  fi
+}
+
+# reset workspace
+reset() {
+  # Reset the SRC_FOLDER directory
+  cd "$SRC_FOLDER"
+  if [[ "$(pwd)" == "$SRC_FOLDER" ]]
+  then 
+    echo "WARNING: You are about to delete (rm -rf) the content of the directory $SRC_FOLDER"
+    unset yesno
+    read -r -p "Are you sure to to that? [y/N] " yesno
+       case $yesno in
+        [Yy] )
+          /bin/rm -rf $SRC_FOLDER/*
+            if [ $? -ne 0 ]; then
+              echo "CRITICAL: Cannot delete $SRC_FOLDER content, aborting."
+              exit 10
+            else
+              echo "OK: Directory $SRC_FOLDER content deleted."
+              echo -n "GIT reset: " && git reset --hard
+            fi
+          ;;
+        * )
+          echo "Aborting."
+          exit 10
+          ;;
+       esac
+  else
+    echo "Unknown error, could not move to $SRC_FOLDER"
+    exit 2
+  fi
+  # Reset the DEST_FOLDER directory
+  cd "$DEST_FOLDER"
+  if [[ "$(pwd)" == "$DEST_FOLDER" ]]
+  then
+    echo "WARNING: You are about to delete (rm -rf) the content of the directory $DEST_FOLDER"
+    unset yesno
+    read -r -p "Are you sure to to that? [y/N] " yesno
+       case $yesno in
+        [Yy] )
+          /bin/rm -rf "$DEST_FOLDER"/*
+            if [ $? -ne 0 ]; then
+              echo "CRITICAL: Cannot delete $DEST_FOLDER content, aborting."
+              exit 10
+            else
+              echo "OK: Directory $DEST_FOLDER content deleted."
+              echo -n "GIT reset: " && git reset --hard
+            fi
+          ;;
+        * )
+          echo "Aborting."
+          exit 10
+          ;;
+       esac
+  else
+    echo "Unknown error, could not move to $DEST_FOLDER"
+    exit 2 
+  fi
+}
+
+# init: copy config faile to ~/.gatekeeper
+init() {
+  if [ -f ~/.gatekeeper ]
+  then
+    echo "GateKeeper configuration file already exists at ~/.gatekeeper, aborting"
+    exit 10;
+  fi
+  cp /opt/rudder/share/gatekeeper/gatekeeper.conf ~/.gatekeeper
+  if [ $? -eq 0 ]; then
+    echo "GateKeeper configuration file has been copied from /opt/rudder/share/gatekeeper/gatekeeper.conf to ~/.gatekeeper"
+    echo ""
+  else
+    echo "The GateKeeper configuration file could not be copied from /opt/rudder/share/gatekeeper/gatekeeper.conf to ~/.gatekeeper"
+    exit 11;
+  fi
+
+  mkdir -p ~/.vim
+  cp -r /opt/rudder/share/gatekeeper/vim/* ~/.vim
+  if [ $? -eq 0 ]; then
+    echo "GateKeeper VimDiff configuration file has been copied from /opt/rudder/share/gatekeeper/vim to ~/.vim"
+    echo ""
+  else
+    echo "The GateKeeper VimDiff configuration file could not be copied from /opt/rudder/share/gatekeeper/vim to ~/.vim"
+    exit 11;
+  fi
+
+}
+
+define_variable()
+{
+  # First check variables
+  check_variables
+
+  # check parameters
+  environment="$1"
+  if [ -n "${environment}" ]
+  then
+    SOURCE_SERVER="${SOURCE[$environment]}"
+    DESTINATION_SERVER="${DESTINATION[$environment]}"
+  fi
+  if [ -z "${SOURCE_SERVER}" ] || [ -z "${DESTINATION_SERVER}" ]
+  then
+    echo "The provided environment is not valid."
+    echo "Please check the content of your ~/.gatekeeper file."
+    exit 2
+  fi
+
+  # Constructing all paths
+  ENV_FOLDER="$BASE_FOLDER/$environment"
+
+  SRC_FOLDER="$ENV_FOLDER/$RUDDER_SOURCE"
+  DEST_FOLDER="$ENV_FOLDER/$RUDDER_DESTINATION"
+
+}
+
+# MAIN
+######
+
+# read configuration file
+declare -A SOURCE
+declare -A DESTINATION
+if [ -f ~/.gatekeeper ]
+then
+  . ~/.gatekeeper
+  BASE_FOLDER="$GATEKEEPER_BASE_FOLDER"
+fi
+
+RUDDER_SOURCE="$RUDDER_GIT_SOURCE"
+RUDDER_DESTINATION="$RUDDER_GIT_DESTINATION"
+
+case "$1" in
+  prepare)
+    check_root_id
+    define_variable "$2"
+    prepare "$2" 
+    ;;
+  meld)
+    define_variable "$2"
+    meld "$SRC_FOLDER" "$DEST_FOLDER"
+    ;;
+  vimdiff)
+    define_variable "$2"
+    echo "Execute vimdiff, and then type in :DirDiff $SRC_FOLDER  $DEST_FOLDER"
+    echo
+    ;;
+  commit)
+    check_root_id
+    define_variable "$2"
+    commit "$2"
+    ;;
+  reset)
+    check_root_id
+    define_variable "$2"
+    reset
+    ;;
+  init)
+    check_root_id
+    init
+    ;;
+  *)
+    echo "Unknown parameter given"
+    echo "Usage: gatekeeper prepare <environment>      to prepare the workspace"
+    echo "       gatekeeper meld <environment>         to run meld"
+    echo "       gatekeeper vimdiff <environment>      to run vimdiff"
+    echo "       gatekeeper commit <environment>       to commit the changes"
+    echo "       gatekeeper reset <environment>        to reset your workspace"
+    echo "       gatekeeper init                       to initialize the configuration file for the GakeKeeper interface"
+    exit 1
+    ;;
+esac
+
+
