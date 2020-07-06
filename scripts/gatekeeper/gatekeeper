@@ -154,10 +154,11 @@ commit() {
   if [ $? -eq 0 ]; then
     # reload branch on filesystem
     ssh "${DESTINATION_SERVER}" 'cd /var/rudder/configuration-repository && git reset --hard'
-    # reload archive 
-    ssh "${DESTINATION_SERVER}" 'curl -f -s "http://localhost:8080/rudder/api/archives/restore/full/latestCommit"'
     # reload techniques
-    ssh "${DESTINATION_SERVER}" 'curl -f -s "http://localhost:8080/rudder/api/techniqueLibrary/reload"'
+    ssh "${DESTINATION_SERVER}" 'rudder server reload-techniques'
+    # reload archive
+    curl -k --header "X-API-Token: $DEST_TOKEN" --request POST "https://${DESTINATION_SERVER}/rudder/api/latest/system/archives/full/restore/latestCommit"
+
     echo ""
     echo "Pushed changes for ${environment} ok"
   else
@@ -272,6 +273,7 @@ define_variable()
   then
     SOURCE_SERVER="${SOURCE[$environment]}"
     DESTINATION_SERVER="${DESTINATION[$environment]}"
+    DEST_TOKEN="${DEST_TOKEN[$environment]}"
   fi
   if [ -z "${SOURCE_SERVER}" ] || [ -z "${DESTINATION_SERVER}" ]
   then
