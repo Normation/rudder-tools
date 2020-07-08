@@ -209,8 +209,13 @@ EOF
     sed -i "s/\(RUDDER_PSQL_PASSWORD:\).*/\1Normation/" /opt/rudder/etc/rudder-passwords.conf
     sed -i "s/\(RUDDER_OPENLDAP_BIND_PASSWORD:\).*/\1secret/" /opt/rudder/etc/rudder-passwords.conf
   fi
-  
-  rudder agent run
+ 
+  # -E option is available from 6.1.2
+  if is_version_valid "${RUDDER_VERSION}" "[6.1.2 *]"; then
+    rudder agent run -E
+  else
+    rudder agent run
+  fi
 
   # insert sample inventories
   $local MAJOR_VERSION=$(echo "${RUDDER_VERSION}"| cut -d '-' -f 1 | cut -f 1-2 -d .)
