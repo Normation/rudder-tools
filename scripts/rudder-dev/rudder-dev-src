@@ -1388,7 +1388,7 @@ def cleanup(more=False, dry=False):
       ticket_id = m.group(2)
       print("#" + ticket_id + ": ", end='')
       issue = Issue(ticket_id)
-      tickets_req = issue.self.server._query("/issues/" + str(ticket_id) + ".json")
+      tickets_req = issue.server._query("/issues/" + str(ticket_id) + ".json")
       remove = False
 
       # guess if we should remove the branch
@@ -1403,7 +1403,7 @@ def cleanup(more=False, dry=False):
           should_ask = False
           if version is not None:
             upstream = Config.UPSTREAM_REPOSITORY + '/' + branch_from_version(version)
-            (code, cherry_list) = shell("git cherry " + upstream + " " + branch + " 2>/dev/null", keep_output=True, fail_exit=False)
+            (code, cherry_list, err) = shell("git cherry " + upstream + " " + branch + " 2>/dev/null", keep_output=True, fail_exit=False)
             if code == 0 and cherry_list == "":
               # Everything is merged -> YES
               print("commits merged upstream, ", end='')
