@@ -43,6 +43,9 @@ class Issue:
       self.api_url = Config.REDMINE_ALT_API_URL
       self.custom_field_pr = Config.ALT_CUSTOM_FIELD_PR
       self.internal = True
+      # Some deprecated usage of these global vars still exist
+      Config.REDMINE_API_URL = Config.REDMINE_ALT_API_URL
+      Config.REDMINE_TOKEN = Config.REDMINE_ALT_TOKEN
     else:
       self.id = int(name)
       self.token = Config.REDMINE_TOKEN
