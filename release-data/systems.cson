@@ -133,7 +133,7 @@ freebsd = {
 
 solaris = {
   aliases = [ "sunos" ]
-  package-format = "pkg"
+  package-format = "misc/pkg"
   name = "Solaris"
 }
 
