@@ -1,5 +1,24 @@
 = Changelogs for Rudder plugin branding 6.1.\* versions
 
+== branding-6.1-1.8 (2020-07-20)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Optimize elm plugins
+    (https://issues.rudder.io/issues/17886[#17886])
+* Fixed: Add screenshot in Branding
+    (https://issues.rudder.io/issues/17871[#17871])
+* Fixed: NPE on start
+    (https://issues.rudder.io/issues/17833[#17833])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == branding-6.1-1.7 (2020-06-17)
 
 === Changes
