@@ -1,5 +1,22 @@
 = Change logs for user-management plugin 5.0
 
+== user-management-5.0-1.4 (2020-07-20)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Missing scheme error when adding an user 
+    (https://issues.rudder.io/issues/17086[#17086])
+* Fixed: IllegalArgumentException: Missing scheme when deleting user
+    (https://issues.rudder.io/issues/15822[#15822])
+
+=== Release notes
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-5.0-1.3 (2019-12-09)
 
 === Changes
