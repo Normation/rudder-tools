@@ -109,14 +109,14 @@ class RudderSettingsInterface(object):
             return self._module.from_json(resp.read())
         else:
             self._module.fail_json(failed=True, msg="Rudder API answered with HTTP %d details: %s " % (status_code, info['msg']))
-        
-    def get_SettingValue(self, name):        
+
+    def get_SettingValue(self, name):
         url = "/api/latest/settings/{name}".format(name=name)
         response = self._send_request(url, headers=self.headers, method="GET")
         VALUE = response.get("data")
         return VALUE.get("settings").get(name)
 
-    def Set_SettingValue(self, name, value):
+    def set_SettingValue(self, name, value):
         url ="/api/latest/settings/{name}?value={value}".format(name=name, value=value)
         response = self._send_request(url, headers=self.headers, method="POST")
         return response
@@ -148,7 +148,7 @@ def main():
     value = module.params['value']
     validate_certs = module.params['validate_certs']
 
-    rudder_iface = RudderSettigsInterface(module)
+    rudder_iface = RudderSettingsInterface(module)
     VALUE = rudder_iface.get_SettingValue(name)
     ''' module.exit_json(failed=False, changed=True, message=VALUE) '''
   
