@@ -1,5 +1,20 @@
 = Change logs for dsc plugin 5.0
 
+== dsc-5.0-1.17 (2020-07-20)
+
+=== Changes
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: update is impossible due to tls incompatibility
+    (https://issues.rudder.io/issues/16100[#16100])
+
+=== Release notes
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-5.0-1.16 (2019-12-09)
 
 === Changes
