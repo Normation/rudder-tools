@@ -78,7 +78,7 @@ from ansible.module_utils.urls import fetch_url, basic_auth_header
 __metaclass__ = type
 
 
-class RudderSettigsInterface(object):
+class RudderSettingsInterface(object):
 
     def __init__(self, module):
         self._module = module
