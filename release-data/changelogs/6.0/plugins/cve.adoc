@@ -1,5 +1,22 @@
 = Changelogs for Rudder plugin cve 6.0.\* versions
 
+== cve-6.0-1.1 (2020-07-20)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Change default proxy to api.rudder.io
+    (https://issues.rudder.io/issues/17801[#17801])
+* Fixed: Add cvssv2 score to CVE
+    (https://issues.rudder.io/issues/17805[#17805])
+
+=== Release notes
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-6.0-1.0 (2020-06-19)
 
 === Changes
