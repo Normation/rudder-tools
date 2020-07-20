@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# This file is part of Ansible
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,35 +21,54 @@ from __future__ import absolute_import, division, print_function
 
 DOCUMENTATION = '''
 ---
-module: rudder_settings
-author:
-  - Karo
-short_description: Configure Ldap setting via api calls
-description:
-  - 
+module: ruddersettings
+
+short_description: Configure Rudder settings via APIs call
+
 options:
-  name:
+
+  rudder_url:
     description:
-      - The name the parameter to modify.
+      - Providing Rudder server IP address.
     required: true
     type: str
+
+  rudder_token:
+    description:
+      - Providing Rudder server token.
+    required: true
+    type: str
+
+  name:
+    description:
+      - The name of the parameter to set.
+    required: true
+    type: str
+
   value:
     description:
       - The value defined to modify a given parameter name.
     required: true
     type: str
 
-''' 
+  validate_certs:
+    description:
+      - Choosing either to ignore or not Rudder certificate validation.
+    required: true
+    type: boolean
+
+'''
 
 ''' EXAMPLE = '''
 
 '''
-- name: Modify Ldap Settings
+- name: Modify Rudder Settings
   rudder_settings:
-      rudder_url: "https://rudder.example.com/rudder"
-      rudder_token: "{{ token_value }}"
+      rudder_url: "https://<rudder_server_ip_address>/rudder"
+      rudder_token: "<rudder_server_token>"
       name: "modified_file_ttl"
       value: "22"
+      validate_certs: False
 '''
 
 import json
@@ -60,7 +78,7 @@ from ansible.module_utils.urls import fetch_url, basic_auth_header
 __metaclass__ = type
 
 
-class RudderLdapSettigsInterface(object):
+class RudderSettigsInterface(object):
 
     def __init__(self, module):
         self._module = module
@@ -130,7 +148,7 @@ def main():
     value = module.params['value']
     validate_certs = module.params['validate_certs']
 
-    rudder_iface = RudderLdapSettigsInterface(module)
+    rudder_iface = RudderSettigsInterface(module)
     VALUE = rudder_iface.get_SettingValue(name)
     ''' module.exit_json(failed=False, changed=True, message=VALUE) '''
   
