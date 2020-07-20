@@ -1,0 +1,7 @@
+# handlers for restarting rudder-jetty service
+
+- name: restart_jetty_service
+  service:
+    name: rudder-jetty
+    state: restarted
+

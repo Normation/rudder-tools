@@ -1,0 +1,30 @@
+# tasks for configurying rudder using existing ansible module for file editing
+
+# modify Rudder settings for '/opt/rudder/jetty/etc/jetty.xml' file
+     - name: Modify Rudder settings for '/opt/rudder/jetty/etc/jetty.xml' file
+       xml:
+         path: /opt/rudder/jetty/etc/jetty.xml
+         xpath: /Configure/New/Set[5]/Property
+         attribute: default
+         value: "8192"
+
+   
+# modify Rudder settings for '/etc/default/rudder-jetty' file
+
+     - name: Set JAVA_XMX parameter to 1024 if its not the case
+       ini_file: 
+         path: /etc/default/rudder-jetty
+         section: 
+         option: JAVA_XMX
+         value: 1024 
+         
+      
+# modify Rudder settings for '/opt/rudder/etc/rudder-web.properties' file
+
+     - name: Set 'waiting.inventory.queue.size' parameter
+       ini_file:
+         path: /opt/rudder/etc/rudder-web.properties
+         section:
+         option: waiting.inventory.queue.size
+         value: 50
+
