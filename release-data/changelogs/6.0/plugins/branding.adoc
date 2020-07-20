@@ -1,5 +1,20 @@
 = Changelogs for Rudder plugin branding 6.0.\* versions
 
+== branding-6.0-1.7 (2020-07-20)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Empty footer in sidebar 
+    (https://issues.rudder.io/issues/17436[#17436])
+
+=== Release notes
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == branding-6.0-1.6 (2020-04-23)
 
 === Changes
