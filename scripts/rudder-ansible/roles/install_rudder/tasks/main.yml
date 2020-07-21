@@ -2,7 +2,7 @@
 
     - name: Adding Rudder Repo Key
       rpm_key:
-	key: "https://repository.rudder.io/rpm/rudder_rpm_key.pub"
+        key: "https://repository.rudder.io/rpm/rudder_rpm_key.pub"
         state: present
       become: true
 
@@ -18,7 +18,7 @@
 
     - name: Installing Rudder Root Server
       zypper:
-	name: rudder-server-root
+        name: rudder-server-root
         state: present
       become: true
       register: result
@@ -26,7 +26,7 @@
 
     - name: Installing Rudder Agent
       zypper:
-	name: rudder-agent
+        name: rudder-agent
         state: present
       become: true
       register: result
