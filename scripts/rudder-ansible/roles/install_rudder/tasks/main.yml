@@ -10,7 +10,7 @@
       zypper_repository:
         description: "Rudder 6.1"
         name: "Rudder_6.1"
-        repo: "http://repository.rudder.io/rpm/6.1/RHEL_$releasever/"
+        repo: "Rudder 6.1' http://repository.rudder.io/rpm/6.1/SLES_15/ Rudder"
         disable_gpg_check: false
         auto_import_keys: yes
         state: present
