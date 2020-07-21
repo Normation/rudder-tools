@@ -1,12 +1,12 @@
 # tasks for installing Rudder Server 
 
-    - name: redhat | Adding Rudder Repo Key
+    - name: Adding Rudder Repo Key
       rpm_key:
 	key: "https://repository.rudder.io/rpm/rudder_rpm_key.pub"
         state: present
       become: true
 
-    - name: redhat | Adding Rudder Repo
+    - name: Adding Rudder Repo
       zypper_repository:
         description: "Rudder 6.1"
         name: "Rudder_6.1"
@@ -16,7 +16,7 @@
         state: present
       become: true
 
-    - name: redhat | Installing Rudder Root Server
+    - name: Installing Rudder Root Server
       zypper:
 	name: rudder-server-root
         state: present
@@ -24,7 +24,7 @@
       register: result
       until: result is successful
 
-    - name: redhat | Installing Rudder Agent
+    - name: Installing Rudder Agent
       zypper:
 	name: rudder-agent
         state: present
