@@ -5,7 +5,7 @@
        rudder_url: "https://<rudder_server_ip_address>/rudder"
        rudder_token: "<rudder_server_token>"
        name: "modified_file_ttl"
-       value: 22
+       value: "22"
        validate_certs: False
 
    - name: Configure Rudder Settings for global_policy_mode
@@ -37,7 +37,7 @@
        rudder_url: "https://<rudder_server_ip_address>/rudder"
        rudder_token: "<rudder_server_token>"
        name: "display_recent_changes_graphs"
-       value: true
+       value: "true"
        validate_certs: False
 
    - name: Configure Rudder Settings for log_all_reports
@@ -45,7 +45,7 @@
        rudder_url: "https://<rudder_server_ip_address>/rudder"
        rudder_token: "<rudder_server_token>"
        name: "log_all_reports"
-       value: false
+       value: "false"
        validate_certs: False
 
    - name: Configure Rudder Settings for enable_self_validation
@@ -53,6 +53,6 @@
        rudder_url: "https://<rudder_server_ip_address>/rudder
        rudder_token: "<rudder_server_token>"
        name: "enable_self_validation"
-       value: false
+       value: "false"
        validate_certs: False
 

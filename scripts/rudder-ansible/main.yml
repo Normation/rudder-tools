@@ -3,7 +3,6 @@
 - hosts: RudderServer
 
   roles:
-    - install_rudder
     - configure_rudder_via_APIs
-    - configure_rudder_with_ansible_modules
+    - configure_rudder_via_ansible_modules
 
