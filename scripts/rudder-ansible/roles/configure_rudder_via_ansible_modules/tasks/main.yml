@@ -16,7 +16,7 @@
          path: /etc/default/rudder-jetty
          section: 
          option: JAVA_XMX
-         value: 1024 
+         value: "1024" 
          
       
 # modify Rudder settings for '/opt/rudder/etc/rudder-web.properties' file
@@ -26,5 +26,5 @@
          path: /opt/rudder/etc/rudder-web.properties
          section:
          option: waiting.inventory.queue.size
-         value: 50
+         value: "50"
 
