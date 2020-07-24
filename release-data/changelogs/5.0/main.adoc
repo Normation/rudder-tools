@@ -163,6 +163,111 @@ need more information or help, please don’t hesitate to contact us by
 email or other means of communication like
 https://gitter.im/normation/rudder[gitter] or irc (#rudder on freenode).
 
+== Rudder 5.0.18 (2020-07-24)
+
+=== Changes
+
+==== Documentation
+
+* Missing uninstall doc for agent
+    (https://issues.rudder.io/issues/17790[#17790])
+
+=== Bug fixes
+
+==== Web - Nodes & inventories
+
+* Fixed: In SLES 15, SP is view as part of rudder agent version
+    (https://issues.rudder.io/issues/17736[#17736])
+* Fixed: Purge of unreferenced software may still fail on very large system
+    (https://issues.rudder.io/issues/17176[#17176])
+* Fixed: When a node is removed from a dynamic group, it log "adding nothing, removing nothing"
+    (https://issues.rudder.io/issues/17220[#17220])
+
+==== Packaging
+
+* Fixed: Rudder-agent needs libxml-treepp-perl dependency to work on minimal Debian
+    (https://issues.rudder.io/issues/17699[#17699])
+
+==== Agent
+
+* Fixed: Update embedded openssl version to 1.1.1g
+    (https://issues.rudder.io/issues/17178[#17178])
+
+==== Documentation
+
+* Fixed: remove pg_repack from documentation
+    (https://issues.rudder.io/issues/17839[#17839])
+* Fixed: Documentation should state that SSD is recommended for more than 50 nodes
+    (https://issues.rudder.io/issues/17761[#17761])
+* Fixed: Missing documentation for overriding jetty system properties in start.ini
+    (https://issues.rudder.io/issues/17719[#17719])
+* Fixed: Doc about missing uuid.hive at upgrade was not upmerged
+    (https://issues.rudder.io/issues/17299[#17299])
+
+==== API
+
+* Fixed: 'policyMode' vs. 'policy' in node settings API
+    (https://issues.rudder.io/issues/17817[#17817])
+* Fixed: API documentation on Rules is missing explaination on how to update rule category
+    (https://issues.rudder.io/issues/17409[#17409])
+* Fixed: Bad JSON answer for api PUT /rules
+    (https://issues.rudder.io/issues/17388[#17388])
+
+==== Performance and scalability
+
+* Fixed: table nodes contains on entry per node per generation, which is too much
+    (https://issues.rudder.io/issues/17778[#17778])
+* Fixed: table nodes contains on entry per node per generation, which is too much
+    (https://issues.rudder.io/issues/17778[#17778])
+* Fixed: when running cf-promises, list-compatible-inputs is ran 8 times
+    (https://issues.rudder.io/issues/17481[#17481])
+
+==== Web - Config management
+
+* Fixed: Duplicate category name error when saving a new user technique
+    (https://issues.rudder.io/issues/17774[#17774])
+* Fixed: Auto-archive gitRepo.git failure warning is not actionnable, should be info or debug
+    (https://issues.rudder.io/issues/17777[#17777])
+* Fixed: Ignored node lead to an error log during generation
+    (https://issues.rudder.io/issues/17441[#17441])
+* Fixed: TechniqueVersion ordering algorithm is incorrect
+    (https://issues.rudder.io/issues/17157[#17157])
+
+==== Web - UI & UX
+
+* Fixed: When adding tags, if anything is wrong in the directive form, all unsaved tags are wiped out
+    (https://issues.rudder.io/issues/15557[#15557])
+
+==== Security
+
+* Fixed: exception in ldap search are not correctly caught
+    (https://issues.rudder.io/issues/17267[#17267])
+
+==== System integration
+
+* Fixed: When rudder agent health stops all service because there aren't any space left, if should state it in the log (and which fs)
+    (https://issues.rudder.io/issues/17472[#17472])
+
+==== Generic methods
+
+* Fixed: Syntax error in shared_file_to_node
+    (https://issues.rudder.io/issues/17667[#17667])
+* Fixed: no reports from sharedfile to node if file is already there
+    (https://issues.rudder.io/issues/17661[#17661])
+
+==== Technique editor - UI/UX
+
+* Fixed: Text &  Boxes jump when displaying missing inputs
+    (https://issues.rudder.io/issues/16235[#16235])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+
+This is a bug fix release in the 5.0 series and therefore all installations of 5.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 5.0.17 (2020-04-23)
 
 === Changes
