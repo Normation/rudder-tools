@@ -1,4 +1,4 @@
-# main playbook for installing and configuring Rudder
+# main playbook for configuring Rudder
 
 - hosts: RudderServer
 

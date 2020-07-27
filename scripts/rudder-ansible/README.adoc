@@ -1,0 +1,53 @@
+
+# Deploy Rudder Server via Ansible 
+
+Ansible is a tool that automate software deployment and different system configurations tasks by writing playbooks in YAML format. In this context of Infrastructure as a code process, we would like to deploy Rudder Server and set up its main configuration parameters via Ansible playbooks and modules.
+
+Synposis
+~~~~~~~~
+
+* The following documentation involve 3 parts regarding Rudder deployment which are: 
+
+1. Installing Rudder Server in its 6.1 release.
+2. Configuring Rudder settings via APIs Calls (Using a developed 'ruddersettings' module).
+3. Configuring Rudder settings via ansible modules for configuration file editing.
+
+== Prerequisites
+* In order to use the following scripts you're supposed to have Ansible installed on your machine which is the Ansible manager node.
+
+* In addition, as required for Ansible, in order to run playbooks on remote nodes, ssh keys configuration must be set up between the manager node and the target machine. 
+
+== Usage 
+
+=== Introduction
+
+* After preparing the required environment, you need to clone this repository on your Ansible manager machine.
+
+* In a next step, we will explain the utility of each of the following element in the repository. 
+        
+        . *hosts*: Contains Ansible target machine IP address which will basically supposed to be your Rudder Server machine.
+
+        . *install_rudder.yml*: A playbook for installing Rudder Server latest release 6.1, either on Debian, RedHat or Suse distribution. 
+
+        . *library*: This directory contains a module named 'ruddersettings' which will be used in one of Rudder configuration playbooks, this module allows setting up some parameters using Rudder APIs calls.
+
+        . *roles*: This directory includes 3 roles for deploying Rudder, the first one 'install_rudder' it is for installing Rudder Server based on your OS system of your Ansible node. The second one 'configure_rudder_via_APIs', which we already mentioned above (it will use the 'ruddersettings' module), and finally the 'configure_rudder_via_ansible_modules' role, it is for setting up few Rudder configurations files using existing Ansible modules.
+
+        . *configure_rudder.yml*: Calls both Rudder configuration roles we specified above
+
+=== Use case 
+In order to deploy Rudder, you'll need to go through several steps:
+
+* First thing you may want to do is to go into `rudder-ansible` directory and launch the `install_rudder.yml` playbook using the following command:
+
+----
+ansible-playbook -i hosts install_rudder.yml
+----
+
+* Then you need to go to your Rudder technique editor and create a token in the `Menu -> Settings -> API Accounts`. This token will be used in the `configure_rudder_via_APIs` role more specifically in `/roles/configure_rudder_via_APIs/tasks/main.yml` and also with specifying Rudder Server IP address.
+
+On the other hand, there's a few defined configuration values on that file about some Rudder settings, which you can modify as well depending on your needs.
+
+* Same thing about the `configure_rudder_via_ansible_modules` role, if you want to modify the already defined parameters' values. 
+
+* Finally, you have to execute the following two roles by launching the `configure_rudder.yml` playbook using the same command mentioned above.

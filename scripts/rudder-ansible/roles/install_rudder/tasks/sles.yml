@@ -1,0 +1,31 @@
+    - name: Adding Rudder Repo Key
+      rpm_key:
+        key: "{{ rudder_rpm_key }}"
+        state: present
+      become: true
+
+    - name: Adding Rudder Repo
+      zypper_repository:
+        description: "Rudder 6.1"
+        name: "Rudder_6.1"
+        repo: "{{ rudder_zypper_repo }}"
+        disable_gpg_check: false
+        auto_import_keys: yes
+        state: present
+      become: true
+
+    - name: Installing Rudder Root Server
+      zypper:
+        name: rudder-server-root
+        state: present
+      become: true
+      register: result
+      until: result is successful
+
+    - name: Installing Rudder Agent
+      zypper:
+        name: rudder-agent
+        state: present
+      become: true
+      register: result
+      until: result is successful

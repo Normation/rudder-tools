@@ -1,0 +1,30 @@
+    - name: Adding Rudder Repo Key
+      apt_key:
+	url: "{{ rudder_apt_key }}"
+        state: present
+      become: true
+
+    - name: Adding Rudder Repo
+      apt_repository:
+        repo: "{{ rudder_apt_repo }}"
+        state: present
+      become: true
+      register: result
+      until: result is successful
+
+    - name: debian | Installing Rudder Root Server
+      apt:
+        name: rudder-server-root
+        state: present
+      become: true
+      register: result
+      until: result is successful
+      
+    - name: debian | Installing Rudder Agent
+      apt:
+        name: rudder-agent
+        state: present
+      become: true
+      register: result
+      until: result is successful
+
