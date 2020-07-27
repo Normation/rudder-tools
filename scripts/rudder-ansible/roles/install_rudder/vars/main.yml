@@ -1,15 +1,15 @@
   rudder_apt_key: "{{ rudder_key_url+'/apt/rudder_apt_key.pub' }}"
 
-  rudder_apt_repo: "{{ 'deb http://'+rudder_depo+'/apt/'+rudder_version|string+'/ '+ansible_distribution_release+' main' }}"
+  rudder_apt_repo: "{{ 'deb http://'+rudder_repo+'/apt/'+rudder_version|string+'/ '+ansible_distribution_release+' main' }}"
 
-  rudder_key_url: "{{ 'https://'+rudder_depo }}"
+  rudder_key_url: "{{ 'https://'+rudder_repo }}"
 
   rudder_rpm_key: "{{ rudder_key_url+'/rpm/rudder_rpm_key.pub' }}"
 
-  rudder_rpm_repo: "{{ 'http://'+rudder_depo+'/rpm/'+rudder_version|string+'/RHEL_$releasever/' }}"
+  rudder_rpm_repo: "{{ 'http://'+rudder_repo+'/rpm/'+rudder_version|string+'/RHEL_$releasever/' }}"
 
-  rudder_zypper_repo: "{{ 'http://'+rudder_depo+'/rpm/'+rudder_version|string+'/SLES_15/'}}"
+  rudder_zypper_repo: "{{ 'http://'+rudder_repo+'/rpm/'+rudder_version|string+'/SLES_15/'}}"
 
   rudder_version: 6.1
 
-  rudder_depo: repository.rudder.io
+  rudder_repo: repository.rudder.io
