@@ -4,6 +4,201 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.2 (2020-07-31)
+
+=== Changes
+
+==== Packaging
+
+* Solaris package script should take a version as an argument
+    (https://issues.rudder.io/issues/17988[#17988])
+* Preliminary support for macosx
+    (https://issues.rudder.io/issues/17847[#17847])
+
+==== Documentation
+
+* Add a rudder by example for group properties
+    (https://issues.rudder.io/issues/18061[#18061])
+* Optimize images in the doc
+    (https://issues.rudder.io/issues/18024[#18024])
+* CVE plugin api documentation
+    (https://issues.rudder.io/issues/17940[#17940])
+
+==== API
+
+* Add request examples to API doc
+    (https://issues.rudder.io/issues/18021[#18021])
+
+==== Rudder language
+
+* replace var keyword by let
+    (https://issues.rudder.io/issues/17937[#17937])
+
+==== Agent
+
+* Add debug information when sending reports 
+    (https://issues.rudder.io/issues/17981[#17981])
+* Add an option to exit with an error code if here was an application error
+    (https://issues.rudder.io/issues/17689[#17689])
+
+==== Generic methods
+
+* Add a method for osquery-based audit
+    (https://issues.rudder.io/issues/17651[#17651])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Broken relay postinst due to missing shared-folder
+    (https://issues.rudder.io/issues/18070[#18070])
+* Fixed: When rudder-webapp postinstall fails, everything fails
+    (https://issues.rudder.io/issues/18045[#18045])
+* Fixed: rudder-reports-postinst errors during upgrade from 6.1.0 to 6.1.1
+    (https://issues.rudder.io/issues/18014[#18014])
+* Fixed: solaris package always downloads 6.0
+    (https://issues.rudder.io/issues/18004[#18004])
+* Fixed: All package scripts should be set -e
+    (https://issues.rudder.io/issues/17687[#17687])
+
+==== Security
+
+* Fixed: Rudder app and docs should not be indexable by search engines
+    (https://issues.rudder.io/issues/18019[#18019])
+
+==== Web - Nodes & inventories
+
+* Fixed: In SLES 15, SP is view as part of rudder agent version
+    (https://issues.rudder.io/issues/17736[#17736])
+* Fixed:  Historization of node count reports inverts pending and accepted
+    (https://issues.rudder.io/issues/17856[#17856])
+* Fixed: Number of groups on the dashboard in incorrect
+    (https://issues.rudder.io/issues/17202[#17202])
+
+==== Relay server or API
+
+* Fixed: SELinux perms on relay forbid to retrieve files from shared-folder (Windows DSC)
+    (https://issues.rudder.io/issues/17770[#17770])
+
+==== Documentation
+
+* Fixed: Update links to ansible inventory plugin
+    (https://issues.rudder.io/issues/18080[#18080])
+* Fixed: Add DSC based node in the network flow schema in the documentation
+    (https://issues.rudder.io/issues/18041[#18041])
+* Fixed: http in place of https in install doc for zypper subscription repo
+    (https://issues.rudder.io/issues/18055[#18055])
+* Fixed: Fix doc build after nodejs upgrade
+    (https://issues.rudder.io/issues/18056[#18056])
+* Fixed: Documentation is wrong about default values for data retention
+    (https://issues.rudder.io/issues/17935[#17935])
+* Fixed: Broken formatting in methods doc
+    (https://issues.rudder.io/issues/17999[#17999])
+
+==== API
+
+* Fixed: Generic method are not sorted by alpha-num order
+    (https://issues.rudder.io/issues/18044[#18044])
+* Fixed: Fix swagger warnings in api doc
+    (https://issues.rudder.io/issues/18020[#18020])
+
+==== System integration
+
+* Fixed: Test fails because takes too long
+    (https://issues.rudder.io/issues/18050[#18050])
+* Fixed: When rudder agent health stops all service because there aren't any space left, if should state it in the log (and which fs)
+    (https://issues.rudder.io/issues/17472[#17472])
+
+==== Web - Config management
+
+* Fixed: Use node properties as path for node properties
+    (https://issues.rudder.io/issues/18025[#18025])
+* Fixed: na reports for Windows techniques on Linux generate broken condition
+    (https://issues.rudder.io/issues/18027[#18027])
+* Fixed: Missing interpolator in error message for allowed networks
+    (https://issues.rudder.io/issues/17967[#17967])
+* Fixed: Incorrect error message when a resource is not found
+    (https://issues.rudder.io/issues/17944[#17944])
+
+==== Rudder language
+
+* Fixed: compiler error is not helpful in certain cases
+    (https://issues.rudder.io/issues/17992[#17992])
+* Fixed: testing loop should report an error when rudderc does
+    (https://issues.rudder.io/issues/17950[#17950])
+* Fixed: Error during translate in CIS techniques
+    (https://issues.rudder.io/issues/17910[#17910])
+* Fixed: rudderc is way too slow
+    (https://issues.rudder.io/issues/17912[#17912])
+
+==== Web - Technique editor
+
+* Fixed: Remove technique from technique tree when deleting technique in the technique editor
+    (https://issues.rudder.io/issues/18015[#18015])
+* Fixed: Resource automatically added on newly created technique - since 6.1 upgrade
+    (https://issues.rudder.io/issues/17977[#17977])
+* Fixed: Long error message are not displayed in technique editor
+    (https://issues.rudder.io/issues/18046[#18046])
+* Fixed: Keep resource information from api when saving technique
+    (https://issues.rudder.io/issues/17881[#17881])
+
+==== Web - UI & UX
+
+* Fixed: Cannot set Compliance reporting mode on "Non compliant only" in settings tab
+    (https://issues.rudder.io/issues/16402[#16402])
+* Fixed: Error when trying to enable a disabled Technique in the technique tree
+    (https://issues.rudder.io/issues/17906[#17906])
+
+==== Techniques
+
+* Fixed: Description of Technique is partially garbled because of markdown rendering
+    (https://issues.rudder.io/issues/17942[#17942])
+
+==== System techniques
+
+* Fixed: If gzip is not installed the inventory is not sent
+    (https://issues.rudder.io/issues/17891[#17891])
+* Fixed: On debian, package with new dependencies is not upgraded to latest available version
+    (https://issues.rudder.io/issues/17917[#17917])
+
+==== Agent
+
+* Fixed: hostname command may not exist
+    (https://issues.rudder.io/issues/18018[#18018])
+* Fixed: grep -E doesn't work on solaris
+    (https://issues.rudder.io/issues/17932[#17932])
+* Fixed: When a node is in bootstrap mode there is no understandable way to unlock it from this state
+    (https://issues.rudder.io/issues/16825[#16825])
+* Fixed: rudder agent health fails on aix
+    (https://issues.rudder.io/issues/17933[#17933])
+* Fixed: rudder agent factory reset fails on solaris
+    (https://issues.rudder.io/issues/17930[#17930])
+* Fixed: "rudder agent check" always raises errors
+    (https://issues.rudder.io/issues/17928[#17928])
+* Fixed: rudder agent check fails on macosx
+    (https://issues.rudder.io/issues/17894[#17894])
+
+==== Technique editor - UI/UX
+
+* Fixed: Change cursor to pointer when we choose an action
+    (https://issues.rudder.io/issues/17707[#17707])
+* Fixed: Add left margin to DSC icon in generic method name
+    (https://issues.rudder.io/issues/17706[#17706])
+* Fixed: Add margin for OS input condition in generic method
+    (https://issues.rudder.io/issues/17756[#17756])
+* Fixed: CSS problem on OS condition for generic methods
+    (https://issues.rudder.io/issues/17877[#17877])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Nicolas Ecarnot
+* Frédéric COSTANT
+* Bas B
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.1 (2020-07-03)
 
 === Changes
