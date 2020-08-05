@@ -10,6 +10,7 @@ test_ncf() {
 }
 
 install_test_dependencies() {
+    set +e
     TEST_DEPENDENCIES="htop python-jinja2 ntp acl python3 python3-jinja2 augeas augeas-tools augeas"
     SLES_DEPENDENCIES="dos2unix createrepo createrepo_c acl"
     # Install dependencies
@@ -25,10 +26,10 @@ install_test_dependencies() {
 
     # Install dependencies
     ${PM_UPDATE}
-    DEPS=${TEST_DEPENDENCIES}
+    DEPS="${TEST_DEPENDENCIES}"
     if [ "${OS_NAME}" = "SuSE" ] || [ "${OS_COMPATIBLE}" = "SLES" ];
     then
-      DEPS=${SLES_DEPENDENCIES} ${DEPS}
+      DEPS="${SLES_DEPENDENCIES} ${DEPS}"
     fi
 
     for package in ${DEPS}; do
@@ -44,4 +45,5 @@ install_test_dependencies() {
       pip install -U six || /bin/true
       pip install -U testinfra --ignore-installed six || /bin/true
     fi
+    set -e
 }
