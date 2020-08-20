@@ -178,6 +178,7 @@ ExecStart=
 ExecStart=/opt/rudder/libexec/slapd -n rudder-slapd -u rudder-slapd -f /opt/rudder/etc/openldap/slapd.conf -h "ldap://0.0.0.0:389/"
 EOF
   fi
+  systemctl daemon-reload
   service_cmd rudder-slapd restart
   
   # Permit PostgreSQL access from outside
