@@ -4,6 +4,118 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.4 (2020-09-16)
+
+=== Changes
+
+==== Documentation
+
+* Migrate general questions from the faq into the doc
+    (https://issues.rudder.io/issues/18117[#18117])
+* Improve docs consistency
+    (https://issues.rudder.io/issues/18109[#18109])
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: LDAP index inconsistency on update cause error with allowed networks
+    (https://issues.rudder.io/issues/17998[#17998])
+* Fixed: Logs from all nodes are always reported in all.log
+    (https://issues.rudder.io/issues/18205[#18205])
+* Fixed: directive list tells you to upgrade the server if it didn't yet connect.
+    (https://issues.rudder.io/issues/16663[#16663])
+
+==== Packaging
+
+* Fixed: if configuration files are replaced during upgrade, rudder-upgrade fails on both postgresql checks and plugins disabling
+    (https://issues.rudder.io/issues/18139[#18139])
+
+==== Documentation
+
+* Fixed: Unclear upgrade nodes about 5.0.16+
+    (https://issues.rudder.io/issues/18212[#18212])
+* Fixed: Improve policy ordering doc
+    (https://issues.rudder.io/issues/17903[#17903])
+* Fixed: Move cf-serverd verbosity config into an appropriate section
+    (https://issues.rudder.io/issues/18104[#18104])
+* Fixed: The documentation should mention more obviously that upgrades from 4.3 to 6.0 are not supported
+    (https://issues.rudder.io/issues/17982[#17982])
+
+==== Web - Config management
+
+* Fixed: Groups are not commited in configuration-repository on modification
+    (https://issues.rudder.io/issues/18207[#18207])
+* Fixed: SUSE is spelled SuSE in the webapp
+    (https://issues.rudder.io/issues/16319[#16319])
+* Fixed: Techniques with conditions on tasks with very long parameters report "missing" parts on the dashboard
+    (https://issues.rudder.io/issues/18100[#18100])
+* Fixed: "error: Only functions returning scalars can be used as arguments" in verbose output
+    (https://issues.rudder.io/issues/18101[#18101])
+
+==== Web - Technique editor
+
+* Fixed: Resources are lost during an upgrade from 6.0 to 6.1
+    (https://issues.rudder.io/issues/18192[#18192])
+
+==== Web - Nodes & inventories
+
+* Fixed: Group query with OR composition and searching for Node properties return all nodes in place of none
+    (https://issues.rudder.io/issues/18172[#18172])
+* Fixed: Group query with OR composition and searching for Node properties return less results than expected
+    (https://issues.rudder.io/issues/18133[#18133])
+
+==== API
+
+* Fixed: "id" setting is silently ignored for new group created through the REST API.
+    (https://issues.rudder.io/issues/10216[#10216])
+* Fixed: Rudder directive API seem to take key-value order into account in json POST request 
+    (https://issues.rudder.io/issues/14934[#14934])
+
+==== Miscellaneous
+
+* Fixed: orchestrateur-5 (root) inventory are send to demo/snapshot/dev server, breaking their inventory preventing to use them
+    (https://issues.rudder.io/issues/18130[#18130])
+* Fixed: Error displayed when switching from full access to read only
+    (https://issues.rudder.io/issues/18052[#18052])
+
+==== Performance and scalability
+
+* Fixed: duplicate parsing for hostname in inventory processing
+    (https://issues.rudder.io/issues/18097[#18097])
+
+==== Techniques
+
+* Fixed: Technique shared folder on WIndows use invalid md5 hash instead of sha256
+    (https://issues.rudder.io/issues/18176[#18176])
+* Fixed: No flush key report on sshKeyDistribution when there is not yet an ssh key configured
+    (https://issues.rudder.io/issues/16516[#16516])
+* Fixed: Technique resources should not be commited on server upgrade
+    (https://issues.rudder.io/issues/18213[#18213])
+
+==== Agent
+
+* Fixed: Unparsable techniques when there are error in cf-promises (cf-promises outputs error in stdout)
+    (https://issues.rudder.io/issues/18178[#18178])
+
+==== Generic methods
+
+* Fixed: Method shared folder should not state that you can use md5 as hash method
+    (https://issues.rudder.io/issues/18177[#18177])
+* Fixed: File from local source with check: diff error
+    (https://issues.rudder.io/issues/17303[#17303])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+* Alexander Brunhirl
+* Dmitry Svyatogorov
+* PB LO
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.3 (2020-08-04)
 
 === Changes
