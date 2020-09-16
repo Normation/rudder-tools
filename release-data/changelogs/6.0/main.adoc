@@ -5,6 +5,154 @@ Rudder 6.0 is currently a maintained version of Rudder.
 This page provides a summary of changes for each version. Previous beta
 and rc versions are listed below for convenience.
 
+== Rudder 6.0.8 (2020-09-16)
+
+=== Changes
+
+==== Documentation
+
+* CVE plugin api documentation
+    (https://issues.rudder.io/issues/17940[#17940])
+* Improve docs consistency
+    (https://issues.rudder.io/issues/18109[#18109])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: if configuration files are replaced during upgrade, rudder-upgrade fails on both postgresql checks and plugins disabling
+    (https://issues.rudder.io/issues/18139[#18139])
+
+==== Security
+
+* Fixed: Rudder app and docs should not be indexable by search engines
+    (https://issues.rudder.io/issues/18019[#18019])
+
+==== Web - Nodes & inventories
+
+* Fixed: In SLES 15, SP is view as part of rudder agent version
+    (https://issues.rudder.io/issues/17736[#17736])
+* Fixed: Group query with OR composition and searching for Node properties return all nodes in place of none
+    (https://issues.rudder.io/issues/18172[#18172])
+* Fixed: Group query with OR composition and searching for Node properties return less results than expected
+    (https://issues.rudder.io/issues/18133[#18133])
+* Fixed: Number of groups on the dashboard in incorrect
+    (https://issues.rudder.io/issues/17202[#17202])
+
+==== Relay server or API
+
+* Fixed: SELinux perms on relay forbid to retrieve files from shared-folder (Windows DSC)
+    (https://issues.rudder.io/issues/17770[#17770])
+
+==== Documentation
+
+* Fixed: Update links to ansible inventory plugin
+    (https://issues.rudder.io/issues/18080[#18080])
+* Fixed: http in place of https in install doc for zypper subscription repo
+    (https://issues.rudder.io/issues/18055[#18055])
+* Fixed: Fix doc build after nodejs upgrade
+    (https://issues.rudder.io/issues/18056[#18056])
+* Fixed: The documentation should mention more obviously that upgrades from 4.3 to 6.0 are not supported
+    (https://issues.rudder.io/issues/17982[#17982])
+* Fixed: Documentation is wrong about default values for data retention
+    (https://issues.rudder.io/issues/17935[#17935])
+
+==== API
+
+* Fixed: "id" setting is silently ignored for new group created through the REST API.
+    (https://issues.rudder.io/issues/10216[#10216])
+* Fixed: Rudder directive API seem to take key-value order into account in json POST request 
+    (https://issues.rudder.io/issues/14934[#14934])
+* Fixed: Fix swagger warnings in api doc
+    (https://issues.rudder.io/issues/18020[#18020])
+
+==== Miscellaneous
+
+* Fixed: orchestrateur-5 (root) inventory are send to demo/snapshot/dev server, breaking their inventory preventing to use them
+    (https://issues.rudder.io/issues/18130[#18130])
+* Fixed: Error displayed when switching from full access to read only
+    (https://issues.rudder.io/issues/18052[#18052])
+
+==== Web - Config management
+
+* Fixed: SUSE is spelled SuSE in the webapp
+    (https://issues.rudder.io/issues/16319[#16319])
+* Fixed: Techniques with conditions on tasks with very long parameters report "missing" parts on the dashboard
+    (https://issues.rudder.io/issues/18100[#18100])
+* Fixed: "error: Only functions returning scalars can be used as arguments" in verbose output
+    (https://issues.rudder.io/issues/18101[#18101])
+* Fixed: Missing interpolator in error message for allowed networks
+    (https://issues.rudder.io/issues/17967[#17967])
+* Fixed: Incorrect error message when a resource is not found
+    (https://issues.rudder.io/issues/17944[#17944])
+
+==== Performance and scalability
+
+* Fixed: duplicate parsing for hostname in inventory processing
+    (https://issues.rudder.io/issues/18097[#18097])
+
+==== System integration
+
+* Fixed: Test fails because takes too long
+    (https://issues.rudder.io/issues/18050[#18050])
+* Fixed: directive list tells you to upgrade the server if it didn't yet connect.
+    (https://issues.rudder.io/issues/16663[#16663])
+* Fixed: When rudder agent health stops all service because there aren't any space left, if should state it in the log (and which fs)
+    (https://issues.rudder.io/issues/17472[#17472])
+
+==== Web - Technique editor
+
+* Fixed: Remove technique from technique tree when deleting technique in the technique editor
+    (https://issues.rudder.io/issues/18015[#18015])
+
+==== Web - UI & UX
+
+* Fixed: Cannot set Compliance reporting mode on "Non compliant only" in settings tab
+    (https://issues.rudder.io/issues/16402[#16402])
+* Fixed: Error when trying to enable a disabled Technique in the technique tree
+    (https://issues.rudder.io/issues/17906[#17906])
+
+==== Techniques
+
+* Fixed: Technique shared folder on WIndows use invalid md5 hash instead of sha256
+    (https://issues.rudder.io/issues/18176[#18176])
+* Fixed: No flush key report on sshKeyDistribution when there is not yet an ssh key configured
+    (https://issues.rudder.io/issues/16516[#16516])
+
+==== System techniques
+
+* Fixed: If gzip is not installed the inventory is not sent
+    (https://issues.rudder.io/issues/17891[#17891])
+
+==== Agent
+
+* Fixed: hostname command may not exist
+    (https://issues.rudder.io/issues/18018[#18018])
+* Fixed: When a node is in bootstrap mode there is no understandable way to unlock it from this state
+    (https://issues.rudder.io/issues/16825[#16825])
+* Fixed: rudder agent health fails on aix
+    (https://issues.rudder.io/issues/17933[#17933])
+
+==== Generic methods
+
+* Fixed: Method shared folder should not state that you can use md5 as hash method
+    (https://issues.rudder.io/issues/18177[#18177])
+* Fixed: File from local source with check: diff error
+    (https://issues.rudder.io/issues/17303[#17303])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Bas B
+* Frédéric COSTANT
+* Alexander Brunhirl
+* Florian Heigl
+* Dmitry Svyatogorov
+* PB LO
+
+This is a bug fix release in the 6.0 series and therefore all installations of 6.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.0.7 (2020-07-03)
 
 === Changes
