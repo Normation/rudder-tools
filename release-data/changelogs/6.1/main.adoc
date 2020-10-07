@@ -72,11 +72,6 @@ This page provides a summary of changes for each version. Previous beta
 * Fixed: Fiber error when postgres is unavaible breaks generation forever
     (https://issues.rudder.io/issues/18227[#18227])
 
-==== Techniques
-
-* Fixed: userManagement produces missing reports when used in "check only" mode
-    (https://issues.rudder.io/issues/16837[#16837])
-
 ==== Technique editor - API
 
 * Fixed: Method with empty curly braces are not recognized as valid
