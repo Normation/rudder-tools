@@ -4,6 +4,97 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.5 (2020-10-07)
+
+=== Changes
+
+==== Documentation
+
+* Add a page for technical stack doc
+    (https://issues.rudder.io/issues/18223[#18223])
+* Add svg logos to the repo
+    (https://issues.rudder.io/issues/18232[#18232])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Document that JDK 15 is not supported because of nashorn removing
+    (https://issues.rudder.io/issues/18214[#18214])
+* Fixed: Missing menu link to "contribute"
+    (https://issues.rudder.io/issues/18173[#18173])
+* Fixed: compatible OS typo
+    (https://issues.rudder.io/issues/18171[#18171])
+
+==== Web - Config management
+
+* Fixed: Array as root json are seens as string
+    (https://issues.rudder.io/issues/18285[#18285])
+* Fixed: Uncommited rudder_reporting.cf  when creating a technique with a condition
+    (https://issues.rudder.io/issues/18266[#18266])
+
+==== Relay server or API
+
+* Fixed: Broken url for local api in relay api doc
+    (https://issues.rudder.io/issues/18283[#18283])
+* Fixed: relayd should accept to listen on an hostname and not only an IP
+    (https://issues.rudder.io/issues/18269[#18269])
+
+==== System techniques
+
+* Fixed: Webapp does not regerate policies when webdav password is changed, breaking inventories after 5.0 -> 6.0 upgrade
+    (https://issues.rudder.io/issues/17250[#17250])
+* Fixed: In HTTPS+Syslog, syslog config is not removed if agent supports https
+    (https://issues.rudder.io/issues/18222[#18222])
+
+==== Web - Nodes & inventories
+
+* Fixed: Optionally accept node with same hostname as an already accepted one 
+    (https://issues.rudder.io/issues/18272[#18272])
+
+==== API
+
+* Fixed: Resources API error for subcategories
+    (https://issues.rudder.io/issues/18259[#18259])
+
+==== Web - Technique editor
+
+* Fixed: It should be forbidden to create a user technique with the same name as n existing technique
+    (https://issues.rudder.io/issues/15024[#15024])
+
+==== Performance and scalability
+
+* Fixed: Possible deadlock when connection pool is full
+    (https://issues.rudder.io/issues/18224[#18224])
+
+==== System integration
+
+* Fixed: Fiber error when postgres is unavaible breaks generation forever
+    (https://issues.rudder.io/issues/18227[#18227])
+
+==== Techniques
+
+* Fixed: userManagement produces missing reports when used in "check only" mode
+    (https://issues.rudder.io/issues/16837[#16837])
+
+==== Technique editor - API
+
+* Fixed: Method with empty curly braces are not recognized as valid
+    (https://issues.rudder.io/issues/18268[#18268])
+
+==== Generic methods - Package Management
+
+* Fixed: Zypper module does not work on python2
+    (https://issues.rudder.io/issues/18143[#18143])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Victor Héry
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.4 (2020-09-16)
 
 === Changes
