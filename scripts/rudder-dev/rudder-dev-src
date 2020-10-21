@@ -12,7 +12,7 @@ Usage:
     rudder-dev [-d|--debug] [-f|--force] branch <ticket_id> [--base=<ticket_id>]
     rudder-dev [-d|--debug] [-f|--force] quickfix <pr_url/file> [<subject>|<trigraph>] [--merge]
     rudder-dev [-d|--debug] [-f|--force] technique <version> <comment>
-    rudder-dev [-d|--debug] [-f|--force] subtask [<next_branch>] [--base=<ticket_id>] [--title=<new_title>] [--bug]
+    rudder-dev [-d|--debug] [-f|--force] subtask <new_title> [<next_branch>|--bug] [--base=<ticket_id>]
     rudder-dev [-d|--debug] [-f|--force] wip
     rudder-dev [-d|--debug] [-f|--force] commit [--nopr|<trigraph> [<PR_comment>]]
     rudder-dev [-d|--debug] [-f|--force] amend [<PR_comment>]
@@ -227,6 +227,9 @@ BLAME
     - add issue description if --long is provided
     - find lines changed after a commit id with --changed-after (useful to find deleted lines)
     - changed after and before are incompatible
+
+Options:
+    -b, --base=<ticket_id>   Use ticket PR as the ne work base
 """
 
 import sys
@@ -1606,7 +1609,7 @@ if __name__ == "__main__":
     technique(arguments['<version>'], arguments['<comment>'])
   elif arguments['subtask']:
     stash()
-    subtask(arguments['<next_branch>'], arguments['--title'], arguments['--base'], arguments['--bug'])
+    subtask(arguments['<next_branch>'], arguments['<new_title>'], arguments['--base'], arguments['--bug'])
     unstash()
     stash_info()
   elif arguments['wip']:
