@@ -4,6 +4,129 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== Rudder 6.1.6 (2020-10-28)
+
+=== Changes
+
+==== Containers
+
+* Reorganize dockerfiles and start documentation
+    (https://issues.rudder.io/issues/17752[#17752])
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: systemctl restart rudder-server does nothing
+    (https://issues.rudder.io/issues/18404[#18404])
+* Fixed: Intermitent failure test on certificate inventory
+    (https://issues.rudder.io/issues/18353[#18353])
+
+==== Packaging
+
+* Fixed: Replace apache config in /opt/rudder/etc on upgrade
+    (https://issues.rudder.io/issues/18333[#18333])
+
+==== Documentation
+
+* Fixed: USEMETHODREPORTING is missing in metadata documentation
+    (https://issues.rudder.io/issues/18427[#18427])
+* Fixed: Advise to not desinstall rudder server if possible
+    (https://issues.rudder.io/issues/17803[#17803])
+* Fixed: Add a documentation page on how to manually distribute plugin licenses
+    (https://issues.rudder.io/issues/18391[#18391])
+* Fixed: Add agent-server troubleshooting section
+    (https://issues.rudder.io/issues/18190[#18190])
+* Fixed: Broken API doc build
+    (https://issues.rudder.io/issues/18383[#18383])
+
+==== Web - UI & UX
+
+* Fixed: Group description button should not be clickable in read_only
+    (https://issues.rudder.io/issues/17634[#17634])
+* Fixed: Broken display of error icon in menu when there is a plugin error
+    (https://issues.rudder.io/issues/18265[#18265])
+
+==== Architecture - Refactoring
+
+* Fixed: Duplicated code from a merge #16513
+    (https://issues.rudder.io/issues/18377[#18377])
+
+==== Web - Technique editor
+
+* Fixed: Technique parameter description is not valid in technique.cf file
+    (https://issues.rudder.io/issues/18370[#18370])
+
+==== Server components
+
+* Fixed: Make the group option to include the Rudder server or not in the group clearer
+    (https://issues.rudder.io/issues/18346[#18346])
+
+==== API
+
+* Fixed: Format of lastRunDate/lastInventoryDate has changed in api response in 6.0.0
+    (https://issues.rudder.io/issues/18337[#18337])
+* Fixed: Improve documentation on how to change a key for a node by stating that \n is mandatory around begin and end
+    (https://issues.rudder.io/issues/18336[#18336])
+
+==== Security
+
+* Fixed: Webdav allows get on inventory and reports
+    (https://issues.rudder.io/issues/18325[#18325])
+* Fixed: Agents fail to check their policy server's identity
+    (https://issues.rudder.io/issues/18286[#18286])
+
+==== Web - Config management
+
+* Fixed: Missing system variable "POLICY_SERVER_KEY"
+    (https://issues.rudder.io/issues/18289[#18289])
+* Fixed: Error log about duplicates entries when saving node compliance levels
+    (https://issues.rudder.io/issues/18188[#18188])
+
+==== Plugins integration
+
+* Fixed: rudder package throws exceptions when the connection timeouts
+    (https://issues.rudder.io/issues/18308[#18308])
+
+==== Relay server or API
+
+* Fixed: Calling the relay-api to trigger a remote run on all nodes do an infinite loop on root server, killing it
+    (https://issues.rudder.io/issues/18303[#18303])
+* Fixed: null value in status API on simple relay
+    (https://issues.rudder.io/issues/18282[#18282])
+
+==== Techniques
+
+* Fixed: Selecting "latest" version for package installation in techniques Packages only checks for existence
+    (https://issues.rudder.io/issues/18260[#18260])
+* Fixed: apt configuration issue - add apost-check to validate generated line
+    (https://issues.rudder.io/issues/13741[#13741])
+
+==== System techniques
+
+* Fixed: Incorrect configuration when the database is not hosted on the rudder server itself
+    (https://issues.rudder.io/issues/18279[#18279])
+
+==== Agent
+
+* Fixed: commands from error message are launched due to backticks
+    (https://issues.rudder.io/issues/18174[#18174])
+* Fixed: rudder-agent check sleep and process pile-up in 6.0
+    (https://issues.rudder.io/issues/18339[#18339])
+
+==== Technique editor - UI/UX
+
+* Fixed: Alert user if they named a technique with a name that already exists in provided techniques
+    (https://issues.rudder.io/issues/18098[#18098])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.5 (2020-10-07)
 
 === Changes
