@@ -2,6 +2,67 @@
 
 == What's new?
 
+Following our new versioning scheme, 6.2 is a **minor** release that
+improves the 6.X branch while avoiding architecture changes
+to provide a straightforward upgrade process and ensure reliability.
+
+But make no mistake, it's a minor release that comes with **major user experience improvements**!
+
+=== UI
+
+* *Configurable columns* in node list (yes, that's what you think!). You can display properties values,
+  inventory data like any software version, IP addresses,  etc.
+* *Directives and Settings* pages are greatly improved.
+* API accounts, Reports database, Event logs, Archives, Global parameters pages were *refreshed*
+  to be consistent with the new pages look.
+
+=== CVE plugin
+
+* New view by node to visualize the state of known vulnerabilities on individual nodes.
+* Tracking and graphing of vulnerability remediation over time.
+* More generally, the plugin is now well tested and ready for production use.
+
+=== Health check
+
+Ever wondered how your Rudder server was going or why it started slowing down?
+The *health check* will make it easy with:
+
+* An *API* endpoint for precise monitoring.
+* *Dedicated page* for easy visualization.
+* *Notifications* in the menu bar not to miss important stuff.
+
+=== Plugins management
+
+* *Automated plugin upgrade*. No more incompatible or disabled plugins after upgrade! (if your server
+  has access to the download server).
+* Rudder *instances behind proxies* will now be able to download plugins and use external APIs through
+  your proxy.
+
+=== Platforms
+
+==== Windows
+
+* *Windows* agent is now capable of applying DSC configurations directly. You can either use a source file
+  that the agent will compile and apply, or directly apply a compiled state (in MOF format). In both cases
+  the outcome will be reported in Rudder like any other component.
+* The great *Chocolatey* software management tool is now supported, allowing easier software
+  management automation.
+
+==== Unix
+
+* *Solaris* support has been added: packaged agent, *ips* package manager, service management, etc.
+* *AIX* now supports the *nim* package manager in addition to yum/rpm.
+
+==== Docker/Containers
+
+* A technical preview for *production Rudder relay* running in *read-only unprivileged containers* is now available.
+  This is a first step before working on the root server too, we'd love to get feedback if you want to try it!
+
+=== Inventory hooks
+
+New hooks for inventory reception on the server are added, allowing to trigger automated acceptation
+process or to notify about a broken inventory.
+
 == Installing, upgrading and testing
 
 * Install docs for https://docs.rudder.io/reference/6.2/installation/server/debian.html[Debian/Ubuntu],
