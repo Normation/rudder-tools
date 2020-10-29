@@ -2,4 +2,196 @@
 
 Rudder 6.2 is currently a development version of Rudder.
 
+== Rudder 6.2.0.beta1 (2020-10-29)
+
+=== Changes
+
+==== Packaging
+
+* Update dependencies for Rudder
+    (https://issues.rudder.io/issues/18392[#18392])
+
+==== Documentation
+
+* Document Health Check in user doc
+    (https://issues.rudder.io/issues/18350[#18350])
+
+==== Web - Compliance & node report
+
+* Make fields of node list customizable
+    (https://issues.rudder.io/issues/7967[#7967])
+
+==== Miscellaneous
+
+* Add check for File Descriptor limit 
+    (https://issues.rudder.io/issues/18414[#18414])
+* Add check for free space
+    (https://issues.rudder.io/issues/18357[#18357])
+
+==== Web - UI & UX
+
+* Beautify Global Parameters page
+    (https://issues.rudder.io/issues/18418[#18418])
+* Healthcheck notification in navigation bar
+    (https://issues.rudder.io/issues/18328[#18328])
+* Create Healthcheck webpage
+    (https://issues.rudder.io/issues/18314[#18314])
+* Beautify API accounts page
+    (https://issues.rudder.io/issues/18389[#18389])
+* Beautify Reports database page
+    (https://issues.rudder.io/issues/18388[#18388])
+* Beautify Event logs page
+    (https://issues.rudder.io/issues/18366[#18366])
+* Update settings UI
+    (https://issues.rudder.io/issues/18263[#18263])
+* Merge ncf editor into Rudder
+    (https://issues.rudder.io/issues/18262[#18262])
+* Add a shortcut to create directive with latest technique version from the tree
+    (https://issues.rudder.io/issues/18164[#18164])
+* Make the filter section of the directives tree foldable
+    (https://issues.rudder.io/issues/18157[#18157])
+* Use new UI template in Directives page
+    (https://issues.rudder.io/issues/18076[#18076])
+
+==== API
+
+* Node status API must not return an error when the node is not here
+    (https://issues.rudder.io/issues/17666[#17666])
+* Add check name in healthcheck API
+    (https://issues.rudder.io/issues/18363[#18363])
+* Create healthcheck API 
+    (https://issues.rudder.io/issues/18306[#18306])
+
+==== Architecture - Dependencies
+
+* Update dependencies for the webapp
+    (https://issues.rudder.io/issues/18395[#18395])
+
+==== Relay server or API
+
+* Update relayd dependencies
+    (https://issues.rudder.io/issues/18393[#18393])
+
+==== Techniques
+
+* Implement ips package repositories technique
+    (https://issues.rudder.io/issues/18434[#18434])
+* Create an "old-school" crontab technique to manage crontab in /var/spool/cron/crontabs
+    (https://issues.rudder.io/issues/18228[#18228])
+
+==== Generic methods
+
+* Do not fix component key in generic methods reporting
+    (https://issues.rudder.io/issues/18433[#18433])
+
+==== Generic methods - Package Management
+
+* Add solaris package support to ncf
+    (https://issues.rudder.io/issues/18243[#18243])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Version rudder-api-client like Rudder on RPM
+    (https://issues.rudder.io/issues/18435[#18435])
+
+==== Plugins integration
+
+* Fixed: All plugins are disabled after a minor upgrade
+    (https://issues.rudder.io/issues/17878[#17878])
+
+==== Documentation
+
+* Fixed: Prepare doc for 6.2
+    (https://issues.rudder.io/issues/18368[#18368])
+* Fixed: Broken ncf doc build
+    (https://issues.rudder.io/issues/18369[#18369])
+
+==== Architecture - Refactoring
+
+* Fixed: Fix compilation issues after merge
+    (https://issues.rudder.io/issues/18443[#18443])
+
+==== Architecture - Dependencies
+
+* Fixed: Update to scala 2.13.3
+    (https://issues.rudder.io/issues/18425[#18425])
+
+==== Miscellaneous
+
+* Fixed: Missing RudderConfig parameter pour healthcheck period 
+    (https://issues.rudder.io/issues/18413[#18413])
+
+==== Web - Nodes & inventories
+
+* Fixed: Create hooks for when a node inventory is received
+    (https://issues.rudder.io/issues/18379[#18379])
+* Fixed: Support source package in Rudder inventory
+    (https://issues.rudder.io/issues/18317[#18317])
+
+==== Server components
+
+* Fixed: Group owner of files under configuration-repository are inconsistent
+    (https://issues.rudder.io/issues/18347[#18347])
+* Fixed: Rudder SSL default configuration should follow the system default one
+    (https://issues.rudder.io/issues/18338[#18338])
+
+==== Relay server or API
+
+* Fixed: Handle proxies in rudder package command
+    (https://issues.rudder.io/issues/18326[#18326])
+* Fixed: Handle proxies in rudder package command
+    (https://issues.rudder.io/issues/18326[#18326])
+* Fixed: Handle proxies in rudder package command
+    (https://issues.rudder.io/issues/18326[#18326])
+* Fixed: Handle proxies in rudder package command
+    (https://issues.rudder.io/issues/18326[#18326])
+* Fixed: Handle proxies in rudder package command
+    (https://issues.rudder.io/issues/18326[#18326])
+
+==== Technique editor - API
+
+* Fixed: Technique editor doesn't use context path for API call
+    (https://issues.rudder.io/issues/18374[#18374])
+
+==== Web - UI & UX
+
+* Fixed: Beautify Archives page
+    (https://issues.rudder.io/issues/18365[#18365])
+* Fixed: In the Technique Editor, tooltips no longer appear.
+    (https://issues.rudder.io/issues/18334[#18334])
+* Fixed: Some page sections blink while the Technique Editor is loading
+    (https://issues.rudder.io/issues/18329[#18329])
+* Fixed: Replace old notifications by those of Rudder
+    (https://issues.rudder.io/issues/18324[#18324])
+
+==== Web - Config management
+
+* Fixed: Stop parsing os/agent from technique metadata
+    (https://issues.rudder.io/issues/18340[#18340])
+
+==== Performance and scalability
+
+* Fixed: Unused index on table Ruddersysevents
+    (https://issues.rudder.io/issues/18110[#18110])
+
+==== System techniques
+
+* Fixed: Cron for Rudder agent on solaris is invalid
+    (https://issues.rudder.io/issues/18231[#18231])
+
+==== Generic methods - Package Management
+
+* Fixed: implement nim package manager 
+    (https://issues.rudder.io/issues/18313[#18313])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Janos Mattyasovszky
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 This page provides a summary of changes for each version.
