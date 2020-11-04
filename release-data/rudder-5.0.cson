@@ -104,6 +104,12 @@ components = {
                "cfengine": "3.12"
              }
 
+# Highest API versions available in this release
+api-version = {
+                "webapp": "11",
+                "relay": "0"
+              }
+
 # Agent versions you can use with this version's server
 compatible-agents = [ "4.1", "4.2", "4.3", "5.0", "6.0", "6.1" ]
 
