@@ -26,13 +26,12 @@ install_test_dependencies() {
 
     # Install dependencies
     ${PM_UPDATE}
-    DEPS="${TEST_DEPENDENCIES}"
     if [ "${OS_NAME}" = "SuSE" ] || [ "${OS_COMPATIBLE}" = "SLES" ];
     then
-      DEPS="${SLES_DEPENDENCIES} ${DEPS}"
+      TEST_DEPENDENCIES="${SLES_DEPENDENCIES} ${TEST_DEPENDENCIES}"
     fi
 
-    for package in ${DEPS}; do
+    for package in ${TEST_DEPENDENCIES}; do
       ${PM_INSTALL} ${package} || echo "Could not install ${package}"
     done
 
