@@ -23,6 +23,10 @@ add_repo() {
     USER=""
   else
     USER="${DOWNLOAD_USER}:${DOWNLOAD_PASSWORD}@"
+    if [ "${PM}" = "zypper" ] && [ "${OS_VERSION}" -le "12" ] ; then
+      URLENCODED_PASSWORD=$(echo "${DOWNLOAD_PASSWORD}" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+      USER="${DOWNLOAD_USER}:${URLENCODED_PASSWORD}@"
+    fi
   fi
 
   if [ "${USE_CI}" = "yes" ]
@@ -36,10 +40,7 @@ add_repo() {
     fi
   fi
 
-  if [ "${PM}" = "yum" ] || [ "${PM}" = "rpm" ]
-  then
-    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
-  elif [ "${PM}" = "zypper" ]
+  if [ "${PM}" = "yum" ] || [ "${PM}" = "rpm" ] || [ "${PM}" = "zypper" ]
   then
     URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
   fi
@@ -73,13 +74,20 @@ EOF
 
   elif [ "${PM}" = "zypper" ]
   then
+    cat > /tmp/rudder.repo << EOF
+[Rudder]
+enable=1
+autorefresh=0
+baseurl=${URL_BASE}/
+type=rpm-md
+EOF
     # Add SuSE repo
     # SLES11 only supports importing keys from files
     get "/tmp/rudder_rpm_key.pub" "https://repository.rudder.io/rpm/rudder_rpm_key.pub"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
-    zypper --non-interactive addrepo -n "Rudder repository" "${URL_BASE}/" Rudder || true
+    zypper --non-interactive addrepo /tmp/rudder.repo || true
     zypper --non-interactive refresh
     return 0
   elif [ "${PM}" = "rpm" ]
