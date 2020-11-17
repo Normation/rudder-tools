@@ -19,14 +19,18 @@ add_repo() {
   else
     S=""
   fi
+
+
+  # On sles we need to urlencode the password or if it contains special chars it won't be able to
+  # add the repo
+  if [ "${PM}" = "zypper" ]; then
+    DOWNLOAD_PASSWORD=$(echo "${DOWNLOAD_PASSWORD}" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+  fi
+
   if [ "${DOWNLOAD_USER}" = "" ]; then
     USER=""
   else
     USER="${DOWNLOAD_USER}:${DOWNLOAD_PASSWORD}@"
-    if [ "${PM}" = "zypper" ] && [ "${OS_VERSION}" -le "12" ] ; then
-      URLENCODED_PASSWORD=$(echo "${DOWNLOAD_PASSWORD}" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
-      USER="${DOWNLOAD_USER}:${URLENCODED_PASSWORD}@"
-    fi
   fi
 
   if [ "${USE_CI}" = "yes" ]
