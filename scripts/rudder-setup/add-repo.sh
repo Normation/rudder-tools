@@ -13,6 +13,7 @@ add_repo() {
   [ "${PM}" = "yum" ] && REPO_TYPE="rpm"
   [ "${PM}" = "zypper" ] && REPO_TYPE="rpm"
   [ "${PM}" = "rpm" ] && REPO_TYPE="rpm"
+  [ "${PM}" = "pkg" ] && REPO_TYPE="misc/solaris"
   if [ "${USE_HTTPS}" != "false" ]; then
     S="s"
     [ "${PM}" = "apt" ] && ${PM_INSTALL} apt-transport-https
@@ -47,6 +48,9 @@ add_repo() {
   if [ "${PM}" = "yum" ] || [ "${PM}" = "rpm" ] || [ "${PM}" = "zypper" ]
   then
     URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
+  elif [ "${PM}" = "pkg" ]
+  then
+    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}-${OS_COMPATIBLE_VERSION}"
   fi
 
   # add repository
@@ -100,9 +104,7 @@ EOF
     return 0
   elif [ "${PM}" = "pkg" ]
   then
-    # when we have a public repo
-    echo "No public repository for Solaris"
-    exit 1
+    pkg set-publisher -g "${URL_BASE}/" normation
   fi
 
   # TODO pkgng emerge pacman smartos
@@ -135,6 +137,11 @@ update_repo() {
   then
     file=/etc/zypp/repos.d/Rudder.repo
     REPO_TYPE="rpm"
+  elif [ "${PM}" = "pkg" ]
+  then
+    URL_BASE=$(LANG=C pkg publisher | grep ^normation | awk '{print $5}' | sed "s%misc/solaris/\(latest\|nightly\|[0-9.]\+\(-nightly\|~beta[0-9]\+\|~rc[0-9]\+\)\?\)/%misc/solaris/${RUDDER_VERSION}/%")
+    pkg set-publisher -g "${URL_BASE}/" normation
+    return
   else
     echo "Sorry your Package Manager is not *yet* supported !"
     return 1
@@ -168,6 +175,9 @@ remove_repo() {
   elif [ "${PM}" = "zypper" ]
   then
     zypper removerepo Rudder || true
+  elif [ "${PM}" = "pkg" ]
+  then
+    pkg unset-publisher normation
   fi
 }
 

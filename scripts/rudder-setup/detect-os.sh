@@ -62,9 +62,12 @@ detect_os() {
     PM_UPGRADE="zypper --non-interactive update"
     PM_LOCAL_INSTALL="rpm -i"
   elif exists pkgadd
-  then
+  then # solaris
     PM="pkg"
-    PM_LOCAL_INSTALL="eval yes | pkgadd -d"
+    PM_INSTALL="pkg install --accept"
+    PM_UPDATE="true"
+    PM_UPGRADE="pkg update --accept"
+    PM_LOCAL_INSTALL="yes | pkgadd -d"
   fi
 
   # install lsb_release if required
@@ -89,8 +92,9 @@ detect_os() {
     PM_INSTALL="rpm -i"
     PM_UPGRADE="rpm -u"
   elif [ "$(uname -s)" = "SunOS" ] ; then
-    OS_NAME="Solaris"
-    OS_VERSION="$(uname -v).$(uname -r)"
+    . /etc/os-release
+    OS_NAME="${ID}"
+    OS_VERSION="${VERSION}"
 
   # try with lsb_release
   elif exists lsb_release; then
