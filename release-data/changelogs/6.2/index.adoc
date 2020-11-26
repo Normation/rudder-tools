@@ -24,7 +24,7 @@ But make no mistake, it's a minor release that comes with **major user experienc
 === Health check
 
 Ever wondered how your Rudder server was going or why it started slowing down?
-The *health check* will make it easy with:
+The https://docs.rudder.io/reference/6.2/administration/server.html#_health_check[health check] will make it easy with:
 
 * An *API* endpoint for precise monitoring.
 * *Dedicated page* for easy visualization.
