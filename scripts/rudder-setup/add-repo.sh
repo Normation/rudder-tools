@@ -50,7 +50,8 @@ add_repo() {
     URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
   elif [ "${PM}" = "pkg" ]
   then
-    URL_BASE="${URL_BASE}/${OS_COMPATIBLE}-${OS_COMPATIBLE_VERSION}"
+
+    URL_BASE="${URL_BASE}/$(echo ${OS_COMPATIBLE} | tr '[:upper:]' '[:lower:]')-${OS_COMPATIBLE_VERSION}"
   fi
 
   # add repository
