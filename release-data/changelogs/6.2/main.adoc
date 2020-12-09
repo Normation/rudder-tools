@@ -1,6 +1,6 @@
 = Change logs for Rudder 6.2
 
-Rudder 6.2 is currently a development version of Rudder.
+Rudder 6.2 is currently a maintained version of Rudder.
 
 == Rudder 6.2.0.rc1 (2020-11-25)
 
