@@ -1,0 +1,21 @@
+= Changelogs for Rudder plugin cve 6.2.\* versions
+
+== cve-6.2-1.4 (2020-12-10)
+
+=== Changes
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Build for 6.2 branch
+    (https://issues.rudder.io/issues/18663[#18663])
+* Fixed: Improve texts in the plugin
+    (https://issues.rudder.io/issues/18589[#18589])
+* Fixed: Support debian packages sources and display check error messages
+    (https://issues.rudder.io/issues/18587[#18587])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
