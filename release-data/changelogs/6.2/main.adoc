@@ -2,6 +2,80 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
+== Rudder 6.2.0 (2020-12-10)
+
+=== Changes
+
+==== Documentation
+
+* Add documentation about set-force-audit in audit/enforce chapter
+    (https://issues.rudder.io/issues/18707[#18707])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: missing python3-setuptools dependency on relay on sles15 and rhel8
+    (https://issues.rudder.io/issues/18747[#18747])
+* Fixed: missing python3-setuptools dependency on relay on sles15 and rhel8
+    (https://issues.rudder.io/issues/18747[#18747])
+* Fixed: Remove plugin notice during upgrade
+    (https://issues.rudder.io/issues/18742[#18742])
+* Fixed: /var/rudder/config-repo/.gitignore is overriden by packaging
+    (https://issues.rudder.io/issues/17995[#17995])
+
+==== Agent
+
+* Fixed: backport fix on background command execution on agent
+    (https://issues.rudder.io/issues/18732[#18732])
+
+==== Documentation
+
+* Fixed: Wrong period for health check run in user doc
+    (https://issues.rudder.io/issues/18702[#18702])
+
+==== System integration
+
+* Fixed: No newer release compatible versions found for the plugin rudder-plugin-scale-out-relay, disabling it
+    (https://issues.rudder.io/issues/18735[#18735])
+
+==== Architecture - Refactoring
+
+* Fixed: Compilation warning (unused variable) in 6.2.0-rc1
+    (https://issues.rudder.io/issues/18729[#18729])
+
+==== Web - UI & UX
+
+* Fixed: parent ticket doesn't grey out title on accept new nodes when the popup shows up
+    (https://issues.rudder.io/issues/18691[#18691])
+* Fixed: Tooltip in node summary goes under sidebar
+    (https://issues.rudder.io/issues/18723[#18723])
+* Fixed: When there is an error after saving a directive, impossible to scroll down directive details
+    (https://issues.rudder.io/issues/18714[#18714])
+* Fixed: Create directive button is misplaced
+    (https://issues.rudder.io/issues/18700[#18700])
+
+==== Web - Config management
+
+* Fixed: Agent run frequency must not be configurable on policy servers
+    (https://issues.rudder.io/issues/18330[#18330])
+
+==== Generic methods - File Management
+
+* Fixed: On sles system augtool requires a terminating break line to run a command passed via pipe
+    (https://issues.rudder.io/issues/18719[#18719])
+* Fixed: calling file_key_value_present_in_ini_section on a yum repo definition loops
+    (https://issues.rudder.io/issues/18705[#18705])
+
+==== Generic methods
+
+* Fixed: ncf uses its own cfengine port instead of rudder defined one
+    (https://issues.rudder.io/issues/18704[#18704])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.0.rc1 (2020-11-25)
 
 === Changes
