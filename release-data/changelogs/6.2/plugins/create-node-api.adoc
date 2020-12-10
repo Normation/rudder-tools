@@ -1,0 +1,27 @@
+= Changelogs for Rudder plugin create-node-api 6.2.\* versions
+
+== create-node-api-6.2-1.4 (2020-12-10)
+
+=== Changes
+
+==== Packaging
+
+* Make plugins display names more consistent
+    (https://issues.rudder.io/issues/18599[#18599])
+
+=== Bug fixes
+
+==== Refactoring
+
+* Fixed: Fix plugins build according to 6.2 changes
+    (https://issues.rudder.io/issues/18630[#18630])
+
+==== Documentation
+
+* Fixed: Fix link to create-node API doc
+    (https://issues.rudder.io/issues/18470[#18470])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
