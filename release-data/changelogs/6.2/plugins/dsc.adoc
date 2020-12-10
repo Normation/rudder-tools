@@ -1,0 +1,57 @@
+= Changelogs for Rudder plugin dsc 6.2.\* versions
+
+== dsc-6.2-1.21 (2020-12-10)
+
+=== Changes
+
+==== CLI
+
+* Add a rudder agent reset command to the DSC agent
+    (https://issues.rudder.io/issues/17923[#17923])
+
+=== Bug fixes
+
+==== ncf
+
+* Fixed: Dsc_from_configuration does not report compilation errors and do not correctly retry the compiilation phase when needed
+    (https://issues.rudder.io/issues/18727[#18727])
+* Fixed: DSC_compile method does not properly apply the compiled configuration
+    (https://issues.rudder.io/issues/18520[#18520])
+* Fixed: DSC methods should catch the errors throwed by the DSC jobs
+    (https://issues.rudder.io/issues/18398[#18398])
+* Fixed: Add DSC_apply GM tests
+    (https://issues.rudder.io/issues/18322[#18322])
+* Fixed: rename dscea functions in the DSC related GM
+    (https://issues.rudder.io/issues/18320[#18320])
+* Fixed: DSC GM tests are referencing a renamed lib file
+    (https://issues.rudder.io/issues/18315[#18315])
+* Fixed: The agent should be able to generate report from a given DSC configuration
+    (https://issues.rudder.io/issues/17844[#17844])
+
+==== CLI
+
+* Fixed: Add update log events to the agent
+    (https://issues.rudder.io/issues/18716[#18716])
+* Fixed: All powershell script files should be in UTF8 with BOM
+    (https://issues.rudder.io/issues/18469[#18469])
+* Fixed: Rudder cli should not be updated by the agent update but only by the agent upgrade
+    (https://issues.rudder.io/issues/18426[#18426])
+
+==== Packaging
+
+* Fixed: error when updating policies
+    (https://issues.rudder.io/issues/18559[#18559])
+* Fixed: Unattended upgrade can not configure correctly the policy server conf
+    (https://issues.rudder.io/issues/18560[#18560])
+* Fixed: Update Rudder branch version for 6.2 builds
+    (https://issues.rudder.io/issues/18415[#18415])
+
+==== Miscellaneous
+
+* Fixed: Adapt webapp for 6.2
+    (https://issues.rudder.io/issues/18665[#18665])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
