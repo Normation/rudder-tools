@@ -966,6 +966,7 @@ def commit(trigraph=None, message=None, nopr=False):
 
   # create PR
   pr_url = create_pr(master_branch, issue, message)
+  pr = PR(pr_url)
 
   # update ticket
   if Config.REDMINE_TOKEN is not None:
@@ -978,9 +979,12 @@ def commit(trigraph=None, message=None, nopr=False):
     print("Ticket updated: " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
     if github != '':
       print("Updating issuer")
-      PR(pr_url).set_reviewer(github)
+      pr.set_reviewer(github)
+    # set label to trigger automatic tests
+    pr.label(Config.TRIGGER_TEST_LABEL)
   else:
     print("You can now update the ticket here " + Config.REDMINE_API_URL + "/issues/" + str(issue.id))
+
   print("PR URL: " + str(pr_url))
 
 
