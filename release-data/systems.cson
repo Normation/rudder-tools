@@ -135,5 +135,9 @@ solaris = {
   aliases = [ "sunos" ]
   package-format = "misc/pkg"
   name = "Solaris"
+  codenames = {
+    "11.3": "solaris-11.3"
+    "11.4": "solaris-11.4"
+  }
 }
 
