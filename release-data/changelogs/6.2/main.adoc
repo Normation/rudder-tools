@@ -2,6 +2,136 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
+== Rudder 6.2.1 (2021-01-19)
+
+=== Changes
+
+==== Documentation
+
+* Document container/docker support
+    (https://issues.rudder.io/issues/18794[#18794])
+* Mark 6.2 as final in docs
+    (https://issues.rudder.io/issues/18756[#18756])
+
+==== Containers
+
+* Make a single container relay
+    (https://issues.rudder.io/issues/18765[#18765])
+* Make a single container relay
+    (https://issues.rudder.io/issues/18765[#18765])
+
+==== API
+
+* Add API tests for rules
+    (https://issues.rudder.io/issues/18770[#18770])
+
+==== Generic methods
+
+* Add solaris specific paths
+    (https://issues.rudder.io/issues/18741[#18741])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: package cache ignores architecture
+    (https://issues.rudder.io/issues/18759[#18759])
+
+==== Documentation
+
+* Fixed: Add solaris to supported OS in doc
+    (https://issues.rudder.io/issues/18807[#18807])
+* Fixed: Rudder by example for auto-accept nodes
+    (https://issues.rudder.io/issues/18780[#18780])
+* Fixed: Lots of methods are missing a documentation
+    (https://issues.rudder.io/issues/18724[#18724])
+
+==== Web - Maintenance
+
+* Fixed: Make more clear error message when several rudder.war are present
+    (https://issues.rudder.io/issues/18835[#18835])
+
+==== Performance and scalability
+
+* Fixed: In Rudder 6.2.0 inventory processing merge_uuid part get extremelly slow on debian
+    (https://issues.rudder.io/issues/12937[#12937])
+
+==== API
+
+* Fixed: Broken API doc build
+    (https://issues.rudder.io/issues/18823[#18823])
+* Fixed: Clone rule API fails with "rule already exists with that id"
+    (https://issues.rudder.io/issues/18777[#18777])
+
+==== Relay server or API
+
+* Fixed: Security advisories for relayd dependencies
+    (https://issues.rudder.io/issues/18824[#18824])
+* Fixed: Security vulnerability in arc-swap
+    (https://issues.rudder.io/issues/18766[#18766])
+
+==== Web - Compliance & node report
+
+* Fixed:  Error log about duplicates entries when saving node compliance levels
+    (https://issues.rudder.io/issues/18814[#18814])
+
+==== Web - Nodes & inventories
+
+* Fixed: Accepting a node by API or UI doesn't do the same things exactly
+    (https://issues.rudder.io/issues/18677[#18677])
+* Fixed: bad logger name for inventory processing
+    (https://issues.rudder.io/issues/18813[#18813])
+* Fixed: Node name not visible in node configuration screen
+    (https://issues.rudder.io/issues/18768[#18768])
+
+==== Web - Config management
+
+* Fixed: Global parameters format is not preserved when editing
+    (https://issues.rudder.io/issues/18556[#18556])
+* Fixed: when directive name is long and there are several tags (like with CIS plugin), display is a bit broken
+    (https://issues.rudder.io/issues/18733[#18733])
+
+==== Web - UI & UX
+
+* Fixed: Message on save for group must appear only when button is disabled
+    (https://issues.rudder.io/issues/18738[#18738])
+* Fixed: Markdown documentation rendering is inconsistent
+    (https://issues.rudder.io/issues/18750[#18750])
+
+==== Web - Technique editor
+
+* Fixed: saving imported techniques with unknown GM fails with no error prompt
+    (https://issues.rudder.io/issues/18420[#18420])
+
+==== Techniques
+
+* Fixed: Define suse classes on sled
+    (https://issues.rudder.io/issues/18775[#18775])
+
+==== System techniques
+
+* Fixed: bootstrap policies report OK if there is no server
+    (https://issues.rudder.io/issues/18748[#18748])
+* Fixed: Jinja2 UTF-8 rendering Problem
+    (https://issues.rudder.io/issues/18552[#18552])
+
+==== Generic methods
+
+* Fixed: head bash command path should be taken from the ncf_paths bundle
+    (https://issues.rudder.io/issues/18797[#18797])
+* Fixed: Regex constraint must not contain escaped chars
+    (https://issues.rudder.io/issues/18764[#18764])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Jeremy CHAMPEL
+* I C
+* Alexander Brunhirl
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.0 (2020-12-10)
 
 === Changes
