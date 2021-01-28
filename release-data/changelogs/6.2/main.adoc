@@ -2,6 +2,65 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
+== Rudder 6.2.2 (2021-01-28)
+
+=== Changes
+
+==== System techniques
+
+* Allow defining port in policy_server.dat
+    (https://issues.rudder.io/issues/18721[#18721])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Inventories are rejected due to missing dependency on Centos 8
+    (https://issues.rudder.io/issues/18862[#18862])
+
+==== System integration
+
+* Fixed: After upgrade between two Rudder 6.2 all plugins are disabled
+    (https://issues.rudder.io/issues/18842[#18842])
+
+==== Documentation
+
+* Fixed: Update windows plugin documentation
+    (https://issues.rudder.io/issues/18836[#18836])
+
+==== Performance and scalability
+
+* Fixed: Backport new inventory priorisation, software deletion API and log correction in 6.1
+    (https://issues.rudder.io/issues/18839[#18839])
+
+==== API
+
+* Fixed: id parameter is ignored in rule category creation API and rule tags are lost on update
+    (https://issues.rudder.io/issues/18867[#18867])
+* Fixed: Bad URL for doc of purgeSoftware API
+    (https://issues.rudder.io/issues/18840[#18840])
+
+==== Web - Config management
+
+* Fixed: Event logs are not written when fields are set to empty (ie short description)
+    (https://issues.rudder.io/issues/18856[#18856])
+
+==== Web - UI & UX
+
+* Fixed: Cannot open directive details on Safari 
+    (https://issues.rudder.io/issues/18838[#18838])
+
+==== Plugins integration
+
+* Fixed: rudder package upgrade-all does not upgrade each plugin independently
+    (https://issues.rudder.io/issues/18841[#18841])
+* Fixed: rudder plugin upgrade-all  states that he will disable plugin, but is does not
+    (https://issues.rudder.io/issues/18843[#18843])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.1 (2021-01-19)
 
 === Changes
