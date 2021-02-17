@@ -48,7 +48,7 @@ roles = {
           "debian-6":       [ "agent-allinone" ],
           "debian-7":       [ "agent-allinone" ],
           "debian-8":       [ "agent-allinone" ],
-          "debian-9":       [ "agent-allinone", "relay", "server" ],
+          "debian-9":       [ "agent-allinone" ],
           "debian-10":      [ "agent-allinone", "relay", "server" ],
           "ubuntu-10.04":   [ "agent-allinone" ],
           "ubuntu-12.04":   [ "agent-allinone" ],
@@ -60,10 +60,10 @@ roles = {
           "ubuntu-20.04":   [ "agent-allinone", "relay", "server" ],
           "rhel-5":         [ "agent-allinone" ],
           "rhel-6":         [ "agent-allinone" ],
-          "rhel-7":         [ "agent-allinone", "relay", "server" ],
+          "rhel-7":         [ "agent-allinone" ],
           "rhel-8":         [ "agent-allinone", "relay", "server" ],
           "sles-11":        [ "agent-allinone" ],
-          "sles-12":        [ "agent-allinone", "relay", "server" ],
+          "sles-12":        [ "agent-allinone" ],
           "sles-15":        [ "agent-allinone", "relay", "server" ],
           "aix-5":          [ "agent-allinone" ],
           "slackware-14.1": [ "agent-allinone" ],
@@ -103,5 +103,5 @@ components = {
 compatible-agents = [ "5.0", "6.0", "6.1", "6.2" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "5.0", "6.0", "6.1", "6.2" ]
+supported-upgrade = [ "6.0", "6.1", "6.2" ]
 
