@@ -6,7 +6,11 @@ test_ncf() {
 
     # Start the test suite
     echo "Beginning tests, using CFEngine version \"`cf-agent -V`\""
+    set +e
     make "${TEST_TARGET}"
+    TEST_RESULT=$?
+    set -e
+    find . -type f -name '*test.log' -exec cat {} + >> /tmp/ncf_tests.log
 }
 
 install_test_dependencies() {
