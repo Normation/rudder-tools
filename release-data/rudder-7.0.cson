@@ -100,7 +100,7 @@ components = {
              }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "5.0", "6.0", "6.1", "6.2" ]
+compatible-agents = [ "6.0", "6.1", "6.2" ]
 
 # Versions you can upgrade from directly
 supported-upgrade = [ "6.0", "6.1", "6.2" ]
