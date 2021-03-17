@@ -117,6 +117,9 @@ windows = {
   aliases = [ ]
   package-format = "exe"
   name = "Windows"
+  codenames = {
+    "2008r2": "Windows 2008r2"
+  }
 }
 
 android = {
