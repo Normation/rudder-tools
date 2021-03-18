@@ -4,6 +4,16 @@ Rudder 6.2 is currently a maintained version of Rudder.
 
 == Rudder 6.2.3 (2021-03-18)
 
+=== Release Notes
+
+Note that we corrected several critical bugs inside Rudder core systems that could change the behavior of Rudder, especially:
+
+* https://issues.rudder.io/issues/18995[#18995]: We fixed lock issues in Rudder server logic, this should make Rudder safer and faster and thus we recommend all users to update to 6.2.3
+* https://issues.rudder.io/issues/18832[#18832]: Sometimes, the agent processes were piling up, exhausting resources of the machine, this has been fixed, another important reason to update to 6.2.3
+* https://issues.rudder.io/issues/18893[#18893]: We improved the reload of our policy sharing service, which could, under a heavy load, prevent new nodes / new authorized networks to update their policy
+* https://issues.rudder.io/issues/18995[#18995]: Policy generation fails when there was new parameter for a technique, as they were considered empty, leading to a policy generation with maybe inadequate values. Policy generation now makes an error and you should update all your directives with the new parameter when adding one to a Technique.
+* https://issues.rudder.io/issues/18955[#18955]: OOM exception now stops Rudder correctly with information logs either in rudder-jetty service or in webapp logs, but some JVM, especially old Java 8, don't log anything
+
 === Changes
 
 ==== System integration
