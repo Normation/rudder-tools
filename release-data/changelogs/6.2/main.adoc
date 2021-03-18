@@ -2,6 +2,172 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
+== Rudder 6.2.3 (2021-03-18)
+
+=== Changes
+
+==== System integration
+
+* Epoch is not included in rpm package version in inventory
+    (https://issues.rudder.io/issues/19000[#19000])
+
+==== Packaging
+
+* Update embedded openssl
+    (https://issues.rudder.io/issues/18913[#18913])
+
+==== Documentation
+
+* Add documentation for changing cf-serverd port
+    (https://issues.rudder.io/issues/18872[#18872])
+
+==== Web - Config management
+
+* Add a settings to delay start of policy generation
+    (https://issues.rudder.io/issues/18845[#18845])
+
+==== Web - UI & UX
+
+* Line break after each ip address
+    (https://issues.rudder.io/issues/18883[#18883])
+
+==== Techniques
+
+* Add an "upgrade only" option to the technique packageManagement
+    (https://issues.rudder.io/issues/18909[#18909])
+
+==== Generic methods - File Management
+
+* Document usage of sys.ipv4 var in jinja
+    (https://issues.rudder.io/issues/18905[#18905])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Upgrade failed from 5.0.20 to 6.1.9 on SLES
+    (https://issues.rudder.io/issues/18891[#18891])
+
+==== System integration
+
+* Fixed: Fatal exception doesn't cause rudder to stop anymore
+    (https://issues.rudder.io/issues/18955[#18955])
+
+==== Server components
+
+* Fixed: After the promises generation, cf-serverd config may not be reloaded, preventing new nodes from connecting
+    (https://issues.rudder.io/issues/8351[#8351])
+
+==== Agent
+
+* Fixed: Error logs about "Method '...' failed in some repairs" are useless and should be at verbose level instead
+    (https://issues.rudder.io/issues/18914[#18914])
+* Fixed: Agent run schedule problem
+    (https://issues.rudder.io/issues/18846[#18846])
+* Fixed: Agent run schedule problem
+    (https://issues.rudder.io/issues/18846[#18846])
+* Fixed: Rudder Agent consumes complete Memory because of fdisk
+    (https://issues.rudder.io/issues/18832[#18832])
+
+==== Documentation
+
+* Fixed: Update some plugin documentation
+    (https://issues.rudder.io/issues/18962[#18962])
+* Fixed: Add advanced jinja2 template example for main IP address
+    (https://issues.rudder.io/issues/18906[#18906])
+* Fixed: Missing licence info in pom.xml
+    (https://issues.rudder.io/issues/18978[#18978])
+* Fixed: rudder api doc doesn't list nodes/pending
+    (https://issues.rudder.io/issues/18940[#18940])
+* Fixed: Documentation API doesn't build anymore
+    (https://issues.rudder.io/issues/18930[#18930])
+
+==== Performance and scalability
+
+* Fixed: We don't know when generation hooks takes more time than expected, massively impacting generation time
+    (https://issues.rudder.io/issues/18915[#18915])
+* Fixed: A writeLock must never be in a read lock for LDAP repo
+    (https://issues.rudder.io/issues/18983[#18983])
+
+==== API
+
+* Fixed: Inherited node properties are not returned in API
+    (https://issues.rudder.io/issues/18959[#18959])
+* Fixed: nodes API with include managementTechnologyDetails leads to error 500 response
+    (https://issues.rudder.io/issues/18926[#18926])
+* Fixed: Missing API addition for version 13 in doc
+    (https://issues.rudder.io/issues/18923[#18923])
+
+==== Web - Nodes & inventories
+
+* Fixed: FileUploadBaseSizeLimitExceededException with an 10MB inventory
+    (https://issues.rudder.io/issues/19004[#19004])
+* Fixed: "By agent version" pie chart leads to empty page
+    (https://issues.rudder.io/issues/18791[#18791])
+* Fixed: purge software batch sometime terminate in error without log message
+    (https://issues.rudder.io/issues/18873[#18873])
+
+==== Web - Config management
+
+* Fixed: Missing mandatory directive parameter doesn't fail policy generation
+    (https://issues.rudder.io/issues/18995[#18995])
+* Fixed: Missing exception details in change request update
+    (https://issues.rudder.io/issues/18900[#18900])
+* Fixed: Workflow rights are not used for rules
+    (https://issues.rudder.io/issues/18876[#18876])
+
+==== Containers
+
+* Fixed: Incorrect permission for relay docker script
+    (https://issues.rudder.io/issues/18993[#18993])
+
+==== Web - UI & UX
+
+* Fixed: Double scrollbar in settings page when branding plugin is enabled
+    (https://issues.rudder.io/issues/18935[#18935])
+* Fixed: Error message when editing properties in the interface
+    (https://issues.rudder.io/issues/18902[#18902])
+* Fixed: Save button moves when switching of compliance reporting mode
+    (https://issues.rudder.io/issues/18849[#18849])
+
+==== Miscellaneous
+
+* Fixed: Error in postCommit pipeline with processor 'post_commit_inventory:pending_node_for_deleted_server'
+    (https://issues.rudder.io/issues/18899[#18899])
+
+==== Plugins integration
+
+* Fixed: Do not try to upgrade cis or openscap plugins
+    (https://issues.rudder.io/issues/18874[#18874])
+
+==== System techniques
+
+* Fixed: Rsync command for shared-files is incorrect
+    (https://issues.rudder.io/issues/18943[#18943])
+
+==== Generic methods - File Management
+
+* Fixed: Value replacement in "File key-value present" and "File keys-values present" methods doesn't work correctly in some cases.
+    (https://issues.rudder.io/issues/18944[#18944])
+* Fixed: file_check_block_devices test does not work on debian based system
+    (https://issues.rudder.io/issues/18924[#18924])
+
+==== Generic methods
+
+* Fixed: ncf unit tests do not generate any log file
+    (https://issues.rudder.io/issues/18928[#18928])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Anton Yakimov
+* Lars Koenen
+* Nicolas Ecarnot
+* Andras Miko
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.2 (2021-01-28)
 
 === Changes
