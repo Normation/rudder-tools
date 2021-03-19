@@ -2,6 +2,40 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
+== Rudder 6.2.4 (2021-03-19)
+
+=== Changes
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: Upgrade script fails in system technique update (empty commit)
+    (https://issues.rudder.io/issues/19044[#19044])
+
+==== Web - Config management
+
+* Fixed: Cannot load file browser when shared-folder contains dead symlinks
+    (https://issues.rudder.io/issues/18200[#18200])
+
+==== Web - UI & UX
+
+* Fixed: Custom bar and logo are not displayed in the login form while option is enabled in the Branding plugin
+    (https://issues.rudder.io/issues/19040[#19040])
+
+==== Web - Technique editor
+
+* Fixed: Technique editor error when an class is not correctly defined
+    (https://issues.rudder.io/issues/19039[#19039])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Nicolas Ecarnot
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.3 (2021-03-18)
 
 === Release Notes
