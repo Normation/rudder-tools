@@ -42,13 +42,43 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 === Release Notes
 
-Note that we corrected several critical bugs inside Rudder core systems that could change the behavior of Rudder, especially:
+==== Change of behavior for empty technique parameters
 
-* https://issues.rudder.io/issues/18995[#18995]: We fixed lock issues in Rudder server logic, this should make Rudder safer and faster and thus we recommend all users to update to 6.1.10
-* https://issues.rudder.io/issues/18832[#18832]: Sometimes, the agent processes were piling up, exhausting resources of the machine, this has been fixed, another important reason to update to 6.1.10
-* https://issues.rudder.io/issues/18893[#18893]: We improved the reload of our policy sharing service, which could, under a heavy load, prevent new nodes / new authorized networks to update their policy
-* https://issues.rudder.io/issues/18995[#18995]: Policy generation fails when there was new parameter for a technique, as they were considered empty, leading to a policy generation with maybe inadequate values. Policy generation now makes an error and you should update all your directives with the new parameter when adding one to a Technique.
-* https://issues.rudder.io/issues/18955[#18955]: OOM exception now stops Rudder correctly with information logs either in rudder-jetty service or in webapp logs, but some JVM, especially old Java 8, don't log anything
+Previously, when adding a new parameter to a technique in the technique editor, all directives based on this technique
+were still valid and used an empty value for the new parameter. This leads to unexpected behaviors, and makes adding
+parameters to techniques potentially dangerous.
+
+To prevent this type of problems (in the scope of a patch release) we had to totally prevent passing empty parameters to techniques from the technique editor. This makes missing parameters a policy generation error, allowing to safely provide
+them to directives after modifying the source technique.
+
+This may break existing directives that rely on an expression which evaluates to an empty value, like a property containing an empty string, or a property value with an empty default.
+In this case, you can pass a specific value like
+`None` or a space char to indicate an empty value, and modify the technique to handle the special case
+as a workaround.
+
+We will work on a better solution in a future version, allowing to make the difference between new parameters and
+intentionally blank ones.
+
+(https://issues.rudder.io/issues/18832[#18832])
+
+==== Policy server reload
+
+We fixed a known issue is the way we reload the policy server (the service that distributes policies to Unix systems).
+
+Previously, when adding a node or modifying allowed networks, a configuration reload was triggered, but it was only effective when the service became idle. On loaded Rudder servers or relays, this may totally prevent service reload, and thus
+prevent the new nodes from connecting.
+
+We replaced the reload by a graceful restart mechanism which takes effect immediately. This should not
+cause any visible changes, except that two `cf-serverd` processes might be running at the same time (on
+handling existing connections until completion, one handling the new ones).
+
+(https://issues.rudder.io/issues/18893[#18893])
+
+==== Other important fixes
+
+* We fixed lock issues in Rudder server logic, this should make Rudder safer and faster and thus we recommend all users to update to 6.2.3 (https://issues.rudder.io/issues/18983[#18983])
+* In rare cases, the agent inventory processes could pile up, exhausting resources of the machine. This has been fixed, another important reason to update to 6.2.3 (https://issues.rudder.io/issues/18832[#18832])
+* OOM exception now stops Rudder correctly with information logs either in rudder-jetty service or in webapp logs, but some JVM, especially old Java 8, still don't log anything (https://issues.rudder.io/issues/18955[#18955]). As a consequence, Rudder now requires at least OpenJDK 1.8.0-92.
 
 === Changes
 
