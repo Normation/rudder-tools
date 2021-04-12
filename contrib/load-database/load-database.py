@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 # This script will generate reports and insert them in the database
 
@@ -153,7 +153,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                             status = 'audit_compliant'
 
                     nbReports += 1
-                    if full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
+                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
                       if use_syslog:
                         syslog_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something'
                         syslog.syslog(syslog.LOG_INFO, syslog_string)
