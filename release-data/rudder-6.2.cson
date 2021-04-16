@@ -109,7 +109,7 @@ api-version = {
               }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "5.0", "6.0", "6.1", "6.2" ]
+compatible-agents = [ "5.0", "6.0", "6.1", "6.2", "7.0" ]
 
 # Versions you can upgrade from directly
 supported-upgrade = [ "5.0", "6.0", "6.1", "6.2" ]
