@@ -121,6 +121,130 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 6.2.7 (2021-05-18)
+
+=== Changes
+
+
+==== Packaging
+
+* Improve script linter in rudder repo
+    (https://issues.rudder.io/issues/19243[#19243])
+* Improve script linter in rudder repo
+    (https://issues.rudder.io/issues/19243[#19243])
+* Set CVSS limit for failing webapp dependency check
+    (https://issues.rudder.io/issues/19214[#19214])
+* Add maven deploy task to pipeline
+    (https://issues.rudder.io/issues/19197[#19197])
+* Add scripts to setup Rust build environements in CI
+    (https://issues.rudder.io/issues/19184[#19184])
+
+==== Miscellaneous
+
+* Improve linter and test configuration
+    (https://issues.rudder.io/issues/19177[#19177])
+
+=== Bug fixes
+
+==== Generic methods - File Management
+
+* Fixed: The Generic Method "File copy from Rudder shared Folder" ignores Audit policy mode
+    (https://issues.rudder.io/issues/19144[#19144])
+* Fixed: Condition is ignored after "File from remote template"
+    (https://issues.rudder.io/issues/19212[#19212])
+
+==== Packaging
+
+* Fixed: Shared file broken on upgraded servers with SELinux enabled
+    (https://issues.rudder.io/issues/19188[#19188])
+* Fixed: Update reflections to remove vulnerable guava dependency
+    (https://issues.rudder.io/issues/19216[#19216])
+* Fixed: Allow building without sccache
+    (https://issues.rudder.io/issues/19225[#19225])
+* Fixed: postinstall fails on machines with long hostname
+    (https://issues.rudder.io/issues/19185[#19185])
+
+==== Web - Config management
+
+* Fixed: Empty /var/rudder/policy-generation-info/node-configuration-hashes.json after a policy generation that changed nothing
+    (https://issues.rudder.io/issues/19248[#19248])
+* Fixed: AUTHORIZED_NETWORKS system variable must be multivalued
+    (https://issues.rudder.io/issues/19217[#19217])
+
+==== Miscellaneous
+
+* Fixed: relay package fails to build on rhel7
+    (https://issues.rudder.io/issues/19247[#19247])
+* Fixed: API documentation is missleading for properties
+    (https://issues.rudder.io/issues/19202[#19202])
+* Fixed: Policy generation does change technique resource files when it should not
+    (https://issues.rudder.io/issues/19222[#19222])
+* Fixed: setting a job with schedule_simple in catchup mode does not honor the schedule
+    (https://issues.rudder.io/issues/19227[#19227])
+
+==== API
+
+* Fixed: Undocumented API rudder_verify_certificates
+    (https://issues.rudder.io/issues/19235[#19235])
+* Fixed: Missing documentation for POST allowedNetwords API
+    (https://issues.rudder.io/issues/18506[#18506])
+
+==== Security
+
+* Fixed: Check dependencie fails with NPE
+    (https://issues.rudder.io/issues/19231[#19231])
+
+==== Web - UI & UX
+
+* Fixed: Date picker in search (last inventory) is broken
+    (https://issues.rudder.io/issues/19228[#19228])
+
+==== Performance and scalability
+
+* Fixed: Slow computation of dynamic groups on large system
+    (https://issues.rudder.io/issues/18981[#18981])
+* Fixed: backup file are not copied correctly when the destination directory is on another FS
+    (https://issues.rudder.io/issues/19218[#19218])
+* Fixed: Put node cache info into a file in place of LDAP
+    (https://issues.rudder.io/issues/19213[#19213])
+
+==== Architecture - Dependencies
+
+* Fixed: Some java dependencies have security warning and should be updated
+    (https://issues.rudder.io/issues/19211[#19211])
+
+==== Web - Technique editor
+
+* Fixed: Techniques using a condition containing a variable are not canonified correctly with dsc agent
+    (https://issues.rudder.io/issues/19199[#19199])
+
+==== Web - Compliance & node report
+
+* Fixed: Webapp tests fail if repository path contains an '@'
+    (https://issues.rudder.io/issues/19186[#19186])
+
+==== Plugins management
+
+* Fixed: Detection of dependencies for plugin can fail if the python lib of another distrib is present
+    (https://issues.rudder.io/issues/19187[#19187])
+
+==== Agent
+
+* Fixed: Command "rudder agent policy-server <server ip>" return code = 1 when ok
+    (https://issues.rudder.io/issues/19157[#19157])
+* Fixed: cannot upgrade directives because curl checks certificates
+    (https://issues.rudder.io/issues/19175[#19175])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Jean Cardona
+* Axel Bouet
+* Lars Koenen
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.4 (2021-03-19)
 
 === Changes
