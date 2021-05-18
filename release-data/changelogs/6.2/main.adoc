@@ -2,125 +2,6 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
-==  Rudder 6.2.5 (2021-04-21)
-
-=== Changes
-
-
-==== Security
-
-* Use https repos in maven config
-    (https://issues.rudder.io/issues/19164[#19164])
-
-==== Packaging
-
-* Split cargo-deny from qa-test
-    (https://issues.rudder.io/issues/19083[#19083])
-
-=== Bug fixes
-
-==== Plugins integration
-
-* Fixed: Error when restoring plugin status on fresh server install
-    (https://issues.rudder.io/issues/19125[#19125])
-
-==== Packaging
-
-* Fixed: Update openssl to 1.1.1k
-    (https://issues.rudder.io/issues/19090[#19090])
-* Fixed: Vulnerability in relayd dependencies diesel and generic-array
-    (https://issues.rudder.io/issues/19087[#19087])
-
-==== Documentation
-
-* Fixed: Incorrect option in pg_restore for archive 
-    (https://issues.rudder.io/issues/19036[#19036])
-
-==== Plugins management
-
-* Fixed: when we install a plugin, if the dependency (package manager) is not met, it still tries to install it and fails
-    (https://issues.rudder.io/issues/18999[#18999])
-
-==== Web - Config management
-
-* Fixed: Cannot load file browser if subfolders of the shared-folder contain dead symlinks
-    (https://issues.rudder.io/issues/19158[#19158])
-* Fixed: Add empty technique parameter in technique editor (6.2 only)
-    (https://issues.rudder.io/issues/19119[#19119])
-* Fixed: Allow to put empty value in technique parameters
-    (https://issues.rudder.io/issues/19115[#19115])
-* Fixed: Inherited node properties are displayed with escape
-    (https://issues.rudder.io/issues/19085[#19085])
-
-==== Web - Nodes & inventories
-
-* Fixed: Add an option to invert result of a node query
-    (https://issues.rudder.io/issues/19138[#19138])
-* Fixed: Search nodes component is not reloaded when reloading page, losing our current request
-    (https://issues.rudder.io/issues/19082[#19082])
-* Fixed: Inventory named as "Report" in log message
-    (https://issues.rudder.io/issues/19072[#19072])
-
-==== API
-
-* Fixed: Clone group via API ask for query
-    (https://issues.rudder.io/issues/19129[#19129])
-* Fixed: Bad quoting for string value in parameter update from API
-    (https://issues.rudder.io/issues/19104[#19104])
-* Fixed: Add more tests for API (directives, techniques, parameters)
-    (https://issues.rudder.io/issues/19086[#19086])
-* Fixed: Missing example for server key reset
-    (https://issues.rudder.io/issues/19065[#19065])
-
-==== Web - Compliance & node report
-
-* Fixed: Overridden directives in the same rule are missing (not even "skipped")
-    (https://issues.rudder.io/issues/19114[#19114])
-
-==== Web - UI & UX
-
-* Fixed: Syntax helper in the parameter page is outdated
-    (https://issues.rudder.io/issues/19108[#19108])
-
-==== Security
-
-* Fixed: Vulnerabilities in relayd hyper dependency
-    (https://issues.rudder.io/issues/18903[#18903])
-
-==== Agent
-
-* Fixed: Typo in agent error message
-    (https://issues.rudder.io/issues/19130[#19130])
-
-=== Release notes
-
-Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
-
-* Lars Koenen
-
-This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-==  Rudder 6.2.6 (2021-04-21)
-
-=== Changes
-
-
-=== Bug fixes
-
-==== Miscellaneous
-
-* Fixed: Syntax error in rudder-upgrade
-    (https://issues.rudder.io/issues/19172[#19172])
-
-==== Web - Config management
-
-* Fixed: Lots of files are created in /var/rudder/inventories/debug
-    (https://issues.rudder.io/issues/19171[#19171])
-
-=== Release notes
-
-This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
 ==  Rudder 6.2.7 (2021-05-18)
 
 === Changes
@@ -241,6 +122,126 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 * Jean Cardona
 * Axel Bouet
+* Lars Koenen
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
+==  Rudder 6.2.6 (2021-04-21)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Syntax error in rudder-upgrade
+    (https://issues.rudder.io/issues/19172[#19172])
+
+==== Web - Config management
+
+* Fixed: Lots of files are created in /var/rudder/inventories/debug
+    (https://issues.rudder.io/issues/19171[#19171])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+==  Rudder 6.2.5 (2021-04-21)
+
+=== Changes
+
+
+==== Security
+
+* Use https repos in maven config
+    (https://issues.rudder.io/issues/19164[#19164])
+
+==== Packaging
+
+* Split cargo-deny from qa-test
+    (https://issues.rudder.io/issues/19083[#19083])
+
+=== Bug fixes
+
+==== Plugins integration
+
+* Fixed: Error when restoring plugin status on fresh server install
+    (https://issues.rudder.io/issues/19125[#19125])
+
+==== Packaging
+
+* Fixed: Update openssl to 1.1.1k
+    (https://issues.rudder.io/issues/19090[#19090])
+* Fixed: Vulnerability in relayd dependencies diesel and generic-array
+    (https://issues.rudder.io/issues/19087[#19087])
+
+==== Documentation
+
+* Fixed: Incorrect option in pg_restore for archive 
+    (https://issues.rudder.io/issues/19036[#19036])
+
+==== Plugins management
+
+* Fixed: when we install a plugin, if the dependency (package manager) is not met, it still tries to install it and fails
+    (https://issues.rudder.io/issues/18999[#18999])
+
+==== Web - Config management
+
+* Fixed: Cannot load file browser if subfolders of the shared-folder contain dead symlinks
+    (https://issues.rudder.io/issues/19158[#19158])
+* Fixed: Add empty technique parameter in technique editor (6.2 only)
+    (https://issues.rudder.io/issues/19119[#19119])
+* Fixed: Allow to put empty value in technique parameters
+    (https://issues.rudder.io/issues/19115[#19115])
+* Fixed: Inherited node properties are displayed with escape
+    (https://issues.rudder.io/issues/19085[#19085])
+
+==== Web - Nodes & inventories
+
+* Fixed: Add an option to invert result of a node query
+    (https://issues.rudder.io/issues/19138[#19138])
+* Fixed: Search nodes component is not reloaded when reloading page, losing our current request
+    (https://issues.rudder.io/issues/19082[#19082])
+* Fixed: Inventory named as "Report" in log message
+    (https://issues.rudder.io/issues/19072[#19072])
+
+==== API
+
+* Fixed: Clone group via API ask for query
+    (https://issues.rudder.io/issues/19129[#19129])
+* Fixed: Bad quoting for string value in parameter update from API
+    (https://issues.rudder.io/issues/19104[#19104])
+* Fixed: Add more tests for API (directives, techniques, parameters)
+    (https://issues.rudder.io/issues/19086[#19086])
+* Fixed: Missing example for server key reset
+    (https://issues.rudder.io/issues/19065[#19065])
+
+==== Web - Compliance & node report
+
+* Fixed: Overridden directives in the same rule are missing (not even "skipped")
+    (https://issues.rudder.io/issues/19114[#19114])
+
+==== Web - UI & UX
+
+* Fixed: Syntax helper in the parameter page is outdated
+    (https://issues.rudder.io/issues/19108[#19108])
+
+==== Security
+
+* Fixed: Vulnerabilities in relayd hyper dependency
+    (https://issues.rudder.io/issues/18903[#18903])
+
+==== Agent
+
+* Fixed: Typo in agent error message
+    (https://issues.rudder.io/issues/19130[#19130])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
 * Lars Koenen
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
