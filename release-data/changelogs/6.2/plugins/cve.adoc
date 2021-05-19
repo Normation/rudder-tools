@@ -1,5 +1,38 @@
 = Changelogs for Rudder plugin cve 6.2.\* versions
 
+== cve-6.2-1.5 (2021-05-19)
+
+=== Changes
+
+
+==== Packaging
+
+* Use https repos in maven config
+    (https://issues.rudder.io/issues/19165[#19165])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Assigner field in CVE details maybe empty 
+    (https://issues.rudder.io/issues/19204[#19204])
+* Fixed: Broken images in doc
+    (https://issues.rudder.io/issues/19084[#19084])
+* Fixed: Add documentation
+    (https://issues.rudder.io/issues/18971[#18971])
+* Fixed: Document list ot compatible OSes
+    (https://issues.rudder.io/issues/18933[#18933])
+* Fixed: Typo in logs
+    (https://issues.rudder.io/issues/18908[#18908])
+* Fixed: Add note about memory usgae and how to fix problems
+    (https://issues.rudder.io/issues/18907[#18907])
+* Fixed: Show view by nodes by default
+    (https://issues.rudder.io/issues/18890[#18890])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-6.2-1.4 (2020-12-10)
 
 === Changes
