@@ -96,7 +96,7 @@ sles = {
 
 slackware = {
   aliases = [ ]
-  package-format = "misc/tgz"
+  package-format = "tgz/slack"
   name = "Slackware"
   codenames = {
     "14.1": "slackware-14.1"
@@ -136,7 +136,7 @@ freebsd = {
 
 solaris = {
   aliases = [ "sunos" ]
-  package-format = "misc/pkg"
+  package-format = "ips"
   name = "Solaris"
   codenames = {
     "11.3": "solaris-11.3"
