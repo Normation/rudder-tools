@@ -1,0 +1,57 @@
+#!/usr/bin/python
+
+"""
+Rudder config analyzer
+
+This is aimed to identify generic_variable_definition usages in the Rudder configuration.
+It can find duplicates definitions, on a per rule basis, list all the gvd applied
+for a given group or rule and list all directives defining a target gvd.
+
+gvd stand for generic_variable_definition
+
+Usage:
+    rca list-gvd [--sorted-by=<column>] [--for-group=<groupid>]
+    rca list-gvd [--sorted-by=<column>] [--for-rule=<ruleid>]
+    rca list-gvd [--sorted-by=<column>] [--defining=<long.varname>]
+    rca list-gvd [--sorted-by=<column>] [--duplicates-by-rule]
+    rca list-gvd [--sorted-by=<column>] [--duplicates-by-group]
+    rca list-gvd [--sorted-by=<column>] [--uuid=<uuid>]
+    rca list-gvd [--sorted-by=<column>] [--by-usage]
+    rca list-gvd [--sorted-by=<column>] [--by-number-of-directives]
+    rca list-gvd [--sorted-by=<column>] [--by-number-of-rules]
+ """
+
+import sys
+sys.path.insert(0,"/opt/rudder/share/python")
+sys.path.insert(0,"/opt/rudder/share/python/rudder-pkg")
+
+from docopt import docopt
+import gvd
+
+## MAIN
+if __name__ == "__main__":
+    arguments = docopt(__doc__)
+    if arguments['list-gvd']:
+        if arguments['--sorted-by']:
+            criterion = arguments['--sorted-by']
+        else:
+            criterion = "Name"
+
+        if arguments['--for-group']:
+            gvd.display_defined_in_group(arguments['--for-group'], criterion)
+        elif arguments['--for-rule']:
+            gvd.display_defined_in_rule(arguments['--for-rule'], criterion)
+        elif arguments['--defining']:
+            gvd.display_all_definitions_of(arguments['--defining'], criterion)
+        elif arguments['--uuid']:
+            gvd.display_given_uuid(arguments['--uuid'], criterion)
+        elif arguments['--duplicates-by-rule']:
+            gvd.display_all_duplicates_in_rules(criterion)
+        elif arguments['--duplicates-by-group']:
+            gvd.display_all_duplicates_in_groups(criterion)
+        elif arguments['--by-number-of-rules']:
+            gvd.display_by_number_of_def_in_rules(criterion)
+        elif arguments['--by-number-of-directives']:
+            gvd.display_by_number_of_def_in_directives(criterion)
+        else:
+            gvd.display_all(criterion)
