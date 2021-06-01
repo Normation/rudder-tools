@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin reporting 6.2.\* versions
 
+== reporting-6.2-1.6 (2021-06-01)
+
+=== Changes
+
+
+==== Packaging
+
+* Use https repos in maven config
+    (https://issues.rudder.io/issues/19165[#19165])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Reporting plugin does not work since Rudder 6.2.5
+    (https://issues.rudder.io/issues/19344[#19344])
+* Fixed: Broken image links in doc
+    (https://issues.rudder.io/issues/19088[#19088])
+* Fixed: Add documentation
+    (https://issues.rudder.io/issues/18971[#18971])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == reporting-6.2-1.5 (2020-12-10)
 
 === Changes
