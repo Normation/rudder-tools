@@ -8,7 +8,15 @@ amd64 = {
 }
 ppc   = {
   bits = 64
-  comment = "Also known as ppc64, for aix"
+  comment = "Also known as ppc64be, for aix"
+}
+ppc64be   = {
+  bits = 64
+  comment = "For aix and some old linux"
+}
+ppc64le   = {
+  bits = 64
+  comment = "Target for new linux (>POWER8)"
 }
 armel = {
   bits = 32

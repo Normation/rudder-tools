@@ -11,7 +11,8 @@ debian = {
     "8": "jessie",
     "9": "stretch",
     "10": "buster",
-    "11": "bullseye"
+    "11": "bullseye",
+    "12": "bookworm"
   }
 }
 
@@ -26,7 +27,8 @@ armbian = {
     "8": "jessie",
     "9": "stretch",
     "10": "buster",
-    "11": "bullseye"
+    "11": "bullseye",
+    "12": "bookworm"
   }
 }
 
@@ -50,12 +52,15 @@ ubuntu = {
     "16.04": "xenial",
     "16.10": "yakkety",
     "17.04": "zesty",
-    "17.10": "artful"
-    "18.04": "bionic"
-    "18.10": "cosmic"
-    "19.04": "disco"
-    "19.10": "eoan"
-    "20.04": "focal"
+    "17.10": "artful",
+    "18.04": "bionic",
+    "18.10": "cosmic",
+    "19.04": "disco",
+    "19.10": "eoan",
+    "20.04": "focal",
+    "20.10": "groovy",
+    "21.04": "hirsute",
+    "21.10": "impish"
   }
 }
 

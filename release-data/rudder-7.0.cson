@@ -12,11 +12,13 @@ lts = false
 architectures = { 
                   "armbian-9":      [ "armhf", "arm64" ],
                   "armbian-10":     [ "armhf", "arm64" ],
+                  "armbian-11":     [ "armhf", "arm64" ],
                   "debian-6":       [ "i386", "amd64" ],
                   "debian-7":       [ "i386", "amd64" ],
                   "debian-8":       [ "i386", "amd64" ],
                   "debian-9":       [ "i386", "amd64" ],
                   "debian-10":      [ "i386", "amd64" ],
+                  "debian-11":      [ "i386", "amd64" ],
                   "ubuntu-10.04":   [ "i386", "amd64" ],
                   "ubuntu-12.04":   [ "i386", "amd64" ],
                   "ubuntu-13.04":   [ "i386", "amd64" ],
@@ -30,7 +32,7 @@ architectures = {
                   "rhel-7":         [ "i386", "amd64" ],
                   "rhel-8":         [ "amd64" ],
                   "sles-11"   :     [ "i386", "amd64" ],
-                  "sles-12"   :     [ "amd64" ],
+                  "sles-12"   :     [ "amd64", "ppc64le" ],
                   "sles-15"   :     [ "amd64" ],
                   "slackware-14.1": [ "amd64" ],
                   "slackware-14.2": [ "amd64" ],
@@ -45,11 +47,13 @@ architectures = {
 roles = { 
           "armbian-9":      [ "agent-allinone" ],
           "armbian-10":     [ "agent-allinone" ],
+          "armbian-11":     [ "agent-allinone" ],
           "debian-6":       [ "agent-allinone" ],
           "debian-7":       [ "agent-allinone" ],
           "debian-8":       [ "agent-allinone" ],
           "debian-9":       [ "agent-allinone" ],
           "debian-10":      [ "agent-allinone", "relay", "server" ],
+          "debian-11":      [ "agent-allinone", "relay", "server" ],
           "ubuntu-10.04":   [ "agent-allinone" ],
           "ubuntu-12.04":   [ "agent-allinone" ],
           "ubuntu-13.04":   [ "agent-allinone" ],
@@ -76,7 +80,7 @@ roles = {
 # tier 1 are systems that must not fail during a release (community supported or subscription paid)
 # tier 2 are systems that are built but may fail to release
 tier1 = [
-          "debian-9", "debian-10",
+          "debian-9", "debian-10", "debian-11",
           "ubuntu-13.04", "ubuntu-14.04", "ubuntu-15.10", "ubuntu-18.04", "ubuntu-20.04"
           "rhel-6", "rhel-7", "rhel-8",
           "sles-11", "sles-12", "sles-15",
