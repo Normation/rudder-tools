@@ -1,5 +1,32 @@
 = Changelogs for Rudder plugin change-validation 6.2.\* versions
 
+== change-validation-6.2-1.12 (2021-06-01)
+
+=== Changes
+
+
+==== Packaging
+
+* Use https repos in maven config
+    (https://issues.rudder.io/issues/19165[#19165])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Illegal address when no replyTo configured
+    (https://issues.rudder.io/issues/19352[#19352])
+* Fixed: Change validation details page is not accessible anymore when a Node group query has been modified
+    (https://issues.rudder.io/issues/19182[#19182])
+* Fixed: Email notification should be disabled when no host server is configured
+    (https://issues.rudder.io/issues/19147[#19147])
+* Fixed: Parsing error when the port is undefined in change-validation.conf
+    (https://issues.rudder.io/issues/19148[#19148])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == change-validation-6.2-1.11 (2021-02-09)
 
 === Changes
