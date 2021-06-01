@@ -1,5 +1,28 @@
 = Changelogs for Rudder plugin cve 6.2.\* versions
 
+== cve-6.2-1.7 (2021-06-01)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add an option to download recent/modified archives instead of full years
+    (https://issues.rudder.io/issues/19314[#19314])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: If an error occurs during cve check of a node, previous result is lost 
+    (https://issues.rudder.io/issues/19318[#19318])
+* Fixed: Improve doc to state that we need at least 4Gb of RAM
+    (https://issues.rudder.io/issues/18985[#18985])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-6.2-1.6 (2021-05-19)
 
 === Changes
