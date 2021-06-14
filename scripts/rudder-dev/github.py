@@ -148,6 +148,15 @@ class PR:
       return None
     return not (False in status.values())
 
+  def tests_passed(self):
+    """ Tests if a pull request tests are finished and successful """
+    # status are stored by reference, use latest commit in PR
+    url = "https://api.github.com/repos/Normation/{repo}/commits/{sha}/status"
+    data = github_request(url, "Getting latest commit status", self.url, sha=self.sha(), repo=self.repo_name)
+    state = data['state']
+    # other cases are pending or failed
+    return state == "success"
+
 
 # Get github user as used by the hub command
 def get_github_user():
@@ -177,7 +186,7 @@ def get_github_token(can_fail=False):
 
 
 # query github
-def github_request(api_url, comment, pr_url=None, post_data=None, repo=None, method=None):
+def github_request(api_url, comment, pr_url=None, post_data=None, repo=None, method=None, sha=None):
   pr_id = None
   if pr_url is not None:
     # Validate PR url
@@ -191,7 +200,7 @@ def github_request(api_url, comment, pr_url=None, post_data=None, repo=None, met
   # get connection info
   if repo is None:
     repo = remote_repo()
-  url = api_url.format(repo=repo, pr_id=pr_id)
+  url = api_url.format(repo=repo, pr_id=pr_id, sha=sha)
 
   # Say what we are doing
   if comment is not None and (Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info"):

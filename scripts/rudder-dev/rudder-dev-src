@@ -1316,6 +1316,14 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run
 # Merge given PR into its target branch and upmerge
 def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True, no_autosquash=False):
   pr = PR(pr_url)
+
+  # PR must be tested
+  if not test and not pr.tests_passed():
+    print("This PR tests haven't passed. You should not merge it.")
+    logfail("***** ERROR: PR is not tested. Exiting.")
+    if not Config.force:
+      exit(15)
+
   # PR must be validated
   if not test and not pr.is_labeled(Config.PR_VALIDATED_LABEL) and pr.review_approval() is not True:
     print("This PR is not labeled '" + Config.PR_VALIDATED_LABEL + "' nor approved. You should not merge it.")
