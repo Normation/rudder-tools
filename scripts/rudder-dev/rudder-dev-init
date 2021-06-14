@@ -87,7 +87,7 @@ if [ "${own_upstream}" != "" ]; then
 else
   tla=$(echo ${USER:0:3} | tr '[a-z]' '[A-Z]')
   echo "4. Remote repositories are created and used regularly by rudder-dev, it needs to know how they are named"
-  echo " You can choose among different naming schemes (Personaly I prefer using TLA everywhere)."
+  echo " You can choose among different naming schemes (Personally I prefer using TLA everywhere)."
   echo " Which one do you prefer? (in the form <Normation's repository> / <your repository>)"
   echo " 1. NRM / origin"
   echo " 2. NRM / ${tla}"
@@ -137,7 +137,7 @@ else
   echo " Do you want to install it in /usr/local (needs sudo) or in ~/bin (no sudo) or somewhere else?"
   while [ ! -d "${rudder_dev_path}" ]
   do
-    echo -n " Type your prefered path [/usr/local]: "
+    echo -n " Type your preferred path [/usr/local]: "
     read rudder_dev_path
     if [ "${rudder_dev_path}" = "" ]; then
       rudder_dev_path="/usr/local"
@@ -152,7 +152,7 @@ else
       echo " ${rudder_dev_path} is not in your path, adding it to ~/.bashrc"
       echo "export PATH=\$PATH:${rudder_dev_path}" >> ~/.bashrc
     fi
-    echo " ${rudder_dev_path} was not in your path, please consider adding there lines to your prefered shell rcfile:"
+    echo " ${rudder_dev_path} was not in your path, please consider adding there lines to your preferred shell rcfile:"
     echo "PATH=\$PATH:${rudder_dev_path}"
     echo "export PATH"
   fi

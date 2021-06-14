@@ -12,7 +12,7 @@
     (https://issues.rudder.io/issues/15395[#15395])
 * Fixed: Wrong README extension
     (https://issues.rudder.io/issues/15371[#15371])
-* Fixed: API must be consistant with node agent key management
+* Fixed: API must be consistent with node agent key management
     (https://issues.rudder.io/issues/15346[#15346])
 
 ==== Documentation

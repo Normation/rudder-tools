@@ -651,7 +651,7 @@ system techniques
 
 * Fixed: rudder-init broken on SLES
 (https://issues.rudder.io/issues/7991[#7991])
-* Fixed: Missing usefull logger in logger file
+* Fixed: Missing useful logger in logger file
 (https://issues.rudder.io/issues/7910[#7910])
 * Fixed: Errors with apache on ubuntu 12.04
 (https://issues.rudder.io/issues/6763[#6763])
@@ -1123,7 +1123,7 @@ SLES (https://issues.rudder.io/issues/7205[#7205])
 
 ==== Performance and scalability
 
-* Fixed: Writting promises should be parallelized
+* Fixed: Writing promises should be parallelized
 (https://issues.rudder.io/issues/7265[#7265])
 
 === Release notes
@@ -1383,7 +1383,7 @@ slowly during recursive copy
 
 ==== Documentation
 
-* Fixed: Wrong hierachy in archives section of the manual
+* Fixed: Wrong hierarchy in archives section of the manual
 (https://issues.rudder.io/issues/6909[#6909])
 * Fixed: Broken asciidoc list formatting
 (https://issues.rudder.io/issues/6778[#6778])
@@ -1472,13 +1472,13 @@ network (https://issues.rudder.io/issues/6540[#6540])
 * Fixed: Messages forwarded from AIX agent are not dropped on
 relay/server root after being consumed
 (https://issues.rudder.io/issues/6522[#6522])
-* Fixed: Log rotation on distributed install is not functionnal
+* Fixed: Log rotation on distributed install is not functional
 (https://issues.rudder.io/issues/6521[#6521])
 
 ==== Agent
 
 * Fixed: cfengine context is not updated properly when doing multiple
-indivudual package actions
+individual package actions
 (https://issues.rudder.io/issues/6587[#6587])
 
 ==== Techniques
@@ -1503,7 +1503,7 @@ system (https://issues.rudder.io/issues/6527[#6527])
 
 * Fixed: The rudder-agent profile configuration may override the system
 MANPATH (https://issues.rudder.io/issues/6548[#6548])
-* Fixed: Log rotation of reports and slapd is not correctly functionnal
+* Fixed: Log rotation of reports and slapd is not correctly functional
 on redhat, as the server continues to write to the move file
 (https://issues.rudder.io/issues/6526[#6526])
 * Fixed: rudder-reports package should use the correct PostgreSQL
@@ -1877,7 +1877,7 @@ report, on the node page
 * Fixed: rudder-agent installation may hang infinitely on Centos minimal
 install due to curl installation
 (https://issues.rudder.io/issues/6035[#6035])
-* Fixed: Tests on rudder-techinques are broken due to $()
+* Fixed: Tests on rudder-techniques are broken due to $()
 (https://issues.rudder.io/issues/5987[#5987])
 * Fixed: Support uppercase hostname when updating promises
 (https://issues.rudder.io/issues/6037[#6037])
@@ -2828,7 +2828,7 @@ read/write promises
 cleanup (https://issues.rudder.io/issues/5221[#5221])
 * Fixed: ncf post hooks, use http to reload techniques instead of https
 (https://issues.rudder.io/issues/5210[#5210])
-* Fixed: ncf techniques category.xml is not commited by ncf-builder post
+* Fixed: ncf techniques category.xml is not committed by ncf-builder post
 hook on first technique creation.
 (https://issues.rudder.io/issues/5197[#5197])
 

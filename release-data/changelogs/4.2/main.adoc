@@ -334,7 +334,7 @@ the release enterprise-ready for deployment.
 
 ==== Web - Compliance & node report
 
-* Overriden directives are not listed in reports information
+* Overridden directives are not listed in reports information
 (https://www.rudder-project.org/redmine/issues/7616[#7616])
 
 ==== Agent
@@ -422,7 +422,7 @@ technique editor
 * Fixed: Restricted java security policy breaks Rudder (class configured
 for Cipher(provider: BC)cannot be found)
 (https://www.rudder-project.org/redmine/issues/12606[#12606])
-* Fixed: Typo beeing -> being in rudder manual
+* Fixed: Typo being -> being in rudder manual
 (https://www.rudder-project.org/redmine/issues/12506[#12506])
 * Fixed: Fix various typos in ncf doc
 (https://www.rudder-project.org/redmine/issues/12570[#12570])
@@ -525,7 +525,7 @@ escaped but it should not
 
 ==== Generic methods
 
-* Fixed: Job cheduler methods whith mode are broken
+* Fixed: Job cheduler methods with mode are broken
 (https://www.rudder-project.org/redmine/issues/12378[#12378])
 * Fixed: Missing report for ``Shared file to node''
 (https://www.rudder-project.org/redmine/issues/12377[#12377])
@@ -855,7 +855,7 @@ locale (https://www.rudder-project.org/redmine/issues/12131[#12131])
 (https://www.rudder-project.org/redmine/issues/3377[#3377])
 * Fixed: typo in rudder-server relay package install output
 (https://www.rudder-project.org/redmine/issues/12064[#12064])
-* Fixed: Reload of techniques after update throught technique editor
+* Fixed: Reload of techniques after update thought technique editor
 should only be done by Rudder, remove reload.sh hook
 (https://www.rudder-project.org/redmine/issues/12010[#12010])
 * Fixed: Upgrade Java version used when building webapp on old debian
@@ -870,7 +870,7 @@ versions, since oracle jvm links has changed
 
 * Fixed: If we a have generic method command_execution with parameter
 /bin/true, we get an error on reporting for syslog restart on non-aix
-nor solaris sytem
+nor solaris system
 (https://www.rudder-project.org/redmine/issues/12139[#12139])
 * Fixed: Rudder server installation fails if apache cannot resolve
 server hostname
@@ -1224,7 +1224,7 @@ version for windows nodes
 
 * Fixed: Groups are not reloaded after restoring from archive
 (https://www.rudder-project.org/redmine/issues/11244[#11244])
-* Fixed: Unkown agent version in Windows node details
+* Fixed: Unknown agent version in Windows node details
 (https://www.rudder-project.org/redmine/issues/11396[#11396])
 
 ==== Web - Config management
@@ -1776,7 +1776,7 @@ logs tab (https://www.rudder-project.org/redmine/issues/11083[#11083])
 ==== Miscellaneous
 
 * Fixed: Generated technique name for dsc technique in
-rudder-directives.ps1 contains forbiden chars
+rudder-directives.ps1 contains forbidden chars
 (https://www.rudder-project.org/redmine/issues/11071[#11071])
 
 ==== Agent
@@ -1834,7 +1834,7 @@ feedback!
 (https://www.rudder-project.org/redmine/issues/10927[#10927])
 * Add system groups/rules/directives for windows dsc agent
 (https://www.rudder-project.org/redmine/issues/10953[#10953])
-* Generate a ``rudder.json'' file containting system variables
+* Generate a ``rudder.json'' file containing system variables
 (https://www.rudder-project.org/redmine/issues/10936[#10936])
 * Select system techniques and generate correct policies based on agent
 type (https://www.rudder-project.org/redmine/issues/10823[#10823])

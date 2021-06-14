@@ -136,7 +136,7 @@ Ignore case during diff: >
 
 Dynamically figure out the diff text.  If you are using and i18n version of
 diff, this will try to get the specific diff text during runtime.  It's turned
-off by default.  If you are always targetting a specific version of diff, you
+off by default.  If you are always targeting a specific version of diff, you
 can turn this off and set the DirDiffText* variables accordingly: >
 
     let g:DirDiffDynamicDiffText = 0
@@ -240,7 +240,7 @@ HISTORY                                         *dirdiff-history*
      - Custom configuration through global variables.
      - Change exclude and ignore patterns on the fly.
       
-0.9  - Reorganization of the interface.  Much simplier dialog for
+0.9  - Reorganization of the interface.  Much simpler dialog for
        synchronization.  Support for range synchronization option (REALLY
        powerful)
      - Removed unnecessary key bindings.  All key bindings are local to

@@ -254,7 +254,7 @@ release is marked as `old-stable' since a subsequent release (branch
 group creation even if option is not set
 (https://issues.rudder.io/issues/5001[#5001])
 * Fixed: Technique User management: cannot create an user if a group
-using the same name laready exists
+using the same name already exists
 (https://issues.rudder.io/issues/4270[#4270])
 
 ==== Techniques - Sys & init promis
@@ -335,7 +335,7 @@ is too greedy when matching execuction timestamp
 
 * Fixed: Solaris Node are not correctly identified by Rudder inventory
 process (https://issues.rudder.io/issues/4701[#4701])
-* Fixed: Network interface sharing the ip adress are ignored by the
+* Fixed: Network interface sharing the ip address are ignored by the
 inventory parser
 (https://issues.rudder.io/issues/4883[#4883])
 
@@ -356,7 +356,7 @@ compiling (https://issues.rudder.io/issues/4853[#4853])
 ==== Packaging
 
 * Fixed: Rudder init script may not correctly initialize
-policy_server.dat file, resulting in a non functionning Rudder server
+policy_server.dat file, resulting in a non functioning Rudder server
 (https://issues.rudder.io/issues/4915[#4915])
 
 ==== System integration
@@ -1008,7 +1008,7 @@ are invited to upgrade all pre-2.6 installations to it as soon as
 possible to enjoy the latest features with a still stable and more
 polished version.
 
-The previous release (2.6.8) was not publicly annouced as it
+The previous release (2.6.8) was not publicly announced as it
 unfortunately did not meet our quality and assurance requirements.
 
 == Rudder 2.6.6 (2013-10-03)
@@ -1584,7 +1584,7 @@ screens (1024*768)
 
 * Technique [OpenSSH](OpenSSH) +
 Server v2.0: Reporting for SSH port configuration Component Key is not
-functionnal if port are not defined
+functional if port are not defined
 (https://issues.rudder.io/issues/3247[#3247])
 * CFEngine internal database verification should depend on the CFEngine
 version as [BerkeleyDB](BerkeleyDB) +

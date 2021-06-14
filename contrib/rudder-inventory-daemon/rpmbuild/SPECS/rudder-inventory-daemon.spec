@@ -60,7 +60,7 @@ Source4:   %{name}.init
 
 %description
 Rudder add-on with a perl-based daemon, that sets up inofity-listener,
-so that incoming inventory files (via WebDAV) are queued and transfered
+so that incoming inventory files (via WebDAV) are queued and transferred
 to the destination. On a Non-Root server (Relays) this is the upload
 directory of the parent policy server, on the Root server the inventory
 endpoint.

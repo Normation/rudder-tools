@@ -241,7 +241,7 @@ be escaped to be used
 ==== Core
 
 * Remove CFEngine connection limit which could lead to all the
-Directives using Generic Variable to be in error if an error occured
+Directives using Generic Variable to be in error if an error occurred
 with a Directive based on ``Download from a shared folder''
 (https://issues.rudder.io/issues/3052[#3052])
 * Remove 64 characters limitation of the reporting keys due to rsyslog
@@ -274,7 +274,7 @@ category list in a randomize order without hierarchy
 ``Content add'' is empty
 (https://issues.rudder.io/issues/3069[#3069])
 * PT ``OpenSSH Server'': Fix value ``Don’t change'' of the parameter
-``Adress family used by sshd'' which brake ssh configuration
+``Address family used by sshd'' which brake ssh configuration
 (https://issues.rudder.io/issues/2987[#2987])
 * PT ``OpenSSH Server'': Fix OpenSSH installation on (SuSE machines
 which couldn’t be installed with zypper

@@ -73,7 +73,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Web - Config management
 
-* Fixed: Groups are not commited in configuration-repository on modification
+* Fixed: Groups are not committed in configuration-repository on modification
     (https://issues.rudder.io/issues/18207[#18207])
 
 ==== System integration
@@ -83,7 +83,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Techniques
 
-* Fixed: Technique resources should not be commited on server upgrade
+* Fixed: Technique resources should not be committed on server upgrade
     (https://issues.rudder.io/issues/18213[#18213])
 
 === Release notes
@@ -319,7 +319,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: 'policyMode' vs. 'policy' in node settings API
     (https://issues.rudder.io/issues/17817[#17817])
-* Fixed: API documentation on Rules is missing explaination on how to update rule category
+* Fixed: API documentation on Rules is missing explanation on how to update rule category
     (https://issues.rudder.io/issues/17409[#17409])
 * Fixed: Bad JSON answer for api PUT /rules
     (https://issues.rudder.io/issues/17388[#17388])
@@ -530,7 +530,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Web - Technique editor
 
-* Fixed: Technique diverge popup when comming back to a techniques because of a change of category
+* Fixed: Technique diverge popup when coming back to a techniques because of a change of category
     (https://issues.rudder.io/issues/17400[#17400])
 
 ==== Technique editor - UI/UX
@@ -1038,13 +1038,13 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: NullPointerException with hundreds of inventories at once
     (https://issues.rudder.io/issues/14991[#14991])
-* Fixed: Unecessary compliance computations when historization of Node Compliance is disabled
+* Fixed: Unnecessary compliance computations when historization of Node Compliance is disabled
     (https://issues.rudder.io/issues/16643[#16643])
-* Fixed: Unecessary compliance computations when historization of Node Compliance is disabled
+* Fixed: Unnecessary compliance computations when historization of Node Compliance is disabled
     (https://issues.rudder.io/issues/16643[#16643])
 * Fixed: CachedFindRuleNodeStatusReports is a huge source of contention
     (https://issues.rudder.io/issues/16557[#16557])
-* Fixed: Unecessary call to trim on empty string when creating executionBatch
+* Fixed: Unnecessary call to trim on empty string when creating executionBatch
     (https://issues.rudder.io/issues/16522[#16522])
 * Fixed: Node never updated because of nonEmpty in place of isEmpty
     (https://issues.rudder.io/issues/16537[#16537])
@@ -1052,7 +1052,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16524[#16524])
 * Fixed: JVM GC cannot clean objects in scope in a for { } yield {} even if they are not referenced anymore
     (https://issues.rudder.io/issues/16513[#16513])
-* Fixed: StatusReportTest leads to inconsistant results
+* Fixed: StatusReportTest leads to inconsistent results
     (https://issues.rudder.io/issues/16496[#16496])
 
 ==== Miscellaneous
@@ -1332,7 +1332,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: Technique are lost when a new one is created because of selinux (centos 7 and 8)
     (https://issues.rudder.io/issues/16393[#16393])
-* Fixed: Technique editor access authorization seems incorect 
+* Fixed: Technique editor access authorization seems incorrect 
     (https://issues.rudder.io/issues/16386[#16386])
 
 ==== Documentation
@@ -1363,7 +1363,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16389[#16389])
 * Fixed: Title are too big in doc blocks of the settings page
     (https://issues.rudder.io/issues/16113[#16113])
-* Fixed: "Reload techniques" button has a slighly different color
+* Fixed: "Reload techniques" button has a slightly different color
     (https://issues.rudder.io/issues/16320[#16320])
 
 ==== Web - Compliance & node report
@@ -1525,7 +1525,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16366[#16366])
 * Fixed: service rudder-jetty is not activated after upgrade from 5.0 to 6.0 on centos7
     (https://issues.rudder.io/issues/16364[#16364])
-* Fixed: Upgrade script fails on unkown git branch
+* Fixed: Upgrade script fails on unknown git branch
     (https://issues.rudder.io/issues/16363[#16363])
 * Fixed: Empty maxsize parameter in ldap conf after update to 6.0
     (https://issues.rudder.io/issues/16350[#16350])
@@ -1661,7 +1661,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16156[#16156])
 * Fixed: Missing link to the beginning of the guide in getting strated home page
     (https://issues.rudder.io/issues/15408[#15408])
-* Fixed: Document that a full policy regeneration is necessary after a backup restauration
+* Fixed: Document that a full policy regeneration is necessary after a backup restoration
     (https://issues.rudder.io/issues/15984[#15984])
 * Fixed: Use MB instead of mB for megabytes in the doc
     (https://issues.rudder.io/issues/14161[#14161])
@@ -1929,7 +1929,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/14913[#14913])
 * Move away from python 2 to python 3
     (https://issues.rudder.io/issues/14881[#14881])
-* Remove cf-monitord to save space
+* Remove cf-monitored to save space
     (https://issues.rudder.io/issues/14837[#14837])
 * Cleanup rudder agent postinst
     (https://issues.rudder.io/issues/14836[#14836])
@@ -2502,7 +2502,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16001[#16001])
 * Fixed: Add benchmarks for big nodes lists
     (https://issues.rudder.io/issues/16013[#16013])
-* Fixed: Receiving a report for an unkown node crashes the watcher
+* Fixed: Receiving a report for an unknown node crashes the watcher
     (https://issues.rudder.io/issues/15999[#15999])
 * Fixed: Remote-run returns empty output
     (https://issues.rudder.io/issues/15990[#15990])
@@ -2623,7 +2623,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15334[#15334])
 * Fixed: Don't set root owner on slapd config
     (https://issues.rudder.io/issues/15326[#15326])
-* Fixed: Wrong variable name when downloading inital promises from the server
+* Fixed: Wrong variable name when downloading initial promises from the server
     (https://issues.rudder.io/issues/15316[#15316])
 * Fixed: at install on the server on centos7, rudder-system-directives.cf is empty, and so, there are missing bundles when running the agent
     (https://issues.rudder.io/issues/15309[#15309])
@@ -2731,7 +2731,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15547[#15547])
 * Fixed: Wrong name for all nodes certificates files
     (https://issues.rudder.io/issues/15403[#15403])
-* Fixed: When receving pleinty of inventories at the same time, the web interface starts to parse them all at once 
+* Fixed: When receiving pleinty of inventories at the same time, the web interface starts to parse them all at once 
     (https://issues.rudder.io/issues/15012[#15012])
 * Fixed: Broken certificate handling in Unix nodes
     (https://issues.rudder.io/issues/15331[#15331])
@@ -2863,7 +2863,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15189[#15189])
 * Fixed: in 5.1 the bundle ncf_configuration_basedir does not exists anymore 
     (https://issues.rudder.io/issues/14911[#14911])
-* Fixed: ncf_lib shoudl not exist in 5.1 anymore
+* Fixed: ncf_lib should not exist in 5.1 anymore
     (https://issues.rudder.io/issues/14787[#14787])
 * Fixed: Unwanted "methods" promise in log_rudder.cf
     (https://issues.rudder.io/issues/14198[#14198])

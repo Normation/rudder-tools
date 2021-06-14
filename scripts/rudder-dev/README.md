@@ -5,7 +5,7 @@ This tool is the workhorse for everyday operations for Rudder developers.
 
 In particular, it automates many tasks including:
 * Creating a branch to fix a ticket
-* Commiting, pushing and creating a pull request to submit work for a ticket
+* Committing, pushing and creating a pull request to submit work for a ticket
 * Amending or rebasing an existing pull request
 * Merging pull requests or branches
 

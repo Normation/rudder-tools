@@ -2,7 +2,7 @@
 
 Terraform module which creates EC2 instances on AWS to deploy Rudder 5.0 infrastructure.
 
-Synposis
+Synopsis
 ~~~~~~~~
 
 * This file contains environnement specific configuration like region name, CIDR blocks, 
@@ -30,7 +30,7 @@ NOTE: Make sure that you are in terraform scripts directory.
 terraform init
 ----
 
-* Theses commands allows you respectively to execute and write a plan to apply, execute the plan to change your infrastracture states and finally deleting all the resources :
+* Theses commands allows you respectively to execute and write a plan to apply, execute the plan to change your infrastructure states and finally deleting all the resources :
 
 ----
 terraform plan 

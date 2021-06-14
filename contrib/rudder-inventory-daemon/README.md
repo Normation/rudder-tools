@@ -7,10 +7,10 @@ which is run every 5 minutes for policy server.
 
 We identified multiple issues hitting environments with many thousand nodes, where the 
 processing queue of the inventory endpoint got saturated by batches of 50, and processing
-inventories was not a continous process. Also, if an inventory breaks the processing engine
+inventories was not a continuous process. Also, if an inventory breaks the processing engine
 and that errors our, there is no proper handling, and it will retry it until manually removed.
 
-This might mulitply up if you have chained Rudder Relay servers, causing a "lag" 
+This might multiply up if you have chained Rudder Relay servers, causing a "lag" 
 between the Rudder node sending the inventory and the Root server processing it.
 
 After having a node installed or updated, this might cause an unwanted delay, up to n x 5Min,

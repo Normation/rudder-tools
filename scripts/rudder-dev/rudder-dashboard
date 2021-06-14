@@ -2,7 +2,7 @@
 # coding: utf8
 
 """
-Dashboard for Rudder developpers.
+Dashboard for Rudder developers.
 
 This tool shares its configuration file with rudder-dev.
 

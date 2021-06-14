@@ -84,7 +84,7 @@ default:
 uploader:
 
   ######
-  ## Wait for siganture to be uploaded for before submitting without signature to the endpoint
+  ## Wait for signature to be uploaded for before submitting without signature to the endpoint
   
 #  DEFAULT_SIG_WAIT_TIME_SECS: 120
   

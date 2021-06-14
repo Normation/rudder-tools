@@ -72,7 +72,7 @@ Rudder 6.2 is currently a maintained version of Rudder.
 
 ==== Security
 
-* Fixed: Check dependencie fails with NPE
+* Fixed: Check dependence fails with NPE
     (https://issues.rudder.io/issues/19231[#19231])
 
 ==== Web - UI & UX
@@ -596,7 +596,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Performance and scalability
 
-* Fixed: In Rudder 6.2.0 inventory processing merge_uuid part get extremelly slow on debian
+* Fixed: In Rudder 6.2.0 inventory processing merge_uuid part get extremely slow on debian
     (https://issues.rudder.io/issues/12937[#12937])
 
 ==== API
@@ -694,7 +694,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
     (https://issues.rudder.io/issues/18747[#18747])
 * Fixed: Remove plugin notice during upgrade
     (https://issues.rudder.io/issues/18742[#18742])
-* Fixed: /var/rudder/config-repo/.gitignore is overriden by packaging
+* Fixed: /var/rudder/config-repo/.gitignore is overridden by packaging
     (https://issues.rudder.io/issues/17995[#17995])
 
 ==== Agent
@@ -1016,7 +1016,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 * Fixed: API ACL order is lost for users
     (https://issues.rudder.io/issues/18664[#18664])
-* Fixed: API message when a node details is not found is extremelly misleading
+* Fixed: API message when a node details is not found is extremely misleading
     (https://issues.rudder.io/issues/18654[#18654])
 * Fixed: Bad file name in api-doc: set-allowed-networks.yml
     (https://issues.rudder.io/issues/18608[#18608])
@@ -1042,7 +1042,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Architecture - Internal libs
 
-* Fixed: semaphore gurading LDAP repos are created each time
+* Fixed: semaphore guarding LDAP repos are created each time
     (https://issues.rudder.io/issues/18584[#18584])
 * Fixed: If LDAP server does not support subtree deletion, we get error when entry does not exists
     (https://issues.rudder.io/issues/18529[#18529])

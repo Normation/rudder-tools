@@ -120,7 +120,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 ==== Techniques
 
-* Fixed: version comparision in Technique "Install Software" is error prone
+* Fixed: version comparison in Technique "Install Software" is error prone
     (https://issues.rudder.io/issues/14308[#14308])
 * Fixed: error when installing a software with technique "Windows software" if software is in a subdirectory
     (https://issues.rudder.io/issues/14305[#14305])

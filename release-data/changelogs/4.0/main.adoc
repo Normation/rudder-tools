@@ -90,7 +90,7 @@ Ubuntu 10.04, Ubuntu 12.04, Ubuntu 12.10*
 
 * Fixed: check-rudder-agent doesn’t purge the lmdb file when run via
 cron (https://www.rudder-project.org/redmine/issues/10771[#10771])
-* Fixed: If component value starts with # , report is not outputed by
+* Fixed: If component value starts with # , report is not outputted by
 rudder agent output
 (https://www.rudder-project.org/redmine/issues/10601[#10601])
 * Fixed: rudder agent start fails on sles12
@@ -195,7 +195,7 @@ Chrome (https://www.rudder-project.org/redmine/issues/9780[#9780])
 
 ==== Performance and scalability
 
-* Fixed: Unecessary call to inventory code to check its version during
+* Fixed: Unnecessary call to inventory code to check its version during
 policy validation
 (https://www.rudder-project.org/redmine/issues/10641[#10641])
 
@@ -268,7 +268,7 @@ a zombie state and the error page is not displayed
 
 ==== Agent
 
-* Fixed: If component value starts with # , report is not outputed by
+* Fixed: If component value starts with # , report is not outputted by
 rudder agent output
 (https://www.rudder-project.org/redmine/issues/10601[#10601])
 * Fixed: Thell the user a node needs to be removed from the server when
@@ -823,7 +823,7 @@ for deployment
 (https://issues.rudder.io/issues/9564[#9564])
 * Use $releasever in upgrade section for RHEL
 (https://issues.rudder.io/issues/9439[#9439])
-* Update documentation to have version independant repo
+* Update documentation to have version independent repo
 (https://issues.rudder.io/issues/9422[#9422])
 * Use release info to get ncf version to use in doc
 (https://issues.rudder.io/issues/9393[#9393])

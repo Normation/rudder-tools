@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -ex
+
+PYTHONPATH="$PYTHONPATH:./scripts/rudder-dev/"
+
+test_shell()
+{
+  mkdir -p .shellcheck
+  find . \( -path ./.git -prune -o -path *.py -prune -o -path ./rudder-lang/target -prune -o -path ./rudder-lang/repos -prune -o -path ./relay/sources/relayd/target -prune \) -o -type f -exec grep -Eq '^#!(.*/|.*env +)(sh|bash|ksh)' {} \; -print |
+    while IFS="" read -r file
+    do
+      # collect all warnings
+      shellcheck --format=checkstyle "$file" > .shellcheck/$(basename ${file}).log || true
+      # fail on >=error
+      shellcheck --severity error "$file"
+    done
+}
+
+# fails on error and ignores other levels
+test_shell_error()
+{
+  # Shellcheck
+  find . \( -path ./.git -prune -o -path *.py -prune -o -path ./rudder-lang/target -prune -o -path ./rudder-lang/repos -prune -o -path ./relay/sources/relayd/target -prune \) -o -type f -exec grep -Eq '^#!(.*/|.*env +)(sh|bash|ksh)' {} \; -print |
+    while IFS="" read -r file
+    do
+      # with recent shellcheck, "-S error" replaces this hack
+      # kept as this runs on machines running rudder-dev
+      shellcheck --format gcc "$file" | grep " error: " && exit 1 || true
+    done
+}
+
+# fails on error and ignores other levels
+test_python_error()
+{
+  PYLINT="pylint"
+  if type pylint3 >/dev/null; then
+    PYLINT="pylint3"
+  fi
+  cd scripts/rudder-dev && make && cd -
+  ${PYLINT} -E --persistent=n --disable=C,R,import-error,no-member,no-name-in-module scripts/rudder-dev/rudder-dev
+  find . ! -wholename './scripts/ansible/*' ! -name 'load-database.py' ! -name 'rudder_prettyprint.py' ! -name 'rcli.py' ! -wholename './scripts/rudder-dev/*' ! -wholename './release-data/tests/*' -name '*.py' | xargs ${PYLINT} -E --persistent=n --disable=C,R,import-error,no-member,no-name-in-module
+}
+
+#####
+
+if [ "$1" = "--shell" ]; then
+  test_shell
+  exit 0
+elif [ "$1" = "--python" ]; then
+  test_python_error
+  exit 0
+else
+  # quick tests to be launched during merge
+  test_shell_error
+  test_python_error
+fi

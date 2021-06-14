@@ -92,7 +92,7 @@ TECHNIQUE
         rudder-dev technique 4.0 "Add a new option"
 
 SUBTASK
-    Call it after commiting a patch and you want a different patch on the next version.
+    Call it after committing a patch and you want a different patch on the next version.
     Or if you want to extend a feature from one branch in a new branch.
     Or if just discovered a bug in a PR that was just merdged.
     For example, after a ncf v0.x patch you want to amend it in ncf v1.
@@ -468,9 +468,9 @@ def create_pr(master_branch, issue, message):
     return result['html_url']
   elif 'errors' in result and 'message' in result['errors'][0]:
     error_message = result['errors'][0]['message']
-    logfail("Error occured in create PR: " + error_message)
+    logfail("Error occurred in create PR: " + error_message)
   else:
-    logfail("Unkown error occured in create PR")
+    logfail("Unknown error occurred in create PR")
 
   if not Config.force:
     exit(16)
@@ -539,7 +539,7 @@ def commit_push(branch, message, force_amend=False, fixup=False):
     branch_issue_id = issue_from_branch(current_branch).id
     # refuse wrong amend unless forced
     if commit_issue_id != branch_issue_id:
-      print("You are trying to ammend on a commit that is not on the same branch as your issue, this is likely an error !")
+      print("You are trying to amend on a commit that is not on the same branch as your issue, this is likely an error !")
       print("  Commit: " + commit)
       print("  Branch: " + current_branch)
       print("You may want to do a 'rudder-dev commit' first")
@@ -567,7 +567,7 @@ def commit_push(branch, message, force_amend=False, fixup=False):
     commit_cmd += " --amend --no-edit"
   if fixup:
     commit_cmd += " --fixup HEAD"
-  shell(commit_cmd, "Commiting")
+  shell(commit_cmd, "Committing")
 
   # Should we check the need for rebasing before pushing ?
 
@@ -834,7 +834,7 @@ def technique(version, message):
   shell("git add " + version, "Adding next version")
   technique = os.path.basename(cwd)
   commit_cmd = "git commit -m \"Refs #" + str(issue.id) + ": Creation of " + technique + " version " + version + " from " + last_version + "\""
-  shell(commit_cmd, "Commiting")
+  shell(commit_cmd, "Committing")
 
 
 # clone ticket, change version, branch, helper

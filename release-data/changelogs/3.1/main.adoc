@@ -420,7 +420,7 @@ Chrome (https://www.rudder-project.org/redmine/issues/9780[#9780])
 
 ==== Performance and scalability
 
-* Fixed: Unecessary call to inventory code to check its version during
+* Fixed: Unnecessary call to inventory code to check its version during
 policy validation
 (https://www.rudder-project.org/redmine/issues/10641[#10641])
 
@@ -486,7 +486,7 @@ a zombie state and the error page is not displayed
 
 ==== Agent
 
-* Fixed: If component value starts with # , report is not outputed by
+* Fixed: If component value starts with # , report is not outputted by
 rudder agent output
 (https://www.rudder-project.org/redmine/issues/10601[#10601])
 
@@ -847,7 +847,7 @@ the release enterprise-ready for deployment.
 (https://issues.rudder.io/issues/9564[#9564])
 * Use $releasever in upgrade section for RHEL
 (https://issues.rudder.io/issues/9439[#9439])
-* Update documentation to have version independant repo
+* Update documentation to have version independent repo
 (https://issues.rudder.io/issues/9422[#9422])
 * Use release info to get ncf version to use in doc
 (https://issues.rudder.io/issues/9393[#9393])
@@ -2223,7 +2223,7 @@ services (ie jetty)
 
 * Fixed: rudder-init broken on SLES
 (https://issues.rudder.io/issues/7991[#7991])
-* Fixed: Missing usefull logger in logger file
+* Fixed: Missing useful logger in logger file
 (https://issues.rudder.io/issues/7910[#7910])
 * Fixed: Errors with apache on ubuntu 12.04
 (https://issues.rudder.io/issues/6763[#6763])
@@ -2893,7 +2893,7 @@ SLES (https://issues.rudder.io/issues/7205[#7205])
 
 ==== Performance and scalability
 
-* Fixed: Writting promises should be parallelized
+* Fixed: Writing promises should be parallelized
 (https://issues.rudder.io/issues/7265[#7265])
 
 === Release notes
@@ -3290,7 +3290,7 @@ configurable in /etc/default
 
 ==== Documentation
 
-* Fixed: Wrong hierachy in archives section of the manual
+* Fixed: Wrong hierarchy in archives section of the manual
 (https://issues.rudder.io/issues/6909[#6909])
 * Fixed: Broken asciidoc list formatting
 (https://issues.rudder.io/issues/6778[#6778])
@@ -3353,7 +3353,7 @@ and believe it to be free of any major bugs.
 
 ==== Web - Compliance & node report
 
-* Fixed: Compliance in dashboard and rule page are not consistant
+* Fixed: Compliance in dashboard and rule page are not consistent
 (https://issues.rudder.io/issues/6663[#6663])
 * Fixed: The Global compliance is buggy when there is no data
 (https://issues.rudder.io/issues/6633[#6633])

@@ -46,7 +46,7 @@ SLES 10 and Ubuntu 10.04*
 group creation even if option is not set
 (https://issues.rudder.io/issues/5001[#5001])
 * Fixed: Technique User management: cannot create an user if a group
-using the same name laready exists
+using the same name already exists
 (https://issues.rudder.io/issues/4270[#4270])
 
 ==== Techniques - Sys & init promis
@@ -200,7 +200,7 @@ running several time same job
 ==== Packaging
 
 * Fixed: Rudder init script may not correctly initialize
-policy_server.dat file, resulting in a non functionning Rudder server
+policy_server.dat file, resulting in a non functioning Rudder server
 (https://issues.rudder.io/issues/4915[#4915])
 
 ==== System integration
@@ -232,7 +232,7 @@ not behaving properly, and node is in NoAnswer state
 
 * Fixed: Solaris Node are not correctly identified by Rudder inventory
 process (https://issues.rudder.io/issues/4701[#4701])
-* Fixed: Network interface sharing the ip adress are ignored by the
+* Fixed: Network interface sharing the ip address are ignored by the
 inventory parser
 (https://issues.rudder.io/issues/4883[#4883])
 

@@ -2,7 +2,7 @@
 
 AWS CloudFormation allows us to implement "Infrastructure as Code" in AWS environnement to deploy Rudder 5.0 infrastructure as a "stack" of "resources" in one step.
 
-Synposis
+Synopsis
 ~~~~~~~~
 
 * This file contains environnement specific configuration like region name, CIDR blocks.

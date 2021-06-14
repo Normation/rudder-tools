@@ -2,7 +2,7 @@
 
 == Goal
 
-This inventory hook allows gathering information about available data on the EC2 instance, using the following url to wiew all categories of instance metadata from within a running instance: 
+This inventory hook allows gathering information about available data on the EC2 instance, using the following url to view all categories of instance metadata from within a running instance: 
 
 ----
 http://169.254.169.254/latest/
@@ -37,7 +37,7 @@ This hook provides three properties named `AWS-metadata` `AWS-dynamic` `AWS-use
 ----
 
 === AWS-dynamic
-* With dynamic data, the options still usefull to retrievr a resume like document, in a JSON format.
+* With dynamic data, the options still useful to retrievr a resume like document, in a JSON format.
 
 ----
 "AWS-dynamic": {

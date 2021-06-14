@@ -349,7 +349,7 @@ def setrefvalue(dataObj, ref, value):
         raise Exception("Dead reference")
 
 def findrefs(obj, refs, namespace):
-    """ Find all of the @@@references in a dictionary heirarchy.
+    """ Find all of the @@@references in a dictionary hierarchy.
         Return them as a list """
     if isinstance(obj,dict):
         for k, v in obj.items():
@@ -367,7 +367,7 @@ def resolveRefs(dataObj, refs):
             # Get reference
             dataRef = getrefvalue(dataObj, i)
 
-            # Check if the refernce points to a parent scope (b.c -> b)
+            # Check if the reference points to a parent scope (b.c -> b)
             if type(dataRef) == str:
                 if dataRef[:3] == "@@@":
                     if '.'+dataRef[3:] == i[:len(dataRef[3:])+1]:

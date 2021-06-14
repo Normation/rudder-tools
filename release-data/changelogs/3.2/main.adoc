@@ -237,7 +237,7 @@ latest features and improvements of a more mature and stable version.
 (https://issues.rudder.io/issues/9564[#9564])
 * Use $releasever in upgrade section for RHEL
 (https://issues.rudder.io/issues/9439[#9439])
-* Update documentation to have version independant repo
+* Update documentation to have version independent repo
 (https://issues.rudder.io/issues/9422[#9422])
 * Use release info to get ncf version to use in doc
 (https://issues.rudder.io/issues/9393[#9393])
@@ -1738,7 +1738,7 @@ services (ie jetty)
 
 * Fixed: rudder-init broken on SLES
 (https://issues.rudder.io/issues/7991[#7991])
-* Fixed: Missing usefull logger in logger file
+* Fixed: Missing useful logger in logger file
 (https://issues.rudder.io/issues/7910[#7910])
 * Fixed: Errors with apache on ubuntu 12.04
 (https://issues.rudder.io/issues/6763[#6763])
@@ -2215,7 +2215,7 @@ on Linux Debian for example)
 
 * Cleanup 3.2 after reverting solaris changes
 (https://issues.rudder.io/issues/7351[#7351])
-* Refactor & clean up promise writting part
+* Refactor & clean up promise writing part
 (https://issues.rudder.io/issues/7310[#7310])
 * Move eventlog and authz project into rudder
 (https://issues.rudder.io/issues/7145[#7145])

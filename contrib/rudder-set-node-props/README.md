@@ -1,6 +1,6 @@
 # Rudder set nodes properties tool
 
-This folder contains a utility whose purpose is to set node properties for a Rudder node to be able to seach on that properties
+This folder contains a utility whose purpose is to set node properties for a Rudder node to be able to search on that properties
 
 It connects to Rudder via the API and sets the node properties
 

@@ -173,7 +173,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
 
 ==== Web - Maintenance
 
-* Fixed: Invalid comparision of String and Option[String] in HistorizationService 
+* Fixed: Invalid comparison of String and Option[String] in HistorizationService 
     (https://issues.rudder.io/issues/14770[#14770])
 
 ==== Techniques
@@ -630,7 +630,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
 
 ==== Agent
 
-* Fixed: Agent run errors are not outputed on stderr anymore
+* Fixed: Agent run errors are not outputted on stderr anymore
     (https://issues.rudder.io/issues/14061[#14061])
 
 ==== Miscellaneous
@@ -724,7 +724,7 @@ first run (https://issues.rudder.io/issues/13846[#13846])
 (https://issues.rudder.io/issues/13839[#13839])
 * Fixed: Agent should depend on a logging system on SUSE
 (https://issues.rudder.io/issues/13788[#13788])
-* Fixed: On rudder-webapp upgrade, ncf.conf file is not commited
+* Fixed: On rudder-webapp upgrade, ncf.conf file is not committed
 (https://issues.rudder.io/issues/13679[#13679])
 
 ==== Agent
@@ -967,7 +967,7 @@ status (https://www.rudder-project.org/redmine/issues/13753[#13753])
 fail on Ubuntu12 on Rudder 4.1
 (https://www.rudder-project.org/redmine/issues/13747[#13747])
 * Fixed: Time lib may not work when the first non-loopback interface has
-no ip adress
+no ip address
 (https://www.rudder-project.org/redmine/issues/13744[#13744])
 * Fixed: Remove comment about classes_generic_two being deprecated
 (https://www.rudder-project.org/redmine/issues/13286[#13286])
@@ -998,7 +998,7 @@ with default value for the ``state'' parameter
 available (https://www.rudder-project.org/redmine/issues/13745[#13745])
 * Fixed: Missing report in ``Manage keys-values in file'' technique
 (https://www.rudder-project.org/redmine/issues/13715[#13715])
-* Fixed: Missing reporting in ``Permisisons recurse'' method
+* Fixed: Missing reporting in ``Permissions recurse'' method
 (https://www.rudder-project.org/redmine/issues/13683[#13683])
 * Fixed: Generic Method ``File copy from remote source'' does not report
 when copying a directory
@@ -1248,7 +1248,7 @@ not supported, you probably tried to use one!'' - but it does support it
 * Fixed: rudder server upgrade-techniques –autoupdate-technique-library
 fails when run during Rudder upgrade
 (https://www.rudder-project.org/redmine/issues/13458[#13458])
-* Fixed: cebtos7 install_package_existant should be skipped
+* Fixed: cebtos7 install_package_existent should be skipped
 (https://www.rudder-project.org/redmine/issues/13596[#13596])
 * Fixed: Makefile fails if a symbolink link /usr/bin/ncf already exists
 (https://www.rudder-project.org/redmine/issues/13277[#13277])
@@ -1526,7 +1526,7 @@ http://localhost/rudder (but can https://..)
 * Fixed: NodeInfoCache is precise to the second but we need it to be
 precise to the millisecond
 (https://www.rudder-project.org/redmine/issues/12988[#12988])
-* Fixed: root node disapeared while upgrading from 4.1 to 4.3 on debian
+* Fixed: root node disappeared while upgrading from 4.1 to 4.3 on debian
 9 (https://www.rudder-project.org/redmine/issues/12474[#12474])
 * Fixed: In inventory, ``motherboardid'' is not the mother board id but
 the machine id
@@ -1747,7 +1747,7 @@ templating (https://www.rudder-project.org/redmine/issues/12761[#12761])
 
 ==== Web - Compliance & node report
 
-* Overriden directives are not listed in reports information
+* Overridden directives are not listed in reports information
 (https://www.rudder-project.org/redmine/issues/7616[#7616])
 
 ==== Packaging
@@ -1908,7 +1908,7 @@ interface has no ip address
 
 ==== Documentation
 
-* Fixed: Documentaiton should use full path to rudder-pkg for command
+* Fixed: Documentation should use full path to rudder-pkg for command
 examples (https://www.rudder-project.org/redmine/issues/12771[#12771])
 * Fixed: Adding missings informations for Windows plugin installation
 (https://www.rudder-project.org/redmine/issues/12748[#12748])
@@ -2059,7 +2059,7 @@ when looking at the Rules to be applied
 
 * Fixed: Wrong service name in agent install instruction in 4.3
 (https://www.rudder-project.org/redmine/issues/12569[#12569])
-* Fixed: Typo beeing -> being in rudder manual
+* Fixed: Typo being -> being in rudder manual
 (https://www.rudder-project.org/redmine/issues/12506[#12506])
 * Fixed: Add a favicon for Rudder by example
 (https://www.rudder-project.org/redmine/issues/12490[#12490])
@@ -2281,7 +2281,7 @@ the release enterprise-ready for deployment.
 
 * Fixed: Canonify job-id in classes for scheduler methods
 (https://www.rudder-project.org/redmine/issues/12382[#12382])
-* Fixed: Job cheduler methods whith mode are broken
+* Fixed: Job cheduler methods with mode are broken
 (https://www.rudder-project.org/redmine/issues/12378[#12378])
 * Fixed: Unexpected report on several methods due to non-executed
 bundles (https://www.rudder-project.org/redmine/issues/12368[#12368])
@@ -2735,7 +2735,7 @@ during postinst
 (https://www.rudder-project.org/redmine/issues/12086[#12086])
 * Fixed: If we a have generic method command_execution with parameter
 /bin/true, we get an error on reporting for syslog restart on non-aix
-nor solaris sytem
+nor solaris system
 (https://www.rudder-project.org/redmine/issues/12139[#12139])
 
 ==== API
@@ -3042,11 +3042,11 @@ SLES (https://www.rudder-project.org/redmine/issues/11885[#11885])
 
 ==== Packaging
 
-* Fixed: rudder-pkg 4.3 belives it is rudder 4.2
+* Fixed: rudder-pkg 4.3 believes it is rudder 4.2
 (https://www.rudder-project.org/redmine/issues/12074[#12074])
 * Fixed: typo in rudder-server relay package install output
 (https://www.rudder-project.org/redmine/issues/12064[#12064])
-* Fixed: Reload of Techniques after update throught Technique editor
+* Fixed: Reload of Techniques after update thought Technique editor
 should only be done by Rudder, remove reload.sh hook
 (https://www.rudder-project.org/redmine/issues/12010[#12010])
 * Fixed: Upgrade Java version used when building webapp on old debian

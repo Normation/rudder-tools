@@ -10,7 +10,7 @@ Some vulnerabilities and their mitigation are documented in the https://github.c
 
 == Property
 
-This hook produced a property named `cpu_vulnerabilities` wich contains a list of locally known vulnerabilities.
+This hook produced a property named `cpu_vulnerabilities` which contains a list of locally known vulnerabilities.
 For each one, a `status` field indicates the current status, which can be `vulnerable`, `not-affected` or `mitigated`.
 
 If status is `mitigated`, the `details` field contains the applied mitigations.

@@ -147,7 +147,7 @@ This is a bug fix release in the 4.1 series and therefore all installations of 4
 
 ==== Web - Maintenance
 
-* Fixed: Invalid comparision of String and Option[String] in HistorizationService 
+* Fixed: Invalid comparison of String and Option[String] in HistorizationService 
     (https://issues.rudder.io/issues/14770[#14770])
 
 ==== Techniques
@@ -439,7 +439,7 @@ accepted nodes (https://issues.rudder.io/issues/12992[#12992])
 
 ==== Packaging
 
-* Fixed: On rudder-webapp upgrade, ncf.conf file is not commited
+* Fixed: On rudder-webapp upgrade, ncf.conf file is not committed
 (https://issues.rudder.io/issues/13679[#13679])
 
 ==== System integration
@@ -554,7 +554,7 @@ status (https://www.rudder-project.org/redmine/issues/13753[#13753])
 fail on Ubuntu12 on Rudder 4.1
 (https://www.rudder-project.org/redmine/issues/13747[#13747])
 * Fixed: Time lib may not work when the first non-loopback interface has
-no ip adress
+no ip address
 (https://www.rudder-project.org/redmine/issues/13744[#13744])
 * Fixed: Remove comment about classes_generic_two being deprecated
 (https://www.rudder-project.org/redmine/issues/13286[#13286])
@@ -700,7 +700,7 @@ not supported, you probably tried to use one!'' - but it does support it
 * Fixed: rudder server upgrade-techniques –autoupdate-technique-library
 fails when run during Rudder upgrade
 (https://www.rudder-project.org/redmine/issues/13458[#13458])
-* Fixed: cebtos7 install_package_existant should be skipped
+* Fixed: cebtos7 install_package_existent should be skipped
 (https://www.rudder-project.org/redmine/issues/13596[#13596])
 * Fixed: Makefile fails if a symbolink link /usr/bin/ncf already exists
 (https://www.rudder-project.org/redmine/issues/13277[#13277])
@@ -1051,7 +1051,7 @@ the release enterprise-ready for deployment.
 
 ==== Web - Compliance & node report
 
-* Overriden directives are not listed in reports information
+* Overridden directives are not listed in reports information
 (https://www.rudder-project.org/redmine/issues/7616[#7616])
 
 ==== Agent
@@ -1136,7 +1136,7 @@ technique editor
 * Fixed: Restricted java security policy breaks Rudder (class configured
 for Cipher(provider: BC)cannot be found)
 (https://www.rudder-project.org/redmine/issues/12606[#12606])
-* Fixed: Typo beeing -> being in rudder manual
+* Fixed: Typo being -> being in rudder manual
 (https://www.rudder-project.org/redmine/issues/12506[#12506])
 * Fixed: Fix various typos in ncf doc
 (https://www.rudder-project.org/redmine/issues/12570[#12570])
@@ -1229,7 +1229,7 @@ the release enterprise-ready for deployment.
 
 ==== Generic methods
 
-* Fixed: Job cheduler methods whith mode are broken
+* Fixed: Job cheduler methods with mode are broken
 (https://www.rudder-project.org/redmine/issues/12378[#12378])
 * Fixed: Missing report for ``Shared file to node''
 (https://www.rudder-project.org/redmine/issues/12377[#12377])
@@ -1547,7 +1547,7 @@ versions, since oracle jvm links has changed
 
 * Fixed: If we a have generic method command_execution with parameter
 /bin/true, we get an error on reporting for syslog restart on non-aix
-nor solaris sytem
+nor solaris system
 (https://www.rudder-project.org/redmine/issues/12139[#12139])
 * Fixed: Rudder server installation fails if apache cannot resolve
 server hostname
@@ -2315,7 +2315,7 @@ generation (https://www.rudder-project.org/redmine/issues/10908[#10908])
 
 * Fixed: check-rudder-agent doesn’t purge the lmdb file when run via
 cron (https://www.rudder-project.org/redmine/issues/10771[#10771])
-* Fixed: If component value starts with # , report is not outputed by
+* Fixed: If component value starts with # , report is not outputted by
 rudder agent output
 (https://www.rudder-project.org/redmine/issues/10601[#10601])
 * Fixed: rudder agent start fails on sles12
@@ -2401,7 +2401,7 @@ for deployment
 (https://www.rudder-project.org/redmine/issues/10685[#10685])
 * Complete documentation introduction
 (https://www.rudder-project.org/redmine/issues/10681[#10681])
-* Translate the technical architecture part of intruduction
+* Translate the technical architecture part of introduction
 (https://www.rudder-project.org/redmine/issues/10684[#10684])
 * Document fully and partially supported OS
 (https://www.rudder-project.org/redmine/issues/10679[#10679])
@@ -2460,7 +2460,7 @@ Chrome (https://www.rudder-project.org/redmine/issues/9780[#9780])
 
 ==== Performance and scalability
 
-* Fixed: Unecessary call to inventory code to check its version during
+* Fixed: Unnecessary call to inventory code to check its version during
 policy validation
 (https://www.rudder-project.org/redmine/issues/10641[#10641])
 
@@ -2575,7 +2575,7 @@ a zombie state and the error page is not displayed
 
 ==== Agent
 
-* Fixed: If component value starts with # , report is not outputed by
+* Fixed: If component value starts with # , report is not outputted by
 rudder agent output
 (https://www.rudder-project.org/redmine/issues/10601[#10601])
 * Fixed: Thell the user a node needs to be removed from the server when
@@ -3010,7 +3010,7 @@ for deployment
 (https://www.rudder-project.org/redmine/issues/10320[#10320])
 * Display provider of node properties if defined
 (https://www.rudder-project.org/redmine/issues/10302[#10302])
-* Change graph lib to more efficent one
+* Change graph lib to more efficient one
 (https://www.rudder-project.org/redmine/issues/8171[#8171])
 * Adjust the height box height’s css property instead of max-height
 (https://www.rudder-project.org/redmine/issues/10252[#10252])
@@ -3070,7 +3070,7 @@ aligned (https://www.rudder-project.org/redmine/issues/9938[#9938])
 
 ==== Techniques
 
-* More consistant naming of techniques
+* More consistent naming of techniques
 (https://www.rudder-project.org/redmine/issues/10214[#10214])
 
 === Bug fixes
@@ -3087,7 +3087,7 @@ default in directive screen
 (https://www.rudder-project.org/redmine/issues/10321[#10321])
 * Fixed: Display of shared files popup is broken
 (https://www.rudder-project.org/redmine/issues/10329[#10329])
-* Fixed: Unconsistent titles style in Rule settings
+* Fixed: Inconsistent titles style in Rule settings
 (https://www.rudder-project.org/redmine/issues/10325[#10325])
 * Fixed: Disabled label disappear passing the mouse over the policy mode
 label (https://www.rudder-project.org/redmine/issues/10323[#10323])
@@ -3110,7 +3110,7 @@ as an existing acocunt, nothing happen
 (https://www.rudder-project.org/redmine/issues/10202[#10202])
 * Fixed: Vertically center the filter line in the event logs page
 (https://www.rudder-project.org/redmine/issues/10219[#10219])
-* Fixed: Unconsistent titles style in the Settings page
+* Fixed: Inconsistent titles style in the Settings page
 (https://www.rudder-project.org/redmine/issues/10217[#10217])
 * Fixed: Parameters description won’t show up in 4.1
 (https://www.rudder-project.org/redmine/issues/10197[#10197])

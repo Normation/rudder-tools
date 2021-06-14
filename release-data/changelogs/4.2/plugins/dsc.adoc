@@ -634,7 +634,7 @@ authenticate on apache (https://issues.rudder.io/issues/10944[#10944])
 (https://issues.rudder.io/issues/10882[#10882])
 * Create a self signed certificate instead of a public key
 (https://issues.rudder.io/issues/10841[#10841])
-* Add Rudder-agent sofware information on Windows to have it inventory
+* Add Rudder-agent software information on Windows to have it inventory
 (https://issues.rudder.io/issues/10830[#10830])
 * First iteration on windows agent packaging
 (https://issues.rudder.io/issues/10736[#10736])

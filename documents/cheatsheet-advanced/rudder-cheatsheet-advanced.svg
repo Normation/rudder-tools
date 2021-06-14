@@ -333,7 +333,7 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;line-height:0.2;font-family:'Nunito Sans';-inkscape-font-specification:'Nunito Sans';text-align:justify;text-anchor:start;fill:#5d5d5d;fill-opacity:1"
              id="flowPara2617-6">Variables in technique editor are evaluated at execution on the nodes.</flowPara><flowPara
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;line-height:0.2;font-family:'Nunito Sans';-inkscape-font-specification:'Nunito Sans';text-align:justify;text-anchor:start;fill:#5d5d5d;fill-opacity:1"
-             id="flowPara2619-0">Node properties can be overriden at execution on the nodes using files containing a &quot;properties&quot; object placed in : </flowPara><flowPara
+             id="flowPara2619-0">Node properties can be overridden at execution on the nodes using files containing a &quot;properties&quot; object placed in : </flowPara><flowPara
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;line-height:0.2;font-family:'Nunito Sans';-inkscape-font-specification:'Nunito Sans';text-align:justify;text-anchor:start;fill:#5d5d5d;fill-opacity:1"
              id="flowPara2621-6" /><flowPara
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.66666698px;line-height:0.2;font-family:'Nunito Sans';-inkscape-font-specification:'Nunito Sans';text-align:justify;text-anchor:start;fill:#5d5d5d;fill-opacity:1"

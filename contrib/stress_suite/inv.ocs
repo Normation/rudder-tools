@@ -1142,7 +1142,7 @@
     </SOFTWARES>
     <SOFTWARES>
       <ARCH>i386</ARCH>
-      <COMMENTS>package managment related utility programs</COMMENTS>
+      <COMMENTS>package management related utility programs</COMMENTS>
       <FILESIZE>1283</FILESIZE>
       <FROM>deb</FROM>
       <NAME>apt-utils</NAME>
@@ -1886,7 +1886,7 @@
     </SOFTWARES>
     <SOFTWARES>
       <ARCH>i386</ARCH>
-      <COMMENTS>package managment runtime library</COMMENTS>
+      <COMMENTS>package management runtime library</COMMENTS>
       <FILESIZE>2703</FILESIZE>
       <FROM>deb</FROM>
       <NAME>libapt-pkg4.12</NAME>
@@ -3670,7 +3670,7 @@
     </SOFTWARES>
     <SOFTWARES>
       <ARCH>all</ARCH>
-      <COMMENTS>Vera font family derivate with additional characters</COMMENTS>
+      <COMMENTS>Vera font family derivative with additional characters</COMMENTS>
       <FILESIZE>2804</FILESIZE>
       <FROM>deb</FROM>
       <NAME>ttf-dejavu-core</NAME>

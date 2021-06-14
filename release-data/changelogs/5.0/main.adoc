@@ -83,7 +83,7 @@ subscription provides long-term maintenance up to 24 months after
 release (depending on the subscription level) for Rudder versions. Read
 the 
 https://docs.rudder.io/reference/5.0/installation/versions.html[dedicated page]
-for more informtion.
+for more information.
 
 _Packaging_: _Relay server support is now part of an open-source
 plugin_, pre-compiled packages are available as part of the Rudder
@@ -296,7 +296,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 * Fixed: 'policyMode' vs. 'policy' in node settings API
     (https://issues.rudder.io/issues/17817[#17817])
-* Fixed: API documentation on Rules is missing explaination on how to update rule category
+* Fixed: API documentation on Rules is missing explanation on how to update rule category
     (https://issues.rudder.io/issues/17409[#17409])
 * Fixed: Bad JSON answer for api PUT /rules
     (https://issues.rudder.io/issues/17388[#17388])
@@ -530,17 +530,17 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 * Fixed: NullPointerException with hundreds of inventories at once
     (https://issues.rudder.io/issues/14991[#14991])
-* Fixed: Unecessary compliance computations when historization of Node Compliance is disabled
+* Fixed: Unnecessary compliance computations when historization of Node Compliance is disabled
     (https://issues.rudder.io/issues/16643[#16643])
-* Fixed: Unecessary compliance computations when historization of Node Compliance is disabled
+* Fixed: Unnecessary compliance computations when historization of Node Compliance is disabled
     (https://issues.rudder.io/issues/16643[#16643])
-* Fixed: Unecessary call to trim on empty string when creating executionBatch
+* Fixed: Unnecessary call to trim on empty string when creating executionBatch
     (https://issues.rudder.io/issues/16522[#16522])
 * Fixed: we should not use .size to check if a collection is empty
     (https://issues.rudder.io/issues/16524[#16524])
 * Fixed: JVM GC cannot clean objects in scope in a for { } yield {} even if they are not referenced anymore
     (https://issues.rudder.io/issues/16513[#16513])
-* Fixed: StatusReportTest leads to inconsistant results
+* Fixed: StatusReportTest leads to inconsistent results
     (https://issues.rudder.io/issues/16496[#16496])
 * Fixed: Computation of ComplianceLevel generates too many objects
     (https://issues.rudder.io/issues/16468[#16468])
@@ -563,7 +563,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
     (https://issues.rudder.io/issues/16392[#16392])
 * Fixed: Scroll issue after policy rebuild
     (https://issues.rudder.io/issues/16434[#16434])
-* Fixed: "Reload techniques" button has a slighly different color
+* Fixed: "Reload techniques" button has a slightly different color
     (https://issues.rudder.io/issues/16320[#16320])
 
 ==== Web - Compliance & node report
@@ -726,7 +726,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
     (https://issues.rudder.io/issues/14633[#14633])
 * Fixed: Missing link to the beginning of the guide in getting strated home page
     (https://issues.rudder.io/issues/15408[#15408])
-* Fixed: Document that a full policy regeneration is necessary after a backup restauration
+* Fixed: Document that a full policy regeneration is necessary after a backup restoration
     (https://issues.rudder.io/issues/15984[#15984])
 * Fixed: Use MB instead of mB for megabytes in the doc
     (https://issues.rudder.io/issues/14161[#14161])
@@ -1034,7 +1034,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
     (https://issues.rudder.io/issues/15609[#15609])
 * Fixed: When computing system variables for each node, we compute the full "nodes<->policy server" mapping
     (https://issues.rudder.io/issues/15786[#15786])
-* Fixed: When receving plenty of inventories at the same time, the web interface starts to parse them all at once (branch 5.0)
+* Fixed: When receiving plenty of inventories at the same time, the web interface starts to parse them all at once (branch 5.0)
     (https://issues.rudder.io/issues/15747[#15747])
 * Fixed: Make inventory processing less memory consuming
     (https://issues.rudder.io/issues/15768[#15768])
@@ -1428,7 +1428,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
     (https://issues.rudder.io/issues/15133[#15133])
 * Fixed: Error after upgrade from 4.1 to 5.0 on RPM because slapd is not restarted: apiAuthorizationKind: attribute type undefined
     (https://issues.rudder.io/issues/15120[#15120])
-* Fixed:  Rudder agent fails to build on aix due to unkown cp option
+* Fixed:  Rudder agent fails to build on aix due to unknown cp option
     (https://issues.rudder.io/issues/15088[#15088])
 * Fixed: Rudder agent fails to build on rhel6 due to missing zlib and bzip2 build dependencies
     (https://issues.rudder.io/issues/15086[#15086])
@@ -1734,7 +1734,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 * Fixed: Postgres fills up and can't be vaccumed
     (https://issues.rudder.io/issues/14789[#14789])
-* Fixed: Invalid comparision of String and Option[String] in HistorizationService 
+* Fixed: Invalid comparison of String and Option[String] in HistorizationService 
     (https://issues.rudder.io/issues/14770[#14770])
 
 ==== API
@@ -1804,7 +1804,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
     (https://issues.rudder.io/issues/14500[#14500])
 * Repair and adapt AIX agent to work with 5.0 changes 
     (https://issues.rudder.io/issues/14467[#14467])
-* Reduce the size of the agent by removing cf-monitord
+* Reduce the size of the agent by removing cf-monitored
     (https://issues.rudder.io/issues/14406[#14406])
 
 ==== Documentation
@@ -1906,7 +1906,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
     (https://issues.rudder.io/issues/14342[#14342])
 * Fixed: Bad reporting mode for "Monitoring; No Rudder monitoring information to share with the server"
     (https://issues.rudder.io/issues/14532[#14532])
-* Fixed: Remove cf-monitord check on component "Binaries update"  
+* Fixed: Remove cf-monitored check on component "Binaries update"  
     (https://issues.rudder.io/issues/14561[#14561])
 * Fixed: Missing "update" reports on node
     (https://issues.rudder.io/issues/12137[#12137])
@@ -2471,7 +2471,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 ==== Agent
 
-* Fixed: Agent run errors are not outputed on stderr anymore
+* Fixed: Agent run errors are not outputted on stderr anymore
     (https://issues.rudder.io/issues/14061[#14061])
 * Fixed: Os name for sles 12 is not correct in 5.0 inventories
     (https://issues.rudder.io/issues/13964[#13964])
@@ -2601,7 +2601,7 @@ first run (https://issues.rudder.io/issues/13846[#13846])
 (https://issues.rudder.io/issues/13838[#13838])
 * Fixed: Agent should depend on a logging system on SUSE
 (https://issues.rudder.io/issues/13788[#13788])
-* Fixed: On rudder-webapp upgrade, ncf.conf file is not commited
+* Fixed: On rudder-webapp upgrade, ncf.conf file is not committed
 (https://issues.rudder.io/issues/13679[#13679])
 
 ==== Agent
@@ -2661,7 +2661,7 @@ CFEngine based agent) always tries to rewrite the group
 (https://issues.rudder.io/issues/13880[#13880])
 * Fixed: Document syslog port 5514 if Rudder server is an ubuntu < 14
 (https://issues.rudder.io/issues/11016[#11016])
-* Fixed: No favicon for Rudder doc on embeded doc
+* Fixed: No favicon for Rudder doc on embedded doc
 (https://issues.rudder.io/issues/13520[#13520])
 * Fixed: Fix path to jinja2_custom.py in jinja2 templating doc
 (https://issues.rudder.io/issues/13784[#13784])
@@ -2858,7 +2858,7 @@ status (https://www.rudder-project.org/redmine/issues/13753[#13753])
 fail on Ubuntu12 on Rudder 4.1
 (https://www.rudder-project.org/redmine/issues/13747[#13747])
 * Fixed: Time lib may not work when the first non-loopback interface has
-no ip adress
+no ip address
 (https://www.rudder-project.org/redmine/issues/13744[#13744])
 * Fixed: Remove comment about classes_generic_two being deprecated
 (https://www.rudder-project.org/redmine/issues/13286[#13286])
@@ -2889,7 +2889,7 @@ is initialized
 available (https://www.rudder-project.org/redmine/issues/13745[#13745])
 * Fixed: Missing report in ``Manage keys-values in file'' technique
 (https://www.rudder-project.org/redmine/issues/13715[#13715])
-* Fixed: Missing reporting in ``Permisisons recurse'' method
+* Fixed: Missing reporting in ``Permissions recurse'' method
 (https://www.rudder-project.org/redmine/issues/13683[#13683])
 * Fixed: Generic Method ``File copy from remote source'' does not report
 when copying a directory
@@ -3073,7 +3073,7 @@ not supported, you probably tried to use one!'' - but it does support it
 (https://www.rudder-project.org/redmine/issues/13676[#13676])
 * Fixed: Debian package cannot build in 4.1 because of docs.rudder.io
 (https://www.rudder-project.org/redmine/issues/13594[#13594])
-* Fixed: cebtos7 install_package_existant should be skipped
+* Fixed: cebtos7 install_package_existent should be skipped
 (https://www.rudder-project.org/redmine/issues/13596[#13596])
 
 ==== Security

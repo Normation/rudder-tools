@@ -183,7 +183,7 @@ polished version. See our FAQ for details, on
 http://www.rudder-project.org/foswiki/FAQ/#What_is_the_versioning_policy_63.
 2.4.* versions will be maintained until January 2014.
 
-The previous release (2.4.10) was not publicly annouced as it
+The previous release (2.4.10) was not publicly announced as it
 unfortunately did not meet our quality and assurance requirements.
 
 == Rudder 2.4.9 (2013-10-03)
@@ -667,7 +667,7 @@ compilation (https://issues.rudder.io/issues/3400[#3400])
 
 ==== UI
 
-* Fix pop-up which were broken when a rule has inconsistancy errors
+* Fix pop-up which were broken when a rule has inconsistency errors
 (https://issues.rudder.io/issues/3565[#3565])
 * Prevent from having empty error messages when a deployment fails
 (https://issues.rudder.io/issues/3538[#3538])
@@ -707,7 +707,7 @@ proxy was defined in the environment
 (https://issues.rudder.io/issues/3454[#3454]
 (https://issues.rudder.io/issues/3463[#3463]
 (https://issues.rudder.io/issues/3485[#3485])
-* Technique ``Process management'': version 1.1 was not functionnal
+* Technique ``Process management'': version 1.1 was not functional
 (https://issues.rudder.io/issues/2801[#2801])
 * All Techniques: Permit CFEngine to edit files of 1MB
 (https://issues.rudder.io/issues/3385[#3385])
@@ -1182,7 +1182,7 @@ Policy'' (#2864)
 
 ==== Core
 
-* Add the possibilty to disable rudder-agent by creating
+* Add the possibility to disable rudder-agent by creating
 /opt/rudder/etc/disable-agent (#2884)
 * Change path of Rudder webapp core log from
 /var/log/rudder/webapp-opslog to /var/log/rudder/core/ (#2799)

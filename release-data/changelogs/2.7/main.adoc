@@ -381,7 +381,7 @@ version is not marked ``stable'', since it has not proven to be reliable
 on production systems over time yet. The current ``stable'' release is
 still 2.6.*.
 
-The previous release (2.7.4) was not publicly annouced as it
+The previous release (2.7.4) was not publicly announced as it
 unfortunately did not meet our quality and assurance requirements.
 
 == Rudder 2.7.3 (2013-10-03)
@@ -1016,7 +1016,7 @@ directive (https://issues.rudder.io/issues/2797[#2797])
 
 ==== Webapp - Node management
 
-* Add possibility to create a group with a combinaison of matching a
+* Add possibility to create a group with a combinations of matching a
 regex and not matching another regex
 (https://issues.rudder.io/issues/3613[#3613])
 

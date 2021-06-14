@@ -29,7 +29,7 @@ tsung -f tsung.xml start
 
 ## Statistics
 
-To gather statistics on a machine beeing benched, you need snmpd running on it. You can then use tsung_stats.pl to get them.
+To gather statistics on a machine being benched, you need snmpd running on it. You can then use tsung_stats.pl to get them.
 
 From tsung directory (where tsung.xml is):
 ```

@@ -26,7 +26,7 @@ os_release_file() {
 #PM_INSTALL="DEBIAN_FRONTEND=noninteractive apt-get -y install"
 
 detect_os() {
-  # defauls values
+  # defaults values
   OS_NAME="unknown"
   OS_COMPATIBLE=""
   OS_VERSION=""

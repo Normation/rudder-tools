@@ -201,7 +201,7 @@ configuration repository
 * Fixed: Missing Node Configuration entry in LDAP prevents Rudder from
 starting (https://issues.rudder.io/issues/4348[#4348])
 * Fixed: The default disclaimer message loaded initially into LDAP has
-an invalid charachter in it
+an invalid character in it
 (https://issues.rudder.io/issues/4393[#4393])
 * Fixed: When adding a Directive to a Rule from a newly created
 Directives screen, Change Request popup not displayed

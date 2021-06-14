@@ -127,8 +127,6 @@ function compress_and_sign {
   fi
 }
 
-}
-
 # if we want to send all inventories, iterate over all available folders
 if [ "${ALL_INVENTORIES}" = "true" ]
 then

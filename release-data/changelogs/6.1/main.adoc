@@ -82,7 +82,7 @@ This page provides a summary of changes for each version. Previous beta
 
 ==== Security
 
-* Fixed: Check dependencie fails with NPE
+* Fixed: Check dependence fails with NPE
     (https://issues.rudder.io/issues/19231[#19231])
 
 ==== Web - UI & UX
@@ -606,7 +606,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: API ACL order is lost for users
     (https://issues.rudder.io/issues/18664[#18664])
-* Fixed: API message when a node details is not found is extremelly misleading
+* Fixed: API message when a node details is not found is extremely misleading
     (https://issues.rudder.io/issues/18654[#18654])
 * Fixed: Bad file name in api-doc: some more errors
     (https://issues.rudder.io/issues/18622[#18622])
@@ -615,7 +615,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Architecture - Internal libs
 
-* Fixed: semaphore gurading LDAP repos are created each time
+* Fixed: semaphore guarding LDAP repos are created each time
     (https://issues.rudder.io/issues/18584[#18584])
 * Fixed: If LDAP server does not support subtree deletion, we get error when entry does not exists
     (https://issues.rudder.io/issues/18529[#18529])
@@ -710,7 +710,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: systemctl restart rudder-server does nothing
     (https://issues.rudder.io/issues/18404[#18404])
-* Fixed: Intermitent failure test on certificate inventory
+* Fixed: Intermittent failure test on certificate inventory
     (https://issues.rudder.io/issues/18353[#18353])
 
 ==== Packaging
@@ -844,7 +844,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: Array as root json are seens as string
     (https://issues.rudder.io/issues/18285[#18285])
-* Fixed: Uncommited rudder_reporting.cf  when creating a technique with a condition
+* Fixed: Uncommitted rudder_reporting.cf  when creating a technique with a condition
     (https://issues.rudder.io/issues/18266[#18266])
 
 ==== Relay server or API
@@ -944,7 +944,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Config management
 
-* Fixed: Groups are not commited in configuration-repository on modification
+* Fixed: Groups are not committed in configuration-repository on modification
     (https://issues.rudder.io/issues/18207[#18207])
 * Fixed: SUSE is spelled SuSE in the webapp
     (https://issues.rudder.io/issues/16319[#16319])
@@ -990,7 +990,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/18176[#18176])
 * Fixed: No flush key report on sshKeyDistribution when there is not yet an ssh key configured
     (https://issues.rudder.io/issues/16516[#16516])
-* Fixed: Technique resources should not be commited on server upgrade
+* Fixed: Technique resources should not be committed on server upgrade
     (https://issues.rudder.io/issues/18213[#18213])
 
 ==== Agent
@@ -1358,7 +1358,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17702[#17702])
 * Fixed: Duplicate category name error when saving a new user technique
     (https://issues.rudder.io/issues/17774[#17774])
-* Fixed: Uncommited generic_methods.json in configuration repo
+* Fixed: Uncommitted generic_methods.json in configuration repo
     (https://issues.rudder.io/issues/17775[#17775])
 * Fixed: Auto-archive gitRepo.git failure warning is not actionnable, should be info or debug
     (https://issues.rudder.io/issues/17777[#17777])
@@ -1615,7 +1615,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17625[#17625])
 * Fixed: Plugin expiration warning misalignement problem
     (https://issues.rudder.io/issues/17619[#17619])
-* Fixed: Overriden pop-up top is missing
+* Fixed: Overridden pop-up top is missing
     (https://issues.rudder.io/issues/17623[#17623])
 * Fixed: tooltip for node properties does not show
     (https://issues.rudder.io/issues/17550[#17550])
@@ -2014,7 +2014,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== API
 
-* Fixed: API documentation on Rules is missing explaination on how to update rule category
+* Fixed: API documentation on Rules is missing explanation on how to update rule category
     (https://issues.rudder.io/issues/17409[#17409])
 * Fixed: Bad JSON answer for api PUT /rules
     (https://issues.rudder.io/issues/17388[#17388])
@@ -2051,7 +2051,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17393[#17393])
 * Fixed: Category for new technique are not sorted
     (https://issues.rudder.io/issues/17414[#17414])
-* Fixed: Technique diverge popup when comming back to a techniques because of a change of category
+* Fixed: Technique diverge popup when coming back to a techniques because of a change of category
     (https://issues.rudder.io/issues/17400[#17400])
 * Fixed: Popup saying that technique change still happens in 6.1
     (https://issues.rudder.io/issues/17319[#17319])
@@ -2134,7 +2134,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Compliance & node report
 
-* Fixed: Inconsistant syntax for global parameter in directive incompatible with JSON values
+* Fixed: Inconsistent syntax for global parameter in directive incompatible with JSON values
     (https://issues.rudder.io/issues/17350[#17350])
 * Fixed: JSON global parameter are inherited as string
     (https://issues.rudder.io/issues/17326[#17326])
@@ -2172,7 +2172,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Technique editor
 
-* Fixed: Resource manager should talk about saved/unsaved and not commited/not commited
+* Fixed: Resource manager should talk about saved/unsaved and not committed/not committed
     (https://issues.rudder.io/issues/17328[#17328])
 
 ==== Technique editor - UI/UX
@@ -2602,9 +2602,9 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Architecture - Refactoring
 
-* Fixed: Remove warning and "Inconsistance" typo compilation error
+* Fixed: Remove warning and "Inconsistency" typo compilation error
     (https://issues.rudder.io/issues/17156[#17156])
-* Fixed: Inconsistency error is mispelled
+* Fixed: Inconsistency error is misspelled
     (https://issues.rudder.io/issues/17110[#17110])
 
 ==== Security

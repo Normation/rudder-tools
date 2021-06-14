@@ -490,7 +490,7 @@ if ($MODE eq 'RELAY') {
     ## -> forward_file( $path );
     ## Returns:
     ## -> -1: Connection refused, endpoint not reached
-    ## -> 0: Some error occured, forward failed
+    ## -> 0: Some error occurred, forward failed
     ## -> 1: Forward succeeded
 
     sub forward_file {
@@ -845,7 +845,7 @@ if ($MODE eq 'ROOT') {
     ## -> -1: Connection refused, endpoint not reached
     ## -> -2: Internal server error, inventory was probably corrupt or something other broke
     ## -> -3: Processing queue is saturated, try later, should not happen since we try to catch this earlier
-    ## -> 0: Some error occured, inventory processing failed
+    ## -> 0: Some error occurred, inventory processing failed
     ## -> 1: Inventory upload and processing succeeded
 
     sub send_file {

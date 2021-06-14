@@ -81,9 +81,9 @@ def read_configuration(section=None):
     with open(os.path.expanduser(Config.CONFIG_FILE), 'a') as cfile:
       cfile.write("""[default]
 ## Uncomment and set your own values
-## Your prefered name for Normation upstream repository on your local git (NRM, origin, ...)
+## Your preferred name for Normation upstream repository on your local git (NRM, origin, ...)
 #nrm_upstream = NRM
-## Your prefered name for personal upstream repository on your local git (ABC, origin, ...)
+## Your preferred name for personal upstream repository on your local git (ABC, origin, ...)
 #own_upstream =
 ## If github cli is installed, rudder-dev will read hub's configuration file to get the user's github token
 ## Otherwise, yo manage your tokens, click here https://github.com/settings/tokens (click "Generate new token")

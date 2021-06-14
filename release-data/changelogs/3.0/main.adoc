@@ -585,7 +585,7 @@ services (ie jetty)
 
 * Fixed: rudder-init broken on SLES
 (https://issues.rudder.io/issues/7991[#7991])
-* Fixed: Missing usefull logger in logger file
+* Fixed: Missing useful logger in logger file
 (https://issues.rudder.io/issues/7910[#7910])
 * Fixed: Errors with apache on ubuntu 12.04
 (https://issues.rudder.io/issues/6763[#6763])
@@ -1488,7 +1488,7 @@ automatically repaired on a node
 
 ==== Documentation
 
-* Fixed: Wrong hierachy in archives section of the manual
+* Fixed: Wrong hierarchy in archives section of the manual
 (https://issues.rudder.io/issues/6909[#6909])
 * Fixed: Broken asciidoc list formatting
 (https://issues.rudder.io/issues/6778[#6778])
@@ -1543,13 +1543,13 @@ are regenerated even if not needed
 
 ==== Web - Compliance & node report
 
-* Fixed: Compliance in dashboard and rule page are not consistant
+* Fixed: Compliance in dashboard and rule page are not consistent
 (https://issues.rudder.io/issues/6663[#6663])
 * Fixed: The Global compliance is buggy when there is no data
 (https://issues.rudder.io/issues/6633[#6633])
 * Fixed: Blue for no report in bar charts doesn’t make sense
 (https://issues.rudder.io/issues/6489[#6489])
-* Fixed: Compliance in dashboard and rule page are not consistant
+* Fixed: Compliance in dashboard and rule page are not consistent
 (https://issues.rudder.io/issues/6663[#6663])
 * Fixed: When we add a node in a rule, we lose all compliance info on
 this rule applied on it, and we change promises of all the nodes of the
@@ -1607,7 +1607,7 @@ network (https://issues.rudder.io/issues/6540[#6540])
 * Fixed: Messages forwarded from AIX agent are not dropped on
 relay/server root after being consumed
 (https://issues.rudder.io/issues/6522[#6522])
-* Fixed: Log rotation on distributed install is not functionnal
+* Fixed: Log rotation on distributed install is not functional
 [[https://issues.rudder.io/issues/6521][#6521
 * Fixed: Syslog accept reports from non-accepted nodes
 (https://issues.rudder.io/issues/6428[#6428])
@@ -1644,7 +1644,7 @@ system (https://issues.rudder.io/issues/6527[#6527])
 ==== Agent
 
 * Fixed: cfengine context is not updated properly when doing multiple
-indivudual package actions
+individual package actions
 (https://issues.rudder.io/issues/6587[#6587])
 
 ==== Packaging
@@ -2395,7 +2395,7 @@ item has been selected and displayed
 
 ==== Webapp - Display, home page
 
-* Fixed: Typo in ``Sucess'' in new reporting
+* Fixed: Typo in ``Success'' in new reporting
 (https://issues.rudder.io/issues/5886[#5886])
 
 ==== Techniques
@@ -2479,7 +2479,7 @@ feedback!
 
 * Add a `changes only' compliance mode, only reporting changes on
 systems (https://issues.rudder.io/issues/5293[#5293])
-* Do not display reporting on overriden `unique' Directives
+* Do not display reporting on overridden `unique' Directives
 (https://issues.rudder.io/issues/5899[#5899])
 
 ==== Rudder agent CLI

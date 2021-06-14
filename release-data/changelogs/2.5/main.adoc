@@ -189,7 +189,7 @@ screens (1024*768)
 
 * Technique [OpenSSH](OpenSSH) +
 Server v2.0: Reporting for SSH port configuration Component Key is not
-functionnal if port are not defined
+functional if port are not defined
 (https://issues.rudder.io/issues/3247[#3247])
 * CFEngine internal database verification should depend on the CFEngine
 version as [BerkeleyDB](BerkeleyDB) +
@@ -272,7 +272,7 @@ compilation (https://issues.rudder.io/issues/3400[#3400])
 * Fix `newest archived report' and `oldest archived report' which
 displayed no date during archive activity
 (https://issues.rudder.io/issues/3471[#3471])
-* Fix pop-up which were broken when a rule has inconsistancy errors
+* Fix pop-up which were broken when a rule has inconsistency errors
 (https://issues.rudder.io/issues/3565[#3565])
 * Prevent from having empty error messages when a deployment fails
 (https://issues.rudder.io/issues/3538[#3538])
@@ -317,7 +317,7 @@ proxy was defined in the environment
 (https://issues.rudder.io/issues/3454[#3454]
 (https://issues.rudder.io/issues/3463[#3463]
 (https://issues.rudder.io/issues/3485[#3485])
-* Technique ``Process management'': version 1.1 was not functionnal
+* Technique ``Process management'': version 1.1 was not functional
 (https://issues.rudder.io/issues/2801[#2801])
 * All Techniques: Permit CFEngine to edit files of 1MB
 (https://issues.rudder.io/issues/3385[#3385])
@@ -555,7 +555,7 @@ http://www.rudder-project.org/rudder-doc-2.5/rudder-doc.html
 
 * Improve feedback of database cleaning process
 (https://issues.rudder.io/issues/3222[#3222])
-* Prevent Rudder from writting too much logs in info log level
+* Prevent Rudder from writing too much logs in info log level
 (https://issues.rudder.io/issues/3217[#3217])
 
 ==== UI

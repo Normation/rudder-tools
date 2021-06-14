@@ -282,7 +282,7 @@ class Issue:
 
   def update_version(self, version):
     if not self.can_modify():
-      logfail("Cannot change ticket version since you are not a developer, you should change it manualy before calling retarget")
+      logfail("Cannot change ticket version since you are not a developer, you should change it manually before calling retarget")
       exit(13)
   
     # list all versions
@@ -383,7 +383,7 @@ class Redmine:
       if re.match(k, version):
         major = re.sub(k, v, version)
         if recheck:
-          # we d n't know the alpha status, let's check it agains the rudder project
+          # we d n't know the alpha status, let's check it against the rudder project
           alpha = False
           for v in self.version_list("rudder"):
             if v["status"] == "closed":
@@ -399,7 +399,7 @@ class Redmine:
             return "master"
           # If it is not declared -> ??
           else:
-            logfail("***** ERROR: Cannot find version status " + versions)
+            logfail("***** ERROR: Cannot find version status " + version)
             exit(4)
         return major
     return None

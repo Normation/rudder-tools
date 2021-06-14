@@ -271,7 +271,7 @@ function! <SID>DirDiff(srcA, srcB)
     call <SID>DirDiffNext()
 endfunction
 
-" Set up syntax highlighing for the diff window
+" Set up syntax highlighting for the diff window
 "function! <SID>SetupSyntax()
 function! <SID>SetupSyntax()
   if has("syntax") && exists("g:syntax_on") 
@@ -914,7 +914,7 @@ function! <SID>GetDiffStrings()
 	silent exe "split ". tmpdiff
 	let s:DirDiffDifferLine = substitute( getline(1), tmp1rx . ".*$", "", '') 
     " Note that the diff on cygwin may output '/' instead of '\' for the
-    " separator, so we need to accomodate for both cases
+    " separator, so we need to accommodate for both cases
     let andrx = "^.*" . tmp1rx . "[\\\/]test\\(.*\\)" . tmp2rx . "[\\\/]test.*$"
     let endrx = "^.*" . tmp1rx . "[\\\/]test.*" . tmp2rx . "[\\\/]test\\(.*$\\)"
     "echo "andrx : " . andrx

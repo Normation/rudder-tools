@@ -36,7 +36,7 @@ ANY_OPTION_DEFINED=false
 
 HASH=sha512
 
-#Definining list of inventory (short & long)
+#Defining list of inventory (short & long)
 DEF_LONG_OS_NAME=("Microsoft Windows Server 2019 Standard" "Debian GNU/Linux 9.1 (stretch)" "Debian GNU/Linux 9.2 (stretch)" "Debian GNU/Linux 8.6 (Jessie)" "CentOS Linux release 7.6.1810 (Core)" "CentOS Linux release 7.4.1810 (Core)" "CentOS Linux release 6.10 (Final)")
 DEF_SHORT_OS_NAME=(Windows Debian Debian Debian Centos Centos Centos)
 
