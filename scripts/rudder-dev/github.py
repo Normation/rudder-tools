@@ -154,8 +154,13 @@ class PR:
     url = "https://api.github.com/repos/Normation/{repo}/commits/{sha}/status"
     data = github_request(url, "Getting latest commit status", self.url, sha=self.sha(), repo=self.repo_name)
     state = data['state']
-    # other cases are pending or failed
-    return state == "success"
+    # when 0, means no tests are actually pending
+    nb_tests = len(data['statuses'])
+    if nb_tests == 0:
+      return True
+    else:
+      # other cases are pending or failed
+      return state == "success"
 
 
 # Get github user as used by the hub command
