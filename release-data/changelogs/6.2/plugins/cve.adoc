@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin cve 6.2.\* versions
 
+== cve-6.2-1.8 (2021-06-23)
+
+=== Changes
+
+
+==== Packaging
+
+* Add CI checks to plugins-private
+    (https://issues.rudder.io/issues/19434[#19434])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Non fixed CVE may not be linked to Nodes, leading to numerous empty CVE found
+    (https://issues.rudder.io/issues/19417[#19417])
+* Fixed: Scheduled task are not ran anymore
+    (https://issues.rudder.io/issues/19402[#19402])
+* Fixed: Add a filter to show only active CVE/Vulnerable Nodes when look for Node/CVE details
+    (https://issues.rudder.io/issues/19376[#19376])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-6.2-1.7 (2021-06-01)
 
 === Changes
