@@ -1,7 +1,6 @@
 import rule
 import directive
 import sys
-from tabulate import tabulate
 sys.path.insert(0, "/usr/share/rudder-api-client/")
 sys.path.insert(0, "/opt/rudder/share/python")
 from rudder import RudderEndPoint, RudderError
@@ -56,7 +55,7 @@ def get_directives_applied_to(group):
 
 """
   Sort the table to display on the given column.
-  toSort must respect the same input than the display function
+  toSort must respect the same input than the display functions (dictToAsciiTable)
 """
 def sortToDisplay(toSort, criterion):
   sortedList = []
@@ -67,8 +66,8 @@ def sortToDisplay(toSort, criterion):
   refColumn = next(x for x in toSort if x['title'] == criterion)['value']
   for iColumn in toSort:
     zipped = zip(refColumn, iColumn['value'])
-    zipped.sort()
-    sortedvalue = [j for (i, j) in zipped]
+    sorted_zip = list(sorted(zipped, key=lambda t:t[0]))
+    sortedvalue = [j for (i, j) in sorted_zip]
     sortedList.append({
       'title' : iColumn['title'],
       'value' : sortedvalue
