@@ -4,6 +4,181 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== [Private] Rudder 6.1.14 (2021-07-09)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Packaging
+
+* Add ci checks for packages
+    (https://issues.rudder.io/issues/19362[#19362])
+* Improve pylint config and add formatter to rudder-pkg
+    (https://issues.rudder.io/issues/19441[#19441])
+* rudder-pkg test should use python3
+    (https://issues.rudder.io/issues/19405[#19405])
+* Backport typos checks to 6.1
+    (https://issues.rudder.io/issues/19359[#19359])
+* Clean workspace at the end of Rust builds
+    (https://issues.rudder.io/issues/19246[#19246])
+* Clean workspace at the end of Rust builds
+    (https://issues.rudder.io/issues/19246[#19246])
+* Add ci check for techniques
+    (https://issues.rudder.io/issues/19355[#19355])
+* Add ci checks on rudder-agent repo
+    (https://issues.rudder.io/issues/19354[#19354])
+
+==== Documentation
+
+* Add ci check for typos in docs
+    (https://issues.rudder.io/issues/19360[#19360])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: rudder-agent-postinst fails in 7.0 while closing fd
+    (https://issues.rudder.io/issues/19429[#19429])
+* Fixed: Rudder agent check should check if certificate matches private key
+    (https://issues.rudder.io/issues/19392[#19392])
+
+==== Packaging
+
+* Fixed: Broken agent postinst script
+    (https://issues.rudder.io/issues/19406[#19406])
+* Fixed: Broken short hostname in agent certificate
+    (https://issues.rudder.io/issues/19447[#19447])
+* Fixed: Api doc publish does not require docs label
+    (https://issues.rudder.io/issues/19408[#19408])
+
+==== Documentation
+
+* Fixed: Remove wrong doc about services passwords
+    (https://issues.rudder.io/issues/19493[#19493])
+* Fixed: Fix docs about HTTPS reporting in non-compliant mode
+    (https://issues.rudder.io/issues/19437[#19437])
+* Fixed: Update Ansible integration link to Rudder inventory script
+    (https://issues.rudder.io/issues/19420[#19420])
+* Fixed: Document minimum version of JDK (8u92)
+    (https://issues.rudder.io/issues/19280[#19280])
+* Fixed: Missing 'settings' layer in the allowed_networks API doc
+    (https://issues.rudder.io/issues/19502[#19502])
+* Fixed: Add name to LDAP pool to help debugging
+    (https://issues.rudder.io/issues/19284[#19284])
+
+==== Security
+
+* Fixed: Lack of HTML escaping in nodes list
+    (https://issues.rudder.io/issues/19456[#19456])
+* Fixed: Vulnerability in spring-security
+    (https://issues.rudder.io/issues/19503[#19503])
+* Fixed: Enforce stricter restriction on authorized node id and hostname
+    (https://issues.rudder.io/issues/19457[#19457])
+* Fixed: Command injection in plugins repository file names
+    (https://issues.rudder.io/issues/19442[#19442])
+* Fixed: CVE in spring dependency
+    (https://issues.rudder.io/issues/19407[#19407])
+* Fixed: Update snakeyaml dependency for security
+    (https://issues.rudder.io/issues/19400[#19400])
+* Fixed: rudder.auth.admin.pass should be stored in bcrypt format
+    (https://issues.rudder.io/issues/19308[#19308])
+* Fixed: Ignore security alert for unused js embeded in scala lib
+    (https://issues.rudder.io/issues/19272[#19272])
+
+==== Performance and scalability
+
+* Fixed: Inefficient comparision of strings in Rudder
+    (https://issues.rudder.io/issues/19467[#19467])
+* Fixed: Improve NodeInfo cache
+    (https://issues.rudder.io/issues/19399[#19399])
+* Fixed: Move use of cache outside of semaphore in NodeInfoService
+    (https://issues.rudder.io/issues/19396[#19396])
+* Fixed: Semaphore on Nodeinfoservice is not working
+    (https://issues.rudder.io/issues/19351[#19351])
+
+==== Relay server or API
+
+* Fixed: Prevent parameter option injection in remote run
+    (https://issues.rudder.io/issues/19455[#19455])
+* Fixed: relayd on relays fails to retry inventories upload
+    (https://issues.rudder.io/issues/19375[#19375])
+
+==== System techniques
+
+* Fixed: Missing cleanup of /var/rudder/reports/failed
+    (https://issues.rudder.io/issues/19435[#19435])
+
+==== Web - Config management
+
+* Fixed: Inventory with updated properties doesn't always start a policy generation
+    (https://issues.rudder.io/issues/19414[#19414])
+* Fixed: Semaphore in APIAccountRepository,GitArchiverUtils and maybe PolicyServerManagementService are not semaphoring
+    (https://issues.rudder.io/issues/19363[#19363])
+
+==== Web - Nodes & inventories
+
+* Fixed: When a node is totally deleted, cache in NodeInfoService can't know about it
+    (https://issues.rudder.io/issues/19394[#19394])
+* Fixed: In inventory, if there are two "rudder" tag, uuid are concatenated
+    (https://issues.rudder.io/issues/19305[#19305])
+* Fixed: Error when processing old inventories with davfs temporary files
+    (https://issues.rudder.io/issues/19268[#19268])
+
+==== API
+
+* Fixed: Info API is not documented
+    (https://issues.rudder.io/issues/19395[#19395])
+* Fixed: API shows only part of the memory information
+    (https://issues.rudder.io/issues/19374[#19374])
+* Fixed: Remove reference to x-www-form-urlencoded in API commands
+    (https://issues.rudder.io/issues/19276[#19276])
+
+==== System integration
+
+* Fixed: Confusing message when we disable non-compliant-report log
+    (https://issues.rudder.io/issues/19381[#19381])
+
+==== Techniques
+
+* Fixed: Policy validation at the end of policy generation spends too much time evaluating things
+    (https://issues.rudder.io/issues/19477[#19477])
+* Fixed: File content always reports repair when "Replace content" is selected
+    (https://issues.rudder.io/issues/19445[#19445])
+* Fixed: Invalid reporting in file content technique
+    (https://issues.rudder.io/issues/19431[#19431])
+* Fixed: cron management doesn't support multiline entry correctly
+    (https://issues.rudder.io/issues/19336[#19336])
+* Fixed: When configuring a comment in ssh key in technique ssh key distribution, 6 spaces are added at start of comment line
+    (https://issues.rudder.io/issues/19335[#19335])
+* Fixed: User Management technique tries to always change user gid when forcing the check of user gid everytime
+    (https://issues.rudder.io/issues/19269[#19269])
+* Fixed: Group management technique doesn't correctly honor gid option
+    (https://issues.rudder.io/issues/19266[#19266])
+
+==== CI
+
+* Fixed: Hardcod the output of the style test TestClassPrefix in success cases
+    (https://issues.rudder.io/issues/19404[#19404])
+* Fixed:  Add typos check to CI config
+    (https://issues.rudder.io/issues/19343[#19343])
+* Fixed: Force pylint3 instead of pylint in qa-test
+    (https://issues.rudder.io/issues/19390[#19390])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Lars Koenen
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.13 (2021-05-18)
 
 === Changes
