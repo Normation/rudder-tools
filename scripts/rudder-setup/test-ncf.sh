@@ -11,6 +11,7 @@ test_ncf() {
     TEST_RESULT=$?
     set -e
     find . -type f -name '*test.log' -exec cat {} + >> /tmp/ncf_tests.log
+    exit $TEST_RESULT
 }
 
 install_test_dependencies() {
