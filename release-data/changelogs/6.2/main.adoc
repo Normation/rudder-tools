@@ -443,6 +443,32 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 6.2.9 (2021-07-20)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Or selector for property Name=Value selector returns 0 elements
+    (https://issues.rudder.io/issues/19538[#19538])
+
+==== Documentation
+
+* Fixed: Correctly name LICENSES folder in repo
+    (https://issues.rudder.io/issues/19535[#19535])
+
+==== Security
+
+* Fixed: CVE in jsonpath dependency
+    (https://issues.rudder.io/issues/19530[#19530])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.4 (2021-03-19)
 
 === Changes
