@@ -1,0 +1,26 @@
+= Security upgrades
+
+== Goal
+
+This inventory hook allows gathering information about available security upgrades
+on the system.
+
+IMPORTANT: For now it is compatible with Debian.
+
+The hook checks the state of package list updates
+to ensure a valid answer.
+
+== Property
+
+This hook produced a property named `security_upgrades` which contains:
+
+* `-2` is the system is not supported by this script
+* `-1` in case of impossibility to get the security upgrqdes list
+* the number of available security upgrades (>=0)
+
+[source,json]
+----
+{
+  "security_upgrades": 3
+}
+----
