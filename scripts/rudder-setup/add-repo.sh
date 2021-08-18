@@ -62,7 +62,7 @@ add_repo() {
     cat > /etc/apt/sources.list.d/rudder.list << EOF
 deb ${URL_BASE}/ ${OS_CODENAME} main
 EOF
-    apt-get update
+    ${PM_UPDATE}
     return 0
 
   elif [ "${PM}" = "yum" ]
@@ -97,7 +97,7 @@ EOF
     rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
     zypper --non-interactive addrepo /tmp/rudder.repo || true
-    zypper --non-interactive refresh
+    ${PM_UPDATE}
     return 0
   elif [ "${PM}" = "rpm" ]
   then
@@ -151,12 +151,9 @@ update_repo() {
   # The real edit
   sed -i "s%${REPO_TYPE}/\(latest\|nightly\|[0-9.]\+\(-nightly\|~beta[0-9]\+\|~rc[0-9]\+\)\?\)/%${REPO_TYPE}/${RUDDER_VERSION}/%" "${file}"
 
-  if [ "${PM}" = "apt" ]
+  if [ "${PM}" = "apt" ] || [ "${PM}" = "zypper" ]
   then
-    apt-get update
-  elif [ "${PM}" = "zypper" ]
-  then
-    zypper --non-interactive refresh
+    ${PM_UPDATE}
   fi
 }
 
