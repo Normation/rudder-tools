@@ -43,8 +43,9 @@ detect_os() {
   then
     PM="apt"
     export DEBIAN_FRONTEND=noninteractive
+    release_opt=$(apt-get --version | head -n1 | perl -ne '/apt ([0-9]+\.[0-9]+)\..*/; if($1 > 1.5) { print "--allow-releaseinfo-change" }')
     PM_INSTALL="apt-get -y install"
-    PM_UPDATE="apt-get -y update --allow-releaseinfo-change"
+    PM_UPDATE="apt-get -y update ${release_opt}"
     PM_UPGRADE="apt-get -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -y install"
     PM_LOCAL_INSTALL="dpkg -i"
   elif exists yum
