@@ -1,5 +1,31 @@
 = Changelogs for Rudder plugin notify 6.2.\* versions
 
+== notify-6.2-1.3 (2021-09-03)
+
+=== Changes
+
+
+==== Packaging
+
+* Add python and shell linters on plugins
+    (https://issues.rudder.io/issues/19439[#19439])
+
+==== Documentation
+
+* Add typos check in the repository
+    (https://issues.rudder.io/issues/19419[#19419])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Notification plugin fails on python3
+    (https://issues.rudder.io/issues/19384[#19384])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == notify-6.2-1.2 (2020-12-10)
 
 === Changes
