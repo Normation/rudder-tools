@@ -29,6 +29,120 @@ Rudder 6.2 is currently a maintained version of Rudder.
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
 
+== [Private] Rudder 6.2.10 (2021-09-03)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Packaging
+
+* Optimize ldap binaries with -O2
+    (https://issues.rudder.io/issues/19648[#19648])
+
+==== Documentation
+
+* Document the agent.conf format for windows
+    (https://issues.rudder.io/issues/19673[#19673])
+
+==== Techniques
+
+* All .cf and .st files under in rudder-techniques should have an updated license header
+    (https://issues.rudder.io/issues/19534[#19534])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: debian 8 fails to build augeas
+    (https://issues.rudder.io/issues/19906[#19906])
+* Fixed: Update openssl to 1.1.1l
+    (https://issues.rudder.io/issues/19854[#19854])
+* Fixed: Fail on elm build error
+    (https://issues.rudder.io/issues/19689[#19689])
+
+==== Documentation
+
+* Fixed: Document that a "rudder agent server-keys-reset" is necessary to move a node to another policy server
+    (https://issues.rudder.io/issues/19761[#19761])
+* Fixed: Wrong procedure for import of configuration
+    (https://issues.rudder.io/issues/19712[#19712])
+* Fixed: Document more precisely versioning scheme
+    (https://issues.rudder.io/issues/19474[#19474])
+
+==== System integration
+
+* Fixed: Git error when deleting a node or archiving everything, and very slow git
+    (https://issues.rudder.io/issues/19398[#19398])
+* Fixed: Rudder fails to stop on boot error
+    (https://issues.rudder.io/issues/19567[#19567])
+
+==== Performance and scalability
+
+* Fixed: Display result of search with thousands of nodes is really slow on 6.2 & 7.0
+    (https://issues.rudder.io/issues/19897[#19897])
+
+==== Miscellaneous
+
+* Fixed: Error about cfengine key when deleting a node
+    (https://issues.rudder.io/issues/19571[#19571])
+* Fixed: NoSuchFileException: /var/rudder/policy-generation-info/node-configuration-hashes.json
+    (https://issues.rudder.io/issues/19589[#19589])
+* Fixed: Add Kali Linux to the list of recognized OS
+    (https://issues.rudder.io/issues/19537[#19537])
+
+==== Plugins integration
+
+* Fixed: rudder package does not print the plugin content at install time
+    (https://issues.rudder.io/issues/19874[#19874])
+* Fixed: Format the rudder-pkg python files
+    (https://issues.rudder.io/issues/19886[#19886])
+
+==== Relay server or API
+
+* Fixed: Data race in crossbeam-deque
+    (https://issues.rudder.io/issues/19833[#19833])
+* Fixed: Relayd deadlocks when trying to forward a shared-file
+    (https://issues.rudder.io/issues/19547[#19547])
+* Fixed: Prevent race condition in relayd tests
+    (https://issues.rudder.io/issues/19569[#19569])
+
+==== Architecture - Internal libs
+
+* Fixed: RunNuCommandTest fails with timeout on CI
+    (https://issues.rudder.io/issues/19828[#19828])
+
+==== Security
+
+* Fixed: Two vulnerabilities in hyper
+    (https://issues.rudder.io/issues/19731[#19731])
+
+==== Web - Nodes & inventories
+
+* Fixed: Incorrect pattern matching leads to error in inventory parsing
+    (https://issues.rudder.io/issues/19632[#19632])
+
+==== Web - Config management
+
+* Fixed: It is impossible to read properties with a read-only account
+    (https://issues.rudder.io/issues/19631[#19631])
+* Fixed: Can't access filesystem type from group criteria
+    (https://issues.rudder.io/issues/19559[#19559])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Gaëtan Chagneau
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.8 (2021-07-09)
 
 === Changes
