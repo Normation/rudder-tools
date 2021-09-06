@@ -1,5 +1,31 @@
 = Changelogs for Rudder plugin node-external-reports 6.1.\* versions
 
+== node-external-reports-6.1-1.9 (2021-09-06)
+
+=== Changes
+
+
+==== Documentation
+
+* Add typos check in the repository
+    (https://issues.rudder.io/issues/19419[#19419])
+
+==== Packaging
+
+* Use https repos in maven config
+    (https://issues.rudder.io/issues/19165[#19165])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Security/Monitoring report from external node reports appears on "System status" tab
+    (https://issues.rudder.io/issues/17733[#17733])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == node-external-reports-6.1-1.8 (2020-06-17)
 
 === Changes
