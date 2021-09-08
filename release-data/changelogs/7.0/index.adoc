@@ -1,0 +1,28 @@
+= Rudder 7.0 release notes
+
+== What's new?
+
+TO DO
+
+== Installing, upgrading and testing
+
+* Install docs for https://docs.rudder.io/reference/7.0/installation/server/debian.html[Debian/Ubuntu],
+https://docs.rudder.io/reference/7.0/installation/server/rhel.html[RHEL/centOS] and 
+https://docs.rudder.io/reference/7.0/installation/server/sles.html[SLES]
+* https://docs.rudder.io/reference/7.0/installation/upgrade/notes.html[Upgrade nodes and doc]
+* https://docs.rudder.io/reference/7.0/installation/versions.html#_versions[Download links]
+
+== Supported operating systems
+
+This version provides packages for these operating systems:
+
+* Rudder server and Rudder relay: *Debian 10-11, RHEL/CentOS 8 (64 bits),
+SLES 15, Ubuntu 18.04 LTS and 20.04 LTS*
+* Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES_12*
+* Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-8, RHEL/CentOS 3-6,
+SLES 10-11, Ubuntu 10.04 LTS-12.04 13.04-15.10 LTS-14.04 LTS-16.04, Windows Server 2008R2-2019, AIX
+5-6-7, Solaris 10 & 11, Slackware 14*
+
+Read more about supported operating systems 
+https://docs.rudder.io/reference/7.0/installation/operating_systems.html[in the documentation].
+

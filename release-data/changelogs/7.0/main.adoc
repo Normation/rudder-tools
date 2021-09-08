@@ -1,0 +1,3 @@
+= Change logs for Rudder 7.0
+
+Rudder 7.0 is currently the next version of Rudder.
