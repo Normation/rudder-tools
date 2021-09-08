@@ -7,13 +7,13 @@ function is_ec2 {
     return $False
   }
 
-  $MetaEndpoint = Invoke-webRequest -Uri $METAURL
+  $MetaEndpoint = Invoke-webRequest -Uri $METAURL -UseBasicParsing
   return $MetaEndpoint.StatusCode  -eq "200"
 }
 
 
 function dataparse([STRING]$url,[STRING]$k) {
-  $request = Invoke-WebRequest  -Uri $url/$k
+  $request = Invoke-WebRequest  -Uri $url/$k -UseBasicParsing
   $data = $request.Content
   if ($request.StatusCode -eq "404") {
     write-Host "404 not found"
@@ -33,7 +33,7 @@ function dataparse([STRING]$url,[STRING]$k) {
      $object.Add("$newkey",$data)
    }else {
      try {
-       $request = Invoke-WebRequest -Uri $newurl/$key
+       $request = Invoke-WebRequest -Uri $newurl/$key -UseBasicParsing
        $data = $request.Content
        $StatusCode = $Response.StatusCode
      } catch {
