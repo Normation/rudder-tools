@@ -5,7 +5,8 @@
 This inventory hook allows gathering information about available security upgrades
 on the system.
 
-IMPORTANT: For now it is compatible with Debian.
+IMPORTANT: For now it is compatible with Debian and Ubuntu, and requires 
+/etc/os-release to identify the system.
 
 The hook checks the state of package list updates
 to ensure a valid answer.
