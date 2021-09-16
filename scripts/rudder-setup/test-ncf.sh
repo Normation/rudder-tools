@@ -10,7 +10,7 @@ test_ncf() {
     make "${TEST_TARGET}"
     TEST_RESULT=$?
     set -e
-    find . -type f -name '*test.log' -exec cat {} + >> /tmp/ncf_tests.log
+    find . -type f -name '*test*.log' -exec cat {} + >> /tmp/ncf_tests.log
     exit $TEST_RESULT
 }
 
@@ -44,10 +44,17 @@ install_test_dependencies() {
     then
       # install pip
       ${PM_INSTALL} python
-      curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py || /bin/true
-      python get-pip.py || /bin/true
-      pip install -U six || /bin/true
-      pip install -U testinfra --ignore-installed six || /bin/true
+      ${PM_INSTALL} python3-pip || true
+      if command -v pip3 >/dev/null 2>&1
+      then
+        PIP="pip3"
+      else
+        PIP=pip
+        curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
+        python get-pip.py
+      fi
+      $PIP install -U six
+      $PIP install -U testinfra --ignore-installed six
     fi
     set -e
 }
