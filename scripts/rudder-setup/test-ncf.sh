@@ -16,7 +16,7 @@ test_ncf() {
 
 install_test_dependencies() {
     set +e
-    TEST_DEPENDENCIES="htop python-jinja2 ntp acl python3 python3-jinja2 augeas augeas-tools augeas"
+    TEST_DEPENDENCIES="htop python-jinja2 ntp acl python3 python3-jinja2 augeas augeas-tools augeas python3-pytest"
     SLES_DEPENDENCIES="dos2unix createrepo createrepo_c acl"
     # Install dependencies
     ${PM_UPDATE}
