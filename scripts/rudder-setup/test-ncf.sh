@@ -53,6 +53,8 @@ install_test_dependencies() {
         curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
         python get-pip.py
       fi
+      # needed on SLES12
+      $PIP install -U jinja2
       $PIP install -U six
       $PIP install -U testinfra --ignore-installed six
     fi
