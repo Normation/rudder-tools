@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin openscap 6.2.\* versions
 
+== openscap-6.2-1.3 (2021-09-30)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: stack trace when openscap plugin loads
+    (https://issues.rudder.io/issues/19958[#19958])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == openscap-6.2-1.2 (2021-09-03)
 
 === Changes
