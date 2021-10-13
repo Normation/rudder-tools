@@ -1,6 +1,6 @@
 # List operating systems properties
 
-debian = { 
+debian = {
   aliases = [ ]
   package-format = "dpkg"
   name = "Debian"
@@ -16,7 +16,7 @@ debian = {
   }
 }
 
-armbian = { 
+armbian = {
   aliases = [ ]
   package-format = "dpkg"
   name = "Armbian"
