@@ -44,7 +44,7 @@ CLONE
     - clone it
     - setup both remote repository in git
     ex: rudder-dev clone rudder-techniques
-    
+
 PULL
     Call it to make sure you are on a branch and up to date.
     - create the branch with remote tracking if it doesn't exist
@@ -182,7 +182,7 @@ MERGE
     Use --automatic to automatically validate merge comment.
     There is a special strategy call upto_XXX where XXX is a version number.
     When we reach this version, use -s ours to avoid upmerging to later branches.
-    - detect the ticket id from current branch if there is no parameter 
+    - detect the ticket id from current branch if there is no parameter
     - checkout an pull last version or the PR branch for a given ticket
     - automatically fixup commits on the PR branch unless --no-autosquash is provided
     - checkout an pull new version
@@ -209,7 +209,7 @@ CLEANUP
     - if ticket is closed
     - if branch's commit are pushed upstream
     - remove local and remote branch
-    With --more, include more branch that are not strictly clean, such as 
+    With --more, include more branch that are not strictly clean, such as
       closed tickets that have un unmerged commits are asked to the user.
     ex: git cleanup
 
@@ -246,7 +246,7 @@ import requests # apt-get install python-requests || pip install requests
 import docopt # apt-get install python-docopt || pip install docopt
 
 # Fake imports are a solution to make the source be a valid python file
-# whereas the script need to stay a single file. 
+# whereas the script need to stay a single file.
 # We just replace the import at build time with the corresponding file content.
 # Please note that current code won't work properly with real import
 # but it could be interesting (or not).
@@ -273,7 +273,7 @@ Config.LIFECYCLES = [ { "name": "rudder",
 
 ###
 ###  Internal functions
-### 
+###
 
 # update normation user list cache and return updated user list
 def update_nrm_users(project_id):
@@ -388,7 +388,7 @@ def get_versions(internal=False):
     if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
-  
+
   # keep unique name and sort
   version_list = list(set(redmine_version_list))
   # order is the right one because x.y < 'master'
@@ -494,7 +494,7 @@ def close_pr(pr_url, comment):
   issue = '{ "body": "' + comment + '" }'
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
   github_request(url, "Commenting PR ...", pr_url, issue)
-  
+
   # close the PR
   issue = '{ "state": "closed" }'
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
@@ -506,13 +506,13 @@ def get_pr_upstream(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
   pr = github_request(url, None, pr_url)
   return pr['base']['ref']
-  
+
 # get PR merge commit
 def get_pr_merge_commit(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/events"
   pr_events = github_request(url, None, pr_url)
   pr_merged = [ pr for pr in pr_events if pr["event"] == "merged" ]
-  if len(pr_merged) != 1: 
+  if len(pr_merged) != 1:
     logfail("Can't find merge commit for pull request")
     exit(12)
   return pr_merged[0]['commit_id']
@@ -546,8 +546,12 @@ def commit_push(branch, message, force_amend=False, fixup=False):
       if not Config.force:
         exit(1)
 
-  # git add if needed
   files = shell("git status --untracked-files=no --porcelain", keep_output=True)
+  # cargo fmt first if needed
+  if re.search(r'.rs$', files, flags=re.M) is not None:
+    shell("cargo fmt", fail_exit=False)
+
+  # git add if needed
   # git status returns a space at beginning of a line if the file is not indexed
   # if all lines start with a space then nothing is indexed
   if re.search(r'^[^ ]', files, flags=re.M) is None: # beware, this is a double negation
@@ -713,7 +717,7 @@ def stash_info():
 
 
 ###
-### MAIN methods 
+### MAIN methods
 ###   branch, commit, rebase, clone, pull
 ###
 
@@ -798,7 +802,7 @@ def technique(version, message):
   if not match:
     logfail("***** ERROR: Version must be of the form x.y")
     exit(7)
-  
+
   # check branch info
   issue = issue_from_branch(current_branch)
 
@@ -882,12 +886,12 @@ def subtask(next_version, new_title, base=None, bug=False):
   # if branch has not been merged, base the ticket on the original
   else:
     create_branch(new_issue.name, current_branch)
-  
+
     # rebase to next_version
     next_branch = branch_from_version(next_version)
     shell("git rebase -i " + next_branch, "Rebasing to " + next_version)
 
- 
+
 # commit, push
 def wip():
   # must be on a working branch
@@ -991,7 +995,7 @@ def commit(trigraph=None, message=None, nopr=False):
 # amend commit, push -f, comment PR
 def amend(comment=None):
   issue = issue_from_branch(current_branch)
- 
+
   # commit over last commit and push
   if issue['private']:
     title = ''
@@ -1006,7 +1010,7 @@ def amend(comment=None):
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     # Remove cannot merge labels to permit merge again
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
- 
+
   # reassign ticket
   if 'last_assignee' in issue:
     issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
@@ -1014,7 +1018,7 @@ def amend(comment=None):
   # Message on PR if there is one
   if 'pr' in issue and issue['pr'] != '':
     update_pr(issue['pr'], "Commit modified", comment)
-    print("Done, you can see the PR here: " + issue['pr']) 
+    print("Done, you can see the PR here: " + issue['pr'])
   else:
     print("No PR found.")
 
@@ -1022,7 +1026,7 @@ def amend(comment=None):
 # fixup commit, push, comment PR
 def fixup(comment=None):
   issue = issue_from_branch(current_branch)
- 
+
   # commit over last commit and push
   if issue['private']:
     title = ''
@@ -1037,7 +1041,7 @@ def fixup(comment=None):
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     # Remove cannot merge labels to permit merge again
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
- 
+
   # reassign ticket
   if 'last_assignee' in issue:
     issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
@@ -1045,7 +1049,7 @@ def fixup(comment=None):
   # Message on PR if there is one
   if 'pr' in issue and issue['pr'] != '':
     update_pr(issue['pr'], "PR updated with a new commit", comment)
-    print("Done, you can see the PR here: " + issue['pr']) 
+    print("Done, you can see the PR here: " + issue['pr'])
   else:
     print("No PR found.")
 
@@ -1059,7 +1063,7 @@ def rebase(comment=None, base=None):
     pr = PR(issue['pr'])
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
-  
+
   # fetch before rebasing
   if base is not None:
     if re.match(r'^.\d*$', base):
@@ -1134,7 +1138,7 @@ def retarget(version=None):
     # if OK: continue
     shell("git push --force " + Config.OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
-    # create new PR 
+    # create new PR
     pr_url = create_pr(ticket_branch, issue, "Replacing previous PR: " +  issue['pr'])
 
     if pr_url:
@@ -1306,7 +1310,7 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run
     issue = issue_from_branch(current_branch)
   else:
     issue = Issue(issue_name)
-  
+
   if 'pr' not in issue or issue['pr'] == '':
     logfail("There is no PR in this issue " + issue.name)
     exit(15)
@@ -1353,7 +1357,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True,
     version = get_next_version(version)
 
 
-# Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
+# Revert commit from ticket passed as parameter, use retarget to keep changes on next branch
 def revert(ticket, retarget = False):
   issue = Issue(ticket, False)
 
@@ -1366,15 +1370,15 @@ def revert(ticket, retarget = False):
 
   pull(issue['version'])
   # If we retarget a change, we want only this change to be reverted, so ensure we have already merged the branch correctly
-  if retarget: 
+  if retarget:
     merge_to_next(issue['version'])
-  
+
   # Reverting
   shell("git revert -m1 " + commit, "Reverting issue #" + str(issue.id) + ":" + issue["name"]+ ", commit: " + commit  )
   shell("git push " + Config.UPSTREAM_REPOSITORY, "Updating " + Config.UPSTREAM_REPOSITORY)
 
-  # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version 
-  if retarget: 
+  # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version
+  if retarget:
     merge_to_next(issue['version'], "ours")
 
 
@@ -1439,7 +1443,7 @@ def cleanup(more=False, dry=False):
             if answer.upper() == "Y":
               remove = True
         # The ticket is open -> NO
-      
+
       if remove:
         print("removing: " + branch)
         if not dry:
@@ -1499,7 +1503,7 @@ def blame(filename, long_format, before_commit, changed_from):
     # get ordered list of commit id
     commits = shell("git log --oneline --abbrev=7", keep_output=True) # abbrev used is +1 in git blame !!
     commit_list = commits.split("\n")
-    commit_list = [ x.split(' ',1)[0] for x in commit_list ] 
+    commit_list = [ x.split(' ',1)[0] for x in commit_list ]
   blame = shell("git blame -s -w --abbrev=6 " + reverse_opt + " " + filename + " " + commit_opt, "Blaming file " + filename, keep_output=True)
   output = ""
   for line in blame.split('\n'):
@@ -1522,7 +1526,7 @@ def blame(filename, long_format, before_commit, changed_from):
             log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
         else:
           log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
-      # format the log line and add it to the blame 
+      # format the log line and add it to the blame
       if long_format:
         output += "%-65.65s %s\n" % (log, match.group(2))
       else:
