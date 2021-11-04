@@ -9,7 +9,7 @@ release-status = "alpha"
 lts = false
 
 # Supported architecture for each distribution
-architectures = { 
+architectures = {
                   "armbian-9":      [ "armhf", "arm64" ],
                   "armbian-10":     [ "armhf", "arm64" ],
                   "armbian-11":     [ "armhf", "arm64" ],
@@ -29,11 +29,11 @@ architectures = {
                   "ubuntu-20.04":   [ "amd64" ],
                   "rhel-5":         [ "i386", "amd64" ],
                   "rhel-6":         [ "i386", "amd64" ],
-                  "rhel-7":         [ "i386", "amd64" ],
-                  "rhel-8":         [ "amd64" ],
+                  "rhel-7":         [ "i386", "amd64", "ppc64le" ],
+                  "rhel-8":         [ "amd64", "ppc64le" ],
                   "sles-11"   :     [ "i386", "amd64" ],
                   "sles-12"   :     [ "amd64", "ppc64le" ],
-                  "sles-15"   :     [ "amd64" ],
+                  "sles-15"   :     [ "amd64", "ppc64le" ],
                   "slackware-14.1": [ "amd64" ],
                   "slackware-14.2": [ "amd64" ],
                   "solaris-11.3":   [ "amd64" ],
@@ -43,8 +43,8 @@ architectures = {
                 }
 
 # Roles are package groups
-# We should only support server on LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES) 
-roles = { 
+# We should only support server on LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES)
+roles = {
           "armbian-9":      [ "agent-allinone" ],
           "armbian-10":     [ "agent-allinone" ],
           "armbian-11":     [ "agent-allinone" ],
@@ -89,7 +89,7 @@ tier1 = [
         ]
 
 # Packages that are built
-packages = { 
+packages = {
              "agent-allinone": [ "rudder-agent" ],
              "relay":          [ "rudder-server-relay" ],
              "server":         [ "rudder-reports", "rudder-server-root", "rudder-webapp", "rudder-api-client" ],
