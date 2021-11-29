@@ -1,16 +1,609 @@
 = Change logs for Rudder 7.0
 
-== [Private] Rudder 7.0.0.beta1 (2021-09-08)
+== Rudder 7.0.0.rc1 (2021-11-29)
 
 === Changes
 
-[WARNING]
-====
+==== Documentation
 
-This version is only available for extended support subscription
+* Update supported platform list in documentation
+    (https://issues.rudder.io/issues/20125[#20125])
+* Document windows update technique
+    (https://issues.rudder.io/issues/20265[#20265])
+* Dockerify api-doc test, build and publication
+    (https://issues.rudder.io/issues/20272[#20272])
 
-====
-    
+==== Web - UI & UX
+
+* Make the rows of the compliance tables foldable to show more levels of compliance in Rules UI
+    (https://issues.rudder.io/issues/20236[#20236])
+* Allow to customize in which menu plugins are set
+    (https://issues.rudder.io/issues/20264[#20264])
+
+==== System techniques
+
+* It's not possible to make the agent listen on a specific port
+    (https://issues.rudder.io/issues/20113[#20113])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Separate openldap cache between nightly and release builds
+    (https://issues.rudder.io/issues/20315[#20315])
+* Fixed: error in rudder-agent cron file in packaging
+    (https://issues.rudder.io/issues/20267[#20267])
+
+==== Web - UI & UX
+
+* Fixed: wrong write for rule page 
+    (https://issues.rudder.io/issues/20299[#20299])
+* Fixed: Redirection does not work on rule page
+    (https://issues.rudder.io/issues/20298[#20298])
+
+==== Web - Nodes & inventories
+
+* Fixed: by default, group condition should not be displayed
+    (https://issues.rudder.io/issues/20297[#20297])
+* Fixed: Alma Linux is detected as CentOS
+    (https://issues.rudder.io/issues/20237[#20237])
+
+==== CI
+
+* Fixed: Add redirect to latest API doc version to Jenkinsfile
+    (https://issues.rudder.io/issues/20291[#20291])
+* Fixed: Language docs publication does not work
+    (https://issues.rudder.io/issues/20285[#20285])
+* Fixed: Missing elm 0.19.1 in 7.0 tests
+    (https://issues.rudder.io/issues/20283[#20283])
+* Fixed: Dockerify tests
+    (https://issues.rudder.io/issues/20275[#20275])
+
+==== System integration
+
+* Fixed: Can't use rudder with openjdk17: cannot access class sun.net.util.IPAddressUtil
+    (https://issues.rudder.io/issues/20289[#20289])
+
+==== Miscellaneous
+
+* Fixed: Move to a new Url Technique api so anyone can create technique like the editor through api
+    (https://issues.rudder.io/issues/20242[#20242])
+* Fixed: Rudder agent factory-reset don't regenerate inventory
+    (https://issues.rudder.io/issues/20282[#20282])
+
+==== Web - Config management
+
+* Fixed: Error when creating a rule in 7.0
+    (https://issues.rudder.io/issues/20278[#20278])
+* Fixed: Rule editor does not use webapp context path value
+    (https://issues.rudder.io/issues/19879[#19879])
+
+==== Performance and scalability
+
+* Fixed: spurious "connection_read(9): no connection!" in /var/log/rudder/ldap/slapd.log
+    (https://issues.rudder.io/issues/19980[#19980])
+* Fixed: dashboard only shows the compliance of the nodes that really answer when logging on the test platform in 7.0
+    (https://issues.rudder.io/issues/20273[#20273])
+
+==== Web - Technique editor
+
+* Fixed: 404 error when opening a technique in the technique editor
+    (https://issues.rudder.io/issues/20183[#20183])
+
+==== Relay server or API
+
+* Fixed: Vulnerability in tokio
+    (https://issues.rudder.io/issues/20269[#20269])
+
+==== Documentation
+
+* Fixed: Missing documentation for relay to node demote API
+    (https://issues.rudder.io/issues/20262[#20262])
+
+==== Architecture - Internal libs
+
+* Fixed: Add mock in test lib for secrets eventlogs 
+    (https://issues.rudder.io/issues/20256[#20256])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+Rudder 7.0 is currently the next version of Rudder.
+
+
+== Rudder 7.0.0.beta3 (2021-11-18)
+
+=== Changes
+
+==== Documentation
+
+* Add support for Alma and Rocky Linux
+    (https://issues.rudder.io/issues/20220[#20220])
+* Document HTTP port change
+    (https://issues.rudder.io/issues/20132[#20132])
+
+==== Web - Config management
+
+* Remove SKIPIDENTIFY system variable
+    (https://issues.rudder.io/issues/19782[#19782])
+* Don't historize names of nodes, rules & groups in the database
+    (https://issues.rudder.io/issues/20229[#20229])
+* Make consistant id+revision format accross rule, directive, techniques in API
+    (https://issues.rudder.io/issues/20190[#20190])
+
+==== Web - UI & UX
+
+* Display Groups list in the 'Compliance by nodes' tab
+    (https://issues.rudder.io/issues/20243[#20243])
+
+==== Web - Technique editor
+
+* Update OS conditions in the technique editor
+    (https://issues.rudder.io/issues/20223[#20223])
+
+==== Miscellaneous
+
+* Missing data for Rule page
+    (https://issues.rudder.io/issues/20127[#20127])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: There is no cfengine-systemd patch anymore thus making package build faild
+    (https://issues.rudder.io/issues/20255[#20255])
+
+==== System integration
+
+* Fixed: Git warning about branch name in install logs
+    (https://issues.rudder.io/issues/20232[#20232])
+
+==== Packaging
+
+* Fixed: upgrade jetty dependency
+    (https://issues.rudder.io/issues/20222[#20222])
+* Fixed: Upgrade to openldap 2.4.59 for rudder 7.0
+    (https://issues.rudder.io/issues/20221[#20221])
+* Fixed: some build generate _dbgsym packages
+    (https://issues.rudder.io/issues/20193[#20193])
+* Fixed: error in logs at install about policy-server.pem
+    (https://issues.rudder.io/issues/19737[#19737])
+* Fixed: error at upgrade of rudder to 7.0
+    (https://issues.rudder.io/issues/20031[#20031])
+
+==== Documentation
+
+* Fixed: Documentation about collection access in jinja2 template is incorect
+    (https://issues.rudder.io/issues/20234[#20234])
+* Fixed: Document that HTTP port is not configurable with SELinux policies
+    (https://issues.rudder.io/issues/20200[#20200])
+* Fixed: Remove old logo from Rudder docs
+    (https://issues.rudder.io/issues/20189[#20189])
+* Fixed: Complete documentation on how to set up dev environment for 7.0
+    (https://issues.rudder.io/issues/20195[#20195])
+
+==== Performance and scalability
+
+* Fixed: Do a `git gc` periodically
+    (https://issues.rudder.io/issues/17767[#17767])
+* Fixed: Improve compliance computation efficiency
+    (https://issues.rudder.io/issues/20254[#20254])
+* Fixed: improve compliance computation efficiency
+    (https://issues.rudder.io/issues/20253[#20253])
+
+==== Web - UI & UX
+
+* Fixed: Improve compliance bars display in Rules UI
+    (https://issues.rudder.io/issues/20197[#20197])
+* Fixed: source map missing in 7.0
+    (https://issues.rudder.io/issues/19935[#19935])
+* Fixed: Fix a css issue in the Technique Editor tree
+    (https://issues.rudder.io/issues/20214[#20214])
+* Fixed: "Save changes" button on the policy mode form is broken.
+    (https://issues.rudder.io/issues/20210[#20210])
+* Fixed: Status displayed in the rules table is incorrect
+    (https://issues.rudder.io/issues/20202[#20202])
+* Fixed: Can't get over page "Getting Started"
+    (https://issues.rudder.io/issues/20207[#20207])
+* Fixed: Rule table scroll the whole page and not the rule table section when there is too much Rule
+    (https://issues.rudder.io/issues/20201[#20201])
+* Fixed: Display policy mode in Rule lists
+    (https://issues.rudder.io/issues/20140[#20140])
+* Fixed: Edit mode should be enabled by default when creating a new rule
+    (https://issues.rudder.io/issues/20194[#20194])
+* Fixed: When creating a rule, the Select Directives and Select Groups buttons do not work
+    (https://issues.rudder.io/issues/20188[#20188])
+
+==== Language
+
+* Fixed: technique cannot be compile if name contains \\"x 
+    (https://issues.rudder.io/issues/19888[#19888])
+* Fixed: rudderc doesn't support multiline text
+    (https://issues.rudder.io/issues/19900[#19900])
+
+==== Web - Nodes & inventories
+
+* Fixed: Rocky Linux is not recognized
+    (https://issues.rudder.io/issues/20239[#20239])
+
+==== Web - Technique editor
+
+* Fixed: Technique draft should be deleted on save
+    (https://issues.rudder.io/issues/20241[#20241])
+* Fixed: it's not possible to reorder method in a block in technique editor
+    (https://issues.rudder.io/issues/19954[#19954])
+* Fixed: it's not possible to reorder method in a block in technique editor
+    (https://issues.rudder.io/issues/19954[#19954])
+* Fixed: Cannot save a technique with a block with reporting focused on one method
+    (https://issues.rudder.io/issues/19769[#19769])
+
+==== Plugins integration
+
+* Fixed: when upgrading from 6.2 to 7.0 with the dsc plugin, webapp doesn't work
+    (https://issues.rudder.io/issues/20204[#20204])
+
+==== System techniques
+
+* Fixed: /root/.pgpass and /opt/rudder/etc/rudder-web.properties have rudder_parameters.rudder_file_edit_header on Rudder 7.0
+    (https://issues.rudder.io/issues/19929[#19929])
+
+==== Generic methods
+
+* Fixed: Document that "package_verify" is deprecated
+    (https://issues.rudder.io/issues/20151[#20151])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+Rudder 7.0 is currently the next version of Rudder.
+== Rudder 7.0.0.beta2 (2021-10-23)
+
+=== Changes
+
+==== Documentation
+
+* Apply the new graphic charter to the documentation
+    (https://issues.rudder.io/issues/20145[#20145])
+* Update the doc for external database setup
+    (https://issues.rudder.io/issues/19849[#19849])
+* Use the new favicon for docs.rudder.io
+    (https://issues.rudder.io/issues/19914[#19914])
+* Make a nice index page for logos
+    (https://issues.rudder.io/issues/20036[#20036])
+
+==== System integration
+
+* Add a feature switch for rudderc use during generation
+    (https://issues.rudder.io/issues/20099[#20099])
+
+==== Plugins integration
+
+* Rudder package should try to install nightly plugins when Rudder is installed as a nightly version
+    (https://issues.rudder.io/issues/20134[#20134])
+
+==== Language
+
+* rudder language generate_lib should use the existing ncf python library instead of implement itself the ncf methods parsing
+    (https://issues.rudder.io/issues/20130[#20130])
+* Support reporting logic metadata in language
+    (https://issues.rudder.io/issues/19926[#19926])
+
+==== Web - UI & UX
+
+* Display the 'Compliance by Nodes' table
+    (https://issues.rudder.io/issues/19880[#19880])
+* Display directive tags in rule details
+    (https://issues.rudder.io/issues/20111[#20111])
+* Add filters on Groups in rule details
+    (https://issues.rudder.io/issues/20024[#20024])
+
+==== Miscellaneous
+
+* Missing API and data for Rule page: special targets and node compliance
+    (https://issues.rudder.io/issues/20112[#20112])
+
+==== Web - Compliance & node report
+
+* Add revision to rule 
+    (https://issues.rudder.io/issues/20081[#20081])
+
+==== Web - Technique editor
+
+* Introduce technique drafts
+    (https://issues.rudder.io/issues/19995[#19995])
+* Make the technique editor more integrated and accessible
+    (https://issues.rudder.io/issues/19985[#19985])
+
+==== Web - Config management
+
+* Improve rudder package output
+    (https://issues.rudder.io/issues/19967[#19967])
+
+==== Web - Nodes & inventories
+
+* Remove all.log setting
+    (https://issues.rudder.io/issues/19951[#19951])
+
+==== Architecture - Refactoring
+
+* Remove exception classes
+    (https://issues.rudder.io/issues/19946[#19946])
+
+==== Packaging
+
+* Improve rust build times
+    (https://issues.rudder.io/issues/19915[#19915])
+
+==== CI
+
+* Change the slack notification form the ncf tests
+    (https://issues.rudder.io/issues/20143[#20143])
+
+==== Generic methods
+
+* We should be able to return an arbitrary report from the technique editor
+    (https://issues.rudder.io/issues/20007[#20007])
+* Improve parameter naming
+    (https://issues.rudder.io/issues/18868[#18868])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: ubuntu 13 doesn't support tlsv1.2 
+    (https://issues.rudder.io/issues/20122[#20122])
+* Fixed: Some package still download sources from rudder-project
+    (https://issues.rudder.io/issues/20072[#20072])
+* Fixed: File /tmp/rudder-plugins-upgrade is never cleaned during an upgrade, so running again rudder-upgrade causes trouble on plugins
+    (https://issues.rudder.io/issues/20069[#20069])
+* Fixed: old distro build fail to get source
+    (https://issues.rudder.io/issues/20063[#20063])
+* Fixed: techniques distributePolicy and server-roles are not removed from /var/rudder/configuration-repository/techniques/system when upgrading from 6.2 to 7.0
+    (https://issues.rudder.io/issues/20060[#20060])
+* Fixed: create migration script for database change in 7.0
+    (https://issues.rudder.io/issues/20021[#20021])
+* Fixed: SELinux error when upgrading from 6.2 to 7.0 on centos8
+    (https://issues.rudder.io/issues/20035[#20035])
+* Fixed: Agent key does not work for HTTP on migrations
+    (https://issues.rudder.io/issues/20070[#20070])
+
+==== Plugins integration
+
+* Fixed: Rudder patch upgrade fails on plugin upgrade
+    (https://issues.rudder.io/issues/20098[#20098])
+* Fixed: Don't allow directory traversal through plugin URL
+    (https://issues.rudder.io/issues/19969[#19969])
+
+==== Web - Maintenance
+
+* Fixed: don't show wizard after an upgrade
+    (https://issues.rudder.io/issues/20094[#20094])
+* Fixed: Error when unserializing ChangeRequest modifying Directives based on Techniques  that have been deleted
+    (https://issues.rudder.io/issues/3783[#3783])
+
+==== Documentation
+
+* Fixed: Properly use lato in docs
+    (https://issues.rudder.io/issues/20166[#20166])
+* Fixed: Improve search bar visibility and appearance
+    (https://issues.rudder.io/issues/20168[#20168])
+* Fixed: Convert text to vector paths in the Rudder documentation logo
+    (https://issues.rudder.io/issues/20167[#20167])
+* Fixed: Fix lato usage in api docs
+    (https://issues.rudder.io/issues/20171[#20171])
+* Fixed: Use standard formatting for GPLv3
+    (https://issues.rudder.io/issues/20061[#20061])
+
+==== Web - Config management
+
+* Fixed: cannot create or modify a rule
+    (https://issues.rudder.io/issues/20186[#20186])
+* Fixed: Add a way to load/unload rule revision in LDAP
+    (https://issues.rudder.io/issues/20097[#20097])
+* Fixed: Rules can't be accessed directly by url, all redirection broken
+    (https://issues.rudder.io/issues/19872[#19872])
+* Fixed: rules sorting does not work and they are not sorted by default
+    (https://issues.rudder.io/issues/19871[#19871])
+* Fixed: Typo in log "deletedbut"
+    (https://issues.rudder.io/issues/19956[#19956])
+
+==== Web - UI & UX
+
+* Fixed: Hide Technical logs tab
+    (https://issues.rudder.io/issues/20139[#20139])
+* Fixed: Make the tree categories foldable
+    (https://issues.rudder.io/issues/20164[#20164])
+* Fixed: Display tags in rule lists
+    (https://issues.rudder.io/issues/20149[#20149])
+* Fixed: Display directive tags inside Compliance table In Rule details
+    (https://issues.rudder.io/issues/20148[#20148])
+* Fixed: Getting started setup fails to send metrics
+    (https://issues.rudder.io/issues/20042[#20042])
+* Fixed: Allow categories to be moved in the Rules tree
+    (https://issues.rudder.io/issues/20116[#20116])
+* Fixed: Improve user experience when selecting Directives and Groups
+    (https://issues.rudder.io/issues/20090[#20090])
+* Fixed: Add filter to the directive lists in Rule details
+    (https://issues.rudder.io/issues/19987[#19987])
+* Fixed: Make the search bar of the Rules list work
+    (https://issues.rudder.io/issues/19971[#19971])
+* Fixed: Display the name of the groups of a rule instead of their id
+    (https://issues.rudder.io/issues/19981[#19981])
+* Fixed: Tags of a rule cannot be deleted
+    (https://issues.rudder.io/issues/19977[#19977])
+* Fixed: launch set-up wizard on first connection
+    (https://issues.rudder.io/issues/19898[#19898])
+* Fixed: Display the name of the groups of a rule instead of their id
+    (https://issues.rudder.io/issues/19981[#19981])
+
+==== Web - Compliance & node report
+
+* Fixed: Duplicated expected reports leads to bad compliance for technique with blocks
+    (https://issues.rudder.io/issues/20124[#20124])
+* Fixed: No reporting on a fresh 7.0~beta2 install
+    (https://issues.rudder.io/issues/20104[#20104])
+* Fixed: Technique editor blocks do not report as expected
+    (https://issues.rudder.io/issues/19990[#19990])
+* Fixed: When 2 changes are close in time,  expected report on the compliance page don't show the new config
+    (https://issues.rudder.io/issues/19740[#19740])
+
+==== Language
+
+* Fixed: DSC policies are generated without the conditions
+    (https://issues.rudder.io/issues/20083[#20083])
+* Fixed: disable variable methods that don't work with language until we find a proper solution
+    (https://issues.rudder.io/issues/20146[#20146])
+* Fixed: Update generate lib to match new generic method parameters
+    (https://issues.rudder.io/issues/20062[#20062])
+* Fixed: Improve rudder language states documentation
+    (https://issues.rudder.io/issues/20107[#20107])
+* Fixed: Error on missing resource is not explicit
+    (https://issues.rudder.io/issues/20103[#20103])
+* Fixed: After migrating from 6.2 to 7.0, techniques that were totally valid may become invalid because of name collision in rudderc
+    (https://issues.rudder.io/issues/20065[#20065])
+* Fixed: disable reporting in the technique editor does nothing in rudderc
+    (https://issues.rudder.io/issues/20015[#20015])
+* Fixed: rudder-lang in 7.0 should use ncf 7.0
+    (https://issues.rudder.io/issues/20041[#20041])
+
+==== Relay server or API
+
+* Fixed: Add an exception to relayd license to allow linking statically with openssl
+    (https://issues.rudder.io/issues/20161[#20161])
+* Fixed: Vulnerability in chrono
+    (https://issues.rudder.io/issues/20160[#20160])
+* Fixed: Vulnerability in time crate
+    (https://issues.rudder.io/issues/20141[#20141])
+* Fixed: Make HTTP keep alive configurable in relayd
+    (https://issues.rudder.io/issues/20115[#20115])
+
+==== Web - Technique editor
+
+* Fixed: Technique draft can't be deleted
+    (https://issues.rudder.io/issues/20137[#20137])
+* Fixed: Migrate existing techniques to new naming of method  parameters
+    (https://issues.rudder.io/issues/20019[#20019])
+* Fixed: error in technique editor in rudder 7 when copying class result from within a block
+    (https://issues.rudder.io/issues/19953[#19953])
+* Fixed: cannot remove a method within a block
+    (https://issues.rudder.io/issues/19959[#19959])
+
+==== Web - Nodes & inventories
+
+* Fixed: confusing search option for Node: "Policy Node ID"
+    (https://issues.rudder.io/issues/20093[#20093])
+* Fixed: Number of CPU is wrongly reported
+    (https://issues.rudder.io/issues/19988[#19988])
+* Fixed: Persist revisions of node inventories in fact-repository
+    (https://issues.rudder.io/issues/19869[#19869])
+
+==== API
+
+* Fixed: Missing rights/role mapping for 7.0 endpoints
+    (https://issues.rudder.io/issues/20051[#20051])
+
+==== Performance and scalability
+
+* Fixed: Store processes of an inventory after storing the inventory
+    (https://issues.rudder.io/issues/20006[#20006])
+
+==== Architecture - Internal libs
+
+* Fixed: In CI, technique migration test sometimes throw an NPE
+    (https://issues.rudder.io/issues/20009[#20009])
+
+==== System integration
+
+* Fixed: Need a migration script about changes in system directives, groups and rules
+    (https://issues.rudder.io/issues/19650[#19650])
+* Fixed: Remove useless bootchecks in rudder 7.0
+    (https://issues.rudder.io/issues/19960[#19960])
+* Fixed: Jetty is restarted 3 times during install
+    (https://issues.rudder.io/issues/19852[#19852])
+
+==== Architecture - Refactoring
+
+* Fixed: Change format to call engines in properties 
+    (https://issues.rudder.io/issues/19943[#19943])
+
+==== Miscellaneous
+
+* Fixed: Copy to clipboard button for user creation command in login page
+    (https://issues.rudder.io/issues/19938[#19938])
+
+==== Security
+
+* Fixed: there aren't any authorizations on the rules pages
+    (https://issues.rudder.io/issues/19775[#19775])
+
+==== System techniques
+
+* Fixed: Missing report for inventory
+    (https://issues.rudder.io/issues/20154[#20154])
+* Fixed: Broken reporting for webdav password when changing http port
+    (https://issues.rudder.io/issues/20153[#20153])
+* Fixed: Homogenize suse classes in system techniques
+    (https://issues.rudder.io/issues/20155[#20155])
+* Fixed: boostrap bundle should not be present on relays
+    (https://issues.rudder.io/issues/20136[#20136])
+* Fixed: Apache is not reloaded when the generated /var/rudder/lib/ssl/nodescerts.pem changes
+    (https://issues.rudder.io/issues/20096[#20096])
+* Fixed: slow policy generation in Rudder 7.0
+    (https://issues.rudder.io/issues/19771[#19771])
+
+==== Techniques
+
+* Fixed: sshKeyDistribution doesn't correctly reports on missing home folder
+    (https://issues.rudder.io/issues/19944[#19944])
+
+==== Agent
+
+* Fixed: rudder agent info should display port information
+    (https://issues.rudder.io/issues/20158[#20158])
+
+==== Server components
+
+* Fixed: grep error in install logs
+    (https://issues.rudder.io/issues/20150[#20150])
+
+==== Generic methods
+
+* Fixed: sharedfile methods don't have consistent class parameter
+    (https://issues.rudder.io/issues/20126[#20126])
+* Fixed: Pass the zypper_pattern test in staging
+    (https://issues.rudder.io/issues/20108[#20108])
+* Fixed: Rename report_if to report_if_condition
+    (https://issues.rudder.io/issues/20038[#20038])
+* Fixed: generic method parameter name must not change between 6.2 and 7.0
+    (https://issues.rudder.io/issues/20017[#20017])
+* Fixed: Fix augeas methods documentation
+    (https://issues.rudder.io/issues/19883[#19883])
+* Fixed: testinfra based tests should pass via the python executable and not py.test
+    (https://issues.rudder.io/issues/20001[#20001])
+* Fixed: error in file_key_value_present_in_ini_section
+    (https://issues.rudder.io/issues/19992[#19992])
+* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escpaing characters
+    (https://issues.rudder.io/issues/19908[#19908])
+
+==== CI
+
+* Fixed: Remove ubuntu20 from the Jenkinsfile test since thehost is unstable atm
+    (https://issues.rudder.io/issues/20056[#20056])
+* Fixed: Cover all supported server OS in the PR automated tests.
+    (https://issues.rudder.io/issues/19979[#19979])
+* Fixed: Add ncf tests to the repo Jenkinsfile
+    (https://issues.rudder.io/issues/19970[#19970])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
+== Rudder 7.0.0.beta1 (2021-09-08)
+
+=== Changes
 
 ==== Packaging
 
@@ -766,624 +1359,3 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
-== [Private] Rudder 7.0.0.beta2 (2021-10-23)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-==== Documentation
-
-* Apply the new graphic charter to the documentation
-    (https://issues.rudder.io/issues/20145[#20145])
-* Update the doc for external database setup
-    (https://issues.rudder.io/issues/19849[#19849])
-* Use the new favicon for docs.rudder.io
-    (https://issues.rudder.io/issues/19914[#19914])
-* Make a nice index page for logos
-    (https://issues.rudder.io/issues/20036[#20036])
-
-==== System integration
-
-* Add a feature switch for rudderc use during generation
-    (https://issues.rudder.io/issues/20099[#20099])
-
-==== Plugins integration
-
-* Rudder package should try to install nightly plugins when Rudder is installed as a nightly version
-    (https://issues.rudder.io/issues/20134[#20134])
-
-==== Language
-
-* rudder language generate_lib should use the existing ncf python library instead of implement itself the ncf methods parsing
-    (https://issues.rudder.io/issues/20130[#20130])
-* Support reporting logic metadata in language
-    (https://issues.rudder.io/issues/19926[#19926])
-
-==== Web - UI & UX
-
-* Display the 'Compliance by Nodes' table
-    (https://issues.rudder.io/issues/19880[#19880])
-* Display directive tags in rule details
-    (https://issues.rudder.io/issues/20111[#20111])
-* Add filters on Groups in rule details
-    (https://issues.rudder.io/issues/20024[#20024])
-
-==== Miscellaneous
-
-* Missing API and data for Rule page: special targets and node compliance
-    (https://issues.rudder.io/issues/20112[#20112])
-
-==== Web - Compliance & node report
-
-* Add revision to rule 
-    (https://issues.rudder.io/issues/20081[#20081])
-
-==== Web - Technique editor
-
-* Introduce technique drafts
-    (https://issues.rudder.io/issues/19995[#19995])
-* Make the technique editor more integrated and accessible
-    (https://issues.rudder.io/issues/19985[#19985])
-
-==== Web - Config management
-
-* Improve rudder package output
-    (https://issues.rudder.io/issues/19967[#19967])
-
-==== Web - Nodes & inventories
-
-* Remove all.log setting
-    (https://issues.rudder.io/issues/19951[#19951])
-
-==== Architecture - Refactoring
-
-* Remove exception classes
-    (https://issues.rudder.io/issues/19946[#19946])
-
-==== Packaging
-
-* Improve rust build times
-    (https://issues.rudder.io/issues/19915[#19915])
-
-==== CI
-
-* Change the slack notification form the ncf tests
-    (https://issues.rudder.io/issues/20143[#20143])
-
-==== Generic methods
-
-* We should be able to return an arbitrary report from the technique editor
-    (https://issues.rudder.io/issues/20007[#20007])
-* Improve parameter naming
-    (https://issues.rudder.io/issues/18868[#18868])
-
-=== Bug fixes
-
-==== Packaging
-
-* Fixed: ubuntu 13 doesn't support tlsv1.2 
-    (https://issues.rudder.io/issues/20122[#20122])
-* Fixed: Some package still download sources from rudder-project
-    (https://issues.rudder.io/issues/20072[#20072])
-* Fixed: File /tmp/rudder-plugins-upgrade is never cleaned during an upgrade, so running again rudder-upgrade causes trouble on plugins
-    (https://issues.rudder.io/issues/20069[#20069])
-* Fixed: old distro build fail to get source
-    (https://issues.rudder.io/issues/20063[#20063])
-* Fixed: techniques distributePolicy and server-roles are not removed from /var/rudder/configuration-repository/techniques/system when upgrading from 6.2 to 7.0
-    (https://issues.rudder.io/issues/20060[#20060])
-* Fixed: create migration script for database change in 7.0
-    (https://issues.rudder.io/issues/20021[#20021])
-* Fixed: SELinux error when upgrading from 6.2 to 7.0 on centos8
-    (https://issues.rudder.io/issues/20035[#20035])
-* Fixed: Agent key does not work for HTTP on migrations
-    (https://issues.rudder.io/issues/20070[#20070])
-
-==== Plugins integration
-
-* Fixed: Rudder patch upgrade fails on plugin upgrade
-    (https://issues.rudder.io/issues/20098[#20098])
-* Fixed: Don't allow directory traversal through plugin URL
-    (https://issues.rudder.io/issues/19969[#19969])
-
-==== Web - Maintenance
-
-* Fixed: don't show wizard after an upgrade
-    (https://issues.rudder.io/issues/20094[#20094])
-* Fixed: Error when unserializing ChangeRequest modifying Directives based on Techniques  that have been deleted
-    (https://issues.rudder.io/issues/3783[#3783])
-
-==== Documentation
-
-* Fixed: Properly use lato in docs
-    (https://issues.rudder.io/issues/20166[#20166])
-* Fixed: Improve search bar visibility and appearance
-    (https://issues.rudder.io/issues/20168[#20168])
-* Fixed: Convert text to vector paths in the Rudder documentation logo
-    (https://issues.rudder.io/issues/20167[#20167])
-* Fixed: Fix lato usage in api docs
-    (https://issues.rudder.io/issues/20171[#20171])
-* Fixed: Use standard formatting for GPLv3
-    (https://issues.rudder.io/issues/20061[#20061])
-
-==== Web - Config management
-
-* Fixed: cannot create or modify a rule
-    (https://issues.rudder.io/issues/20186[#20186])
-* Fixed: Add a way to load/unload rule revision in LDAP
-    (https://issues.rudder.io/issues/20097[#20097])
-* Fixed: Rules can't be accessed directly by url, all redirection broken
-    (https://issues.rudder.io/issues/19872[#19872])
-* Fixed: rules sorting does not work and they are not sorted by default
-    (https://issues.rudder.io/issues/19871[#19871])
-* Fixed: Typo in log "deletedbut"
-    (https://issues.rudder.io/issues/19956[#19956])
-
-==== Web - UI & UX
-
-* Fixed: Hide Technical logs tab
-    (https://issues.rudder.io/issues/20139[#20139])
-* Fixed: Make the tree categories foldable
-    (https://issues.rudder.io/issues/20164[#20164])
-* Fixed: Display tags in rule lists
-    (https://issues.rudder.io/issues/20149[#20149])
-* Fixed: Display directive tags inside Compliance table In Rule details
-    (https://issues.rudder.io/issues/20148[#20148])
-* Fixed: Getting started setup fails to send metrics
-    (https://issues.rudder.io/issues/20042[#20042])
-* Fixed: Allow categories to be moved in the Rules tree
-    (https://issues.rudder.io/issues/20116[#20116])
-* Fixed: Improve user experience when selecting Directives and Groups
-    (https://issues.rudder.io/issues/20090[#20090])
-* Fixed: Add filter to the directive lists in Rule details
-    (https://issues.rudder.io/issues/19987[#19987])
-* Fixed: Make the search bar of the Rules list work
-    (https://issues.rudder.io/issues/19971[#19971])
-* Fixed: Display the name of the groups of a rule instead of their id
-    (https://issues.rudder.io/issues/19981[#19981])
-* Fixed: Tags of a rule cannot be deleted
-    (https://issues.rudder.io/issues/19977[#19977])
-* Fixed: launch set-up wizard on first connection
-    (https://issues.rudder.io/issues/19898[#19898])
-* Fixed: Display the name of the groups of a rule instead of their id
-    (https://issues.rudder.io/issues/19981[#19981])
-
-==== Web - Compliance & node report
-
-* Fixed: Duplicated expected reports leads to bad compliance for technique with blocks
-    (https://issues.rudder.io/issues/20124[#20124])
-* Fixed: No reporting on a fresh 7.0~beta2 install
-    (https://issues.rudder.io/issues/20104[#20104])
-* Fixed: Technique editor blocks do not report as expected
-    (https://issues.rudder.io/issues/19990[#19990])
-* Fixed: When 2 changes are close in time,  expected report on the compliance page don't show the new config
-    (https://issues.rudder.io/issues/19740[#19740])
-
-==== Language
-
-* Fixed: DSC policies are generated without the conditions
-    (https://issues.rudder.io/issues/20083[#20083])
-* Fixed: disable variable methods that don't work with language until we find a proper solution
-    (https://issues.rudder.io/issues/20146[#20146])
-* Fixed: Update generate lib to match new generic method parameters
-    (https://issues.rudder.io/issues/20062[#20062])
-* Fixed: Improve rudder language states documentation
-    (https://issues.rudder.io/issues/20107[#20107])
-* Fixed: Error on missing resource is not explicit
-    (https://issues.rudder.io/issues/20103[#20103])
-* Fixed: After migrating from 6.2 to 7.0, techniques that were totally valid may become invalid because of name collision in rudderc
-    (https://issues.rudder.io/issues/20065[#20065])
-* Fixed: disable reporting in the technique editor does nothing in rudderc
-    (https://issues.rudder.io/issues/20015[#20015])
-* Fixed: rudder-lang in 7.0 should use ncf 7.0
-    (https://issues.rudder.io/issues/20041[#20041])
-
-==== Relay server or API
-
-* Fixed: Add an exception to relayd license to allow linking statically with openssl
-    (https://issues.rudder.io/issues/20161[#20161])
-* Fixed: Vulnerability in chrono
-    (https://issues.rudder.io/issues/20160[#20160])
-* Fixed: Vulnerability in time crate
-    (https://issues.rudder.io/issues/20141[#20141])
-* Fixed: Make HTTP keep alive configurable in relayd
-    (https://issues.rudder.io/issues/20115[#20115])
-
-==== Web - Technique editor
-
-* Fixed: Technique draft can't be deleted
-    (https://issues.rudder.io/issues/20137[#20137])
-* Fixed: Migrate existing techniques to new naming of method  parameters
-    (https://issues.rudder.io/issues/20019[#20019])
-* Fixed: error in technique editor in rudder 7 when copying class result from within a block
-    (https://issues.rudder.io/issues/19953[#19953])
-* Fixed: cannot remove a method within a block
-    (https://issues.rudder.io/issues/19959[#19959])
-
-==== Web - Nodes & inventories
-
-* Fixed: confusing search option for Node: "Policy Node ID"
-    (https://issues.rudder.io/issues/20093[#20093])
-* Fixed: Number of CPU is wrongly reported
-    (https://issues.rudder.io/issues/19988[#19988])
-* Fixed: Persist revisions of node inventories in fact-repository
-    (https://issues.rudder.io/issues/19869[#19869])
-
-==== API
-
-* Fixed: Missing rights/role mapping for 7.0 endpoints
-    (https://issues.rudder.io/issues/20051[#20051])
-
-==== Performance and scalability
-
-* Fixed: Store processes of an inventory after storing the inventory
-    (https://issues.rudder.io/issues/20006[#20006])
-
-==== Architecture - Internal libs
-
-* Fixed: In CI, technique migration test sometimes throw an NPE
-    (https://issues.rudder.io/issues/20009[#20009])
-
-==== System integration
-
-* Fixed: Need a migration script about changes in system directives, groups and rules
-    (https://issues.rudder.io/issues/19650[#19650])
-* Fixed: Remove useless bootchecks in rudder 7.0
-    (https://issues.rudder.io/issues/19960[#19960])
-* Fixed: Jetty is restarted 3 times during install
-    (https://issues.rudder.io/issues/19852[#19852])
-
-==== Architecture - Refactoring
-
-* Fixed: Change format to call engines in properties 
-    (https://issues.rudder.io/issues/19943[#19943])
-
-==== Miscellaneous
-
-* Fixed: Copy to clipboard button for user creation command in login page
-    (https://issues.rudder.io/issues/19938[#19938])
-
-==== Security
-
-* Fixed: there aren't any authorizations on the rules pages
-    (https://issues.rudder.io/issues/19775[#19775])
-
-==== System techniques
-
-* Fixed: Missing report for inventory
-    (https://issues.rudder.io/issues/20154[#20154])
-* Fixed: Broken reporting for webdav password when changing http port
-    (https://issues.rudder.io/issues/20153[#20153])
-* Fixed: Homogenize suse classes in system techniques
-    (https://issues.rudder.io/issues/20155[#20155])
-* Fixed: boostrap bundle should not be present on relays
-    (https://issues.rudder.io/issues/20136[#20136])
-* Fixed: Apache is not reloaded when the generated /var/rudder/lib/ssl/nodescerts.pem changes
-    (https://issues.rudder.io/issues/20096[#20096])
-* Fixed: slow policy generation in Rudder 7.0
-    (https://issues.rudder.io/issues/19771[#19771])
-
-==== Techniques
-
-* Fixed: sshKeyDistribution doesn't correctly reports on missing home folder
-    (https://issues.rudder.io/issues/19944[#19944])
-
-==== Agent
-
-* Fixed: rudder agent info should display port information
-    (https://issues.rudder.io/issues/20158[#20158])
-
-==== Server components
-
-* Fixed: grep error in install logs
-    (https://issues.rudder.io/issues/20150[#20150])
-
-==== Generic methods
-
-* Fixed: sharedfile methods don't have consistent class parameter
-    (https://issues.rudder.io/issues/20126[#20126])
-* Fixed: Pass the zypper_pattern test in staging
-    (https://issues.rudder.io/issues/20108[#20108])
-* Fixed: Rename report_if to report_if_condition
-    (https://issues.rudder.io/issues/20038[#20038])
-* Fixed: generic method parameter name must not change between 6.2 and 7.0
-    (https://issues.rudder.io/issues/20017[#20017])
-* Fixed: Fix augeas methods documentation
-    (https://issues.rudder.io/issues/19883[#19883])
-* Fixed: testinfra based tests should pass via the python executable and not py.test
-    (https://issues.rudder.io/issues/20001[#20001])
-* Fixed: error in file_key_value_present_in_ini_section
-    (https://issues.rudder.io/issues/19992[#19992])
-* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escpaing characters
-    (https://issues.rudder.io/issues/19908[#19908])
-
-==== CI
-
-* Fixed: Remove ubuntu20 from the Jenkinsfile test since thehost is unstable atm
-    (https://issues.rudder.io/issues/20056[#20056])
-* Fixed: Cover all supported server OS in the PR automated tests.
-    (https://issues.rudder.io/issues/19979[#19979])
-* Fixed: Add ncf tests to the repo Jenkinsfile
-    (https://issues.rudder.io/issues/19970[#19970])
-
-=== Release notes
-
-This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== [Private] Rudder 7.0.0.beta3 (2021-11-18)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-==== Documentation
-
-* Add support for Alma and Rocky Linux
-    (https://issues.rudder.io/issues/20220[#20220])
-* Document HTTP port change
-    (https://issues.rudder.io/issues/20132[#20132])
-
-==== Web - Config management
-
-* Remove SKIPIDENTIFY system variable
-    (https://issues.rudder.io/issues/19782[#19782])
-* Don't historize names of nodes, rules & groups in the database
-    (https://issues.rudder.io/issues/20229[#20229])
-* Make consistant id+revision format accross rule, directive, techniques in API
-    (https://issues.rudder.io/issues/20190[#20190])
-
-==== Web - UI & UX
-
-* Display Groups list in the 'Compliance by nodes' tab
-    (https://issues.rudder.io/issues/20243[#20243])
-
-==== Web - Technique editor
-
-* Update OS conditions in the technique editor
-    (https://issues.rudder.io/issues/20223[#20223])
-
-==== Miscellaneous
-
-* Missing data for Rule page
-    (https://issues.rudder.io/issues/20127[#20127])
-
-=== Bug fixes
-
-==== Miscellaneous
-
-* Fixed: There is no cfengine-systemd patch anymore thus making package build faild
-    (https://issues.rudder.io/issues/20255[#20255])
-
-==== System integration
-
-* Fixed: Git warning about branch name in install logs
-    (https://issues.rudder.io/issues/20232[#20232])
-
-==== Packaging
-
-* Fixed: upgrade jetty dependency
-    (https://issues.rudder.io/issues/20222[#20222])
-* Fixed: Upgrade to openldap 2.4.59 for rudder 7.0
-    (https://issues.rudder.io/issues/20221[#20221])
-* Fixed: some build generate _dbgsym packages
-    (https://issues.rudder.io/issues/20193[#20193])
-* Fixed: error in logs at install about policy-server.pem
-    (https://issues.rudder.io/issues/19737[#19737])
-* Fixed: error at upgrade of rudder to 7.0
-    (https://issues.rudder.io/issues/20031[#20031])
-
-==== Documentation
-
-* Fixed: Documentation about collection access in jinja2 template is incorect
-    (https://issues.rudder.io/issues/20234[#20234])
-* Fixed: Document that HTTP port is not configurable with SELinux policies
-    (https://issues.rudder.io/issues/20200[#20200])
-* Fixed: Remove old logo from Rudder docs
-    (https://issues.rudder.io/issues/20189[#20189])
-* Fixed: Complete documentation on how to set up dev environment for 7.0
-    (https://issues.rudder.io/issues/20195[#20195])
-
-==== Performance and scalability
-
-* Fixed: Do a `git gc` periodically
-    (https://issues.rudder.io/issues/17767[#17767])
-* Fixed: Improve compliance computation efficiency
-    (https://issues.rudder.io/issues/20254[#20254])
-* Fixed: improve compliance computation efficiency
-    (https://issues.rudder.io/issues/20253[#20253])
-
-==== Web - UI & UX
-
-* Fixed: Improve compliance bars display in Rules UI
-    (https://issues.rudder.io/issues/20197[#20197])
-* Fixed: source map missing in 7.0
-    (https://issues.rudder.io/issues/19935[#19935])
-* Fixed: Fix a css issue in the Technique Editor tree
-    (https://issues.rudder.io/issues/20214[#20214])
-* Fixed: "Save changes" button on the policy mode form is broken.
-    (https://issues.rudder.io/issues/20210[#20210])
-* Fixed: Status displayed in the rules table is incorrect
-    (https://issues.rudder.io/issues/20202[#20202])
-* Fixed: Can't get over page "Getting Started"
-    (https://issues.rudder.io/issues/20207[#20207])
-* Fixed: Rule table scroll the whole page and not the rule table section when there is too much Rule
-    (https://issues.rudder.io/issues/20201[#20201])
-* Fixed: Display policy mode in Rule lists
-    (https://issues.rudder.io/issues/20140[#20140])
-* Fixed: Edit mode should be enabled by default when creating a new rule
-    (https://issues.rudder.io/issues/20194[#20194])
-* Fixed: When creating a rule, the Select Directives and Select Groups buttons do not work
-    (https://issues.rudder.io/issues/20188[#20188])
-
-==== Language
-
-* Fixed: technique cannot be compile if name contains \\"x 
-    (https://issues.rudder.io/issues/19888[#19888])
-* Fixed: rudderc doesn't support multiline text
-    (https://issues.rudder.io/issues/19900[#19900])
-
-==== Web - Nodes & inventories
-
-* Fixed: Rocky Linux is not recognized
-    (https://issues.rudder.io/issues/20239[#20239])
-
-==== Web - Technique editor
-
-* Fixed: Technique draft should be deleted on save
-    (https://issues.rudder.io/issues/20241[#20241])
-* Fixed: it's not possible to reorder method in a block in technique editor
-    (https://issues.rudder.io/issues/19954[#19954])
-* Fixed: it's not possible to reorder method in a block in technique editor
-    (https://issues.rudder.io/issues/19954[#19954])
-* Fixed: Cannot save a technique with a block with reporting focused on one method
-    (https://issues.rudder.io/issues/19769[#19769])
-
-==== Plugins integration
-
-* Fixed: when upgrading from 6.2 to 7.0 with the dsc plugin, webapp doesn't work
-    (https://issues.rudder.io/issues/20204[#20204])
-
-==== System techniques
-
-* Fixed: /root/.pgpass and /opt/rudder/etc/rudder-web.properties have rudder_parameters.rudder_file_edit_header on Rudder 7.0
-    (https://issues.rudder.io/issues/19929[#19929])
-
-==== Generic methods
-
-* Fixed: Document that "package_verify" is deprecated
-    (https://issues.rudder.io/issues/20151[#20151])
-
-=== Release notes
-
-This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== [Private] Rudder 7.0.0.rc1 (2021-11-29)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-==== Documentation
-
-* Update supported platform list in documentation
-    (https://issues.rudder.io/issues/20125[#20125])
-* Document windows update technique
-    (https://issues.rudder.io/issues/20265[#20265])
-* Dockerify api-doc test, build and publication
-    (https://issues.rudder.io/issues/20272[#20272])
-
-==== Web - UI & UX
-
-* Make the rows of the compliance tables foldable to show more levels of compliance in Rules UI
-    (https://issues.rudder.io/issues/20236[#20236])
-* Allow to customize in which menu plugins are set
-    (https://issues.rudder.io/issues/20264[#20264])
-
-==== System techniques
-
-* It's not possible to make the agent listen on a specific port
-    (https://issues.rudder.io/issues/20113[#20113])
-
-=== Bug fixes
-
-==== Packaging
-
-* Fixed: Separate openldap cache between nightly and release builds
-    (https://issues.rudder.io/issues/20315[#20315])
-* Fixed: error in rudder-agent cron file in packaging
-    (https://issues.rudder.io/issues/20267[#20267])
-
-==== Web - UI & UX
-
-* Fixed: wrong write for rule page 
-    (https://issues.rudder.io/issues/20299[#20299])
-* Fixed: Redirection does not work on rule page
-    (https://issues.rudder.io/issues/20298[#20298])
-
-==== Web - Nodes & inventories
-
-* Fixed: by default, group condition should not be displayed
-    (https://issues.rudder.io/issues/20297[#20297])
-* Fixed: Alma Linux is detected as CentOS
-    (https://issues.rudder.io/issues/20237[#20237])
-
-==== CI
-
-* Fixed: Add redirect to latest API doc version to Jenkinsfile
-    (https://issues.rudder.io/issues/20291[#20291])
-* Fixed: Language docs publication does not work
-    (https://issues.rudder.io/issues/20285[#20285])
-* Fixed: Missing elm 0.19.1 in 7.0 tests
-    (https://issues.rudder.io/issues/20283[#20283])
-* Fixed: Dockerify tests
-    (https://issues.rudder.io/issues/20275[#20275])
-
-==== System integration
-
-* Fixed: Can't use rudder with openjdk17: cannot access class sun.net.util.IPAddressUtil
-    (https://issues.rudder.io/issues/20289[#20289])
-
-==== Miscellaneous
-
-* Fixed: Move to a new Url Technique api so anyone can create technique like the editor through api
-    (https://issues.rudder.io/issues/20242[#20242])
-* Fixed: Rudder agent factory-reset don't regenerate inventory
-    (https://issues.rudder.io/issues/20282[#20282])
-
-==== Web - Config management
-
-* Fixed: Error when creating a rule in 7.0
-    (https://issues.rudder.io/issues/20278[#20278])
-* Fixed: Rule editor does not use webapp context path value
-    (https://issues.rudder.io/issues/19879[#19879])
-
-==== Performance and scalability
-
-* Fixed: spurious "connection_read(9): no connection!" in /var/log/rudder/ldap/slapd.log
-    (https://issues.rudder.io/issues/19980[#19980])
-* Fixed: dashboard only shows the compliance of the nodes that really answer when logging on the test platform in 7.0
-    (https://issues.rudder.io/issues/20273[#20273])
-
-==== Web - Technique editor
-
-* Fixed: 404 error when opening a technique in the technique editor
-    (https://issues.rudder.io/issues/20183[#20183])
-
-==== Relay server or API
-
-* Fixed: Vulnerability in tokio
-    (https://issues.rudder.io/issues/20269[#20269])
-
-==== Documentation
-
-* Fixed: Missing documentation for relay to node demote API
-    (https://issues.rudder.io/issues/20262[#20262])
-
-==== Architecture - Internal libs
-
-* Fixed: Add mock in test lib for secrets eventlogs 
-    (https://issues.rudder.io/issues/20256[#20256])
-
-=== Release notes
-
-This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-Rudder 7.0 is currently the next version of Rudder.
