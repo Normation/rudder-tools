@@ -50,7 +50,7 @@ roles = {
           "debian-8":       [ "agent-allinone" ],
           "debian-9":       [ "agent-allinone", "relay", "server" ],
           "debian-10":      [ "agent-allinone", "relay", "server" ],
-          "debian-11":      [ "agent-allinone" ],
+          "debian-11":      [ "agent-allinone", "relay", "server" ],
           "ubuntu-10.04":   [ "agent-allinone" ],
           "ubuntu-12.04":   [ "agent-allinone" ],
           "ubuntu-13.04":   [ "agent-allinone" ],
