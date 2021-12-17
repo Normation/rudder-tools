@@ -1,5 +1,195 @@
 = Change logs for Rudder 7.0
 
+== [Private] Rudder 7.0.0.rc2 (2021-12-17)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Documentation
+
+* Add debian 11 server support to documentation
+    (https://issues.rudder.io/issues/20379[#20379])
+* Better documentation of the windows update technique
+    (https://issues.rudder.io/issues/20360[#20360])
+
+==== CI
+
+* Discard old builds
+    (https://issues.rudder.io/issues/20408[#20408])
+* Test ncf in docker
+    (https://issues.rudder.io/issues/20374[#20374])
+
+==== Web - Technique editor
+
+* Add a worst-case, weighted sum for block compliance mode
+    (https://issues.rudder.io/issues/20342[#20342])
+* Add a worst-case, weighted sum for block compliance mode
+    (https://issues.rudder.io/issues/20342[#20342])
+
+==== Relay server or API
+
+* Add relayd man page build to Jenkinsfile
+    (https://issues.rudder.io/issues/20327[#20327])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: Do not display the jetty version number
+    (https://issues.rudder.io/issues/19163[#19163])
+* Fixed: Upgrade logback version for LOGBACK-1591 / JNDI
+    (https://issues.rudder.io/issues/20421[#20421])
+
+==== Packaging
+
+* Fixed: rudder-webapp 6.2 on debian11 generate a dbgsym package
+    (https://issues.rudder.io/issues/20376[#20376])
+* Fixed: When upgrading from 6.2 -> 7.0 on centos8, old system technique are still present, and break policy generation
+    (https://issues.rudder.io/issues/20356[#20356])
+* Fixed: System techniques upgrade is broken
+    (https://issues.rudder.io/issues/20337[#20337])
+* Fixed: Database connection test is broken since the rules table has been removed
+    (https://issues.rudder.io/issues/20335[#20335])
+* Fixed: rudder-webapp on debian11 generate a dbgsym package
+    (https://issues.rudder.io/issues/20319[#20319])
+* Fixed: System technique migration fails on old server
+    (https://issues.rudder.io/issues/20351[#20351])
+* Fixed: Refactor apache configuration for easy separation between agent and web flows
+    (https://issues.rudder.io/issues/20349[#20349])
+
+==== Documentation
+
+* Fixed: Clean rudder-packages README
+    (https://issues.rudder.io/issues/20330[#20330])
+* Fixed: 7.0 install documentation installs a 6.2 version
+    (https://issues.rudder.io/issues/20402[#20402])
+* Fixed: Improve windows patch management technique doc
+    (https://issues.rudder.io/issues/20369[#20369])
+
+==== Web - UI & UX
+
+* Fixed: css of generation status is dubious in 7.0
+    (https://issues.rudder.io/issues/20395[#20395])
+* Fixed: Upgrade jquery to 3.6.0
+    (https://issues.rudder.io/issues/20430[#20430])
+* Fixed: Block and component compliance display in Rules page
+    (https://issues.rudder.io/issues/20302[#20302])
+* Fixed: Remove metrics section from wizard
+    (https://issues.rudder.io/issues/20394[#20394])
+* Fixed: User name invisible
+    (https://issues.rudder.io/issues/20384[#20384])
+* Fixed: Loading and first connection pages don't use new rudder 7.0 theme
+    (https://issues.rudder.io/issues/20231[#20231])
+
+==== Relay server or API
+
+* Fixed: Query seems to be ignored for pendings nodes
+    (https://issues.rudder.io/issues/20281[#20281])
+* Fixed: Test that the distributed config files are valid
+    (https://issues.rudder.io/issues/20416[#20416])
+
+==== Plugins integration
+
+* Fixed: Plugins upgrade broken in 7.0 rc
+    (https://issues.rudder.io/issues/20385[#20385])
+
+==== Architecture - Dependencies
+
+* Fixed: Rudder build when skipping tests
+    (https://issues.rudder.io/issues/20410[#20410])
+
+==== Web - Technique editor
+
+* Fixed: when we edit the content of a generic method in 7.0, there is no way to know which method it is
+    (https://issues.rudder.io/issues/20308[#20308])
+
+==== Web - Config management
+
+* Fixed: Non system technique appears in "System status tab"
+    (https://issues.rudder.io/issues/20383[#20383])
+* Fixed: multiple save buttons on rule page
+    (https://issues.rudder.io/issues/20286[#20286])
+
+==== Performance and scalability
+
+* Fixed: Improve performance of getUserAndSystemNodeStatusReports by exploring only once cache
+    (https://issues.rudder.io/issues/20318[#20318])
+* Fixed: Improve performance of getUserAndSystemNodeStatusReports by exploring only once cache
+    (https://issues.rudder.io/issues/20318[#20318])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+
+==== Miscellaneous
+
+* Fixed: Mount elm tmp dir in tmpfs to avoid lock failure on concurrent builds
+    (https://issues.rudder.io/issues/20361[#20361])
+
+==== CI
+
+* Fixed: Rudder-pkg tests timeout sometimes
+    (https://issues.rudder.io/issues/20354[#20354])
+* Fixed: Broken 7.0 tests due to missing user_id variable in Jenkinsfile
+    (https://issues.rudder.io/issues/20339[#20339])
+* Fixed: Only run compatibility tests during the night
+    (https://issues.rudder.io/issues/20323[#20323])
+* Fixed: Split test and build tasks in Jenkins file
+    (https://issues.rudder.io/issues/20320[#20320])
+
+==== System integration
+
+* Fixed: gitgc is always run at start whatever its schedule is and run every 3~4 min
+    (https://issues.rudder.io/issues/20350[#20350])
+* Fixed: Bad logs for migration error when technique is missing
+    (https://issues.rudder.io/issues/20336[#20336])
+
+==== Architecture - Refactoring
+
+* Fixed: Empty value for certificate should not kill rudder
+    (https://issues.rudder.io/issues/20341[#20341])
+
+==== API
+
+* Fixed: Wrong deprecation information in technique
+    (https://issues.rudder.io/issues/20333[#20333])
+
+==== Web - Nodes & inventories
+
+* Fixed: group page is not scrollable, so we can't see the full list of nodes in 7.0
+    (https://issues.rudder.io/issues/20293[#20293])
+
+==== System techniques
+
+* Fixed: .pgpass file cannot use remote postgresql
+    (https://issues.rudder.io/issues/19659[#19659])
+* Fixed: unexpected report after upgrading Rudder from 6.2 to 7.0
+    (https://issues.rudder.io/issues/20381[#20381])
+* Fixed: rudder is restarted in first agent run after upgrade from 6.2 to 7.0
+    (https://issues.rudder.io/issues/20382[#20382])
+* Fixed: rsyslog.d/rudder.conf left after 7.0 upgrade
+    (https://issues.rudder.io/issues/20340[#20340])
+
+==== Agent
+
+* Fixed: Don't use a passphrase anymore in agent check
+    (https://issues.rudder.io/issues/20331[#20331])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 7.0.0.rc1 (2021-11-29)
 
 === Changes
