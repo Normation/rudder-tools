@@ -2,110 +2,9 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
-==  Rudder 6.2.11 (2021-11-19)
+== Rudder 6.2.12 (2021-12-17)
 
 === Changes
-
-
-==== CI
-
-* Change the slack notification form the ncf tests
-    (https://issues.rudder.io/issues/20143[#20143])
-
-=== Bug fixes
-
-==== Packaging
-
-* Fixed: ubuntu 13 doesn't support tlsv1.2 
-    (https://issues.rudder.io/issues/20122[#20122])
-* Fixed: File /tmp/rudder-plugins-upgrade is never cleaned during an upgrade, so running again rudder-upgrade causes trouble on plugins
-    (https://issues.rudder.io/issues/20069[#20069])
-* Fixed: old distro build fail to get source
-    (https://issues.rudder.io/issues/20063[#20063])
-* Fixed: error at upgrade of rudder to 7.0
-    (https://issues.rudder.io/issues/20031[#20031])
-
-==== Documentation
-
-* Fixed: Documentation about collection access in jinja2 template is incorect
-    (https://issues.rudder.io/issues/20234[#20234])
-
-==== Performance and scalability
-
-* Fixed: Improve compliance computation efficiency
-    (https://issues.rudder.io/issues/20254[#20254])
-* Fixed: Store processes of an inventory after storing the inventory
-    (https://issues.rudder.io/issues/20006[#20006])
-
-==== Web - UI & UX
-
-* Fixed: "Save changes" button on the policy mode form is broken.
-    (https://issues.rudder.io/issues/20210[#20210])
-
-==== Relay server or API
-
-* Fixed: Vulnerability in chrono
-    (https://issues.rudder.io/issues/20160[#20160])
-* Fixed: Vulnerability in time crate
-    (https://issues.rudder.io/issues/20141[#20141])
-
-==== Web - Maintenance
-
-* Fixed: Error when unserializing ChangeRequest modifying Directives based on Techniques  that have been deleted
-    (https://issues.rudder.io/issues/3783[#3783])
-
-==== Web - Nodes & inventories
-
-* Fixed: confusing search option for Node: "Policy Node ID"
-    (https://issues.rudder.io/issues/20093[#20093])
-* Fixed: Number of CPU is wrongly reported
-    (https://issues.rudder.io/issues/19988[#19988])
-
-==== Web - Config management
-
-* Fixed: Typo in log "deletedbut"
-    (https://issues.rudder.io/issues/19956[#19956])
-
-==== Techniques
-
-* Fixed: sshKeyDistribution doesn't correctly reports on missing home folder
-    (https://issues.rudder.io/issues/19944[#19944])
-
-==== Generic methods
-
-* Fixed: Pass the zypper_pattern test in staging
-    (https://issues.rudder.io/issues/20108[#20108])
-* Fixed: Fix augeas methods documentation
-    (https://issues.rudder.io/issues/19883[#19883])
-* Fixed: testinfra based tests should pass via the python executable and not py.test
-    (https://issues.rudder.io/issues/20001[#20001])
-* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escpaing characters
-    (https://issues.rudder.io/issues/19908[#19908])
-
-==== CI
-
-* Fixed: Remove ubuntu20 from the Jenkinsfile test since thehost is unstable atm
-    (https://issues.rudder.io/issues/20056[#20056])
-* Fixed: Cover all supported server OS in the PR automated tests.
-    (https://issues.rudder.io/issues/19979[#19979])
-* Fixed: Add ncf tests to the repo Jenkinsfile
-    (https://issues.rudder.io/issues/19970[#19970])
-
-=== Release notes
-
-This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== [Private] Rudder 6.2.12 (2021-12-17)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
 
 ==== Documentation
 
@@ -205,6 +104,101 @@ This version is only available for extended support subscription
     (https://issues.rudder.io/issues/20320[#20320])
 * Fixed: Dockerify tests
     (https://issues.rudder.io/issues/20275[#20275])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
+
+==  Rudder 6.2.11 (2021-11-19)
+
+=== Changes
+
+
+==== CI
+
+* Change the slack notification form the ncf tests
+    (https://issues.rudder.io/issues/20143[#20143])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: ubuntu 13 doesn't support tlsv1.2 
+    (https://issues.rudder.io/issues/20122[#20122])
+* Fixed: File /tmp/rudder-plugins-upgrade is never cleaned during an upgrade, so running again rudder-upgrade causes trouble on plugins
+    (https://issues.rudder.io/issues/20069[#20069])
+* Fixed: old distro build fail to get source
+    (https://issues.rudder.io/issues/20063[#20063])
+* Fixed: error at upgrade of rudder to 7.0
+    (https://issues.rudder.io/issues/20031[#20031])
+
+==== Documentation
+
+* Fixed: Documentation about collection access in jinja2 template is incorect
+    (https://issues.rudder.io/issues/20234[#20234])
+
+==== Performance and scalability
+
+* Fixed: Improve compliance computation efficiency
+    (https://issues.rudder.io/issues/20254[#20254])
+* Fixed: Store processes of an inventory after storing the inventory
+    (https://issues.rudder.io/issues/20006[#20006])
+
+==== Web - UI & UX
+
+* Fixed: "Save changes" button on the policy mode form is broken.
+    (https://issues.rudder.io/issues/20210[#20210])
+
+==== Relay server or API
+
+* Fixed: Vulnerability in chrono
+    (https://issues.rudder.io/issues/20160[#20160])
+* Fixed: Vulnerability in time crate
+    (https://issues.rudder.io/issues/20141[#20141])
+
+==== Web - Maintenance
+
+* Fixed: Error when unserializing ChangeRequest modifying Directives based on Techniques  that have been deleted
+    (https://issues.rudder.io/issues/3783[#3783])
+
+==== Web - Nodes & inventories
+
+* Fixed: confusing search option for Node: "Policy Node ID"
+    (https://issues.rudder.io/issues/20093[#20093])
+* Fixed: Number of CPU is wrongly reported
+    (https://issues.rudder.io/issues/19988[#19988])
+
+==== Web - Config management
+
+* Fixed: Typo in log "deletedbut"
+    (https://issues.rudder.io/issues/19956[#19956])
+
+==== Techniques
+
+* Fixed: sshKeyDistribution doesn't correctly reports on missing home folder
+    (https://issues.rudder.io/issues/19944[#19944])
+
+==== Generic methods
+
+* Fixed: Pass the zypper_pattern test in staging
+    (https://issues.rudder.io/issues/20108[#20108])
+* Fixed: Fix augeas methods documentation
+    (https://issues.rudder.io/issues/19883[#19883])
+* Fixed: testinfra based tests should pass via the python executable and not py.test
+    (https://issues.rudder.io/issues/20001[#20001])
+* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escpaing characters
+    (https://issues.rudder.io/issues/19908[#19908])
+
+==== CI
+
+* Fixed: Remove ubuntu20 from the Jenkinsfile test since thehost is unstable atm
+    (https://issues.rudder.io/issues/20056[#20056])
+* Fixed: Cover all supported server OS in the PR automated tests.
+    (https://issues.rudder.io/issues/19979[#19979])
+* Fixed: Add ncf tests to the repo Jenkinsfile
+    (https://issues.rudder.io/issues/19970[#19970])
 
 === Release notes
 

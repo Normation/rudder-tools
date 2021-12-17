@@ -4,14 +4,6 @@
 
 === Changes
 
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
 ==== Documentation
 
 * Add debian 11 server support to documentation
