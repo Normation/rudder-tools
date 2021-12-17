@@ -388,6 +388,92 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== [Private] Rudder 6.1.18 (2021-12-17)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== CI
+
+* Discard old builds
+    (https://issues.rudder.io/issues/20408[#20408])
+* Test ncf in docker
+    (https://issues.rudder.io/issues/20374[#20374])
+
+==== Relay server or API
+
+* Add relayd man page build to Jenkinsfile
+    (https://issues.rudder.io/issues/20327[#20327])
+
+==== Documentation
+
+* Dockerify api-doc test, build and publication
+    (https://issues.rudder.io/issues/20272[#20272])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: Upgrade logback version for LOGBACK-1591 / JNDI
+    (https://issues.rudder.io/issues/20421[#20421])
+
+==== Architecture - Dependencies
+
+* Fixed: Rudder build when skipping tests
+    (https://issues.rudder.io/issues/20410[#20410])
+
+==== Web - Config management
+
+* Fixed: Non system technique appears in "System status tab"
+    (https://issues.rudder.io/issues/20383[#20383])
+
+==== Performance and scalability
+
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: Method getByRulesCompliance used by API is highly inefficient
+    (https://issues.rudder.io/issues/20310[#20310])
+* Fixed: spurious "connection_read(9): no connection!" in /var/log/rudder/ldap/slapd.log
+    (https://issues.rudder.io/issues/19980[#19980])
+
+==== Miscellaneous
+
+* Fixed: Mount elm tmp dir in tmpfs to avoid lock failure on concurrent builds
+    (https://issues.rudder.io/issues/20361[#20361])
+* Fixed: Rudder agent factory-reset don't regenerate inventory
+    (https://issues.rudder.io/issues/20282[#20282])
+
+==== CI
+
+* Fixed: Rudder-pkg tests timeout sometimes
+    (https://issues.rudder.io/issues/20354[#20354])
+* Fixed: Only run compatibility tests during the night
+    (https://issues.rudder.io/issues/20323[#20323])
+* Fixed: Split test and build tasks in Jenkins file
+    (https://issues.rudder.io/issues/20320[#20320])
+* Fixed: Dockerify tests
+    (https://issues.rudder.io/issues/20275[#20275])
+
+==== Relay server or API
+
+* Fixed: Vulnerability in tokio
+    (https://issues.rudder.io/issues/20269[#20269])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.13 (2021-05-18)
 
 === Changes
