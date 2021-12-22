@@ -4,14 +4,14 @@
 # Name:         rudder-compliance
 # Synopsis:     Get compliance output Rules and Directives
 # Requirements: requests Python module
-# Author:       Matthieu Cerda <matthieu.cerda@normation.com>
-#
+
 
 # Imports - builtins
 import argparse
 import json
 import csv
 import sys
+from pathlib import Path
 
 # Imports - external
 import requests
@@ -19,24 +19,29 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning, Insecur
 
 # Configuration - BEGIN
 api_version    = "latest"
-api_url        = "https://rudder.example.com/rudder/api"
-api_token      = "dTxvl4eL8p3YqvwefVbaJLdy8DyEt7Vw"
+default_api_url        = "https://rudder.example.com/rudder/api"
+default_api_token      = "z7v9j0hsNnrjRvBnLvL01ioUwVJpTgHs"
 validate_https = False
 # Configuration - END
 
 # Global variables
-headers                      = {"X-API-Token": api_token}
-compliance_url               = "%s/%s/compliance/rules" % (api_url, api_version)
-directives_url               = "%s/%s/directives" % (api_url, api_version)
-rules_url                    = "%s/%s/rules" % (api_url, api_version)
-csv_file                     = "/tmp/compliance.csv"
+headers                      = {}
+compliance_url               = ""
+directives_url               = ""
+rules_url                    = ""
+csv_file_string              = "/tmp/compliance.csv"
 
+non_compliances_keys         = ["noReport", "error", "auditNonCompliant", "auditError", "unexpectedMissingComponent"]
+
+# file is a Path
 def write_to_csv(file, entries):
 
-    with open(file, 'wb') as csvfile:
+    with file.open('w') as csvfile:
         csv_output = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for entry in entries:
             csv_output.writerow(entry)
+
+    print("Wrote csv file {}".format(file))
 
 def id_to_name(rules, rule):
 
@@ -47,6 +52,42 @@ def id_to_name(rules, rule):
             name = i['displayName']
 
     return name
+
+#returns true is there are any non compliance in the current compliance
+# file the array of non_compliances with the actual non comlpiance
+# format is {'id': '32377fd7-02fd-43d0-aab7-28460a91347b', 'name': 'Global configuration for all nodes', 'compliance': 50.0, 'mode': 'full-compliance', 'complianceDetails': {'successAlreadyOK': 16.67, 'successRepaired': 16.67, 'noReport': 50.0, 'successNotApplicable': 16.67}, 'directives': [{'id': '86f6973d-4c1a-4d06-8470-3548b6b4c6cd', 'name': 'Packages', 'compliance': 50.0, 'complianceDetails': {'successAlreadyOK': 25.0, 'noReport': 50.0, 'successNotApplicable': 25.0}, 'components': [{'name': 'Post-modification script', 'compliance': 50.0, 'complianceDetails': {'noReport': 50.0, 'successNotApplicable': 50.0}, 'nodes': [{'id': 'root', 'name': 'server.rudder.local', 'values': [{'value': 'tree', 'reports': [{'status': 'successNotApplicable', 'message': 'No post-modification script was defined'}]}]}, {'id': 'cd9841c5-2267-4a28-8d21-6ba66fbbc7ed', 'name': 'agent1.rudder.local', 'values': [{'value': 'tree', 'reports': [{'status': 'noReport'}]}]}]}, {'name': 'Package', 'compliance': 50.0, 'complianceDetails': {'successAlreadyOK': 50.0, 'noReport': 50.0}, 'nodes': [{'id': 'root', 'name': 'server.rudder.local', 'values': [{'value': 'tree', 'reports': [{'status': 'successAlreadyOK', 'message': 'Presence of package tree in latest available version was correct'}]}]}, {'id': 'cd9841c5-2267-4a28-8d21-6ba66fbbc7ed', 'name': 'agent1.rudder.local', 'values': [{'value': 'tree', 'reports': [{'status': 'noReport'}]}]}]}]}, {'id': '1576dfe5-19ed-4b66-a6e6-36bb3c1ffafe', 'name': 'MOTD and pre-login banner', 'compliance': 50.0, 'complianceDetails': {'noReport': 50.0, 'successRepaired': 50.0}, 'components': [{'name': 'MOTD Configuration', 'compliance': 50.0, 'complianceDetails': {'noReport': 50.0, 'successRepaired': 50.0}, 'nodes': [{'id': 'root', 'name': 'server.rudder.local', 'values': [{'value': 'None', 'reports': [{'status': 'successRepaired', 'message': 'The MOTD file was repaired'}]}]}, {'id': 'cd9841c5-2267-4a28-8d21-6ba66fbbc7ed', 'name': 'agent1.rudder.local', 'values': [{'value': 'None', 'reports': [{'status': 'noReport'}]}]}]}]}]}
+def get_non_compliance_rule(rule_compliance, non_compliances):
+    # check if key complianceDetails exists
+    if 'complianceDetails' in rule_compliance:
+      compliance = rule_compliance['complianceDetails']
+      if any (k in compliance for k in non_compliances_keys):
+        rule_name = rule_compliance["name"]
+        for directive_compliance in rule_compliance["directives"]:
+          extract_non_compliance_by_directive(rule_name, directive_compliance, non_compliances)
+        return True
+      else:
+        return False
+    else:
+      print("No compliance details for rule_compliance {}".format(rule_compliance))
+
+# non compliance is the array containing the result
+def extract_non_compliance_by_directive(rule_name, directive_compliance, non_compliances):
+      directive_name = directive_compliance["name"]
+      compliance = directive_compliance['complianceDetails']
+      if any (k in compliance for k in non_compliances_keys):
+        # need to dig further
+        for components_compliance in directive_compliance["components"]:
+          component_name = components_compliance["name"]
+          compliance = components_compliance['complianceDetails']
+          if any (k in compliance for k in non_compliances_keys):
+            # get the nodes
+            for nodes in components_compliance["nodes"]:
+              node_name = nodes["name"]
+              # and now, get the values that have a status of non compliance
+              for values in nodes["values"]:
+                for reports in values["reports"]:
+                  if any (k in reports["status"] for k in non_compliances_keys):
+                    non_compliances.append([rule_name, directive_name, component_name, node_name, values["value"], reports["status"], reports.get("message", "")])
 
 def directives_compliance(compliance_in, wanted_directives, csv_output):
 
@@ -60,8 +101,10 @@ def directives_compliance(compliance_in, wanted_directives, csv_output):
 
     directives_compliance_input  = []
     directives_compliance_output = {}
+    non_compliances = []
 
     csv_content = [ [ 'rule_id', 'directive_id', 'compliance' ] ]
+    non_compliance_csv_content = [[ 'rule_name', 'directive_name', 'component_name', 'node', 'value', 'status', 'message']]
 
     if len(wanted_directives) != 0:
         # Store directives matching the wanted ones in directives_compliance_input
@@ -71,17 +114,18 @@ def directives_compliance(compliance_in, wanted_directives, csv_output):
     else:
         # Filter active rules: remove disabled ones
         for directive in directives:
-
-            if not directive['isEnabled']:
+            if not directive['enabled']:
                 continue
 
             directives_compliance_input.append(directive)
 
-    # Store result in directives_compliance_output
-    for compliance in sorted(compliance_in):
+    # Store result in output
+    # order the compliance by name
+    sorted_compliance = sorted(compliance_in, key=lambda comp: comp['name'])
+    for compliance in sorted_compliance:
 
         rule = compliance['id']
-
+        rule_name = compliance['name']
         for directive in compliance['directives']:
 
             for wantedir in directives_compliance_input:
@@ -93,23 +137,33 @@ def directives_compliance(compliance_in, wanted_directives, csv_output):
 
                     directives_compliance_output[rule][directive['id']] = directive['compliance']
 
+                    directive_name = directive['name']
+                    extract_non_compliance_by_directive(rule_name, directive, non_compliances)
+
     # Human-readable output
     for i in sorted(directives_compliance_output):
         rule_name = id_to_name(rules, i)
-        print '* Rule ' + rule_name
+        print('* Rule {}'.format(rule_name))
         for j in directives_compliance_output[i]:
             directive_name       = id_to_name(directives, j)
             directive_compliance = directives_compliance_output[i][j]
 
-            print '** ' + directive_name + ': ' + str(directive_compliance) + '%'
+            print('** {}: {} %'.format(directive_name, directive_compliance))
 
             csv_content.append([ i, j, directive_compliance ])
 
-        print ''
+        print()
 
     # CSV output
     if csv_output != None:
-        write_to_csv(csv_output, csv_content)
+        # convert the csv output to path
+        csv_path = Path(csv_output)
+
+        write_to_csv(csv_path, csv_content)
+
+        non_compliance_path = csv_path.with_name('non_compliance_'+csv_path.name)
+        non_compliance_csv_content += non_compliances
+        write_to_csv(non_compliance_path, non_compliance_csv_content)
 
 def rules_compliance(compliance_in, wanted_rules, csv_output):
 
@@ -119,8 +173,11 @@ def rules_compliance(compliance_in, wanted_rules, csv_output):
 
     rules_compliance_input  = []
     rules_compliance_output = []
+    non_compliances = []
+    existing_non_compliance = False
 
     csv_content = [ [ 'rule_id', 'compliance' ] ]
+    non_compliance_csv_content = [[ 'rule_name', 'directive_name', 'component_name', 'node', 'value', 'status', 'message']]
 
     if len(wanted_rules) != 0:
         # Store rules matching the wanted ones in rules_compliance_input
@@ -133,11 +190,13 @@ def rules_compliance(compliance_in, wanted_rules, csv_output):
 
             if not rule['enabled']:
                 continue
-
             rules_compliance_input.append(rule)
 
-    # Store result in rules_compliance_output
-    for rule in sorted(rules_compliance_input):
+    # order the input by name
+    sorted_input = sorted(rules_compliance_input, key=lambda rule: rule['displayName'])
+
+    # Store result in output
+    for rule in sorted_input:
 
         id         = rule['id']
         name       = rule['displayName']
@@ -147,16 +206,28 @@ def rules_compliance(compliance_in, wanted_rules, csv_output):
             if rule_compliance['id'] == rule['id']:
                 compliance = rule_compliance['compliance']
 
+                # look for non compliance
+                if get_non_compliance_rule(rule_compliance, non_compliances):
+                    existing_non_compliance = True
+
         rules_compliance_output.append([id, compliance])
 
     # Human-readable output
     for i in rules_compliance_output:
-        print "* Rule " + id_to_name(rules, i[0]) + ": " + str(i[1]) + '%'
+        print("* Rule {}: {} %".format(id_to_name(rules, i[0]), i[1]))
 
     # CSV output
     if csv_output != None:
+        # convert the csv output to path
+        csv_path = Path(csv_output)
+
         csv_content += rules_compliance_output
-        write_to_csv(csv_output, csv_content)
+        write_to_csv(csv_path, csv_content)
+
+        if existing_non_compliance:
+          non_compliance_path = csv_path.with_name('non_compliance_'+csv_path.name)
+          non_compliance_csv_content += non_compliances
+          write_to_csv(non_compliance_path, non_compliance_csv_content)
 
 if __name__ == "__main__":
 
@@ -165,12 +236,16 @@ if __name__ == "__main__":
                                      description="""\
 Get the compliance of Directives or Rules, and optionnally output it in the CSV format.
 
-Example: %(prog)s --csv /tmp/rules.csv --rules : Will output all the rules compliance to stdout and /tmp/rules.csv
+Example: %(prog)s --csv /tmp/rules.csv --rules
+         Will output all the rules compliance to stdout and write them in the csv file /tmp/rules.csv
+         The non-compliances (if any) will stored in file /tmp/non_compliance_rules.csv (csv filename prefixed with 'non_compliance_')
 """)
 
-    parser.add_argument('-c', '--csv', nargs='?', help='Output to a CSV file (defaults to ' + csv_file + ')' )
-    parser.add_argument('-d', '--directives', nargs='*', help='get directives compliance')
-    parser.add_argument('-r', '--rules', nargs='*', help='get rules compliance')
+    parser.add_argument('-c', '--csv', nargs='?', help='Output to a CSV file (defaults to ' + csv_file_string + ') and to non_compliance_FILENAME the list of non compliance if any' )
+    parser.add_argument('-d', '--directives', nargs='*', help='Get directives compliance')
+    parser.add_argument('-r', '--rules', nargs='*', help='Get rules compliance. If one or more rule id is given (separated by space), will restrict to these rules; e.g --rules 32377fd7-02fd-43d0-aab7-28460a91347b ab2f041-0d9f-491d-8323-68a5dbd207ee')
+    parser.add_argument('-s', '--server', nargs='?', help='Rudder server URL, default to localhost')
+    parser.add_argument('-t', '--token', nargs='?', help='Rudder API token')
     args = vars(parser.parse_args())
 
     if len(sys.argv) == 1:
@@ -178,39 +253,54 @@ Example: %(prog)s --csv /tmp/rules.csv --rules : Will output all the rules compl
         sys.exit(1)
 
     # Disable warnings about using self-signed certificates
-    #  deprecated Python versions
     # if certificate validation has been disabled.
     if not validate_https:
+        from requests.packages.urllib3.exceptions import InsecureRequestWarning
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-    # Those might be desirable on old Python versions (SLES 11, EL 6, ...)
-    #requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
-    #requests.packages.urllib3.disable_warnings(SNIMissingWarning)
+    # override default server if defined
+    if args['server'] != None:
+      api_url = "https://%s/rudder/api" % (args['server'])
+    else:
+      api_url = default_api_url
+
+    if args['token'] != None:
+      api_token = args['token']
+    else:
+      api_token = default_api_token
+
+
+    # define the connexion parameters
+    headers          = {"X-API-Token": api_token}
+    compliance_url   = "%s/%s/compliance/rules" % (api_url, api_version)
+    directives_url   = "%s/%s/directives" % (api_url, api_version)
+    rules_url        = "%s/%s/rules" % (api_url, api_version)    
+
 
     # Override the default CSV file if needed
     if args['csv'] != None:
         if len(args['csv']) >= 1:
-            csv_file = args['csv']
+            csv_file_string = args['csv']
     else:
-        csv_file = None
+        csv_file_string = None
 
     # Call the API to get the complete list of rule compliances
-    request        = requests.get(compliance_url + "?level=2", headers=headers, verify=validate_https)
+    request        = requests.get(compliance_url + "?level=5", headers=headers, verify=validate_https)
     compliance_in  = json.loads(request.content)["data"]["rules"]
     compliance_out = []
 
     # If Directive compliance was asked for
     if args['directives'] != None:
-        directives_compliance(compliance_in, args['directives'], csv_file)
+        directives_compliance(compliance_in, args['directives'], csv_file_string)
 
     # Or if Rule compliance was asked for
     elif args['rules'] != None:
-        rules_compliance(compliance_in, args['rules'], csv_file)
+        rules_compliance(compliance_in, args['rules'], csv_file_string)
 
     # If neither has matched, offer some help and exit
     else:
         parser.print_help()
-        print '\nERROR: At least one compliance type must be asked for.'
+        print('\nERROR: At least one compliance type must be asked for.')
         sys.exit(1)
 
     sys.exit(0)
