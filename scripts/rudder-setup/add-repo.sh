@@ -58,7 +58,8 @@ add_repo() {
   if [ "${PM}" = "apt" ]
   then
     # Debian / Ubuntu like
-   get - "https://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
+    ${PM_INSTALL} gnupg
+    get - "https://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
     cat > /etc/apt/sources.list.d/rudder.list << EOF
 deb ${URL_BASE}/ ${OS_CODENAME} main
 EOF
