@@ -78,7 +78,7 @@ EOF
       url="https://publisher.normation.com/plugins/"
     elif [ "${DOWNLOAD_USER}" = "" ]; then
       url="https://repository.rudder.io/plugins/"
-    else 
+    else
       url="https://download.rudder.io/plugins"
     fi
     cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
@@ -180,20 +180,20 @@ EOF
   fi
   systemctl daemon-reload
   service_cmd rudder-slapd restart
-  
+
   # Permit PostgreSQL access from outside
   PG_HBA_FILE=$(su - postgres -c "psql -t -P format=unaligned -c 'show hba_file';")
   if [ $? -ne 0 ]; then
     echo "Postgresql failed to start! Halting"
     exit 1
   fi
-  
+
   PG_CONF_FILE=$(su - postgres -c "psql -t -P format=unaligned -c 'show config_file';")
   if [ $? -ne 0 ]; then
     echo "Postgresql failed to start! Halting"
     exit 1
   fi
-  
+
   echo "listen_addresses = '*'" >> ${PG_CONF_FILE}
   echo "host    all         all         192.168.0.0/16    trust" >> ${PG_HBA_FILE}
   echo "host    all         all         10.0.0.0/16       trust" >> ${PG_HBA_FILE}
@@ -210,7 +210,7 @@ EOF
     sed -i "s/\(RUDDER_PSQL_PASSWORD:\).*/\1Normation/" /opt/rudder/etc/rudder-passwords.conf
     sed -i "s/\(RUDDER_OPENLDAP_BIND_PASSWORD:\).*/\1secret/" /opt/rudder/etc/rudder-passwords.conf
   fi
- 
+
   # -E option is available from 6.1.2
   if is_version_valid "${RUDDER_VERSION}" "[6.1.2 *]"; then
     rudder agent run -E
@@ -227,6 +227,6 @@ EOF
   do
     cp ${dir}/* /var/rudder/inventories/incoming/
   done
-  cd 
+  cd
   rm -rf /tmp/rudder
 }

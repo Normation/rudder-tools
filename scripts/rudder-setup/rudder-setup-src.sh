@@ -5,7 +5,7 @@ set -e
 # Documentation !
 usage() {
   echo "Usage $0 (add-repository|setup-agent|setup-relay|setup-server|upgrade-agent|upgrade-relay|upgrade-server) <rudder_version> [<policy_server>] ['<plugins>']"
-  echo "  Adds a repository and setup rudder on your OS" 
+  echo "  Adds a repository and setup rudder on your OS"
   echo "  Should work on as many OS as possible"
   echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
   echo ""
@@ -20,7 +20,7 @@ usage() {
   echo "       latest:         the latest stable version"
   echo ""
   echo "  plugins: 'all' or a list of plugin names between ''"
-  echo "  plugin_version: '', 'nightly', 'ci', 'ci/nightly' (see below)" 
+  echo "  plugin_version: '', 'nightly', 'ci', 'ci/nightly' (see below)"
   echo ""
   echo "  Environment variables"
   echo "    USE_HTTPS=true          use https in repository source (default true)"

@@ -7,7 +7,7 @@
 get_component() {
   $local version="$1"
   $local id="$2"
-  echo "${version}" | 
+  echo "${version}" |
     sed -e 's/[^0-9a-zA-Z ]/ /g' | # use ' ' as a separator
     sed -e 's/\([0-9]\)\([^0-9]\)/\1 \2/g' | # separate after a number (23rc1 -> 23 rc1)
     sed -e 's/\([^0-9]\)\([0-9]\)/\1 \2/g' | # separate before a number (rc2 -> rc 2)
@@ -16,7 +16,7 @@ get_component() {
 }
 
 # Return if a version component matches a specification component
-# Operator can be "-le" "-eq" or "-ge" 
+# Operator can be "-le" "-eq" or "-ge"
 # Return codes:
 #  "no"  -> component doesn't match specification
 #  "yes" -> component matches specification and is different from it
@@ -93,7 +93,7 @@ version_cmp() {
       then
         return 1 # doesn't match
       else
-        :        # go to next component 
+        :        # go to next component
       fi
     else # given version is more precise than spec -> match
       return 0
@@ -126,9 +126,9 @@ test_component() {
   $local ret="`component_cmp "$2" "$3" "$4"`"
   if [ "${ret}" = "${retval}" ]
   then
-    echo "$2 $3 $4 = $1 -> PASS" 
+    echo "$2 $3 $4 = $1 -> PASS"
   else
-    echo "$2 $3 $4 = $1 -> ERROR" 
+    echo "$2 $3 $4 = $1 -> ERROR"
   fi
 }
 
@@ -204,7 +204,8 @@ rudder_is_compatible() {
     $local OS_VERSION=$(echo "$4"| cut -f 1 -d . | cut -d '-' -f 1)
   fi
 
-  if get - "https://www.rudder-project.org/release-info/rudder/versions/${MAJOR_VERSION}/os/${OS}-${OS_VERSION}/roles" | grep "${ROLE}" >/dev/null
+  [ "${USE_HTTPS}" != "false" ] && S="s"
+  if get - "http${S}://www.rudder-project.org/release-info/rudder/versions/${MAJOR_VERSION}/os/${OS}-${OS_VERSION}/roles" | grep "${ROLE}" >/dev/null
   then
     return 0
   else
@@ -231,7 +232,8 @@ rudder_real_version() {
   $local version="`echo "$1" | tr '[A-Z]' '[a-z]'`"
   if [ "${version}" = "lts" ] || [ "${version}" = "latest" ]
   then
-    get - "https://www.rudder-project.org/release-info/rudder/versions/${version}"
+    [ "${USE_HTTPS}" != "false" ] && S="s"
+    get - "http${S}://www.rudder-project.org/release-info/rudder/versions/${version}"
   else
     echo "${version}"
   fi
