@@ -57,9 +57,16 @@ add_repo() {
   # add repository
   if [ "${PM}" = "apt" ]
   then
-    # Debian / Ubuntu like
-    ${PM_INSTALL} gnupg
-    get - "http${S}://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
+    if [ "${OS_COMPATIBLE}" = "UBUNTU" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -le 10 ] ||
+       [ "${OS_COMPATIBLE}" = "DEBIAN" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -le 6 ]
+    then
+      # old Debian / Ubuntu like
+      ${PM_INSTALL} -y --force-yes gnupg
+      get - "http${S}://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
+    else
+      # Debian / Ubuntu like
+      get /etc/apt/trusted.gpg.d/rudder_apt_key.gpg "https://repository.rudder.io/apt/rudder_apt_key.gpg"
+    fi
     cat > /etc/apt/sources.list.d/rudder.list << EOF
 deb ${URL_BASE}/ ${OS_CODENAME} main
 EOF
