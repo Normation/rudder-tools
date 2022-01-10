@@ -30,27 +30,29 @@ add_repo() {
   elif [ "${PM}" = "zypper" ]; then
     URLENCODED_PASSWORD=$(echo "${DOWNLOAD_PASSWORD}" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
     USER="${DOWNLOAD_USER}:${URLENCODED_PASSWORD}@"
+  elif [ "${OS_COMPATIBLE}" = "UBUNTU" -o "${OS_COMPATIBLE}" = "DEBIAN" ]; then
+    USER=""
   else
     USER="${DOWNLOAD_USER}:${DOWNLOAD_PASSWORD}@"
   fi
 
   if [ "${USE_CI}" = "yes" ]
   then
-    URL_BASE="http${S}://publisher.normation.com/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
+    HOST="publisher.normation.com"
   else
     if [ "${USER}" = "" ]; then
-      URL_BASE="http${S}://repository.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
+      HOST="repository.rudder.io"
     else
-      URL_BASE="http${S}://${USER}download.rudder.io/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
+      HOST="${USER}download.rudder.io"
     fi
   fi
+  URL_BASE="http${S}://${HOST}/${REPO_PREFIX}${REPO_TYPE}/${RUDDER_VERSION}"
 
   if [ "${PM}" = "yum" ] || [ "${PM}" = "rpm" ] || [ "${PM}" = "zypper" ]
   then
     URL_BASE="${URL_BASE}/${OS_COMPATIBLE}_${OS_MAJOR_VERSION}"
   elif [ "${PM}" = "pkg" ]
   then
-
     URL_BASE="${URL_BASE}/$(echo ${OS_COMPATIBLE} | tr '[:upper:]' '[:lower:]')-${OS_COMPATIBLE_VERSION}"
   fi
 
@@ -67,9 +69,28 @@ add_repo() {
       # Debian / Ubuntu like
       get /etc/apt/trusted.gpg.d/rudder_apt_key.gpg "https://repository.rudder.io/apt/rudder_apt_key.gpg"
     fi
+
+    # the source configuration
     cat > /etc/apt/sources.list.d/rudder.list << EOF
 deb ${URL_BASE}/ ${OS_CODENAME} main
 EOF
+
+    # source password
+    if [ "${USER}" != "" ]; then
+      if [ "${OS_COMPATIBLE}" = "UBUNTU" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -lt 20 ] ||
+         [ "${OS_COMPATIBLE}" = "DEBIAN" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -lt 10 ]
+      then
+        # old distro don't have an apt/auth.conf.d
+        AUTH_CONF="/etc/apt/auth.conf"
+      else
+        AUTH_CONF="/etc/apt/auth.conf.d/rudder.conf"
+      fi
+
+      URLENCODED_PASSWORD=$(echo "${DOWNLOAD_PASSWORD}" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+      echo "machine download.rudder.io login ${DOWNLOAD_USER} password ${URLENCODED_PASSWORD}" >> "${AUTH_CONF}"
+      chmod 640 ${AUTH_CONF}
+    fi
+
     ${PM_UPDATE}
     return 0
 
