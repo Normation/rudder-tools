@@ -1,6 +1,6 @@
 = Rudder 7.0 release notes
 
-Rudder 7.0 is currently in release candidate phase.
+Rudder 7.0 is currently a maintained version.
 
 Rudder 7 will be supported for at least three months after next major release,
 and for 18 to 24 months with a subscription.
