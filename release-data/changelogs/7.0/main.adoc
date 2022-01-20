@@ -182,6 +182,264 @@
 
 This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== [Private] Rudder 7.0.0.rc3 (2022-01-20)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Documentation
+
+* Add a note about recent  changes in upgrade notes
+    (https://issues.rudder.io/issues/20507[#20507])
+* Document how to automatically synchronize technique resources from an external repository
+    (https://issues.rudder.io/issues/20495[#20495])
+* Add upgrade notes for 7.0
+    (https://issues.rudder.io/issues/20388[#20388])
+* Display images in release notes
+    (https://issues.rudder.io/issues/20464[#20464])
+* Update screenshot in api doc
+    (https://issues.rudder.io/issues/20586[#20586])
+* Update api-doc tooling
+    (https://issues.rudder.io/issues/20584[#20584])
+
+==== Web - Technique editor
+
+* Speed up technique editor
+    (https://issues.rudder.io/issues/20552[#20552])
+
+==== Web - Config management
+
+* Disable rudderc compilation of technique editor technique
+    (https://issues.rudder.io/issues/20529[#20529])
+* Delay policy generation until rudder app is fully boot
+    (https://issues.rudder.io/issues/20462[#20462])
+
+==== Web - UI & UX
+
+* Add a warning in plugin page if a version mismatches rudder patch one
+    (https://issues.rudder.io/issues/20261[#20261])
+* Add a warning in plugin page if a version mismatches rudder patch one
+    (https://issues.rudder.io/issues/20261[#20261])
+* Bring back recent changes to life.
+    (https://issues.rudder.io/issues/20440[#20440])
+
+==== CI
+
+* Dockerize technique tests
+    (https://issues.rudder.io/issues/20386[#20386])
+
+==== Agent
+
+* Allow rudder agent check to stop at any step
+    (https://issues.rudder.io/issues/20569[#20569])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: webapp preinst should run rudder agent check
+    (https://issues.rudder.io/issues/20539[#20539])
+* Fixed: webapp installation produces a warning about initial branch name
+    (https://issues.rudder.io/issues/20537[#20537])
+* Fixed: rudder-agent-postinst doesn't close file descriptors anymore
+    (https://issues.rudder.io/issues/20522[#20522])
+* Fixed: /etc/cron.d/rudder-agent is a conffile
+    (https://issues.rudder.io/issues/20268[#20268])
+* Fixed: Separate openldap cache between nightly and release builds - 6.2
+    (https://issues.rudder.io/issues/20450[#20450])
+* Fixed: Update openssl to 1.1.1m
+    (https://issues.rudder.io/issues/20428[#20428])
+* Fixed: rpm python API incompatible in python3
+    (https://issues.rudder.io/issues/20602[#20602])
+
+==== Agent
+
+* Fixed: Improve agent-side messages when download is refused
+    (https://issues.rudder.io/issues/20521[#20521])
+* Fixed: when rudder agent check changes something it should resend an inventory
+    (https://issues.rudder.io/issues/20538[#20538])
+
+==== Documentation
+
+* Fixed: Add a note about relay upgrade order
+    (https://issues.rudder.io/issues/20505[#20505])
+* Fixed: apt-key is deprecated
+    (https://issues.rudder.io/issues/20518[#20518])
+* Fixed: Add a complex example of node search API request
+    (https://issues.rudder.io/issues/20577[#20577])
+* Fixed: documentation of method schedule_ is broken
+    (https://issues.rudder.io/issues/20605[#20605])
+
+==== Web - Technique editor
+
+* Fixed: Expand/Hide in technique editor tree not working
+    (https://issues.rudder.io/issues/20492[#20492])
+* Fixed: It's not possible to select a condition with the dropdownlist on technique editor in rudder 7
+    (https://issues.rudder.io/issues/20420[#20420])
+* Fixed: block still disapear in technique editor when we put a method in it
+    (https://issues.rudder.io/issues/20551[#20551])
+* Fixed: Add loading effect for technique editor tree 
+    (https://issues.rudder.io/issues/20493[#20493])
+* Fixed: The technique editor allows saving methods with missing parameters
+    (https://issues.rudder.io/issues/20415[#20415])
+* Fixed: Error message in technique editor doesn't help
+    (https://issues.rudder.io/issues/20491[#20491])
+* Fixed: Technique editor allows id with only case difference, do an error, but still save technique
+    (https://issues.rudder.io/issues/20133[#20133])
+* Fixed: when trying to put a generic method within a block, it can replace the whole block
+    (https://issues.rudder.io/issues/20306[#20306])
+* Fixed: Resources in drafts are not displayed and saved
+    (https://issues.rudder.io/issues/20486[#20486])
+* Fixed: When we move a technique in editor, resources are not moved
+    (https://issues.rudder.io/issues/20445[#20445])
+* Fixed: When we move a technique in editor, resources are not moved
+    (https://issues.rudder.io/issues/20445[#20445])
+* Fixed: Broken technique resources in drafts
+    (https://issues.rudder.io/issues/20414[#20414])
+* Fixed: Error when writing techniques via the technique editor
+    (https://issues.rudder.io/issues/20437[#20437])
+
+==== API
+
+* Fixed: Missing api rights 
+    (https://issues.rudder.io/issues/20609[#20609])
+* Fixed: State is missing from node api
+    (https://issues.rudder.io/issues/20582[#20582])
+
+==== Architecture - Refactoring
+
+* Fixed: Remove warning messages
+    (https://issues.rudder.io/issues/20606[#20606])
+
+==== Web - UI & UX
+
+* Fixed: Loading effect on rules tree
+    (https://issues.rudder.io/issues/20595[#20595])
+* Fixed: Underlining of links is cut in firefox
+    (https://issues.rudder.io/issues/20596[#20596])
+* Fixed: Redesign the login page with the new graphic charter
+    (https://issues.rudder.io/issues/20581[#20581])
+* Fixed: Compliance of rules should not be rounded to the nearest hundredth
+    (https://issues.rudder.io/issues/20573[#20573])
+* Fixed: Compliance by nodes in the Rules page shows the node id rather than it's name
+    (https://issues.rudder.io/issues/20490[#20490])
+* Fixed: Sub categories have too many "|-" displaed in select box
+    (https://issues.rudder.io/issues/20559[#20559])
+* Fixed: Tables look weird when empty in Rules UI
+    (https://issues.rudder.io/issues/20467[#20467])
+* Fixed: In a directive the technique documentation button is not visibled enough
+    (https://issues.rudder.io/issues/20436[#20436])
+* Fixed: we can save a rule without a name
+    (https://issues.rudder.io/issues/19789[#19789])
+* Fixed: Missing rounding of rules compliance percentage
+    (https://issues.rudder.io/issues/20532[#20532])
+* Fixed: We can save a technique with a missing component name for a nested block
+    (https://issues.rudder.io/issues/20497[#20497])
+* Fixed: metrics are still present in wizard, and wizard doesn't end
+    (https://issues.rudder.io/issues/20478[#20478])
+* Fixed: Cancel button is missing when deleting a technique
+    (https://issues.rudder.io/issues/20487[#20487])
+* Fixed: Wrong technique name displayed in deletion message 
+    (https://issues.rudder.io/issues/20488[#20488])
+* Fixed: The left menu is under the menu bar's shadow
+    (https://issues.rudder.io/issues/20030[#20030])
+* Fixed: It's hard to know how to edit a block/method in editor
+    (https://issues.rudder.io/issues/20344[#20344])
+* Fixed: icons on login page are not centered
+    (https://issues.rudder.io/issues/19887[#19887])
+* Fixed: when we hit enter key on rule category creation,page is reloaded
+    (https://issues.rudder.io/issues/20365[#20365])
+* Fixed: buttons on rule creation page don't have the same width
+    (https://issues.rudder.io/issues/20364[#20364])
+
+==== Web - Config management
+
+* Fixed: No na reporting generated by webapp
+    (https://issues.rudder.io/issues/20591[#20591])
+* Fixed: Missing rule Id in rule details
+    (https://issues.rudder.io/issues/19876[#19876])
+* Fixed: If a rule is in a category that no longer exists, it can't be accessed in rule tree
+    (https://issues.rudder.io/issues/20095[#20095])
+* Fixed: Sometimes the webapp fails to generate the reporting file of new techniques
+    (https://issues.rudder.io/issues/20513[#20513])
+* Fixed: error in webapp log at start, and group allPolicyServers not showing up in group tree
+    (https://issues.rudder.io/issues/20479[#20479])
+* Fixed: Missing special target in group selection for rules
+    (https://issues.rudder.io/issues/20348[#20348])
+* Fixed: Invalid attribute 'special:all_servers_with_role' (or special:all_nodes_without_role) for entry ruleTarget
+    (https://issues.rudder.io/issues/20460[#20460])
+* Fixed: Value 'focus:48137400-7f48-48bd-a888-9522167b5b81' is not a valid reporting composition rule
+    (https://issues.rudder.io/issues/20459[#20459])
+
+==== Web - Compliance & node report
+
+* Fixed: Unexpected reports when using nested blocks
+    (https://issues.rudder.io/issues/20540[#20540])
+* Fixed: First node name is used for all nodes in rule compliance details "by node"
+    (https://issues.rudder.io/issues/20585[#20585])
+* Fixed: Compliance bar of a node with no policy applied is red / error 100%
+    (https://issues.rudder.io/issues/20558[#20558])
+* Fixed: compliance from API doesn't always adds up to 100%
+    (https://issues.rudder.io/issues/20373[#20373])
+* Fixed: Compliance issue in 7.0 because of invalid expected reports
+    (https://issues.rudder.io/issues/20498[#20498])
+* Fixed: error on system status tabs when there are missing reports
+    (https://issues.rudder.io/issues/20474[#20474])
+* Fixed: webapp doesn't start after upgrade from 6.2 to 7.0
+    (https://issues.rudder.io/issues/20390[#20390])
+
+==== Security
+
+* Fixed: Update spring-core
+    (https://issues.rudder.io/issues/20571[#20571])
+* Fixed: Use a proper CSPRNG to generate API tokens
+    (https://issues.rudder.io/issues/20512[#20512])
+
+==== Relay server or API
+
+* Fixed: It is impossible to read group properties with a read-only account
+    (https://issues.rudder.io/issues/20567[#20567])
+* Fixed: Don't insert partial runs as run logs
+    (https://issues.rudder.io/issues/20446[#20446])
+
+==== Performance and scalability
+
+* Fixed: We are recreating ldap object while we could duplicate them, leading to suboptimal perf
+    (https://issues.rudder.io/issues/20535[#20535])
+
+==== Miscellaneous
+
+* Fixed: Compliance api miss audit state
+    (https://issues.rudder.io/issues/20531[#20531])
+
+==== Language
+
+* Fixed: generate_lib outputs a debug line
+    (https://issues.rudder.io/issues/20471[#20471])
+
+==== Techniques
+
+* Fixed: Confusing log message in cron technique hook
+    (https://issues.rudder.io/issues/20515[#20515])
+* Fixed: deprecate techniques in 7.0
+    (https://issues.rudder.io/issues/20277[#20277])
+
+==== System techniques
+
+* Fixed: Skipping inventory run when another one is already running should not throw an error
+    (https://issues.rudder.io/issues/20511[#20511])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 7.0.0.rc1 (2021-11-29)
 
 === Changes
