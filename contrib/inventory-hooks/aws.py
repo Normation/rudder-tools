@@ -15,6 +15,7 @@ fi
 
 import os.path
 import json
+from subprocess import run
 try:
     import requests
 except:
@@ -28,9 +29,13 @@ def is_ec2():
     # Not perfect
     # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify_ec2_instances.html
     try:
-        with open("/sys/hypervisor/uuid") as f:
-            if f.read(3).lower() != "ec2":
-                return False
+        pv_ami_uuid_path = "/sys/hypervisor/uuid"
+        if os.path.exists(pv_ami_uuid_path):
+            with open(pv_ami_uuid_path) as f:
+                return bool(f.read(3).lower() == "ec2")
+        else:
+            uuid = run(['dmidecode', '--string', 'system-uuid'], capture_output=True).stdout.decode('utf-8').strip()
+            return uuid[0:2].lower() == "ec2"
     except:
         return False
     return requests.get(METAURL).status_code == 200
