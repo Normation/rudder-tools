@@ -23,6 +23,7 @@ Rudder 7.0 adopts our new visual identify. New colors and a new logo
 refreshing the previous design.
 
 image::images/theme.png[theme.png]
+image::images/login.png[login.png]
 
 == Setup guide on first connection
 
@@ -109,7 +110,7 @@ for the block
 This allows getting more comprehensive compliance reports, with more
 meaningful numbers.
 
-=== *Disable reporting for a method in the editor*
+=== Disable reporting for a method in the editor
 
 It is now possible to disable reporting for any method, and hence ignore
 it in the compliance. This is particularly useful for methods used as
@@ -177,7 +178,7 @@ get added in next versions.
 
 Augeas is a framework providing a tree-like view of a lot of different
 configuration file formats (through syntax definitions called
-``lenses''). This unified interface allows hassle-free advanced
+*lenses*). This unified interface allows hassle-free advanced
 editions. Augeas is now embedded with the agent when not available as a
 system dependency.
 
@@ -307,7 +308,7 @@ This version provides packages for these operating systems:
 
 * Rudder server and Rudder relay: *Debian 10-11, RHEL/CentOS/Alma/Rocky 8,
 SLES 15, Ubuntu 18.04 LTS and 20.04 LTS*
-* Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES_12*
+* Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES 12*
 * Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-8, RHEL/CentOS 3-6,
 SLES 10-11, Ubuntu 10.04 LTS-12.04 13.04-15.10 LTS-14.04 LTS-16.04, Windows Server 2008R2-2019, AIX
 5-6-7, Solaris 10 & 11, Slackware 14*
