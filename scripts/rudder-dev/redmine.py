@@ -4,8 +4,8 @@ import json
 
 # trick to make fake import compatible with regular import
 if 'Config' not in vars():
-  from common import *  
-    
+  from common import *
+
 Config.REDMINE_ALT_API_URL = "https://redmine.normation.com"
 Config.REDMINE_API_URL = "https://issues.rudder.io"
 Config.REDMINE_API_LIMIT = 100
@@ -16,7 +16,7 @@ Config.ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum
 Config.REDMINE_NRM_GROUP = 314
 Config.REDMINE_ALT_NRM_GROUP = 36
 
-Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc' }
+Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc', 'Enhancement': 'enh' }
 Config.PENDING_TR_CODE = 3
 Config.IN_PROGRESS_CODE = 9
 Config.CUSTOM_FIELD_PR = 3
@@ -220,7 +220,7 @@ class Issue:
         note = message
       else:
         note += "\n" + message
-  
+
     change = {}
     # fill ticket data with developer available content
     if status is not None:
@@ -231,7 +231,7 @@ class Issue:
       change['notes'] = note
     if pr_url is not None:
       change['custom_fields'] = [ { 'id': self.custom_field_pr, 'value': pr_url } ]
-  
+
     self._update_issue(change, message, message)
 
   def to_in_progress(self, message=None):
@@ -284,14 +284,14 @@ class Issue:
     if not self.can_modify():
       logfail("Cannot change ticket version since you are not a developer, you should change it manually before calling retarget")
       exit(13)
-  
+
     # list all versions
     versions = self.server.version_list(self.info['project_id'])
     # keep versions that match and that are still open
     valid_versions = [ v for v in versions if v['status'] == 'open' and v['name'].startswith(version) ]
     # there should only only, but in doubt keep the last one
     final_version = valid_versions[-1]
-  
+
     # set the version
     self._update_issue({ 'issue': { 'fixed_version_id': final_version['id'] } })
     self.info['fixed_version'] = final_version
@@ -323,7 +323,7 @@ class Redmine:
     return ret
 
   def create_issue(self, project_id, subject, description, tracker_id, version_id):
-    new_info = { 'project_id': project_id, 'description': description, 'subject': subject, 
+    new_info = { 'project_id': project_id, 'description': description, 'subject': subject,
                  'fixed_version_id': version_id, 'tracker_id': tracker_id }
     return self._create_issue(new_info)
 
@@ -356,7 +356,7 @@ class Redmine:
             return True
     self.can_modify = False
     return False
-  
+
   def list_nrm_users(self):
     return self._query("/users.json?group_id=" + str(self.nrm_group)).json()['users']
 
