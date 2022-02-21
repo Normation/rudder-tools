@@ -1,56 +1,5 @@
 = Change logs for Rudder 7.0
 
-== [Private] Rudder 7.0.0 (2022-01-26)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-=== Bug fixes
-
-==== Server components
-
-* Fixed: rudder_synchronize fails to import technique
-    (https://issues.rudder.io/issues/20645[#20645])
-
-==== Documentation
-
-* Fixed: Agent logs section is missing in doc
-    (https://issues.rudder.io/issues/20627[#20627])
-* Fixed:  Mark 7.0 as final - docs
-    (https://issues.rudder.io/issues/20626[#20626])
-* Fixed: Some screenshots in documentation are too old
-    (https://issues.rudder.io/issues/20611[#20611])
-* Fixed: Debian emits a warning if we follow the documentation way of adding the private repository
-    (https://issues.rudder.io/issues/20543[#20543])
-* Fixed: API : URL ending with / are seen like /[empty string parameter]
-    (https://issues.rudder.io/issues/3881[#3881])
-
-==== Plugins integration
-
-* Fixed: rudder-pkg can not parse nightly version
-    (https://issues.rudder.io/issues/20649[#20649])
-
-==== Web - UI & UX
-
-* Fixed: Change the buttons color in the setup wizard
-    (https://issues.rudder.io/issues/20616[#20616])
-
-==== Web - Technique editor
-
-* Fixed: generic method doc in technique editor in 7.0 doesn't look great
-    (https://issues.rudder.io/issues/20608[#20608])
-
-=== Release notes
-
-This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
 ==  Rudder 7.0.1 (2022-02-18)
 
 === Changes
@@ -196,6 +145,57 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 * I C
 * Nigel Mundy
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+== Rudder 7.0.0 (2022-01-26)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+
+
+=== Bug fixes
+
+==== Server components
+
+* Fixed: rudder_synchronize fails to import technique
+(https://issues.rudder.io/issues/20645[#20645])
+
+==== Documentation
+
+* Fixed: Agent logs section is missing in doc
+(https://issues.rudder.io/issues/20627[#20627])
+* Fixed:  Mark 7.0 as final - docs
+(https://issues.rudder.io/issues/20626[#20626])
+* Fixed: Some screenshots in documentation are too old
+(https://issues.rudder.io/issues/20611[#20611])
+* Fixed: Debian emits a warning if we follow the documentation way of adding the private repository
+(https://issues.rudder.io/issues/20543[#20543])
+* Fixed: API : URL ending with / are seen like /[empty string parameter]
+(https://issues.rudder.io/issues/3881[#3881])
+
+==== Plugins integration
+
+* Fixed: rudder-pkg can not parse nightly version
+(https://issues.rudder.io/issues/20649[#20649])
+
+==== Web - UI & UX
+
+* Fixed: Change the buttons color in the setup wizard
+(https://issues.rudder.io/issues/20616[#20616])
+
+==== Web - Technique editor
+
+* Fixed: generic method doc in technique editor in 7.0 doesn't look great
+(https://issues.rudder.io/issues/20608[#20608])
+
+=== Release notes
 
 This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
