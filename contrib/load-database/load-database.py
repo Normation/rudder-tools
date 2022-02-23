@@ -11,9 +11,11 @@ else
 fi
 '''
 
-# This script will generate reports and insert them in the database
+# This script will generate reports and insert them in the database or via syslog
 
-# This script is compatible Rudder 4.3, 5.0 and more
+# This script is compatible Rudder 6.x
+# As it cannot sign with certificates, it cannot use https, but still database insertion will work
+# See inventory-generation/load-database.py  
 # It function by reading all nodeconfigurations, and generating reports 
 # with randomized timestamps 
 
@@ -28,7 +30,9 @@ database = 'rudder'
 port_database = 5432
 
 # Use syslog rather than database
-use_syslog = True
+use_syslog = False
+# if use the database, in case of Rudder 7, need to insert in reportsexecution
+is_rudder_7 = True
 
 # Select change only mode or full compliance - change only sends only non success reports
 mode_full_compliance = True
@@ -183,12 +187,19 @@ for nodeid, config, begindate, configuration in cur.fetchall():
     if (randomValue > (1 - last_run_frequency)):
       ending = lastruns.popitem()[1]
       if use_syslog:
+         start_string =  'R: @@Common@@control@@rudder@@run@@0@@start@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#Start execution'
+         syslog.syslog(syslog.LOG_INFO, start_string)
          syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
          syslog.syslog(syslog.LOG_INFO, syslog_string)
+         
       else:
          write = myConnection.cursor()
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))
+         insertionid = write.fetchone()[0]
          write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
-       #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
+         if is_rudder_7:
+               write.execute('insert into reportsexecution(nodeid, date, nodeconfigid, insertionid) values (%s, %s, %s, %s)', (ending[2], ending[1], ending[0], insertionid))
+
          myConnection.commit()
          write.close()
 
@@ -196,11 +207,17 @@ for nodeid, config, begindate, configuration in cur.fetchall():
 lastruns[nodeid] = [nodeconfigid, reportDate, nodeid]
 for ending in lastruns.values():
       if use_syslog:
+         start_string =  'R: @@Common@@control@@rudder@@run@@0@@start@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#Start execution'
+         syslog.syslog(syslog.LOG_INFO, start_string)
          syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
          syslog.syslog(syslog.LOG_INFO, syslog_string)
       else:
          write = myConnection.cursor()
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))
+         insertionid = write.fetchone()[0]
          write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
+         if is_rudder_7:
+               write.execute('insert into reportsexecution(nodeid, date, nodeconfigid, insertionid) values (%s, %s, %s, %s)', (ending[2], ending[1], ending[0], insertionid))
        #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
          myConnection.commit()
          write.close()
