@@ -1,5 +1,40 @@
 = Changelogs for Rudder plugin cve 6.2.\* versions
 
+== cve-6.2-1.10 (2022-03-07)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Incorrect name for API id "getCVEChecks"
+    (https://issues.rudder.io/issues/20768[#20768])
+* Fixed: Fix jawn cve
+    (https://issues.rudder.io/issues/20728[#20728])
+* Fixed: Update circe dependendy in cve plugin so that we fix CVE-2022-21653
+    (https://issues.rudder.io/issues/20637[#20637])
+* Fixed: Fix typos in cve plugin
+    (https://issues.rudder.io/issues/20169[#20169])
+* Fixed: Add a fail-fast check when cve API is unreachable
+    (https://issues.rudder.io/issues/20129[#20129])
+* Fixed: CVE plugin setting documentation is not up to date
+    (https://issues.rudder.io/issues/19891[#19891])
+* Fixed: Implementation of getNodeInfos is missing in test
+    (https://issues.rudder.io/issues/19918[#19918])
+* Fixed: try to make cve a bit more scalable and add missing logs in CVE
+    (https://issues.rudder.io/issues/19795[#19795])
+
+==== Documentation
+
+* Fixed: CVE plugin documentation misses the main title in menu
+    (https://issues.rudder.io/issues/20250[#20250])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-6.2-1.9 (2021-06-25)
 
 === Changes
