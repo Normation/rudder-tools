@@ -16,6 +16,7 @@ fi
 import os.path
 import json
 from subprocess import run
+import argparse
 try:
     import requests
 except:
@@ -25,22 +26,29 @@ except:
 # The IP address 169.254.169.254 is a link-local address and is valid only from the instance.
 METAURL = 'http://169.254.169.254/latest'
 
-def is_ec2():
+def is_ec2(debug):
     # Not perfect
     # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify_ec2_instances.html
     try:
         pv_ami_uuid_path = "/sys/hypervisor/uuid"
+
         if os.path.exists(pv_ami_uuid_path):
+            if debug: print("File {file} found".format(file=pv_ami_uuid_path))
             with open(pv_ami_uuid_path) as f:
-                return bool(f.read(3).lower() == "ec2")
+                uuid_start = f.read(3).lower()
+                if debug: print("Got {output}".format(output=uuid_start))
+                return bool( uuid_start == "ec2")
         else:
+            if debug: print("File {file} not found\nTrying dmidecode --string system-uuid....".format(file=pv_ami_uuid_path))
             uuid = run(['dmidecode', '--string', 'system-uuid'], capture_output=True).stdout.decode('utf-8').strip()
-            return uuid[0:2].lower() == "ec2"
+            uuid_start = uuid[0:3].lower()
+            if debug: print("Got {output}, testing the first 3 chars: {start}".format(output=uuid, start=uuid_start))
+            return uuid_start == "ec2"
     except:
         return False
     return requests.get(METAURL).status_code == 200
 
-def load():
+def load(debug):
     metadict = {'dynamic': {}, 'meta-data': {}}
 
     for subsect in metadict.keys():
@@ -85,7 +93,13 @@ def dataparse(url,k):
                 k[key] = None
 
 if __name__ == '__main__':
-    if is_ec2():
-      print(json.dumps(load()))
+    parser = argparse.ArgumentParser(description='Retrieve the AWS data from the API and format them in JSON')
+    parser.add_argument('--debug', help='print debug information', action='store_true')
+    args = parser.parse_args()
+    debug = args.debug
+    if is_ec2(debug):
+      if debug: print("The machine is an ec2 instance")
+      print(json.dumps(load(debug)))
     else:
+      if debug: print("The machine is NOT an ec2 instance")
       print("{}")
