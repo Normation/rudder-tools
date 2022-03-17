@@ -1,1 +1,160 @@
+== [Private] Rudder 7.1.0.beta1 (2022-03-17)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Web - Nodes & inventories
+
+* Add available software updates in inventory
+    (https://issues.rudder.io/issues/20663[#20663])
+
+==== Packaging
+
+* Remove the old technique editor
+    (https://issues.rudder.io/issues/20578[#20578])
+* Remove old migration logic from packaging
+    (https://issues.rudder.io/issues/19766[#19766])
+* Update rust to 1.58.0
+    (https://issues.rudder.io/issues/20572[#20572])
+
+==== Documentation
+
+* Windows support should be documented as the other agents
+    (https://issues.rudder.io/issues/20835[#20835])
+* Add a compatibilty table for agent relay server in the documentation
+    (https://issues.rudder.io/issues/20621[#20621])
+* Prepare 7.1 API doc
+    (https://issues.rudder.io/issues/20737[#20737])
+
+==== Performance and scalability
+
+* Serialization of NodeConfigurations is fairly expensive
+    (https://issues.rudder.io/issues/16197[#16197])
+
+==== Web - Compliance & node report
+
+* Use a unique id to identify reports
+    (https://issues.rudder.io/issues/20747[#20747])
+* Use a unique id to identify reports
+    (https://issues.rudder.io/issues/20747[#20747])
+
+==== Language
+
+* Document the rudder-lang and technique editor incompatibilities
+    (https://issues.rudder.io/issues/20766[#20766])
+
+==== Relay server or API
+
+* Update relayd dependencies
+    (https://issues.rudder.io/issues/20473[#20473])
+* Use gumdrop instead of structopt
+    (https://issues.rudder.io/issues/19790[#19790])
+
+==== Techniques
+
+* Reformat all the statements in userManagement technique
+    (https://issues.rudder.io/issues/20878[#20878])
+
+==== Generic methods - File Management
+
+* Improve File from HTTP server method documentation
+    (https://issues.rudder.io/issues/20810[#20810])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: broken rudder-upgrade in 7.1
+    (https://issues.rudder.io/issues/20862[#20862])
+* Fixed: Delete virtualenv from webapp dependencies
+    (https://issues.rudder.io/issues/20733[#20733])
+
+==== Security
+
+* Fixed: Vulnerability in the regex crate
+    (https://issues.rudder.io/issues/20872[#20872])
+
+==== API
+
+* Fixed: Some api response have an id field but should'nt have one
+    (https://issues.rudder.io/issues/20871[#20871])
+* Fixed: Broken allowed network curl example
+    (https://issues.rudder.io/issues/20844[#20844])
+
+==== Web - UI & UX
+
+* Fixed: Do not allow the creation of an account with an empty name or with the same name as another account
+    (https://issues.rudder.io/issues/20857[#20857])
+* Fixed: Rewrite the API account page in Elm
+    (https://issues.rudder.io/issues/20683[#20683])
+
+==== Architecture - Internal libs
+
+* Fixed: Duplicate classes RudderUserDetails
+    (https://issues.rudder.io/issues/20734[#20734])
+
+==== CI
+
+* Fixed: Don't skip tests in webapp publish
+    (https://issues.rudder.io/issues/20812[#20812])
+* Fixed: Missing clean in webapp publish
+    (https://issues.rudder.io/issues/20772[#20772])
+
+==== Web - Technique editor
+
+* Fixed: Suppressed techniques coming back to life forever
+    (https://issues.rudder.io/issues/19006[#19006])
+
+==== Architecture - Refactoring
+
+* Fixed: NodeAndPolicyServerReturnType name is misleading for search that include root server
+    (https://issues.rudder.io/issues/20802[#20802])
+
+==== Performance and scalability
+
+* Fixed: Improve dynamic group computation speed and fix inverted searched
+    (https://issues.rudder.io/issues/20716[#20716])
+
+==== Web - Nodes & inventories
+
+* Fixed: List of directive for the pending node is invalid
+    (https://issues.rudder.io/issues/20736[#20736])
+
+==== Architecture - Dependencies
+
+* Fixed: Maven needs <version> tag even if version is in <dependency-management>
+    (https://issues.rudder.io/issues/20727[#20727])
+
+==== Techniques
+
+* Fixed: Unexpected reporting in userManagement in audit when user is not present
+    (https://issues.rudder.io/issues/19427[#19427])
+* Fixed: Patch dsc techniques according to #20830
+    (https://issues.rudder.io/issues/20832[#20832])
+* Fixed: When upgrading from 6.2 to 7.0, the previous rudder logrotate configuration is not removed
+    (https://issues.rudder.io/issues/20792[#20792])
+
+==== System integration
+
+* Fixed: Logrotate configuration for relayd is broken
+    (https://issues.rudder.io/issues/20791[#20791])
+
+==== Generic methods
+
+* Fixed: use report_id for command_execution generic method
+    (https://issues.rudder.io/issues/20864[#20864])
+* Fixed: No report from sysctl generic method
+    (https://issues.rudder.io/issues/20612[#20612])
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 = Change logs for Rudder 7.1
