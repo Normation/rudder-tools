@@ -5,7 +5,7 @@ Rudder 7.0 is currently a maintained version.
 Rudder 7 will be supported for at least three months after next major release,
 and for 18 to 24 months with a subscription.
 
-Its main features are :
+Its main features are:
 
 * A redesigned technique editor, more flexible, especially on the
 reporting and compliance side.
@@ -213,7 +213,7 @@ maintenance policy.
 
 == Under the hood
 
-These items will are directly visible from the users, but help us keep
+These items are not always directly visible from the users, but help us keep
 Rudder reliable and extensible.
 
 === Improved agent CLI
