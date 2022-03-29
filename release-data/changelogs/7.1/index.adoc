@@ -5,6 +5,62 @@ Rudder 7.1 is currently an alpha version.
 Rudder 7 will be supported for at least three months after next major release,
 and for 18 to 24 months with a subscription.
 
+Its main feature is a first release of a new patch management capability.
+
+== What's new
+
+=== System updates management
+
+The list of currently available updates is now available as part of the inventory on most Linux systems
+(those using `apt`, `yum/dnf` or `zypper`).
+
+It is exposed in the API and the Web interface, both in node details and in a new dedicated view,
+exposing additional information like update severity, description etc. when available.
+
+//image::images/update.png[update.png]
+
+=== Improved precision and reliability of reporting
+
+We reworked the reporting engine to make reports easier to match to the policies part which produce
+them. This has been done by introducing a new unique identifier for each component. This allows:
+
+* To use variables in the component name of the methods. It does not have to be known at generation time anymore.
+* More precise reporting, solving some old intricate technical limitations.
+
+This is completely transparent for the users.
+
+The unique identifier has also been used to improve the agent-side reporting process, which has been
+refactored to be simpler, more reliable and to allow any re-execution of similar or identical methods.
+For now the following methods have been ported to the now report process:
+
+* service
+* package
+* commands
+
+Others will follow in upcoming versions.
+
+==== A new method to trigger an inventory
+
+A new method has been added, allowing to trigger an inventory at the next agent run.
+This allows updating the server side inventory more quickly after a change that impacts the inventory
+content (like package management, system upgrade, network changes, etc.)
+
+==== Compatibility of service methods with other systemd unit type
+
+The service methods can now be used with other systemd unit type by adding the extension
+(just like you would do on the CLI), like `dnf-makecache.timer` or `tmp.mount`.
+
+This makes it easier to apply states on these units.
+
+== API account page has been rewritten
+
+Using our new design and tooling, we redesigned the page allowing the manage the API accounts.
+Apart from the visual improvements, it also improves the user experience with configuration
+popup for destructive actions (removal or replacement of a token) and hidden token with a button
+to copy the value, to avoid unwanted leak through screen sharing for example.
+
+image::images/api.png[api.png]
+
 == Installing, upgrading and testing
 
 * Install docs for https://docs.rudder.io/reference/7.1/installation/server/debian.html[Debian/Ubuntu],
