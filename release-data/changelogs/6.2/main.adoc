@@ -2,6 +2,205 @@
 
 Rudder 6.2 is currently a maintained version of Rudder.
 
+==  Rudder 6.2.13 (2022-04-08)
+
+=== Changes
+
+
+==== Documentation
+
+* Windows support should be documented as the other agents
+    (https://issues.rudder.io/issues/20835[#20835])
+* Add a compatibilty table for agent relay server in the documentation
+    (https://issues.rudder.io/issues/20621[#20621])
+* Document how to automatically synchronize technique resources from an external repository
+    (https://issues.rudder.io/issues/20495[#20495])
+
+==== Architecture - Internal libs
+
+* Add name for spring security main auth configuration bean to be used by oauth2 
+    (https://issues.rudder.io/issues/20886[#20886])
+
+==== Web - Nodes & inventories
+
+* kernel version doesn't show in the node page
+    (https://issues.rudder.io/issues/20721[#20721])
+
+==== Techniques
+
+* Reformat all the statements in userManagement technique
+    (https://issues.rudder.io/issues/20878[#20878])
+
+==== CI
+
+* Dockerize technique tests
+    (https://issues.rudder.io/issues/20386[#20386])
+
+==== Generic methods - File Management
+
+* Improve File from HTTP server method documentation
+    (https://issues.rudder.io/issues/20810[#20810])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-webapp requires rsync to build for RHEL
+    (https://issues.rudder.io/issues/20974[#20974])
+* Fixed: rudder-agent-postinst doesn't close file descriptors anymore
+    (https://issues.rudder.io/issues/20522[#20522])
+* Fixed: Separate openldap cache between nightly and release builds - 6.2
+    (https://issues.rudder.io/issues/20450[#20450])
+* Fixed: Update openssl to 1.1.1m
+    (https://issues.rudder.io/issues/20428[#20428])
+
+==== Agent
+
+* Fixed: Lower the log level of the "Skipping adding class [...] as its name is equal or longer than 1024" message
+    (https://issues.rudder.io/issues/20960[#20960])
+* Fixed: Improve agent-side messages when download is refused
+    (https://issues.rudder.io/issues/20521[#20521])
+
+==== Security
+
+* Fixed: Update embedded openssl to 1.1.1n
+    (https://issues.rudder.io/issues/20894[#20894])
+* Fixed: Update jdbc postgres driver to 4.2.25 for CVE-2022-21724
+    (https://issues.rudder.io/issues/20969[#20969])
+* Fixed: Vulnerability in the regex crate
+    (https://issues.rudder.io/issues/20872[#20872])
+* Fixed: Data race in thread-local relayd dependency
+    (https://issues.rudder.io/issues/20639[#20639])
+* Fixed: Update spring-core
+    (https://issues.rudder.io/issues/20571[#20571])
+* Fixed: Use a proper CSPRNG to generate API tokens
+    (https://issues.rudder.io/issues/20512[#20512])
+
+==== Documentation
+
+* Fixed: Correct doc on windows KB update
+    (https://issues.rudder.io/issues/20891[#20891])
+* Fixed: backup/restore doc is incomplete
+    (https://issues.rudder.io/issues/20888[#20888])
+* Fixed: Documentation about properties usage on windows node uses an incorrect syntax
+    (https://issues.rudder.io/issues/20731[#20731])
+* Fixed: apt-key is deprecated
+    (https://issues.rudder.io/issues/20518[#20518])
+* Fixed: API : URL ending with / are seen like /[empty string parameter]
+    (https://issues.rudder.io/issues/3881[#3881])
+* Fixed: Add a complex example of node search API request
+    (https://issues.rudder.io/issues/20577[#20577])
+* Fixed: documentation of method schedule_ is broken
+    (https://issues.rudder.io/issues/20605[#20605])
+
+==== Miscellaneous
+
+* Fixed: Show more details in exception when parsing an invalid technique version
+    (https://issues.rudder.io/issues/20976[#20976])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+* Fixed: Compilation warning on branche 6.2
+    (https://issues.rudder.io/issues/20874[#20874])
+* Fixed: In 6.2.10 the plugin can not uninstall itself in some cases
+    (https://issues.rudder.io/issues/20392[#20392])
+
+==== Web - Config management
+
+* Fixed: Starting policy generation by hand fails if node-configuration-hashes.json 
+    (https://issues.rudder.io/issues/20926[#20926])
+
+==== Web - Technique editor
+
+* Fixed: When editing files with the technique editor resources manager, newlines at the end of file are trimmed
+    (https://issues.rudder.io/issues/19319[#19319])
+* Fixed: Suppressed techniques coming back to life forever
+    (https://issues.rudder.io/issues/19006[#19006])
+
+==== API
+
+* Fixed: Broken allowed network curl example
+    (https://issues.rudder.io/issues/20844[#20844])
+* Fixed: No clear error message when calling api with curl and data are not url-encoded
+    (https://issues.rudder.io/issues/10915[#10915])
+* Fixed: State is missing from node api
+    (https://issues.rudder.io/issues/20582[#20582])
+* Fixed: It is impossible to read group properties with a read-only account
+    (https://issues.rudder.io/issues/20567[#20567])
+* Fixed: Compliance api miss audit state
+    (https://issues.rudder.io/issues/20531[#20531])
+
+==== Architecture - Internal libs
+
+* Fixed: Duplicate classes RudderUserDetails
+    (https://issues.rudder.io/issues/20734[#20734])
+
+==== CI
+
+* Fixed: Don't skip tests in webapp publish
+    (https://issues.rudder.io/issues/20812[#20812])
+* Fixed: Missing clean in webapp publish
+    (https://issues.rudder.io/issues/20772[#20772])
+
+==== Performance and scalability
+
+* Fixed: Improve dynamic group computation speed and fix inverted searched
+    (https://issues.rudder.io/issues/20716[#20716])
+* Fixed: We are recreating ldap object while we could duplicate them, leading to suboptimal perf
+    (https://issues.rudder.io/issues/20535[#20535])
+
+==== Web - Nodes & inventories
+
+* Fixed: List of directive for the pending node is invalid
+    (https://issues.rudder.io/issues/20736[#20736])
+
+==== Web - Compliance & node report
+
+* Fixed: when there's a disabled directive in a rule, it's really hard to see
+    (https://issues.rudder.io/issues/18672[#18672])
+* Fixed: when there's a disabled directive in a rule, it's really hard to see
+    (https://issues.rudder.io/issues/18672[#18672])
+* Fixed: Compliance bar of a node with no policy applied is red / error 100%
+    (https://issues.rudder.io/issues/20558[#20558])
+* Fixed: error on system status tabs when there are missing reports
+    (https://issues.rudder.io/issues/20474[#20474])
+
+==== Architecture - Dependencies
+
+* Fixed: Update xerces version 
+    (https://issues.rudder.io/issues/20676[#20676])
+
+==== Techniques
+
+* Fixed: post hook for copyGitFile on windows don't report
+    (https://issues.rudder.io/issues/20909[#20909])
+* Fixed: Unexpected reporting in userManagement in audit when user is not present
+    (https://issues.rudder.io/issues/19427[#19427])
+* Fixed: Patch dsc techniques according to #20830
+    (https://issues.rudder.io/issues/20832[#20832])
+* Fixed: SNMP installation uses deprecated package method, and it reports an error even though it works
+    (https://issues.rudder.io/issues/16694[#16694])
+* Fixed: Confusing log message in cron technique hook
+    (https://issues.rudder.io/issues/20515[#20515])
+
+==== Generic methods
+
+* Fixed: Variable string from command fails when command contains control structures
+    (https://issues.rudder.io/issues/20128[#20128])
+* Fixed: All classes manipulations are ineffeccient because there are repeated 3 times
+    (https://issues.rudder.io/issues/20885[#20885])
+* Fixed: No report from sysctl generic method
+    (https://issues.rudder.io/issues/20612[#20612])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* I C
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.12 (2021-12-17)
 
 === Changes
