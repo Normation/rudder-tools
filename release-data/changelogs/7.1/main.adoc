@@ -262,4 +262,110 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== [Private] Rudder 7.1.0.rc1 (2022-04-08)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Packaging
+
+* We should detect malformed patch in the packaging to disallow building incorrect packages
+    (https://issues.rudder.io/issues/9810[#9810])
+
+==== Documentation
+
+* Prepapre doc for 7.1
+    (https://issues.rudder.io/issues/20945[#20945])
+
+==== Generic methods
+
+* Allow managing other types of systemd units
+    (https://issues.rudder.io/issues/18553[#18553])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-webapp requires rsync to build for RHEL
+    (https://issues.rudder.io/issues/20974[#20974])
+
+==== Agent
+
+* Fixed: Lower the log level of the "Skipping adding class [...] as its name is equal or longer than 1024" message
+    (https://issues.rudder.io/issues/20960[#20960])
+* Fixed: In SLES 15, SP is view as part of version - Rudder 7.0
+    (https://issues.rudder.io/issues/20950[#20950])
+
+==== Documentation
+
+* Fixed: Broken list of compatible OS in 7.0
+    (https://issues.rudder.io/issues/20942[#20942])
+
+==== Miscellaneous
+
+* Fixed: Show more details in exception when parsing an invalid technique version
+    (https://issues.rudder.io/issues/20976[#20976])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+* Fixed: Add suport for report id reporting with Windows agent
+    (https://issues.rudder.io/issues/20963[#20963])
+* Fixed: "Disable reporting" for windows method calls does produce unexpected reports
+    (https://issues.rudder.io/issues/20897[#20897])
+
+==== Web - Technique editor
+
+* Fixed: Correct minor version condition for Ubuntu in technique editor
+    (https://issues.rudder.io/issues/20973[#20973])
+
+==== Security
+
+* Fixed: Update jdbc postgres driver to 4.2.25 for CVE-2022-21724
+    (https://issues.rudder.io/issues/20969[#20969])
+
+==== Web - Compliance & node report
+
+* Fixed: Removed report in compliance when calling several times the command_execution with same value
+    (https://issues.rudder.io/issues/20880[#20880])
+
+==== Web - UI & UX
+
+* Fixed: Hide action buttons if the user does not have write permission on the Rules
+    (https://issues.rudder.io/issues/20961[#20961])
+* Fixed: Edit mode should be enabled by default when creating a rule
+    (https://issues.rudder.io/issues/20954[#20954])
+* Fixed: In the technical logs table of a node, mouse cursor should not change when hovering a Status badge
+    (https://issues.rudder.io/issues/20953[#20953])
+* Fixed: Remove the transparent div that covers the Properties tab and prevents interaction with it.
+    (https://issues.rudder.io/issues/20951[#20951])
+* Fixed: Displays a warning icon for directives that are not used by any rule.
+    (https://issues.rudder.io/issues/20692[#20692])
+
+==== API
+
+* Fixed: Add new software update fields to API doc
+    (https://issues.rudder.io/issues/20947[#20947])
+
+==== System techniques
+
+* Fixed: Increase default value of maxconnections
+    (https://issues.rudder.io/issues/20946[#20946])
+
+==== Generic methods
+
+* Fixed: Broken reporting for double nested method calls
+    (https://issues.rudder.io/issues/20944[#20944])
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 = Change logs for Rudder 7.1
