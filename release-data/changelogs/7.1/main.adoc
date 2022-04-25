@@ -1,14 +1,266 @@
-== [Private] Rudder 7.1.0.beta1 (2022-03-17)
+= Change logs for Rudder 7.1
+
+== Rudder 7.1.0 (2022-04-25)
 
 === Changes
 
-[WARNING]
-====
+==== Techniques
 
-This version is only available for extended support subscription
+* Add a system-update technique for classic agents
+    (https://issues.rudder.io/issues/20988[#20988])
 
-====
-    
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Fix the relayd logging documentation
+    (https://issues.rudder.io/issues/20985[#20985])
+
+==== Miscellaneous
+
+* Fixed: Document that port 5309 can be disable in node configuration
+    (https://issues.rudder.io/issues/20982[#20982])
+
+==== Web - Technique editor
+
+* Fixed: The display of the DSC icon is broken in the technical editor
+    (https://issues.rudder.io/issues/21016[#21016])
+* Fixed: Unable to open a block within a block when it has just been drop from the list
+    (https://issues.rudder.io/issues/20787[#20787])
+* Fixed: When cloning a block with two identical methods, only one is cloned
+    (https://issues.rudder.io/issues/21001[#21001])
+
+==== Web - Compliance & node report
+
+* Fixed: Techniques with no component define have no reporting
+    (https://issues.rudder.io/issues/21007[#21007])
+* Fixed: Techniques with no component define have no reporting
+    (https://issues.rudder.io/issues/21007[#21007])
+* Fixed: Bad number of component for 2 block with same name same content
+    (https://issues.rudder.io/issues/21000[#21000])
+
+==== Web - Maintenance
+
+* Fixed: Download as zip in archives page returns a 404
+    (https://issues.rudder.io/issues/20903[#20903])
+
+==== Web - Nodes & inventories
+
+* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+    (https://issues.rudder.io/issues/20984[#20984])
+
+==== System techniques
+
+* Fixed: when database is not on the root server, policy generation fails
+    (https://issues.rudder.io/issues/20986[#20986])
+
+==== Generic methods
+
+* Fixed: report_if_condition method does not support expressions in its input
+    (https://issues.rudder.io/issues/21011[#21011])
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+== Rudder 7.1.0.rc1 (2022-04-08)
+
+=== Changes
+
+==== Packaging
+
+* We should detect malformed patch in the packaging to disallow building incorrect packages
+    (https://issues.rudder.io/issues/9810[#9810])
+
+==== Documentation
+
+* Prepare doc for 7.1
+    (https://issues.rudder.io/issues/20945[#20945])
+
+==== Generic methods
+
+* Allow managing other types of systemd units
+    (https://issues.rudder.io/issues/18553[#18553])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-webapp requires rsync to build for RHEL
+    (https://issues.rudder.io/issues/20974[#20974])
+
+==== Agent
+
+* Fixed: Lower the log level of the "Skipping adding class [...] as its name is equal or longer than 1024" message
+    (https://issues.rudder.io/issues/20960[#20960])
+* Fixed: In SLES 15, SP is view as part of version - Rudder 7.0
+    (https://issues.rudder.io/issues/20950[#20950])
+
+==== Documentation
+
+* Fixed: Broken list of compatible OS in 7.0
+    (https://issues.rudder.io/issues/20942[#20942])
+
+==== Miscellaneous
+
+* Fixed: Show more details in exception when parsing an invalid technique version
+    (https://issues.rudder.io/issues/20976[#20976])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+* Fixed: Add support for report id reporting with Windows agent
+    (https://issues.rudder.io/issues/20963[#20963])
+* Fixed: "Disable reporting" for windows method calls does produce unexpected reports
+    (https://issues.rudder.io/issues/20897[#20897])
+
+==== Web - Technique editor
+
+* Fixed: Correct minor version condition for Ubuntu in technique editor
+    (https://issues.rudder.io/issues/20973[#20973])
+
+==== Security
+
+* Fixed: Update jdbc postgres driver to 4.2.25 for CVE-2022-21724
+    (https://issues.rudder.io/issues/20969[#20969])
+
+==== Web - Compliance & node report
+
+* Fixed: Removed report in compliance when calling several times the command_execution with same value
+    (https://issues.rudder.io/issues/20880[#20880])
+
+==== Web - UI & UX
+
+* Fixed: Hide action buttons if the user does not have write permission on the Rules
+    (https://issues.rudder.io/issues/20961[#20961])
+* Fixed: Edit mode should be enabled by default when creating a rule
+    (https://issues.rudder.io/issues/20954[#20954])
+* Fixed: In the technical logs table of a node, mouse cursor should not change when hovering a Status badge
+    (https://issues.rudder.io/issues/20953[#20953])
+* Fixed: Remove the transparent div that covers the Properties tab and prevents interaction with it.
+    (https://issues.rudder.io/issues/20951[#20951])
+* Fixed: Displays a warning icon for directives that are not used by any rule.
+    (https://issues.rudder.io/issues/20692[#20692])
+
+==== API
+
+* Fixed: Add new software update fields to API doc
+    (https://issues.rudder.io/issues/20947[#20947])
+
+==== System techniques
+
+* Fixed: Increase default value of maxconnections
+    (https://issues.rudder.io/issues/20946[#20946])
+
+==== Generic methods
+
+* Fixed: Broken reporting for double nested method calls
+    (https://issues.rudder.io/issues/20944[#20944])
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+== Rudder 7.1.0.beta2 (2022-03-25)
+
+=== Changes
+
+==== Web - UI & UX
+
+* Glitch in node compliance details
+    (https://issues.rudder.io/issues/20693[#20693])
+
+==== Architecture - Internal libs
+
+* Add name for spring security main auth configuration bean to be used by oauth2
+    (https://issues.rudder.io/issues/20886[#20886])
+
+==== Generic methods
+
+* Generic method to raise a reinventory
+    (https://issues.rudder.io/issues/5684[#5684])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: Update embedded openssl to 1.1.1n
+    (https://issues.rudder.io/issues/20894[#20894])
+
+==== Documentation
+
+* Fixed: Correct doc on windows KB update
+    (https://issues.rudder.io/issues/20891[#20891])
+* Fixed: backup/restore doc is incomplete
+    (https://issues.rudder.io/issues/20888[#20888])
+
+==== Web - Config management
+
+* Fixed: Starting policy generation by hand fails if node-configuration-hashes.json
+    (https://issues.rudder.io/issues/20926[#20926])
+* Fixed: Built in Techniques using generic methods have no reports with new report id
+    (https://issues.rudder.io/issues/20883[#20883])
+
+==== Web - UI & UX
+
+* Fixed: Remove the AngularJs application from the API accounts page
+    (https://issues.rudder.io/issues/20901[#20901])
+* Fixed: Wrong redirect url for system group in rule page
+    (https://issues.rudder.io/issues/20782[#20782])
+* Fixed: Applied directive doesn't show up when there is no node
+    (https://issues.rudder.io/issues/20856[#20856])
+* Fixed: We cannot filter rules by tag anymore
+    (https://issues.rudder.io/issues/20848[#20848])
+* Fixed: We cannot filter rules by tag anymore
+    (https://issues.rudder.io/issues/20848[#20848])
+
+==== Web - Technique editor
+
+* Fixed: When editing files with the technique editor resources manager, newlines at the end of file are trimmed
+    (https://issues.rudder.io/issues/19319[#19319])
+
+==== Miscellaneous
+
+* Fixed: Compilation warning on branche 6.2
+    (https://issues.rudder.io/issues/20874[#20874])
+
+==== System techniques
+
+* Fixed: Set a report id for all method called within new 7.1 system techniques
+    (https://issues.rudder.io/issues/20919[#20919])
+
+==== Techniques
+
+* Fixed: post hook for copyGitFile on windows don't report
+    (https://issues.rudder.io/issues/20909[#20909])
+* Fixed: dsc techniques have invalid parameters when calling generic method
+    (https://issues.rudder.io/issues/20907[#20907])
+* Fixed: Use report_data.component_key instead of value passed as parameter
+    (https://issues.rudder.io/issues/20918[#20918])
+
+==== Generic methods
+
+* Fixed: Variable string from command fails when command contains control structures
+    (https://issues.rudder.io/issues/20128[#20128])
+* Fixed: Adapt new rudder report to work with techniques
+    (https://issues.rudder.io/issues/20882[#20882])
+* Fixed: All classes manipulations are ineffeccient because there are repeated 3 times
+    (https://issues.rudder.io/issues/20885[#20885])
+* Fixed: Broken reporting for double nested method calls
+    (https://issues.rudder.io/issues/20863[#20863])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+* Alexis TARUSSIO
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+== Rudder 7.1.0.beta1 (2022-03-17)
+
+=== Changes
 
 ==== Web - Nodes & inventories
 
@@ -157,279 +409,3 @@ This version is only available for extended support subscription
 
 This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
-== [Private] Rudder 7.1.0.beta2 (2022-03-25)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-==== Web - UI & UX
-
-* Glitch in node compliance details
-    (https://issues.rudder.io/issues/20693[#20693])
-
-==== Architecture - Internal libs
-
-* Add name for spring security main auth configuration bean to be used by oauth2 
-    (https://issues.rudder.io/issues/20886[#20886])
-
-==== Generic methods
-
-* Generic method to raise a reinventory
-    (https://issues.rudder.io/issues/5684[#5684])
-
-=== Bug fixes
-
-==== Security
-
-* Fixed: Update embedded openssl to 1.1.1n
-    (https://issues.rudder.io/issues/20894[#20894])
-
-==== Documentation
-
-* Fixed: Correct doc on windows KB update
-    (https://issues.rudder.io/issues/20891[#20891])
-* Fixed: backup/restore doc is incomplete
-    (https://issues.rudder.io/issues/20888[#20888])
-
-==== Web - Config management
-
-* Fixed: Starting policy generation by hand fails if node-configuration-hashes.json 
-    (https://issues.rudder.io/issues/20926[#20926])
-* Fixed: Built in Techniques using generic methods have no reports with new report id
-    (https://issues.rudder.io/issues/20883[#20883])
-
-==== Web - UI & UX
-
-* Fixed: Remove the AngularJs application from the API accounts page
-    (https://issues.rudder.io/issues/20901[#20901])
-* Fixed: Wrong redirect url for system group in rule page
-    (https://issues.rudder.io/issues/20782[#20782])
-* Fixed: Applied directive doesn't show up when there is no node
-    (https://issues.rudder.io/issues/20856[#20856])
-* Fixed: We cannot filter rules by tag anymore
-    (https://issues.rudder.io/issues/20848[#20848])
-* Fixed: We cannot filter rules by tag anymore
-    (https://issues.rudder.io/issues/20848[#20848])
-
-==== Web - Technique editor
-
-* Fixed: When editing files with the technique editor resources manager, newlines at the end of file are trimmed
-    (https://issues.rudder.io/issues/19319[#19319])
-
-==== Miscellaneous
-
-* Fixed: Compilation warning on branche 6.2
-    (https://issues.rudder.io/issues/20874[#20874])
-
-==== System techniques
-
-* Fixed: Set a report id for all method called within new 7.1 system techniques
-    (https://issues.rudder.io/issues/20919[#20919])
-
-==== Techniques
-
-* Fixed: post hook for copyGitFile on windows don't report
-    (https://issues.rudder.io/issues/20909[#20909])
-* Fixed: dsc techniques have invalid parameters when calling generic method
-    (https://issues.rudder.io/issues/20907[#20907])
-* Fixed: Use report_data.component_key instead of value passed as parameter
-    (https://issues.rudder.io/issues/20918[#20918])
-
-==== Generic methods
-
-* Fixed: Variable string from command fails when command contains control structures
-    (https://issues.rudder.io/issues/20128[#20128])
-* Fixed: Adapt new rudder report to work with techniques
-    (https://issues.rudder.io/issues/20882[#20882])
-* Fixed: All classes manipulations are ineffeccient because there are repeated 3 times
-    (https://issues.rudder.io/issues/20885[#20885])
-* Fixed: Broken reporting for double nested method calls
-    (https://issues.rudder.io/issues/20863[#20863])
-
-=== Release notes
-
-Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
-
-* Florian Heigl
-* Alexis TARUSSIO
-
-This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== [Private] Rudder 7.1.0.rc1 (2022-04-08)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-==== Packaging
-
-* We should detect malformed patch in the packaging to disallow building incorrect packages
-    (https://issues.rudder.io/issues/9810[#9810])
-
-==== Documentation
-
-* Prepapre doc for 7.1
-    (https://issues.rudder.io/issues/20945[#20945])
-
-==== Generic methods
-
-* Allow managing other types of systemd units
-    (https://issues.rudder.io/issues/18553[#18553])
-
-=== Bug fixes
-
-==== Packaging
-
-* Fixed: rudder-webapp requires rsync to build for RHEL
-    (https://issues.rudder.io/issues/20974[#20974])
-
-==== Agent
-
-* Fixed: Lower the log level of the "Skipping adding class [...] as its name is equal or longer than 1024" message
-    (https://issues.rudder.io/issues/20960[#20960])
-* Fixed: In SLES 15, SP is view as part of version - Rudder 7.0
-    (https://issues.rudder.io/issues/20950[#20950])
-
-==== Documentation
-
-* Fixed: Broken list of compatible OS in 7.0
-    (https://issues.rudder.io/issues/20942[#20942])
-
-==== Miscellaneous
-
-* Fixed: Show more details in exception when parsing an invalid technique version
-    (https://issues.rudder.io/issues/20976[#20976])
-* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
-    (https://issues.rudder.io/issues/20972[#20972])
-* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
-    (https://issues.rudder.io/issues/20972[#20972])
-* Fixed: Add suport for report id reporting with Windows agent
-    (https://issues.rudder.io/issues/20963[#20963])
-* Fixed: "Disable reporting" for windows method calls does produce unexpected reports
-    (https://issues.rudder.io/issues/20897[#20897])
-
-==== Web - Technique editor
-
-* Fixed: Correct minor version condition for Ubuntu in technique editor
-    (https://issues.rudder.io/issues/20973[#20973])
-
-==== Security
-
-* Fixed: Update jdbc postgres driver to 4.2.25 for CVE-2022-21724
-    (https://issues.rudder.io/issues/20969[#20969])
-
-==== Web - Compliance & node report
-
-* Fixed: Removed report in compliance when calling several times the command_execution with same value
-    (https://issues.rudder.io/issues/20880[#20880])
-
-==== Web - UI & UX
-
-* Fixed: Hide action buttons if the user does not have write permission on the Rules
-    (https://issues.rudder.io/issues/20961[#20961])
-* Fixed: Edit mode should be enabled by default when creating a rule
-    (https://issues.rudder.io/issues/20954[#20954])
-* Fixed: In the technical logs table of a node, mouse cursor should not change when hovering a Status badge
-    (https://issues.rudder.io/issues/20953[#20953])
-* Fixed: Remove the transparent div that covers the Properties tab and prevents interaction with it.
-    (https://issues.rudder.io/issues/20951[#20951])
-* Fixed: Displays a warning icon for directives that are not used by any rule.
-    (https://issues.rudder.io/issues/20692[#20692])
-
-==== API
-
-* Fixed: Add new software update fields to API doc
-    (https://issues.rudder.io/issues/20947[#20947])
-
-==== System techniques
-
-* Fixed: Increase default value of maxconnections
-    (https://issues.rudder.io/issues/20946[#20946])
-
-==== Generic methods
-
-* Fixed: Broken reporting for double nested method calls
-    (https://issues.rudder.io/issues/20944[#20944])
-
-=== Release notes
-
-This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-==  Rudder 7.1.0 (2022-04-25)
-
-=== Changes
-
-
-==== Techniques
-
-* Add a system-update technique for classic agents
-    (https://issues.rudder.io/issues/20988[#20988])
-
-=== Bug fixes
-
-==== Documentation
-
-* Fixed: Fix the relayd logging documentation
-    (https://issues.rudder.io/issues/20985[#20985])
-
-==== Miscellaneous
-
-* Fixed: Document that port 5309 can be disable in node configuration
-    (https://issues.rudder.io/issues/20982[#20982])
-
-==== Web - Technique editor
-
-* Fixed: The display of the DSC icon is broken in the technical editor
-    (https://issues.rudder.io/issues/21016[#21016])
-* Fixed: Unable to open a block within a block when it has just been drop from the list 
-    (https://issues.rudder.io/issues/20787[#20787])
-* Fixed: When cloning a block with two identical methods, only one is cloned
-    (https://issues.rudder.io/issues/21001[#21001])
-
-==== Web - Compliance & node report
-
-* Fixed: Techniques with no component define have no reporting
-    (https://issues.rudder.io/issues/21007[#21007])
-* Fixed: Techniques with no component define have no reporting
-    (https://issues.rudder.io/issues/21007[#21007])
-* Fixed: Bad number of component for 2 block with same name same content
-    (https://issues.rudder.io/issues/21000[#21000])
-
-==== Web - Maintenance
-
-* Fixed: Download as zip in archives page returns a 404
-    (https://issues.rudder.io/issues/20903[#20903])
-
-==== Web - Nodes & inventories
-
-* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
-    (https://issues.rudder.io/issues/20984[#20984])
-
-==== System techniques
-
-* Fixed: when database is not on the root server, policy generation fails
-    (https://issues.rudder.io/issues/20986[#20986])
-
-==== Generic methods
-
-* Fixed: report_if_condition method does not support expressions in its input
-    (https://issues.rudder.io/issues/21011[#21011])
-
-=== Release notes
-
-This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-= Change logs for Rudder 7.1
