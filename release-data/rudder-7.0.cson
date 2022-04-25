@@ -5,7 +5,7 @@ release = "7.0"
 # Status of the release (alpha, beta, rc, final)
 release-status = "final"
 
-# 10th December 2020
+# 27th January 2022
 release-date = "2022-01-27"
 
 
