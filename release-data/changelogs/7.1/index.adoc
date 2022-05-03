@@ -11,10 +11,16 @@ Its main focus is a first release of a new patch management feature.
 
 === A new patch management feature
 
+[NOTE]
+====
+This feature is part of the https://www.rudder.io/software/configuration-management/[*Configuration Management*]
+subscription module. You can check our https://www.rudder.io/software/demo/[online demo] or get a https://www.rudder.io/software/configuration-management/[free trial] to test it.
+====
+
 The list of currently available updates is now available as part of the inventory on most Linux systems
 (those using `apt`, `yum/dnf` or `zypper`).
 
-It is exposed in the API and the Web interface, both in node details and in a new dedicated view (as part of the subscription),
+It is exposed in the API and the Web interface, both in node details and in a new dedicated view,
 exposing additional information like update severity, description etc. when available.
 
 image::images/updates.png[updates.png]
