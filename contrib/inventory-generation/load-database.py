@@ -41,6 +41,9 @@ send_reports_https = True # if true, will call the script to send inventory itse
 # if use the database, in case of Rudder 7, need to insert in reportsexecution
 is_rudder_7 = True
 
+# in 7.1, the format of Nodeconfiguration changed
+is_rudder_7_1_or_later = True
+
 # Proportion of repaired, error and non-compliant reports
 # Betweeen 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.05
@@ -73,6 +76,21 @@ nodes = {}
 
 # init the last runs object
 lastruns = {}
+
+def get_parsing_key(key):
+  if is_rudder_7_1_or_later:
+    return {
+      'rules'        : 'rs',
+      'directives'   : 'ds',
+      'components'   : 'cs',
+      'values'       : 'vs',
+      'ruleId'       : 'rid',
+      'directiveId'  : 'did',
+      'componentName': 'vid',
+      'policyMode'   : 'pm'
+    }.get(key, 'error')
+  else:
+    key
 
 def init_table():
   print("Creating table oldconfig to store old config id")
@@ -147,21 +165,27 @@ for nodeid, config, begindate, configuration in cur.fetchall():
       formatted_date = reportDate.strftime("%Y-%m-%dT%H:%M:%S+00:00")
       report_file = open(report_path+nodeid+"/" + formatted_date + "@" + nodeid + ".log", "w")
 
-    for rules in d['rules']:
+    for rules in d[get_parsing_key('rules')]:
         # We commit rule per rule, as in real world, reports are added one by one
         write = myConnection.cursor()
 
-        for directives in rules['directives']:
+        for directives in rules[get_parsing_key('directives')]:
             audit = False
-            if 'policyMode' in directives.keys():
-                if directives['policyMode'] == 'audit':
+            if get_parsing_key('policyMode') in directives.keys():
+                if directives[get_parsing_key('policyMode')] == 'audit':
                     audit = True
 
-            for components in directives['components']:
-                for value in components['values']:
+            for components in directives[get_parsing_key('components')]:
+                for tmpValue in components[get_parsing_key('values')]:
+                    # in 7.1, the values is a list of unexpanded/expanded
+                    if is_rudder_7_1_or_later:
+                      value = next(iter(tmpValue), '')
+                    else:
+                      value = tmpValue
+                    
                     # randomize the reports to have also error and repaired
                     randomValue = random.random()
-                    if audit ==  False:
+                    if audit == False:
                         if (randomValue > (1 - repair_proportion)):
                           status = 'result_repaired'
                         elif (randomValue > (1 - repair_proportion - error_proportion)):
@@ -177,7 +201,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                             status = 'audit_compliant'
 
                     nbReports += 1
-                    report_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
+                    report_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                     if use_https:
                       report_file.write(formatedStartTime + ' ' +report_string)
 
@@ -185,11 +209,11 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                       syslog.syslog(syslog.LOG_INFO, report_string)
 
                     if (not use_syslog and not use_https):
-                      write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
-                    #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
+                      write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, value, 'Dummy reports for load test'))
+                    #print reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, '', 'Dummy reports for load test'
 
         # specific report for end of run
-        if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
+        if (directives[get_parsing_key('directiveId')].startswith('common-')) or (directives[get_parsing_key('directiveId')].startswith('dsc-common-')):
           lastruns[nodeid] = [nodeconfigid, reportDate, nodeid]
           # add a wait between each agent run
           sleep(sleep_between_run)
