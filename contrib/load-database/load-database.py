@@ -37,6 +37,9 @@ is_rudder_7 = True
 # Select change only mode or full compliance - change only sends only non success reports
 mode_full_compliance = True
 
+# in 7.1, the format of Nodeconfiguration changed
+is_rudder_7_1_or_later = True
+
 # Proportion of repaired, error and non-compliant reports
 # Betweeen 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.05
@@ -69,6 +72,26 @@ nodes = {}
 
 # init the last runs object
 lastruns = {}
+
+def get_parsing_key(key):
+  if is_rudder_7_1_or_later:
+    return {
+      'rules'           : 'rs',
+      'directives'      : 'ds',
+      'components'      : 'cs',
+      'values'          : 'vs',
+      'ruleId'          : 'rid',
+      'directiveId'     : 'did',
+      'componentName'   : 'vid',
+      'policyMode'      : 'pm',
+      'modes'           : 'ms',
+      'mode'            : 'm',
+      'globalPolicyMode': 'gpm',
+      'nodePolicyMode'  : 'npm',
+      'serial'          : 'reportId'
+    }.get(key, 'error')
+  else:
+    key
 
 def init_table():
   print("Creating table oldconfig to store old config id")
@@ -118,6 +141,7 @@ if len(sys.argv) > 1:
   
 startTime = datetime.datetime.now()
 nbReports = 0
+formatedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 cur.execute( "select nodeid, nodeconfigid, begindate, configuration from nodeconfigurations where enddate is null;")
 
@@ -131,28 +155,33 @@ for nodeid, config, begindate, configuration in cur.fetchall():
 
     d = json.loads(configuration)
 
-    globalAudit = d['modes']['globalPolicyMode']['mode']
-    nodeMode = d['modes'].get('nodePolicyMode', 'enforce')
+    globalAudit = d[get_parsing_key('modes')][get_parsing_key('globalPolicyMode')][get_parsing_key('mode')]
+    nodeMode = d[get_parsing_key('modes')].get(get_parsing_key('nodePolicyMode'), 'enforce')
     resultingAudit = False
     if globalAudit == 'audit' or nodeMode == 'audit':
         resultingAudit = True
 
-
-    for rules in d['rules']:
+    for rules in d[get_parsing_key('rules')]:
         # We commit rule per rule, as in real world, reports are added one by one
         write = myConnection.cursor()
 
-        for directives in rules['directives']:
+        for directives in rules[get_parsing_key('directives')]:
             audit = resultingAudit
-            if 'policyMode' in directives.keys():
-                if directives['policyMode'] == 'audit':
+            if get_parsing_key('policyMode') in directives.keys():
+                if directives[get_parsing_key('policyMode')] == 'audit':
                     audit = True
 
-            for components in directives['components']:
-                for value in components['values']:
+            for components in directives[get_parsing_key('components')]:
+                for tmpValue in components[get_parsing_key('values')]:
+                    # in 7.1, the values is a list of unexpanded/expanded
+                    if is_rudder_7_1_or_later:
+                      value = next(iter(tmpValue), 'None')
+                    else:
+                      value = tmpValue
+                    
                     # randomize the reports to have also error and repaired
                     randomValue = random.random()
-                    if audit ==  False:
+                    if audit == False:
                         if (randomValue > (1 - repair_proportion)):
                           status = 'result_repaired'
                         elif (randomValue > (1 - repair_proportion - error_proportion)):
@@ -170,14 +199,14 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                     nbReports += 1
                     if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
                       if use_syslog:
-                        syslog_string = 'R: @@Test@@' + status + '@@' + rules['ruleId'] + '@@' + directives['directiveId'] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something'
+                        syslog_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@0@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                         syslog.syslog(syslog.LOG_INFO, syslog_string)
                       else:
-                        write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, value, 'Dummy reports for load test'))
-                      #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', components['componentName'], value, reportDate, status, '', 'Dummy reports for load test'
+                        write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, value, 'Dummy reports for load test'))
+                      #print reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, '', 'Dummy reports for load test'
 
         # specific report for end of run
-        if (directives['directiveId'].startswith('common-')) or (directives['directiveId'].startswith('dsc-common-')):
+        if (directives[get_parsing_key('directiveId')].startswith('common-')) or (directives[get_parsing_key('directiveId')].startswith('dsc-common-')):
           lastruns[nodeid] = [nodeconfigid, reportDate, nodeid]
           # add a wait between each agent run
           sleep(sleep_between_run)
@@ -194,9 +223,9 @@ for nodeid, config, begindate, configuration in cur.fetchall():
          
       else:
          write = myConnection.cursor()
-         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))
          insertionid = write.fetchone()[0]
-         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
          if is_rudder_7:
                write.execute('insert into reportsexecution(nodeid, date, nodeconfigid, insertionid) values (%s, %s, %s, %s)', (ending[2], ending[1], ending[0], insertionid))
 
@@ -213,9 +242,9 @@ for ending in lastruns.values():
          syslog.syslog(syslog.LOG_INFO, syslog_string)
       else:
          write = myConnection.cursor()
-         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))
          insertionid = write.fetchone()[0]
-         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, serial, component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
+         write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (ending[1], ending[2], 'run', 'rudder',  '0', 'end', ending[0], ending[1], 'control', '', 'End execution'))
          if is_rudder_7:
                write.execute('insert into reportsexecution(nodeid, date, nodeconfigid, insertionid) values (%s, %s, %s, %s)', (ending[2], ending[1], ending[0], insertionid))
        #print reportDate, nodeid, directives['directiveId'], rules['ruleId'],  '0', 'common', 'EndRun', reportDate, 'log_info', 'common', 'End execution with config [' + nodeconfigid + ']'
