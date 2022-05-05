@@ -14,7 +14,7 @@ Its main focus is a first release of a new patch management feature.
 [NOTE]
 ====
 This feature is part of the https://www.rudder.io/software/configuration-management/[*Configuration Management*]
-subscription module. You can check our https://www.rudder.io/software/demo/[online demo] or get a https://www.rudder.io/software/configuration-management/[free trial] to test it.
+subscription module. You can check out our https://www.rudder.io/software/demo/[online demo] or get a https://www.rudder.io/software/configuration-management/[free trial] to test it.
 ====
 
 The list of currently available updates is now available as part of the inventory on most Linux systems
@@ -27,6 +27,8 @@ image::images/updates.png[updates.png]
 
 Rudder 7.1 also comes with built-in techniques for full system update on Linux and Windows, allowing to schedule
 full system update campaigns. This feature will be improved in the following versions, with a dedicated interface.
+
+Read the https://docs.rudder.io/reference/7.1/plugins/system-updates.html[documentation] for more information about this feature.
 
 === Thematically organized menu
 
