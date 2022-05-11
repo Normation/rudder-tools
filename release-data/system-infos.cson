@@ -4,6 +4,7 @@ postgresql = {
     "debian-11":    "13.4"
     "ubuntu-18.04": "10.3"
     "ubuntu-20.04": "12.2"
+    "ubuntu-22.04": "14"
     "rhel-7":       "9.2"
     "rhel-8":       "10.6"
     "sles-12":      "9.4"
@@ -15,6 +16,16 @@ python3 = {
     "debian-11":    "3.9"
     "ubuntu-18.04": "3.6"
     "ubuntu-20.04": "3.8"
+    "ubuntu-22.04": "3.10"
     "rhel-8":       "3.6"
     "sles-15":      "3.6"
+}
+
+jdk = {
+    "debian-10":    "11"
+    "debian-11":    "11"
+    "ubuntu-20.04": "11"
+    "ubuntu-22.04": "11"
+    "rhel-8":       "11"
+    "sles-15":      "10"
 }
