@@ -1,5 +1,26 @@
 = Changelogs for Rudder plugin change-validation 7.0.\* versions
 
+== change-validation-7.0.0.beta2-2.0 (2022-05-15)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: adapt plugin to changes in #3783 to show directive change based on deleted technique
+    (https://issues.rudder.io/issues/20087[#20087])
+
+==== Plugins management
+
+* Fixed: error at start of change validation plugin, datasource & create-node-api in 7.0
+    (https://issues.rudder.io/issues/20040[#20040])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == change-validation-7.0.0.beta1-2.0 (2022-05-15)
 
 === Changes
