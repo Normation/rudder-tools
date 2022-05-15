@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin user-management 7.0.\* versions
 
+== user-management-7.0.1-2.1 (2022-05-15)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: The password should not be required for LDAP users
+    (https://issues.rudder.io/issues/18565[#18565])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-7.0.1-2.0 (2022-05-15)
 
 === Changes
