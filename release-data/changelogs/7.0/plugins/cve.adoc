@@ -1,5 +1,34 @@
 = Changelogs for Rudder plugin cve 7.0.\* versions
 
+== cve-7.0.2-2.2 (2022-05-15)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Migrate to zio-json for better performance
+    (https://issues.rudder.io/issues/20771[#20771])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Optimize Request made by cve plugin
+    (https://issues.rudder.io/issues/21050[#21050])
+* Fixed: Nodes without vulnerabilities keep old scan result (with vulnerabilities) after check
+    (https://issues.rudder.io/issues/21056[#21056])
+* Fixed: Display as much data about a CVE in the cve table instead of an ugly line "We don't have data"
+    (https://issues.rudder.io/issues/21057[#21057])
+* Fixed: Sorting icon display is broken in the CVE table
+    (https://issues.rudder.io/issues/21044[#21044])
+* Fixed: Proxy url is not sanitized in plugin
+    (https://issues.rudder.io/issues/20938[#20938])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-7.0.2-2.1 (2022-05-15)
 
 === Changes
