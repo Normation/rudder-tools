@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin reporting 7.0.\* versions
 
+== reporting-7.0.0.rc3-2.0 (2022-05-15)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: reporting plugin don't build with #20607 changes
+    (https://issues.rudder.io/issues/20624[#20624])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == reporting-7.0.0.rc2-2.0 (2022-05-15)
 
 === Changes
