@@ -1,5 +1,32 @@
 = Changelogs for Rudder plugin auth-backends 7.0.\* versions
 
+== auth-backends-7.0.2-2.3 (2022-05-15)
+
+=== Changes
+
+
+==== Packaging
+
+* Plugins package scripts should always exit on error
+    (https://issues.rudder.io/issues/21008[#21008])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Backport 21021 because same NPE happens in 6.2
+    (https://issues.rudder.io/issues/21076[#21076])
+* Fixed: Oauth login error are not logged
+    (https://issues.rudder.io/issues/21024[#21024])
+* Fixed: documentation dones't tell which provider to user of oauth2
+    (https://issues.rudder.io/issues/21015[#21015])
+* Fixed: Login form is not update in 7.0
+    (https://issues.rudder.io/issues/21017[#21017])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == auth-backends-7.0.2-2.2 (2022-05-15)
 
 === Changes
