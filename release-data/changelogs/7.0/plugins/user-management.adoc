@@ -1,0 +1,25 @@
+= Changelogs for Rudder plugin user-management 7.0.\* versions
+
+== user-management-7.0.0.beta1-2.0 (2022-05-15)
+
+=== Changes
+
+
+==== Packaging
+
+* Use elm-0.19.1 in plugins
+    (https://issues.rudder.io/issues/19696[#19696])
+* Adapt rudder plugins makefile so that we make release based on new versionning scheme
+    (https://issues.rudder.io/issues/18558[#18558])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Missing dataContainer in endpoint definition
+    (https://issues.rudder.io/issues/19693[#19693])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
