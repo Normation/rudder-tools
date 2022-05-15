@@ -1,0 +1,38 @@
+= Changelogs for Rudder plugin scale-out-relay 7.0.\* versions
+
+== scale-out-relay-7.0.0.beta1-2.0 (2022-05-15)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Adapt scale-out-relay to rudder 7 system techniques
+    (https://issues.rudder.io/issues/19577[#19577])
+
+==== Packaging
+
+* Adapt rudder plugins makefile so that we make release based on new versionning scheme
+    (https://issues.rudder.io/issues/18558[#18558])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Remove warning about unit expression
+    (https://issues.rudder.io/issues/19928[#19928])
+* Fixed: Wrong URL to reload policies
+    (https://issues.rudder.io/issues/19824[#19824])
+* Fixed: Node to relay misses token for reload techniques
+    (https://issues.rudder.io/issues/19814[#19814])
+* Fixed: Allowed networks are not init for the Relay when doing node-to-relay
+    (https://issues.rudder.io/issues/19785[#19785])
+* Fixed: error when promoting node to relay
+    (https://issues.rudder.io/issues/19777[#19777])
+* Fixed: Make plugin build with 7.0 branch
+    (https://issues.rudder.io/issues/19637[#19637])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
