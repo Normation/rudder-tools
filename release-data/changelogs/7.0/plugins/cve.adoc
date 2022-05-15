@@ -1,5 +1,34 @@
 = Changelogs for Rudder plugin cve 7.0.\* versions
 
+== cve-7.0.1-2.1 (2022-05-15)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Migrate to zio-json for better performance
+    (https://issues.rudder.io/issues/20771[#20771])
+* Put CVE plugin in a dedicated menu
+    (https://issues.rudder.io/issues/20745[#20745])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: tests broken with because of new method in NodeInfoService
+    (https://issues.rudder.io/issues/20809[#20809])
+* Fixed: Incorrect name for API id "getCVEChecks"
+    (https://issues.rudder.io/issues/20768[#20768])
+* Fixed: Fix jawn cve
+    (https://issues.rudder.io/issues/20728[#20728])
+* Fixed: Update circe dependendy in cve plugin so that we fix CVE-2022-21653
+    (https://issues.rudder.io/issues/20637[#20637])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-7.0.1-2.0 (2022-05-15)
 
 === Changes
