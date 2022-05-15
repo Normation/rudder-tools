@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin branding 7.0.\* versions
 
+== branding-7.0.2-2.1 (2022-05-15)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Change the default background colour of the bar to make it more visible
+    (https://issues.rudder.io/issues/20962[#20962])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == branding-7.0.2-2.0 (2022-05-15)
 
 === Changes
