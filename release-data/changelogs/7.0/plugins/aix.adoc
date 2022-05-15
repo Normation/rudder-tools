@@ -1,0 +1,20 @@
+= Changelogs for Rudder plugin aix 7.0.\* versions
+
+== aix-7.0.0.beta1-2.0 (2022-05-15)
+
+=== Changes
+
+
+==== Packaging
+
+* Add CI checks to plugins-private
+    (https://issues.rudder.io/issues/19434[#19434])
+* Use https repos in maven config
+    (https://issues.rudder.io/issues/19165[#19165])
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
