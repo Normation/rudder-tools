@@ -1,0 +1,13 @@
+= Changelogs for Rudder plugin cve 7.1.\* versions
+
+== cve-7.1.0.beta1-2.1 (2022-05-16)
+
+=== Changes
+
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
