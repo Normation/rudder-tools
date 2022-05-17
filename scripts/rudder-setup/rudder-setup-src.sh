@@ -108,7 +108,13 @@ case "${COMMAND}" in
     rudder_compatibility_check "relay"
     preinst_check "relay"
     add_repo
-    setup_agent "rudder-server-relay"
+    if is_version_valid "${RUDDER_VERSION}" "[7.2 *]"
+    then
+      PACKAGE="rudder-relay"
+    else
+      PACKAGE="rudder-server-relay"
+    fi
+    setup_agent "${PACKAGE}"
     can_remove_repo
     ;;
   "setup-server")
@@ -127,7 +133,13 @@ case "${COMMAND}" in
   "upgrade-relay")
     rudder_compatibility_check "relay"
     update_repo
-    upgrade_agent "rudder-server-relay"
+    if is_version_valid "${RUDDER_VERSION}" "[7.2 *]"
+    then
+      PACKAGE="rudder-relay"
+    else
+      PACKAGE="rudder-server-relay"
+    fi
+    upgrade_agent "${PACKAGE}"
     can_remove_repo
     ;;
   "upgrade-server")

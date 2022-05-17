@@ -29,8 +29,16 @@ setup_server() {
     $local ALLOWEDNETWORK='192.168.0.0/16'
   fi
 
-  # Install rudder-server-root
-  ${PM_INSTALL} rudder-server-root
+  # guess package name
+  if is_version_valid "${RUDDER_VERSION}" "[7.2 *]"
+  then
+    PACKAGE="rudder-server"
+  else
+    PACKAGE="rudder-server-root"
+  fi
+
+  # Install rudder server package
+  ${PM_INSTALL} "${PACKAGE}"
 
   # System specific behavior
   #######
@@ -133,8 +141,16 @@ upgrade_server() {
     exit 4
   fi
 
+  # guess package name
+  if is_version_valid "${RUDDER_VERSION}" "[7.2 *]"
+  then
+    PACKAGE="rudder-server"
+  else
+    PACKAGE="rudder-server-root"
+  fi
+
   # Upgrade
-  ${PM_UPGRADE} rudder-server-root
+  ${PM_UPGRADE} "${PACKAGE}"
 
   if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
   then
