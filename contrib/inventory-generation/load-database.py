@@ -189,13 +189,18 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                     audit = True
 
             for components in directives[get_parsing_key('components')]:
-                for tmpValue in components[get_parsing_key('values')]:
+                # in 7.1 we may have blocks here
+                if get_parsing_key('values') in components:
+                  for tmpValue in components[get_parsing_key('values')]:
                     # in 7.1, the values is a list of unexpanded/expanded
                     if is_rudder_7_1_or_later:
-                      value = next(iter(tmpValue), 'None')
-                    else:
-                      value = tmpValue
-                    
+                      if (isinstance(tmpValue, dict)):
+                        value = tmpValue.get('v', 'None')
+                        serial = tmpValue.get('id', '0')
+                      else:
+                        value = 'None'
+                        serial = '0'
+
                     # randomize the reports to have also error and repaired
                     randomValue = random.random()
                     if audit == False:
@@ -215,7 +220,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
 
                     nbReports += 1
                     if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
-                      report_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@0@@'+ components[get_parsing_key('componentName')] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
+                      report_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ components[get_parsing_key('componentName')] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                       if use_https:
                         report_file.write(formatedStartTime + ' ' +report_string)
 
@@ -223,7 +228,51 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                         syslog.syslog(syslog.LOG_INFO, report_string)
 
                       if (not use_syslog and not use_https):
-                        write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, value, 'Dummy reports for load test'))
+                        write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  serial, components[get_parsing_key('componentName')], value, reportDate, status, value, 'Dummy reports for load test'))
+                      #print reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, '', 'Dummy reports for load test'
+
+
+                # this is a block
+                else:
+                  for block in components['scs']:
+                    for tmpValue in block[get_parsing_key('values')]:
+                      # in 7.1, the values is a list of unexpanded/expanded
+                      if is_rudder_7_1_or_later:
+                        if (isinstance(tmpValue, dict)):
+                          value = tmpValue.get('v', 'None')
+                          serial = tmpValue.get('id', '0')
+                        else:
+                          value = 'None'
+                          serial = '0'
+
+                    # randomize the reports to have also error and repaired
+                    randomValue = random.random()
+                    if audit == False:
+                        if (randomValue > (1 - repair_proportion)):
+                          status = 'result_repaired'
+                        elif (randomValue > (1 - repair_proportion - error_proportion)):
+                          status = 'result_error'
+                        else:
+                          status = 'result_success'
+                    else:
+                        if (randomValue > (1-non_compliant_proportion)):
+                            status = 'audit_noncompliant'
+                        elif (randomValue > (1 - non_compliant_proportion - error_proportion)):
+                            status = 'audit_error'
+                        else:
+                            status = 'audit_compliant'
+
+                    nbReports += 1
+                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
+                      report_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ block[get_parsing_key('componentName')] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
+                      if use_https:
+                        report_file.write(formatedStartTime + ' ' +report_string)
+
+                      if use_syslog:
+                        syslog.syslog(syslog.LOG_INFO, report_string)
+
+                      if (not use_syslog and not use_https):
+                        write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  serial, block[get_parsing_key('componentName')], value, reportDate, status, value, 'Dummy reports for load test'))
                       #print reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, '', 'Dummy reports for load test'
 
         # specific report for end of run
