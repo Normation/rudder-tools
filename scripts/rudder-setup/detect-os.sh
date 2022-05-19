@@ -120,7 +120,7 @@ detect_os() {
   elif release_file  'Trustix' '/etc/trustix-release' '.*release \([0-9.]\+\).*'; then true
   elif release_file  'SuSE' '/etc/SuSE-release' 'VERSION *= *\([0-9.]\+\).*'; then
     OS_VERSION="${OS_VERSION}-`sed -n '/PATCHLEVEL/s/PATCHLEVEL *= *\([0-9.]\+\).*/\1/p' /etc/SuSE-release`"
-  elif release_file  'Amazon' '/etc/system-release-cpe' '[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):.*'; then true
+  elif release_file  'Amazon' '/etc/system-release-cpe' '[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\).*'; then true
   elif os_release_file '/etc/os-release'; then true
   fi
 
@@ -135,7 +135,11 @@ detect_os() {
     Oracle) OS_COMPATIBLE="RHEL" ;;
     CentOS) OS_COMPATIBLE="RHEL" ;;
     Amazon) OS_COMPATIBLE="RHEL"
-            OS_COMPATIBLE_VERSION=6;;
+          if [ "${OS_VERSION}" = "2" ]; then
+            OS_COMPATIBLE_VERSION=7
+          else
+            OS_COMPATIBLE_VERSION=6
+          fi;;
     SuSE)   OS_COMPATIBLE="SLES" ;;
     SUSE)   OS_COMPATIBLE="SLES" ;;
     "SLES") OS_COMPATIBLE="SLES" ;;
