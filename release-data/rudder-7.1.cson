@@ -63,7 +63,7 @@ roles = {
           "ubuntu-22.04":   [ "agent-allinone", "relay", "server" ],
           "rhel-5":         [ "agent-allinone" ],
           "rhel-6":         [ "agent-allinone" ],
-          "rhel-7":         [ "agent-allinone" ],
+          "rhel-7":         [ "agent-allinone", "relay", "server" ],
           "rhel-8":         [ "agent-allinone", "relay", "server" ],
           "sles-11":        [ "agent-allinone" ],
           "sles-12":        [ "agent-allinone" ],
