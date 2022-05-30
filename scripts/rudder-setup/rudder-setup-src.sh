@@ -30,6 +30,7 @@ usage() {
   echo "    FORGET_CREDENTIALS=true remove credentials after installing plugins and licenses"
   echo "    DEV_MODE=true           permit external access to server and databases (default false)"
   echo "    ADMIN_PASSWORD=...      create an administrator user 'admin' with the given password"
+  echo "    ADMIN_USER=...          change administrator user name"
   exit 1
 }
 # GOTO bottom for main()
