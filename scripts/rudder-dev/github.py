@@ -10,7 +10,6 @@ if 'Config' not in vars():
 Config.HUB_CONFIG_FILE = "~/.config/hub"
 Config.PR_VALIDATED_LABEL = "Ready for merge"
 Config.PR_VALIDATED_COLOR = "0e8a16"
-Config.TRIGGER_TEST_LABEL = "Trigger test"
 Config.BOT_CANNOT_MERGE_LABEL = "qa: Can't merge"
 Config.BOT_CANNOT_MERGE_COLOR = "ededed"
 Config.PR_TOO_OLD_LABEL = "Very old PR"
