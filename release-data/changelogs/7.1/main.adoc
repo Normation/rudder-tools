@@ -1,5 +1,172 @@
 = Change logs for Rudder 7.1
 
+==  Rudder 7.1.1 (2022-05-31)
+
+=== Changes
+
+
+==== Plugins integration
+
+* Add windows support to the inventory software update section
+    (https://issues.rudder.io/issues/21067[#21067])
+
+==== Web - UI & UX
+
+* Provide a version of the OS icons without text
+    (https://issues.rudder.io/issues/21071[#21071])
+* Update css related to the change validation plugin
+    (https://issues.rudder.io/issues/21052[#21052])
+
+==== Server components
+
+* allow a user to pass a password to server create-user command
+    (https://issues.rudder.io/issues/20675[#20675])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Embed openssl on ubuntu 22.04
+    (https://issues.rudder.io/issues/21040[#21040])
+* Fixed: ubuntu22 build options are missing
+    (https://issues.rudder.io/issues/21036[#21036])
+* Fixed: Ubuntu 22 needs python3 as build dependency for rudder-agent
+    (https://issues.rudder.io/issues/21035[#21035])
+* Fixed: Backup ca.cert like other cert files
+    (https://issues.rudder.io/issues/21143[#21143])
+
+==== Documentation
+
+* Fixed: Documentation about certificate handling during uprade is not great
+    (https://issues.rudder.io/issues/21129[#21129])
+* Fixed: Mark 7.1 as released in the docs
+    (https://issues.rudder.io/issues/21030[#21030])
+
+==== Performance and scalability
+
+* Fixed: Adapt rule details to have the list of directives/nodes that appear faster
+    (https://issues.rudder.io/issues/21081[#21081])
+* Fixed: The way groups are fetched when responding to API compliance is inefficient
+    (https://issues.rudder.io/issues/21028[#21028])
+
+==== Relay server or API
+
+* Fixed: Huge broken logs in relayd
+    (https://issues.rudder.io/issues/21157[#21157])
+
+==== Security
+
+* Fixed: security checks fails because of request to sonatype oss index
+    (https://issues.rudder.io/issues/21179[#21179])
+* Fixed: Fix some cve in dependencies 
+    (https://issues.rudder.io/issues/21169[#21169])
+* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
+    (https://issues.rudder.io/issues/21103[#21103])
+* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
+    (https://issues.rudder.io/issues/21103[#21103])
+* Fixed: Don't display oauth/oidc client secret in logs
+    (https://issues.rudder.io/issues/21077[#21077])
+* Fixed: Ignore CVEs for spring-ldap-core
+    (https://issues.rudder.io/issues/21027[#21027])
+* Fixed: Update spring and logback version because of new CVE
+    (https://issues.rudder.io/issues/21022[#21022])
+
+==== System integration
+
+* Fixed: Root log explain_compliance is in debug by default
+    (https://issues.rudder.io/issues/21166[#21166])
+* Fixed: rudder package does not sort plugin version correctly
+    (https://issues.rudder.io/issues/21121[#21121])
+
+==== Web - Nodes & inventories
+
+* Fixed: Criteria not working when filter on IP adress and GoupID in group page
+    (https://issues.rudder.io/issues/21144[#21144])
+* Fixed: Sometime inventory processing is not done when inventory is receveived
+    (https://issues.rudder.io/issues/19585[#19585])
+* Fixed: List of nodes by version does not include windows nodes
+    (https://issues.rudder.io/issues/17728[#17728])
+
+==== Web - Technique editor
+
+* Fixed: Filter on agent type on technique editor is not correctly shown
+    (https://issues.rudder.io/issues/21160[#21160])
+
+==== API
+
+* Fixed: Directive and rule revision is not parsed in API
+    (https://issues.rudder.io/issues/21150[#21150])
+* Fixed: Rudder incorectly parse URL with a '+' in the path into spaces
+    (https://issues.rudder.io/issues/20943[#20943])
+* Fixed: Deleting a rule's category leeds to an error
+    (https://issues.rudder.io/issues/21080[#21080])
+* Fixed: Update api doc tool chain
+    (https://issues.rudder.io/issues/21073[#21073])
+* Fixed: Generation not started when modifying authorized network via API
+    (https://issues.rudder.io/issues/20979[#20979])
+
+==== Web - Config management
+
+* Fixed: condition from windows node does not take condition from blocks
+    (https://issues.rudder.io/issues/21108[#21108])
+* Fixed: Revision are taken into account during generation
+    (https://issues.rudder.io/issues/20929[#20929])
+
+==== Architecture - Refactoring
+
+* Fixed: Scala does not really supports [_:P] syntax
+    (https://issues.rudder.io/issues/21107[#21107])
+* Fixed: Update TechniqueVersion to conform to method visibility
+    (https://issues.rudder.io/issues/21106[#21106])
+
+==== Web - Compliance & node report
+
+* Fixed: Compliance percentage computation in ComplianceLevel is not correct, and performance is not correct
+    (https://issues.rudder.io/issues/20998[#20998])
+* Fixed: Compliance percentage computation in ComplianceLevel is not correct, and performance is not correct
+    (https://issues.rudder.io/issues/20998[#20998])
+
+==== Web - UI & UX
+
+* Fixed: Fold and unfold all categories button not working in rules page
+    (https://issues.rudder.io/issues/21079[#21079])
+* Fixed: In Nodes table, the "Edit columns" button should be renamed when activated
+    (https://issues.rudder.io/issues/21013[#21013])
+* Fixed: Sort by status does not work on rules table
+    (https://issues.rudder.io/issues/21010[#21010])
+
+==== System techniques
+
+* Fixed: Error in relay policies when disabling file sharing in policies
+    (https://issues.rudder.io/issues/21125[#21125])
+* Fixed: Rudder server 7.X generates invalid configuration for 6.X relayd
+    (https://issues.rudder.io/issues/21122[#21122])
+* Fixed: When updating allowed networks of a relay, rudder-cf-serverd service does not seem to be restarted
+    (https://issues.rudder.io/issues/20993[#20993])
+
+==== Techniques
+
+* Fixed: wrong spelling of wily in apt package manager settings
+    (https://issues.rudder.io/issues/21113[#21113])
+
+==== Generic methods
+
+* Fixed: Reporting issues when using multiple directives of the same technique on a node
+    (https://issues.rudder.io/issues/21088[#21088])
+* Fixed: multiple calls to file_from_template_jinja2 in audit fails
+    (https://issues.rudder.io/issues/20913[#20913])
+
+==== CI
+
+* Fixed: Ci does not properly clean its test files
+    (https://issues.rudder.io/issues/21178[#21178])
+* Fixed: Improve cleanup of root-owned files in tests
+    (https://issues.rudder.io/issues/21130[#21130])
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 7.1.0 (2022-04-25)
 
 === Changes
