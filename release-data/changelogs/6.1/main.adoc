@@ -577,6 +577,78 @@ This version is only available for extended support subscription
 
 This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== [Private] Rudder 6.1.20 (2022-06-01)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Fix the relayd logging documentation
+    (https://issues.rudder.io/issues/20985[#20985])
+
+==== Miscellaneous
+
+* Fixed: Document that port 5309 can be disable in node configuration
+    (https://issues.rudder.io/issues/20982[#20982])
+
+==== CI
+
+* Fixed: Race condition between elm builds
+    (https://issues.rudder.io/issues/21156[#21156])
+* Fixed: Ci does not properly clean its test files
+    (https://issues.rudder.io/issues/21178[#21178])
+* Fixed: Improve cleanup of root-owned files in tests
+    (https://issues.rudder.io/issues/21130[#21130])
+
+==== Security
+
+* Fixed: security checks fails because of request to sonatype oss index
+    (https://issues.rudder.io/issues/21179[#21179])
+* Fixed: Fix some cve in dependencies 
+    (https://issues.rudder.io/issues/21169[#21169])
+* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
+    (https://issues.rudder.io/issues/21103[#21103])
+* Fixed: Ignore CVEs for spring-ldap-core
+    (https://issues.rudder.io/issues/21027[#21027])
+
+==== Web - Nodes & inventories
+
+* Fixed: Sometime inventory processing is not done when inventory is receveived
+    (https://issues.rudder.io/issues/19585[#19585])
+* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+    (https://issues.rudder.io/issues/20984[#20984])
+
+==== API
+
+* Fixed: Update api doc tool chain
+    (https://issues.rudder.io/issues/21073[#21073])
+* Fixed: Generation not started when modifying authorized network via API
+    (https://issues.rudder.io/issues/20979[#20979])
+
+==== Techniques
+
+* Fixed: wrong spelling of wily in apt package manager settings
+    (https://issues.rudder.io/issues/21113[#21113])
+
+==== Generic methods
+
+* Fixed: multiple calls to file_from_template_jinja2 in audit fails
+    (https://issues.rudder.io/issues/20913[#20913])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.13 (2021-05-18)
 
 === Changes
