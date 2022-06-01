@@ -201,6 +201,95 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== [Private] Rudder 6.2.14 (2022-06-01)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Fix the relayd logging documentation
+    (https://issues.rudder.io/issues/20985[#20985])
+
+==== Miscellaneous
+
+* Fixed: Document that port 5309 can be disable in node configuration
+    (https://issues.rudder.io/issues/20982[#20982])
+
+==== CI
+
+* Fixed: Race condition between elm builds
+    (https://issues.rudder.io/issues/21156[#21156])
+* Fixed: Ci does not properly clean its test files
+    (https://issues.rudder.io/issues/21178[#21178])
+* Fixed: Improve cleanup of root-owned files in tests
+    (https://issues.rudder.io/issues/21130[#21130])
+
+==== Security
+
+* Fixed: security checks fails because of request to sonatype oss index
+    (https://issues.rudder.io/issues/21179[#21179])
+* Fixed: Fix some cve in dependencies 
+    (https://issues.rudder.io/issues/21169[#21169])
+* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
+    (https://issues.rudder.io/issues/21103[#21103])
+* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
+    (https://issues.rudder.io/issues/21103[#21103])
+* Fixed: Don't display oauth/oidc client secret in logs
+    (https://issues.rudder.io/issues/21077[#21077])
+* Fixed: Ignore CVEs for spring-ldap-core
+    (https://issues.rudder.io/issues/21027[#21027])
+* Fixed: Update spring and logback version because of new CVE
+    (https://issues.rudder.io/issues/21022[#21022])
+
+==== Web - Nodes & inventories
+
+* Fixed: Criteria not working when filter on IP adress and GoupID in group page
+    (https://issues.rudder.io/issues/21144[#21144])
+* Fixed: Sometime inventory processing is not done when inventory is receveived
+    (https://issues.rudder.io/issues/19585[#19585])
+* Fixed: List of nodes by version does not include windows nodes
+    (https://issues.rudder.io/issues/17728[#17728])
+* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+    (https://issues.rudder.io/issues/20984[#20984])
+
+==== API
+
+* Fixed: Rudder incorectly parse URL with a '+' in the path into spaces
+    (https://issues.rudder.io/issues/20943[#20943])
+* Fixed: Update api doc tool chain
+    (https://issues.rudder.io/issues/21073[#21073])
+* Fixed: Generation not started when modifying authorized network via API
+    (https://issues.rudder.io/issues/20979[#20979])
+
+==== Performance and scalability
+
+* Fixed: The way groups are fetched when responding to API compliance is inefficient
+    (https://issues.rudder.io/issues/21028[#21028])
+
+==== Techniques
+
+* Fixed: wrong spelling of wily in apt package manager settings
+    (https://issues.rudder.io/issues/21113[#21113])
+
+==== Generic methods
+
+* Fixed: multiple calls to file_from_template_jinja2 in audit fails
+    (https://issues.rudder.io/issues/20913[#20913])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.12 (2021-12-17)
 
 === Changes
