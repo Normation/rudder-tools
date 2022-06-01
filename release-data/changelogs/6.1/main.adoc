@@ -4,6 +4,182 @@ Rudder 6.1 is currently a maintained version of Rudder.
 
 This page provides a summary of changes for each version. Previous beta
 
+== [Private] Rudder 6.1.20 (2022-06-01)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Fix the relayd logging documentation
+    (https://issues.rudder.io/issues/20985[#20985])
+
+==== Miscellaneous
+
+* Fixed: Document that port 5309 can be disable in node configuration
+    (https://issues.rudder.io/issues/20982[#20982])
+
+==== CI
+
+* Fixed: Race condition between elm builds
+    (https://issues.rudder.io/issues/21156[#21156])
+* Fixed: Ci does not properly clean its test files
+    (https://issues.rudder.io/issues/21178[#21178])
+* Fixed: Improve cleanup of root-owned files in tests
+    (https://issues.rudder.io/issues/21130[#21130])
+
+==== Security
+
+* Fixed: security checks fails because of request to sonatype oss index
+    (https://issues.rudder.io/issues/21179[#21179])
+* Fixed: Fix some cve in dependencies 
+    (https://issues.rudder.io/issues/21169[#21169])
+* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
+    (https://issues.rudder.io/issues/21103[#21103])
+* Fixed: Ignore CVEs for spring-ldap-core
+    (https://issues.rudder.io/issues/21027[#21027])
+
+==== Web - Nodes & inventories
+
+* Fixed: Sometime inventory processing is not done when inventory is receveived
+    (https://issues.rudder.io/issues/19585[#19585])
+* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+    (https://issues.rudder.io/issues/20984[#20984])
+
+==== API
+
+* Fixed: Update api doc tool chain
+    (https://issues.rudder.io/issues/21073[#21073])
+* Fixed: Generation not started when modifying authorized network via API
+    (https://issues.rudder.io/issues/20979[#20979])
+
+==== Techniques
+
+* Fixed: wrong spelling of wily in apt package manager settings
+    (https://issues.rudder.io/issues/21113[#21113])
+
+==== Generic methods
+
+* Fixed: multiple calls to file_from_template_jinja2 in audit fails
+    (https://issues.rudder.io/issues/20913[#20913])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
+== [Private] Rudder 6.1.19 (2022-04-08)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Documentation
+
+* Add a compatibilty table for agent relay server in the documentation
+    (https://issues.rudder.io/issues/20621[#20621])
+
+==== CI
+
+* Dockerize technique tests
+    (https://issues.rudder.io/issues/20386[#20386])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-webapp requires rsync to build for RHEL
+    (https://issues.rudder.io/issues/20974[#20974])
+* Fixed: rudder-agent-postinst doesn't close file descriptors anymore
+    (https://issues.rudder.io/issues/20522[#20522])
+* Fixed: Update openssl to 1.1.1m
+    (https://issues.rudder.io/issues/20428[#20428])
+
+==== Security
+
+* Fixed: Update embedded openssl to 1.1.1n
+    (https://issues.rudder.io/issues/20894[#20894])
+* Fixed: Update jdbc postgres driver to 4.2.25 for CVE-2022-21724
+    (https://issues.rudder.io/issues/20969[#20969])
+* Fixed: Vulnerability in the regex crate
+    (https://issues.rudder.io/issues/20872[#20872])
+* Fixed: Data race in thread-local relayd dependency
+    (https://issues.rudder.io/issues/20639[#20639])
+* Fixed: Update spring-core
+    (https://issues.rudder.io/issues/20571[#20571])
+* Fixed: Use a proper CSPRNG to generate API tokens
+    (https://issues.rudder.io/issues/20512[#20512])
+
+==== Documentation
+
+* Fixed: apt-key is deprecated
+    (https://issues.rudder.io/issues/20518[#20518])
+* Fixed: documentation of method schedule_ is broken
+    (https://issues.rudder.io/issues/20605[#20605])
+
+==== Miscellaneous
+
+* Fixed: Show more details in exception when parsing an invalid technique version
+    (https://issues.rudder.io/issues/20976[#20976])
+* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
+    (https://issues.rudder.io/issues/20972[#20972])
+
+==== CI
+
+* Fixed: Don't skip tests in webapp publish
+    (https://issues.rudder.io/issues/20812[#20812])
+* Fixed: Missing clean in webapp publish
+    (https://issues.rudder.io/issues/20772[#20772])
+
+==== Architecture - Dependencies
+
+* Fixed: Update xerces version 
+    (https://issues.rudder.io/issues/20676[#20676])
+
+==== API
+
+* Fixed: State is missing from node api
+    (https://issues.rudder.io/issues/20582[#20582])
+* Fixed: It is impossible to read group properties with a read-only account
+    (https://issues.rudder.io/issues/20567[#20567])
+* Fixed: Compliance api miss audit state
+    (https://issues.rudder.io/issues/20531[#20531])
+
+==== Web - Compliance & node report
+
+* Fixed: error on system status tabs when there are missing reports
+    (https://issues.rudder.io/issues/20474[#20474])
+
+==== Techniques
+
+* Fixed: SNMP installation uses deprecated package method, and it reports an error even though it works
+    (https://issues.rudder.io/issues/16694[#16694])
+
+==== Generic methods
+
+* Fixed: No report from sysctl generic method
+    (https://issues.rudder.io/issues/20612[#20612])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
 == [Private] Rudder 6.1.18 (2021-12-17)
 
 === Changes
@@ -472,180 +648,6 @@ This version is only available for extended support subscription
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
 * Lars Koenen
-
-This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== [Private] Rudder 6.1.19 (2022-04-08)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-==== Documentation
-
-* Add a compatibilty table for agent relay server in the documentation
-    (https://issues.rudder.io/issues/20621[#20621])
-
-==== CI
-
-* Dockerize technique tests
-    (https://issues.rudder.io/issues/20386[#20386])
-
-=== Bug fixes
-
-==== Packaging
-
-* Fixed: rudder-webapp requires rsync to build for RHEL
-    (https://issues.rudder.io/issues/20974[#20974])
-* Fixed: rudder-agent-postinst doesn't close file descriptors anymore
-    (https://issues.rudder.io/issues/20522[#20522])
-* Fixed: Update openssl to 1.1.1m
-    (https://issues.rudder.io/issues/20428[#20428])
-
-==== Security
-
-* Fixed: Update embedded openssl to 1.1.1n
-    (https://issues.rudder.io/issues/20894[#20894])
-* Fixed: Update jdbc postgres driver to 4.2.25 for CVE-2022-21724
-    (https://issues.rudder.io/issues/20969[#20969])
-* Fixed: Vulnerability in the regex crate
-    (https://issues.rudder.io/issues/20872[#20872])
-* Fixed: Data race in thread-local relayd dependency
-    (https://issues.rudder.io/issues/20639[#20639])
-* Fixed: Update spring-core
-    (https://issues.rudder.io/issues/20571[#20571])
-* Fixed: Use a proper CSPRNG to generate API tokens
-    (https://issues.rudder.io/issues/20512[#20512])
-
-==== Documentation
-
-* Fixed: apt-key is deprecated
-    (https://issues.rudder.io/issues/20518[#20518])
-* Fixed: documentation of method schedule_ is broken
-    (https://issues.rudder.io/issues/20605[#20605])
-
-==== Miscellaneous
-
-* Fixed: Show more details in exception when parsing an invalid technique version
-    (https://issues.rudder.io/issues/20976[#20976])
-* Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
-    (https://issues.rudder.io/issues/20972[#20972])
-
-==== CI
-
-* Fixed: Don't skip tests in webapp publish
-    (https://issues.rudder.io/issues/20812[#20812])
-* Fixed: Missing clean in webapp publish
-    (https://issues.rudder.io/issues/20772[#20772])
-
-==== Architecture - Dependencies
-
-* Fixed: Update xerces version 
-    (https://issues.rudder.io/issues/20676[#20676])
-
-==== API
-
-* Fixed: State is missing from node api
-    (https://issues.rudder.io/issues/20582[#20582])
-* Fixed: It is impossible to read group properties with a read-only account
-    (https://issues.rudder.io/issues/20567[#20567])
-* Fixed: Compliance api miss audit state
-    (https://issues.rudder.io/issues/20531[#20531])
-
-==== Web - Compliance & node report
-
-* Fixed: error on system status tabs when there are missing reports
-    (https://issues.rudder.io/issues/20474[#20474])
-
-==== Techniques
-
-* Fixed: SNMP installation uses deprecated package method, and it reports an error even though it works
-    (https://issues.rudder.io/issues/16694[#16694])
-
-==== Generic methods
-
-* Fixed: No report from sysctl generic method
-    (https://issues.rudder.io/issues/20612[#20612])
-
-=== Release notes
-
-This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== [Private] Rudder 6.1.20 (2022-06-01)
-
-=== Changes
-
-[WARNING]
-====
-
-This version is only available for extended support subscription
-
-====
-    
-
-=== Bug fixes
-
-==== Documentation
-
-* Fixed: Fix the relayd logging documentation
-    (https://issues.rudder.io/issues/20985[#20985])
-
-==== Miscellaneous
-
-* Fixed: Document that port 5309 can be disable in node configuration
-    (https://issues.rudder.io/issues/20982[#20982])
-
-==== CI
-
-* Fixed: Race condition between elm builds
-    (https://issues.rudder.io/issues/21156[#21156])
-* Fixed: Ci does not properly clean its test files
-    (https://issues.rudder.io/issues/21178[#21178])
-* Fixed: Improve cleanup of root-owned files in tests
-    (https://issues.rudder.io/issues/21130[#21130])
-
-==== Security
-
-* Fixed: security checks fails because of request to sonatype oss index
-    (https://issues.rudder.io/issues/21179[#21179])
-* Fixed: Fix some cve in dependencies 
-    (https://issues.rudder.io/issues/21169[#21169])
-* Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
-    (https://issues.rudder.io/issues/21103[#21103])
-* Fixed: Ignore CVEs for spring-ldap-core
-    (https://issues.rudder.io/issues/21027[#21027])
-
-==== Web - Nodes & inventories
-
-* Fixed: Sometime inventory processing is not done when inventory is receveived
-    (https://issues.rudder.io/issues/19585[#19585])
-* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
-    (https://issues.rudder.io/issues/20984[#20984])
-
-==== API
-
-* Fixed: Update api doc tool chain
-    (https://issues.rudder.io/issues/21073[#21073])
-* Fixed: Generation not started when modifying authorized network via API
-    (https://issues.rudder.io/issues/20979[#20979])
-
-==== Techniques
-
-* Fixed: wrong spelling of wily in apt package manager settings
-    (https://issues.rudder.io/issues/21113[#21113])
-
-==== Generic methods
-
-* Fixed: multiple calls to file_from_template_jinja2 in audit fails
-    (https://issues.rudder.io/issues/20913[#20913])
-
-=== Release notes
 
 This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
