@@ -513,6 +513,97 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 7.0.4 (2022-06-22)
+
+=== Changes
+
+
+==== Documentation
+
+* Add documentation to install Rudder server on Amazon linux 2
+    (https://issues.rudder.io/issues/21183[#21183])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: parsing of system fusioninventory is invalid
+    (https://issues.rudder.io/issues/21211[#21211])
+
+==== Documentation
+
+* Fixed: Typo in documentation to change ports used by rudder
+    (https://issues.rudder.io/issues/21210[#21210])
+* Fixed: Missing API documentation for technique
+    (https://issues.rudder.io/issues/21254[#21254])
+
+==== Relay server or API
+
+* Fixed: Allow .ocs files as inventory
+    (https://issues.rudder.io/issues/21270[#21270])
+* Fixed: Missing encoding of postgresql password
+    (https://issues.rudder.io/issues/21203[#21203])
+* Fixed: Query seems to be ignored for pendings nodes
+    (https://issues.rudder.io/issues/20281[#20281])
+
+==== Techniques
+
+* Fixed: When upgrading to 7.1, techniques are not upgraded to the new format and reporting issue occur
+    (https://issues.rudder.io/issues/21220[#21220])
+
+==== Security
+
+* Fixed: Ignore CVE  CVE-2022-22978 that will not be fixed in 6.1/6.2 dependencies
+    (https://issues.rudder.io/issues/21263[#21263])
+* Fixed: Upgrade spring-security to 5.5.8 to fix CVE 2022-22978
+    (https://issues.rudder.io/issues/21237[#21237])
+
+==== Web - Config management
+
+* Fixed: GetMetadataContent does not correctly retrieve content when a revision is given
+    (https://issues.rudder.io/issues/21260[#21260])
+
+==== Architecture - Internal libs
+
+* Fixed: Query string is not correctly parsed in test API framework
+    (https://issues.rudder.io/issues/21253[#21253])
+
+==== Web - Technique editor
+
+* Fixed: When a technique is not in the active techique tree, it can't be deleted in editor
+    (https://issues.rudder.io/issues/21119[#21119])
+
+==== Web - UI & UX
+
+* Fixed: Missing icon in technical logs for error messages
+    (https://issues.rudder.io/issues/18918[#18918])
+
+==== Performance and scalability
+
+* Fixed: Improve performance of display for agent version on homepage
+    (https://issues.rudder.io/issues/21230[#21230])
+* Fixed: Adapt rule details to have the list of directives/nodes that appear faster
+    (https://issues.rudder.io/issues/21081[#21081])
+
+==== rudderc
+
+* Fixed: During upgrade of techniques, rudderc is used even if disabled
+    (https://issues.rudder.io/issues/21229[#21229])
+
+==== CI
+
+* Fixed: Race condition between elm builds
+    (https://issues.rudder.io/issues/21156[#21156])
+
+==== Generic methods
+
+* Fixed: The mustache template examples in our documentation do not respect the mustache standard
+    (https://issues.rudder.io/issues/21286[#21286])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 7.0.0 (2022-01-26)
 
 === Changes
