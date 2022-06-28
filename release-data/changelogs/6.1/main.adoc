@@ -651,6 +651,36 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== [Private] Rudder 6.1.21 (2022-06-28)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+=== Bug fixes
+
+==== Relay server or API
+
+* Fixed: Allow .ocs files as inventory
+    (https://issues.rudder.io/issues/21270[#21270])
+* Fixed: Missing encoding of postgresql password
+    (https://issues.rudder.io/issues/21203[#21203])
+
+==== Security
+
+* Fixed: Ignore CVE  CVE-2022-22978 that will not be fixed in 6.1/6.2 dependencies
+    (https://issues.rudder.io/issues/21263[#21263])
+
+=== Release notes
+
+This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.1.13 (2021-05-18)
 
 === Changes
