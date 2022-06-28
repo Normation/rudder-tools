@@ -291,6 +291,61 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 6.2.15 (2022-06-28)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: parsing of system fusioninventory is invalid
+    (https://issues.rudder.io/issues/21211[#21211])
+
+==== Web - Nodes & inventories
+
+* Fixed: Using '{' in node property lead to error
+    (https://issues.rudder.io/issues/21322[#21322])
+
+==== Relay server or API
+
+* Fixed: Allow .ocs files as inventory
+    (https://issues.rudder.io/issues/21270[#21270])
+* Fixed: Missing encoding of postgresql password
+    (https://issues.rudder.io/issues/21203[#21203])
+* Fixed: Query seems to be ignored for pendings nodes
+    (https://issues.rudder.io/issues/20281[#20281])
+
+==== Security
+
+* Fixed: Ignore CVE  CVE-2022-22978 that will not be fixed in 6.1/6.2 dependencies
+    (https://issues.rudder.io/issues/21263[#21263])
+
+==== Architecture - Internal libs
+
+* Fixed: Query string is not correctly parsed in test API framework
+    (https://issues.rudder.io/issues/21253[#21253])
+
+==== Web - Technique editor
+
+* Fixed: When a technique is not in the active techique tree, it can't be deleted in editor
+    (https://issues.rudder.io/issues/21119[#21119])
+
+==== Web - UI & UX
+
+* Fixed: Missing icon in technical logs for error messages
+    (https://issues.rudder.io/issues/18918[#18918])
+
+==== Generic methods
+
+* Fixed: The mustache template examples in our documentation do not respect the mustache standard
+    (https://issues.rudder.io/issues/21286[#21286])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.12 (2021-12-17)
 
 === Changes
