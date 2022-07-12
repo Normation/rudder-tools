@@ -3,7 +3,7 @@
 release = "7.2"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 # 25th April 2022
 #release-date = "2022-04-25"
@@ -114,8 +114,8 @@ api-version = {
               }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "6.1", "6.2", "7.0", "7.1", "7.2" ]
+compatible-agents = [ "6.2", "7.0", "7.1", "7.2" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "6.1", "6.2", "7.0", "7.1", "7.2" ]
+supported-upgrade = [ "6.2", "7.0", "7.1", "7.2" ]
 
