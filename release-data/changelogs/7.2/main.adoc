@@ -1,1 +1,201 @@
+== [Private] Rudder 7.2.0.beta1 (2022-07-18)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Packaging
+
+* Add rhel9 support to packages
+    (https://issues.rudder.io/issues/21357[#21357])
+* Update C dependencies
+    (https://issues.rudder.io/issues/21141[#21141])
+* Make Java 11 the minimal required version
+    (https://issues.rudder.io/issues/21109[#21109])
+* Create a new rudder-server package
+    (https://issues.rudder.io/issues/21084[#21084])
+* Update to Rust 1.61.0 and update dependencies
+    (https://issues.rudder.io/issues/21139[#21139])
+* Minify the javascript produced by elm
+    (https://issues.rudder.io/issues/21133[#21133])
+* Cleanup methods (ncf) repository
+    (https://issues.rudder.io/issues/21266[#21266])
+
+==== Performance and scalability
+
+* Add an ldap index on nodeId to improve performance
+    (https://issues.rudder.io/issues/21246[#21246])
+* Add an ldap index on softwareId to improve software queries performance
+    (https://issues.rudder.io/issues/21244[#21244])
+
+==== Documentation
+
+* Prepare doc for 7.2
+    (https://issues.rudder.io/issues/21407[#21407])
+* Add docs about F# dev environment
+    (https://issues.rudder.io/issues/21259[#21259])
+
+==== Web - Config management
+
+* Add logic to handle campaign within Rudder
+    (https://issues.rudder.io/issues/21383[#21383])
+
+==== API
+
+* Add an API endpoint to export rules, directives, techniques, groups and their dependencies in an archive
+    (https://issues.rudder.io/issues/21247[#21247])
+* Moving create node plugin into Rudder
+    (https://issues.rudder.io/issues/21117[#21117])
+
+==== Plugins integration
+
+* Allow "rudder package" command install multiple plugins at once
+    (https://issues.rudder.io/issues/21316[#21316])
+
+==== Web - UI & UX
+
+*  Rename "classic" and "DSC" agents to "Linux" et "Windows"
+    (https://issues.rudder.io/issues/21238[#21238])
+* Update the css template for the integration of the system update campaigns plugin
+    (https://issues.rudder.io/issues/21348[#21348])
+* Provide a page to list the different hooks of a Rudder server
+    (https://issues.rudder.io/issues/21083[#21083])
+* Allow plugins to have multiple menu entries
+    (https://issues.rudder.io/issues/21319[#21319])
+* Upgrade Bootstrap to 3.4.1
+    (https://issues.rudder.io/issues/21221[#21221])
+* Harmonise the color scheme used in Rudder
+    (https://issues.rudder.io/issues/21099[#21099])
+* Update Javascript dependencies 
+    (https://issues.rudder.io/issues/21149[#21149])
+* Update the dashboard design with the new graphic charter
+    (https://issues.rudder.io/issues/21072[#21072])
+
+==== System integration
+
+* Allow overriding rudder-web.properties parameters with files in rudder-web.properties.d
+    (https://issues.rudder.io/issues/21293[#21293])
+
+==== Web - Nodes & inventories
+
+* Change default behavior from moving node inventories to archive branch to erasing them
+    (https://issues.rudder.io/issues/21330[#21330])
+* root inventory is missing and need to be resent after install
+    (https://issues.rudder.io/issues/19920[#19920])
+
+==== Relay server or API
+
+* Allow passing options to postgresql connection URL
+    (https://issues.rudder.io/issues/21201[#21201])
+* Cleanup relayd tests
+    (https://issues.rudder.io/issues/21155[#21155])
+* Move shared-files purge from crond to a task in relayd
+    (https://issues.rudder.io/issues/21047[#21047])
+
+==== Architecture - Dependencies
+
+* Update scala dependencies
+    (https://issues.rudder.io/issues/21102[#21102])
+
+==== Web - Compliance & node report
+
+* Use a unique id to identify reports
+    (https://issues.rudder.io/issues/20747[#20747])
+
+==== System techniques
+
+* Add a technique for campaign-based system-update
+    (https://issues.rudder.io/issues/21297[#21297])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: Update embedded openssl to 1.1.1q
+    (https://issues.rudder.io/issues/21360[#21360])
+* Fixed: Update spring and logback version because of new CVE
+    (https://issues.rudder.io/issues/21022[#21022])
+
+==== Packaging
+
+* Fixed: Java does not default to 11 even if it is installed
+    (https://issues.rudder.io/issues/21301[#21301])
+* Fixed: Disable dwz as it fails on some rudder-relayd binaries on Debian 10
+    (https://issues.rudder.io/issues/21275[#21275])
+* Fixed: Upgrade to Jetty 10
+    (https://issues.rudder.io/issues/21137[#21137])
+
+==== Documentation
+
+* Fixed: Prepare 7.1 doc
+    (https://issues.rudder.io/issues/20794[#20794])
+* Fixed: Some reponses are missing in technique api doc
+    (https://issues.rudder.io/issues/21304[#21304])
+* Fixed: Fix typos in techniques API doc
+    (https://issues.rudder.io/issues/21290[#21290])
+
+==== Web - Config management
+
+* Fixed: Links to rules inside a directive webpage redirect to the general rule webpage
+    (https://issues.rudder.io/issues/21372[#21372])
+* Fixed: Reports on method using iterator are wrong in the cli output
+    (https://issues.rudder.io/issues/20603[#20603])
+
+==== CI
+
+* Fixed: Ignore rudder-lang repos in script checks
+    (https://issues.rudder.io/issues/21364[#21364])
+
+==== Miscellaneous
+
+* Fixed: Remove unused variable newCall in JRTechniqueElem
+    (https://issues.rudder.io/issues/21355[#21355])
+
+==== Web - Compliance & node report
+
+* Fixed: In HTTPS mode, we may have errors in logs about duplicate messages that are totally legit
+    (https://issues.rudder.io/issues/21352[#21352])
+
+==== Server components
+
+* Fixed: Missing comment in configuration.properties.sample
+    (https://issues.rudder.io/issues/21350[#21350])
+
+==== Web - UI & UX
+
+* Fixed: Impossible to put a Rule in a subcategory
+    (https://issues.rudder.io/issues/21175[#21175])
+* Fixed: Cancel button not showed within disable rule menu 
+    (https://issues.rudder.io/issues/21171[#21171])
+
+==== Architecture - Refactoring
+
+* Fixed: Tests fail due to policy mode definition in MockServices
+    (https://issues.rudder.io/issues/21336[#21336])
+
+==== Web - Technique editor
+
+* Fixed: we can add carriage return in the condition in technique editor
+    (https://issues.rudder.io/issues/21126[#21126])
+
+==== Web - Nodes & inventories
+
+* Fixed: Using '{' in node property lead to error
+    (https://issues.rudder.io/issues/21322[#21322])
+
+==== rudderc
+
+* Fixed: Improve rudderc testing system
+    (https://issues.rudder.io/issues/21048[#21048])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 = Change logs for Rudder 7.2
