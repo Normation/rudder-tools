@@ -5,10 +5,91 @@ Rudder 7.2 is currently a beta version.
 Rudder 7 will be supported for at least three months after next major release,
 and for 18 to 24 months with a subscription.
 
-Its main focus is a first release of a new patch management feature.
+== New patch management features
 
-== What's new?
+* Available updates available on Windows (in addition to Linux since 7.1)
+* Automated patch campaigns in Linux
+* The Windows system update technique is now able to download its upgrades from a WSUS server
 
+== Configuration policies
+
+=== Import-export of configuration
+
+It is now possible to export and import an another server a rule or directive and all of its
+dependencies (including techniques from the technique editor).
+
+This allows finer-grained synchronization compared to git repository synchronization.
+
+=== Improved reporting when using "iterator" variables
+
+Reporting should now be correct (for example when using an iterator variable to install several packages).
+
+== Agents
+
+=== Terminology clarification for agent types
+
+We renamed the agent types to make them clearer for users:
+
+* `Classic` is now `Linux` (but also covers AIX)
+* `DSC` is now `Windows`
+
+=== The API allowing to pre-create nodes is now part of the base API
+
+It was a plugin before, and was moved into the main HTTP API.
+
+=== RHEL 9 support (and all its siblings!)
+
+We added support both as server and agent for RHEL 9 and derivatives (CentOS Stream, Rocky Linux,
+AlmaLinux, Oracle Linux).
+
+=== Improvements for our Windows agent
+
+==== New execution engine
+
+Our windows agent improved with a new execution engine (written in F#), unlocking a lot of
+future exiting improvements.
+
+==== Improved experience for Powershell script execution
+
+It is now easier to handle errors when running Powershell scripts from the agent.
+
+== Administration
+
+=== It is now possible to configure user logins to be case-insensitive
+
+This allows matching the behavior of authentication sources (en particularly Active Directory).
+
+=== Ability to define configuration override in a rudder-web.properties.d directory
+
+Is is not a lot easier to deploy changes to the Rudder server configuration by putting deploying as overrides
+over the default configuration.
+
+=== New page to list information about server hooks
+
+We added a page in the settings section to show the list of currently configured server hooks.
+
+=== Packages
+
+* Package renaming, things are not a lot simpler:
+	** `rudder-webapp`, `rudder-server-root` and `rudder-reports` are merged into `rudder-server`
+	** `rudder server-relay` becomes `rudder-relay`
+	** `rudder-agent` stays `rudder-agent`
+
+* `cron` is not used anymore on relays, avoiding installing it on minimal system installs
+
+* The usual dependencies upgrades (Jetty 10, etc.)
+
+=== Improved external database setup
+
+== Miscellaneous
+
+=== Improved vulnerability tracking
+
+Major performance improvements, plus some UI fixes.
+
+=== The dashboard style has been refreshed
+
+A small cosmetic  to better match the new style.
 
 == Installing, upgrading and testing
 
