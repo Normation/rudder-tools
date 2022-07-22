@@ -12,7 +12,7 @@
 # @man +
 # @man *-w --wipe*: wipe all the generated data
 # @man +
-# @man *-t --template*: use the given template for inventory generation
+# @man *-t --template*: use the given template for inventory generation (relative filename in template/)
 # @man +
 # @man *-p --path*: use the given path to for the data generated
 
@@ -22,7 +22,7 @@ DATA=false
 NUMBER=0
 GENERATE=false
 WIPE=false
-TEMPLATE=tml.ocs
+TEMPLATE="RUDDER-Template.ocs"
 DEST_PATH=data
 
 DEST_INVENTORIES=inventories
@@ -45,7 +45,15 @@ MAX_SOFT_VERSION=100
 # Output usage
 function usage()
 {
-  echo "todo"
+  echo "This command allows to generate the data to create inventories
+and to use these data to create inventories
+
+Options:
+-d --data: generate the given number of data for inventories
+-g --generate: generate inventories from the data
+-w --wipe: wipe all the generated data
+-t --template: use the given template for inventory generation (relative filename in template/)
+-p --path: use the given path to for the data generated"
 }
 
 
@@ -94,7 +102,7 @@ function generate_data {
 
     openssl req -new -sha256 -key ${DEST_PATH}/${UUID}/localhost.priv -out ${DEST_PATH}/${UUID}/agent.cert -passin "pass:${PASSPHRASE}" -x509 -days 3650 -extensions agent_cert -config openssl-agent.cnf -subj "/UID=${UUID}"
 
-    echo "RUDDER_TEST_${i}" > ${DEST_PATH}/${UUID}/hostname
+    echo "RUDDERTEST${i}" > ${DEST_PATH}/${UUID}/hostname
 
 
     IP4=$((IP4+1))
@@ -117,8 +125,8 @@ function generate_data {
 }
 
 function create_inventory {
-  mkdir ${DEST_INVENTORIES} || true
-  mkdir ${DEST_INVENTORIES_TMP} || true
+  mkdir -p ${DEST_INVENTORIES} || true
+  mkdir -p ${DEST_INVENTORIES_TMP} || true
 
   echo "Creating inventories based on the folders in ${DEST_PATH}"
 
@@ -160,7 +168,7 @@ function create_inventory {
 
       # replace values in template and create temp file
       eval "cat <<EOF
-$(<template/RUDDER-Template.ocs) 
+$(<template/${TEMPLATE}) 
 EOF" > ${FILE}
 
       # sign it

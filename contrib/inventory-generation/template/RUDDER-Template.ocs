@@ -6070,6 +6070,3185 @@
       <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
       <VERSION>2.4.16.1-1.el7</VERSION>
     </SOFTWARES>
+        <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>A firewall daemon with D-Bus interface providing a dynamic firewall</COMMENTS>
+      <FILESIZE>1861810</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>firewalld</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.3-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Legacy data for kbd package</COMMENTS>
+      <FILESIZE>503608</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kbd-legacy</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.15.5-15.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Descriptions of common terminals</COMMENTS>
+      <FILESIZE>223432</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ncurses-base</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.9-14.20130511.el7_4</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Postfix Mail Transport Agent</COMMENTS>
+      <FILESIZE>12766329</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>postfix</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.10.1-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>The skeleton package which defines a simple CentOS Linux system</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>basesystem</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.10.0-7.el7.centos</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Character encoding auto-detection in Python</COMMENTS>
+      <FILESIZE>1156541</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>16/08/2019</INSTALLDATE>
+      <NAME>python-chardet</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.2.1-1.el7_1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Basic networking tools</COMMENTS>
+      <FILESIZE>939930</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>net-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0-0.24.20131004git.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The libraries and header files needed for Python development</COMMENTS>
+      <FILESIZE>1104386</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>19/08/2019</INSTALLDATE>
+      <NAME>python-devel</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.7.5-80.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Ncurses libraries</COMMENTS>
+      <FILESIZE>1028216</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ncurses-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.9-14.20130511.el7_4</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Userspace programs for btrfs</COMMENTS>
+      <FILESIZE>4142307</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>btrfs-progs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.9.1-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Dynamic library for extended attribute support</COMMENTS>
+      <FILESIZE>19896</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libattr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.4.46-13.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firmware for Intel(R) Dual Band Wireless-AC 7265 Series Adapters</COMMENTS>
+      <FILESIZE>63077697</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iwl7265-firmware</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Kernel</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.22.0.7.0-69.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Perl-compatible regular expression library</COMMENTS>
+      <FILESIZE>1475532</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>pcre</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.8.32-17.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firmware for Intel(R) Dual Band Wireless-AC 3160 Series Adapters</COMMENTS>
+      <FILESIZE>10436469</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iwl3160-firmware</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Kernel</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.22.0.7.0-69.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library for loading and sharing PKCS#11 modules</COMMENTS>
+      <FILESIZE>1337825</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>p11-kit</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.23.5-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>(none)</ARCH>
+      <COMMENTS>gpg(CentOS-7 Key (CentOS 7 Official Signing Key) &lt;security@centos.org&gt;)</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>gpg-pubkey</NAME>
+      <SYSTEM_CATEGORY>Public Keys</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.f4a80eb5-53a7ff4b</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The ASN.1 library used in GNUTLS</COMMENTS>
+      <FILESIZE>424486</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libtasn1</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.10-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Timezone data</COMMENTS>
+      <FILESIZE>2012237</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>tzdata</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2019b-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Network Security Services Utilities Library</COMMENTS>
+      <FILESIZE>199008</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nss-util</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.36.0-1.1.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The non-admin shared libraries used by Kerberos 5</COMMENTS>
+      <FILESIZE>2200985</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>krb5-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.15.1-37.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A library for editing typed command lines</COMMENTS>
+      <FILESIZE>460464</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>readline</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.6.2-10.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Runtime libraries for Python</COMMENTS>
+      <FILESIZE>24714432</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.7.5-80.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An alternate posix capabilities library</COMMENTS>
+      <FILESIZE>50510</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libcap-ng</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.7.5-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>PEM file reader for Network Security Services (NSS)</COMMENTS>
+      <FILESIZE>205579</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nss-pem</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.3-5.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A GNU archiving program</COMMENTS>
+      <FILESIZE>689335</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cpio</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Archiving</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.11-27.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>LDAP support libraries</COMMENTS>
+      <FILESIZE>1037424</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>openldap</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.4.44-21.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Displays where a particular program in your path is located</COMMENTS>
+      <FILESIZE>76962</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>which</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.20-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A System and Service Manager</COMMENTS>
+      <FILESIZE>24445323</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>systemd</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.219-62.el7_6.9</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library that implements an embeddable SQL database engine</COMMENTS>
+      <FILESIZE>814231</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>sqlite</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Databases</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.7.17-8.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Utility for running regular jobs</COMMENTS>
+      <FILESIZE>41683</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cronie-anacron</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.4.11-20.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for applications using libmagic</COMMENTS>
+      <FILESIZE>3076831</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>file-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/File</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.11-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Team network device control daemon</COMMENTS>
+      <FILESIZE>278078</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>teamd</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.27-6.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A CSS2 parsing library</COMMENTS>
+      <FILESIZE>320955</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libcroco</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.6.12-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Device-mapper shared library</COMMENTS>
+      <FILESIZE>400615</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>device-mapper-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.02.149-10.el7_6.8</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Support tools for GRUB.</COMMENTS>
+      <FILESIZE>10080362</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grub2-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.02-0.76.el7.centos.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Command line interface utils for libnl3</COMMENTS>
+      <FILESIZE>706246</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libnl3-cli</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.2.28-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A free and portable font rendering engine</COMMENTS>
+      <FILESIZE>824497</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>freetype</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.8-12.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Parts of the groff formatting system required to display manual pages</COMMENTS>
+      <FILESIZE>3453946</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>groff-base</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Publishing</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.22.2-8.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>License of the BIND DNS suite</COMMENTS>
+      <FILESIZE>26831</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>bind-license</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.9.9.4-74.el7_6.2</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The NetBSD Editline library</COMMENTS>
+      <FILESIZE>244257</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libedit</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.0-12.20121213cvs.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>SELinux targeted base policy</COMMENTS>
+      <FILESIZE>19980182</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>selinux-policy-targeted</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.13.1-229.el7_6.15</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Netfilter netlink userspace library</COMMENTS>
+      <FILESIZE>47123</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libnfnetlink</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.1-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Assortment of tools for the Linux kernel</COMMENTS>
+      <FILESIZE>294871</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kernel-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.10.0-957.27.2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Extremely fast compression algorithm</COMMENTS>
+      <FILESIZE>366872</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>lz4</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.7.5-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tool to transform and deploy CPU microcode update for x86.</COMMENTS>
+      <FILESIZE>2651287</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>microcode_ctl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.1-47.5.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Utilities from the general purpose cryptography library with TLS implementation</COMMENTS>
+      <FILESIZE>833657</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>openssl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.2k-16.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Linux PCI library</COMMENTS>
+      <FILESIZE>72691</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>pciutils-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.5.1-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A minimal version of the VIM editor</COMMENTS>
+      <FILESIZE>917792</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>vim-minimal</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Editors</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.4.160-6.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Linux /proc abstraction classes</COMMENTS>
+      <FILESIZE>96639</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-linux-procfs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.4.9-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Port of the python 3.3+ ipaddress module to 2.6+</COMMENTS>
+      <FILESIZE>232357</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-ipaddress</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.16-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Config file reading, writing, and validation</COMMENTS>
+      <FILESIZE>611855</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-configobj</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.7.2-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>YAML 1.1 parser and emitter written in C</COMMENTS>
+      <FILESIZE>132993</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libyaml</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1.4-11.el7_0</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Netfilter conntrack userspace library</COMMENTS>
+      <FILESIZE>143566</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libnetfilter_conntrack</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.6-1.el7_3</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Easily build and distribute Python packages</COMMENTS>
+      <FILESIZE>2040815</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-setuptools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.9.8-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>GNU libraries and utilities for producing multi-lingual messages</COMMENTS>
+      <FILESIZE>5029340</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>gettext</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Tools</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.19.8.1-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>C parser and AST generator written in Python</COMMENTS>
+      <FILESIZE>637379</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-pycparser</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.14-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Device-mapper Persistent Data Tools</COMMENTS>
+      <FILESIZE>1294094</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>device-mapper-persistent-data</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.7.3-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Internationalized Domain Names in Applications (IDNA)</COMMENTS>
+      <FILESIZE>576365</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-idna</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.4-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Introspection system for GObject-based libraries</COMMENTS>
+      <FILESIZE>854207</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>gobject-introspection</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.56.1-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>JSON Matching Expressions</COMMENTS>
+      <FILESIZE>135140</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python2-jmespath</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.9.0-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries to handle kernel module loading and unloading</COMMENTS>
+      <FILESIZE>91848</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kmod-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.20-23.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Basic object types for C</COMMENTS>
+      <FILESIZE>54022</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libbasicobjects</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1.1-32.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The Advanced Linux Sound Architecture (ALSA) library</COMMENTS>
+      <FILESIZE>1433094</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>alsa-lib</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.6-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>libevent module for libverto</COMMENTS>
+      <FILESIZE>11552</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libverto-libevent</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.2.5-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Filesystem Path Utilities</COMMENTS>
+      <FILESIZE>58406</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libpath_utils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.2.1-32.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The RPM package management system</COMMENTS>
+      <FILESIZE>2622266</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>rpm</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.11.3-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>System administration tools for monitoring users&apos; disk usage</COMMENTS>
+      <FILESIZE>908186</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>quota</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.01-17.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>A high-level cross-protocol url-grabber</COMMENTS>
+      <FILESIZE>503349</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-urlgrabber</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.10-9.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The tdb library</COMMENTS>
+      <FILESIZE>95728</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libtdb</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.3.15-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Access control list utilities</COMMENTS>
+      <FILESIZE>201225</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>acl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.2.51-14.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for avahi run-time use</COMMENTS>
+      <FILESIZE>123808</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>avahi-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.6.31-19.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>JavaScript interpreter and libraries</COMMENTS>
+      <FILESIZE>4045213</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>mozjs17</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.17.0.0-20.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Samba client libraries</COMMENTS>
+      <FILESIZE>19691680</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>samba-client-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.3-6.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Small, simple, correct HTTP/1.1 client</COMMENTS>
+      <FILESIZE>97210</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-HTTP-Tiny</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.033-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Character encodings in Perl</COMMENTS>
+      <FILESIZE>10176350</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Encode</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.51-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A privileged helper for utmp/wtmp updates</COMMENTS>
+      <FILESIZE>49749</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libutempter</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.6-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Macros for rpmbuild</COMMENTS>
+      <FILESIZE>5134</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-macros</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.16.3-294.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Create a tree of hardlinks</COMMENTS>
+      <FILESIZE>16545</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>hardlink</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0-19.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Perl pragma to declare constants</COMMENTS>
+      <FILESIZE>26364</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-constant</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.27-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>QR Code encoding library - Shared libraries</COMMENTS>
+      <FILESIZE>126732</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>qrencode-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.4.1-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Persistence for Perl data structures</COMMENTS>
+      <FILESIZE>181031</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Storable</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.45-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Framework for parsing POD documentation</COMMENTS>
+      <FILESIZE>538320</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Pod-Simple</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.28-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Cryptsetup shared library</COMMENTS>
+      <FILESIZE>1219591</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cryptsetup-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0.3-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Extended processing of command line options</COMMENTS>
+      <FILESIZE>134846</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Getopt-Long</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.40-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Rules for polkit to add compatibility with pklocalauthority</COMMENTS>
+      <FILESIZE>82409</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>polkit-pkla-compat</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A utility for retrieving files using the HTTP or FTP protocols</COMMENTS>
+      <FILESIZE>2055573</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>wget</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.14-18.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Dynamic library for for the gpm</COMMENTS>
+      <FILESIZE>27736</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>gpm-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.20.7-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Probes disks on the system for installed operating systems</COMMENTS>
+      <FILESIZE>97946</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>os-prober</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.58-9.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A perl module for simple terminal control</COMMENTS>
+      <FILESIZE>59999</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>perl-TermReadKey</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.30-20.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Root crontab files used to schedule the execution of programs</COMMENTS>
+      <FILESIZE>3700</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>crontabs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.11-6.20121102git.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>(none)</ARCH>
+      <COMMENTS>gpg(Rudder Project (RPM release key) &lt;security@rudder-project.org&gt;)</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>gpg-pubkey</NAME>
+      <SYSTEM_CATEGORY>Public Keys</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.6f07d355-509cdb91</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An open source implementation of SSH protocol versions 1 and 2</COMMENTS>
+      <FILESIZE>1995364</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>openssh</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.4p1-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Apache Portable Runtime Utility library</COMMENTS>
+      <FILESIZE>198751</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>apr-util</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.5.2-6.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library providing the Gnome XSLT engine</COMMENTS>
+      <FILESIZE>497582</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>libxslt</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.28-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Perl extension for SHA-1/224/256/384/512</COMMENTS>
+      <FILESIZE>112297</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>perl-Digest-SHA</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.85-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Ethernet Bridge frame table administration tool</COMMENTS>
+      <FILESIZE>350763</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ebtables</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0.10-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>PC/SC Lite libraries</COMMENTS>
+      <FILESIZE>46708</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>pcsc-lite-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.8.8-8.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Timezone data for Java</COMMENTS>
+      <FILESIZE>373656</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>tzdata-java</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2019b-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Python2 bindings for firewalld</COMMENTS>
+      <FILESIZE>1862472</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-firewall</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.3-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Helper application and MIME type associations for file types</COMMENTS>
+      <FILESIZE>63360</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>mailcap</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.1.41-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Graphical Boot Animation and Logger</COMMENTS>
+      <FILESIZE>233311</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>plymouth</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.8.9-0.31.20140113.el7.centos</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>String handling essentials library</COMMENTS>
+      <FILESIZE>44322</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libestr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1.9-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for building and signing RPM packages</COMMENTS>
+      <FILESIZE>166776</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>rpm-build-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.11.3-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Yum plugin which chooses fastest repository from a mirrorlist</COMMENTS>
+      <FILESIZE>53895</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>yum-plugin-fastestmirror</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.31-50.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools for configuring the console (keyboard, virtual terminals, etc.)</COMMENTS>
+      <FILESIZE>1383499</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kbd</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.15.5-15.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools for searching and reading man pages</COMMENTS>
+      <FILESIZE>2138837</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>man-db</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.6.3-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firewalld directory layout and rpm macros</COMMENTS>
+      <FILESIZE>239</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>firewalld-filesystem</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.3-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The GNU Bourne Again shell</COMMENTS>
+      <FILESIZE>3667773</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>bash</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Shells</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.2.46-31.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An open source SSH client applications</COMMENTS>
+      <FILESIZE>2651616</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>openssh-clients</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.4p1-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Ncurses support utilities</COMMENTS>
+      <FILESIZE>439378</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ncurses</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.9-14.20130511.el7_4</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Freebl library for the Network Security Services</COMMENTS>
+      <FILESIZE>565628</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nss-softokn-freebl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.36.0-5.el7_5</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>User space tools for 2.6 kernel auditing</COMMENTS>
+      <FILESIZE>638430</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>audit</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.8.4-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The basic directory layout for a Linux system</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>filesystem</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.2-25.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Udev helper for naming devices per BIOS names</COMMENTS>
+      <FILESIZE>59183</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>biosdevname</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.7.3-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Netscape Portable Runtime</COMMENTS>
+      <FILESIZE>287728</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nspr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.19.0-1.el7_5</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An NTP client/server</COMMENTS>
+      <FILESIZE>487489</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>chrony</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.2-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>C library for parsing command line parameters</COMMENTS>
+      <FILESIZE>88516</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>popt</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.13-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>dracut configuration to turn on rescue image generation</COMMENTS>
+      <FILESIZE>4067</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>dracut-config-rescue</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.033-554.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Utilities for managing ext2, ext3, and ext4 filesystems</COMMENTS>
+      <FILESIZE>2548829</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>e2fsprogs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.42.9-13.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A stand-alone TTY-based reader for GNU texinfo documentation</COMMENTS>
+      <FILESIZE>494630</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>info</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.1-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An utility for setting or changing passwords using PAM</COMMENTS>
+      <FILESIZE>429874</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>passwd</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.79-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>SELinux binary policy manipulation library</COMMENTS>
+      <FILESIZE>686640</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libsepol</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.5-10.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Dynamic library for access control list support</COMMENTS>
+      <FILESIZE>37056</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libacl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.2.51-14.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>The basic required files for the root user&apos;s directory</COMMENTS>
+      <FILESIZE>599</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>rootfiles</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.8.1-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A portable foreign function interface library</COMMENTS>
+      <FILESIZE>47766</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libffi</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.0.13-18.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firmware for Intel(R) Centrino Wireless-N 2030 Series Adapters</COMMENTS>
+      <FILESIZE>835577</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iwl2030-firmware</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Kernel</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.18.168.6.1-69.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>SELinux library and simple utilities</COMMENTS>
+      <FILESIZE>217874</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libselinux</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.5-14.1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firmware for Intel(R) Dual Band Wireless-AC 7260 Series Adapters</COMMENTS>
+      <FILESIZE>6511905</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iwl7260-firmware</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Kernel</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.22.0.7.0-69.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Pattern matching utilities</COMMENTS>
+      <FILESIZE>1195131</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grep</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Text</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.20-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firmware for Intel(R) Centrino Wireless-N 105 Series Adapters</COMMENTS>
+      <FILESIZE>817865</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iwl105-firmware</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Kernel</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.18.168.6.1-69.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Key utilities library</COMMENTS>
+      <FILESIZE>42138</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>keyutils-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.5.8-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firmware for Intel(R) Centrino Wireless-N 135 Series Adapters</COMMENTS>
+      <FILESIZE>829413</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iwl135-firmware</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Kernel</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.18.168.6.1-69.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Main loop abstraction library</COMMENTS>
+      <FILESIZE>23060</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libverto</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.2.5-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>GCC version 4.8 shared support library</COMMENTS>
+      <FILESIZE>179328</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libgcc</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.5-36.el7_6.2</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>System trust module from p11-kit</COMMENTS>
+      <FILESIZE>437261</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>p11-kit-trust</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.23.5-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Modules used to build custom grub images</COMMENTS>
+      <FILESIZE>2309922</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grub2-pc-modules</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.02-0.76.el7.centos.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Common binaries and locale data for glibc</COMMENTS>
+      <FILESIZE>120497943</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>glibc-common</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.17-260.el7_6.6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A set of basic GNU tools commonly used in shell scripts</COMMENTS>
+      <FILESIZE>14588674</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>coreutils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.8.22-23.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>systemd libraries</COMMENTS>
+      <FILESIZE>1263568</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>systemd-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.219-62.el7_6.9</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for decoding LZMA compression</COMMENTS>
+      <FILESIZE>239967</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>xz-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.2.2-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Universally unique ID library</COMMENTS>
+      <FILESIZE>20326</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libuuid</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.23.2-59.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A general purpose cryptography library with TLS implementation</COMMENTS>
+      <FILESIZE>3204708</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>openssl-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.2k-16.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The Berkeley DB database library for C</COMMENTS>
+      <FILESIZE>1858008</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libdb</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.3.21-24.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Device mounting library</COMMENTS>
+      <FILESIZE>278173</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libmount</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.23.2-59.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library to read and write ELF files</COMMENTS>
+      <FILESIZE>913443</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>elfutils-libelf</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Tools</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.172-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Utilities for managing accounts and shadow password files</COMMENTS>
+      <FILESIZE>3543547</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>shadow-utils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.1.5.1-25.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library for error values used by GnuPG components</COMMENTS>
+      <FILESIZE>350865</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libgpg-error</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.12-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An interpreted, interactive, object-oriented programming language</COMMENTS>
+      <FILESIZE>80907</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.7.5-80.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Dynamic library for libaudit</COMMENTS>
+      <FILESIZE>256362</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>audit-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.8.4-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Network Security Services</COMMENTS>
+      <FILESIZE>2425024</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nss</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.36.0-7.1.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The GNU data compression program</COMMENTS>
+      <FILESIZE>250440</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>gzip</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/File</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.5-10.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for adding NetworkManager support to applications (new API).</COMMENTS>
+      <FILESIZE>6839913</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>NetworkManager-libnm</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.12.0-10.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An XML parser library</COMMENTS>
+      <FILESIZE>208315</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>expat</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.1.0-10.el7_3</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools for the Network Security Services</COMMENTS>
+      <FILESIZE>2069587</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nss-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.36.0-7.1.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The GNU versions of find utilities (find and xargs)</COMMENTS>
+      <FILESIZE>1855882</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>findutils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/File</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.5.11-6.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Python bindings for apps which will manipulate perf events</COMMENTS>
+      <FILESIZE>336069</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-perf</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.10.0-957.27.2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A GNU collection of diff utilities</COMMENTS>
+      <FILESIZE>1065157</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>diffutils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Text</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.3-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A library for getting files from web servers</COMMENTS>
+      <FILESIZE>435192</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libcurl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.29.0-51.el7_6.3</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A password-checking library</COMMENTS>
+      <FILESIZE>209610</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cracklib</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.9.0-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>D-BUS message bus</COMMENTS>
+      <FILESIZE>595216</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>dbus</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.10.24-13.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Network connection manager and user applications</COMMENTS>
+      <FILESIZE>5070596</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>NetworkManager</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.12.0-10.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Shared MIME information database</COMMENTS>
+      <FILESIZE>2379317</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>shared-mime-info</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.8-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Cron daemon for executing programs at set times</COMMENTS>
+      <FILESIZE>220572</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cronie</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.4.11-20.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A utility for determining file types</COMMENTS>
+      <FILESIZE>67448</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>file</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/File</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.11-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library for controlling team network device</COMMENTS>
+      <FILESIZE>100900</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libteam</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.27-6.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Linux-native asynchronous I/O access library</COMMENTS>
+      <FILESIZE>39182</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libaio</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.3.109-13.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Formatting library for ls-like programs.</COMMENTS>
+      <FILESIZE>164608</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libsmartcols</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.23.2-59.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Network Security Services Softoken Module</COMMENTS>
+      <FILESIZE>1130670</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nss-softokn</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.36.0-5.el7_5</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>SELinux policy core utilities</COMMENTS>
+      <FILESIZE>5321515</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>policycoreutils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.5-29.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Device mapper utility</COMMENTS>
+      <FILESIZE>340107</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>device-mapper</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.02.149-10.el7_6.8</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The standard CrackLib dictionaries</COMMENTS>
+      <FILESIZE>9389116</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cracklib-dicts</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.9.0-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Support tools for GRUB.</COMMENTS>
+      <FILESIZE>686003</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grub2-tools-minimal</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.02-0.76.el7.centos.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A library for password generation and password quality checking</COMMENTS>
+      <FILESIZE>332421</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libpwquality</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.2.3-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Device-mapper event daemon</COMMENTS>
+      <FILESIZE>42787</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>device-mapper-event</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.02.149-10.el7_6.8</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>GnuPG IPC library</COMMENTS>
+      <FILESIZE>155391</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libassuan</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.1.0-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>SELinux policy configuration</COMMENTS>
+      <FILESIZE>6483</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>selinux-policy</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.13.1-229.el7_6.15</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>LZMA compression utilities</COMMENTS>
+      <FILESIZE>798130</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>xz</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/File</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.2.2-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Support tools for GRUB.</COMMENTS>
+      <FILESIZE>6342188</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grub2-tools-extra</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.02-0.76.el7.centos.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Shared library providing the IP sets functionality</COMMENTS>
+      <FILESIZE>179162</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ipset-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.6.38-3.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>GNU Unicode string library</COMMENTS>
+      <FILESIZE>1145761</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libunistring</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.9.3-9.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for working with the DNS protocol</COMMENTS>
+      <FILESIZE>1832800</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>bind-libs-lite</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.9.9.4-74.el7_6.2</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Ext2/3/4 filesystem-specific shared libraries</COMMENTS>
+      <FILESIZE>363673</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>e2fsprogs-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.42.9-13.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Bootloader with support for Linux, Multiboot and more</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grub2</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.02-0.76.el7.centos.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools used for process and utmp management.</COMMENTS>
+      <FILESIZE>109118</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>sysvinit-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.88-14.dsf.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Userland logical volume management tools</COMMENTS>
+      <FILESIZE>3110931</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>lvm2</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.02.180-10.el7_6.8</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for tcp_wrappers</COMMENTS>
+      <FILESIZE>134602</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>tcp_wrappers-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.6-77.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Team device plugin for NetworkManager</COMMENTS>
+      <FILESIZE>37264</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>NetworkManager-team</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.12.0-10.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A library for text mode user interfaces</COMMENTS>
+      <FILESIZE>185196</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>newt</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.52.15-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>NetworkManager curses-based UI</COMMENTS>
+      <FILESIZE>266591</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>NetworkManager-tui</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.12.0-10.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Data compression library with very fast (de)compression</COMMENTS>
+      <FILESIZE>165360</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>lzo</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.06-8.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>SysV tools for systemd</COMMENTS>
+      <FILESIZE>3979</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>systemd-sysv</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.219-62.el7_6.9</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The kexec/kdump userspace component.</COMMENTS>
+      <FILESIZE>775211</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kexec-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0.15-21.el7_6.4</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Module to simplify usage of decorators</COMMENTS>
+      <FILESIZE>72291</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-decorator</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.4.0-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A utility for getting files from remote servers (FTP, HTTP, and others)</COMMENTS>
+      <FILESIZE>540293</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>curl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.29.0-51.el7_6.3</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Settings tool for Ethernet NICs</COMMENTS>
+      <FILESIZE>354200</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ethtool</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8-9.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Utilities for managing the XFS filesystem</COMMENTS>
+      <FILESIZE>4080287</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>xfsprogs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.5.0-19.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>SELinux python bindings for libselinux</COMMENTS>
+      <FILESIZE>603236</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libselinux-python</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.5-14.1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>GNU Standard C++ Library</COMMENTS>
+      <FILESIZE>1077442</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libstdc++</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.5-36.el7_6.2</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A fast metadata parser for yum</COMMENTS>
+      <FILESIZE>58789</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>yum-metadata-parser</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.4-10.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>GCC OpenMP v3.0 shared support library</COMMENTS>
+      <FILESIZE>212184</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libgomp</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.5-36.el7_6.2</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Python bindings for lzma</COMMENTS>
+      <FILESIZE>190112</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>pyliblzma</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.3-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>ASN.1 tools for Python 2</COMMENTS>
+      <FILESIZE>468646</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python2-pyasn1</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1.9-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Linux scheduler python bindings</COMMENTS>
+      <FILESIZE>43123</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-schedutils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.4-6.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Python 2 and 3 compatibility utilities</COMMENTS>
+      <FILESIZE>99000</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-six</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.9.0-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Backport of Python 3.4 Enum</COMMENTS>
+      <FILESIZE>329922</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-enum34</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.4-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Extended attributes library wrapper for Python</COMMENTS>
+      <FILESIZE>63304</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>pyxattr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.1-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>YAML parser and emitter for Python</COMMENTS>
+      <FILESIZE>645110</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>PyYAML</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.10-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools for managing Linux kernel packet filtering capabilities</COMMENTS>
+      <FILESIZE>1555961</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>iptables</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.4.21-28.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>The ssl.match_hostname() function from Python 3</COMMENTS>
+      <FILESIZE>18824</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-backports-ssl_match_hostname</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.5.0.1-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for gettext</COMMENTS>
+      <FILESIZE>1546952</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>gettext-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.19.8.1-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Library for internationalizing Python applications</COMMENTS>
+      <FILESIZE>5418256</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-babel</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.9.6-8.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A text file browser similar to more, but better</COMMENTS>
+      <FILESIZE>215376</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>less</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Text</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.458-9.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Python Lex-Yacc</COMMENTS>
+      <FILESIZE>542040</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-ply</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.4-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Foreign Function Interface for Python to call C code</COMMENTS>
+      <FILESIZE>1049918</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-cffi</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.6.0-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>General purpose template engine</COMMENTS>
+      <FILESIZE>3125560</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-jinja2</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.7.2-3.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A tool for determining compilation options</COMMENTS>
+      <FILESIZE>105522</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>pkgconfig</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Tools</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.27.1-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>PyCA&apos;s cryptography library</COMMENTS>
+      <FILESIZE>2765419</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python2-cryptography</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.7.2-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Python 2 bindings for GObject Introspection base package</COMMENTS>
+      <FILESIZE>1123114</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-gobject-base</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.22.0-1.el7_4.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Non-interactive SSH authentication utility</COMMENTS>
+      <FILESIZE>38771</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>sshpass</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.06-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Command line tool for updating bootloader configs</COMMENTS>
+      <FILESIZE>127442</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>grubby</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.8.28-25.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Rotates, compresses, removes and mails system log files</COMMENTS>
+      <FILESIZE>107156</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>logrotate</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.8.6-17.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Universal Addresses to RPC Program Number Mapper</COMMENTS>
+      <FILESIZE>103713</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>rpcbind</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.2.0-47.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>CentOS-related icons and pictures</COMMENTS>
+      <FILESIZE>22548401</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>centos-logos</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.70.0.6-3.el7.centos</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A refcounted array for C</COMMENTS>
+      <FILESIZE>54206</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libref_array</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1.5-32.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library files for fipscheck</COMMENTS>
+      <FILESIZE>11466</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>fipscheck-lib</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.4.1-6.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Abstract asynchronous event notification library</COMMENTS>
+      <FILESIZE>742760</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libevent</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0.21-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The shared libraries required for MariaDB/MySQL clients</COMMENTS>
+      <FILESIZE>4615006</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>mariadb-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Databases</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.5.60-1.el7_5</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A security tool which acts as a wrapper for TCP daemons</COMMENTS>
+      <FILESIZE>202888</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>tcp_wrappers</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.6-77.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>NFSv4 User and Group ID Mapping Library</COMMENTS>
+      <FILESIZE>114664</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libnfsidmap</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.25-19.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for manipulating RPM packages</COMMENTS>
+      <FILESIZE>611536</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>rpm-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.11.3-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>INI file parser for C</COMMENTS>
+      <FILESIZE>151134</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libini_config</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.3.1-32.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Gettext catalogs for disk quota tools</COMMENTS>
+      <FILESIZE>315960</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>quota-nls</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.01-17.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A Python interface to libcurl</COMMENTS>
+      <FILESIZE>241513</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-pycurl</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.19.0-19.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>NFS utilities and supporting clients and daemons for the kernel NFS server</COMMENTS>
+      <FILESIZE>1090802</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>nfs-utils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.3.0-0.61.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A C library for multiple-precision floating-point computations</COMMENTS>
+      <FILESIZE>554279</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>mpfr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.1.1-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A GNU file archiving program</COMMENTS>
+      <FILESIZE>2838510</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>tar</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Archiving</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.26-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>C library for multiple precision complex arithmetic</COMMENTS>
+      <FILESIZE>113833</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libmpc</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Tools</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.1-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A GNU tool which simplifies the build process for users</COMMENTS>
+      <FILESIZE>1160684</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>make</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Tools</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.82-23.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Files used by both Samba servers and clients</COMMENTS>
+      <FILESIZE>132565</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>samba-common</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.3-6.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Collection of simple PIN or passphrase entry dialogs</COMMENTS>
+      <FILESIZE>159929</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>pinentry</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.8.1-17.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>CUPS printing system - libraries</COMMENTS>
+      <FILESIZE>734207</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cups-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.6.3-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Fast compression and decompression library</COMMENTS>
+      <FILESIZE>119521</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>snappy</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.0-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The winbind client library</COMMENTS>
+      <FILESIZE>72872</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libwbclient</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.3-6.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A library of functions for manipulating PNG image format files</COMMENTS>
+      <FILESIZE>616101</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libpng</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.5.13-7.el7_2</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries used by both Samba servers and clients</COMMENTS>
+      <FILESIZE>276216</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>samba-common-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.8.3-6.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library for country/city/organization to IP address or hostname mapping</COMMENTS>
+      <FILESIZE>3912607</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>GeoIP</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.5.0-13.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Establish an ISA relationship with base classes at compile time</COMMENTS>
+      <FILESIZE>8141</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-parent</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.225-244.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tool to analyse BIOS DMI data</COMMENTS>
+      <FILESIZE>202856</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>dmidecode</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.1-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Format POD source into various output formats</COMMENTS>
+      <FILESIZE>287679</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-podlators</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.5.1-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>String library, very low memory overhead, simple to import</COMMENTS>
+      <FILESIZE>285943</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ustr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0.4-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Perl module for resolving POD escape sequences</COMMENTS>
+      <FILESIZE>21091</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Pod-Escapes</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.04-294.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Parse text into an array of tokens or array of arrays</COMMENTS>
+      <FILESIZE>16431</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Text-ParseWords</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.29-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A JSON implementation in C</COMMENTS>
+      <FILESIZE>65593</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>json-c</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.11-4.el7_0</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The libraries for the perl runtime</COMMENTS>
+      <FILESIZE>1647344</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.16.3-294.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A JSON implementation in C</COMMENTS>
+      <FILESIZE>57273</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libfastjson</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.99.4-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Perl interpreter-based threads</COMMENTS>
+      <FILESIZE>98615</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-threads</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.87-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library for Neighbor Discovery Protocol</COMMENTS>
+      <FILESIZE>75612</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libndp</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.2-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Implements default import method for modules</COMMENTS>
+      <FILESIZE>56612</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Exporter</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.68-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library for writing UNIX daemons</COMMENTS>
+      <FILESIZE>62045</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libdaemon</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.14-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Efficiently compute time from local and GMT time</COMMENTS>
+      <FILESIZE>44062</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Time-Local</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.2300-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>System and process monitoring utilities</COMMENTS>
+      <FILESIZE>760565</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>procps-ng</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.3.10-23.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Alternative warn and die for modules</COMMENTS>
+      <FILESIZE>28276</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Carp</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.26-244.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Perl extension for sharing data structures between threads</COMMENTS>
+      <FILESIZE>73972</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-threads-shared</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.43-6.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Initramfs generator using udev</COMMENTS>
+      <FILESIZE>903230</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>dracut</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.033-554.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A selection of general-utility scalar and list subroutines</COMMENTS>
+      <FILESIZE>67994</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Scalar-List-Utils</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.27-248.el7</VERSION>
+    </SOFTWAREUPDATES>
+
 
     <STORAGES>
       <DESCRIPTION>ata</DESCRIPTION>
