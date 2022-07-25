@@ -118,7 +118,7 @@ function generate_data {
 
     echo "CentOS release 6.6 (Final)" > ${DEST_PATH}/${UUID}/fullosname
 
-    echo "5.1.0-beta" >  ${DEST_PATH}/${UUID}/agent_version
+    echo "7.1.0-beta" >  ${DEST_PATH}/${UUID}/agent_version
   done
 
 
@@ -165,7 +165,7 @@ function create_inventory {
 
       FILE=${DEST_INVENTORIES}/${FILENAME}
       READY_FILE=${DEST_INVENTORIES}/${FILENAME}.gz
-
+echo "template is ${TEMPLATE}"
       # replace values in template and create temp file
       eval "cat <<EOF
 $(<template/${TEMPLATE}) 
@@ -251,7 +251,7 @@ while true; do
     -t |--template)
       TEMPLATE="$2"
       ANY_OPTION_DEFINED=true
-      shift
+      shift 2
       ;;
     -p |--path)
       DEST_PATH="$2"

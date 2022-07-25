@@ -1,0 +1,1997 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Template with variable OS Name, Software version-->
+<REQUEST>
+  <CONTENT>
+    <ACCESSLOG>
+      <LOGDATE>2019-06-01 01:06:33</LOGDATE>
+    </ACCESSLOG>
+    <BIOS>
+      <ASSETTAG />  <BDATE>12/01/2006</BDATE>
+      <BMANUFACTURER>innotek GmbH</BMANUFACTURER>
+      <BVERSION>VirtualBox</BVERSION>
+      <MMANUFACTURER>Oracle Corporation</MMANUFACTURER>
+      <MMODEL>VirtualBox</MMODEL>
+      <MSN>0</MSN>
+      <SKUNUMBER />  <SMANUFACTURER><script>alert("inject");</script></SMANUFACTURER>
+      <SMODEL>VirtualBox</SMODEL>
+      <SSN>20031FC-FDF2-4081-95D6-068FE15ACFED</SSN>
+    </BIOS>
+    <CPUS>
+      <ARCH>i386</ARCH>
+      <CORE>2</CORE>
+      <FAMILYNUMBER>6</FAMILYNUMBER>
+      <MANUFACTURER><script>alert("inject");</script></MANUFACTURER>
+      <MODEL>60</MODEL>
+      <NAME>Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz</NAME>
+      <SPEED>2400</SPEED>
+      <STEPPING>3</STEPPING>
+      <THREAD>2</THREAD>
+    </CPUS>
+    <DRIVES>
+      <FILESYSTEM>ext4</FILESYSTEM>
+      <FREE>16578</FREE>
+      <SERIAL>2000-921b-4552-9314-5afab2428707</SERIAL>
+      <TOTAL>18557</TOTAL>
+      <TYPE>/</TYPE>
+      <VOLUMN>/dev/mapper/VolGroup-lv_root</VOLUMN>
+    </DRIVES>
+    <DRIVES>
+      <FILESYSTEM>ext4</FILESYSTEM>
+      <FREE>404</FREE>
+      <SERIAL>20055-44e8-429d-be1c-c9ddf096511f</SERIAL>
+      <TOTAL>476</TOTAL>
+      <TYPE>/boot</TYPE>
+      <VOLUMN>/dev/sda1</VOLUMN>
+    </DRIVES>
+    <DRIVES>
+      <FILESYSTEM>vboxsf</FILESYSTEM>
+      <FREE>49008</FREE>
+      <TOTAL>375355</TOTAL>
+      <TYPE>/vagrant</TYPE>
+      <VOLUMN>vagrant</VOLUMN>
+    </DRIVES>
+    <ENVS>
+      <KEY>LANGSH_SOURCED</KEY>
+      <VAL>1</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>PREVLEVEL</KEY>
+      <VAL>N</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>MANPATH</KEY>
+      <VAL>/opt/rudder/share/man:/opt/rudder/share/man</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>CONSOLETYPE</KEY>
+      <VAL>vt</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>RUNLEVEL</KEY>
+      <VAL>3</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>previous</KEY>
+      <VAL>N</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>LESSOPEN</KEY>
+      <VAL>||/usr/bin/lesspipe.sh %s</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>MAIL</KEY>
+      <VAL>/var/spool/mail/root</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>PWD</KEY>
+      <VAL>/var/rudder</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>LANG</KEY>
+      <VAL>en_US.UTF-8</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>USER</KEY>
+      <VAL>root</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>UPSTART_INSTANCE</KEY>
+      <VAL></VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>runlevel</KEY>
+      <VAL>3</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>G_BROKEN_FILENAMES</KEY>
+      <VAL>1</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>DEBIAN_FRONTEND</KEY>
+      <VAL>noninteractive</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>LOGNAME</KEY>
+      <VAL>root</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>HOSTNAME</KEY>
+      <VAL><script>alert("inject");</script></VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>SHLVL</KEY>
+      <VAL>4</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>_</KEY>
+      <VAL>/usr/bin/perl</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>PATH</KEY>
+      <VAL>/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:/var/rudder/cfengine-community/bin:/var/rudder/cfengine-community/bin</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>HISTSIZE</KEY>
+      <VAL>1000</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>TERM</KEY>
+      <VAL>linux</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>UPSTART_JOB</KEY>
+      <VAL>rc</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>UPSTART_EVENTS</KEY>
+      <VAL>runlevel</VAL>
+    </ENVS>
+    <ENVS>
+      <KEY>HISTCONTROL</KEY>
+      <VAL>ignoredups</VAL>
+    </ENVS>
+    <HARDWARE>
+      <ARCHNAME>x86_64-linux-thread-multi</ARCHNAME>
+      <CHASSIS_TYPE>Other</CHASSIS_TYPE>
+      <CHECKSUM>131071</CHECKSUM>
+      <DATELASTLOGGEDUSER>Wed May 22 08:27</DATELASTLOGGEDUSER>
+      <DEFAULTGATEWAY><script>alert("inject");</script></DEFAULTGATEWAY>
+      <DNS>8.8.4.4/8.8.8.8</DNS>
+      <ETIME>1</ETIME>
+      <IPADDR>${IP}</IPADDR>
+      <LASTLOGGEDUSER>vagrant</LASTLOGGEDUSER>
+      <MEMORY>238</MEMORY>
+      <NAME>${HOSTNAME}</NAME>
+      <OSCOMMENTS>#1 SMP Wed Dec 17 01:55:02 UTC 2014</OSCOMMENTS>
+      <OSNAME>${FULL_OS_NAME}</OSNAME>
+      <OSVERSION>2.6.32-504.3.3.el6.x86_64</OSVERSION>
+      <PROCESSORN>1</PROCESSORN>
+      <PROCESSORS>2400</PROCESSORS>
+      <PROCESSORT>Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz</PROCESSORT>
+      <SWAP>991</SWAP>
+      <USERID>vagrant</USERID>
+      <UUID>${UUID}</UUID>
+      <VMSYSTEM>VirtualBox</VMSYSTEM>
+    </HARDWARE>
+    <INPUTS>
+      <CAPTION>AT Translated Set 2 keyboard</CAPTION>
+      <DESCRIPTION>AT Translated Set 2 keyboard</DESCRIPTION>
+      <TYPE>Keyboard</TYPE>
+    </INPUTS>
+    <INPUTS>
+      <CAPTION>ImExPS/2 Generic Explorer Mouse</CAPTION>
+      <DESCRIPTION>ImExPS/2 Generic Explorer Mouse</DESCRIPTION>
+      <TYPE>Pointing</TYPE>
+    </INPUTS>
+    <INPUTS>
+      <CAPTION>Video Bus</CAPTION>
+      <DESCRIPTION>Video Bus</DESCRIPTION>
+      <TYPE>Keyboard</TYPE>
+    </INPUTS>
+    <LOCAL_GROUPS>
+      <ID>1</ID>
+      <MEMBER>bin</MEMBER>
+      <MEMBER>daemon</MEMBER>
+      <MEMBER>bin</MEMBER>
+      <MEMBER>vboxadd</MEMBER>
+      <NAME>bin</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_GROUPS>
+      <ID>2</ID>
+      <MEMBER>bin</MEMBER>
+      <MEMBER>daemon</MEMBER>
+      <MEMBER>daemon</MEMBER>
+      <NAME>daemon</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_GROUPS>
+      <ID>3</ID>
+      <MEMBER>bin</MEMBER>
+      <MEMBER>adm</MEMBER>
+      <NAME>sys</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_GROUPS>
+      <ID>4</ID>
+      <MEMBER>adm</MEMBER>
+      <MEMBER>daemon</MEMBER>
+      <MEMBER>adm</MEMBER>
+      <NAME>adm</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_GROUPS>
+      <ID>7</ID>
+      <MEMBER>daemon</MEMBER>
+      <MEMBER>lp</MEMBER>
+      <NAME>lp</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_GROUPS>
+      <ID>10</ID>
+      <MEMBER>vagrant</MEMBER>
+      <NAME>wheel</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_GROUPS>
+      <ID>12</ID>
+      <MEMBER>mail</MEMBER>
+      <MEMBER>postfix</MEMBER>
+      <MEMBER>mail</MEMBER>
+      <NAME>mail</NAME>
+    </LOCAL_GROUPS>
+    <LOCAL_USERS>
+      <HOME>/root</HOME>
+      <ID>0</ID>
+      <LOGIN>root</LOGIN>
+      <NAME>root</NAME>
+      <SHELL>/bin/bash</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/bin</HOME>
+      <ID>1</ID>
+      <LOGIN>bin</LOGIN>
+      <NAME>bin</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/sbin</HOME>
+      <ID>2</ID>
+      <LOGIN>daemon</LOGIN>
+      <NAME>daemon</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/adm</HOME>
+      <ID>3</ID>
+      <LOGIN>adm</LOGIN>
+      <NAME>adm</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/spool/lpd</HOME>
+      <ID>4</ID>
+      <LOGIN>lp</LOGIN>
+      <NAME>lp</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/sbin</HOME>
+      <ID>5</ID>
+      <LOGIN>sync</LOGIN>
+      <NAME>sync</NAME>
+      <SHELL>/bin/sync</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/sbin</HOME>
+      <ID>6</ID>
+      <LOGIN>shutdown</LOGIN>
+      <NAME>shutdown</NAME>
+      <SHELL>/sbin/shutdown</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/sbin</HOME>
+      <ID>7</ID>
+      <LOGIN>halt</LOGIN>
+      <NAME>halt</NAME>
+      <SHELL>/sbin/halt</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/spool/mail</HOME>
+      <ID>8</ID>
+      <LOGIN>mail</LOGIN>
+      <NAME>mail</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/spool/uucp</HOME>
+      <ID>10</ID>
+      <LOGIN>uucp</LOGIN>
+      <NAME>uucp</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/root</HOME>
+      <ID>11</ID>
+      <LOGIN>operator</LOGIN>
+      <NAME>operator</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/usr/games</HOME>
+      <ID>12</ID>
+      <LOGIN><script>alert("inject");</script></LOGIN>
+      <NAME><script>alert("inject");</script></NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/gopher</HOME>
+      <ID>13</ID>
+      <LOGIN>gopher</LOGIN>
+      <NAME>gopher</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/ftp</HOME>
+      <ID>14</ID>
+      <LOGIN>ftp</LOGIN>
+      <NAME>FTP User</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/</HOME>
+      <ID>99</ID>
+      <LOGIN>nobody</LOGIN>
+      <NAME>Nobody</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/dev</HOME>
+      <ID>69</ID>
+      <LOGIN>vcsa</LOGIN>
+      <NAME>virtual console memory owner</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/empty/saslauth</HOME>
+      <ID>499</ID>
+      <LOGIN>saslauth</LOGIN>
+      <NAME>Saslauthd user</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/spool/postfix</HOME>
+      <ID>89</ID>
+      <LOGIN>postfix</LOGIN>
+      <NAME></NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/empty/sshd</HOME>
+      <ID>74</ID>
+      <LOGIN>sshd</LOGIN>
+      <NAME>Privilege-separated SSH</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/home/vagrant</HOME>
+      <ID>900</ID>
+      <LOGIN>vagrant</LOGIN>
+      <NAME></NAME>
+      <SHELL>/bin/bash</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/cache/rpcbind</HOME>
+      <ID>32</ID>
+      <LOGIN>rpc</LOGIN>
+      <NAME>Rpcbind Daemon</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/lib/nfs</HOME>
+      <ID>29</ID>
+      <LOGIN>rpcuser</LOGIN>
+      <NAME>RPC Service User</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/lib/nfs</HOME>
+      <ID>65534</ID>
+      <LOGIN>nfsnobody</LOGIN>
+      <NAME>Anonymous NFS User</NAME>
+      <SHELL>/sbin/nologin</SHELL>
+    </LOCAL_USERS>
+    <LOCAL_USERS>
+      <HOME>/var/run/vboxadd</HOME>
+      <ID>498</ID>
+      <LOGIN>vboxadd</LOGIN>
+      <NAME></NAME>
+      <SHELL>/bin/false</SHELL>
+    </LOCAL_USERS>
+    <LOGICAL_VOLUMES>
+      <ATTR>-wi-ao----</ATTR>
+      <LV_NAME>lv_root</LV_NAME>
+      <LV_UUID>ue3mef-CAkh-Y7k1-sdip-RcNg-eRNX-0EL7sa</LV_UUID>
+      <SEG_COUNT>1</SEG_COUNT>
+      <SIZE>19906</SIZE>
+      <VG_UUID>MxzI2v-uQ5F-j46x-BjJ1-FpiO-eEzT-LPWyvf</VG_UUID>
+    </LOGICAL_VOLUMES>
+    <LOGICAL_VOLUMES>
+      <ATTR>-wi-ao----</ATTR>
+      <LV_NAME>lv_swap</LV_NAME>
+      <LV_UUID>5Cubo8-1C8r-mnsq-VvBB-vx0b-QRhQ-lWRCf0</LV_UUID>
+      <SEG_COUNT>1</SEG_COUNT>
+      <SIZE>1040</SIZE>
+      <VG_UUID>MxzI2v-uQ5F-j46x-BjJ1-FpiO-eEzT-LPWyvf</VG_UUID>
+    </LOGICAL_VOLUMES>
+    <NETWORKS>
+      <DESCRIPTION>lo</DESCRIPTION>
+      <IPADDRESS>127.0.0.1</IPADDRESS>
+      <IPMASK>255.0.0.0</IPMASK>
+      <IPSUBNET>127.0.0.0</IPSUBNET>
+      <MACADDR><script>alert("inject");</script></MACADDR>
+      <STATUS>Up</STATUS>
+      <TYPE>loopback</TYPE>
+      <VIRTUALDEV>1</VIRTUALDEV>
+    </NETWORKS>
+    <NETWORKS>
+      <DESCRIPTION>lo</DESCRIPTION>
+      <IPADDRESS6>::1</IPADDRESS6>
+      <IPMASK6>fff0::</IPMASK6>
+      <IPSUBNET6>::</IPSUBNET6>
+      <MACADDR>00:00:00:00:00:00</MACADDR>
+      <STATUS>Up</STATUS>
+      <TYPE>loopback</TYPE>
+      <VIRTUALDEV>1</VIRTUALDEV>
+    </NETWORKS>
+    <NETWORKS>
+      <DESCRIPTION>eth0</DESCRIPTION>
+      <DRIVER>e1000</DRIVER>
+      <IPADDRESS>${IP}</IPADDRESS>
+      <IPGATEWAY>10.0.2.2</IPGATEWAY>
+      <IPMASK>255.255.255.0</IPMASK>
+      <IPSUBNET>${IP}</IPSUBNET>
+      <MACADDR>${MAC}</MACADDR>
+      <PCIID>8086:100E:8086:001E</PCIID>
+      <PCISLOT>0000:00:03.0</PCISLOT>
+      <SPEED>1000</SPEED>
+      <STATUS>Up</STATUS>
+      <TYPE>ethernet</TYPE>
+      <VIRTUALDEV>0</VIRTUALDEV>
+    </NETWORKS>
+ 
+    <OPERATINGSYSTEM>
+      <ARCH>x86_64</ARCH>
+      <BOOT_TIME>2019-05-22 08:26:25</BOOT_TIME>
+      <DNS_DOMAIN>rudder.local</DNS_DOMAIN>
+      <FQDN>${RUDDER_HOSTNAME}</FQDN>
+      <FULL_NAME>${RAND_FULL_OS_NAME}</FULL_NAME>
+      <HOSTID><script>alert("inject");</script></HOSTID>
+      <KERNEL_NAME>linux</KERNEL_NAME>
+      <KERNEL_VERSION><script>alert("inject");</script></KERNEL_VERSION>
+      <NAME>${RAND_OS_NAME}</NAME>
+      <SSH_KEY>ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3ZcgjrgYoe/YNfT7+Z3TyBWW54veEpAEe01YEsTZ6mhMjYFZr+GZRSnKXx056NjntzTnXmF7rI/jPRg13KkHxplP4mmYhTU+8q1+B0j7G8O8OlKg6SEV3rABGcyMzWQBfsmIJm6gloPackrkdYbTMv0f9kdLqI04sWts3JktFV271BCr8cd7VAWB68Z4d5k4vOg6kr0EgG4oZgHzeN4ohuZbqsPXyEPbyXwdKjCUqfC3VVZN0rGBnUzlct4Pu0gVo1Aifjs4JXpTE8CMww6eh3wj3evps+50InhtE0CcW4JN6SCetNwnGXPmMXlBhLyXZL1Vmv5X/GE97oroI6SHDw==</SSH_KEY>
+      <TIMEZONE>
+        <NAME>UTC</NAME>
+        <OFFSET>+0000</OFFSET>
+      </TIMEZONE>
+      <VERSION>2006.6</VERSION>
+    </OPERATINGSYSTEM>
+    <PHYSICAL_VOLUMES>
+      <ATTR>a--</ATTR>
+      <DEVICE>/dev/sda2</DEVICE>
+      <FORMAT>lvm2</FORMAT>
+      <FREE>0</FREE>
+      <PE_SIZE>4</PE_SIZE>
+      <PV_PE_COUNT>4994</PV_PE_COUNT>
+      <PV_UUID><script>alert("inject");</script></PV_UUID>
+      <SIZE>20946</SIZE>
+      <VG_UUID>MxzI2v-uQ5F-j46x-BjJ1-FpiO-eEzT-LPWyvf</VG_UUID>
+    </PHYSICAL_VOLUMES>
+    <PROCESSES>
+      <CMD>/sbin/init</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.5</MEM>
+      <PID>1</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>19232</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kthreadd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>2</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[migration/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>3</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ksoftirqd/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>4</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[stopper/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>5</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[watchdog/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>6</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[migration/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>7</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[stopper/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>8</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ksoftirqd/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>9</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[watchdog/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>10</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[events/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>11</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[events/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>12</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[cgroup]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>13</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD><script>alert("inject");</script></CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>14</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[netns]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>15</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[async/mgr]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>16</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[pm]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>17</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[sync_supers]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>18</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[bdi-default]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>19</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kintegrityd/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>20</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kintegrityd/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>21</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kblockd/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>22</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kblockd/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>23</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kacpid]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>24</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kacpi_notify]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>25</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kacpi_hotplug]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>26</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ata_aux]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>27</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ata_sff/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>28</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ata_sff/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>29</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ksuspend_usbd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>30</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[khubd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>31</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kseriod]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>32</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[md/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>33</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[md/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>34</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[md_misc/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>35</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[md_misc/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>36</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[linkwatch]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>37</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[khungtaskd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>39</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kswapd0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>40</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ksmd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>41</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[aio/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>42</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[aio/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>43</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[crypto/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>44</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[crypto/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>45</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kthrotld/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>53</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kthrotld/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>54</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kpsmoused]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>56</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[usbhid_resumer]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>57</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[deferwq]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>58</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kdmremove]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>90</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kstriped]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>91</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[scsi_eh_0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>170</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[scsi_eh_1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>171</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kdmflush]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>253</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kdmflush]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>255</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[jbd2/dm-0-8]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>272</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ext4-dio-unwrit]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>273</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/udevd -d</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>361</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>11080</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[iprt/0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>401</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[iprt/1]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>402</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[jbd2/sda1-8]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>623</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[ext4-dio-unwrit]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>624</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[kauditd]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>681</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>[flush-253:0]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.0</MEM>
+      <PID>747</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>0</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>auditd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>951</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>27596</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/rsyslogd -i /var/run/syslogd.pid -c 5</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>971</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>251192</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>rpcbind</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>996</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>rpc</USER>
+      <VIRTUALMEMORY>18976</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>rpc.statd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>1016</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>rpcuser</USER>
+      <VIRTUALMEMORY>23348</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/VBoxService</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.7</MEM>
+      <PID>1116</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>335476</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/sbin/sshd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>1138</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>66216</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/usr/libexec/postfix/master</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>1.3</MEM>
+      <PID>1215</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>80856</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>qmgr -l -t fifo -u</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>1.3</MEM>
+      <PID>1221</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>postfix</USER>
+      <VIRTUALMEMORY>81104</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/var/rudder/cfengine-community/bin/cf-serverd --info</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>2.9</MEM>
+      <PID>1320</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>52260</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/var/rudder/cfengine-community/bin/cf-execd</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>3.0</MEM>
+      <PID>1405</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>119704</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>crond</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.5</MEM>
+      <PID>1638</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>116860</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/mingetty /dev/tty1</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>1660</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>tty1</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4064</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/mingetty /dev/tty2</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>1662</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>tty2</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4064</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/mingetty /dev/tty6</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>1676</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>tty6</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>4064</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/sbin/dhclient -1 -q -cf /etc/dhcp/dhclient-eth0.conf -lf /var/lib/dhclient/dhclient-eth0.leases -pf /var/run/dhclient-eth0.pid eth0</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.2</MEM>
+      <PID>2744</PID>
+      <STARTED>2019-05-22 08:26</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>9120</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sshd: vagrant [priv]</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>1.5</MEM>
+      <PID>5385</PID>
+      <STARTED>2019-05-22 08:27</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>97892</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sshd: vagrant@pts/0</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.9</MEM>
+      <PID>5388</PID>
+      <STARTED>2019-05-22 08:27</STARTED>
+      <TTY>?</TTY>
+      <USER>vagrant</USER>
+      <VIRTUALMEMORY>97892</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>-bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.7</MEM>
+      <PID>5389</PID>
+      <STARTED>2019-05-22 08:27</STARTED>
+      <TTY>pts/0</TTY>
+      <USER>vagrant</USER>
+      <VIRTUALMEMORY>108328</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sudo su</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>1.0</MEM>
+      <PID>5406</PID>
+      <STARTED>2019-05-22 08:27</STARTED>
+      <TTY>pts/0</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>175096</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>su</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.6</MEM>
+      <PID>5407</PID>
+      <STARTED>2019-05-22 08:27</STARTED>
+      <TTY>pts/0</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>144996</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>bash</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.7</MEM>
+      <PID>5408</PID>
+      <STARTED>2019-05-22 08:27</STARTED>
+      <TTY>pts/0</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>108328</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>pickup -l -t fifo -u</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>1.3</MEM>
+      <PID>18715</PID>
+      <STARTED>2019-05-22 11:46</STARTED>
+      <TTY>?</TTY>
+      <USER>postfix</USER>
+      <VIRTUALMEMORY>80936</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sh -c &quot;/var/rudder/cfengine-community/bin/cf-agent&quot; -f failsafe.cf ; &quot;/var/rudder/cfengine-community/bin/cf-agent&quot;</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.5</MEM>
+      <PID>22121</PID>
+      <STARTED>2019-05-22 12:46</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>11300</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/var/rudder/cfengine-community/bin/cf-agent</CMD>
+      <CPUUSAGE>76.0</CPUUSAGE>
+      <MEM>6.0</MEM>
+      <PID>22131</PID>
+      <STARTED>2019-05-22 12:46</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>65468</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>/bin/sh /opt/rudder/bin/run-inventory --local=/var/rudder/tmp/inventory/agent1-3af53f81-1875-4e0d-b2db-2f5418b77d92.ocs</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.6</MEM>
+      <PID>22184</PID>
+      <STARTED>2019-05-22 12:46</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>108168</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>perl -I /opt/rudder/lib/perl5 /opt/rudder/bin/fusioninventory-agent --config=none --no-task=Deploy --local=/var/rudder/tmp/inventory/agent1-3af53f81-1875-4e0d-b2db-2f5418b77d92.ocs</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>11.6</MEM>
+      <PID>22194</PID>
+      <STARTED>2019-05-22 12:46</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>180616</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>sh -c ps -A -o user,pid,pcpu,pmem,vsz,tty,etime,command 2&gt;/dev/null</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.5</MEM>
+      <PID>22201</PID>
+      <STARTED>2019-05-22 12:46</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>11300</VIRTUALMEMORY>
+    </PROCESSES>
+    <PROCESSES>
+      <CMD>ps -A -o user,pid,pcpu,pmem,vsz,tty,etime,command</CMD>
+      <CPUUSAGE>0.0</CPUUSAGE>
+      <MEM>0.4</MEM>
+      <PID>22202</PID>
+      <STARTED>2019-05-22 12:46</STARTED>
+      <TTY>?</TTY>
+      <USER>root</USER>
+      <VIRTUALMEMORY>13364</VIRTUALMEMORY>
+    </PROCESSES>
+    <RUDDER>
+      <AGENT>
+        <AGENT_NAME>cfengine-community</AGENT_NAME>
+        <AGENT_CERT>${AGENT_CERT}
+        </AGENT_CERT>
+        <OWNER>root</OWNER>
+        <POLICY_SERVER_HOSTNAME>rudder_server</POLICY_SERVER_HOSTNAME>
+        <POLICY_SERVER_UUID>root</POLICY_SERVER_UUID>
+      </AGENT>
+      <AGENT_CAPABILITIES>
+        <AGENT_CAPABILITY>cfengine</AGENT_CAPABILITY>
+        <AGENT_CAPABILITY>dumpdatastate</AGENT_CAPABILITY>
+        <AGENT_CAPABILITY>bodydefault</AGENT_CAPABILITY>
+        <AGENT_CAPABILITY>yaml</AGENT_CAPABILITY>
+        <AGENT_CAPABILITY>xml</AGENT_CAPABILITY>
+        <AGENT_CAPABILITY>curl</AGENT_CAPABILITY>
+        <AGENT_CAPABILITY><script>alert("inject");</script></AGENT_CAPABILITY>
+      </AGENT_CAPABILITIES>
+      <HOSTNAME>${RUDDER_HOSTNAME}</HOSTNAME>
+      <SERVER_ROLES></SERVER_ROLES>
+      <UUID>${UUID}</UUID>
+    </RUDDER>
+    <SOFTWARES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Configuration management and audit tool - agent</COMMENTS>
+      <FILESIZE>41087439</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>26/08/2019</INSTALLDATE>
+      <NAME>rudder-agent</NAME>
+      <PUBLISHER>Normation</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/System</SYSTEM_CATEGORY>
+      <VERSION>${AGENT_VERSION}</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH><script>alert("inject");</script></ARCH>
+      <COMMENTS>A firewall daemon with D-Bus interface providing a dynamic firewall</COMMENTS>
+      <FILESIZE>1861810</FILESIZE>
+      <FROM><script>alert("inject");</script></FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME><script>alert("inject");</script></NAME>
+      <PUBLISHER><script>alert("inject");</script></PUBLISHER>
+      <SYSTEM_CATEGORY><script>alert("inject");</script></SYSTEM_CATEGORY>
+      <VERSION><script>alert("inject");</script></VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Legacy data for kbd package</COMMENTS>
+      <FILESIZE>503608</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kbd-legacy</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <VERSION><script>alert("inject");</script></VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Descriptions of common terminals</COMMENTS>
+      <FILESIZE>223432</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ncurses-base</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <VERSION>${RAND_SOFT_VERSION}.5.9-14.20130511.el7_4</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Postfix Mail Transport Agent</COMMENTS>
+      <FILESIZE>12766329</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>postfix</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Daemons</SYSTEM_CATEGORY>
+      <VERSION>${RAND_SOFT_VERSION}.2.10.1-7.el7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>The skeleton package which defines a simple CentOS Linux system</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>basesystem</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <VERSION>${RAND_SOFT_VERSION}.10.0-7.el7.centos</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Character encoding auto-detection in Python</COMMENTS>
+      <FILESIZE>1156541</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>16/08/2019</INSTALLDATE>
+      <NAME>python-chardet</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <VERSION>${RAND_SOFT_VERSION}.2.2.1-1.el7_1</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Basic networking tools</COMMENTS>
+      <FILESIZE>939930</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>net-tools</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <VERSION>${RAND_SOFT_VERSION}.2.0-0.24.20131004git.el7</VERSION>
+    </SOFTWARES>
+    <SOFTWARES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The libraries and header files needed for Python development</COMMENTS>
+      <FILESIZE>1104386</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>19/08/2019</INSTALLDATE>
+      <NAME>python-devel</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <VERSION>${RAND_SOFT_VERSION}.2.7.5-80.el7_6</VERSION>
+    </SOFTWARES>
+    <SOFTWAREUPDATES>
+      <ARCH><script>alert("inject");</script></ARCH>
+      <COMMENTS>A firewall daemon with D-Bus interface providing a dynamic firewall</COMMENTS>
+      <FILESIZE>1861810</FILESIZE>
+      <FROM><script>alert("inject");</script></FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME><script>alert("inject");</script></NAME>
+      <PUBLISHER><script>alert("inject");</script></PUBLISHER>
+      <SYSTEM_CATEGORY><script>alert("inject");</script></SYSTEM_CATEGORY>
+      <VERSION><script>alert("inject");</script>-1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Small, simple, correct HTTP/1.1 client</COMMENTS>
+      <FILESIZE>97210</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-HTTP-Tiny</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.033-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Character encodings in Perl</COMMENTS>
+      <FILESIZE>10176350</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Encode</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.51-7.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A privileged helper for utmp/wtmp updates</COMMENTS>
+      <FILESIZE>49749</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libutempter</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.6-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Macros for rpmbuild</COMMENTS>
+      <FILESIZE>5134</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-macros</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Languages</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.16.3-294.el7_6</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Create a tree of hardlinks</COMMENTS>
+      <FILESIZE>16545</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>hardlink</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.0-19.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Perl pragma to declare constants</COMMENTS>
+      <FILESIZE>26364</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-constant</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.27-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>QR Code encoding library - Shared libraries</COMMENTS>
+      <FILESIZE>126732</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>qrencode-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.4.1-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Persistence for Perl data structures</COMMENTS>
+      <FILESIZE>181031</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Storable</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.45-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Framework for parsing POD documentation</COMMENTS>
+      <FILESIZE>538320</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Pod-Simple</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.3.28-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Cryptsetup shared library</COMMENTS>
+      <FILESIZE>1219591</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>cryptsetup-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0.3-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Extended processing of command line options</COMMENTS>
+      <FILESIZE>134846</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>perl-Getopt-Long</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.40-3.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Rules for polkit to add compatibility with pklocalauthority</COMMENTS>
+      <FILESIZE>82409</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>polkit-pkla-compat</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A utility for retrieving files using the HTTP or FTP protocols</COMMENTS>
+      <FILESIZE>2055573</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>wget</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.14-18.el7_6.1</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Dynamic library for for the gpm</COMMENTS>
+      <FILESIZE>27736</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>gpm-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.20.7-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Probes disks on the system for installed operating systems</COMMENTS>
+      <FILESIZE>97946</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>os-prober</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.58-9.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>A perl module for simple terminal control</COMMENTS>
+      <FILESIZE>59999</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>perl-TermReadKey</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.30-20.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Root crontab files used to schedule the execution of programs</COMMENTS>
+      <FILESIZE>3700</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>crontabs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.11-6.20121102git.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>(none)</ARCH>
+      <COMMENTS>gpg(Rudder Project (RPM release key) &lt;security@rudder-project.org&gt;)</COMMENTS>
+      <FILESIZE>0</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>gpg-pubkey</NAME>
+      <SYSTEM_CATEGORY>Public Keys</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.6f07d355-509cdb91</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>An open source implementation of SSH protocol versions 1 and 2</COMMENTS>
+      <FILESIZE>1995364</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>openssh</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Applications/Internet</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.7.4p1-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Apache Portable Runtime Utility library</COMMENTS>
+      <FILESIZE>198751</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>apr-util</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.5.2-6.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Library providing the Gnome XSLT engine</COMMENTS>
+      <FILESIZE>497582</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>libxslt</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.28-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Perl extension for SHA-1/224/256/384/512</COMMENTS>
+      <FILESIZE>112297</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>perl-Digest-SHA</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.5.85-4.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Ethernet Bridge frame table administration tool</COMMENTS>
+      <FILESIZE>350763</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>ebtables</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.0.10-16.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>PC/SC Lite libraries</COMMENTS>
+      <FILESIZE>46708</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>pcsc-lite-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.8.8-8.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Timezone data for Java</COMMENTS>
+      <FILESIZE>373656</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>tzdata-java</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2019b-1.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Python2 bindings for firewalld</COMMENTS>
+      <FILESIZE>1862472</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>python-firewall</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.3-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Helper application and MIME type associations for file types</COMMENTS>
+      <FILESIZE>63360</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>08/08/2019</INSTALLDATE>
+      <NAME>mailcap</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.1.41-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Graphical Boot Animation and Logger</COMMENTS>
+      <FILESIZE>233311</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>plymouth</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.8.9-0.31.20140113.el7.centos</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>String handling essentials library</COMMENTS>
+      <FILESIZE>44322</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>libestr</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.1.9-2.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Libraries for building and signing RPM packages</COMMENTS>
+      <FILESIZE>166776</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>rpm-build-libs</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Development/Libraries</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.11.3-35.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Yum plugin which chooses fastest repository from a mirrorlist</COMMENTS>
+      <FILESIZE>53895</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>yum-plugin-fastestmirror</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.1.31-50.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools for configuring the console (keyboard, virtual terminals, etc.)</COMMENTS>
+      <FILESIZE>1383499</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>kbd</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.1.15.5-15.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>Tools for searching and reading man pages</COMMENTS>
+      <FILESIZE>2138837</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>man-db</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Base</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.2.6.3-11.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>noarch</ARCH>
+      <COMMENTS>Firewalld directory layout and rpm macros</COMMENTS>
+      <FILESIZE>239</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>firewalld-filesystem</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>Unspecified</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.0.5.3-5.el7</VERSION>
+    </SOFTWAREUPDATES>
+    <SOFTWAREUPDATES>
+      <ARCH>x86_64</ARCH>
+      <COMMENTS>The GNU Bourne Again shell</COMMENTS>
+      <FILESIZE>3667773</FILESIZE>
+      <FROM>rpm</FROM>
+      <INSTALLDATE>01/08/2019</INSTALLDATE>
+      <NAME>bash</NAME>
+      <PUBLISHER>CentOS</PUBLISHER>
+      <SYSTEM_CATEGORY>System Environment/Shells</SYSTEM_CATEGORY>
+      <SOURCE>CentOS-update</SOURCE>
+      <VERSION>${RAND_SOFT_VERSION}-1.4.2.46-31.el7</VERSION>
+    </SOFTWAREUPDATES>
+
+    <STORAGES>
+      <DESCRIPTION>ata</DESCRIPTION>
+      <DISKSIZE>20971</DISKSIZE>
+      <FIRMWARE>10 </FIRMWARE>
+      <MANUFACTURER><script>alert("inject");</script>   </MANUFACTURER>
+      <MODEL><script>alert("inject");</script>   </MODEL>
+      <NAME>sda</NAME>
+      <SCSI_CHID>0</SCSI_CHID>
+      <SCSI_COID>0</SCSI_COID>
+      <SCSI_LUN>0</SCSI_LUN>
+      <SCSI_UNID>0</SCSI_UNID>
+      <SERIALNUMBER><script>alert("inject");</script></SERIALNUMBER>
+      <TYPE>disk</TYPE>
+    </STORAGES>
+    <USERS>
+      <LOGIN>vagrant</LOGIN>
+    </USERS>
+    <VERSIONCLIENT>FusionInventory-Agent_v2.4.3</VERSIONCLIENT>
+    <VERSIONPROVIDER>
+      <COMMENTS>Platform  : linux worker1.bsys.centos.org 2.6.32-573.18.1.el6.x86_64 1 smp tue feb 9 22:46:17 utc 2016 x86_64 x86_64 x86_64 gnulinux </COMMENTS>
+      <COMMENTS>Build date: Sun Aug 18 02:16:39 2019 GMT</COMMENTS>
+      <NAME>FusionInventory</NAME>
+      <PERL_EXE>/usr/bin/perl</PERL_EXE>
+      <PERL_VERSION>v5.16.3</PERL_VERSION>
+      <PROGRAM>/opt/rudder/bin/fusioninventory-agent</PROGRAM>
+      <VERSION>2.4.3</VERSION>
+    </VERSIONPROVIDER>
+    <VOLUME_GROUPS>
+      <ATTR>wz--n-</ATTR>
+      <FREE>0</FREE>
+      <LV_COUNT>2</LV_COUNT>
+      <PV_COUNT>1</PV_COUNT>
+      <SIZE>20946</SIZE>
+      <VG_EXTENT_SIZE>4.19</VG_EXTENT_SIZE>
+      <VG_NAME>VolGroup</VG_NAME>
+      <VG_UUID>MxzI2v-uQ5F-j46x-BjJ1-FpiO-eEzT-LPWyvf</VG_UUID>
+    </VOLUME_GROUPS>
+  </CONTENT>
+  <DEVICEID>${RUDDER_HOSTNAME}</DEVICEID>
+  <QUERY>INVENTORY</QUERY>
+</REQUEST>
