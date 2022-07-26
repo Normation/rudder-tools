@@ -605,6 +605,76 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 7.0.5 (2022-07-26)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Missing dependency on gpg breaks "rudder package" command fails on minimal installs
+    (https://issues.rudder.io/issues/21061[#21061])
+
+==== Security
+
+* Fixed: Update embedded openssl to 1.1.1q
+    (https://issues.rudder.io/issues/21360[#21360])
+* Fixed: URL with "%3B" (ie ';') leads to a stacktrace
+    (https://issues.rudder.io/issues/21463[#21463])
+* Fixed: JSESSIONID cookie should have a SameSite policy
+    (https://issues.rudder.io/issues/21445[#21445])
+
+==== Performance and scalability
+
+* Fixed: API to fetch nodes + software times out on large instance
+    (https://issues.rudder.io/issues/21241[#21241])
+
+==== CI
+
+* Fixed: Ignore rudder-lang repos in script checks
+    (https://issues.rudder.io/issues/21364[#21364])
+
+==== Miscellaneous
+
+* Fixed: Remove unused variable newCall in JRTechniqueElem
+    (https://issues.rudder.io/issues/21355[#21355])
+
+==== Web - Compliance & node report
+
+* Fixed: In HTTPS mode, we may have errors in logs about duplicate messages that are totally legit
+    (https://issues.rudder.io/issues/21352[#21352])
+
+==== Web - UI & UX
+
+* Fixed: Impossible to put a Rule in a subcategory
+    (https://issues.rudder.io/issues/21175[#21175])
+
+==== Web - Technique editor
+
+* Fixed: Prevent adding carriage return in the condition in technique editor
+    (https://issues.rudder.io/issues/21126[#21126])
+
+==== Web - Nodes & inventories
+
+* Fixed: Using '{' in node property lead to error
+    (https://issues.rudder.io/issues/21322[#21322])
+
+==== Documentation
+
+* Fixed: Some reponses are missing in technique api doc
+    (https://issues.rudder.io/issues/21304[#21304])
+
+==== Agent
+
+* Fixed: Deprecation warning with package methods on Ubuntu 22.04 LTS
+    (https://issues.rudder.io/issues/21206[#21206])
+
+=== Release notes
+
+This is a bug fix release in the 7.0 series and therefore all installations of 7.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 7.0.0 (2022-01-26)
 
 === Changes
