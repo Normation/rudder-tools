@@ -349,6 +349,41 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 6.2.16 (2022-07-26)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: Update embedded openssl to 1.1.1q
+    (https://issues.rudder.io/issues/21360[#21360])
+* Fixed: URL with "%3B" (ie ';') leads to a stacktrace
+    (https://issues.rudder.io/issues/21463[#21463])
+* Fixed: JSESSIONID cookie should have a SameSite policy
+    (https://issues.rudder.io/issues/21445[#21445])
+
+==== Performance and scalability
+
+* Fixed: API to fetch nodes + software times out on large instance
+    (https://issues.rudder.io/issues/21241[#21241])
+
+==== Web - Compliance & node report
+
+* Fixed: In HTTPS mode, we may have errors in logs about duplicate messages that are totally legit
+    (https://issues.rudder.io/issues/21352[#21352])
+
+==== Agent
+
+* Fixed: Deprecation warning with package methods on Ubuntu 22.04 LTS
+    (https://issues.rudder.io/issues/21206[#21206])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.12 (2021-12-17)
 
 === Changes
