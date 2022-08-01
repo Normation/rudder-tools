@@ -15,16 +15,31 @@ fi
 
 import os.path
 import json
-from subprocess import run
+import sys
+from subprocess import Popen, PIPE
 import argparse
 try:
     import requests
 except:
     print("Install python-requests OR use python3")
 
+PY3 = sys.version_info > (3,)
+
 # The following url for viewing all categories of instance metadata from within a running instance.
 # The IP address 169.254.169.254 is a link-local address and is valid only from the instance.
 METAURL = 'http://169.254.169.254/latest'
+
+
+# ### Generic command handling ###
+
+def run(command, check=False):
+    proc = Popen(command, stdout=PIPE, stderr=PIPE)
+    output, error = proc.communicate()
+    if PY3:
+        output = output.decode('UTF-8')
+    if PY3:
+        error = error.decode('UTF-8')
+    return (proc.returncode, output, error)
 
 def is_ec2(debug):
     # Not perfect
@@ -40,7 +55,7 @@ def is_ec2(debug):
                 return bool( uuid_start == "ec2")
         else:
             if debug: print("File {file} not found\nTrying dmidecode --string system-uuid....".format(file=pv_ami_uuid_path))
-            uuid = run(['dmidecode', '--string', 'system-uuid'], capture_output=True).stdout.decode('utf-8').strip()
+            (returnCode, uuid, err) = run(['dmidecode', '--string', 'system-uuid'])
             uuid_start = uuid[0:3].lower()
             if debug: print("Got {output}, testing the first 3 chars: {start}".format(output=uuid, start=uuid_start))
             return uuid_start == "ec2"
