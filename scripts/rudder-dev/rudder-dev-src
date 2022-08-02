@@ -260,11 +260,16 @@ from versions import * # fake import
 Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
-Config.LIFECYCLES = [ { "name": "rudder",
+Config.LIFECYCLES = [ { "name": "rudder-plugins-next",
+                 "project_id": "21",
+                 "detection": r'^\*?\s+remotes/{}/([^/]*)-next',
+                 "format": ["branches/rudder/{}", "({}-next)"],
+               }, { "name": "rudder",
                  "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
-                 "format": "branches/rudder/{}",
+                 "format": [ "branches/rudder/{}" ],
                },
+
                { "name" : "master_only",
                  "detection": r'(.*)',
                  "format": "master",
@@ -412,13 +417,15 @@ def get_next_version(old, internal=False):
 
 # Get branch name from version
 def branch_from_version(version):
-  if version == "master":
-    return version
+  if version == "master" or version.endswith("-next"):
+   return version
   else:
     # detect lifecycle and base the name on it
+    # assume firt position is not next
     lifecycle = get_lifecycle()
-    return lifecycle['format'].format(version)
-
+    branch = lifecycle['format'][0].format(version)
+    print("Branch name for version '"+version+"' is: " + branch)
+    return branch
 
 # Get a version from a branch name
 def version_from_branch(branch):
@@ -427,9 +434,11 @@ def version_from_branch(branch):
   else:
     # detect lifecycle and extract the name
     lifecycle = get_lifecycle()
-    m = re.match(lifecycle["format"].format('(.*)'), branch)
-    if m:
-      return m.group(1)
+    for f in lifecycle["format"]:
+      m = re.match(f.format('(.*)'), branch)
+      if m:
+        print("Version for branch '" + branch + "' is: " + m.group(1))
+        return m.group(1)
   return None
 
 
@@ -1326,6 +1335,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True,
   if version is None:
     logfail("**** ERROR: cannot guess version of branch " + pr.base_branch() + " Exiting.")
     exit(15)
+  print("Target origin merge branch version found for PR: " + version)
   # squash commits
   squashed = False
   if not no_autosquash:
