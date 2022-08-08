@@ -91,7 +91,7 @@ def get_parsing_key(key):
       'serial'          : 'reportId'
     }.get(key, 'error')
   else:
-    key
+    return key
 
 def init_table():
   print("Creating table oldconfig to store old config id")
@@ -173,6 +173,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
 
             for components in directives[get_parsing_key('components')]:
                 # in 7.1 we may have blocks here
+                serial = 0
                 if get_parsing_key('values') in components:
                   for tmpValue in components[get_parsing_key('values')]:
                     # in 7.1, the values is a list of unexpanded/expanded
@@ -183,7 +184,8 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                       else:
                         value = 'None'
                         serial = '0'
-                    
+                    else:
+                      value = tmpValue
                     # randomize the reports to have also error and repaired
                     randomValue = random.random()
                     if audit == False:
