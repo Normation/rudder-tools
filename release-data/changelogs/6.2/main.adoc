@@ -395,6 +395,59 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 6.2.17 (2022-08-25)
+
+=== Changes
+
+
+==== Security
+
+* Skip CVE-2022-31197 in checks
+    (https://issues.rudder.io/issues/21602[#21602])
+
+=== Bug fixes
+
+==== Web - UI & UX
+
+* Fixed: when validating change in directive, a popup appear, but the background is only half grayed out
+    (https://issues.rudder.io/issues/18575[#18575])
+* Fixed: Filter in URL doest work on tab list of nodes
+    (https://issues.rudder.io/issues/21558[#21558])
+
+==== Relay server or API
+
+* Fixed: Unsoundness in "owning_ref"
+    (https://issues.rudder.io/issues/21538[#21538])
+
+==== Web - Technique editor
+
+* Fixed: Cannot delete technique in the technique editor if it contains a space in its name
+    (https://issues.rudder.io/issues/21491[#21491])
+
+==== System integration
+
+* Fixed: Correct BOM file in ps1.st used in test
+    (https://issues.rudder.io/issues/21498[#21498])
+
+==== Web - Config management
+
+* Fixed: Concurrent delete of policy backup directory can lead to useless error
+    (https://issues.rudder.io/issues/21482[#21482])
+
+==== Documentation
+
+* Fixed: improve contributing doc to state how to generate inventories
+    (https://issues.rudder.io/issues/21476[#21476])
+
+==== Generic methods
+
+* Fixed: rudder agent run man git-stash
+    (https://issues.rudder.io/issues/21525[#21525])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 6.2.12 (2021-12-17)
 
 === Changes
