@@ -1,5 +1,339 @@
 == [Private] Rudder 7.2.0.beta1 (2022-07-18)
 
+== [Private] Rudder 7.2.0.rc1 (2022-09-06)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Packaging
+
+* reinstate rudder-webapp package
+    (https://issues.rudder.io/issues/21645[#21645])
+* Update Rust to 1.62.1
+    (https://issues.rudder.io/issues/21440[#21440])
+
+==== Agent
+
+* Add a disable syslog option to cfengine
+    (https://issues.rudder.io/issues/20449[#20449])
+
+==== Documentation
+
+* User documentation of archive import/export
+    (https://issues.rudder.io/issues/21675[#21675])
+* Document SLES15SP2 requirement
+    (https://issues.rudder.io/issues/21676[#21676])
+* Improve user management docs
+    (https://issues.rudder.io/issues/21582[#21582])
+* Mention that AIX is compatible with everything noted as "Linux"
+    (https://issues.rudder.io/issues/21604[#21604])
+
+==== Web - Campaigns
+
+* Add reason field to disabled field in campains and campain events
+    (https://issues.rudder.io/issues/21698[#21698])
+
+==== Plugins integration
+
+* rudder package install can install plugins with short name but cannot remove them
+    (https://issues.rudder.io/issues/21318[#21318])
+
+==== Miscellaneous
+
+* New parameter to campaign event request
+    (https://issues.rudder.io/issues/21618[#21618])
+
+==== Security
+
+* Skip CVE-2022-31197 in checks
+    (https://issues.rudder.io/issues/21602[#21602])
+
+==== Architecture - Internal libs
+
+* Make campaign test work
+    (https://issues.rudder.io/issues/21539[#21539])
+* Port policy writting test to rudder 7.1
+    (https://issues.rudder.io/issues/21477[#21477])
+
+==== Techniques
+
+* Update techniques conditions for rhel9
+    (https://issues.rudder.io/issues/21588[#21588])
+
+==== System techniques
+
+* Cleanup system-update files
+    (https://issues.rudder.io/issues/21414[#21414])
+
+==== Generic methods
+
+* package method leads to report error when package with non-zero epoch is updated
+    (https://issues.rudder.io/issues/19033[#19033])
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: Postresql not found during migration to 7.2 => missing reports
+    (https://issues.rudder.io/issues/21705[#21705])
+* Fixed: Postresql not found during migration to 7.2 => missing reports
+    (https://issues.rudder.io/issues/21705[#21705])
+* Fixed: Correct BOM file in ps1.st used in test
+    (https://issues.rudder.io/issues/21498[#21498])
+
+==== Packaging
+
+* Fixed: Missing dependency on libpq for relay on centos9
+    (https://issues.rudder.io/issues/21674[#21674])
+* Fixed: Uprading relay to 7.2 fails on ubuntu 22
+    (https://issues.rudder.io/issues/21640[#21640])
+* Fixed: Postinst message on AIX about hostname rudder not found
+    (https://issues.rudder.io/issues/21626[#21626])
+* Fixed: error when installing Rudder 7.2 on ubuntu22
+    (https://issues.rudder.io/issues/21422[#21422])
+* Fixed: rudder-relayd fails to uninstall properly
+    (https://issues.rudder.io/issues/21581[#21581])
+* Fixed: upgrading to 7.2 on centos 8 fails
+    (https://issues.rudder.io/issues/21561[#21561])
+* Fixed: Missing dependency on gpg breaks "rudder package" command fails on minimal installs
+    (https://issues.rudder.io/issues/21061[#21061])
+* Fixed: Error when installing Rudder server 7.2 on debian 11
+    (https://issues.rudder.io/issues/21487[#21487])
+
+==== Server components
+
+* Fixed: Apache conf files are not overwritten after update
+    (https://issues.rudder.io/issues/21583[#21583])
+
+==== Agent
+
+* Fixed: Inventory hostname differ between Windows and Linux
+    (https://issues.rudder.io/issues/21356[#21356])
+* Fixed: rudder package command fails on amazon linux
+    (https://issues.rudder.io/issues/21654[#21654])
+* Fixed: Properly display report_json reports in agent output
+    (https://issues.rudder.io/issues/21622[#21622])
+* Fixed: Deprecation warning with package methods on Ubuntu 22.04 LTS
+    (https://issues.rudder.io/issues/21206[#21206])
+
+==== Documentation
+
+* Fixed: Installation documentation for Server has a section about sles12 but we only support sles15 as of 7.0
+    (https://issues.rudder.io/issues/21420[#21420])
+* Fixed: Add operation docs for webapp
+    (https://issues.rudder.io/issues/21578[#21578])
+* Fixed: Document 7.2 changes
+    (https://issues.rudder.io/issues/21575[#21575])
+* Fixed: Finish updating the docs for 7.2
+    (https://issues.rudder.io/issues/21548[#21548])
+* Fixed: Node create api doc for properties is incorrect
+    (https://issues.rudder.io/issues/21553[#21553])
+* Fixed: improve contributing doc to state how to generate inventories
+    (https://issues.rudder.io/issues/21476[#21476])
+
+==== Web - Config management
+
+* Fixed: missing list of inpacted rules when creating a directive and applying it to a rule
+    (https://issues.rudder.io/issues/21671[#21671])
+* Fixed: Group permission of policies is not correctly set anymore in 7.2
+    (https://issues.rudder.io/issues/21695[#21695])
+* Fixed: generated policies are invalid when using a generic method that doesn't exist on linux
+    (https://issues.rudder.io/issues/21686[#21686])
+* Fixed: Impossible to log in when login in rudder-users.xml contains uppercase chars and login are case-insensitive
+    (https://issues.rudder.io/issues/21532[#21532])
+* Fixed: Extra spacing when adding several lines with File-Content generic method
+    (https://issues.rudder.io/issues/21611[#21611])
+* Fixed: Create a migration script for campaign
+    (https://issues.rudder.io/issues/21571[#21571])
+* Fixed: Concurrent delete of policy backup directory can lead to useless error
+    (https://issues.rudder.io/issues/21482[#21482])
+* Fixed: rudder don't understand the new reports generated for system update
+    (https://issues.rudder.io/issues/21435[#21435])
+
+==== API
+
+* Fixed: API documentation on how to query node is invalid
+    (https://issues.rudder.io/issues/21690[#21690])
+* Fixed: Broken archive example in API doc
+    (https://issues.rudder.io/issues/21664[#21664])
+* Fixed: Missing import API documentation
+    (https://issues.rudder.io/issues/21531[#21531])
+
+==== Web - UI & UX
+
+* Fixed: rollback button in even log can be clicked several time in a row and error are stacked in other screens
+    (https://issues.rudder.io/issues/21429[#21429])
+* Fixed: Node certificate expiration date does not follow the same format than the others dates in the UI
+    (https://issues.rudder.io/issues/21367[#21367])
+* Fixed: Graph caption is ugly for overall compliance in dashboard
+    (https://issues.rudder.io/issues/21652[#21652])
+* Fixed: Delete group category popup and directive creation popup are not closing
+    (https://issues.rudder.io/issues/21666[#21666])
+* Fixed: dashboards widget are not correctly aligned
+    (https://issues.rudder.io/issues/21416[#21416])
+* Fixed: Broken display of nodes list footer
+    (https://issues.rudder.io/issues/21256[#21256])
+* Fixed: Empty dashboard text does not look good
+    (https://issues.rudder.io/issues/21634[#21634])
+* Fixed: Wrong button color in techniques tree
+    (https://issues.rudder.io/issues/21529[#21529])
+* Fixed: Most buttons with the new Rudder color briefly show their old color when clicked
+    (https://issues.rudder.io/issues/21258[#21258])
+* Fixed: when validating change in directive, a popup appear, but the background is only half grayed out
+    (https://issues.rudder.io/issues/18575[#18575])
+* Fixed: when validating change in directive, a popup appear, but the background is only half grayed out
+    (https://issues.rudder.io/issues/18575[#18575])
+* Fixed: Orange color of hovered links
+    (https://issues.rudder.io/issues/21528[#21528])
+* Fixed: once we setup the Rudder server, we have an option to go to the getting started... which doesn't work
+    (https://issues.rudder.io/issues/21488[#21488])
+* Fixed: Filter in URL doest work on tab list of nodes
+    (https://issues.rudder.io/issues/21558[#21558])
+* Fixed: Make the css code for the group selection interface globally accessible.
+    (https://issues.rudder.io/issues/21480[#21480])
+* Fixed: Refresh Button in Rules menu under Directives Tab is not working
+    (https://issues.rudder.io/issues/21264[#21264])
+
+==== Web - Campaigns
+
+* Fixed: Add a name parameter to campaign event
+    (https://issues.rudder.io/issues/21662[#21662])
+* Fixed: Initialization of campaign blocks rudder
+    (https://issues.rudder.io/issues/21523[#21523])
+* Fixed: Campaign scheduler seems to not look for existing campaign at boot
+    (https://issues.rudder.io/issues/21418[#21418])
+
+==== Web - Nodes & inventories
+
+* Fixed: Rudder agent version is not detected for windows on pending nodes in 7.2
+    (https://issues.rudder.io/issues/21667[#21667])
+* Fixed: when we receive a lot of inventories at once, not all are processed
+    (https://issues.rudder.io/issues/21653[#21653])
+* Fixed: Cannot edit/detele an empty group category
+    (https://issues.rudder.io/issues/21599[#21599])
+* Fixed: 502 - Proxy Error when triggering Rudder agent
+    (https://issues.rudder.io/issues/21170[#21170])
+* Fixed: error when processing inventories in 7.2
+    (https://issues.rudder.io/issues/21423[#21423])
+
+==== Miscellaneous
+
+* Fixed: Shared files cleanup does not work
+    (https://issues.rudder.io/issues/21641[#21641])
+* Fixed: Campaign events are not put in queue again after a new handler service was added, hence they are not treated after boot
+    (https://issues.rudder.io/issues/21621[#21621])
+* Fixed: Schedule campaign event when saving a new campaign
+    (https://issues.rudder.io/issues/21470[#21470])
+* Fixed: Improve handling of certificates not matching the key
+    (https://issues.rudder.io/issues/21616[#21616])
+
+==== Web - Compliance & node report
+
+* Fixed: no compliance details on dashboard on 7.2
+    (https://issues.rudder.io/issues/21432[#21432])
+
+==== Web - Technique editor
+
+* Fixed: When we change the status of a technique parameter from required to may be empty, it returns to required after saving
+    (https://issues.rudder.io/issues/21560[#21560])
+* Fixed: result condition are not correct in the technique editor when using properties or variables
+    (https://issues.rudder.io/issues/21515[#21515])
+* Fixed: Cannot delete technique in the technique editor if it contains a space in its name
+    (https://issues.rudder.io/issues/21491[#21491])
+* Fixed: Adapt webapp policy generation to 7.2 technique syntax
+    (https://issues.rudder.io/issues/21502[#21502])
+* Fixed: technique from technique editor not commited in git
+    (https://issues.rudder.io/issues/21430[#21430])
+
+==== Relay server or API
+
+* Fixed: Potential segfault in chrono
+    (https://issues.rudder.io/issues/21555[#21555])
+* Fixed: Unsoundness in "owning_ref"
+    (https://issues.rudder.io/issues/21538[#21538])
+
+==== Architecture - Internal libs
+
+* Fixed: Some tests not run because of bad class name
+    (https://issues.rudder.io/issues/21534[#21534])
+* Fixed: Path.of is not available in java8/rudder 7.1
+    (https://issues.rudder.io/issues/21524[#21524])
+
+==== CI
+
+* Fixed: Fix qa-test for 7.2
+    (https://issues.rudder.io/issues/21522[#21522])
+
+==== Performance and scalability
+
+* Fixed: Improve group node computation
+    (https://issues.rudder.io/issues/20758[#20758])
+* Fixed: API to fetch nodes + software times out on large instance
+    (https://issues.rudder.io/issues/21241[#21241])
+
+==== Security
+
+* Fixed: Update bouncycastle for 7.2
+    (https://issues.rudder.io/issues/21492[#21492])
+* Fixed: URL with "%3B" (ie ';') leads to a stacktrace
+    (https://issues.rudder.io/issues/21463[#21463])
+* Fixed: JSESSIONID cookie should have a SameSite policy
+    (https://issues.rudder.io/issues/21445[#21445])
+* Fixed: Add HSTS config (commented for now)
+    (https://issues.rudder.io/issues/21438[#21438])
+
+==== Techniques
+
+* Fixed: extra & at the end of systemUpdate technique
+    (https://issues.rudder.io/issues/21703[#21703])
+* Fixed: Fix the reporting and logging of the snmp technique on windows
+    (https://issues.rudder.io/issues/21684[#21684])
+* Fixed: Migrate the snmp windows technique to the 7.2 syntax
+    (https://issues.rudder.io/issues/21673[#21673])
+* Fixed: Migrate the motdConfiguration windows technique to the 7.2 syntax
+    (https://issues.rudder.io/issues/21657[#21657])
+* Fixed:  Migrate the fileTemplate windows technique to the 7.2 syntax
+    (https://issues.rudder.io/issues/21655[#21655])
+* Fixed: Migrate the copyFileFromSharedFolder windows technique to the 7.2 syntax
+    (https://issues.rudder.io/issues/21651[#21651])
+* Fixed: Port userManagement dsc technique to the new format
+    (https://issues.rudder.io/issues/21609[#21609])
+* Fixed: cron configuration restarts cron every 5 minutes on ubuntu22
+    (https://issues.rudder.io/issues/21600[#21600])
+* Fixed: error in system update technique on ubuntu 22.04
+    (https://issues.rudder.io/issues/21434[#21434])
+* Fixed: system-update technique output bogus "python" which breaks reporting
+    (https://issues.rudder.io/issues/21436[#21436])
+
+==== System techniques
+
+* Fixed: Make system update campaign technique system
+    (https://issues.rudder.io/issues/21701[#21701])
+* Fixed: Permissions are not preserved in shared-files on the relays
+    (https://issues.rudder.io/issues/21617[#21617])
+* Fixed: Wrong name use for campaign in report (should not canonify)
+    (https://issues.rudder.io/issues/21619[#21619])
+* Fixed: Broken reload command in apache logrotate configuration
+    (https://issues.rudder.io/issues/21612[#21612])
+
+==== Generic methods
+
+* Fixed: Broken jinja2 templating on ubuntu 22.04
+    (https://issues.rudder.io/issues/21606[#21606])
+* Fixed: rudder agent run man git-stash
+    (https://issues.rudder.io/issues/21525[#21525])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 === Changes
 
 [WARNING]
