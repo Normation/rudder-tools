@@ -103,7 +103,7 @@ EOF
     fi
 
     # install plugins
-    if [ "${PLUGINS_VERSION}" = "nightly" ]; then
+    if [ "${PLUGINS_VERSION}" = "nightly" ] || echo "${RUDDER_VERSION}" | grep -q nightly ; then
       nightly_plugins="--nightly"
     fi
     for p in ${PLUGINS}
