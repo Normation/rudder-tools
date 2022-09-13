@@ -260,7 +260,7 @@ from versions import * # fake import
 Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
-Config.LIFECYCLES = [ { "name": "rudder-plugins-next",
+Config.LIFECYCLES = [ { "name": "rudder",
                  "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/([^/]*)-next',
                  "format": ["branches/rudder/{}", "({}-next)"],

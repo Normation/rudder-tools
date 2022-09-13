@@ -314,12 +314,16 @@ class Redmine:
 
   def _query(self, query, post_data=None, put_data=None):
     """ Function to directly request the right redmine server """
+    url = self.api_url + query
+    headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }
     if post_data is not None:
-      ret = requests.post(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = post_data)
+      ret = requests.post(url, headers = headers, data = post_data)
     elif put_data is not None:
-      ret = requests.put(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' }, data = put_data)
+      ret = requests.put(url, headers = headers, data = put_data)
     else:
-      ret = requests.get(self.api_url + query, headers = {'X-Redmine-API-Key': self.token, 'Content-Type': 'application/json' })
+      ret = requests.get(url, headers = headers)
+    if ret.status_code != 200:
+      logfail("HTTP GET request on url '" + url + "' returned status code " + str(ret.status_code))
     return ret
 
   def create_issue(self, project_id, subject, description, tracker_id, version_id):
