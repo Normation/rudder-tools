@@ -44,7 +44,7 @@ CLONE
     - clone it
     - setup both remote repository in git
     ex: rudder-dev clone rudder-techniques
-    
+
 PULL
     Call it to make sure you are on a branch and up to date.
     - create the branch with remote tracking if it doesn't exist
@@ -182,7 +182,7 @@ MERGE
     Use --automatic to automatically validate merge comment.
     There is a special strategy call upto_XXX where XXX is a version number.
     When we reach this version, use -s ours to avoid upmerging to later branches.
-    - detect the ticket id from current branch if there is no parameter 
+    - detect the ticket id from current branch if there is no parameter
     - checkout an pull last version or the PR branch for a given ticket
     - automatically fixup commits on the PR branch unless --no-autosquash is provided
     - checkout an pull new version
@@ -209,7 +209,7 @@ CLEANUP
     - if ticket is closed
     - if branch's commit are pushed upstream
     - remove local and remote branch
-    With --more, include more branch that are not strictly clean, such as 
+    With --more, include more branch that are not strictly clean, such as
       closed tickets that have un unmerged commits are asked to the user.
     ex: git cleanup
 
@@ -232,6 +232,7 @@ Options:
     -b, --base=<ticket_id>   Use ticket PR as the ne work base
 """
 
+from operator import ge
 import sys
 import os
 import re
@@ -246,7 +247,7 @@ import requests # apt-get install python-requests || pip install requests
 import docopt # apt-get install python-docopt || pip install docopt
 
 # Fake imports are a solution to make the source be a valid python file
-# whereas the script need to stay a single file. 
+# whereas the script need to stay a single file.
 # We just replace the import at build time with the corresponding file content.
 # Please note that current code won't work properly with real import
 # but it could be interesting (or not).
@@ -260,9 +261,9 @@ from versions import * # fake import
 Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
-Config.LIFECYCLES = [ { "name": "rudder-plugins-next",
+Config.LIFECYCLES = [ { "name": "rudder-plugins",
                  "project_id": "21",
-                 "detection": r'^\*?\s+remotes/{}/([^/]*)-next',
+                 "detection": r'^\*?\s+remotes/{}/(\d+\.\d+)-next',
                  "format": ["branches/rudder/{}", "({}-next)"],
                }, { "name": "rudder",
                  "project_id": "21",
@@ -278,7 +279,7 @@ Config.LIFECYCLES = [ { "name": "rudder-plugins-next",
 
 ###
 ###  Internal functions
-### 
+###
 
 # update normation user list cache and return updated user list
 def update_nrm_users(project_id):
@@ -380,20 +381,20 @@ def get_versions(internal=False):
   server = Redmine(False)
   redmine_version_list = []
   version_dict = {}
-  for version in server.version_list(lifecycle['name']):
+  for version in server.version_list(lifecycle['project_id']):
     if version['status'] != 'open':
       continue
     v = None
     for k,val,recheck in Config.REDMINE_VERSION_DETECTOR:
       if re.match(k, version['name']):
         if recheck:
-          logfail("***** ERROR: There should not be any version in the rudder project that looks like a plugin version")
+          logfail("***** ERROR: There should not be any version in the rudder project that looks like a plugin version: " + k )
         v = re.sub(k, val, version['name'])
         break
     if v in git_version_list or v == 'master':
       redmine_version_list.append(v)
       version_dict[v] = version['id']
-  
+
   # keep unique name and sort
   version_list = list(set(redmine_version_list))
   # order is the right one because x.y < 'master'
@@ -503,7 +504,7 @@ def close_pr(pr_url, comment):
   issue = '{ "body": "' + comment + '" }'
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/comments"
   github_request(url, "Commenting PR ...", pr_url, issue)
-  
+
   # close the PR
   issue = '{ "state": "closed" }'
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
@@ -515,13 +516,13 @@ def get_pr_upstream(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
   pr = github_request(url, None, pr_url)
   return pr['base']['ref']
-  
+
 # get PR merge commit
 def get_pr_merge_commit(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/issues/{pr_id}/events"
   pr_events = github_request(url, None, pr_url)
   pr_merged = [ pr for pr in pr_events if pr["event"] == "merged" ]
-  if len(pr_merged) != 1: 
+  if len(pr_merged) != 1:
     logfail("Can't find merge commit for pull request")
     exit(12)
   return pr_merged[0]['commit_id']
@@ -713,7 +714,7 @@ def stash_info():
 
 
 ###
-### MAIN methods 
+### MAIN methods
 ###   branch, commit, rebase, clone, pull
 ###
 
@@ -798,7 +799,7 @@ def technique(version, message):
   if not match:
     logfail("***** ERROR: Version must be of the form x.y")
     exit(7)
-  
+
   # check branch info
   issue = issue_from_branch(current_branch)
 
@@ -882,12 +883,12 @@ def subtask(next_version, new_title, base=None, bug=False):
   # if branch has not been merged, base the ticket on the original
   else:
     create_branch(new_issue.name, current_branch)
-  
+
     # rebase to next_version
     next_branch = branch_from_version(next_version)
     shell("git rebase -i " + next_branch, "Rebasing to " + next_version)
 
- 
+
 # commit, push
 def wip():
   # must be on a working branch
@@ -989,7 +990,7 @@ def commit(trigraph=None, message=None, nopr=False):
 # amend commit, push -f, comment PR
 def amend(comment=None):
   issue = issue_from_branch(current_branch)
- 
+
   # commit over last commit and push
   if issue['private']:
     title = ''
@@ -1004,7 +1005,7 @@ def amend(comment=None):
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     # Remove cannot merge labels to permit merge again
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
- 
+
   # reassign ticket
   if 'last_assignee' in issue:
     issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
@@ -1012,7 +1013,7 @@ def amend(comment=None):
   # Message on PR if there is one
   if 'pr' in issue and issue['pr'] != '':
     update_pr(issue['pr'], "Commit modified", comment)
-    print("Done, you can see the PR here: " + issue['pr']) 
+    print("Done, you can see the PR here: " + issue['pr'])
   else:
     print("No PR found.")
 
@@ -1020,7 +1021,7 @@ def amend(comment=None):
 # fixup commit, push, comment PR
 def fixup(comment=None):
   issue = issue_from_branch(current_branch)
- 
+
   # commit over last commit and push
   if issue['private']:
     title = ''
@@ -1035,7 +1036,7 @@ def fixup(comment=None):
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     # Remove cannot merge labels to permit merge again
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
- 
+
   # reassign ticket
   if 'last_assignee' in issue:
     issue.update(user_id=issue['last_assignee'], status=Config.PENDING_TR_CODE)
@@ -1043,7 +1044,7 @@ def fixup(comment=None):
   # Message on PR if there is one
   if 'pr' in issue and issue['pr'] != '':
     update_pr(issue['pr'], "PR updated with a new commit", comment)
-    print("Done, you can see the PR here: " + issue['pr']) 
+    print("Done, you can see the PR here: " + issue['pr'])
   else:
     print("No PR found.")
 
@@ -1057,7 +1058,7 @@ def rebase(comment=None, base=None):
     pr = PR(issue['pr'])
     pr.unlabel(Config.PR_VALIDATED_LABEL)
     pr.unlabel(Config.BOT_CANNOT_MERGE_LABEL)
-  
+
   # fetch before rebasing
   if base is not None:
     if re.match(r'^.\d*$', base):
@@ -1132,7 +1133,7 @@ def retarget(version=None):
     # if OK: continue
     shell("git push --force " + Config.OWN_REPOSITORY + " " + current_branch, "Pushing rebased branch")
 
-    # create new PR 
+    # create new PR
     pr_url = create_pr(ticket_branch, issue, "Replacing previous PR: " +  issue['pr'])
 
     if pr_url:
@@ -1226,12 +1227,22 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
   global current_branch
   pull(old)
   branch = branch_from_version(old)
+  lifecycle = get_lifecycle()
   if test and not first_merge:
     test_branch = old + "_test"
     shell("git checkout " + test_branch)
     branch = test_branch
     current_branch = test_branch
-  merge_branch(branch, new, strategy, automatic, old, test, run_tests)
+  merge_branch(branch, new, strategy, automatic, new, test, run_tests)
+  # Now handle next branches during merge of plugin
+  if lifecycle["name"] == "rudder-plugins":
+    # Merge old into old-next (branches/rudder/x.y into x.y-next)
+    merge_branch(branch, old+"-next", strategy, automatic, old, test, run_tests)
+    new_next = new+"-next"
+    if new == "master":
+      new_next = "master"
+    # Merci old-next into new-next (x.y-next into x.y+1-next)
+    merge_branch(old+"-next", new_next, strategy, automatic, new, test, run_tests)
 
 # Squash commits in PR if necessary
 def pre_merge_squash(version, pr_branch, pr, test=False):
@@ -1250,7 +1261,7 @@ def pre_merge_squash(version, pr_branch, pr, test=False):
   return False
 
 # Merge remote branch
-def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, run_tests=True):
+def merge_branch(old, new, strategy=None, automatic=False, dsc_branch="", test=False, run_tests=True):
   global first_merge, current_branch
   pull(new)
   opts = ""
@@ -1270,7 +1281,21 @@ def merge_branch(old, new, strategy=None, automatic=False, name="", test=False, 
     shell("git branch -D " + test_branch + " 2>/dev/null || true")
     shell("git checkout -b " + test_branch)
     current_branch = test_branch
-  shell("git merge " + old + opts, "Merging " + name + " into " + new)
+  lifecycle = get_lifecycle()
+  fail_merge = lifecycle['name'] != "rudder-plugins"
+  # don't fail if merge fail within rudder-plugins, this is expected, especially on plugins-private
+  shell("git merge " + old + opts, "Merging " + old + " into " + new, fail_exit=fail_merge)
+
+  # handle merge of specific rudder-plugins files
+  if not fail_merge:
+    # rudder-plugins, only main-build.conf, we should ignore conflicts here and keep file as it is
+    shell("git restore main-build.conf --ours", "restore main build.conf", fail_exit=False)
+    # rudder-plugins-private, checkout and update dsc to current top of branch (a branches/rudder/x.y), we use a new parameter (name parameter, that was unused and is now renamed to dsc_branch)
+    shell("cd dsc/rudder-agent-windows && git fetch && git checkout branches/rudder/"+dsc_branch+" && git pull &&  cd .." , "checkout rudder agent plugin to "+dsc_branch, fail_exit=False)
+    # rudder-plugins-private, checkout and update rudder-plugins to the same branch as we are currently on (new), as we can merge into branches, we need to use branch_from_version
+    new_branch = branch_from_version(new)
+    shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .." , "checkout rudder plugin to " + new_branch, fail_exit=False)
+    shell("git add -u main-build.conf rudder-plugins dsc/rudder-agent-windows && git commit --allow-empty -m 'Update submodule during merge of "+old+" into "+new_branch+"'", "Commiting")
   # run merge tests if there are some
   if run_tests:
     toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
@@ -1304,7 +1329,7 @@ def merge_issue(issue_name=None, strategy=None, automatic=False, test=False, run
     issue = issue_from_branch(current_branch)
   else:
     issue = Issue(issue_name)
-  
+
   if 'pr' not in issue or issue['pr'] == '':
     logfail("There is no PR in this issue " + issue.name)
     exit(15)
@@ -1352,7 +1377,7 @@ def merge_pr(pr_url, strategy=None, automatic=False, test=False, run_tests=True,
     version = get_next_version(version)
 
 
-# Revert commit from ticket passed as parameter, use retarget to keep changes on next branch  
+# Revert commit from ticket passed as parameter, use retarget to keep changes on next branch
 def revert(ticket, retarget = False):
   issue = Issue(ticket, False)
 
@@ -1365,15 +1390,15 @@ def revert(ticket, retarget = False):
 
   pull(issue['version'])
   # If we retarget a change, we want only this change to be reverted, so ensure we have already merged the branch correctly
-  if retarget: 
+  if retarget:
     merge_to_next(issue['version'])
-  
+
   # Reverting
   shell("git revert -m1 " + commit, "Reverting issue #" + str(issue.id) + ":" + issue["name"]+ ", commit: " + commit  )
   shell("git push " + Config.UPSTREAM_REPOSITORY, "Updating " + Config.UPSTREAM_REPOSITORY)
 
-  # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version 
-  if retarget: 
+  # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version
+  if retarget:
     merge_to_next(issue['version'], "ours")
 
 
@@ -1438,7 +1463,7 @@ def cleanup(more=False, dry=False):
             if answer.upper() == "Y":
               remove = True
         # The ticket is open -> NO
-      
+
       if remove:
         print("removing: " + branch)
         if not dry:
@@ -1498,7 +1523,7 @@ def blame(filename, long_format, before_commit, changed_from):
     # get ordered list of commit id
     commits = shell("git log --oneline --abbrev=7", keep_output=True) # abbrev used is +1 in git blame !!
     commit_list = commits.split("\n")
-    commit_list = [ x.split(' ',1)[0] for x in commit_list ] 
+    commit_list = [ x.split(' ',1)[0] for x in commit_list ]
   blame = shell("git blame -s -w --abbrev=6 " + reverse_opt + " " + filename + " " + commit_opt, "Blaming file " + filename, keep_output=True)
   output = ""
   for line in blame.split('\n'):
@@ -1521,7 +1546,7 @@ def blame(filename, long_format, before_commit, changed_from):
             log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
         else:
           log = shell("git show --oneline -s " + commit_id, keep_output=True).strip()
-      # format the log line and add it to the blame 
+      # format the log line and add it to the blame
       if long_format:
         output += "%-65.65s %s\n" % (log, match.group(2))
       else:
@@ -1555,7 +1580,7 @@ if __name__ == "__main__":
     elif re.match(r'^i?\d{2,5}$', smart):
       arguments['branch'] = True
       arguments['<ticket_id>'] = smart
-    elif re.match(r'^\d\.(\d+|x)$|^master$', smart):
+    elif re.match(r'^\d\.(\d+|x)(-next)?$|^master$', smart):
       arguments['pull'] = True
       arguments['<branch>'] = smart
     elif re.match(r'^[A-Z]{3}$', smart):
@@ -1659,7 +1684,7 @@ if __name__ == "__main__":
     elif re.match(r'^https?://', arguments['<first_branch/ticket_id/pr_url>']): # starts with http:// -> pr_url: rudder-dev merge pr
       merge_pr(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests, arguments['--no-autosquash'])
     else: # rudder-dev merge first
-      merge_to_next(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test)
+      merge_to_next(arguments['<first_branch/ticket_id/pr_url>'], arguments['<strategy>'], automatic, test, run_tests)
     shell("git checkout " + before_merge_branch, "Going back to the branch we were before merge")
     unstash()
   elif arguments['find']:
