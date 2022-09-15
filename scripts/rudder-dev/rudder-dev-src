@@ -1295,7 +1295,8 @@ def merge_branch(old, new, strategy=None, automatic=False, dsc_branch="", test=F
     # rudder-plugins-private, checkout and update rudder-plugins to the same branch as we are currently on (new), as we can merge into branches, we need to use branch_from_version
     new_branch = branch_from_version(new)
     shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .." , "checkout rudder plugin to " + new_branch, fail_exit=False)
-    shell("git add -u main-build.conf rudder-plugins dsc/rudder-agent-windows && git commit --allow-empty -m 'Update submodule during merge of "+old+" into "+new_branch+"'", "Commiting")
+    shell("git add -u main-build.conf rudder-plugins dsc/rudder-agent-windows", "Adding files", fail_exit=False)
+    shell("git commit --allow-empty -m 'Update submodule during merge of "+old+" into "+new_branch+"'", "Commiting")
   # run merge tests if there are some
   if run_tests:
     toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
