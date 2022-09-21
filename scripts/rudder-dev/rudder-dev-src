@@ -1261,7 +1261,7 @@ def pre_merge_squash(version, pr_branch, pr, test=False):
   return False
 
 # Merge remote branch
-def merge_branch(old, new, strategy=None, automatic=False, dsc_branch="", test=False, run_tests=True):
+def merge_branch(old, new, strategy=None, automatic=False, dsc_version="", test=False, run_tests=True):
   global first_merge, current_branch
   pull(new)
   opts = ""
@@ -1289,13 +1289,13 @@ def merge_branch(old, new, strategy=None, automatic=False, dsc_branch="", test=F
   # handle merge of specific rudder-plugins files
   if not fail_merge:
     # rudder-plugins, only main-build.conf, we should ignore conflicts here and keep file as it is
-    shell("git restore main-build.conf --ours", "restore main build.conf", fail_exit=False)
+    shell("git restore main-build.conf --ours && git add main-build.conf", "restore main build.conf", fail_exit=False)
     # rudder-plugins-private, checkout and update dsc to current top of branch (a branches/rudder/x.y), we use a new parameter (name parameter, that was unused and is now renamed to dsc_branch)
-    shell("cd dsc/rudder-agent-windows && git fetch && git checkout branches/rudder/"+dsc_branch+" && git pull &&  cd .." , "checkout rudder agent plugin to "+dsc_branch, fail_exit=False)
+    dsc_branch = branch_from_version(dsc_version)
+    shell("cd dsc/rudder-agent-windows && git fetch && git checkout branches/rudder/"+dsc_branch+" && git pull &&  cd ../.. && git add dsc/rudder-agent-windows " , "checkout rudder agent plugin to "+dsc_branch, fail_exit=False)
     # rudder-plugins-private, checkout and update rudder-plugins to the same branch as we are currently on (new), as we can merge into branches, we need to use branch_from_version
     new_branch = branch_from_version(new)
-    shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .." , "checkout rudder plugin to " + new_branch, fail_exit=False)
-    shell("git add -u main-build.conf rudder-plugins dsc/rudder-agent-windows", "Adding files", fail_exit=False)
+    shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .. && git add rudder-plugins" , "checkout rudder plugin to " + new_branch, fail_exit=False)
     opts = ""
     if automatic:
       opts += " --no-edit "
