@@ -8,6 +8,8 @@ release-status = "final"
 # 25th April 2022
 release-date = "2022-04-25"
 
+eol-date = "2022-12-23"
+
 # Has this version had Long-Term Support (LTS)?
 lts = false
 
