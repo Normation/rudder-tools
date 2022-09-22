@@ -262,7 +262,7 @@ Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
 Config.LIFECYCLES = [ { "name": "rudder-plugins",
-                 "project_id": "21",
+                 "project_id": "55",
                  "detection": r'^\*?\s+remotes/{}/(\d+\.\d+)-next',
                  "format": ["branches/rudder/{}", "({}-next)"],
                }, { "name": "rudder",
@@ -1292,7 +1292,7 @@ def merge_branch(old, new, strategy=None, automatic=False, dsc_version="", test=
     shell("git restore main-build.conf --ours && git add main-build.conf", "restore main build.conf", fail_exit=False)
     # rudder-plugins-private, checkout and update dsc to current top of branch (a branches/rudder/x.y), we use a new parameter (name parameter, that was unused and is now renamed to dsc_branch)
     dsc_branch = branch_from_version(dsc_version)
-    shell("cd dsc/rudder-agent-windows && git fetch && git checkout branches/rudder/"+dsc_branch+" && git pull &&  cd ../.. && git add dsc/rudder-agent-windows " , "checkout rudder agent plugin to "+dsc_branch, fail_exit=False)
+    shell("cd dsc/rudder-agent-windows && git fetch && git checkout "+dsc_branch+" && git pull &&  cd ../.. && git add dsc/rudder-agent-windows " , "checkout rudder agent plugin to "+dsc_branch, fail_exit=False)
     # rudder-plugins-private, checkout and update rudder-plugins to the same branch as we are currently on (new), as we can merge into branches, we need to use branch_from_version
     new_branch = branch_from_version(new)
     shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .. && git add rudder-plugins" , "checkout rudder plugin to " + new_branch, fail_exit=False)
