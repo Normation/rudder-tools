@@ -3,10 +3,9 @@
 release = "7.2"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "beta"
+release-status = "final"
 
-# 25th April 2022
-#release-date = "2022-04-25"
+release-date = "2022-09-28"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false
@@ -109,7 +108,7 @@ components = {
 
 # Highest API versions available in this release
 api-version = {
-                "webapp": "15",
+                "webapp": "16",
                 "relay": "1"
               }
 
