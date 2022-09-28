@@ -1,5 +1,177 @@
 == [Private] Rudder 7.2.0.beta1 (2022-07-18)
 
+==  Rudder 7.2.0 (2022-09-28)
+
+=== Changes
+
+
+==== Agent
+
+* Add in the agent a feature to express that it support not sending syslog message
+    (https://issues.rudder.io/issues/21771[#21771])
+* Allow users to specify node hostname (FQDN)
+    (https://issues.rudder.io/issues/8022[#8022])
+
+==== Web - Campaigns
+
+* Campaign events api should be sortable
+    (https://issues.rudder.io/issues/21849[#21849])
+
+==== CI
+
+* Update dependency check for 7.2
+    (https://issues.rudder.io/issues/21830[#21830])
+
+==== Miscellaneous
+
+* Add link to the documentation in the Hooks page
+    (https://issues.rudder.io/issues/21791[#21791])
+
+==== System integration
+
+* add an option to select where to log in syslog
+    (https://issues.rudder.io/issues/21778[#21778])
+
+==== Generic methods
+
+* Add an audit command generic method
+    (https://issues.rudder.io/issues/21763[#21763])
+* Precise the documentation of the condition_from_variable_match method
+    (https://issues.rudder.io/issues/21744[#21744])
+* Improve the command_execution documentation for windows
+    (https://issues.rudder.io/issues/21734[#21734])
+* Add documentation for package_present update cache
+    (https://issues.rudder.io/issues/21412[#21412])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: When cf-serverd starts it can kill an unrelated process
+    (https://issues.rudder.io/issues/21100[#21100])
+* Fixed: Curl build for windows agents must support schannel backend
+    (https://issues.rudder.io/issues/21760[#21760])
+* Fixed: Broken report parsing when the key value contains line breaks
+    (https://issues.rudder.io/issues/21736[#21736])
+* Fixed: rudder agent check may not restart cf-execd if an agent is frozen
+    (https://issues.rudder.io/issues/21774[#21774])
+
+==== Documentation
+
+* Fixed: Missing ubuntu 22.04 support in documentation
+    (https://issues.rudder.io/issues/21721[#21721])
+* Fixed: Wrong method for reload technique in API doc
+    (https://issues.rudder.io/issues/21762[#21762])
+
+==== Web - Campaigns
+
+* Fixed: One shot schedule condition is invalid
+    (https://issues.rudder.io/issues/21865[#21865])
+* Fixed: Campaign json should be versionned
+    (https://issues.rudder.io/issues/21811[#21811])
+* Fixed: Switch campaign schedule from a duration to a end time
+    (https://issues.rudder.io/issues/21792[#21792])
+* Fixed: Allow to delete a campaign
+    (https://issues.rudder.io/issues/21775[#21775])
+* Fixed: Reschedule correctly campaign events when a campaign changes
+    (https://issues.rudder.io/issues/21766[#21766])
+* Fixed: Error on system update campaign technique on SLES 12
+    (https://issues.rudder.io/issues/21867[#21867])
+
+==== Web - UI & UX
+
+* Fixed: colors of mixed mode doesn't match enforce and audit
+    (https://issues.rudder.io/issues/21837[#21837])
+* Fixed: Impossible to move groups
+    (https://issues.rudder.io/issues/21755[#21755])
+* Fixed: Added a warning icon in a rule details if no target has been selected 
+    (https://issues.rudder.io/issues/21789[#21789])
+* Fixed: Input Text disapear in technic editor when entering a space with Grammarly/LanguageTool extension
+    (https://issues.rudder.io/issues/21172[#21172])
+* Fixed: Add css code to generate datatable loading animation
+    (https://issues.rudder.io/issues/21711[#21711])
+
+==== Security
+
+* Fixed: Remove Rudder version from login form
+    (https://issues.rudder.io/issues/21816[#21816])
+
+==== API
+
+* Fixed: API version was not updated to API 15 for addition of node updates
+    (https://issues.rudder.io/issues/21793[#21793])
+
+==== Web - Config management
+
+* Fixed: on a fresh 7.1 install, the number of group displayed for "Global configuration of all nodes" is invalid
+    (https://issues.rudder.io/issues/21730[#21730])
+* Fixed: No link to directives in a rule if the rule is not applied to some nodes
+    (https://issues.rudder.io/issues/21371[#21371])
+* Fixed: Archive import does regenerate policies
+    (https://issues.rudder.io/issues/21707[#21707])
+
+==== Miscellaneous
+
+* Fixed: Switch to jsonb for campaign event state
+    (https://issues.rudder.io/issues/21783[#21783])
+
+==== Web - Technique editor
+
+* Fixed: Cannot save a technique after removing a block
+    (https://issues.rudder.io/issues/21768[#21768])
+* Fixed: Report if condition and Environement_variable_present by default cause missing report
+    (https://issues.rudder.io/issues/21752[#21752])
+* Fixed: Methods markdown documentation in the technique editor are not properly rendered
+    (https://issues.rudder.io/issues/21368[#21368])
+
+==== System integration
+
+* Fixed: Wrong type for state column for campaign events in migration script
+    (https://issues.rudder.io/issues/21767[#21767])
+
+==== Architecture - Internal libs
+
+* Fixed: Syntax errors in scala files
+    (https://issues.rudder.io/issues/21748[#21748])
+
+==== Packaging
+
+* Fixed: Cleanup cron job for relay not removed on upgrade ot 7.2
+    (https://issues.rudder.io/issues/21714[#21714])
+
+==== Techniques
+
+* Fixed: Incorrect parsing of epoch in installed rpm
+    (https://issues.rudder.io/issues/21872[#21872])
+
+==== Relay server or API
+
+* Fixed: Bad parsing of systemUpdate N/A report by relayd
+    (https://issues.rudder.io/issues/21846[#21846])
+
+==== Plugins integration
+
+* Fixed: Bad parsing of date for system update python script
+    (https://issues.rudder.io/issues/21844[#21844])
+
+==== System techniques
+
+* Fixed: relayd error in logs in 7.2
+    (https://issues.rudder.io/issues/21777[#21777])
+
+==== Generic methods
+
+* Fixed: Improve the windows documentation for condition_from_command
+    (https://issues.rudder.io/issues/21737[#21737])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Janos Mattyasovszky
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == [Private] Rudder 7.2.0.rc1 (2022-09-06)
 
 === Changes
