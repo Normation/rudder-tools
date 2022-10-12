@@ -1,5 +1,121 @@
 = Change logs for Rudder 7.1
 
+==  Rudder 7.1.7 (2022-10-12)
+
+=== Changes
+
+
+==== Agent
+
+* Add in the agent a feature to express that it support not sending syslog message
+    (https://issues.rudder.io/issues/21771[#21771])
+* Allow users to specify node hostname (FQDN)
+    (https://issues.rudder.io/issues/8022[#8022])
+
+==== System integration
+
+* add an option to select where to log in syslog
+    (https://issues.rudder.io/issues/21778[#21778])
+
+==== Generic methods
+
+* Add documentation for package_present update cache
+    (https://issues.rudder.io/issues/21412[#21412])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: CVE in Jetty 9.4.32 Rudder 6.2
+    (https://issues.rudder.io/issues/21888[#21888])
+* Fixed: CVE in nuprocess 2.03 and below
+    (https://issues.rudder.io/issues/21893[#21893])
+
+==== Agent
+
+* Fixed: When cf-serverd starts it can kill an unrelated process
+    (https://issues.rudder.io/issues/21100[#21100])
+* Fixed: Curl build for windows agents must support schannel backend
+    (https://issues.rudder.io/issues/21760[#21760])
+* Fixed: Epoch is displayed in agent version in webapp
+    (https://issues.rudder.io/issues/21411[#21411])
+* Fixed: Broken report parsing when the key value contains line breaks
+    (https://issues.rudder.io/issues/21736[#21736])
+* Fixed: rudder agent check may not restart cf-execd if an agent is frozen
+    (https://issues.rudder.io/issues/21774[#21774])
+
+==== Documentation
+
+* Fixed: Missing ubuntu 22.04 LTS supported OS for relay and server
+    (https://issues.rudder.io/issues/21835[#21835])
+* Fixed: Missing ubuntu 22.04 support in documentation
+    (https://issues.rudder.io/issues/21721[#21721])
+* Fixed: Format of target group is wrong in API doc
+    (https://issues.rudder.io/issues/21935[#21935])
+* Fixed: Wrong method for reload technique in API doc
+    (https://issues.rudder.io/issues/21762[#21762])
+
+==== Web - UI & UX
+
+* Fixed: User technique should be on top in directive tree
+    (https://issues.rudder.io/issues/21917[#21917])
+* Fixed: Unable to sort on property in list of nodes tab
+    (https://issues.rudder.io/issues/21503[#21503])
+* Fixed: Input Text disapear in technic editor when entering a space with Grammarly/LanguageTool extension
+    (https://issues.rudder.io/issues/21172[#21172])
+
+==== Miscellaneous
+
+* Fixed: Quick search does not return node name when looking for properties but node id instead
+    (https://issues.rudder.io/issues/21901[#21901])
+
+==== Web - Config management
+
+* Fixed: Links in {directive|rule|group|technique} "tree" can not be open in a new tab
+    (https://issues.rudder.io/issues/21373[#21373])
+* Fixed: on a fresh 7.1 install, the number of group displayed for "Global configuration of all nodes" is invalid
+    (https://issues.rudder.io/issues/21730[#21730])
+* Fixed: No link to directives in a rule if the rule is not applied to some nodes
+    (https://issues.rudder.io/issues/21371[#21371])
+
+==== Architecture - Dependencies
+
+* Fixed: Update scala-lib version due to CVE2022-36944
+    (https://issues.rudder.io/issues/21869[#21869])
+
+==== API
+
+* Fixed: API version was not updated to API 15 for addition of node updates
+    (https://issues.rudder.io/issues/21793[#21793])
+
+==== Web - Technique editor
+
+* Fixed: Cannot save a technique after removing a block
+    (https://issues.rudder.io/issues/21768[#21768])
+* Fixed: Report if condition and Environement_variable_present by default cause missing report
+    (https://issues.rudder.io/issues/21752[#21752])
+* Fixed: Methods markdown documentation in the technique editor are not properly rendered
+    (https://issues.rudder.io/issues/21368[#21368])
+
+==== Architecture - Internal libs
+
+* Fixed: Syntax errors in scala files
+    (https://issues.rudder.io/issues/21748[#21748])
+
+==== System techniques
+
+* Fixed: relayd error in logs in 7.2
+    (https://issues.rudder.io/issues/21777[#21777])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Janos Mattyasovszky
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+
 ==  Rudder 7.1.6 (2022-09-05)
 
 === Changes
@@ -537,121 +653,6 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21130[#21130])
 
 === Release notes
-
-This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-==  Rudder 7.1.7 (2022-10-12)
-
-=== Changes
-
-
-==== Agent
-
-* Add in the agent a feature to express that it support not sending syslog message
-    (https://issues.rudder.io/issues/21771[#21771])
-* Allow users to specify node hostname (FQDN)
-    (https://issues.rudder.io/issues/8022[#8022])
-
-==== System integration
-
-* add an option to select where to log in syslog
-    (https://issues.rudder.io/issues/21778[#21778])
-
-==== Generic methods
-
-* Add documentation for package_present update cache
-    (https://issues.rudder.io/issues/21412[#21412])
-
-=== Bug fixes
-
-==== Security
-
-* Fixed: CVE in Jetty 9.4.32 Rudder 6.2
-    (https://issues.rudder.io/issues/21888[#21888])
-* Fixed: CVE in nuprocess 2.03 and below
-    (https://issues.rudder.io/issues/21893[#21893])
-
-==== Agent
-
-* Fixed: When cf-serverd starts it can kill an unrelated process
-    (https://issues.rudder.io/issues/21100[#21100])
-* Fixed: Curl build for windows agents must support schannel backend
-    (https://issues.rudder.io/issues/21760[#21760])
-* Fixed: Epoch is displayed in agent version in webapp
-    (https://issues.rudder.io/issues/21411[#21411])
-* Fixed: Broken report parsing when the key value contains line breaks
-    (https://issues.rudder.io/issues/21736[#21736])
-* Fixed: rudder agent check may not restart cf-execd if an agent is frozen
-    (https://issues.rudder.io/issues/21774[#21774])
-
-==== Documentation
-
-* Fixed: Missing ubuntu 22.04 LTS supported OS for relay and server
-    (https://issues.rudder.io/issues/21835[#21835])
-* Fixed: Missing ubuntu 22.04 support in documentation
-    (https://issues.rudder.io/issues/21721[#21721])
-* Fixed: Format of target group is wrong in API doc
-    (https://issues.rudder.io/issues/21935[#21935])
-* Fixed: Wrong method for reload technique in API doc
-    (https://issues.rudder.io/issues/21762[#21762])
-
-==== Web - UI & UX
-
-* Fixed: User technique should be on top in directive tree
-    (https://issues.rudder.io/issues/21917[#21917])
-* Fixed: Unable to sort on property in list of nodes tab
-    (https://issues.rudder.io/issues/21503[#21503])
-* Fixed: Input Text disapear in technic editor when entering a space with Grammarly/LanguageTool extension
-    (https://issues.rudder.io/issues/21172[#21172])
-
-==== Miscellaneous
-
-* Fixed: Quick search does not return node name when looking for properties but node id instead
-    (https://issues.rudder.io/issues/21901[#21901])
-
-==== Web - Config management
-
-* Fixed: Links in {directive|rule|group|technique} "tree" can not be open in a new tab
-    (https://issues.rudder.io/issues/21373[#21373])
-* Fixed: on a fresh 7.1 install, the number of group displayed for "Global configuration of all nodes" is invalid
-    (https://issues.rudder.io/issues/21730[#21730])
-* Fixed: No link to directives in a rule if the rule is not applied to some nodes
-    (https://issues.rudder.io/issues/21371[#21371])
-
-==== Architecture - Dependencies
-
-* Fixed: Update scala-lib version due to CVE2022-36944
-    (https://issues.rudder.io/issues/21869[#21869])
-
-==== API
-
-* Fixed: API version was not updated to API 15 for addition of node updates
-    (https://issues.rudder.io/issues/21793[#21793])
-
-==== Web - Technique editor
-
-* Fixed: Cannot save a technique after removing a block
-    (https://issues.rudder.io/issues/21768[#21768])
-* Fixed: Report if condition and Environement_variable_present by default cause missing report
-    (https://issues.rudder.io/issues/21752[#21752])
-* Fixed: Methods markdown documentation in the technique editor are not properly rendered
-    (https://issues.rudder.io/issues/21368[#21368])
-
-==== Architecture - Internal libs
-
-* Fixed: Syntax errors in scala files
-    (https://issues.rudder.io/issues/21748[#21748])
-
-==== System techniques
-
-* Fixed: relayd error in logs in 7.2
-    (https://issues.rudder.io/issues/21777[#21777])
-
-=== Release notes
-
-Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
-
-* Janos Mattyasovszky
 
 This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
