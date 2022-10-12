@@ -1,5 +1,25 @@
 = Changelogs for Rudder plugin auth-backends 6.2.\* versions
 
+== auth-backends-6.2-1.12 (2022-10-12)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Jackson-databind used in oauth has CVE
+    (https://issues.rudder.io/issues/21927[#21927])
+* Fixed: Remaingin OAUTH secret in log in trace level
+    (https://issues.rudder.io/issues/21896[#21896])
+* Fixed: Bad warning about missing config for oauth when oauth backend is not used
+    (https://issues.rudder.io/issues/21228[#21228])
+
+=== Release notes
+
+This is a bug fix release in the 6.2 series and therefore all installations of 6.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == auth-backends-6.2-1.10 (2022-05-09)
 
 === Changes
