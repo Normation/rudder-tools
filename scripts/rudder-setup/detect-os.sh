@@ -129,21 +129,22 @@ detect_os() {
   OS_COMPATIBLE=`echo "${OS_NAME}" | tr '[a-z]' '[A-Z]'`
   OS_COMPATIBLE_VERSION="${OS_VERSION}"
   case "${OS_NAME}" in
-    AIX)    OS_COMPATIBLE_VERSION=5;;
-    RedHat) OS_COMPATIBLE="RHEL" ;;
+    AIX)      OS_COMPATIBLE_VERSION=5;;
+    RedHat)   OS_COMPATIBLE="RHEL" ;;
     RedHatEnterprise*) OS_COMPATIBLE="RHEL" ;;
-    Oracle) OS_COMPATIBLE="RHEL" ;;
-    CentOS) OS_COMPATIBLE="RHEL" ;;
-    Amazon) OS_COMPATIBLE="RHEL"
+    Oracle)   OS_COMPATIBLE="RHEL" ;;
+    CentOS)   OS_COMPATIBLE="RHEL" ;;
+    Amazon)   OS_COMPATIBLE="RHEL"
           if [ "${OS_VERSION}" = "2" ]; then
-            OS_COMPATIBLE_VERSION=7
+              OS_COMPATIBLE_VERSION=7
           else
-            OS_COMPATIBLE_VERSION=6
+              OS_COMPATIBLE_VERSION=6
           fi;;
-    SuSE)   OS_COMPATIBLE="SLES" ;;
-    SUSE)   OS_COMPATIBLE="SLES" ;;
-    "SLES") OS_COMPATIBLE="SLES" ;;
+    SuSE)     OS_COMPATIBLE="SLES" ;;
+    SUSE)     OS_COMPATIBLE="SLES" ;;
+    "SLES")   OS_COMPATIBLE="SLES" ;;
     "SUSE LINUX")   OS_COMPATIBLE="SLES" ;;
+    Raspbian) OS_COMPATIBLE="DEBIAN" ;;
   esac
   OS_MAJOR_VERSION=`echo "${OS_COMPATIBLE_VERSION}" | sed 's/[^0-9].*//'`
 
