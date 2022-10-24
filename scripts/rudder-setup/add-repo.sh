@@ -86,8 +86,7 @@ EOF
         AUTH_CONF="/etc/apt/auth.conf.d/rudder.conf"
       fi
 
-      URLENCODED_PASSWORD=$(echo "${DOWNLOAD_PASSWORD}" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
-      echo "machine download.rudder.io login ${DOWNLOAD_USER} password ${URLENCODED_PASSWORD}" >> "${AUTH_CONF}"
+      echo "machine download.rudder.io login ${DOWNLOAD_USER} password ${DOWNLOAD_PASSWORD}" >> "${AUTH_CONF}"
       chmod 640 ${AUTH_CONF}
     fi
 
