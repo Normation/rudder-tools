@@ -40,7 +40,7 @@ add_repo() {
   then
     HOST="publisher.normation.com"
   else
-    if [ "${USER}" = "" ]; then
+    if [ "${DOWNLOAD_USER}" = "" ]; then
       HOST="repository.rudder.io"
     else
       HOST="${USER}download.rudder.io"
@@ -76,7 +76,7 @@ deb ${URL_BASE}/ ${OS_CODENAME} main
 EOF
 
     # source password
-    if [ "${USER}" != "" ]; then
+    if [ "${DOWNLOAD_USER}" != "" ]; then
       if [ "${OS_COMPATIBLE}" = "UBUNTU" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -lt 20 ] ||
          [ "${OS_COMPATIBLE}" = "DEBIAN" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -lt 10 ]
       then
