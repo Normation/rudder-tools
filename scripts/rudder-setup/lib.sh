@@ -73,6 +73,29 @@ get() {
   fi
 }
 
+has_ssl() {
+  URL="https://www.rudder-project.org/release-info/"
+  WGET="wget -O /dev/null"
+  CURL="curl -s -f -o /dev/null"
+  if type curl >/dev/null 2>/dev/null
+  then
+    curl -s -f -o /dev/null "${URL}" || ret=$?
+    if [ -n "${ret}" ] && [ ${ret} -eq 35 ]; then
+      return 1
+    else
+      return 0
+    fi
+  elif type wget >/dev/null 2>/dev/null
+  then
+    if wget -O /dev/null "${URL}" 2>&1 | grep -q "SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version"; then
+      return 1
+    else
+      return 0
+    fi
+  fi
+  return 1
+}
+
 # run a service using the first available method
 service_cmd() {
   if [ -x "/etc/init.d/$1" ]

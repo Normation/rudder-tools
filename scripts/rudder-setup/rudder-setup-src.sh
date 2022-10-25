@@ -92,6 +92,10 @@ then
   exit 1
 fi
 
+if [ "${USE_HTTPS}" = "" ] && ! has_ssl
+then
+  USE_HTTPS=false
+fi
 detect_os
 
 case "${COMMAND}" in
