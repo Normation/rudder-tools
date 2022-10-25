@@ -115,9 +115,15 @@ has_ssl() {
     curl -s -f -o /dev/null "${URL}" || ret=$?
     if [ -n "${ret}" ] && [ ${ret} -eq 35 ]; then
       return 1
-    if [ -n "${ret}" ] && [ ${ret} -eq 60 ]; then
-      echo "${ISRG_ROOT_X1}" > /usr/local/share/ca-certificates/isrg_root_x1
+    elif [ -n "${ret}" ] && [ ${ret} -eq 60 ]; then
+      echo "${ISRG_ROOT_X1}" > /usr/local/share/ca-certificates/isrg_root_x1.crt
       update-ca-certificates
+      if type wget >/dev/null 2>/dev/null
+      then
+        if wget -O /dev/null "${URL}" 2>&1 | grep -q "GnuTLS: A TLS fatal alert has been received."; then
+          return 1
+        fi
+      fi
       return 0
     else
       return 0
