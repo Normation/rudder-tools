@@ -67,7 +67,7 @@ add_repo() {
       get - "http${S}://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
     else
       # Debian / Ubuntu like
-      get /etc/apt/trusted.gpg.d/rudder_apt_key.gpg "https://repository.rudder.io/apt/rudder_apt_key.gpg"
+      get /etc/apt/trusted.gpg.d/rudder_apt_key.gpg "http${S}://repository.rudder.io/apt/rudder_apt_key.gpg"
     fi
 
     # the source configuration
