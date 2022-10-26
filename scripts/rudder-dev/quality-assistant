@@ -158,6 +158,9 @@ def repo_merge(repo, alt_dir, jobid):
     tested = pr.tests_passed()
     if not tested:
       continue
+    draft = pr.draft()
+    if draft:
+      continue
     # Reassign if a change is requested
     if not approved:
       if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":

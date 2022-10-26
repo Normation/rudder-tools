@@ -69,6 +69,10 @@ class PR:
     self._request_pr()
     return self.info['mergeable']
 
+  def draft(self):
+    self._request_pr()
+    return self.info['draft']
+
   def _commits(self):
     self._request_pr()
     self.commits = github_call(self.info['commits_url'])
