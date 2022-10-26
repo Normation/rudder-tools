@@ -110,6 +110,14 @@ has_ssl() {
   URL="https://www.rudder-project.org/release-info/"
   WGET="wget -O /dev/null"
   CURL="curl -s -f -o /dev/null"
+  if type apt-cache >/dev/null 2>/dev/null
+  then
+    # libgnutls <=26 is known to fail
+    if apt-cache pkgnames libgnutls2 | grep -q 'libgnutls2[0-6]'
+    then
+      return 1
+    fi
+  fi
   if type curl >/dev/null 2>/dev/null
   then
     curl -s -f -o /dev/null "${URL}" || ret=$?
@@ -118,7 +126,7 @@ has_ssl() {
     elif [ -n "${ret}" ] && [ ${ret} -eq 60 ]; then
       echo "${ISRG_ROOT_X1}" > /usr/local/share/ca-certificates/isrg_root_x1.crt
       update-ca-certificates
-      # apt may still not work, do not return yet
+      return 0
     else
       return 0
     fi
