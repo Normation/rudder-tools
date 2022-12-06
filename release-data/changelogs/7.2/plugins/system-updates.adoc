@@ -1,5 +1,16 @@
 = Changelogs for Rudder plugin system-updates 7.2.\* versions
 
+== system-updates-7.2.1-1.9 (2022-12-06)
+
+=== Changes
+
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.2.1-1.8 (2022-12-06)
 
 === Changes
