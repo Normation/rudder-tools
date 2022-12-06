@@ -1,5 +1,46 @@
 = Changelogs for Rudder plugin system-updates 7.2.\* versions
 
+== system-updates-7.2.0-1.5 (2022-12-06)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Reload events when saving a campaign
+    (https://issues.rudder.io/issues/21848[#21848])
+* Display error output
+    (https://issues.rudder.io/issues/21847[#21847])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: errors and output of results should be optionnal
+    (https://issues.rudder.io/issues/21876[#21876])
+* Fixed: Campaign events are duplicated when swtiching between events and campaign tab  and back to events again
+    (https://issues.rudder.io/issues/21870[#21870])
+* Fixed: Improve the appearance of the "execution schedule" form
+    (https://issues.rudder.io/issues/21860[#21860])
+* Fixed: Campaign events should not all be loaded directly within the UI
+    (https://issues.rudder.io/issues/21850[#21850])
+* Fixed: Add version support to system update campaign
+    (https://issues.rudder.io/issues/21813[#21813])
+* Fixed: Improve the display of the command output in the details of a node
+    (https://issues.rudder.io/issues/21769[#21769])
+* Fixed: Add the UI to delete a campaign event
+    (https://issues.rudder.io/issues/21776[#21776])
+* Fixed: Adapt plugin to new schedule model
+    (https://issues.rudder.io/issues/21812[#21812])
+* Fixed: The "Reason" popover does not close automatically.
+    (https://issues.rudder.io/issues/21800[#21800])
+* Fixed: Make the selection of Targets more accessible when creating a campaign
+    (https://issues.rudder.io/issues/21747[#21747])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.2.0.rc1-1.5 (2022-12-06)
 
 === Changes
