@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin auth-backends 7.2.\* versions
 
+== auth-backends-7.2.2-2.6 (2022-12-06)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: New CVE in Jackson-Databind 2.13.4
+    (https://issues.rudder.io/issues/21992[#21992])
+* Fixed: Document oauth2 common error case
+    (https://issues.rudder.io/issues/21987[#21987])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == auth-backends-7.2.1-2.5 (2022-12-06)
 
 === Changes
