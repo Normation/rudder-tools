@@ -1,5 +1,153 @@
 = Changelogs for Rudder plugin notify 7.2.0.rc1-2.2.\* versions
 
+== dsc-7.2.0.rc1-2.2 (2022-12-06)
+
+=== Changes
+
+
+==== Rudder web app
+
+* Resurect DSC policy generation test for rudder 7.1
+    (https://issues.rudder.io/issues/21483[#21483])
+
+==== Miscellaneous
+
+* Provide an interface to manage System update campaigns
+    (https://issues.rudder.io/issues/21310[#21310])
+
+==== Techniques
+
+* Deprecate old windows technique versions
+    (https://issues.rudder.io/issues/21704[#21704])
+
+==== Generic methods
+
+* Add tests for file_asbent method
+    (https://issues.rudder.io/issues/21694[#21694])
+* Add tests for directory_present method
+    (https://issues.rudder.io/issues/21693[#21693])
+* Add logging functions for techniques and directives
+    (https://issues.rudder.io/issues/21559[#21559])
+* Translate file_from_shared_folder and file_from_template_mustache to the new 7.2 syntax
+    (https://issues.rudder.io/issues/21507[#21507])
+* Migrate the registry* methods to 7.2 syntax
+    (https://issues.rudder.io/issues/21481[#21481])
+
+==== CLI
+
+* Add reporting compliance mode support to the 7.2 agents
+    (https://issues.rudder.io/issues/21598[#21598])
+* Rudder runs should be stored on DSC agents
+    (https://issues.rudder.io/issues/21562[#21562])
+* Add displayName to method reporting context
+    (https://issues.rudder.io/issues/21549[#21549])
+
+==== Agent library
+
+* Make agents 7.2 compatible with older policies
+    (https://issues.rudder.io/issues/21400[#21400])
+
+=== Bug fixes
+
+==== Rudder web app
+
+* Fixed: Incorrect permissions for dsc generated policies
+    (https://issues.rudder.io/issues/21567[#21567])
+* Fixed: Adapt policy generation to DSC agent 7.2
+    (https://issues.rudder.io/issues/21552[#21552])
+
+==== Packaging
+
+* Fixed: Update plugin makefile to build the F# rudderLib
+    (https://issues.rudder.io/issues/21419[#21419])
+* Fixed: Postinst fails to find the utils.ps1 file
+    (https://issues.rudder.io/issues/21591[#21591])
+* Fixed: Packaging should not package test assets
+    (https://issues.rudder.io/issues/21566[#21566])
+* Fixed: Error in rudderLib loading in postinst
+    (https://issues.rudder.io/issues/21557[#21557])
+
+==== Agent library
+
+* Fixed: Fix MethodStatus order to have the Error as most weighted and Control as the least weighted
+    (https://issues.rudder.io/issues/21679[#21679])
+* Fixed: Allow custom messages for report na
+    (https://issues.rudder.io/issues/21610[#21610])
+* Fixed: The 7.2 rudderLib does not support optional reporting
+    (https://issues.rudder.io/issues/21550[#21550])
+* Fixed: Context uuid are changed when merged
+    (https://issues.rudder.io/issues/21547[#21547])
+* Fixed: "result_na" reporting status is set as "resultNA" which is unknown by the webapp
+    (https://issues.rudder.io/issues/21545[#21545])
+* Fixed: Agent version format is not nuget compatible
+    (https://issues.rudder.io/issues/21530[#21530])
+* Fixed: Add AssemblyVersion to the rudderLib 
+    (https://issues.rudder.io/issues/21464[#21464])
+
+==== Techniques
+
+* Fixed: Port the registryManagement technique to the nex 7.2 syntax
+    (https://issues.rudder.io/issues/21639[#21639])
+* Fixed: windowsUpdate text improvement
+    (https://issues.rudder.io/issues/21384[#21384])
+
+==== Generic methods
+
+* Fixed: Error with permissions-NTFS generic method
+    (https://issues.rudder.io/issues/21593[#21593])
+* Fixed: error with condition from command
+    (https://issues.rudder.io/issues/21595[#21595])
+* Fixed: file from shared folder report an error
+    (https://issues.rudder.io/issues/21589[#21589])
+* Fixed: Make the 7.2 plugin compatible with 7.1 or older agents
+    (https://issues.rudder.io/issues/21574[#21574])
+* Fixed: File_from_local_source method fails when the target file is located in the root folder of a disk
+    (https://issues.rudder.io/issues/21568[#21568])
+* Fixed: Translate windows* methods to the 7.2 syntax
+    (https://issues.rudder.io/issues/21518[#21518])
+* Fixed: Translate permissions_ntfs and package_state_windows to the 7.2 syntax
+    (https://issues.rudder.io/issues/21521[#21521])
+* Fixed: Translate user* methods to the 7.2 syntax
+    (https://issues.rudder.io/issues/21516[#21516])
+* Fixed: Translate the variable* methods to the 7.2 syntax
+    (https://issues.rudder.io/issues/21505[#21505])
+* Fixed: Translate service* methods to the 7.2 syntax
+    (https://issues.rudder.io/issues/21501[#21501])
+* Fixed: Variable from command method does not execute itself in audit mode
+    (https://issues.rudder.io/issues/21404[#21404])
+* Fixed: Typos in File-Lines-* methods preventing correct encoding
+    (https://issues.rudder.io/issues/21391[#21391])
+
+==== CLI
+
+* Fixed: Add log rotatation to the agent history logs
+    (https://issues.rudder.io/issues/21597[#21597])
+* Fixed: Remove any reference to the persistent lib
+    (https://issues.rudder.io/issues/21573[#21573])
+* Fixed: Incorrect filename for run logs
+    (https://issues.rudder.io/issues/21535[#21535])
+* Fixed: Typo in file loading
+    (https://issues.rudder.io/issues/21415[#21415])
+
+==== System techniques
+
+* Fixed: Missing reports in system techniques in 7.2
+    (https://issues.rudder.io/issues/21421[#21421])
+
+==== Miscellaneous
+
+* Fixed: typo in powershell_execution method
+    (https://issues.rudder.io/issues/21426[#21426])
+
+==== Misc
+
+* Fixed: fix tests
+    (https://issues.rudder.io/issues/21398[#21398])
+
+=== Release notes
+
+This is a bug fix release in the 7.2.0.rc1-2.2 series and therefore all installations of 7.2.0.rc1-2.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-7.2.0.rc1-2.2 (2022-12-06)
 
 === Changes
