@@ -1,5 +1,119 @@
 = Changelogs for Rudder plugin notify 7.2.0-2.2.\* versions
 
+== dsc-7.2.0-2.2 (2022-12-06)
+
+=== Changes
+
+
+==== Security
+
+* Add vulnerability check on dependencies
+    (https://issues.rudder.io/issues/21843[#21843])
+
+==== Generic methods
+
+* Remove class_prefix tests as they are no longer managed by the methods
+    (https://issues.rudder.io/issues/21818[#21818])
+* Add tests to the condition from command method
+    (https://issues.rudder.io/issues/21687[#21687])
+* Add logs to the permissions_ntfs method
+    (https://issues.rudder.io/issues/21799[#21799])
+* Add an Audit-From-Powershell-Execution method
+    (https://issues.rudder.io/issues/21764[#21764])
+* Improve condition_from_* reporting
+    (https://issues.rudder.io/issues/21743[#21743])
+* Add tests for Condition_from_variable_match method
+    (https://issues.rudder.io/issues/21692[#21692])
+* Add tests for the File-From-Template method
+    (https://issues.rudder.io/issues/21715[#21715])
+* Add tests for condition_from_variable_existence
+    (https://issues.rudder.io/issues/21689[#21689])
+* Add tests for the file_content method
+    (https://issues.rudder.io/issues/21696[#21696])
+* Add tests for the file_lines_absent method
+    (https://issues.rudder.io/issues/21716[#21716])
+* Add tests for the file_lines_present method
+    (https://issues.rudder.io/issues/21719[#21719])
+* Add tests for file_from_http_server method
+    (https://issues.rudder.io/issues/21712[#21712])
+* Add tests for file_from_local_source method
+    (https://issues.rudder.io/issues/21713[#21713])
+
+==== Packaging
+
+* Drop 6.1 compatibility for windows agents
+    (https://issues.rudder.io/issues/21753[#21753])
+
+==== CLI
+
+* Add a message after agent update to warn that a shell respawn is most likely needed
+    (https://issues.rudder.io/issues/21733[#21733])
+
+==== Techniques
+
+* Deprecate version 1.0 of the technique windowsUpdate 
+    (https://issues.rudder.io/issues/21706[#21706])
+* Deprecate the registry_edition old technique versions
+    (https://issues.rudder.io/issues/21710[#21710])
+
+==== System techniques
+
+* Add simple test of node property loading and usage
+    (https://issues.rudder.io/issues/20732[#20732])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Add the UI to delete a campaign event
+    (https://issues.rudder.io/issues/21776[#21776])
+
+==== Packaging
+
+* Fixed: Test files should not be packaged in the policies
+    (https://issues.rudder.io/issues/21751[#21751])
+* Fixed: rudder agent architecture is i586
+    (https://issues.rudder.io/issues/21670[#21670])
+
+==== Generic methods
+
+* Fixed: Display-Report does not work in the > 7.2 tests as agentVersion variable is not defined
+    (https://issues.rudder.io/issues/21863[#21863])
+* Fixed: Directory_absent method throws non terminating exception when applied on an empty directory
+    (https://issues.rudder.io/issues/20980[#20980])
+* Fixed: LASTEXITCODE should always be reset before being checked
+    (https://issues.rudder.io/issues/21739[#21739])
+* Fixed: improve documentation of powershell_execution
+    (https://issues.rudder.io/issues/21682[#21682])
+* Fixed: File from_copy_from_rudder_shared_folder fails to retrieve the file when the parent destination folder exists but is not a proper folder
+    (https://issues.rudder.io/issues/21780[#21780])
+* Fixed: successRegex and repairedRegex should not be both mandatory
+    (https://issues.rudder.io/issues/21770[#21770])
+* Fixed: Incorrect parameters type for package_state_windows method
+    (https://issues.rudder.io/issues/21745[#21745])
+* Fixed: Fix dsc_apply method
+    (https://issues.rudder.io/issues/21759[#21759])
+* Fixed: Incorrect audit handling by check_compliance internal method
+    (https://issues.rudder.io/issues/21746[#21746])
+* Fixed: NCF sanity tests are written but not automatically run by the ci
+    (https://issues.rudder.io/issues/20908[#20908])
+
+==== ci
+
+* Fixed: Missing powershell command on the python docker to run the sanity tests
+    (https://issues.rudder.io/issues/21815[#21815])
+
+==== Techniques
+
+* Fixed: Translate windowsSoftware technique to the 7.2 syntax
+    (https://issues.rudder.io/issues/21628[#21628])
+* Fixed: Port the windowsUpdate technique to the new 7.2 syntax
+    (https://issues.rudder.io/issues/21650[#21650])
+
+=== Release notes
+
+This is a bug fix release in the 7.2.0-2.2 series and therefore all installations of 7.2.0-2.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-7.2.0-2.2 (2022-12-06)
 
 === Changes
