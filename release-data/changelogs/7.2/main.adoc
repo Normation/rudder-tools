@@ -1,5 +1,90 @@
 = Change logs for Rudder 7.2
 
+== [Private] Rudder 7.2.3 (2022-12-19)
+
+=== Changes
+
+[WARNING]
+====
+
+This version is only available for extended support subscription
+
+====
+    
+
+==== Architecture - Internal libs
+
+* Update Javascript libraries
+    (https://issues.rudder.io/issues/22011[#22011])
+
+==== System techniques
+
+* Automatically convert some properties to conditions on the agent
+    (https://issues.rudder.io/issues/22173[#22173])
+
+==== Generic methods
+
+* Add support for Snap package manager to package methods
+    (https://issues.rudder.io/issues/22055[#22055])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Missing diverted file in rudder-relay package
+    (https://issues.rudder.io/issues/22193[#22193])
+* Fixed: aix postinst doesn't install a crontab fo rudder agent check
+    (https://issues.rudder.io/issues/22167[#22167])
+
+==== Web - Nodes & inventories
+
+* Fixed: Authorize "_" (underscore) in hostname / fqdn
+    (https://issues.rudder.io/issues/22186[#22186])
+
+==== Security
+
+* Fixed: Backport front end security improvements to 7.2
+    (https://issues.rudder.io/issues/22146[#22146])
+
+==== Web - Campaigns
+
+* Fixed: Monthly schedule in January/December can be wrong
+    (https://issues.rudder.io/issues/22176[#22176])
+
+==== Web - Config management
+
+* Fixed: Cannot deploy changes on a group where properties are defined with a validated user
+    (https://issues.rudder.io/issues/22178[#22178])
+
+==== Architecture - Dependencies
+
+* Fixed: Update spring version to last one on rudder 7.2
+    (https://issues.rudder.io/issues/22169[#22169])
+
+==== Server components
+
+* Fixed: Command seq not found in crontab on AIX
+    (https://issues.rudder.io/issues/21858[#21858])
+
+==== System techniques
+
+* Fixed: crontab edition is ignored on aix
+    (https://issues.rudder.io/issues/22168[#22168])
+
+==== Agent
+
+* Fixed: rudder agent check -q always exit 1
+    (https://issues.rudder.io/issues/22166[#22166])
+
+==== Generic methods
+
+* Fixed: when there are no python installed on a node, tempate from jinja2 and packages generic method fail without explaining why
+    (https://issues.rudder.io/issues/22122[#22122])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.2.2 (2022-11-30)
 
 === Changes
