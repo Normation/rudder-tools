@@ -761,6 +761,52 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 7.1.9 (2022-12-19)
+
+=== Changes
+
+
+==== Generic methods
+
+* Add support for Snap package manager to package methods
+    (https://issues.rudder.io/issues/22055[#22055])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: AIX agent postinst doesn't install a crontab for "rudder agent check"
+    (https://issues.rudder.io/issues/22167[#22167])
+
+==== Web - Nodes & inventories
+
+* Fixed: Authorize "_" (underscore) in hostname / fqdn
+    (https://issues.rudder.io/issues/22186[#22186])
+
+==== Web - Config management
+
+* Fixed: Cannot deploy changes on a group where properties are defined with a validated user
+    (https://issues.rudder.io/issues/22178[#22178])
+
+==== Server components
+
+* Fixed: Command seq not found in crontab on AIX
+    (https://issues.rudder.io/issues/21858[#21858])
+
+==== System techniques
+
+* Fixed: crontab edition is ignored on AIX
+    (https://issues.rudder.io/issues/22168[#22168])
+
+==== Agent
+
+* Fixed: "rudder agent check -q" always exits with 1
+    (https://issues.rudder.io/issues/22166[#22166])
+
+=== Release notes
+
+This is a bug fix release in the 7.1 series and therefore all installations of 7.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == Rudder 7.1.0 (2022-04-25)
 
 === Changes
