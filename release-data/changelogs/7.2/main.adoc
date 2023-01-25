@@ -1,5 +1,115 @@
 = Change logs for Rudder 7.2
 
+==  Rudder 7.2.4 (2023-01-25)
+
+=== Changes
+
+
+==== Packaging
+
+* Add server build dependencies to build al2 packages on rhel7
+    (https://issues.rudder.io/issues/22256[#22256])
+
+==== CI
+
+* Improve ci notification on repaired and error
+    (https://issues.rudder.io/issues/22250[#22250])
+
+==== Web - Nodes & inventories
+
+* Housekeeping of /var/rudder/inventories/received|failed|etc
+    (https://issues.rudder.io/issues/7526[#7526])
+* Add a log file along with rejected inventories with cause
+    (https://issues.rudder.io/issues/22211[#22211])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: On rhel postinst uses yum creating a deadlock
+    (https://issues.rudder.io/issues/22267[#22267])
+* Fixed: Add openssl11 as dependency on AL2
+    (https://issues.rudder.io/issues/22258[#22258])
+* Fixed: Ignore RUSTSEC-2023-0001 in relayd
+    (https://issues.rudder.io/issues/22249[#22249])
+
+==== Web - Nodes & inventories
+
+* Fixed: Inventory are rejected due to missing dependencies on the server
+    (https://issues.rudder.io/issues/22257[#22257])
+* Fixed: Do not trigger a group reload if last check is younger than 100 ms
+    (https://issues.rudder.io/issues/22210[#22210])
+
+==== Documentation
+
+* Fixed: Explain in migration doc that jetty start.ini format changed in 7.2
+    (https://issues.rudder.io/issues/22289[#22289])
+* Fixed: Broken links in docs homepage
+    (https://issues.rudder.io/issues/22286[#22286])
+* Fixed: Remove  checkpoint_segments from database optimsation doc
+    (https://issues.rudder.io/issues/22281[#22281])
+* Fixed: Install headless jdk on AL2
+    (https://issues.rudder.io/issues/22266[#22266])
+* Fixed: Documentation for Modify Settings example missing parameter
+    (https://issues.rudder.io/issues/22225[#22225])
+
+==== Web - Campaigns
+
+* Fixed: Running deleted campaign don't get their directive cleaned-up 
+    (https://issues.rudder.io/issues/22139[#22139])
+
+==== Security
+
+* Fixed: Workaround for CVE-2022-46176 in cargo
+    (https://issues.rudder.io/issues/22294[#22294])
+* Fixed: Add includeSubdomains to HSTS header
+    (https://issues.rudder.io/issues/22248[#22248])
+
+==== Web - UI & UX
+
+* Fixed: Today button doesn't work in datepicker in report database page
+    (https://issues.rudder.io/issues/22291[#22291])
+* Fixed: Make the Techniques search case-insensitive
+    (https://issues.rudder.io/issues/22283[#22283])
+
+==== Web - Maintenance
+
+* Fixed: Dynamic group logs must not be conflated with scheduled job ones
+    (https://issues.rudder.io/issues/22209[#22209])
+
+==== Web - Compliance & node report
+
+* Fixed: Missing support for Windows 2022
+    (https://issues.rudder.io/issues/22216[#22216])
+
+==== Techniques
+
+* Fixed: unexpected reports with checkGenericFileContent
+    (https://issues.rudder.io/issues/20598[#20598])
+
+==== Relay server or API
+
+* Fixed: Broken policies update with rsync method
+    (https://issues.rudder.io/issues/22207[#22207])
+
+==== Server components
+
+* Fixed: All rudder commands using the API don't detect the port of the webapp when we configure a virtualhost with a different port
+    (https://issues.rudder.io/issues/21216[#21216])
+
+==== Generic methods
+
+* Fixed: Missing cf-promises binary to run the ncf 'quick' tests
+    (https://issues.rudder.io/issues/22243[#22243])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Janos Mattyasovszky
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == [Private] Rudder 7.2.3 (2022-12-19)
 
 === Changes
