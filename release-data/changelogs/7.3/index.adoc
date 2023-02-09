@@ -1,0 +1,29 @@
+= Rudder 7.3 release notes
+
+Rudder 7.3 is currently a development version.
+
+Rudder 7 will be supported for at least three months after the next major release,
+and for 18 to 24 months with a subscription.
+
+== Installing, upgrading and testing
+
+* Install docs for https://docs.rudder.io/reference/7.3/installation/server/debian.html[Debian/Ubuntu],
+https://docs.rudder.io/reference/7.3/installation/server/rhel.html[RHEL/CentOS] and
+https://docs.rudder.io/reference/7.3/installation/server/sles.html[SLES]
+* https://docs.rudder.io/reference/7.3/installation/upgrade/notes.html[Upgrade nodes and doc]
+* https://docs.rudder.io/reference/7.3/installation/versions.html#_versions[Download links]
+
+== Supported operating systems
+
+This version provides packages for these operating systems:
+
+* Rudder server and Rudder relay: *Debian 10-11, RHEL/CentOS/Alma/Rocky 8 and 9,
+SLES 15, Ubuntu 20.04 and 22.04 LTS*
+* Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES 12*
+* Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-8, RHEL/CentOS 3-6,
+SLES 10-11, Ubuntu 10.04 LTS, 12.04 LTS, 13.04, 15.10, 14.04 LTS, 16.04 LTS, 18.04 LTS, Windows Server 2008R2-2019, AIX
+5-6-7, Solaris 10 & 11, Slackware 14*
+
+Read more about supported operating systems 
+https://docs.rudder.io/reference/7.3/installation/operating_systems.html[in the documentation].
+
