@@ -1,1 +1,240 @@
 = Change logs for Rudder 7.3
+==  Rudder 7.3.0.beta1 (2023-02-09)
+
+=== Changes
+
+
+==== Packaging
+
+* Remove useless configure flags from openldap
+    (https://issues.rudder.io/issues/22265[#22265])
+* Remove readline library from aix package
+    (https://issues.rudder.io/issues/22234[#22234])
+* Add zip as a server dependency
+    (https://issues.rudder.io/issues/22116[#22116])
+* Update server dependencies for 7.3
+    (https://issues.rudder.io/issues/22070[#22070])
+* Update agent dependencies
+    (https://issues.rudder.io/issues/22071[#22071])
+* Update to CFEngine 3.18.3
+    (https://issues.rudder.io/issues/22068[#22068])
+* Update the toml crate to 0.6
+    (https://issues.rudder.io/issues/22300[#22300])
+* Build frontend files with gulp
+    (https://issues.rudder.io/issues/22094[#22094])
+* Use a lock file for api doc build dependencies
+    (https://issues.rudder.io/issues/22136[#22136])
+* Use npm for managing js dependencies
+    (https://issues.rudder.io/issues/22081[#22081])
+
+==== Documentation
+
+* Update windows agent installation documentation
+    (https://issues.rudder.io/issues/22330[#22330])
+* Remove 6.2 and 7.0 from doc menu
+    (https://issues.rudder.io/issues/22031[#22031])
+* Use docsearch v3 for search integration
+    (https://issues.rudder.io/issues/21989[#21989])
+* Start docs for new technique yaml format
+    (https://issues.rudder.io/issues/21961[#21961])
+
+==== System integration
+
+* Allow user to define custom roles in rudder-user.xml
+    (https://issues.rudder.io/issues/22206[#22206])
+
+==== Security
+
+* Update to Rust 1.66.1
+    (https://issues.rudder.io/issues/22293[#22293])
+* Improve npm audit
+    (https://issues.rudder.io/issues/22217[#22217])
+* Add security headers in Lift config
+    (https://issues.rudder.io/issues/21795[#21795])
+
+==== rudderc
+
+* Windows policy generation
+    (https://issues.rudder.io/issues/22239[#22239])
+* Add a first hardening technique draft
+    (https://issues.rudder.io/issues/22268[#22268])
+* Make rudderc techniques work in edge cases
+    (https://issues.rudder.io/issues/22179[#22179])
+* Tags entry in yaml technique
+    (https://issues.rudder.io/issues/22156[#22156])
+* Don't require resources to be listed in yaml technique
+    (https://issues.rudder.io/issues/22147[#22147])
+* Rename resources in rudderc
+    (https://issues.rudder.io/issues/22142[#22142])
+* Generate a proper metadata.xml
+    (https://issues.rudder.io/issues/22054[#22054])
+* Remove rudder-lang code
+    (https://issues.rudder.io/issues/22040[#22040])
+*  Use resource type information in rudderc
+    (https://issues.rudder.io/issues/21308[#21308])
+
+==== Web - UI & UX
+
+* Use npm to maintain jqueryui
+    (https://issues.rudder.io/issues/22244[#22244])
+* Update elm dependencies
+    (https://issues.rudder.io/issues/22051[#22051])
+
+==== API
+
+* API for directive compliance
+    (https://issues.rudder.io/issues/22150[#22150])
+
+==== Miscellaneous
+
+* Make authorization and rights pluggable
+    (https://issues.rudder.io/issues/22198[#22198])
+
+==== Architecture - Dependencies
+
+* Update scala dependencies to latest version
+    (https://issues.rudder.io/issues/22049[#22049])
+* Port code to ZIO2
+    (https://issues.rudder.io/issues/21825[#21825])
+
+==== CI
+
+* Update Rust for 7.3
+    (https://issues.rudder.io/issues/21875[#21875])
+
+==== Web - Maintenance
+
+* Cleanup rudder-lang settings
+    (https://issues.rudder.io/issues/21866[#21866])
+
+==== System techniques
+
+* Disable agent syslog logging by default
+    (https://issues.rudder.io/issues/21970[#21970])
+
+==== Agent
+
+* Cleanup remote run command for relay
+    (https://issues.rudder.io/issues/22231[#22231])
+
+==== Generic methods
+
+* Add agent support metadata
+    (https://issues.rudder.io/issues/21939[#21939])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Remove git from build dependencies of rudder-server
+    (https://issues.rudder.io/issues/22356[#22356])
+* Fixed: patch fusioninventory to detect correctly rockylinux
+    (https://issues.rudder.io/issues/22334[#22334])
+* Fixed: Remove message of cfengine trying to load enterprise module
+    (https://issues.rudder.io/issues/22236[#22236])
+* Fixed: readline fails to build on aix
+    (https://issues.rudder.io/issues/22228[#22228])
+* Fixed: Dev version of perl used
+    (https://issues.rudder.io/issues/22215[#22215])
+* Fixed: Add content in rudder's robots.txt
+    (https://issues.rudder.io/issues/21798[#21798])
+
+==== Web - UI & UX
+
+* Fixed: Redirect / to /rudder/secure to avoid login form if already connected
+    (https://issues.rudder.io/issues/21807[#21807])
+* Fixed: Remove useless headers
+    (https://issues.rudder.io/issues/21797[#21797])
+* Fixed: Update outdated npm packages
+    (https://issues.rudder.io/issues/22336[#22336])
+* Fixed: Directive creation process is counter intuitive in 7.3.0~alpha
+    (https://issues.rudder.io/issues/22254[#22254])
+* Fixed: Display of Target Rules is broken
+    (https://issues.rudder.io/issues/22305[#22305])
+* Fixed: Use npm to maintain gauge.js
+    (https://issues.rudder.io/issues/22270[#22270])
+* Fixed: Use npm to maintain angularJS
+    (https://issues.rudder.io/issues/22252[#22252])
+* Fixed: Top menu bar display is broken
+    (https://issues.rudder.io/issues/22245[#22245])
+* Fixed: Remove AdminLTE theme
+    (https://issues.rudder.io/issues/22204[#22204])
+* Fixed: Transform tabs of the directives into real tabs
+    (https://issues.rudder.io/issues/22086[#22086])
+* Fixed: Dont redirect other tabs to login form when session cookie is replaced
+    (https://issues.rudder.io/issues/21808[#21808])
+* Fixed: Impossible to move groups
+    (https://issues.rudder.io/issues/21755[#21755])
+
+==== Documentation
+
+* Fixed: Wrong Table name inside documentation
+    (https://issues.rudder.io/issues/22128[#22128])
+* Fixed: Remove beta header from 7.2 docs
+    (https://issues.rudder.io/issues/21879[#21879])
+
+==== Security
+
+* Fixed: Ignore CVE-2023-22895 in relayd
+    (https://issues.rudder.io/issues/22354[#22354])
+* Fixed: Update the embedded openssl to 1.1.1t
+    (https://issues.rudder.io/issues/22351[#22351])
+* Fixed: Ignore DoS in npm dependencies
+    (https://issues.rudder.io/issues/22324[#22324])
+* Fixed: Ignore RUSTSEC-2022-0082
+    (https://issues.rudder.io/issues/22328[#22328])
+* Fixed: Fix npm security alerts
+    (https://issues.rudder.io/issues/22307[#22307])
+* Fixed: Rudder sessions never expire when the browser stays connected
+    (https://issues.rudder.io/issues/21806[#21806])
+* Fixed: Stop using UUIDs as system token
+    (https://issues.rudder.io/issues/21669[#21669])
+
+==== Web - Campaigns
+
+* Fixed: New filters on campaign queries to get several campaign types in one request
+    (https://issues.rudder.io/issues/22346[#22346])
+
+==== Web - Nodes & inventories
+
+* Fixed: some nodes are called "localhost" since #8022
+    (https://issues.rudder.io/issues/22326[#22326])
+
+==== Web - Config management
+
+* Fixed: Hook timeout may not have the good value
+    (https://issues.rudder.io/issues/22339[#22339])
+
+==== API
+
+* Fixed: Cannot list directives with API
+    (https://issues.rudder.io/issues/22314[#22314])
+
+==== rudderc
+
+* Fixed: Various metadata.xml fixes
+    (https://issues.rudder.io/issues/22153[#22153])
+
+==== CI
+
+* Fixed: Add authorized license Unicode-DFS-2016 in relayd
+    (https://issues.rudder.io/issues/21914[#21914])
+
+==== Server components
+
+* Fixed: All rudder commands using the API don't detect the port of the webapp when we configure a virtualhost with a different port
+    (https://issues.rudder.io/issues/21216[#21216])
+
+==== Generic methods
+
+* Fixed: Remove ncf scripts
+    (https://issues.rudder.io/issues/21950[#21950])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Alexis TARUSSIO
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
