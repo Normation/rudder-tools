@@ -3,7 +3,7 @@
 release = "7.3"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 #release-date = ""
 
@@ -63,6 +63,7 @@ roles = {
           "ubuntu-22.04":   [ "agent-allinone", "relay", "server" ],
           "rhel-5":         [ "agent-allinone" ],
           "rhel-6":         [ "agent-allinone" ],
+          # actually AL2 only
           "rhel-7":         [ "agent-allinone", "relay", "server" ],
           "rhel-8":         [ "agent-allinone", "relay", "server" ],
           "rhel-9":         [ "agent-allinone", "relay", "server" ],
@@ -108,13 +109,13 @@ components = {
 
 # Highest API versions available in this release
 api-version = {
-                "webapp": "16",
+                "webapp": "17",
                 "relay": "1"
               }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "6.2", "7.0", "7.1", "7.2", "7.3" ]
+compatible-agents = [ "7.2", "7.3" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "6.2", "7.0", "7.1", "7.2", "7.3" ]
+supported-upgrade = [ "7.2", "7.3" ]
 
