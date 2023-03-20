@@ -1,5 +1,5 @@
 = Change logs for Rudder 7.3
-==  Rudder 7.3.0.beta1 (2023-02-09)
+
 ==  Rudder 7.3.0.rc1 (2023-03-17)
 
 === Changes
@@ -205,6 +205,7 @@ Special thanks go out to the following individuals who invested time, patience, 
 
 This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+==  Rudder 7.3.0.beta1 (2023-02-09)
 
 === Changes
 
