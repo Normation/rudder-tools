@@ -21,6 +21,10 @@ add_repo() {
     S=""
   fi
 
+  # Add jdk repo on AL2
+  if [ "${OS_NAME}" = "Amazon" ] && [ "${OS_VERSION}" = "2" ]; then
+    amazon-linux-extras enable java-openjdk11
+  fi
 
   # On sles we need to urlencode the password or if it contains special chars it won't be able to
   # add the repo
