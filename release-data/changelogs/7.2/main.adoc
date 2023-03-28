@@ -1,5 +1,211 @@
 = Change logs for Rudder 7.2
 
+==  Rudder 7.2.5 (2023-03-28)
+
+=== Changes
+
+
+==== Web - Config management
+
+* Persisted rule should have sorted groups/directives
+    (https://issues.rudder.io/issues/18215[#18215])
+
+==== Documentation
+
+* Add missing documentation for CVE API
+    (https://issues.rudder.io/issues/22446[#22446])
+* Add missing documentation for CVE API
+    (https://issues.rudder.io/issues/22446[#22446])
+
+==== Web - UI & UX
+
+* Edit properties is not intuitive
+    (https://issues.rudder.io/issues/21918[#21918])
+* Missing a loading info when a technique it is being saved
+    (https://issues.rudder.io/issues/21929[#21929])
+
+==== System integration
+
+* Make specs2 test console output more detailed
+    (https://issues.rudder.io/issues/22419[#22419])
+
+==== Architecture - Internal libs
+
+* Fix version maven-resources-plugin to 3.1.0, instead of relying on maven default version
+    (https://issues.rudder.io/issues/22403[#22403])
+
+==== Performance and scalability
+
+* Make parsing "process" in inventory optional
+    (https://issues.rudder.io/issues/22359[#22359])
+
+==== Security
+
+* Allow iframes from the same origin
+    (https://issues.rudder.io/issues/22374[#22374])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-server-postinst fails to update rudder-web.properties
+    (https://issues.rudder.io/issues/22495[#22495])
+* Fixed: Error when installing Rudder 6.2.13 on almalinux 8
+    (https://issues.rudder.io/issues/21252[#21252])
+* Fixed: patch fusioninventory to detect correctly rockylinux
+    (https://issues.rudder.io/issues/22334[#22334])
+
+==== System integration
+
+* Fixed: Rudder-jetty timeout is the systemd default one and may be short
+    (https://issues.rudder.io/issues/22377[#22377])
+* Fixed: Parent fix does not work: Fusioninventory is not tracked by check-rudder-health
+    (https://issues.rudder.io/issues/11102[#11102])
+
+==== Documentation
+
+* Fixed: Provide info to user about java-openjdk11-headless alternatives for AL2
+    (https://issues.rudder.io/issues/22499[#22499])
+* Fixed: Broken doc build after plugins doc change
+    (https://issues.rudder.io/issues/22490[#22490])
+* Fixed: Bad documentation leads to package build failing when building for armhf
+    (https://issues.rudder.io/issues/17868[#17868])
+* Fixed: doc about configuring repositories on debian is confusing for the rudder server
+    (https://issues.rudder.io/issues/22396[#22396])
+* Fixed: Remove outdated stuff about the technique editor
+    (https://issues.rudder.io/issues/22420[#22420])
+* Fixed: Broken link to rudder-announce ML
+    (https://issues.rudder.io/issues/22416[#22416])
+* Fixed: versions in Rudder doc are invalid
+    (https://issues.rudder.io/issues/21750[#21750])
+* Fixed: List of authentication backend is invalid in the documentation (includes Radius)
+    (https://issues.rudder.io/issues/22406[#22406])
+* Fixed: Backport hardening guide to 7.2
+    (https://issues.rudder.io/issues/22405[#22405])
+* Fixed: documentation about default login/password is invalid
+    (https://issues.rudder.io/issues/22367[#22367])
+* Fixed: network requirement in documentation are invalid
+    (https://issues.rudder.io/issues/22366[#22366])
+* Fixed: Wrong Table name inside documentation
+    (https://issues.rudder.io/issues/22128[#22128])
+* Fixed: document in the getting started that virtualbox needs a list of authorized IP
+    (https://issues.rudder.io/issues/21485[#21485])
+* Fixed: Inconsistency in API doc for allowed network
+    (https://issues.rudder.io/issues/22467[#22467])
+
+==== Web - Compliance & node report
+
+* Fixed: Sorting by Compliance doesn't sort in the rule details
+    (https://issues.rudder.io/issues/21182[#21182])
+* Fixed: missing report in change only
+    (https://issues.rudder.io/issues/22371[#22371])
+* Fixed: Nodes not answering are seen in "missing" rather than in "no reports"
+    (https://issues.rudder.io/issues/22375[#22375])
+
+==== Web - Config management
+
+* Fixed: Policy generation broken when defining a group with invert result of inclusion of another group
+    (https://issues.rudder.io/issues/21924[#21924])
+* Fixed: Generate policies for campaigns before it starts officially, delete them after it stops (1 hour delay each)
+    (https://issues.rudder.io/issues/22378[#22378])
+* Fixed: User should be able to accept change request even with divergences
+    (https://issues.rudder.io/issues/22363[#22363])
+* Fixed: Hook timeout may not have the good value
+    (https://issues.rudder.io/issues/22339[#22339])
+
+==== Web - Technique editor
+
+* Fixed: There is one more minus in deleted resources counter within technique editor
+    (https://issues.rudder.io/issues/22475[#22475])
+
+==== Web - UI & UX
+
+* Fixed: Technique ID and group ID are juste listed as "ID" in the UI when other IDs are listed with their long name
+    (https://issues.rudder.io/issues/21369[#21369])
+* Fixed: Rule is in mixed mode even though she has only one directive in audit
+    (https://issues.rudder.io/issues/21731[#21731])
+* Fixed: typo about licensed plugin
+    (https://issues.rudder.io/issues/22463[#22463])
+* Fixed: Add an animation when the rules table loads
+    (https://issues.rudder.io/issues/22449[#22449])
+* Fixed: Missing tooltip on unused directives icon
+    (https://issues.rudder.io/issues/22428[#22428])
+* Fixed: Show all in technical details table doesn't work
+    (https://issues.rudder.io/issues/22107[#22107])
+* Fixed: Plugins-repository URL from plugins pages redirect to home page
+    (https://issues.rudder.io/issues/21346[#21346])
+
+==== Web - Nodes & inventories
+
+* Fixed: On "Node search" page, we can click on "Create node group from this query" even if there were no query
+    (https://issues.rudder.io/issues/19986[#19986])
+* Fixed: Inventory error when missing tag POLICY_SERVER_UUID talk about POLICY_SERVER
+    (https://issues.rudder.io/issues/22453[#22453])
+* Fixed: Add Raspbian to the list of recognized OS
+    (https://issues.rudder.io/issues/22345[#22345])
+* Fixed: some nodes are called "localhost" since #8022
+    (https://issues.rudder.io/issues/22326[#22326])
+
+==== Miscellaneous
+
+* Fixed: Update commons fileupload dependency to prevent CVE-2023-24998
+    (https://issues.rudder.io/issues/22433[#22433])
+* Fixed: Healthcheck on file descriptor should be max 64000
+    (https://issues.rudder.io/issues/22430[#22430])
+
+==== Security
+
+* Fixed: RUSTSEC-2023-0018  in remove_dir_all
+    (https://issues.rudder.io/issues/22432[#22432])
+* Fixed: RUSTSEC-2023-0018  in remove_dir_all
+    (https://issues.rudder.io/issues/22432[#22432])
+* Fixed: RUSTSEC-2023-0018  in remove_dir_all
+    (https://issues.rudder.io/issues/22432[#22432])
+* Fixed: Ignore CVE-2023-22895 in relayd
+    (https://issues.rudder.io/issues/22354[#22354])
+* Fixed: Update the embedded openssl to 1.1.1t
+    (https://issues.rudder.io/issues/22351[#22351])
+* Fixed: Ignore RUSTSEC-2022-0082
+    (https://issues.rudder.io/issues/22328[#22328])
+
+==== Relay server or API
+
+* Fixed: File from shared folder method does not support special characters in the source path
+    (https://issues.rudder.io/issues/20834[#20834])
+
+==== API
+
+* Fixed: Cannot list directives with API
+    (https://issues.rudder.io/issues/22314[#22314])
+
+==== System techniques
+
+* Fixed: A 6.2 relay cannot talk to a 7.2 server through HTTPS
+    (https://issues.rudder.io/issues/22402[#22402])
+* Fixed: Changes only does not support campaign reports 
+    (https://issues.rudder.io/issues/22240[#22240])
+
+==== Generic methods
+
+* Fixed: file key value parameter in list accepts entries without separator
+    (https://issues.rudder.io/issues/22322[#22322])
+* Fixed: Descriptin of permissions dirs recursive is misleading
+    (https://issues.rudder.io/issues/17122[#17122])
+
+==== Agent
+
+* Fixed: "Using the default value 'true' for attribute rxdirs" waning in agent run output
+    (https://issues.rudder.io/issues/22393[#22393])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Alexis TARUSSIO
+* Nicolas Ecarnot
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.2.4 (2023-01-25)
 
 === Changes
