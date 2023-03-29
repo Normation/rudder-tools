@@ -65,6 +65,15 @@ rhel = {
   }
 }
 
+al = {
+  aliases = [ "amazon-linux" ]
+  package-format = "rpm"
+  name = "Amazon Linux"
+  codenames = {
+    "2023": "AL_2023"
+  }
+}
+
 fedora = {
   aliases = [ ]
   package-format = "rpm"
