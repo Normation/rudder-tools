@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin cve 7.2.\* versions
 
+== cve-7.2.4-2.9 (2023-03-31)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* API to get CVE by score/publishedDate
+    (https://issues.rudder.io/issues/22189[#22189])
+* Add a way to filter CVE check by cve id, node id and packages
+    (https://issues.rudder.io/issues/22182[#22182])
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-7.2.4-2.8 (2023-03-31)
 
 === Changes
