@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin cve 7.3.\* versions
 
+== cve-7.3.0.rc1-2.9 (2023-03-31)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Use Html.lazy to optimise html rendering
+    (https://issues.rudder.io/issues/22439[#22439])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Syntax error in cve details request 
+    (https://issues.rudder.io/issues/22451[#22451])
+* Fixed: Do not load history of previously selected node/cve
+    (https://issues.rudder.io/issues/22440[#22440])
+* Fixed: The "Security management" link in the navigation menu is not correctly aligned with the other links
+    (https://issues.rudder.io/issues/22399[#22399])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-7.3.0.beta1-2.9 (2023-03-31)
 
 === Changes
