@@ -1,0 +1,70 @@
+= Changelogs for Rudder plugin dsc 7.2.\* versions
+
+== dsc-7.2.0.beta1-2.2 (2023-03-31)
+
+=== Changes
+
+
+==== Agent library
+
+* Add logging and Rudder report writter to the rudderLib
+    (https://issues.rudder.io/issues/21294[#21294])
+* Add a code formatter for F#
+    (https://issues.rudder.io/issues/21273[#21273])
+
+==== Techniques
+
+* Add WSUS support to the WindowsUpdate technique
+    (https://issues.rudder.io/issues/21075[#21075])
+
+==== Packaging
+
+* Add base configuration for F# agent library
+    (https://issues.rudder.io/issues/21251[#21251])
+* Add base configuration for F# agent library
+    (https://issues.rudder.io/issues/21251[#21251])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Add backend to support system update campaign
+    (https://issues.rudder.io/issues/21385[#21385])
+* Fixed: Add F# linter to the rudderLib project and ci
+    (https://issues.rudder.io/issues/21268[#21268])
+
+==== Generic methods
+
+* Fixed: Create a generic method to execute powershell command
+    (https://issues.rudder.io/issues/21332[#21332])
+* Fixed: Create a generic method to execute powershell command
+    (https://issues.rudder.io/issues/21332[#21332])
+* Fixed: Port ncf to the new rudderLib
+    (https://issues.rudder.io/issues/21306[#21306])
+
+==== Techniques
+
+* Fixed: Windows update technique does not display the correct next scheduled date of execution
+    (https://issues.rudder.io/issues/21354[#21354])
+* Fixed: correct reporting in windowsUpdate technique
+    (https://issues.rudder.io/issues/21277[#21277])
+
+==== Packaging
+
+* Fixed: Integrate the rudderLib to the agent and plugin build
+    (https://issues.rudder.io/issues/21334[#21334])
+
+==== Agent library
+
+* Fixed: Add reports and console output to the rudderLib
+    (https://issues.rudder.io/issues/21289[#21289])
+
+==== CLI
+
+* Fixed: 7.1.0 agent fails to run inventory
+    (https://issues.rudder.io/issues/21066[#21066])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
