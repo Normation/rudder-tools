@@ -1,5 +1,40 @@
 = Changelogs for Rudder plugin system-updates 7.2.\* versions
 
+== system-updates-7.2.1-1.8 (2023-03-31)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Make System update campaing plugin api public
+    (https://issues.rudder.io/issues/22082[#22082])
+* Add skip reason in event information tab
+    (https://issues.rudder.io/issues/21871[#21871])
+* Display campaign description as markdown
+    (https://issues.rudder.io/issues/22033[#22033])
+* Display list of all nodes impacted by a campaign event, not just the one that have responded
+    (https://issues.rudder.io/issues/22030[#22030])
+* Add links to campaign and events
+    (https://issues.rudder.io/issues/22056[#22056])
+* Add filter by date for event lists
+    (https://issues.rudder.io/issues/21966[#21966])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Keep the duration of a campaign when changing its start date
+    (https://issues.rudder.io/issues/22042[#22042])
+* Fixed: error when trying to skip a campaign
+    (https://issues.rudder.io/issues/22079[#22079])
+* Fixed: Document behavior of system update for audit-only nodes
+    (https://issues.rudder.io/issues/21969[#21969])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.2.1-1.7 (2023-03-31)
 
 === Changes
