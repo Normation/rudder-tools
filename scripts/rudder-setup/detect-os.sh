@@ -121,6 +121,7 @@ detect_os() {
   elif release_file  'SuSE' '/etc/SuSE-release' 'VERSION *= *\([0-9.]\+\).*'; then
     OS_VERSION="${OS_VERSION}-`sed -n '/PATCHLEVEL/s/PATCHLEVEL *= *\([0-9.]\+\).*/\1/p' /etc/SuSE-release`"
   elif release_file  'Amazon' '/etc/system-release-cpe' '[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\).*'; then true
+
   elif os_release_file '/etc/os-release'; then true
   fi
 
@@ -137,6 +138,9 @@ detect_os() {
     Amazon)   OS_COMPATIBLE="RHEL"
           if [ "${OS_VERSION}" = "2" ]; then
               OS_COMPATIBLE_VERSION=7
+          elif [ "${OS_VERSION}" = "2023" ]; then
+              OS_COMPATIBLE="AL"
+              OS_COMPATIBLE_VERSION="2023"
           else
               OS_COMPATIBLE_VERSION=6
           fi;;
