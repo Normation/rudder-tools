@@ -1,6 +1,6 @@
 = Rudder 7.3 release notes
 
-Rudder 7.3 is currently a development version.
+Rudder 7.3 is currently a supported version.
 The 7.3 version is the last of the 7.X branch. It will be supported:
 
 * For users with a subscription, depending on chosen the service level:
@@ -23,14 +23,16 @@ image::images/updates.png[updates.png]
 
 === Reboot/restart when needed
 
-The post-update action in the campaign can now be one of:
+Upgrading the packages is an important part of patch management,
+but making sure the patched version is actually used is essential.
+To address this, the post-update action in the campaign can now be one of:
 
 * **Always reboot** (useful to ensure a regular, e.g. monthly, reboot as part of the upgrade process)
 * **Reboot or restart services as needed**, depending on the upgraded packages.
 
   ** on Windows, it will reboot the system if needed
   ** on Linux, it will either restart the affected services or reboot the system depending on
-     what is required to apply the upgrades.
+   what is required to apply the upgrades.
 
 * **Restart as needed**
 
@@ -47,7 +49,8 @@ and/or package manager depending on the target platform.
 The patch campaigns introduced for Linux in 7.2 are now fully usable on Windows too. Plan system updates in advance, either as a one-shot or recurring event, and visualize the results directly in the interface
 (list of installed KB, details in case of error, etc.).
 
-A single update campaign can include heterogeneous systems (different Windows versions and Linux distribution for example).
+A single update campaign can include heterogeneous systems (different Windows versions and Linux distribution,
+for example).
 
 === APIs for update campaigns
 
@@ -60,9 +63,11 @@ The previous `.exe`-based installer is replaced by an MSI (_Microsoft Software I
 
 == Compliance displayed by directive
 
-We added a new tab in directive view to display the compliance of a directive, showing all rules/nodes applying it. As usual it comes with an API, and this one can also be downloaded as a CSV (for spreadsheet fans).
+We added a new tab in directive view to display the compliance of a directive, showing all rules/nodes applying it. As usual, it comes with an https://docs.rudder.io/api/v/17/#tag/Compliance/operation/getDirectivesCompliance[API], and this one can also be downloaded as a CSV (for spreadsheet fans).
 
-== CVE
+image::images/directive.png[updates.png]
+
+== Vulnerability management refinements
 
 The HTTP API of the vulnerability management feature has been improved with new
 filters (by score, publication date, affected package name, etc.) and an API to get a CVE details.
@@ -123,6 +128,6 @@ SLES 15, Ubuntu 20.04 and 22.04 LTS*
 SLES 10-11, Ubuntu 10.04 LTS, 12.04 LTS, 13.04, 15.10, 14.04 LTS, 16.04 LTS, 18.04 LTS, Windows Server 2008R2-2019, AIX
 5-6-7, Solaris 10 & 11, Slackware 14*
 
-Read more about supported operating systems 
+Read more about supported operating systems
 https://docs.rudder.io/reference/7.3/installation/operating_systems.html[in the documentation].
 

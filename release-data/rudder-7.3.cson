@@ -3,7 +3,7 @@
 release = "7.3"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "beta"
+release-status = "final"
 
 #release-date = ""
 
