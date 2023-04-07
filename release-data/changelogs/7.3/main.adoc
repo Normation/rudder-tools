@@ -1,5 +1,200 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.0 (2023-04-07)
+
+=== Changes
+
+
+==== Packaging
+
+* Add amazon linux to support to specfiles
+    (https://issues.rudder.io/issues/22578[#22578])
+
+==== Documentation
+
+* Document 7.3 windows specific changes
+    (https://issues.rudder.io/issues/22613[#22613])
+* Arch doc for frontend security
+    (https://issues.rudder.io/issues/22512[#22512])
+* Update network security arch doc for 7.3 and migration cases
+    (https://issues.rudder.io/issues/22505[#22505])
+* Update network security arch doc for 7.3 and migration cases
+    (https://issues.rudder.io/issues/22505[#22505])
+* Update network security arch doc for 7.3 and migration cases
+    (https://issues.rudder.io/issues/22505[#22505])
+
+==== Web - Nodes & inventories
+
+* Add tests for linux inventory signature with certificate
+    (https://issues.rudder.io/issues/22528[#22528])
+
+==== rudderc
+
+* Render methods docs as html
+    (https://issues.rudder.io/issues/22538[#22538])
+* Add a JSON schema validation
+    (https://issues.rudder.io/issues/22489[#22489])
+
+==== Web - Config management
+
+* Persisted rule should have sorted groups/directives
+    (https://issues.rudder.io/issues/18215[#18215])
+
+==== Techniques
+
+* Deprecate System update technique
+    (https://issues.rudder.io/issues/22611[#22611])
+
+==== Generic methods
+
+* Explain flag mechanisme for "once" method
+    (https://issues.rudder.io/issues/22596[#22596])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: missing dependencies on amazon linux server
+    (https://issues.rudder.io/issues/22615[#22615])
+* Fixed: rudder-init replaces rudder-db password at postinst
+    (https://issues.rudder.io/issues/22608[#22608])
+* Fixed: Amazon linux doesn't provide postgresql-server
+    (https://issues.rudder.io/issues/22593[#22593])
+* Fixed: rudder-server-postinst fails to update rudder-web.properties
+    (https://issues.rudder.io/issues/22495[#22495])
+* Fixed: Error when installing Rudder 6.2.13 on almalinux 8
+    (https://issues.rudder.io/issues/21252[#21252])
+
+==== Agent
+
+* Fixed: rudder-sign says "hostname: command not found"
+    (https://issues.rudder.io/issues/22452[#22452])
+* Fixed: Connection timeout to server are too long
+    (https://issues.rudder.io/issues/22540[#22540])
+
+==== Server components
+
+* Fixed: "reportid" missing in PostgreSQL database after upgrade from v6.2.12 to v7.2.3
+    (https://issues.rudder.io/issues/22315[#22315])
+
+==== Documentation
+
+* Fixed: Update doc for 7.3
+    (https://issues.rudder.io/issues/22607[#22607])
+* Fixed: Add rudder agent verbose command in windows install 
+    (https://issues.rudder.io/issues/22598[#22598])
+* Fixed: Typo in windows msiexec command in documentation
+    (https://issues.rudder.io/issues/22554[#22554])
+* Fixed: Problem in Server backup and migration documentation
+    (https://issues.rudder.io/issues/22313[#22313])
+* Fixed: Typo in windows install documentation
+    (https://issues.rudder.io/issues/22558[#22558])
+* Fixed: Provide info to user about java-openjdk11-headless alternatives for AL2
+    (https://issues.rudder.io/issues/22499[#22499])
+* Fixed: Broken doc build after plugins doc change
+    (https://issues.rudder.io/issues/22490[#22490])
+* Fixed: document in the getting started that virtualbox needs a list of authorized IP
+    (https://issues.rudder.io/issues/21485[#21485])
+* Fixed: API Documentation errors for trigger agent run
+    (https://issues.rudder.io/issues/22565[#22565])
+* Fixed: Improve introduction of relay arch docs
+    (https://issues.rudder.io/issues/22509[#22509])
+
+==== Web - UI & UX
+
+* Fixed: when we save a rule category, the button save never stops saving
+    (https://issues.rudder.io/issues/22524[#22524])
+* Fixed: there is a space before all texts in the node details page, so copy and paste include it
+    (https://issues.rudder.io/issues/21417[#21417])
+* Fixed: System group preview description are not displayed
+    (https://issues.rudder.io/issues/18583[#18583])
+* Fixed: Rule list doesn't appear anymore in a rule category
+    (https://issues.rudder.io/issues/22103[#22103])
+* Fixed: When shared folder file list is too long the selector fail
+    (https://issues.rudder.io/issues/22110[#22110])
+* Fixed: Change name parameter "Rudder ID" for group id
+    (https://issues.rudder.io/issues/22581[#22581])
+* Fixed: Technique ID and group ID are juste listed as "ID" in the UI when other IDs are listed with their long name
+    (https://issues.rudder.io/issues/21369[#21369])
+* Fixed: Rule is in mixed mode even though she has only one directive in audit
+    (https://issues.rudder.io/issues/21731[#21731])
+* Fixed: Shadow overlapping on first menu entry
+    (https://issues.rudder.io/issues/21683[#21683])
+* Fixed: Missing tooltip on unused directives icon
+    (https://issues.rudder.io/issues/22428[#22428])
+
+==== Web - Maintenance
+
+* Fixed: password=LDAP produces error logs in webapp
+    (https://issues.rudder.io/issues/21978[#21978])
+
+==== Web - Compliance & node report
+
+* Fixed: General improvements on Directive compliance API
+    (https://issues.rudder.io/issues/22552[#22552])
+* Fixed: HTML tag in compliance hover
+    (https://issues.rudder.io/issues/22560[#22560])
+* Fixed: Sorting by Compliance doesn't sort in the rule details
+    (https://issues.rudder.io/issues/21182[#21182])
+
+==== API
+
+* Fixed: List Managed Nodes API with any of the fields listed in the "full" never answer
+    (https://issues.rudder.io/issues/22534[#22534])
+
+==== Security
+
+* Fixed: Update spring-core to 5.3.26
+    (https://issues.rudder.io/issues/22586[#22586])
+* Fixed: Allow iframes from the same origin
+    (https://issues.rudder.io/issues/22522[#22522])
+* Fixed: Update openssl crate to fix several vulnerabilities
+    (https://issues.rudder.io/issues/22532[#22532])
+
+==== Techniques
+
+* Fixed: Mustache template is not capable to render technique parameters
+    (https://issues.rudder.io/issues/22535[#22535])
+
+==== rudderc
+
+* Fixed: Allow BSD-2-Clause licences
+    (https://issues.rudder.io/issues/22543[#22543])
+* Fixed: Fix escaping in rudderc
+    (https://issues.rudder.io/issues/22468[#22468])
+
+==== Web - Config management
+
+* Fixed: Policy generation broken when defining a group with invert result of inclusion of another group
+    (https://issues.rudder.io/issues/21924[#21924])
+* Fixed: Directive detail is really slow to load in 7.3
+    (https://issues.rudder.io/issues/22392[#22392])
+
+==== Web - Technique editor
+
+* Fixed: There is one more minus in deleted resources counter within technique editor
+    (https://issues.rudder.io/issues/22475[#22475])
+
+==== Web - Nodes & inventories
+
+* Fixed: On "Node search" page, we can click on "Create node group from this query" even if there were no query
+    (https://issues.rudder.io/issues/19986[#19986])
+
+==== System integration
+
+* Fixed: server-create-user uses old role attribte in place of new permissions one
+    (https://issues.rudder.io/issues/22498[#22498])
+* Fixed: Parent fix does not work: Fusioninventory is not tracked by check-rudder-health
+    (https://issues.rudder.io/issues/11102[#11102])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Lars Koenen
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.0.rc1 (2023-03-17)
 
 === Changes
