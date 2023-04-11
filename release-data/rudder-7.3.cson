@@ -5,7 +5,7 @@ release = "7.3"
 # Status of the release (alpha, beta, rc, final)
 release-status = "final"
 
-#release-date = ""
+release-date = "2022-04-11"
 
 # Has this version had Long-Term Support (LTS)?
 lts = false

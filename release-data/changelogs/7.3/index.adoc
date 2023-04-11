@@ -1,7 +1,13 @@
 = Rudder 7.3 release notes
 
-Rudder 7.3 is currently a supported version.
-The 7.3 version is the last of the 7.X branch. It will be supported:
+We're thrilled to announce the availability of Rudder 7.3.
+This version deepens the patch management on Windows
+and brings targeted update campaigns to update more accurately your systems.
+Automate your patch management through the new dedicated API.
+Also, compliance exploration is greatly improved on the directives, and we enhanced our user permissions.
+
+The 7.3 version is the last of the 7.X branch, the next one will be Rudder 8.0 scheduled for 2023Q4.
+It will be supported:
 
 * For users with a subscription, depending on chosen the service level:
 
@@ -9,8 +15,6 @@ The 7.3 version is the last of the 7.X branch. It will be supported:
   ** Regardless or the 8.0 release date, for either 18 or 24 months after the initial 7.0 release (2022-01-26)
 
 * For users without a subscription, for 3 months after 8.0 release
-
-Rudder 7.3 comes with major improvements for the patch management features and Windows support.
 
 == Patch management
 
@@ -31,8 +35,7 @@ To address this, the post-update action in the campaign can now be one of:
 * **Reboot or restart services as needed**, depending on the upgraded packages.
 
   ** on Windows, it will reboot the system if needed
-  ** on Linux, it will either restart the affected services or reboot the system depending on
-   what is required to apply the upgrades.
+  ** on Linux, it will either restart the affected services or reboot the system depending on what is required to apply the upgrades.
 
 * **Restart as needed**
 
@@ -51,6 +54,13 @@ The patch campaigns introduced for Linux in 7.2 are now fully usable on Windows 
 
 A single update campaign can include heterogeneous systems (different Windows versions and Linux distribution,
 for example).
+
+=== Mixed systems campaigns
+
+A single update campaign can now include heterogeneous systems (different Windows versions and Linux distribution,
+for example).
+Manage your update campaigns from a single source, regardless of your systems.
+You benefit from a main interface and centralize patch reports.
 
 === APIs for update campaigns
 
@@ -84,7 +94,7 @@ user roles to give them read access to the CVE page and API.
 
 === Custom user roles
 
-Define new roles, in addition to built-in roles (e.g. `admin`, `read_only`), to improve the readability of you
+Define new roles, in addition to built-in roles (e.g. `admin`, `read_only`), to improve the readability of your
 user permissions configuration. They live in a new section of the `rudder-users.xml` file:
 
 [source,xml]
@@ -100,6 +110,10 @@ user permissions configuration. They live in a new section of the `rudder-users.
 ----
 
 Read the https://docs.rudder.io/reference/7.3/administration/users.html#_user_and_role_configuration_file[documentation] for details.
+
+== Amazon Linux 2023
+
+Amazon Linux 2023, released on March 15, 2023, is now supported as both an agent and server OS.
 
 == Under the hood
 
@@ -122,7 +136,7 @@ https://docs.rudder.io/reference/7.3/installation/server/sles.html[SLES]
 This version provides packages for these operating systems:
 
 * Rudder server and Rudder relay: *Debian 10-11, RHEL/CentOS/Alma/Rocky 8 and 9,
-SLES 15, Ubuntu 20.04 and 22.04 LTS*
+SLES 15, Ubuntu 20.04 and 22.04 LTS, Amazon Linux 2023*
 * Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES 12*
 * Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-8, RHEL/CentOS 3-6,
 SLES 10-11, Ubuntu 10.04 LTS, 12.04 LTS, 13.04, 15.10, 14.04 LTS, 16.04 LTS, 18.04 LTS, Windows Server 2008R2-2019, AIX
