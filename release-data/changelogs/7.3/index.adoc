@@ -65,7 +65,7 @@ You benefit from a main interface and centralize patch reports.
 === APIs for update campaigns
 
 Our REST API now covers the update campaigns, so you can automate campaign definition and maintenance.
-Read the https://docs.rudder.io/api/v/17/#TODO[API documentation] for more details.
+Read the https://docs.rudder.io/api/v/17/#tag/System-update-campaigns[API documentation] for more details.
 
 == MSI package for the Windows agent
 
