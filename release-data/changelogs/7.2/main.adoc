@@ -1,5 +1,182 @@
 = Change logs for Rudder 7.2
 
+==  Rudder 7.2.6 (2023-05-04)
+
+=== Changes
+
+
+==== Documentation
+
+* Add documentation about optional anonymous data collection
+    (https://issues.rudder.io/issues/22673[#22673])
+
+==== CI
+
+* Notify different channel for security dependency check
+    (https://issues.rudder.io/issues/22687[#22687])
+
+==== Web - Nodes & inventories
+
+* Display sha256 key hash in node details
+    (https://issues.rudder.io/issues/22633[#22633])
+* Add tests for linux inventory signature with certificate
+    (https://issues.rudder.io/issues/22528[#22528])
+
+==== Generic methods
+
+* Explain flag mechanism for "once" method
+    (https://issues.rudder.io/issues/22596[#22596])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Rudder agent force a lot of dependencies on RHEL9 
+    (https://issues.rudder.io/issues/22610[#22610])
+* Fixed: rudder-init replaces rudder-db password at postinst
+    (https://issues.rudder.io/issues/22608[#22608])
+
+==== Agent
+
+* Fixed: rudder-sign says "hostname: command not found"
+    (https://issues.rudder.io/issues/22452[#22452])
+* Fixed: A node update in bootstrap/initial policies should not fail
+    (https://issues.rudder.io/issues/20996[#20996])
+* Fixed: Connection timeout to server are too long
+    (https://issues.rudder.io/issues/22540[#22540])
+* Fixed: Allow skipping reporting when it is disabled
+    (https://issues.rudder.io/issues/22653[#22653])
+
+==== Server components
+
+* Fixed: "reportid" missing in PostgreSQL database after upgrade from v6.2.12 to v7.2.3
+    (https://issues.rudder.io/issues/22315[#22315])
+
+==== Documentation
+
+* Fixed: Problem in Server backup and migration documentation
+    (https://issues.rudder.io/issues/22313[#22313])
+* Fixed: Update screenshot of the dashboard
+    (https://issues.rudder.io/issues/22634[#22634])
+* Fixed: API Documentation errors for trigger agent run
+    (https://issues.rudder.io/issues/22565[#22565])
+
+==== Miscellaneous
+
+* Fixed: Ignore CVE 2023-20860 
+    (https://issues.rudder.io/issues/22708[#22708])
+* Fixed: Missing "latest" in archive API tests leads to error with upmerge
+    (https://issues.rudder.io/issues/22636[#22636])
+
+==== Security
+
+* Fixed: Ignore RUSTSEC-2023-0034 in relayd
+    (https://issues.rudder.io/issues/22706[#22706])
+* Fixed: upgrade postgresql drive for CVE CVE-2022-41946
+    (https://issues.rudder.io/issues/22637[#22637])
+* Fixed: Stackoverflow if {} used in place of [] for properties in node create api
+    (https://issues.rudder.io/issues/22617[#22617])
+* Fixed: Update spring-core to 5.3.26
+    (https://issues.rudder.io/issues/22586[#22586])
+* Fixed: Allow iframes from the same origin
+    (https://issues.rudder.io/issues/22522[#22522])
+* Fixed: Update openssl crate to fix several vulnerabilities
+    (https://issues.rudder.io/issues/22532[#22532])
+
+==== Web - Campaigns
+
+* Fixed: We should initialize campaign service after plugin were added or else current events will be skipped (before being added again)
+    (https://issues.rudder.io/issues/22646[#22646])
+
+==== Web - UI & UX
+
+* Fixed: It's hard to understand which authentication backend failed when a fallback happens
+    (https://issues.rudder.io/issues/20396[#20396])
+* Fixed:  Pending nodes History Tab shows duplicate entries
+    (https://issues.rudder.io/issues/19258[#19258])
+* Fixed:  Tooltip on enforce/audit label in rules title not working
+    (https://issues.rudder.io/issues/20788[#20788])
+* Fixed: when we save a rule category, the button save never stops saving
+    (https://issues.rudder.io/issues/22524[#22524])
+* Fixed: there is a space before all texts in the node details page, so copy and paste include it
+    (https://issues.rudder.io/issues/21417[#21417])
+* Fixed: rules/directives/cancel button doesn't work
+    (https://issues.rudder.io/issues/22517[#22517])
+* Fixed: System group preview description are not displayed
+    (https://issues.rudder.io/issues/18583[#18583])
+* Fixed: Rule list doesn't appear anymore in a rule category
+    (https://issues.rudder.io/issues/22103[#22103])
+* Fixed: When shared folder file list is too long the selector fail
+    (https://issues.rudder.io/issues/22110[#22110])
+* Fixed: Change name parameter "Rudder ID" for group id
+    (https://issues.rudder.io/issues/22581[#22581])
+* Fixed: Shadow overlapping on first menu entry
+    (https://issues.rudder.io/issues/21683[#21683])
+
+==== Web - Maintenance
+
+* Fixed: JGitInternalError on HistorizeNodeCountService
+    (https://issues.rudder.io/issues/22616[#22616])
+* Fixed: password=LDAP produces error logs in webapp
+    (https://issues.rudder.io/issues/21978[#21978])
+
+==== Architecture - Dependencies
+
+* Fixed: Update spring to 5.3.27 and spring-security 5.7.8
+    (https://issues.rudder.io/issues/22668[#22668])
+
+==== Relay server or API
+
+* Fixed: Broken shared-files cleanup when file id contains a dot
+    (https://issues.rudder.io/issues/22652[#22652])
+
+==== System integration
+
+* Fixed: Log in hook should got to /var/log and not /tmp
+    (https://issues.rudder.io/issues/22649[#22649])
+
+==== Web - Config management
+
+* Fixed: Error log at boot: Can not find active technique with id 'test_import_export_archive}'
+    (https://issues.rudder.io/issues/22614[#22614])
+
+==== API
+
+* Fixed: List Managed Nodes API with any of the fields listed in the "full" never answer
+    (https://issues.rudder.io/issues/22534[#22534])
+
+==== Web - Technique editor
+
+* Fixed: In technique editor, technique with missing generic method need a warning icon
+    (https://issues.rudder.io/issues/12282[#12282])
+
+==== Techniques
+
+* Fixed: Mustache template is not capable to render technique parameters on windows nodes
+    (https://issues.rudder.io/issues/22535[#22535])
+
+==== System techniques
+
+* Fixed: Always send start/end reports even in changes-only mode
+    (https://issues.rudder.io/issues/22655[#22655])
+
+==== Generic methods
+
+* Fixed: Augeas set method does not correctly handle successive calls
+    (https://issues.rudder.io/issues/22677[#22677])
+* Fixed: report_if_condition report contain twice "was correct"
+    (https://issues.rudder.io/issues/22665[#22665])
+* Fixed: Missleading use of parameter variable_name in method condition_from_variable_match
+    (https://issues.rudder.io/issues/22620[#22620])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Lars Koenen
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.2.5 (2023-03-28)
 
 === Changes
