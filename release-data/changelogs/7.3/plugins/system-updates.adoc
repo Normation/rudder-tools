@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin system-updates 7.3.\* versions
 
+== system-updates-7.3.1-1.12 (2023-05-04)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add default local logging on windows
+    (https://issues.rudder.io/issues/22631[#22631])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Windows version of the plugin can not parse input dates when not in UTC
+    (https://issues.rudder.io/issues/22700[#22700])
+* Fixed: It is not possible to delete or disable software update campaigns
+    (https://issues.rudder.io/issues/22670[#22670])
+* Fixed: In the select group in the target tab of the campaign there is an unnecessary hamburger button
+    (https://issues.rudder.io/issues/22661[#22661])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.3.0-1.12 (2023-04-08)
 
 === Changes
