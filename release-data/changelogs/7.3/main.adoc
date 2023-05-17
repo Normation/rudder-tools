@@ -1,5 +1,103 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.2 (2023-05-18)
+
+=== Changes
+
+
+==== Packaging
+
+* Add debian12 support to agent package
+    (https://issues.rudder.io/issues/22747[#22747])
+
+==== Architecture - Internal libs
+
+* Backport scala 2.13 change for scala 3.0 migration
+    (https://issues.rudder.io/issues/22723[#22723])
+
+==== Web - Nodes & inventories
+
+* VM type is missing in group criteria
+    (https://issues.rudder.io/issues/19803[#19803])
+
+=== Bug fixes
+
+==== Server components
+
+* Fixed: silent rudder-upgrade failure / plugins were not upgraded when upgrading from 7.2.5 to 7.3.1~nightly
+    (https://issues.rudder.io/issues/22689[#22689])
+
+==== Agent
+
+* Fixed: Errors with Rudder agent on unprivileged containers (LXC)
+    (https://issues.rudder.io/issues/15636[#15636])
+* Fixed: A node update in bootstrap/initial policies should not fail
+    (https://issues.rudder.io/issues/20996[#20996])
+
+==== System integration
+
+* Fixed: Postgresql is not created with the UTF8 encoding
+    (https://issues.rudder.io/issues/20937[#20937])
+
+==== Packaging
+
+* Fixed: Missing dependency on ps command on RHEL8+
+    (https://issues.rudder.io/issues/22727[#22727])
+* Fixed: pip3 refuses to install modules in a system with packages python modules
+    (https://issues.rudder.io/issues/22763[#22763])
+
+==== Documentation
+
+* Fixed: proxy documentation is lost in rudder 7.3 documentation
+    (https://issues.rudder.io/issues/22767[#22767])
+* Fixed: Backup/restore documentation is missing some important folder backups when using plugins
+    (https://issues.rudder.io/issues/22756[#22756])
+* Fixed: Installation documentation should use ' instead of " to avoid unwanted bash string interpretation
+    (https://issues.rudder.io/issues/22737[#22737])
+
+==== Web - Nodes & inventories
+
+* Fixed: No local account shown on windows
+    (https://issues.rudder.io/issues/22387[#22387])
+
+==== Security
+
+* Fixed: Error when trying to save a property using xml tags but property actually saved
+    (https://issues.rudder.io/issues/19519[#19519])
+* Fixed: Healthcheck notification is displayed when a user have no right
+    (https://issues.rudder.io/issues/22625[#22625])
+
+==== Web - UI & UX
+
+* Fixed: Inconsistent colors in hover on the dashboard
+    (https://issues.rudder.io/issues/22671[#22671])
+* Fixed: Inconsistent colors in hover on the dashboard
+    (https://issues.rudder.io/issues/22671[#22671])
+
+==== Web - Compliance & node report
+
+* Fixed: Warn sign in nodes list for disabled nodes
+    (https://issues.rudder.io/issues/19545[#19545])
+
+==== Generic methods
+
+* Fixed: Reporting error when using a dash for SSH authorized keys method
+    (https://issues.rudder.io/issues/22724[#22724])
+* Fixed: condition from variable match does not work with node properties
+    (https://issues.rudder.io/issues/21026[#21026])
+* Fixed: file augeas set doesn't when value have space
+    (https://issues.rudder.io/issues/22725[#22725])
+* Fixed: Method File augeas set does not clean augnew files
+    (https://issues.rudder.io/issues/22718[#22718])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Stefan Schmitt
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.1 (2023-05-04)
 
 === Changes
