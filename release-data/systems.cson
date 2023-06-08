@@ -102,6 +102,7 @@ slackware = {
   codenames = {
     "14.1": "slackware-14.1"
     "14.2": "slackware-14.2"
+    "15.0": "slackware-15.0"
   }
 }
 
