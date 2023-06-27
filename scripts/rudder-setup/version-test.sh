@@ -197,8 +197,8 @@ rudder_is_compatible() {
   # Remove the -suffix and only keep major version
   $local MAJOR_VERSION=$(echo "$2"| cut -d '-' -f 1 | cut -f 1-2 -d .)
   $local OS=$(echo "$3"|tr 'A-Z' 'a-z')
-  if [ "${OS}" = "ubuntu" ]; then
-    # Keep the part after the first dot for ubuntu versions, e.g. 14.04
+  if [ "${OS}" = "ubuntu" ] || [ "${OS}" = "slackware" ] ; then
+    # Keep the part after the first dot for ubuntu and slackware versions, e.g. 14.04
     $local OS_VERSION=$(echo "$4"| cut -d '-' -f 1)
   else
     $local OS_VERSION=$(echo "$4"| cut -f 1 -d . | cut -d '-' -f 1)

@@ -49,6 +49,13 @@ setup_agent() {
       fi
     fi
     ${PM_INSTALL} "${URL_BASE}/ppc/${file}"
+  # special get + localinstall for slackware
+  elif [ "${PM}" = "slackpkg" ]
+  then
+    $local file=$(mktemp)
+    wget -O "${file}" "${LOCALINSTALL_URL}/latest"
+    ${PM_LOCAL_INSTALL} "${file}"
+    rm "${file}"
   else
     # Install
     ${PM_INSTALL} "${package}"

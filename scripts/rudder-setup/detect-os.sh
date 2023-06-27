@@ -69,6 +69,13 @@ detect_os() {
     PM_UPDATE="true"
     PM_UPGRADE="pkg update --accept"
     PM_LOCAL_INSTALL="yes | pkgadd -d"
+  elif exists slackpkg
+  then
+    PM="slackpkg"
+    PM_INSTALL="slackpkg install"
+    PM_UPDATE="slackpkg update"
+    PM_UPGRADE="slackpkg install"
+    PM_LOCAL_INSTALL="installpkg"
   fi
 
   # install lsb_release if required

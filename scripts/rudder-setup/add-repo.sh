@@ -14,6 +14,7 @@ add_repo() {
   [ "${PM}" = "zypper" ] && REPO_TYPE="rpm"
   [ "${PM}" = "rpm" ] && REPO_TYPE="rpm"
   [ "${PM}" = "pkg" ] && REPO_TYPE="misc/solaris"
+  [ "${PM}" = "slackpkg" ] && REPO_TYPE="misc/slackware"
   if [ "${USE_HTTPS}" != "false" ]; then
     S="s"
     [ "${PM}" = "apt" ] && ${PM_INSTALL} apt-transport-https
@@ -138,6 +139,11 @@ EOF
   elif [ "${PM}" = "pkg" ]
   then
     pkg set-publisher -g "${URL_BASE}/" normation
+    return 0
+  elif [ "${PM}" = "slackpkg" ]
+  then
+    LOCALINSTALL_URL="${URL_BASE}/slackware-${OS_COMPATIBLE_VERSION}"
+    return 0
   fi
 
   # TODO pkgng emerge pacman smartos
@@ -175,6 +181,11 @@ update_repo() {
     URL_BASE=$(LANG=C pkg publisher | grep ^normation | awk '{print $5}' | sed "s%misc/solaris/\(latest\|nightly\|[0-9.]\+\(-nightly\|~beta[0-9]\+\|~rc[0-9]\+\)\?\)/%misc/solaris/${RUDDER_VERSION}/%")
     pkg set-publisher -g "${URL_BASE}/" normation
     return
+  elif [ "${PM}" = "slackpkg" ]
+  then
+    # slack repository are only used for Slackware distro itself
+    # but we need the call to compute package URL
+    add_repo
   else
     echo "Sorry your Package Manager is not *yet* supported !"
     return 1

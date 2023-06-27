@@ -7,7 +7,7 @@ usage() {
   echo "Usage $0 (add-repository|setup-agent|setup-relay|setup-server|upgrade-agent|upgrade-relay|upgrade-server) <rudder_version> [<policy_server>] ['<plugins>']"
   echo "  Adds a repository and setup rudder on your OS"
   echo "  Should work on as many OS as possible"
-  echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
+  echo "  Currently supported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES, Slackware"
   echo ""
   echo "  rudder_version : x.y or x.y.z or x.y-nightly or ci/x.y or lts or latest"
   echo "       x.y:            the latest x.y release (ex: 3.2)"
