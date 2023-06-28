@@ -52,7 +52,7 @@ setup_agent() {
   # special get + localinstall for slackware
   elif [ "${PM}" = "slackpkg" ]
   then
-    $local file=$(mktemp)
+    $local file=$(mktemp).tgz
     wget -O "${file}" "${LOCALINSTALL_URL}/latest"
     ${PM_LOCAL_INSTALL} "${file}"
     rm "${file}"
