@@ -1,5 +1,16 @@
 = Changelogs for Rudder plugin glpi 7.2.\* versions
 
+== glpi-7.2.8-2.1 (2023-07-03)
+
+=== Changes
+
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == glpi-7.2.5-2.1 (2023-03-31)
 
 === Changes
