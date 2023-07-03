@@ -1,5 +1,143 @@
 = Change logs for Rudder 7.2
 
+==  Rudder 7.2.8 (2023-07-03)
+
+=== Changes
+
+
+==== Web - Config management
+
+* Display inventory variables and values in node details
+    (https://issues.rudder.io/issues/22864[#22864])
+
+==== Web - Technique editor
+
+* Improving the display of Generic Methods in the Technique Editor for a better UX
+    (https://issues.rudder.io/issues/22896[#22896])
+
+==== Web - Nodes & inventories
+
+* OS and hardware inventory information are not discoverable
+    (https://issues.rudder.io/issues/22807[#22807])
+
+==== Generic methods
+
+* Add a methd to force the secondary groups of a user
+    (https://issues.rudder.io/issues/22722[#22722])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: slackware postinst fails because library links are made too late
+    (https://issues.rudder.io/issues/22974[#22974])
+* Fixed: slackware doesn't install initscript
+    (https://issues.rudder.io/issues/22962[#22962])
+* Fixed: Update embedded openssl to 1.1.1u
+    (https://issues.rudder.io/issues/22886[#22886])
+* Fixed: build-cache share cache between different rudder versions
+    (https://issues.rudder.io/issues/22850[#22850])
+* Fixed: Disable http2 in embedded curl
+    (https://issues.rudder.io/issues/22809[#22809])
+* Fixed: Missing python3 on AL2 leads to missing generic methods in technique editor and big red error
+    (https://issues.rudder.io/issues/22551[#22551])
+* Fixed: Useless python sed for rhel7 agent package
+    (https://issues.rudder.io/issues/22804[#22804])
+* Fixed: git is a build dependency for rudder-server package
+    (https://issues.rudder.io/issues/22782[#22782])
+* Fixed: Typos-cli does not build anymore
+    (https://issues.rudder.io/issues/22924[#22924])
+
+==== Agent
+
+* Fixed: Use dist-upgrade on apt systems to see list of pending upgrades
+    (https://issues.rudder.io/issues/22839[#22839])
+
+==== Performance and scalability
+
+* Fixed: resources sent to the browser are not compressed when using a custom cetificate
+    (https://issues.rudder.io/issues/22749[#22749])
+* Fixed: When we arrive on the node search page with a query pre-filed, the query is done twice
+    (https://issues.rudder.io/issues/21236[#21236])
+
+==== Documentation
+
+* Fixed: Inventory variable doc is wrong about evaluation process
+    (https://issues.rudder.io/issues/22956[#22956])
+* Fixed: Missing postgres version in requirement
+    (https://issues.rudder.io/issues/22901[#22901])
+* Fixed: Documentation for windows node inventory variable is false
+    (https://issues.rudder.io/issues/22865[#22865])
+* Fixed: Documentation for windows node inventory variable is false
+    (https://issues.rudder.io/issues/22865[#22865])
+* Fixed: missing parameters in ruledetails api response
+    (https://issues.rudder.io/issues/22783[#22783])
+
+==== Architecture - Code maintenance
+
+* Fixed: error in node variable parser for policy server
+    (https://issues.rudder.io/issues/22958[#22958])
+
+==== CI
+
+* Fixed: add label to rudder docker images
+    (https://issues.rudder.io/issues/22914[#22914])
+* Fixed: add label to rudder-techniques docker images
+    (https://issues.rudder.io/issues/22922[#22922])
+* Fixed: add label to ncf docker images
+    (https://issues.rudder.io/issues/22913[#22913])
+
+==== Web - Maintenance
+
+* Fixed: NodeProperties value are not correctly serialized in event log
+    (https://issues.rudder.io/issues/22946[#22946])
+* Fixed: Too many "Policy Update Started" in event logs
+    (https://issues.rudder.io/issues/22879[#22879])
+
+==== Server components
+
+* Fixed: Disable post-generation remote-run by default
+    (https://issues.rudder.io/issues/22871[#22871])
+* Fixed: Use 8080 port to talk with the webapp in hooks
+    (https://issues.rudder.io/issues/22870[#22870])
+
+==== Web - UI & UX
+
+* Fixed: diff on node properties in event log (at least) is broken
+    (https://issues.rudder.io/issues/22933[#22933])
+* Fixed: Long change request diff is unusable
+    (https://issues.rudder.io/issues/22919[#22919])
+* Fixed: TODOs in the UI
+    (https://issues.rudder.io/issues/22880[#22880])
+* Fixed: Button to add/remove more entries indirectives are inside entries
+    (https://issues.rudder.io/issues/22654[#22654])
+
+==== Miscellaneous
+
+* Fixed: Update relayd rust-openssl dependency due to RUSTSEC-2023-0044
+    (https://issues.rudder.io/issues/22943[#22943])
+
+==== Web - Nodes & inventories
+
+* Fixed: When we clone a group in Rudder 7.2, newly added properties are not cloned
+    (https://issues.rudder.io/issues/22702[#22702])
+* Fixed: NPE gz inventory file is corrupted
+    (https://issues.rudder.io/issues/22874[#22874])
+
+==== Techniques
+
+* Fixed: Method calls using a condition are not properly generated when a variable is used in the condition expression
+    (https://issues.rudder.io/issues/22785[#22785])
+
+==== Generic methods
+
+* Fixed: Add a full class prefix in user_secondary_group
+    (https://issues.rudder.io/issues/22866[#22866])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.2.7 (2023-05-18)
 
 === Changes
