@@ -139,6 +139,24 @@ if len(sys.argv) > 1:
   else:
     usage()
   
+# from a line like [{'bid': 'Linux sshd ciphers', 'rl': 'weighted', 'scs': [{'vid': 'File key-value present', 'vs': [{'id': '6bac7b4e-742d-4250-bf15-21bc6c4a6eb1', 'v': '/etc/ssh/sshd_config'}]}, {'vid': 'Service restart', 'vs': [{'id': '56cf515b-7b32-412c-a243-18c98dcbf9b7', 'v': 'sshd'}]}]}]
+# returns all the couple (vid, vs) that are within
+def get_inner_block(entry_list, return_values):
+  if isinstance(entry_list, list):
+    for entry in entry_list:
+      get_each_value_block(entry, return_values)
+  else:
+    return get_each_value_block(entry_list, return_values)
+
+def get_each_value_block(entry, return_values):
+  if not (get_parsing_key('values') in entry):
+    if 'scs' in entry:
+      return get_inner_block(entry['scs'], return_values)
+  else:
+      return_values.append(entry)
+  return return_values
+
+
 startTime = datetime.datetime.now()
 nbReports = 0
 formatedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
@@ -215,15 +233,23 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                 # this is a block
                 else:
                   for block in components['scs']:
-                    for tmpValue in block[get_parsing_key('values')]:
+                    # block may contain only blocks
+                    if not (get_parsing_key('values') in block):
+                      inner_vs = get_inner_block(block, [])
+                    else:
+                      inner_vs = [block]
+                    for cur_value in inner_vs:
                       # in 7.1, the values is a list of unexpanded/expanded
                       if is_rudder_7_1_or_later:
-                        if (isinstance(tmpValue, dict)):
-                          value = tmpValue.get('v', 'None')
-                          serial = tmpValue.get('id', '0')
-                        else:
-                          value = 'None'
-                          serial = '0'
+                        for tmpValue in cur_value[get_parsing_key('values')]:
+                          if (isinstance(tmpValue, dict)):
+                            value = tmpValue.get('v', 'None')
+                            serial = tmpValue.get('id', '0')
+                          else:
+                            value = 'None'
+                            serial = '0'
+                      
+                      comp_name = cur_value[get_parsing_key('componentName')]
 
                       # randomize the reports to have also error and repaired
                       randomValue = random.random()
@@ -245,10 +271,10 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                       nbReports += 1
                       if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
                         if use_syslog:
-                          syslog_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ block[get_parsing_key('componentName')] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
+                          syslog_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ comp_name + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                           syslog.syslog(syslog.LOG_INFO, syslog_string)
                         else:
-                          write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  serial, block[get_parsing_key('componentName')], value, reportDate, status, value, 'Dummy reports for load test'))
+                          write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s)', (reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  serial, comp_name, value, reportDate, status, value, 'Dummy reports for load test'))
                         #print reportDate, nodeid, directives[get_parsing_key('directiveId')], rules[get_parsing_key('ruleId')],  '0', components[get_parsing_key('componentName')], value, reportDate, status, '', 'Dummy reports for load test'
 
         # specific report for end of run
