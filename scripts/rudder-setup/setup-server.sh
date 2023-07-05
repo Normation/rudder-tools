@@ -138,6 +138,8 @@ set_admin() {
       details="<user name=\"admin\" password=\"${hash}\" role=\"administrator\" />"
       sed -i "/^[[:space:]]*<\/authentication>/i ${details}" "/opt/rudder/etc/rudder-users.xml"
       systemctl restart rudder-jetty
+      # force an inventory, because this restart often happens while inventory is being processed
+      rudder agent inventory
     fi
   fi
 }
