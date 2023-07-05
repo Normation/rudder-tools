@@ -144,7 +144,8 @@ if len(sys.argv) > 1:
 def get_inner_block(entry_list, return_values):
   if isinstance(entry_list, list):
     for entry in entry_list:
-      get_each_value_block(entry, return_values)
+      return_values = get_each_value_block(entry, return_values)
+    return return_values
   else:
     return get_each_value_block(entry_list, return_values)
 
