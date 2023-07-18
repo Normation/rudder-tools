@@ -25,7 +25,7 @@ Config.BUG_TACKER_ID = 1
 Config.PENDING_MERGE_CODE = 12
 Config.DISCUSSION_CODE = 4
 
-Config.REDMINE_VERSION_DETECTOR = [ (r'master|.*~alpha\d+', r'master', False), (r'(\d+\.\d+)-.*', r'\1', True), (r'(\d+\.\d+).*', r'\1', False) ]
+Config.REDMINE_VERSION_DETECTOR = [ (r'master|.*~alpha1', r'master', False), (r'(\d+\.\d+)-.*', r'\1', True), (r'(\d+\.\d+).*', r'\1', False) ]
 
 class Issue:
   """Class to hold informations about a single issue"""
