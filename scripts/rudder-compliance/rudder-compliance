@@ -70,24 +70,51 @@ def get_non_compliance_rule(rule_compliance, non_compliances):
     else:
       print("No compliance details for rule_compliance {}".format(rule_compliance))
 
+
+# Block compliance is nested, but we can ignore the block layer as we only need to compute the method compliance per node.
+# Input: {"name": "block 1", "compliance": 50.0, "complianceDetails": {"error": 50.0, "successRepaired": 50.0}, "components": [{"name": "test subblock", "compliance": 100.0, "complianceDetails": {"successRepaired": 100.0}, "components": [{"name": "badaboum", "compliance": 100.0, "complianceDetails": {"successRepaired": 100.0}, "nodes": [{"id": "6f38e8e6-7752-4cb4-8bdb-bfba0bb2ed1e", "name": "agent1.rudder.local", "compliance": 100.0, "complianceDetails": {"successRepaired": 100.0}, "values": [{"value": "/bin/true", "reports": [{"status": "successRepaired", "message": "Execute command /bin/true was repaired"}]}]}]}]}, {"name": "Report if condition", "compliance": 0.0, "complianceDetails": {"error": 100.0}, "nodes": [{"id": "6f38e8e6-7752-4cb4-8bdb-bfba0bb2ed1e", "name": "agent1.rudder.local", "compliance": 0.0, "complianceDetails": {"error": 100.0}, "values": [{"value": "patatra", "reports": [{"status": "error", "message": "patatra could not be repaired"}]}]}]}]}
+# Output: [['agent1.rudder.local', 'patatra', 'error', 'patatra could not be repaired']]
+def walk_through_blocks(compliance_component):
+  local_non_compliances = []
+  if 'components' in compliance_component:
+    for sub_block in compliance_component['components']:
+      local_non_compliances.extend(walk_through_blocks(sub_block))
+
+  elif 'nodes' in compliance_component:
+    for nodes in compliance_component["nodes"]:
+      # and now, get the values that have a status of non compliance
+      for values in nodes["values"]:
+        [
+          local_non_compliances.append(
+            [
+              nodes["name"],
+              values['value'],
+              x['status'],
+              x.get('message', "")
+            ]
+          )
+          for x in values['reports'] if x.get('status', []) in non_compliances_keys
+        ]
+  return local_non_compliances
+
+
 # non compliance is the array containing the result
 def extract_non_compliance_by_directive(rule_name, directive_compliance, non_compliances):
-      directive_name = directive_compliance["name"]
-      compliance = directive_compliance['complianceDetails']
-      if any (k in compliance for k in non_compliances_keys):
-        # need to dig further
-        for components_compliance in directive_compliance["components"]:
-          component_name = components_compliance["name"]
-          compliance = components_compliance['complianceDetails']
-          if any (k in compliance for k in non_compliances_keys):
-            # get the nodes
-            for nodes in components_compliance["nodes"]:
-              node_name = nodes["name"]
-              # and now, get the values that have a status of non compliance
-              for values in nodes["values"]:
-                for reports in values["reports"]:
-                  if any (k in reports["status"] for k in non_compliances_keys):
-                    non_compliances.append([rule_name, directive_name, component_name, node_name, values["value"], reports["status"], reports.get("message", "")])
+  # Look if any directive is non compliant
+  if any (k in directive_compliance['complianceDetails'] for k in non_compliances_keys):
+    for components_compliance in directive_compliance["components"]:
+      # Look for the faulty component
+      if any (k in components_compliance['complianceDetails'] for k in non_compliances_keys):
+        # Use recursion to get the per node compliance as it can be nested in blocks
+        for i in walk_through_blocks(components_compliance):
+          non_compliances.append(
+            [
+              rule_name,
+              directive_compliance["name"],
+              components_compliance["name"]
+            ].extend(i)
+          )
+
 
 def directives_compliance(compliance_in, wanted_directives, csv_output):
 
