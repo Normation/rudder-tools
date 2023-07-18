@@ -141,21 +141,21 @@ if len(sys.argv) > 1:
   
 # from a line like [{'bid': 'Linux sshd ciphers', 'rl': 'weighted', 'scs': [{'vid': 'File key-value present', 'vs': [{'id': '6bac7b4e-742d-4250-bf15-21bc6c4a6eb1', 'v': '/etc/ssh/sshd_config'}]}, {'vid': 'Service restart', 'vs': [{'id': '56cf515b-7b32-412c-a243-18c98dcbf9b7', 'v': 'sshd'}]}]}]
 # returns all the couple (vid, vs) that are within
-def get_inner_block(entry_list, return_values):
+
+return_values = []
+def get_inner_block(entry_list):
   if isinstance(entry_list, list):
     for entry in entry_list:
-      return_values = get_each_value_block(entry, return_values)
-    return return_values
+      get_each_value_block(entry)
   else:
-    return get_each_value_block(entry_list, return_values)
+    get_each_value_block(entry_list)
 
-def get_each_value_block(entry, return_values):
+def get_each_value_block(entry):
   if not (get_parsing_key('values') in entry):
     if 'scs' in entry:
-      return get_inner_block(entry['scs'], return_values)
+      get_inner_block(entry['scs'])
   else:
       return_values.append(entry)
-  return return_values
 
 
 startTime = datetime.datetime.now()
@@ -236,7 +236,9 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                   for block in components['scs']:
                     # block may contain only blocks
                     if not (get_parsing_key('values') in block):
-                      inner_vs = get_inner_block(block, [])
+                      return_values = []
+                      get_inner_block(block)
+                      inner_vs = return_values[]
                     else:
                       inner_vs = [block]
                     for cur_value in inner_vs:
