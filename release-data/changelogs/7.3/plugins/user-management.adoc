@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin user-management 7.3.\* versions
 
+== user-management-8.0.0.alpha1-2.2 (2023-07-19)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Update elm dependencies
+    (https://issues.rudder.io/issues/22883[#22883])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-7.3.3-2.2 (2023-07-03)
 
 === Changes
