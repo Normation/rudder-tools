@@ -111,14 +111,6 @@ def extract_non_compliance_by_directive(rule_name, directive_compliance, non_com
           entry.extend(i)
           non_compliances.append(entry)
 
-            [
-              rule_name,
-              directive_compliance["name"],
-              components_compliance["name"]
-            ].extend(i)
-          )
-
-
 def directives_compliance(compliance_in, wanted_directives, csv_output):
 
     # Call the API to get the complete list of directive definitions
