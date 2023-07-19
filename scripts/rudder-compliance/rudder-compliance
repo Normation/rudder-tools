@@ -107,7 +107,10 @@ def extract_non_compliance_by_directive(rule_name, directive_compliance, non_com
       if any (k in components_compliance['complianceDetails'] for k in non_compliances_keys):
         # Use recursion to get the per node compliance as it can be nested in blocks
         for i in walk_through_blocks(components_compliance):
-          non_compliances.append(
+          entry = [rule_name, directive_compliance["name"], components_compliance["name"]]
+          entry.extend(i)
+          non_compliances.append(entry)
+
             [
               rule_name,
               directive_compliance["name"],
