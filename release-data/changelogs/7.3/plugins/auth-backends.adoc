@@ -1,5 +1,25 @@
 = Changelogs for Rudder plugin auth-backends 7.3.\* versions
 
+== auth-backends-7.3.0-2.6 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: LDAP auth backend should deref link to allows finding user in remote directory
+    (https://issues.rudder.io/issues/22158[#22158])
+* Fixed: LDAP config example advocate for editing rudder-web.properties in place of using a dedicated file
+    (https://issues.rudder.io/issues/22513[#22513])
+* Fixed: Upgrade nimbus-jose-jwt to last patch release
+    (https://issues.rudder.io/issues/22533[#22533])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == auth-backends-7.3.0.rc1-2.6 (2023-07-22)
 
 === Changes
