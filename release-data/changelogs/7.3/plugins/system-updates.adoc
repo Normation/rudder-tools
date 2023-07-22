@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin system-updates 7.3.\* versions
 
+== system-updates-7.3.3-1.12 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: node filter in system update page in case sensitive
+    (https://issues.rudder.io/issues/22750[#22750])
+* Fixed: Use fnv for calculating update splaytime
+    (https://issues.rudder.io/issues/22890[#22890])
+* Fixed: The end of the upgrade window computation is wrong, leading to skipping some updates
+    (https://issues.rudder.io/issues/22906[#22906])
+
+==== Packaging
+
+* Fixed: add label to rudder-plugin-private docker images
+    (https://issues.rudder.io/issues/22921[#22921])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.3.2-1.12 (2023-07-22)
 
 === Changes
