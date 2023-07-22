@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin scale-out-relay 7.2.\* versions
 
+== scale-out-relay-7.2.6-2.1 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Scale-out-relay: missing command node-to-relay due to upmerge
+    (https://issues.rudder.io/issues/22492[#22492])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == scale-out-relay-7.2.5-2.1 (2023-07-22)
 
 === Changes
