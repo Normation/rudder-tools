@@ -1,5 +1,26 @@
 = Changelogs for Rudder plugin dsc 7.2.\* versions
 
+== dsc-7.2.8-2.2 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Use fnv for calculating update splaytime
+    (https://issues.rudder.io/issues/22890[#22890])
+
+==== Security
+
+* Fixed: Powershell injection from rudder properties
+    (https://issues.rudder.io/issues/22412[#22412])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-7.2.7-2.2 (2023-07-22)
 
 === Changes
