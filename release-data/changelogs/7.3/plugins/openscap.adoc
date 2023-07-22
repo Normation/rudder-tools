@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin openscap 7.3.\* versions
 
+== openscap-7.3.3-2.1 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Error at upgrade from 7.2 to 7.3
+    (https://issues.rudder.io/issues/22688[#22688])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == openscap-7.3.2-2.1 (2023-07-22)
 
 === Changes
