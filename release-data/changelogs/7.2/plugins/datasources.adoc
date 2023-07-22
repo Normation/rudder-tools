@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin datasources 7.2.\* versions
 
+== datasources-7.2.5-2.2 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: secrets are leaking at the install of the plugin
+    (https://issues.rudder.io/issues/22441[#22441])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == datasources-7.2.4-2.2 (2023-07-22)
 
 === Changes
