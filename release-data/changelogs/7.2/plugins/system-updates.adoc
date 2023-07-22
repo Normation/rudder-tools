@@ -1,5 +1,32 @@
 = Changelogs for Rudder plugin system-updates 7.2.\* versions
 
+== system-updates-7.2.1-1.7 (2023-07-22)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add a datepicker for date selection in one-shot campaigns
+    (https://issues.rudder.io/issues/21928[#21928])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Facilitate the selection of the day and time for the start and end of a campaign
+    (https://issues.rudder.io/issues/21948[#21948])
+* Fixed: When 2 system update campaign apply to a unique node, only one is applied
+    (https://issues.rudder.io/issues/21985[#21985])
+* Fixed: Rename version table headers in Node result
+    (https://issues.rudder.io/issues/21951[#21951])
+* Fixed: Minute duration of campaign is wrong
+    (https://issues.rudder.io/issues/21949[#21949])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.2.1-1.6 (2023-07-22)
 
 === Changes
