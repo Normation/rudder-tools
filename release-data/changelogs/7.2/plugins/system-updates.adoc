@@ -1,5 +1,39 @@
 = Changelogs for Rudder plugin system-updates 7.2.\* versions
 
+== system-updates-7.2.1-1.6 (2023-07-22)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add system-update technique tests back
+    (https://issues.rudder.io/issues/21922[#21922])
+* Package system update campaign technique within the plugin
+    (https://issues.rudder.io/issues/21909[#21909])
+
+==== Documentation
+
+* Add patch management documentation
+    (https://issues.rudder.io/issues/21868[#21868])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Missing report from the system update technique
+    (https://issues.rudder.io/issues/21921[#21921])
+* Fixed: Make campaigns deactivatable
+    (https://issues.rudder.io/issues/21874[#21874])
+* Fixed: Missing latest changes on Monthly schedule
+    (https://issues.rudder.io/issues/21882[#21882])
+* Fixed: Display server date and show future schedule event date
+    (https://issues.rudder.io/issues/21881[#21881])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.2.0-1.5 (2023-07-22)
 
 === Changes
