@@ -1,0 +1,25 @@
+= Changelogs for Rudder plugin auth-backends 7.2.\* versions
+
+== auth-backends-7.2.0.beta1-2.5 (2023-07-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Broken plugins menu interface
+    (https://issues.rudder.io/issues/21390[#21390])
+* Fixed: Broken build of maven plugins with elm apps after minification
+    (https://issues.rudder.io/issues/21217[#21217])
+
+==== Documentation
+
+* Fixed: Add case-sentitivity parameter in user file example
+    (https://issues.rudder.io/issues/21250[#21250])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
