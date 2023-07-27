@@ -238,7 +238,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                     if not (get_parsing_key('values') in block):
                       return_values = []
                       get_inner_block(block)
-                      inner_vs = return_values[]
+                      inner_vs = return_values
                     else:
                       inner_vs = [block]
                     for cur_value in inner_vs:
