@@ -30,7 +30,6 @@ architectures = {
                   "ubuntu-18.04":   [ "amd64" ],
                   "ubuntu-20.04":   [ "amd64" ],
                   "ubuntu-22.04":   [ "amd64" ],
-                  "rhel-5":         [ "i386", "amd64" ],
                   "rhel-6":         [ "i386", "amd64" ],
                   "rhel-7":         [ "i386", "amd64", "ppc64le" ],
                   "rhel-8":         [ "amd64", "ppc64le" ],
