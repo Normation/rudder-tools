@@ -1,5 +1,119 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.5 (2023-08-11)
+
+=== Changes
+
+
+==== Web - UI & UX
+
+* After deleting a node, the user should be redirected to nodes list page
+    (https://issues.rudder.io/issues/7008[#7008])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Hide postrm script warnings
+    (https://issues.rudder.io/issues/23251[#23251])
+* Fixed: Rudder Server 7.3.4 doesn't install on SLES 15 SP4
+    (https://issues.rudder.io/issues/23186[#23186])
+* Fixed: Actually allow uninstalling the agent
+    (https://issues.rudder.io/issues/23146[#23146])
+* Fixed: Agent uninstall fails on Ubuntu 22.04
+    (https://issues.rudder.io/issues/23145[#23145])
+* Fixed: relayd build broken
+    (https://issues.rudder.io/issues/23247[#23247])
+* Fixed: Update spring security
+    (https://issues.rudder.io/issues/23221[#23221])
+* Fixed: Update embedded openssl to 1.1.1v - relayd
+    (https://issues.rudder.io/issues/23217[#23217])
+* Fixed: Package install after uninstall only restores uuid
+    (https://issues.rudder.io/issues/23239[#23239])
+
+==== Agent
+
+* Fixed: When we uninstall and reinstall an agent, the agent is not correctly activated
+    (https://issues.rudder.io/issues/22413[#22413])
+
+==== Security
+
+* Fixed: Update openssl and curl
+    (https://issues.rudder.io/issues/23192[#23192])
+* Fixed: Prevent API token logging by overriding toString implementation
+    (https://issues.rudder.io/issues/23228[#23228])
+* Fixed: Use token id in URLs
+    (https://issues.rudder.io/issues/23233[#23233])
+* Fixed: CVE-2016-1000027 false positive detection
+    (https://issues.rudder.io/issues/23231[#23231])
+* Fixed: Some internal APIs in the Web application bypass ACLs 
+    (https://issues.rudder.io/issues/23227[#23227])
+* Fixed: File manager API is vulnerable to malicious input
+    (https://issues.rudder.io/issues/23225[#23225])
+* Fixed: Path traversal in relayd shared-folder HEAD call
+    (https://issues.rudder.io/issues/23226[#23226])
+
+==== Documentation
+
+* Fixed: doc for external db is not very clear
+    (https://issues.rudder.io/issues/23245[#23245])
+* Fixed: Wrong OS for amazon linux 2023 server install 
+    (https://issues.rudder.io/issues/23242[#23242])
+* Fixed: correct rudder server requirements in doc
+    (https://issues.rudder.io/issues/23131[#23131])
+
+==== Plugin manager cli
+
+* Fixed: rudder package doesn't upgrade openscap, and it brings a lot of chaos
+    (https://issues.rudder.io/issues/23224[#23224])
+
+==== Miscellaneous
+
+* Fixed: Update Rust compiler to 1.71.1 for security fix
+    (https://issues.rudder.io/issues/23216[#23216])
+* Fixed: Version 2.0.3 of ZIO cause OutOfMemory error and high CPU load
+    (https://issues.rudder.io/issues/23147[#23147])
+
+==== System integration
+
+* Fixed: Windows agent cannot get immediatly its policies right after being accepted
+    (https://issues.rudder.io/issues/23218[#23218])
+
+==== Web - Config management
+
+* Fixed: Message “Error getting directive compliance” when creating new directive
+    (https://issues.rudder.io/issues/22830[#22830])
+
+==== Generic methods
+
+* Fixed: N/A report message when a block expression is not valid is not rendered correctly
+    (https://issues.rudder.io/issues/23212[#23212])
+
+==== Web - Technique editor
+
+* Fixed: in the technique editor, the drop down list for condition is truncated
+    (https://issues.rudder.io/issues/23177[#23177])
+
+==== Web - UI & UX
+
+* Fixed: Inventory variable that are Json types are listed as plain string types in the UI
+    (https://issues.rudder.io/issues/23087[#23087])
+* Fixed: Interface color inconsistency for non compliance display
+    (https://issues.rudder.io/issues/23004[#23004])
+
+==== Server components
+
+* Fixed: Broken "server create-user" command when auth file has different formating
+    (https://issues.rudder.io/issues/23203[#23203])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Florian Heigl
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.4 (2023-07-21)
 
 === Changes
