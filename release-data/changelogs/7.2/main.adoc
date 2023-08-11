@@ -16,18 +16,8 @@
 
 ==== Security
 
-* Fixed: Prevent API token logging by overriding toString implementation
-    (https://issues.rudder.io/issues/23228[#23228])
-* Fixed: Use token id in URLs
-    (https://issues.rudder.io/issues/23233[#23233])
 * Fixed: CVE-2016-1000027 false positive detection
     (https://issues.rudder.io/issues/23231[#23231])
-* Fixed: Some internal APIs in the Web application bypass ACLs 
-    (https://issues.rudder.io/issues/23227[#23227])
-* Fixed: File manager API is vulnerable to malicious input
-    (https://issues.rudder.io/issues/23225[#23225])
-* Fixed: Path traversal in relayd shared-folder HEAD call
-    (https://issues.rudder.io/issues/23226[#23226])
 
 ==== Web - Technique editor
 
