@@ -1,5 +1,48 @@
 = Change logs for Rudder 7.2
 
+==  Rudder 7.2.10 (2023-08-11)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: doc for external db is not very clear
+    (https://issues.rudder.io/issues/23245[#23245])
+* Fixed: correct rudder server requirements in doc
+    (https://issues.rudder.io/issues/23131[#23131])
+
+==== Security
+
+* Fixed: Prevent API token logging by overriding toString implementation
+    (https://issues.rudder.io/issues/23228[#23228])
+* Fixed: Use token id in URLs
+    (https://issues.rudder.io/issues/23233[#23233])
+* Fixed: CVE-2016-1000027 false positive detection
+    (https://issues.rudder.io/issues/23231[#23231])
+* Fixed: Some internal APIs in the Web application bypass ACLs 
+    (https://issues.rudder.io/issues/23227[#23227])
+* Fixed: File manager API is vulnerable to malicious input
+    (https://issues.rudder.io/issues/23225[#23225])
+* Fixed: Path traversal in relayd shared-folder HEAD call
+    (https://issues.rudder.io/issues/23226[#23226])
+
+==== Web - Technique editor
+
+* Fixed: in the technique editor, the drop down list for condition is truncated
+    (https://issues.rudder.io/issues/23177[#23177])
+
+==== Web - UI & UX
+
+* Fixed: Inventory variable that are Json types are listed as plain string types in the UI
+    (https://issues.rudder.io/issues/23087[#23087])
+
+=== Release notes
+
+This is a bug fix release in the 7.2 series and therefore all installations of 7.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.2.9 (2023-07-21)
 
 === Changes
