@@ -1,5 +1,28 @@
 = Changelogs for Rudder plugin change-validation 8.0.\* versions
 
+== change-validation-8.0.0.beta1-2.3 (2023-09-07)
+
+=== Changes
+
+
+==== UI - UX
+
+* Use consistent fonts in Rudder interface - plugins
+    (https://issues.rudder.io/issues/23270[#23270])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: not allowed to access errors because rudder plugins are missing AuthorizationApiMapping 
+    (https://issues.rudder.io/issues/23348[#23348])
+* Fixed: Can't deploy, “Configuration state of the object modified by this change request has changed” looping
+    (https://issues.rudder.io/issues/22993[#22993])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == change-validation-8.0.0.alpha1-2.2 (2023-07-22)
 
 === Changes
