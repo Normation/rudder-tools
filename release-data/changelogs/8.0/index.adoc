@@ -1,6 +1,140 @@
-
-
 = Rudder 8.0 release notes
+
+[WARN]
+
+====
+
+Rudder 8.0 is still in beta, and *must not* be used in production for now.
+
+====
+
+We’re thrilled to announce the availability of pre-releases of Rudder 8.0.
+
+The major Rudder 8 version will be mainly dedicated to improving compliance
+features. This will affect different parts of the application.
+
+nutriscore
+
+On the agent side, we will develop powerful extension mechanisms, allowing to manage and audit
+more items on the systems. We also plan to make the reporting format extensible to allow collecting reports from arbitrary sources.
+
+The 8.0 version is the first of the 8.0 branch. It updates the list of supported OSes:
+
+* For Rudder server/relay: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
+ ** As a consequence, the server is not supported anymore on: Debian 10, Ubuntu 20.04, SLES 15 SP3* and below, Amazon Linux 2
+
+* For Rudder agents
+  ** Added: Debian 12
+  ** Removed: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2,
+     2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
+
+== Patch management
+
+=== Targeted update campaigns on Windows
+
+Micro-patching sous Windows
+Possibilité de faire des campagnes sur des KB spécifiques
+
+=== Hooks
+
+== YAML policies
+
+[source,yaml]
+----
+id: "ntp"
+name: "NTP configuration"
+version: "0.1"
+description: "This technique configures the local ntp service"
+documentation: "**Markdown** formatted documentation."
+items:
+  - name: "NTP configuration"
+    method: file_content
+    condition: "debian"
+    params:
+      path: "/etc/ntp.conf"
+      lines: "server ntp.org"
+      enforce: "true"
+----
+
+Possibilité d'écrire les policies Rudder sous forme de code YAML ou via une interface Web (et de switcher entre les deux)
+
+image::images/yaml.png[]
+
+Possibilité de développer et de tester des techniques localement (sans serveur Rudder), et de les intégrer dans un workflow CI/CD
+Import/export de techniques entre (futures) versions de Rudder différentes
+Devient aussi le format de stockage interne de Rudder pour les techniques (archives, git de configuration, etc.)
+
+
+
+https://docs.rudder.io/techniques/8.0/
+
+== Authentication/Authorizations
+
+=== Roles for plugin-based features
+
+The user permissions have been extended to integrate plugin-based features.
+New permission (`cve_read`, `cve_write`, etc.) are available and can be added to your exiting roles.
+This allows fine-tuning access to the different features.
+
+=== Hashed API tokens
+
+All API tokens are now stored hashed with SHA-512.
+There are therefore only available at
+creation time. This improves the security and traceability of token usage.
+
+image::images/token.png[]
+
+For compatibility, existing tokens will still work after upgrade, but we advise to regenerate
+or replace them. They will stop working in a future version of Rudder.
+
+The token creation date is also added to the table
+(and the latest generation date in a tooltip).
+
+image::images/token-date.png[]
+
+== 🛠️ Under the hood
+
+=== Elm replaces the last AngularJS bits in frontend
+
+The last pages implemented in AngularJS (1.8, not maintained anymore) were rewritten in https://elm-lang.org/[Elm].
+This includes the file manager used for technique resources and shared files, the quick search field, etc.
+This enhances security and maintainability.
+
+image::images/file-manager.png[]
+
+=== We now enforce TLS 1.3 for all Rudder communications
+
+We previously required TLS 1.2+, but thanks to the updated set of supported server OSes
+(and embedded openssl on old systems), we have switched to enforce https://www.cloudflare.com/learning/ssl/why-use-tls-1.3/:[TLS 1.3].
+This greatly limits the risk of misconfiguration and forces the usage of state-of-the art
+algorithms.
+
+=== Up-to-date dependencies update
+
+We made our usual dependency upgrade round, with OpenSSL 3.1, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
+
+=== End of syslog dependency
+
+The Linux agent does not log its outputs to syslog by default anymore.
+
+rsyslog is not a server dependency anymore.
+
+=== Supply-chain security
+
+sbom
+cargo vet
+
+
+
+
+Stockage de l'historique d'acceptation/refus de nodes dans la base de données ("nodefact")
+Facilite leur gestion et permet de ne plus exposer ces infos internes dans un dossier visible des utilisateurs (/var/rudder/inventories/historical)
+Sur Linux, les variables non définies dans les templates mustache provoquent maintenant un erreur (comme sur jinja2)
+Amélioration des polices utilisées dans l'interface
+
+
+
+
 
 == Installing, upgrading and testing
 
@@ -15,7 +149,7 @@ https://docs.rudder.io/reference/8.0/installation/server/sles.html[SLES]
 This version provides packages for these operating systems:
 
 * Rudder server and Rudder relay: *Debian 11-12, RHEL/CentOS/Alma/Rocky 8 and 9,
-SLES 15, Ubuntu 20.04 and 22.04 LTS, Amazon Linux 2023*
+SLES 15 SP4+, Ubuntu 22.04 LTS, Amazon Linux 2023*
 * Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES 12*
 * Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-8, RHEL/CentOS 3-6,
 SLES 10-11, Ubuntu 10.04 LTS, 12.04 LTS, 13.04, 15.10, 14.04 LTS, 16.04 LTS, 18.04 LTS, Windows Server 2008R2-2019, AIX
