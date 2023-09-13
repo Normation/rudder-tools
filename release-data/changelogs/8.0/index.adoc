@@ -9,35 +9,49 @@ Rudder 8.0 is still in beta, and *must not* be used in production for now.
 ====
 
 We’re thrilled to announce the availability of pre-releases of Rudder 8.0.
+The 8.X versions will be mainly dedicated to developing the compliance
+axis. This will affect different parts of the application, including the server
+and the agent, stay tuned for upcoming features!
 
-The major Rudder 8 version will be mainly dedicated to improving compliance
-features. This will affect different parts of the application.
+The 8.0 version is the first of the 8.X branch. As such, it updates the list of supported OSes:
 
-nutriscore
-
-On the agent side, we will develop powerful extension mechanisms, allowing to manage and audit
-more items on the systems. We also plan to make the reporting format extensible to allow collecting reports from arbitrary sources.
-
-The 8.0 version is the first of the 8.0 branch. It updates the list of supported OSes:
-
-* For Rudder server/relay: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
+* Supported as Rudder server and relay: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
  ** As a consequence, the server is not supported anymore on: Debian 10, Ubuntu 20.04, SLES 15 SP3* and below, Amazon Linux 2
 
-* For Rudder agents
-  ** Added: Debian 12
-  ** Removed: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2,
+* For Rudder agents:
+  ** Added support for: Debian 12
+  ** Removed support for: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2,
      2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
 
-== Patch management
+== 🩹 Patch management features
 
-=== Targeted update campaigns on Windows
+=== 🎯 Targeted update campaigns on Windows
 
-Micro-patching sous Windows
-Possibilité de faire des campagnes sur des KB spécifiques
+It is now possible to create update campaigns that focus on a specific set of KBs,
+allowing targeted fixes, for example, for critical security updates that need
+to be applied immediately.
 
-=== Hooks
+image::images/kb.png[]
 
-== YAML policies
+=== ✅ Pre/post upgrade hooks for campaigns on Linux
+
+Campaigns now include a mechanism to run actions before or after the upgrade.
+This covers a variety of needs:
+
+* Run "pre-flight" check: available disk space check, backup check, etc... It allows stopping the update process if the system is not ready.
+* Run pre-update actions: take a VM snapshot of the system, etc.
+* Run post-update actions: update a CMDB, notify the user, etc.
+
+In order to be flexible, these hooks can actually be any
+executable file on the system (shell/Powershell script, Python script, etc.)
+Read more about this feature in the https://docs.rudder.io/reference/8.0/plugins/system-updates.html#_hooks[documentation].
+
+== 🖹 YAML policies
+
+=== 🖊️ Writing techniques
+
+Rudder includes a graphical editor for techniques, providing easy access creation and customization of configuration policies in Rudder.
+In addition to this visual editor, it is possible to create and modify techniques as code, in YAML format, like:
 
 [source,yaml]
 ----
@@ -56,27 +70,50 @@ items:
       enforce: "true"
 ----
 
-Possibilité d'écrire les policies Rudder sous forme de code YAML ou via une interface Web (et de switcher entre les deux)
+These two representations are equivalent, and you will be able to switch between both of them to edit the same technique.
 
 image::images/yaml.png[]
 
-Possibilité de développer et de tester des techniques localement (sans serveur Rudder), et de les intégrer dans un workflow CI/CD
-Import/export de techniques entre (futures) versions de Rudder différentes
-Devient aussi le format de stockage interne de Rudder pour les techniques (archives, git de configuration, etc.)
+The YAML format also becomes the internal storage format for techniques (used in the configuration
+git and archives).
+As this format will be stable, it will allow easy exchange of techniques between Rudder servers
+running different versions.
 
+=== ⚙️ The `rudderc` toolbox
 
+The new format comes with a matching CLI too called `rudderc` (think "Rudder compiler").
+It is responsible for compiling the policies for their target platform (into a low-level format
+depending on the target).
 
-https://docs.rudder.io/techniques/8.0/
+----
+$ rudderc build
+        Read 179 methods (/path/to/methods/lib)
+   Compiling my_technique v0.1 [Linux]
+       Wrote target/technique.cf
+   Compiling my_technique v0.1 [Windows]
+       Wrote target/technique.ps1
+  Generating my_technique v0.1 [Metadata]
+       Wrote target/metadata.xml
+      Copied resources
+----
 
-== Authentication/Authorizations
+This tool has been designed with local technique development in mind, i.e., directly
+on the user environment, without requiring a Rudder server.
+It includes powerful static checks, and a simple testing framework that allows
+testing techniques without a server, by generating the necessary boilerplate automatically.
+This will make integrating techniques in a standard CI/CD GitOps workflow way easier.
 
-=== Roles for plugin-based features
+Read more about it in the https://docs.rudder.io/techniques/8.0/[dedicated documentation].
+
+== Identity and Access Management
+
+=== 👥 Roles for plugin-based features
 
 The user permissions have been extended to integrate plugin-based features.
 New permission (`cve_read`, `cve_write`, etc.) are available and can be added to your exiting roles.
 This allows fine-tuning access to the different features.
 
-=== Hashed API tokens
+=== 🔑 Hashed API tokens
 
 All API tokens are now stored hashed with SHA-512.
 There are therefore only available at
@@ -94,7 +131,7 @@ image::images/token-date.png[]
 
 == 🛠️ Under the hood
 
-=== Elm replaces the last AngularJS bits in frontend
+=== 🌳 Elm replaces the last AngularJS bits in the frontend
 
 The last pages implemented in AngularJS (1.8, not maintained anymore) were rewritten in https://elm-lang.org/[Elm].
 This includes the file manager used for technique resources and shared files, the quick search field, etc.
@@ -102,39 +139,41 @@ This enhances security and maintainability.
 
 image::images/file-manager.png[]
 
-=== We now enforce TLS 1.3 for all Rudder communications
+=== 🔒 We now enforce TLS 1.3 for all Rudder communications
 
 We previously required TLS 1.2+, but thanks to the updated set of supported server OSes
 (and embedded openssl on old systems), we have switched to enforce https://www.cloudflare.com/learning/ssl/why-use-tls-1.3/:[TLS 1.3].
 This greatly limits the risk of misconfiguration and forces the usage of state-of-the art
 algorithms.
 
-=== Up-to-date dependencies update
+=== ⬆️ Up-to-date dependencies update
 
 We made our usual dependency upgrade round, with OpenSSL 3.1, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
 
-=== End of syslog dependency
+=== ✂️ End of syslog dependency
 
-The Linux agent does not log its outputs to syslog by default anymore.
+The old-time dependency on syslog is no more. The Linux agent does not
+log its outputs to syslog by default anymore, and `rsyslog` is not a
+server dependency anymore.
+This avoids duplicating the output and makes the server usable in
+minimal setups without a syslog daemon.
 
-rsyslog is not a server dependency anymore.
+=== 📜 The accepted/refused node history is now stored in the database
 
-=== Supply-chain security
+It was previously on the filesystem (in `/var/rudder/inventories/historical`).
+This will be less confusing for users and allow easier management.
 
-sbom
-cargo vet
+=== 🥸 On Linux, the mustache templating will fail in case of undefined variables
 
+Like already done for Jinja2 templating, the mustache implementation will also fail
+on missing variable. This will avoid producing broken configuration files in
+cas of misconfiguration, and make problems stand out.
 
+=== 🔡 A new native font stack
 
-
-Stockage de l'historique d'acceptation/refus de nodes dans la base de données ("nodefact")
-Facilite leur gestion et permet de ne plus exposer ces infos internes dans un dossier visible des utilisateurs (/var/rudder/inventories/historical)
-Sur Linux, les variables non définies dans les templates mustache provoquent maintenant un erreur (comme sur jinja2)
-Amélioration des polices utilisées dans l'interface
-
-
-
-
+The fonts used in the Web application have been consolidated,
+and switched to a modern https://getbootstrap.com/docs/5.0/content/reboot/#native-font-stack[native font stack]
+that should better match every device and OS.
 
 == Installing, upgrading and testing
 
