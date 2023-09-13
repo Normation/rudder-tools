@@ -139,14 +139,14 @@ This enhances security and maintainability.
 
 image::images/file-manager.png[]
 
-=== 🔒 We now enforce TLS 1.3 for all Rudder communications
+=== 🔒 TLS 1.3 used for all Rudder communications
 
 We previously required TLS 1.2+, but thanks to the updated set of supported server OSes
 (and embedded openssl on old systems), we have switched to enforce https://www.cloudflare.com/learning/ssl/why-use-tls-1.3/:[TLS 1.3].
 This greatly limits the risk of misconfiguration and forces the usage of state-of-the art
 algorithms.
 
-=== ⬆️ Up-to-date dependencies update
+=== ⬆️ Up-to-date dependencies
 
 We made our usual dependency upgrade round, with OpenSSL 3.1, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
 
@@ -163,7 +163,7 @@ minimal setups without a syslog daemon.
 It was previously on the filesystem (in `/var/rudder/inventories/historical`).
 This will be less confusing for users and allow easier management.
 
-=== 🥸 On Linux, the mustache templating will fail in case of undefined variables
+=== 🥸 The mustache templating will fail in case of undefined variables (on Linux)
 
 Like already done for Jinja2 templating, the mustache implementation will also fail
 on missing variable. This will avoid producing broken configuration files in
