@@ -13,10 +13,10 @@ The 8.X versions will be mainly dedicated to developing the compliance
 axis. This will affect different parts of the application, including the server
 and the agent, stay tuned for upcoming features!
 
-The 8.0 version is the first of the 8.X branch. As such, it updates the list of supported OSes:
+The 8.0 version is the first of the 8.X branch. The list of supported OSes changes to:
 
-* Supported as Rudder server and relay: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
- ** As a consequence, the server is not supported anymore on: Debian 10, Ubuntu 20.04, SLES 15 SP3* and below, Amazon Linux 2
+* For Rudder server and relay, the supported OSes are now: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
+  ** For Rudder server and relay, these operating systems are not supported anymore: Debian 10, Ubuntu 20.04, SLES 15 SP3* and below, Amazon Linux 2
 
 * For Rudder agents:
   ** Added support for: Debian 12
@@ -76,14 +76,13 @@ image::images/yaml.png[]
 
 The YAML format also becomes the internal storage format for techniques (used in the configuration
 git and archives).
-As this format will be stable, it will allow easy exchange of techniques between Rudder servers
-running different versions.
+This format is stable, so techniques can be shared between Rudder servers having different versions.
 
 === ⚙️ The `rudderc` toolbox
 
-The new format comes with a matching CLI too called `rudderc` (think "Rudder compiler").
-It is responsible for compiling the policies for their target platform (into a low-level format
-depending on the target).
+The new format comes with a matching CLI called `rudderc` (think "Rudder compiler").
+It is responsible for compiling the techniques into a lower-level representation
+depending on the target platform.
 
 ----
 $ rudderc build
@@ -165,7 +164,7 @@ This will be less confusing for users and allow easier management.
 
 === 🥸 The mustache templating will fail in case of undefined variables (on Linux)
 
-Like already done for Jinja2 templating, the mustache implementation will also fail
+To match the Jinja2 templating behavior, the mustache implementation will also fail
 on missing variable. This will avoid producing broken configuration files in
 cas of misconfiguration, and make problems stand out.
 
