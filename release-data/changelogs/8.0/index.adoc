@@ -46,7 +46,7 @@ In order to be flexible, these hooks can actually be any
 executable file on the system (shell/Powershell script, Python script, etc.)
 Read more about this feature in the https://docs.rudder.io/reference/8.0/plugins/system-updates.html#_hooks[documentation].
 
-== 🖹 YAML policies
+== 📗 YAML policies
 
 === 🖊️ Writing techniques
 
