@@ -1,5 +1,42 @@
 = Changelogs for Rudder plugin system-updates 7.3.\* versions
 
+== system-updates-7.3.6-1.12 (2023-09-15)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Document update hooks
+    (https://issues.rudder.io/issues/23411[#23411])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: After getting timezone, we refresh all data from plugin, making it reload in continuous when selecting a campaign
+    (https://issues.rudder.io/issues/23433[#23433])
+* Fixed: Font used for Add Software seems non standard
+    (https://issues.rudder.io/issues/22705[#22705])
+* Fixed: Doc Windows compat in docs
+    (https://issues.rudder.io/issues/23399[#23399])
+* Fixed: Add rights to system update plugin
+    (https://issues.rudder.io/issues/23097[#23097])
+* Fixed: Error 500 when we select an end hour at or before the start date of the campaign
+    (https://issues.rudder.io/issues/23222[#23222])
+* Fixed: Show campaign and event id in UI
+    (https://issues.rudder.io/issues/23304[#23304])
+* Fixed: when we create a campaign, the server time displayed is the time when the page was loaded, not when we clicked on new campaign
+    (https://issues.rudder.io/issues/23296[#23296])
+* Fixed: issue on logging in verbose mode
+    (https://issues.rudder.io/issues/23297[#23297])
+* Fixed: number of nodes in the list of applicable patch is not valid
+    (https://issues.rudder.io/issues/23052[#23052])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.3.5-1.12 (2023-09-13)
 
 === Changes
