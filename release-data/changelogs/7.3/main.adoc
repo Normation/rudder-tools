@@ -1,5 +1,130 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.6 (2023-09-15)
+
+=== Changes
+
+
+==== Web - UI & UX
+
+* Add a placeholder description for groups page like for techniques and directives
+    (https://issues.rudder.io/issues/23184[#23184])
+* When drag'n drop, the selected method and the targeted drop zone should be more highlighted
+    (https://issues.rudder.io/issues/23303[#23303])
+
+==== Relay server or API
+
+* Update embedded openssl to 3.1 in relayd
+    (https://issues.rudder.io/issues/23383[#23383])
+
+==== Web - Nodes & inventories
+
+* When I enter the "Create a new item" popup to create a group the default field should be Name
+    (https://issues.rudder.io/issues/2677[#2677])
+
+==== Documentation
+
+* Arch doc for policy update
+    (https://issues.rudder.io/issues/22589[#22589])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Bump to openssl 1.1.1w
+    (https://issues.rudder.io/issues/23410[#23410])
+* Fixed: Server install fails with postgresql encoding error
+    (https://issues.rudder.io/issues/23388[#23388])
+* Fixed: Stop removing the openssl test folder
+    (https://issues.rudder.io/issues/23355[#23355])
+* Fixed: Don't build openssl tests
+    (https://issues.rudder.io/issues/23255[#23255])
+
+==== Agent
+
+* Fixed: Wrong source detection on some apt systems
+    (https://issues.rudder.io/issues/23387[#23387])
+
+==== Miscellaneous
+
+* Fixed: Make writing node state to fact repos optionnal
+    (https://issues.rudder.io/issues/23424[#23424])
+
+==== Web - UI & UX
+
+* Fixed: Tables in Rudder UI are sorted alphabetically but should also follow a numerical sort - nodes page
+    (https://issues.rudder.io/issues/23427[#23427])
+* Fixed: Add a way to set a message if "change audit logs" setting is enabled
+    (https://issues.rudder.io/issues/23372[#23372])
+* Fixed: Add a way to set a message if "change audit logs" setting is enabled
+    (https://issues.rudder.io/issues/23372[#23372])
+* Fixed: We can choose the format of the value on deletion in global parameter
+    (https://issues.rudder.io/issues/23183[#23183])
+* Fixed: Tables in Rudder UI are sorted alphabetically but should also follow a numerical sort
+    (https://issues.rudder.io/issues/23335[#23335])
+* Fixed: Inconsitency background color in generic method section in technique editor
+    (https://issues.rudder.io/issues/23170[#23170])
+* Fixed: Inconsistent color of save button in directives
+    (https://issues.rudder.io/issues/23196[#23196])
+
+==== Relay server or API
+
+* Fixed: Allow underscore in file_id in shared-files
+    (https://issues.rudder.io/issues/23392[#23392])
+* Fixed: Broken log for file_id in shared-files API
+    (https://issues.rudder.io/issues/23390[#23390])
+
+==== Web - Maintenance
+
+* Fixed: Plugin cannot add custom roles or it will be overwritten by boot custom roles 
+    (https://issues.rudder.io/issues/23098[#23098])
+
+==== Architecture - Code maintenance
+
+* Fixed: When custom role permission list is empty, reload lead to stack trace
+    (https://issues.rudder.io/issues/23305[#23305])
+
+==== Web - Technique editor
+
+* Fixed: Error when we try to save a draft with a missing parameter name in technique editor
+    (https://issues.rudder.io/issues/23256[#23256])
+
+==== Web - Config management
+
+* Fixed: Error when updating policies on relays when no files has been shared between nodes
+    (https://issues.rudder.io/issues/17143[#17143])
+
+==== Techniques
+
+* Fixed: When the user technique change a password it doesn't update the date of last change
+    (https://issues.rudder.io/issues/23338[#23338])
+
+==== Security
+
+* Fixed: The "shared_file_to_node" method does not verify its policy server's certificate with default configuration
+    (https://issues.rudder.io/issues/23290[#23290])
+
+==== Generic methods
+
+* Fixed:  When generic method change a password it doesn't update the date of last change
+    (https://issues.rudder.io/issues/23339[#23339])
+* Fixed: "Variable string from command" creates empty files in /var/rudder/modified-files
+    (https://issues.rudder.io/issues/22584[#22584])
+
+==== Documentation
+
+* Fixed: Document when a parameter can be a regex
+    (https://issues.rudder.io/issues/10713[#10713])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Marc Evans
+* Jonathan CLARKE
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.5 (2023-08-11)
 
 === Changes
