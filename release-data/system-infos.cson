@@ -45,3 +45,57 @@ jdk = {
     "sles-15sp4":       "17"
     "al-2023":          "17"
 }
+
+rust = {
+  "debian": {
+    "i386,amd64,arm64": {
+      "all versions": "musl / Tiers 2"
+      "8+" : "libc / Tiers 1"
+    }
+    "arm32": {
+      "all versions": "musl / Tiers 2"
+      "8+" : "libc / Tiers 2"
+    }
+  }
+  "ubuntu": {
+    "i386,amd64": {
+      "all versions": "musl / Tiers 2"
+      "14+" : "libc / Tiers 1"
+    }
+  }
+  "rhel": {
+    "amd64,arm64,ppc64,ppc64le": {
+      "all versions": "musl / Tiers 2"
+      "7+": "libc / Tiers 1"
+    }
+    "ppc64,ppc64le": {
+      "all versions": "libc / Tiers 2"
+    }
+    "i386": {
+      "all versions": "musl / Tiers 2"
+    }
+  }
+  "sles": {
+    "i386,amd64": {
+      "all versions": "musl / Tiers 2"
+      "12+": "libc / Tiers 1"
+    }
+    "ppc64le": {
+      "all versions": "libc / Tiers 2"
+    }
+  }
+  "slackware": {
+    "i386,amd64": {
+      "all versions": "musl / Tiers 2"
+      "14.1+": "libc / Tiers 1"
+    }
+  }
+  "aix": {
+    "7.1-": "No"
+    "7.2+": "Tier3"
+  }
+  "al": {
+    "2": "musl / Tiers 2"
+    "2023": "libc / Tiers 1"
+  }
+}
