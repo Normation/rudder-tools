@@ -3,12 +3,16 @@
 release = "8.0"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "beta"
 
 #release-date = ""
+#public-eol-date = ""
+#public-last-patch = ""
+#standard-eol-date = ""
+#standard-last-patch = ""
+# = premium-eol-date
+#eol-date = ""
 
-# Has this version had Long-Term Support (LTS)?
-lts = false
 
 # Supported architecture for each distribution
 architectures = {
@@ -111,7 +115,7 @@ components = {
 
 # Highest API versions available in this release
 api-version = {
-                "webapp": "17",
+                "webapp": "18",
                 "relay": "1"
               }
 

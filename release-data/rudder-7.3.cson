@@ -5,10 +5,15 @@ release = "7.3"
 # Status of the release (alpha, beta, rc, final)
 release-status = "final"
 
-release-date = "2022-04-11"
+release-date = "2023-04-11"
+#public-eol-date = ""
+#public-last-patch = ""
+#standard-eol-date = ""
+#standard-last-patch = ""
+# = premium-eol-date
+#eol-date = ""
 
-# Has this version had Long-Term Support (LTS)?
-lts = false
+
 
 # Supported architecture for each distribution
 architectures = {

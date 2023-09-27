@@ -6,11 +6,12 @@ release = "7.2"
 release-status = "final"
 
 release-date = "2022-09-28"
-
-eol-date = "2023-11-06"
-
-# Has this version had Long-Term Support (LTS)?
-lts = false
+public-eol-date = "2023-07-07"
+public-last-patch = "7.2.8"
+standard-eol-date = "2023-07-07"
+standard-last-patch = "7.2.8"
+# = premium-eol-date
+eol-date = "2023-10-07"
 
 # Supported architecture for each distribution
 architectures = {
