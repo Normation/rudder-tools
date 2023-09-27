@@ -89,6 +89,40 @@ tier1 = [
           "slackware-14.1", "slackware-14.2",
         ]
 
+# see https://docs.google.com/spreadsheets/d/1MbpYDH5Eqmgj1j-G4Gu0oKQoBaiGhjUfwVY5qtXTsu4/edit#gid=0
+sales-tier = {
+    "debian-6":       { "i386": "tier3", "amd64": "tier3" },
+    "debian-7":       { "i386": "tier3", "amd64": "tier3" },
+    "debian-8":       { "i386": "tier3", "amd64": "tier3", "armhf": "tier3", "arm64": "tier3" },
+    "debian-9":       { "i386": "tier2", "amd64": "tier2", "armhf": "tier2", "arm64": "tier2" },
+    "debian-10":      { "i386": "tier1", "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "debian-11":      { "i386": "tier1", "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "ubuntu-10.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-12.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-13.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-14.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-15.10":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-16.04":   { "i386": "tier2", "amd64": "tier2" },
+    "ubuntu-18.04":   { "i386": "tier2", "amd64": "tier1" },
+    "ubuntu-20.04":   { "amd64": "tier1" },
+    "ubuntu-22.04":   { "amd64": "tier1" },
+    "rhel-3":         { "i386": "tier4", "amd64": "tier4" },
+    "rhel-5":         { "i386": "tier3", "amd64": "tier3" },
+    "rhel-6":         { "i386": "tier3", "amd64": "tier3" },
+    "rhel-7":         { "i386": "tier3", "amd64": "tier1", "ppc64le": "tier1" },
+    "rhel-8":         { "amd64": "tier1", "ppc64le": "tier1" },
+    "sles-10":        { "i386": "tier4", "amd64": "tier4" },
+    "sles-11":        { "i386": "tier2", "amd64": "tier2" },
+    "sles-12":        { "amd64": "tier1", "ppc64le": "tier1" },
+    "sles-15":        { "amd64": "tier1", "ppc64le": "tier3" },
+    "slackware-14.1": { "amd64": "tier2" },
+    "slackware-14.2": { "amd64": "tier2" },
+    "solaris-11.3":   { "amd64": "tier4" },
+    "solaris-11.4":   { "amd64": "tier4" },
+    "aix-5":          { "ppc": "tier3" },
+    "windows-2008r2": { "amd64": "tier2" },
+}
+
 # Packages that are built
 packages = {
              "agent-allinone": [ "rudder-agent" ],
