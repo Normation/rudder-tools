@@ -13,7 +13,8 @@ The 8.X versions will be mainly dedicated to developing the compliance
 axis. This will affect different parts of the application, including the server
 and the agent, stay tuned for upcoming features!
 
-The 8.0 version is the first of the 8.X branch. The list of supported OSes changes to:
+The 8.0 version is the first of the 8.X branch. As with each major version, the list of supported platforms
+evolves.
 
 * For Rudder server and relay, the supported OSes are now: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
   ** For Rudder server and relay, these operating systems are not supported anymore: Debian 10, Ubuntu 20.04, SLES 15 SP3* and below, Amazon Linux 2
@@ -22,6 +23,13 @@ The 8.0 version is the first of the 8.X branch. The list of supported OSes chang
   ** Added support for: Debian 12
   ** Removed support for: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2,
      2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
+
+== 📊 Compliance filters
+
+The compliance views gain a new long-awaited feature, the ability to filter the content by report type.
+You can for example only display the errors, of filter out all successful components in one click.
+
+image::images/filter.png[]
 
 == 🩹 Patch management features
 
@@ -138,6 +146,10 @@ This enhances security and maintainability.
 
 image::images/file-manager.png[]
 
+As a bonus feature, JSON nodes and groups properties now have syntax highlighting.
+
+image::images/syntax.png[]
+
 === 🔒 TLS 1.3 used for all Rudder communications
 
 We previously required TLS 1.2+, but thanks to the updated set of supported server OSes
@@ -147,7 +159,7 @@ algorithms.
 
 === ⬆️ Up-to-date dependencies
 
-We made our usual dependency upgrade round, with OpenSSL 3.1, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
+We made our usual dependency upgrade round, with OpenSSL 3.O LTS, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
 
 === ✂️ End of syslog dependency
 
