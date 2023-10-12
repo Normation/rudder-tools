@@ -18,12 +18,12 @@ and the agent, stay tuned for upcoming features!
 The 8.0 version is the first of the 8.X branch. As with each major version, the list of supported platforms
 evolves.
 
-**Rudder server and relay** Debian 11 & 12, RHEL/CentOS/Alma/Rocky 8 & 9, SLES 15 SP4+, Ubuntu 22.04 LTS, Amazon Linux 2023
+*Rudder server and relay*: Debian 11 & 12, RHEL/CentOS/Alma/Rocky 8 & 9, SLES 15 SP4+, Ubuntu 22.04 LTS, Amazon Linux 2023
 
 * Added: Debian 12, Amazon Linux 2023
 * Removed: Debian 10, Ubuntu 20.04 LTS, SLES 15 SP3 and below, Amazon Linux 2
 
-**Rudder agent**: https://docs.rudder.io/reference/8.0/installation/operating_systems.html#_for_rudder_nodes[see the documentation for details]
+*Rudder agent*: https://docs.rudder.io/reference/8.0/installation/operating_systems.html#_for_rudder_nodes[see the documentation for details]
 
 * Added: Debian 12
 * Now require extended subscription: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2, 2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
