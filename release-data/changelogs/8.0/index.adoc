@@ -13,16 +13,20 @@ The 8.X versions will be mainly dedicated to developing the compliance
 axis. This will affect different parts of the application, including the server
 and the agent, stay tuned for upcoming features!
 
+== ⌨️ Platform support
+
 The 8.0 version is the first of the 8.X branch. As with each major version, the list of supported platforms
 evolves.
 
-* For Rudder server and relay, the supported OSes are now: Debian 11 & 12, Ubuntu LTS 22.04, RHEL/CentOS/AlmaLinux/Rocky/Oracle 8 & 9, SLES 15 SP4+, Amazon Linux 2023
-  ** For Rudder server and relay, these operating systems are not supported anymore: Debian 10, Ubuntu 20.04, SLES 15 SP3* and below, Amazon Linux 2
+**Rudder server and relay** Debian 11 & 12, RHEL/CentOS/Alma/Rocky 8 & 9, SLES 15 SP4+, Ubuntu 22.04 LTS, Amazon Linux 2023
 
-* For Rudder agents:
-  ** Added support for: Debian 12
-  ** Removed support for: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2,
-     2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
+* Added: Debian 12, Amazon Linux 2023
+* Removed: Debian 10, Ubuntu 20.04 LTS, SLES 15 SP3 and below, Amazon Linux 2
+
+**Rudder agent**: https://docs.rudder.io/reference/8.0/installation/operating_systems.html#_for_rudder_nodes[see the documentation for details]
+
+* Added: Debian 12
+* Now require extended subscription: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2, 2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
 
 == 📊 Compliance filters
 
@@ -186,7 +190,7 @@ The fonts used in the Web application have been consolidated,
 and switched to a modern https://getbootstrap.com/docs/5.0/content/reboot/#native-font-stack[native font stack]
 that should better match every device and OS.
 
-== Installing, upgrading and testing
+== 💾 Installing, upgrading and testing
 
 * Install docs for https://docs.rudder.io/reference/8.0/installation/server/debian.html[Debian/Ubuntu],
 https://docs.rudder.io/reference/8.0/installation/server/rhel.html[RHEL/CentOS] and
@@ -194,16 +198,3 @@ https://docs.rudder.io/reference/8.0/installation/server/sles.html[SLES]
 * https://docs.rudder.io/reference/8.0/installation/upgrade/notes.html[Upgrade nodes and doc]
 * https://docs.rudder.io/reference/8.0/installation/versions.html#_versions[Download links]
 
-== Supported operating systems
-
-This version provides packages for these operating systems:
-
-* Rudder server and Rudder relay: *Debian 11-12, RHEL/CentOS/Alma/Rocky 8 and 9,
-SLES 15 SP4+, Ubuntu 22.04 LTS, Amazon Linux 2023*
-* Rudder agent: all of the above plus *Debian 9, RHEL/CentOS 7, SLES 12*
-* Rudder agent (binary packages available with a https://www.rudder.io/en/pricing/subscription/[subscription]) : *Debian 5-8, RHEL/CentOS 3-6,
-SLES 10-11, Ubuntu 10.04 LTS, 12.04 LTS, 13.04, 15.10, 14.04 LTS, 16.04 LTS, 18.04 LTS, Windows Server 2008R2-2019, AIX
-5-6-7, Solaris 10 & 11, Slackware 14*
-
-Read more about supported operating systems
-https://docs.rudder.io/reference/8.0/installation/operating_systems.html[in the documentation].
