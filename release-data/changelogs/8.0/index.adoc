@@ -163,7 +163,7 @@ algorithms.
 
 === ⬆️ Up-to-date dependencies
 
-We made our usual dependency upgrade round, with OpenSSL 3.O LTS, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
+We made our usual dependency upgrade round, with OpenSSL 3.0 LTS, Fusion Inventory 2.6, JVM 17+, PostgreSQL 13+, CFEngine 3.21 LTS, etc.
 
 === ✂️ End of syslog dependency
 
