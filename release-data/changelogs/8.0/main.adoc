@@ -1,5 +1,52 @@
 == [Private] Rudder 8.0.0.alpha1 (2023-07-18)
 
+==  Rudder 8.0.0.rc2 (2023-10-13)
+
+=== Changes
+
+
+==== Packaging
+
+* Update curl to 8.4.0
+    (https://issues.rudder.io/issues/23559[#23559])
+
+==== Documentation
+
+* Remove 7.2 from docs
+    (https://issues.rudder.io/issues/23561[#23561])
+
+=== Bug fixes
+
+==== Web - Config management
+
+* Fixed: Remove technique.json and rudder_reporting.cf when migrating technique to new format
+    (https://issues.rudder.io/issues/23547[#23547])
+* Fixed: Migration of techniques is failling when there is a resource.
+    (https://issues.rudder.io/issues/23546[#23546])
+
+==== rudderc
+
+* Fixed: Broken handling of non-printable characters in techniques
+    (https://issues.rudder.io/issues/23551[#23551])
+* Fixed: Allow setting conditions in tests
+    (https://issues.rudder.io/issues/23557[#23557])
+* Fixed: Parameter name in metadata.xml should be its id
+    (https://issues.rudder.io/issues/23544[#23544])
+
+==== Web - Nodes & inventories
+
+* Fixed: Override process of properties is very misleading at node level
+    (https://issues.rudder.io/issues/23553[#23553])
+
+==== Generic methods
+
+* Fixed: Condition_from_string_match fails to be executed multiple times with same inputs
+    (https://issues.rudder.io/issues/23554[#23554])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.0.rc1 (2023-10-08)
 
 === Changes
