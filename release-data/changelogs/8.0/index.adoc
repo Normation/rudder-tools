@@ -82,7 +82,7 @@ image::images/yaml.png[]
 
 The YAML format also becomes the internal storage format for techniques (used in the configuration
 git and archives).
-This format is stable, so techniques can be shared between Rudder servers having higher than 8.0 versions, even if differents.
+This format is stable, so techniques can be shared between Rudder servers having higher than 8.0 versions, even if different.
 
 === ⚙️ The `rudderc` toolbox
 
