@@ -1,13 +1,5 @@
 = Rudder 8.0 release notes
 
-[WARN]
-
-====
-
-Rudder 8.0 is still in beta, and *must not* be used in production for now.
-
-====
-
 We’re thrilled to announce the availability of pre-releases of Rudder 8.0.
 The 8.X versions will be mainly dedicated to developing the compliance
 axis. This will affect different parts of the application, including the server
