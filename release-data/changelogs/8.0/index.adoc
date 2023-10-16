@@ -142,6 +142,14 @@ image::images/token-date.png[]
 
 == 🛠️ Under the hood
 
+=== 🪟 System conditions for Windows
+
+Precise system conditions are now available on Windows, allowing to specify different behaviors
+in techniques depending on the Windows version (`windows_11`, `windows_server_2022`, etc.).
+They are also available as predefined selectors in the technique editor.
+
+image::images/conditions.png[]
+
 === 🌳 Elm replaces the last AngularJS bits in the frontend
 
 The last pages implemented in AngularJS (1.8, not maintained anymore) were rewritten in https://elm-lang.org/[Elm].
