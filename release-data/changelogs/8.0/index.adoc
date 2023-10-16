@@ -19,7 +19,7 @@ evolves.
 
 * Added: Debian 12
 * Now require extended subscription: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2, 2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
-* Rudder agents older than 7.3 will not be supported anymore
+* Rudder agents older than 7.3 are not supported on 8.0 servers
 * Rudder agents older 7.0 will not be able to communicate at all with a 8.0.X Rudder server
 
 == 📊 Compliance filters
