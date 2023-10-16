@@ -19,6 +19,7 @@ evolves.
 
 * Added: Debian 12
 * Now require extended subscription: SLES 11 \<=SP4, SLES 12 \<=SP4, SLES 15 \<=SP2, Windows Server 2008R2, 2012 and 2012R2, Ubuntu 16.04 LTS, Debian 9
+* Rudder agents older than 7.3 are not supported on 8.0 servers
 
 == 📊 Compliance filters
 
@@ -55,7 +56,7 @@ Read more about this feature in the https://docs.rudder.io/reference/8.0/plugins
 === 🖊️ Writing techniques
 
 Rudder includes a graphical editor for techniques, providing easy access creation and customization of configuration policies in Rudder.
-In addition to this visual editor, it is possible to create and modify techniques as code, in YAML format, like:
+In addition to this visual editor, it is now possible to create and modify techniques as code, in YAML format, like:
 
 [source,yaml]
 ----
@@ -80,7 +81,7 @@ image::images/yaml.png[]
 
 The YAML format also becomes the internal storage format for techniques (used in the configuration
 git and archives).
-This format is stable, so techniques can be shared between Rudder servers having different versions.
+This format is stable, so techniques can be shared between Rudder servers having higher than 8.0 versions, even if different.
 
 === ⚙️ The `rudderc` toolbox
 
@@ -178,7 +179,7 @@ minimal setups without a syslog daemon.
 It was previously on the filesystem (in `/var/rudder/inventories/historical`).
 This will be less confusing for users and allow easier management.
 
-=== 🥸 The mustache templating will fail in case of undefined variables (on Linux)
+=== 🥸 The mustache templating will fail in case of undefined variables
 
 To match the Jinja2 templating behavior, the mustache implementation will also fail
 on missing variable. This will avoid producing broken configuration files in
