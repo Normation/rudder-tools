@@ -1,5 +1,73 @@
 == [Private] Rudder 8.0.0.alpha1 (2023-07-18)
 
+==  Rudder 8.0.0 (2023-10-18)
+
+=== Changes
+
+
+==== Documentation
+
+* Upgrade notes for 8.0
+    (https://issues.rudder.io/issues/23577[#23577])
+* Upgrade notes for 8.0
+    (https://issues.rudder.io/issues/23577[#23577])
+
+==== rudderc
+
+* Mark yaml format as 1.0
+    (https://issues.rudder.io/issues/23568[#23568])
+
+==== Web - UI & UX
+
+* Compliance filter should be shared between the different tables of a same interface
+    (https://issues.rudder.io/issues/23539[#23539])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Mark 8.0 as final in the docs
+    (https://issues.rudder.io/issues/23575[#23575])
+* Fixed: Bold appears like normal text in the docs
+    (https://issues.rudder.io/issues/23566[#23566])
+
+==== Web - UI & UX
+
+* Fixed: Add checks and validation on parameter name
+    (https://issues.rudder.io/issues/23587[#23587])
+* Fixed: Missing UI for parameter name and description new format
+    (https://issues.rudder.io/issues/23586[#23586])
+* Fixed: Always display generic method name
+    (https://issues.rudder.io/issues/23564[#23564])
+
+==== rudderc
+
+* Fixed: Broken parsing of some complex expressions
+    (https://issues.rudder.io/issues/23583[#23583])
+* Fixed: Missing NA report on Windows for methods only compatible with Unix
+    (https://issues.rudder.io/issues/23581[#23581])
+* Fixed: Broken double quote escaping in Windows policies
+    (https://issues.rudder.io/issues/23579[#23579])
+
+==== Architecture - Code maintenance
+
+* Fixed: Rudderc error code interpretation is done at two places inconsistently
+    (https://issues.rudder.io/issues/23582[#23582])
+
+==== Security
+
+* Fixed: Ignore CVE 2023-4759 (false positive in jgit 6.7.0.202309050840-r)
+    (https://issues.rudder.io/issues/23574[#23574])
+
+==== Web - Technique editor
+
+* Fixed: Add new Windows OS conditions to the technique editor
+    (https://issues.rudder.io/issues/23541[#23541])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.0.rc2 (2023-10-13)
 
 === Changes
