@@ -6,12 +6,12 @@ release = "7.3"
 release-status = "final"
 
 release-date = "2023-04-11"
-#public-eol-date = ""
+#public-eol-date = "2024-01-18"
 #public-last-patch = ""
-#standard-eol-date = ""
+#standard-eol-date = "2024-04-18"
 #standard-last-patch = ""
 # = premium-eol-date
-#eol-date = ""
+#eol-date = "2024-07-18"
 
 
 
