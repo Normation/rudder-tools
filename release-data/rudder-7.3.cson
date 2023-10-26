@@ -36,6 +36,7 @@ architectures = {
                   "rhel-6":         [ "i386", "amd64" ],
                   "rhel-7":         [ "i386", "amd64", "ppc64le" ],
                   "rhel-8":         [ "amd64", "ppc64le" ],
+                  "rhel-8-omni":    [ "amd64" ],
                   "rhel-9":         [ "amd64", "ppc64le" ],
                   "al-2023":        [ "amd64" ],
                   "sles-11"   :     [ "i386", "amd64" ],
@@ -74,6 +75,7 @@ roles = {
           # actually AL2 only
           "rhel-7":         [ "agent-allinone", "relay", "server" ],
           "rhel-8":         [ "agent-allinone", "relay", "server" ],
+          "rhel-8-omni":    [ "agent-allinone" ],
           "rhel-9":         [ "agent-allinone", "relay", "server" ],
           "al-2023":        [ "agent-allinone", "relay", "server" ],
           "sles-11":        [ "agent-allinone" ],
@@ -123,6 +125,7 @@ sales-tier = {
     "rhel-6":         { "i386": "tier3", "amd64": "tier3" },
     "rhel-7":         { "i386": "tier3", "amd64": "tier1", "ppc64le": "tier1" },
     "rhel-8":         { "amd64": "tier1", "ppc64le": "tier1" },
+    "rhel-8-omni":    { "amd64": "rhel-omni" },
     "rhel-9":         { "amd64": "tier1", "ppc64le": "tier1" },
     "al-2023":        { "amd64": "tier1" },
     "sles-10":        { "i386": "tier4", "amd64": "tier4" },
