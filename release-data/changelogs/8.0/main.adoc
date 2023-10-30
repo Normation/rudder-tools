@@ -1,5 +1,136 @@
 == [Private] Rudder 8.0.0.alpha1 (2023-07-18)
 
+==  Rudder 8.0.1 (2023-10-30)
+
+=== Changes
+
+
+==== Web - UI & UX
+
+* The "Required/May be empy" button in the parameters of a technique is not intuitive enough
+    (https://issues.rudder.io/issues/23610[#23610])
+* Improve deleted directive screen
+    (https://issues.rudder.io/issues/23172[#23172])
+
+==== API
+
+* Lint shell code examples
+    (https://issues.rudder.io/issues/23653[#23653])
+
+==== Documentation
+
+* Update api doc tooling
+    (https://issues.rudder.io/issues/23651[#23651])
+* Update contributing doc for Rust projects
+    (https://issues.rudder.io/issues/23600[#23600])
+
+==== Architecture - Internal libs
+
+* Add a test on JDK21
+    (https://issues.rudder.io/issues/23486[#23486])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Openssl embedded in too many OSes
+    (https://issues.rudder.io/issues/23678[#23678])
+* Fixed: Bump to openssl 3.0.12
+    (https://issues.rudder.io/issues/23649[#23649])
+* Fixed: Revert jetty upgrade to 10.0.17 for now
+    (https://issues.rudder.io/issues/23648[#23648])
+
+==== Agent
+
+* Fixed: Agent Pre-established trust not working with Rudder 8.0 agent RHEL 7 on CentOS 7
+    (https://issues.rudder.io/issues/23635[#23635])
+* Fixed: Agent uses hardcoded /bin/getent
+    (https://issues.rudder.io/issues/23623[#23623])
+
+==== System integration
+
+* Fixed: Wrong field used to get software source package and version on debian and ubuntu
+    (https://issues.rudder.io/issues/23634[#23634])
+
+==== Security
+
+* Fixed: Several low impact CVE in Jetty 10.0.12
+    (https://issues.rudder.io/issues/23608[#23608])
+* Fixed: Assessments of several low impact CVE in current 7.3.x reported by contrastsecurity tool 
+    (https://issues.rudder.io/issues/23609[#23609])
+
+==== Documentation
+
+* Fixed: Broken links in docs hmepage
+    (https://issues.rudder.io/issues/23643[#23643])
+* Fixed: remove all "starting with version <old>" from docs
+    (https://issues.rudder.io/issues/23628[#23628])
+
+==== rudderc
+
+* Fixed: Incorrect rudderc binary download link in documentation
+    (https://issues.rudder.io/issues/23674[#23674])
+
+==== Web - UI & UX
+
+* Fixed: The tooltip in the compliance bar does not appear when the mouse is hovered over it
+    (https://issues.rudder.io/issues/23612[#23612])
+* Fixed: When we are logged out, the logout button doesn't work
+    (https://issues.rudder.io/issues/23010[#23010])
+* Fixed: Search bar will not work with filters
+    (https://issues.rudder.io/issues/23665[#23665])
+* Fixed: In technique editor, the "Name" field appears to be optional, whereas it is not.
+    (https://issues.rudder.io/issues/23611[#23611])
+* Fixed: Recent changes drop down cannot be read
+    (https://issues.rudder.io/issues/22518[#22518])
+* Fixed: Do not apply syntax highlighting to string properties
+    (https://issues.rudder.io/issues/23639[#23639])
+* Fixed: Search bar doesn't work for group properties
+    (https://issues.rudder.io/issues/22516[#22516])
+* Fixed: When we search by "is defined" in the group search, we get the previous search value displayed
+    (https://issues.rudder.io/issues/16094[#16094])
+* Fixed: Rename "Parameters" menu entry to "Global properties"
+    (https://issues.rudder.io/issues/23618[#23618])
+* Fixed: Typo in warning message
+    (https://issues.rudder.io/issues/23592[#23592])
+
+==== Web - Technique editor
+
+* Fixed: When a mandatory field in a technique is not defined, we can save a technique and we have a nasty error
+    (https://issues.rudder.io/issues/23607[#23607])
+* Fixed: user with read_only right has button that allows to create a technique
+    (https://issues.rudder.io/issues/17813[#17813])
+
+==== API
+
+* Fixed: Add doc for OpenSCAP plugin API
+    (https://issues.rudder.io/issues/23645[#23645])
+* Fixed: Feature switch for archive API is still present
+    (https://issues.rudder.io/issues/23591[#23591])
+
+==== Web - Nodes & inventories
+
+* Fixed: On the nodes list, the filter does not work on property based column
+    (https://issues.rudder.io/issues/23535[#23535])
+
+==== Miscellaneous
+
+* Fixed: Last modified attribute of change request is always "unknown"
+    (https://issues.rudder.io/issues/19317[#19317])
+
+==== Web - Config management
+
+* Fixed: Tag are not displayed with a nice diff in eventLog 
+    (https://issues.rudder.io/issues/15019[#15019])
+* Fixed: Quotes in group name generate JS errors when using GroupId criteria
+    (https://issues.rudder.io/issues/23320[#23320])
+* Fixed: changing password from script to "Enter password + hash" in MD5 result in clear text
+    (https://issues.rudder.io/issues/23488[#23488])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.0 (2023-10-18)
 
 === Changes
