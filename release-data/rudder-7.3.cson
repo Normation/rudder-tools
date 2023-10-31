@@ -17,8 +17,8 @@ release-date = "2023-04-11"
 
 # Supported architecture for each distribution
 architectures = {
-                  "debian-6":       [ "i386", "amd64" ],
-                  "debian-7":       [ "i386", "amd64" ],
+                  "debian-6":       [ "amd64" ],
+                  "debian-7":       [ "amd64" ],
                   "debian-8":       [ "i386", "amd64" ],
                   "debian-9":       [ "i386", "amd64", "armhf", "arm64" ],
                   "debian-10":      [ "i386", "amd64", "armhf", "arm64" ],
