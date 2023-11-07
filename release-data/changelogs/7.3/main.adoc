@@ -1,5 +1,33 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.9 (2023-11-07)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Install command with variable $releasever lead to error
+    (https://issues.rudder.io/issues/22779[#22779])
+* Fixed: Import key section in AIX agent install doc is empty
+    (https://issues.rudder.io/issues/23312[#23312])
+
+==== Web - Maintenance
+
+* Fixed: Event log migration takes too long
+    (https://issues.rudder.io/issues/23699[#23699])
+
+==== API
+
+* Fixed: rudder node api documentation doesn't mention the softwareUpdate
+    (https://issues.rudder.io/issues/23441[#23441])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.8 (2023-10-30)
 
 === Changes
