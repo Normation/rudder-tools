@@ -75,9 +75,12 @@ add_repo() {
       get /etc/apt/trusted.gpg.d/rudder_apt_key.gpg "http${S}://repository.rudder.io/apt/rudder_apt_key.gpg"
     fi
 
+    # force the default architecture
+    dpkg_arch=$(dpkg --print-architecture)
+
     # the source configuration
     cat > /etc/apt/sources.list.d/rudder.list << EOF
-deb ${URL_BASE}/ ${OS_CODENAME} main
+deb [arch=${dpkg_arch}] ${URL_BASE}/ ${OS_CODENAME} main
 EOF
 
     # source password
