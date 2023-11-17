@@ -1,0 +1,167 @@
+# Release data file
+
+release = "8.1"
+
+# Status of the release (alpha, beta, rc, final)
+release-status = "alpha"
+
+#release-date = "2023-10-18"
+#public-eol-date = ""
+#public-last-patch = ""
+#standard-eol-date = ""
+#standard-last-patch = ""
+# = premium-eol-date
+#eol-date = ""
+
+
+# Supported architecture for each distribution
+architectures = {
+                  "debian-6":       [ "amd64" ],
+                  "debian-7":       [ "amd64" ],
+                  "debian-8":       [ "i386", "amd64" ],
+                  "debian-9":       [ "i386", "amd64", "armhf", "arm64" ],
+                  "debian-10":      [ "i386", "amd64", "armhf", "arm64" ],
+                  "debian-11":      [ "i386", "amd64", "armhf", "arm64" ],
+                  "debian-12":      [ "i386", "amd64", "armhf", "arm64" ],
+                  "ubuntu-10.04":   [ "amd64" ],
+                  "ubuntu-12.04":   [ "i386", "amd64" ],
+                  "ubuntu-13.04":   [ "i386", "amd64" ],
+                  "ubuntu-14.04":   [ "i386", "amd64" ],
+                  "ubuntu-15.10":   [ "i386", "amd64" ],
+                  "ubuntu-16.04":   [ "i386", "amd64" ],
+                  "ubuntu-18.04":   [ "amd64" ],
+                  "ubuntu-20.04":   [ "amd64" ],
+                  "ubuntu-22.04":   [ "amd64" ],
+                  "rhel-6":         [ "i386", "amd64" ],
+                  "rhel-7":         [ "i386", "amd64", "ppc64le" ],
+                  "rhel-8":         [ "amd64", "ppc64le" ],
+                  "rhel-8-omni":    [ "amd64" ],
+                  "rhel-9":         [ "amd64", "ppc64le" ],
+                  "al-2023":        [ "amd64" ],
+                  "sles-11"   :     [ "i386", "amd64" ],
+                  "sles-12"   :     [ "amd64", "ppc64le" ],
+                  "sles-15"   :     [ "amd64", "ppc64le" ],
+                  "slackware-14.1": [ "amd64" ],
+                  "slackware-14.2": [ "amd64" ],
+                  "slackware-15.0": [ "amd64" ],
+                  "aix-5":          [ "ppc" ],
+                  "windows-2008r2": [ "amd64" ],
+                }
+
+# Roles are package groups
+# We should only support server on LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES)
+roles = {
+          "debian-6":       [ "agent-allinone" ],
+          "debian-7":       [ "agent-allinone" ],
+          "debian-8":       [ "agent-allinone" ],
+          "debian-9":       [ "agent-allinone" ],
+          "debian-10":      [ "agent-allinone" ],
+          "debian-11":      [ "agent-allinone", "relay", "server" ],
+          "debian-12":      [ "agent-allinone", "relay", "server" ],
+          "ubuntu-10.04":   [ "agent-allinone" ],
+          "ubuntu-12.04":   [ "agent-allinone" ],
+          "ubuntu-13.04":   [ "agent-allinone" ],
+          "ubuntu-14.04":   [ "agent-allinone" ],
+          "ubuntu-15.10":   [ "agent-allinone" ],
+          "ubuntu-16.04":   [ "agent-allinone" ],
+          "ubuntu-18.04":   [ "agent-allinone" ],
+          "ubuntu-20.04":   [ "agent-allinone" ],
+          "ubuntu-22.04":   [ "agent-allinone", "relay", "server" ],
+          "rhel-6":         [ "agent-allinone" ],
+          "rhel-7":         [ "agent-allinone" ],
+          "rhel-8":         [ "agent-allinone", "relay", "server" ],
+          "rhel-8-omni":    [ "agent-allinone" ],
+          "rhel-9":         [ "agent-allinone", "relay", "server" ],
+          "al-2023":        [ "agent-allinone", "relay", "server" ],
+          "sles-11":        [ "agent-allinone" ],
+          "sles-12":        [ "agent-allinone" ],
+          "sles-15":        [ "agent-allinone", "relay", "server" ],
+          "aix-5":          [ "agent-allinone" ],
+          "slackware-14.1": [ "agent-allinone" ],
+          "slackware-14.2": [ "agent-allinone" ],
+          "slackware-15.0": [ "agent-allinone" ],
+          "solaris-11.3":   [ "agent-allinone" ],
+          "solaris-11.4":   [ "agent-allinone" ],
+          "windows-2008r2": [ "agent-allinone" ],
+        }
+
+# tier 1 are systems that must not fail during a release (community supported or subscription paid)
+# tier 2 are systems that are built but may fail to release
+tier1 = [
+          "debian-10", "debian-11", "debian-12",
+          "ubuntu-15.10", "ubuntu-20.04", "ubuntu-22.04",
+          "rhel-7", "rhel-8", "rhel-9",
+          "al-2023",
+          "sles-11", "sles-12", "sles-15",
+          "aix-5",
+          "slackware-14.1", "slackware-14.2", "slackware-15.0"
+        ]
+
+# see https://docs.google.com/spreadsheets/d/1MbpYDH5Eqmgj1j-G4Gu0oKQoBaiGhjUfwVY5qtXTsu4/edit#gid=0
+sales-tier = {
+    "debian-6":       { "i386": "tier4", "amd64": "tier4" },
+    "debian-7":       { "i386": "tier4", "amd64": "tier4" },
+    "debian-8":       { "i386": "tier3", "amd64": "tier3", "armhf": "tier4", "arm64": "tier4" },
+    "debian-9":       { "i386": "tier3", "amd64": "tier3", "armhf": "tier4", "arm64": "tier4" },
+    "debian-10":      { "i386": "tier2", "amd64": "tier2", "armhf": "tier2", "arm64": "tier2" },
+    "debian-11":      { "i386": "tier1", "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "debian-12":      { "i386": "tier1", "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "ubuntu-10.04":   { "i386": "tier4", "amd64": "tier4" },
+    "ubuntu-12.04":   { "i386": "tier4", "amd64": "tier4" },
+    "ubuntu-13.04":   { "i386": "tier4", "amd64": "tier4" },
+    "ubuntu-14.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-15.10":   { "i386": "tier4", "amd64": "tier4" },
+    "ubuntu-16.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-18.04":   { "i386": "tier2", "amd64": "tier2" },
+    "ubuntu-20.04":   { "amd64": "tier1" },
+    "ubuntu-22.04":   { "amd64": "tier1" },
+    "ubuntu-24.04":   { "amd64": "tier1" },
+    "rhel-3":         { "i386": "tier4", "amd64": "tier4" },
+    "rhel-5":         { "i386": "tier4", "amd64": "tier4" },
+    "rhel-6":         { "i386": "tier3", "amd64": "tier3" },
+    "rhel-7":         { "i386": "tier3", "amd64": "tier2", "ppc64le": "tier3" },
+    "rhel-8":         { "amd64": "tier1", "ppc64le": "tier3" },
+    "rhel-8-omni":    { "amd64": "rhel-omni" },
+    "rhel-9":         { "amd64": "tier1", "ppc64le": "tier3" },
+    "al-2023":        { "amd64": "tier1" },
+    "sles-11":        { "i386": "tier4", "amd64": "tier4" },
+    "sles-11":        { "i386": "tier3", "amd64": "tier3" },
+    "sles-12":        { "amd64": "tier2", "ppc64le": "tier3" },
+    "sles-15":        { "amd64": "tier1", "ppc64le": "tier3" },
+    "slackware-14.1": { "amd64": "tier2" },
+    "slackware-14.2": { "amd64": "tier2" },
+    "slackware-15.0": { "amd64": "tier2" },
+    "aix-5":          { "ppc": "tier3" },
+    "windows-2008r2": { "amd64": "tier2" },
+}
+
+# Packages that are built
+packages = {
+             "agent-allinone": [ "rudder-agent" ],
+             "relay":          [ "rudder-relay" ],
+             "server":         [ "rudder-server", "rudder-api-client", "rudder-external-db" ],
+           }
+
+# Packages that are architecture dependent (others are independent)
+arch-dependent-packages = [ "rudder-agent", "rudder-relay", "rudder-server" ]
+
+# Internal components versions
+components = {
+               "cfengine": "3.21"
+               "postgresql": "13"
+               "jdk": "17"
+             }
+
+
+# Highest API versions available in this release
+api-version = {
+                "webapp": "18",
+                "relay": "1"
+              }
+
+# Agent versions you can use with this version's server
+compatible-agents = [ "7.3", "8.0", "8.1" ]
+
+# Versions you can upgrade from directly
+supported-upgrade = [ "7.2", "7.3", "8.0", "8.1" ]
+
