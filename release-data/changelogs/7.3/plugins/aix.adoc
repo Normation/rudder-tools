@@ -1,6 +1,6 @@
 = Changelogs for Rudder plugin aix 7.3.\* versions
 
-== aix-7.3.8-2.1 (2023-12-06)
+== aix-7.3.9-2.1 (2023-11-08)
 
 === Changes
 
@@ -11,7 +11,7 @@
 
 This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
-== aix-7.3.9-2.1 (2023-11-08)
+== aix-7.3.8-2.1 (2023-12-06)
 
 === Changes
 

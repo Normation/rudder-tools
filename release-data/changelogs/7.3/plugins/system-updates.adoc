@@ -1,5 +1,16 @@
 = Changelogs for Rudder plugin system-updates 7.3.\* versions
 
+== system-updates-7.3.9-1.12 (2023-11-08)
+
+=== Changes
+
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.3.8-1.12 (2023-12-06)
 
 === Changes
@@ -22,17 +33,6 @@
     (https://issues.rudder.io/issues/23408[#23408])
 * Fixed: Missing documentation about what rights plugin has
     (https://issues.rudder.io/issues/23428[#23428])
-
-=== Release notes
-
-This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
-
-== system-updates-7.3.9-1.12 (2023-11-08)
-
-=== Changes
-
-
-=== Bug fixes
 
 === Release notes
 
