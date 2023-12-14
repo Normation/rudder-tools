@@ -1,5 +1,83 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.10 (2023-12-14)
+
+=== Changes
+
+
+==== Packaging
+
+* Upgrade curl to 8.5.0
+    (https://issues.rudder.io/issues/23841[#23841])
+* Update to OpenSSL 3.0 & CFEngine 3.21
+    (https://issues.rudder.io/issues/23717[#23717])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: Backport fix for random process killing
+    (https://issues.rudder.io/issues/23713[#23713])
+* Fixed: Backport fix for random process killing
+    (https://issues.rudder.io/issues/23713[#23713])
+
+==== Web - Maintenance
+
+* Fixed: Event log migration should not be done every time
+    (https://issues.rudder.io/issues/23836[#23836])
+
+==== Web - Nodes & inventories
+
+* Fixed: Update the error message for failed inventory signature check
+    (https://issues.rudder.io/issues/23827[#23827])
+
+==== Web - UI & UX
+
+* Fixed: Sometimes, tooltips in the directives tree remain displayed
+    (https://issues.rudder.io/issues/23819[#23819])
+* Fixed: Fix typos in error message in technique editor
+    (https://issues.rudder.io/issues/23800[#23800])
+* Fixed: In Technique Editor, the quicksearch window still  appears behind the navigation menu
+    (https://issues.rudder.io/issues/23588[#23588])
+* Fixed: Technique saving is blocked because of localstorage of drafts
+    (https://issues.rudder.io/issues/23475[#23475])
+* Fixed: Using deprecated chart.js options generates errors in the console
+    (https://issues.rudder.io/issues/23747[#23747])
+
+==== Web - Technique editor
+
+* Fixed: Content of warning tooltip for unknow method should not overflow
+    (https://issues.rudder.io/issues/23801[#23801])
+
+==== rudderc
+
+* Fixed: rudderc method parsing breaks when method contains several bundles
+    (https://issues.rudder.io/issues/23798[#23798])
+
+==== Web - Config management
+
+* Fixed: Copy the certificates directly without calling the agent after generation
+    (https://issues.rudder.io/issues/23783[#23783])
+
+==== Miscellaneous
+
+* Fixed: Compiler warnings should prevent build
+    (https://issues.rudder.io/issues/23657[#23657])
+
+==== Security
+
+* Fixed: Unescape SQL in eventlog filter
+    (https://issues.rudder.io/issues/23724[#23724])
+
+==== Architecture - Code maintenance
+
+* Fixed: Software DAO can lead to NoSuchElement exception
+    (https://issues.rudder.io/issues/23701[#23701])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.9 (2023-11-07)
 
 === Changes
