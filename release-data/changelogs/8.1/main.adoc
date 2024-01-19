@@ -1,0 +1,290 @@
+= Change logs for Rudder 7.3
+
+==  Rudder 8.1.0.alpha1 (2024-01-19)
+
+=== Changes
+
+
+==== Packaging
+
+* Make the rudder-agent package depends of python
+    (https://issues.rudder.io/issues/23931[#23931])
+* Update packaging scripts for rudder-package
+    (https://issues.rudder.io/issues/23795[#23795])
+* Add rudder-package to the relay package
+    (https://issues.rudder.io/issues/23629[#23629])
+
+==== Web - Compliance & node report
+
+* Display group compliance
+    (https://issues.rudder.io/issues/23926[#23926])
+* Display group compliance
+    (https://issues.rudder.io/issues/23926[#23926])
+
+==== Architecture - Code maintenance
+
+* Remove early return to prepare to Scala3 migration in box sequence/traverse
+    (https://issues.rudder.io/issues/23948[#23948])
+* Group all node related access into one NodeFactRepository
+    (https://issues.rudder.io/issues/23727[#23727])
+* Upgrading Bootstrap to version 5
+    (https://issues.rudder.io/issues/23593[#23593])
+* Integrate Sass with front-end development tools
+    (https://issues.rudder.io/issues/23548[#23548])
+
+==== System integration
+
+* Add users table to better track user and sessions
+    (https://issues.rudder.io/issues/23440[#23440])
+
+==== rudderc
+
+* Update the rudderc technique json schema to match the minimal SchemaStore expectation
+    (https://issues.rudder.io/issues/23966[#23966])
+* Improve rudder-package error messages
+    (https://issues.rudder.io/issues/23842[#23842])
+* Make rudderc able to compile techniques using a per method policy mode override
+    (https://issues.rudder.io/issues/23799[#23799])
+* Make sources compatible with Windows
+    (https://issues.rudder.io/issues/23573[#23573])
+
+==== Web - UI & UX
+
+* Rudder Score for Nodes
+    (https://issues.rudder.io/issues/23929[#23929])
+* Reorganise the node summary tab
+    (https://issues.rudder.io/issues/23854[#23854])
+* Common style for Rust CLI output
+    (https://issues.rudder.io/issues/23865[#23865])
+* Reorganize the header of the node page
+    (https://issues.rudder.io/issues/23826[#23826])
+
+==== Server components
+
+* Make the (now) various Rust CLIs more consistent
+    (https://issues.rudder.io/issues/23852[#23852])
+* Add version parsing to rudder-package
+    (https://issues.rudder.io/issues/23687[#23687])
+
+==== API
+
+* Update API doc tooling
+    (https://issues.rudder.io/issues/23860[#23860])
+
+==== Plugin manager cli
+
+* Update rudder-package cli for better UX
+    (https://issues.rudder.io/issues/23838[#23838])
+* Implement missing commands
+    (https://issues.rudder.io/issues/23780[#23780])
+* Document the rpkg format
+    (https://issues.rudder.io/issues/23793[#23793])
+* Add enable/disable commands to rudder-package
+    (https://issues.rudder.io/issues/23791[#23791])
+* Make rudder-package able to download plugin licenses
+    (https://issues.rudder.io/issues/23782[#23782])
+* Make rudder-package able to uninstall packages
+    (https://issues.rudder.io/issues/23773[#23773])
+* Add signature validation for plugins
+    (https://issues.rudder.io/issues/23776[#23776])
+* Make rudder-package able to install plugins from the repository
+    (https://issues.rudder.io/issues/23772[#23772])
+* Stop rudder-package if not run as root
+    (https://issues.rudder.io/issues/23771[#23771])
+* Restart the webapp after plugin installation
+    (https://issues.rudder.io/issues/23769[#23769])
+* Make an install subcommand for the new rudder-package
+    (https://issues.rudder.io/issues/23767[#23767])
+* Make rudder-package able to track installed files
+    (https://issues.rudder.io/issues/23759[#23759])
+* Add dependency support to rudder-package
+    (https://issues.rudder.io/issues/23739[#23739])
+* rudder-package should stroingly type any plugin version
+    (https://issues.rudder.io/issues/23695[#23695])
+* Add a downloader for files from plugin repository
+    (https://issues.rudder.io/issues/23690[#23690])
+* Add configuration file path to the cli args
+    (https://issues.rudder.io/issues/23632[#23632])
+* Add logging basics
+    (https://issues.rudder.io/issues/23630[#23630])
+* Add configuration file parser to rudder-package
+    (https://issues.rudder.io/issues/23627[#23627])
+* Implement CI config for rudder-package
+    (https://issues.rudder.io/issues/23625[#23625])
+
+==== Architecture - Dependencies
+
+* Update js dependencies
+    (https://issues.rudder.io/issues/23825[#23825])
+* Update Scala dependencies
+    (https://issues.rudder.io/issues/23758[#23758])
+* Update to chimney 0.8.2
+    (https://issues.rudder.io/issues/23737[#23737])
+
+==== Agent
+
+* PoC for a minimal inventory engine
+    (https://issues.rudder.io/issues/23033[#23033])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Embed openssl cli on 7.3
+    (https://issues.rudder.io/issues/24019[#24019])
+* Fixed: Abort server build if rudder.war is less than 1Mb
+    (https://issues.rudder.io/issues/23958[#23958])
+* Fixed: Update C dependencies
+    (https://issues.rudder.io/issues/23794[#23794])
+* Fixed: Simplify systemd service config
+    (https://issues.rudder.io/issues/23712[#23712])
+* Fixed: Exclude target dirs in qa-test
+    (https://issues.rudder.io/issues/23980[#23980])
+* Fixed: rudder-packages does not build the right Rust project
+    (https://issues.rudder.io/issues/23904[#23904])
+* Fixed: Update Rust dependencies
+    (https://issues.rudder.io/issues/23803[#23803])
+
+==== Documentation
+
+* Fixed: Update note for rudder-package
+    (https://issues.rudder.io/issues/23960[#23960])
+* Fixed: Fixed ref in documentation for centralized page
+    (https://issues.rudder.io/issues/23917[#23917])
+
+==== Web - UI & UX
+
+* Fixed: Group compliance tab is loaded only with a double-click
+    (https://issues.rudder.io/issues/24034[#24034])
+* Fixed: Replace glyphicon icons with font-awesome
+    (https://issues.rudder.io/issues/24031[#24031])
+* Fixed: Add policy mode info in group compliance details
+    (https://issues.rudder.io/issues/24028[#24028])
+* Fixed: In quicksearch, query error are not displayed which leads to infinite loading result
+    (https://issues.rudder.io/issues/23402[#23402])
+* Fixed: New campaigns button does not conform to our graphic charter
+    (https://issues.rudder.io/issues/23938[#23938])
+* Fixed: The API accounts creation and editing popup no longer appears
+    (https://issues.rudder.io/issues/23943[#23943])
+* Fixed: A new group display no nodes while all linux are selected
+    (https://issues.rudder.io/issues/22170[#22170])
+* Fixed: The health check page has an unnecessary "Show check list" button in 8.0
+    (https://issues.rudder.io/issues/23916[#23916])
+* Fixed: The health check page has an unnecessary "Show check list" button
+    (https://issues.rudder.io/issues/23891[#23891])
+* Fixed: The "Category" field in the technique editor is displayed as a mandatory field even if it is an unmutable one
+    (https://issues.rudder.io/issues/23883[#23883])
+* Fixed: Remove the "Edit techniques" button from the directives webpage
+    (https://issues.rudder.io/issues/23877[#23877])
+* Fixed: Rename the "Create global property" button in "Create"
+    (https://issues.rudder.io/issues/23878[#23878])
+
+==== Security
+
+* Fixed: Generate runtime evaluated variables in windows policies as templates instead of Powershell expansion
+    (https://issues.rudder.io/issues/23973[#23973])
+* Fixed: Vulnerability in zerocopy crate
+    (https://issues.rudder.io/issues/24010[#24010])
+* Fixed: Ignore CVE-2023-51074 (no impact, score too high)
+    (https://issues.rudder.io/issues/24005[#24005])
+* Fixed: Unimportant CVE on logback and icu4j
+    (https://issues.rudder.io/issues/23983[#23983])
+* Fixed: Unaffected CVE on jgit and logback
+    (https://issues.rudder.io/issues/23982[#23982])
+
+==== Performance and scalability
+
+* Fixed: Healthcheck on file descriptor should be max 64000
+    (https://issues.rudder.io/issues/24006[#24006])
+
+==== Plugin manager cli
+
+* Fixed: rudder package fails to install local rpkg
+    (https://issues.rudder.io/issues/23965[#23965])
+* Fixed: rudder-package fails to compile in release mode
+    (https://issues.rudder.io/issues/23949[#23949])
+* Fixed: Make check-connection an option of the update command
+    (https://issues.rudder.io/issues/23834[#23834])
+* Fixed: Use quick_xml for xml edition
+    (https://issues.rudder.io/issues/23781[#23781])
+
+==== Web - Config management
+
+* Fixed: Static group which depends on dynamic subgroup must be forbiden
+    (https://issues.rudder.io/issues/18952[#18952])
+* Fixed: Rudder agent scheduled runs are not triggered at regular interval
+    (https://issues.rudder.io/issues/23956[#23956])
+
+==== Server components
+
+* Fixed: Waning log spam when disabled rudder_compute_changes setting
+    (https://issues.rudder.io/issues/23969[#23969])
+
+==== Web - Nodes & inventories
+
+* Fixed: Missing icon for windows 2022
+    (https://issues.rudder.io/issues/23972[#23972])
+* Fixed: We can accept a node with an existing hostname even if node_accept_duplicated_hostname is false
+    (https://issues.rudder.io/issues/22197[#22197])
+
+==== rudderc
+
+* Fixed: Improve rudderc error message when a parameter is missing from a method call
+    (https://issues.rudder.io/issues/23953[#23953])
+* Fixed: Improve rudderc test error message when no library is passed in the parameters
+    (https://issues.rudder.io/issues/23941[#23941])
+* Fixed: rudderc code is not properly formatted due to a failed resolution of merge
+    (https://issues.rudder.io/issues/23940[#23940])
+* Fixed: Parameters are not properly intepreted in method call conditions
+    (https://issues.rudder.io/issues/23925[#23925])
+* Fixed: tests output should be displayed even if not valid utf-8
+    (https://issues.rudder.io/issues/23788[#23788])
+* Fixed: rudderc export should use category from technique if existing
+    (https://issues.rudder.io/issues/23787[#23787])
+* Fixed: Add GPG signature verification to rudder-package
+    (https://issues.rudder.io/issues/23711[#23711])
+
+==== Architecture - Code maintenance
+
+* Fixed: Lift Async system is not able to find spring SecurityContextHolder
+    (https://issues.rudder.io/issues/23920[#23920])
+* Fixed: Inventory accept test sometimes fails on callback check
+    (https://issues.rudder.io/issues/23786[#23786])
+* Fixed: Update to zio-json 0.6.2
+    (https://issues.rudder.io/issues/23409[#23409])
+
+==== Architecture - Internal libs
+
+* Fixed: Plugin license implementation is not coherent with interface
+    (https://issues.rudder.io/issues/23932[#23932])
+
+==== Miscellaneous
+
+* Fixed: Change request on special:all_nodes_without_role lead to error
+    (https://issues.rudder.io/issues/23446[#23446])
+
+==== Techniques
+
+* Fixed: FileTemplate technique fails with an error on the Directory-Create method call
+    (https://issues.rudder.io/issues/23954[#23954])
+
+==== Agent
+
+* Fixed: Rudder agent still contains some syslog reporting handling code
+    (https://issues.rudder.io/issues/23946[#23946])
+* Fixed: when a node has capitals in its hostname agent history doesn't show manual runs
+    (https://issues.rudder.io/issues/23740[#23740])
+
+==== Generic methods
+
+* Fixed: Replace md5 by sha256 in time_lib
+    (https://issues.rudder.io/issues/23070[#23070])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Alexis TARUSSIO
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
