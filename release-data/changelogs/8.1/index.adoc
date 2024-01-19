@@ -1,0 +1,10 @@
+
+= Rudder 8.1 release notes
+
+== 💾 Installing, upgrading and testing
+
+* Install docs for https://docs.rudder.io/reference/8.1/installation/server/debian.html[Debian/Ubuntu],
+https://docs.rudder.io/reference/8.1/installation/server/rhel.html[RHEL/CentOS] and
+https://docs.rudder.io/reference/8.1/installation/server/sles.html[SLES]
+* https://docs.rudder.io/reference/8.1/installation/upgrade/notes.html[Upgrade nodes and doc]
+* https://docs.rudder.io/reference/8.1/installation/versions.html#_versions[Download links]
