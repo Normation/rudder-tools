@@ -15,9 +15,20 @@ add_repo() {
   [ "${PM}" = "rpm" ] && REPO_TYPE="rpm"
   [ "${PM}" = "pkg" ] && REPO_TYPE="misc/solaris"
   [ "${PM}" = "slackpkg" ] && REPO_TYPE="misc/slackware"
+
+  # old os that do not support TLS 1.2
+  if [ "${OS_COMPATIBLE}" = "RHEL" -a "${OS_COMPATIBLE_VERSION}" -lt 6 ] ||
+     [ "${OS_COMPATIBLE}" = "SLES" -a "${OS_COMPATIBLE_VERSION}" -lt 12 ]
+  then
+    USE_HTTPS="false"
+  fi
   if [ "${USE_HTTPS}" != "false" ]; then
     S="s"
-    [ "${PM}" = "apt" ] && ${PM_INSTALL} apt-transport-https
+    if [ "${OS_COMPATIBLE}" = "UBUNTU" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -lt 20 ] ||
+       [ "${OS_COMPATIBLE}" = "DEBIAN" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -lt 10 ]
+    then
+       ${PM_INSTALL} apt-transport-https
+    fi
   else
     S=""
   fi
