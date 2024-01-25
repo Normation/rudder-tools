@@ -17,8 +17,8 @@ add_repo() {
   [ "${PM}" = "slackpkg" ] && REPO_TYPE="misc/slackware"
 
   # old os that do not support TLS 1.2
-  if [ "${OS_COMPATIBLE}" = "RHEL" -a "${OS_COMPATIBLE_VERSION}" -lt 6 ] ||
-     [ "${OS_COMPATIBLE}" = "SLES" -a "${OS_COMPATIBLE_VERSION}" -lt 12 ]
+  if [ "${OS_COMPATIBLE}" = "RHEL" -a $(echo "${OS_COMPATIBLE_VERSION}"|cut -d. -f1) -lt 6 ] ||
+     [ "${OS_COMPATIBLE}" = "SLES" -a $(echo "${OS_COMPATIBLE_VERSION}"|cut -d. -f1) -lt 12 ]
   then
     USE_HTTPS="false"
   fi
