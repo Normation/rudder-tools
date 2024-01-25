@@ -72,6 +72,15 @@ add_repo() {
     URL_BASE="${URL_BASE}/$(echo ${OS_COMPATIBLE} | tr '[:upper:]' '[:lower:]')-${OS_COMPATIBLE_VERSION}"
   fi
 
+  RELEASE_GPG_KEY="http${S}://repository.rudder.io/rudder_release_key"
+  # RPM may use an old gpg key on old versions
+  if is_version_valid "${RUDDER_VERSION}" "[8.2 *]"
+  then
+    RPM_GPG_KEY="${RELEASE_GPG_KEY}.pub"
+  else
+    RPM_GPG_KEY="http${S}://repository.rudder.io/rpm/rudder_rpm_key.pub"
+  fi
+
   # add repository
   if [ "${PM}" = "apt" ]
   then
@@ -80,10 +89,10 @@ add_repo() {
     then
       # old Debian / Ubuntu like
       ${PM_INSTALL} -y --force-yes gnupg
-      get - "http${S}://repository.rudder.io/apt/rudder_apt_key.pub" | apt-key add -
+      get - "${RELEASE_GPG_KEY}.pub" | apt-key add -
     else
       # Debian / Ubuntu like
-      get /etc/apt/trusted.gpg.d/rudder_apt_key.gpg "http${S}://repository.rudder.io/apt/rudder_apt_key.gpg"
+      get /etc/apt/trusted.gpg.d/rudder_release_key.gpg "${RELEASE_GPG_KEY}.gpg"
     fi
 
     # force the default architecture
@@ -120,10 +129,10 @@ EOF
 name=Rudder ${RUDDER_VERSION} Repository
 baseurl=${URL_BASE}/
 gpgcheck=1
-gpgkey=http${S}://repository.rudder.io/rpm/rudder_rpm_key.pub
+gpgkey=${RPM_GPG_KEY}
 EOF
     # CentOS 5 only supports importing keys from files
-    get "/tmp/rudder_rpm_key.pub" "http${S}://repository.rudder.io/rpm/rudder_rpm_key.pub"
+    get "/tmp/rudder_rpm_key.pub" "${RPM_GPG_KEY}"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     return 0
@@ -139,7 +148,7 @@ type=rpm-md
 EOF
     # Add SuSE repo
     # SLES11 only supports importing keys from files
-    get "/tmp/rudder_rpm_key.pub" "http${S}://repository.rudder.io/rpm/rudder_rpm_key.pub"
+    get "/tmp/rudder_rpm_key.pub" "${RPM_GPG_KEY}"
     rpm --import "/tmp/rudder_rpm_key.pub"
     rm "/tmp/rudder_rpm_key.pub"
     zypper removerepo Rudder || true
