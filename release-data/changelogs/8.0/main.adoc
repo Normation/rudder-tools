@@ -1,5 +1,178 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 8.0.5 (2024-02-02)
+
+=== Changes
+
+
+==== Agent
+
+* We should log an error when a hook timeouts
+    (https://issues.rudder.io/issues/23936[#23936])
+
+==== API
+
+* Add manufacturer field in create node API
+    (https://issues.rudder.io/issues/24091[#24091])
+
+==== Web - UI & UX
+
+* Display the list of pending change requests related to the selected rule
+    (https://issues.rudder.io/issues/21931[#21931])
+
+==== Architecture - Code maintenance
+
+* Remove early return to prepare to Scala3 migration in box sequence/traverse
+    (https://issues.rudder.io/issues/23948[#23948])
+
+==== rudderc
+
+* Update the rudderc technique json schema to match the minimal SchemaStore expectation
+    (https://issues.rudder.io/issues/23966[#23966])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: add apr-util-db as a dependency for al2023
+    (https://issues.rudder.io/issues/24061[#24061])
+* Fixed: RHEL9 policies have an incompatible sh shebang
+    (https://issues.rudder.io/issues/24057[#24057])
+* Fixed: Embed openssl cli on 7.3
+    (https://issues.rudder.io/issues/24019[#24019])
+* Fixed: Abort server build if rudder.war is less than 1Mb
+    (https://issues.rudder.io/issues/23958[#23958])
+
+==== Documentation
+
+* Fixed: Fixed ref in documentation for centralized page
+    (https://issues.rudder.io/issues/23917[#23917])
+* Fixed: case-sensitivity parameter of rudder-user.xml is not documented
+    (https://issues.rudder.io/issues/24024[#24024])
+
+==== Web - Config management
+
+* Fixed: when we import an archive and rules contains non existant targets, the targets can't be removed from the rules
+    (https://issues.rudder.io/issues/24007[#24007])
+* Fixed: Static group which depends on dynamic subgroup must be forbiden
+    (https://issues.rudder.io/issues/18952[#18952])
+* Fixed: Rudder agent scheduled runs are not triggered at regular interval
+    (https://issues.rudder.io/issues/23956[#23956])
+
+==== Architecture - Code maintenance
+
+* Fixed: Backport test correction for allowed networks
+    (https://issues.rudder.io/issues/24093[#24093])
+
+==== Web - Technique editor
+
+* Fixed: 404 not found in technique editor resource manager Ajax query
+    (https://issues.rudder.io/issues/24084[#24084])
+* Fixed: Technique editor method filters are not aligned correctly
+    (https://issues.rudder.io/issues/23885[#23885])
+
+==== Web - Compliance & node report
+
+* Fixed: lost audit/enforce on the node compliance page
+    (https://issues.rudder.io/issues/23930[#23930])
+
+==== Web - UI & UX
+
+* Fixed: Fix small ui error in the rules information tab
+    (https://issues.rudder.io/issues/24079[#24079])
+* Fixed: In quicksearch, query error are not displayed which leads to infinite loading result
+    (https://issues.rudder.io/issues/23402[#23402])
+* Fixed: New campaigns button does not conform to our graphic charter
+    (https://issues.rudder.io/issues/23938[#23938])
+* Fixed: A new group display no nodes while all linux are selected
+    (https://issues.rudder.io/issues/22170[#22170])
+* Fixed: The health check page has an unnecessary "Show check list" button in 8.0
+    (https://issues.rudder.io/issues/23916[#23916])
+* Fixed: The health check page has an unnecessary "Show check list" button
+    (https://issues.rudder.io/issues/23891[#23891])
+* Fixed: The "Category" field in the technique editor is displayed as a mandatory field even if it is an unmutable one
+    (https://issues.rudder.io/issues/23883[#23883])
+* Fixed: Remove the "Edit techniques" button from the directives webpage
+    (https://issues.rudder.io/issues/23877[#23877])
+* Fixed: Rename the "Create global property" button in "Create"
+    (https://issues.rudder.io/issues/23878[#23878])
+
+==== Security
+
+* Fixed: Vulnerability in shlex Rust lib
+    (https://issues.rudder.io/issues/24069[#24069])
+* Fixed: Ignore cve on ext-js (unused dependency)
+    (https://issues.rudder.io/issues/24071[#24071])
+* Fixed: DoS vuln in h2 lib in relayd
+    (https://issues.rudder.io/issues/24068[#24068])
+* Fixed: Ignore CVE-2023-51074 (no impact, score too high)
+    (https://issues.rudder.io/issues/24005[#24005])
+* Fixed: Unaffected CVE on jgit and logback
+    (https://issues.rudder.io/issues/23982[#23982])
+
+==== API
+
+* Fixed: If REST url ends with .com, then the .com is removed from path segments
+    (https://issues.rudder.io/issues/24036[#24036])
+
+==== Performance and scalability
+
+* Fixed: Healthcheck on file descriptor should be max 64000
+    (https://issues.rudder.io/issues/24006[#24006])
+
+==== Server components
+
+* Fixed: Waning log spam when disabled rudder_compute_changes setting
+    (https://issues.rudder.io/issues/23969[#23969])
+
+==== Web - Nodes & inventories
+
+* Fixed: Missing icon for windows 2022
+    (https://issues.rudder.io/issues/23972[#23972])
+* Fixed: We can accept a node with an existing hostname even if node_accept_duplicated_hostname is false
+    (https://issues.rudder.io/issues/22197[#22197])
+
+==== rudderc
+
+* Fixed: Improve rudderc error message when a parameter is missing from a method call
+    (https://issues.rudder.io/issues/23953[#23953])
+* Fixed: Improve rudderc test error message when no library is passed in the parameters
+    (https://issues.rudder.io/issues/23941[#23941])
+* Fixed: Parameters are not properly intepreted in method call conditions
+    (https://issues.rudder.io/issues/23925[#23925])
+
+==== Architecture - Internal libs
+
+* Fixed: Plugin license implementation is not coherent with interface
+    (https://issues.rudder.io/issues/23932[#23932])
+
+==== Miscellaneous
+
+* Fixed: Change request on special:all_nodes_without_role lead to error
+    (https://issues.rudder.io/issues/23446[#23446])
+
+==== Techniques
+
+* Fixed: File content directive add 4 spaces at the beginning of the line 
+    (https://issues.rudder.io/issues/24022[#24022])
+* Fixed: FileTemplate technique fails with an error on the Directory-Create method call
+    (https://issues.rudder.io/issues/23954[#23954])
+
+==== Agent
+
+* Fixed: Prompt warning and ask confirmation for factory reset
+    (https://issues.rudder.io/issues/23978[#23978])
+* Fixed: when a node has capitals in its hostname agent history doesn't show manual runs
+    (https://issues.rudder.io/issues/23740[#23740])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Alexis TARUSSIO
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.4 (2023-12-14)
 
 === Changes
