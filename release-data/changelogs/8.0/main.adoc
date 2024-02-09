@@ -1,4 +1,4 @@
-= Change logs for Rudder 7.3
+= Change logs for Rudder 8.0
 
 ==  Rudder 8.0.5 (2024-02-02)
 
