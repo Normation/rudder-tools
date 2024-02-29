@@ -1,5 +1,63 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.12 (2024-02-29)
+
+=== Changes
+
+
+==== Architecture - Code maintenance
+
+* Prepare migration to Scala 3 - Version 7.3 part 1
+    (https://issues.rudder.io/issues/24171[#24171])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Rudder upgrade may fail on postgres script
+    (https://issues.rudder.io/issues/24232[#24232])
+
+==== Miscellaneous
+
+* Fixed: Incorrect error message about change request creation failure when it is not needed
+    (https://issues.rudder.io/issues/24278[#24278])
+
+==== Plugin manager cli
+
+* Fixed: Pylint test fails with an exception
+    (https://issues.rudder.io/issues/24205[#24205])
+
+==== Architecture - Code maintenance
+
+* Fixed: Make spotless only check source of current project
+    (https://issues.rudder.io/issues/24177[#24177])
+
+==== Web - Config management
+
+* Fixed: We must not generate policies for nodes without a well formed certificate
+    (https://issues.rudder.io/issues/24112[#24112])
+
+==== Web - Maintenance
+
+* Fixed: Archiving allows to read inconsistent active technique category ids 
+    (https://issues.rudder.io/issues/24011[#24011])
+
+==== API
+
+* Fixed: Bad description for serialNumber attribute of machine
+    (https://issues.rudder.io/issues/24141[#24141])
+* Fixed: For delete API for node, add a message for node already deleted
+    (https://issues.rudder.io/issues/24129[#24129])
+
+==== Web - Technique editor
+
+* Fixed: Action dropdown list in technique editor goes under parameters
+    (https://issues.rudder.io/issues/24122[#24122])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.11 (2024-02-02)
 
 === Changes
