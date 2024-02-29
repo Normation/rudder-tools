@@ -1,5 +1,104 @@
 = Change logs for Rudder 8.0
 
+==  Rudder 8.0.6 (2024-02-29)
+
+=== Changes
+
+
+==== Packaging
+
+* Import new gpg key in rpm postinst
+    (https://issues.rudder.io/issues/24070[#24070])
+
+==== Plugin manager cli
+
+* Rudder-package should log the package scripts outputs and errors
+    (https://issues.rudder.io/issues/24238[#24238])
+
+==== Architecture - Code maintenance
+
+* Prepare migration to Scala 3 - Version 7.3 part 1
+    (https://issues.rudder.io/issues/24171[#24171])
+
+==== Web - UI & UX
+
+* Editing big properties in elm-based properties interface is very inconvenient
+    (https://issues.rudder.io/issues/23487[#23487])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Rudder upgrade may fail on postgres script
+    (https://issues.rudder.io/issues/24232[#24232])
+
+==== Documentation
+
+* Fixed: layout of https://docs.rudder.io/reference/8.0/administration/server.html#_importing_configuration is broken
+    (https://issues.rudder.io/issues/24190[#24190])
+
+==== Miscellaneous
+
+* Fixed: Incorrect error message about change request creation failure when it is not needed
+    (https://issues.rudder.io/issues/24278[#24278])
+
+==== Plugin manager cli
+
+* Fixed: rudder-pkg stops at first install error on the upgrade-all command
+    (https://issues.rudder.io/issues/24201[#24201])
+* Fixed: Pylint test fails with an exception
+    (https://issues.rudder.io/issues/24205[#24205])
+
+==== rudderc
+
+* Fixed: rudderc canonifies already canonified condition expression resulting in loss of logic operators such as ) and |
+    (https://issues.rudder.io/issues/24226[#24226])
+
+==== Web - Technique editor
+
+* Fixed: when we have conditions on blocks, the condition text is not correctly positionned when the block is opened
+    (https://issues.rudder.io/issues/24150[#24150])
+* Fixed: Technique import doesn't refresh the list of method in technique editor
+    (https://issues.rudder.io/issues/24123[#24123])
+* Fixed: Action dropdown list in technique editor goes under parameters
+    (https://issues.rudder.io/issues/24122[#24122])
+
+==== Architecture - Code maintenance
+
+* Fixed: Make spotless only check source of current project
+    (https://issues.rudder.io/issues/24177[#24177])
+
+==== Web - Config management
+
+* Fixed: We must not generate policies for nodes without a well formed certificate
+    (https://issues.rudder.io/issues/24112[#24112])
+
+==== Web - Maintenance
+
+* Fixed: Archiving allows to read inconsistent active technique category ids 
+    (https://issues.rudder.io/issues/24011[#24011])
+
+==== API
+
+* Fixed: Bad description for serialNumber attribute of machine
+    (https://issues.rudder.io/issues/24141[#24141])
+* Fixed: For delete API for node, add a message for node already deleted
+    (https://issues.rudder.io/issues/24129[#24129])
+
+==== Web - UI & UX
+
+* Fixed: Unknown rule targets UI is missing icon and border
+    (https://issues.rudder.io/issues/24102[#24102])
+
+==== Agent
+
+* Fixed: rudder agent modified misses some files
+    (https://issues.rudder.io/issues/24133[#24133])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.5 (2024-02-02)
 
 === Changes
