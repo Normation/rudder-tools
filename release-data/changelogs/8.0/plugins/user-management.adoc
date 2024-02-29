@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin user-management 8.0.\* versions
 
+== user-management-8.0.6-2.2 (2024-02-29)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Users cards are not evenly aligned and some blank space 
+    (https://issues.rudder.io/issues/24187[#24187])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == user-management-8.0.5-2.2 (2024-02-02)
 
 === Changes
