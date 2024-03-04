@@ -1,5 +1,39 @@
 = Changelogs for Rudder plugin cve 8.1.\* versions
 
+== cve-8.1.0.beta1-2.10 (2024-03-04)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Compile css files with Sass
+    (https://issues.rudder.io/issues/24092[#24092])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Private plugins with jar files contain duplicated files
+    (https://issues.rudder.io/issues/24246[#24246])
+
+==== Miscellaneous
+
+* Fixed: Fix UI issues caused by bootstrap update in cve plugin
+    (https://issues.rudder.io/issues/24242[#24242])
+* Fixed: Init Cve Score
+    (https://issues.rudder.io/issues/24179[#24179])
+* Fixed: Add cve tab in node details
+    (https://issues.rudder.io/issues/24159[#24159])
+* Fixed: Test are not passing in 8.1 and up
+    (https://issues.rudder.io/issues/24164[#24164])
+* Fixed: Fix small UI & logs problems
+    (https://issues.rudder.io/issues/24118[#24118])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-8.1.0.alpha1-2.10 (2024-01-19)
 
 === Changes
