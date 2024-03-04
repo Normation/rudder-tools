@@ -1,5 +1,268 @@
 = Change logs for Rudder 8.1
 
+==  Rudder 8.1.0.beta1 (2024-03-04)
+
+=== Changes
+
+
+==== Packaging
+
+* Import new gpg key in rpm postinst
+    (https://issues.rudder.io/issues/24070[#24070])
+
+==== Agent
+
+* We should log an error when a hook timeouts
+    (https://issues.rudder.io/issues/23936[#23936])
+
+==== Documentation
+
+* Adapt doc for 8.1
+    (https://issues.rudder.io/issues/24033[#24033])
+
+==== API
+
+* Add alternative api doc build with RapiDoc
+    (https://issues.rudder.io/issues/24286[#24286])
+* Add manufacturer field in create node API
+    (https://issues.rudder.io/issues/24091[#24091])
+
+==== Plugin manager cli
+
+* Rudder-package should log the package scripts outputs and errors
+    (https://issues.rudder.io/issues/24238[#24238])
+
+==== Web - Compliance & node report
+
+* Initialize score on webapp start up
+    (https://issues.rudder.io/issues/24178[#24178])
+
+==== Architecture - Code maintenance
+
+* Prepare migration to Scala 3 - Version 8.1 part 1
+    (https://issues.rudder.io/issues/24175[#24175])
+* Prepare migration to Scala 3 - Version 7.3 part 1
+    (https://issues.rudder.io/issues/24171[#24171])
+
+==== Web - Technique editor
+
+* Add a select type for technique parameter
+    (https://issues.rudder.io/issues/24099[#24099])
+
+==== Architecture - Internal libs
+
+* Add score enum for score in database
+    (https://issues.rudder.io/issues/24147[#24147])
+
+==== Web - UI & UX
+
+* Editing big properties in elm-based properties interface is very inconvenient
+    (https://issues.rudder.io/issues/23487[#23487])
+* Improve display of audit/enforce mode in technique editor
+    (https://issues.rudder.io/issues/24080[#24080])
+* Display the list of pending change requests related to the selected rule
+    (https://issues.rudder.io/issues/21931[#21931])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Rudder upgrade may fail on postgres script
+    (https://issues.rudder.io/issues/24232[#24232])
+* Fixed: add apr-util-db as a dependency for al2023
+    (https://issues.rudder.io/issues/24061[#24061])
+* Fixed: RHEL9 policies have an incompatible sh shebang
+    (https://issues.rudder.io/issues/24057[#24057])
+
+==== Documentation
+
+* Fixed: Import/Export archive feature is no more in beta
+    (https://issues.rudder.io/issues/24290[#24290])
+* Fixed: layout of https://docs.rudder.io/reference/8.0/administration/server.html#_importing_configuration is broken
+    (https://issues.rudder.io/issues/24190[#24190])
+* Fixed: Broken doc build
+    (https://issues.rudder.io/issues/24136[#24136])
+* Fixed: case-sensitivity parameter of rudder-user.xml is not documented
+    (https://issues.rudder.io/issues/24024[#24024])
+
+==== rudderc
+
+* Fixed: Add integration tests to rudderc
+    (https://issues.rudder.io/issues/24291[#24291])
+* Fixed: rudderc canonifies already canonified condition expression resulting in loss of logic operators such as ) and |
+    (https://issues.rudder.io/issues/24226[#24226])
+* Fixed: Missing method constraints in rudderc
+    (https://issues.rudder.io/issues/24100[#24100])
+
+==== CI
+
+* Fixed: Adapt Jenkinsfile after warning-ng plugin upgrade
+    (https://issues.rudder.io/issues/24301[#24301])
+
+==== API
+
+* Fixed: Empty role in users file is logged as warning
+    (https://issues.rudder.io/issues/24285[#24285])
+* Fixed: Bad description for serialNumber attribute of machine
+    (https://issues.rudder.io/issues/24141[#24141])
+* Fixed: For delete API for node, add a message for node already deleted
+    (https://issues.rudder.io/issues/24129[#24129])
+* Fixed: If REST url ends with .com, then the .com is removed from path segments
+    (https://issues.rudder.io/issues/24036[#24036])
+
+==== Web - Technique editor
+
+* Fixed: An errors occurs within technique editor resource manager when we create a folder that has the same name than another parent folder
+    (https://issues.rudder.io/issues/24276[#24276])
+* Fixed: when we have conditions on blocks, the condition text is not correctly positionned when the block is opened
+    (https://issues.rudder.io/issues/24150[#24150])
+* Fixed: Technique import doesn't refresh the list of method in technique editor
+    (https://issues.rudder.io/issues/24123[#24123])
+* Fixed: Action dropdown list in technique editor goes under parameters
+    (https://issues.rudder.io/issues/24122[#24122])
+* Fixed: 404 not found in technique editor resource manager Ajax query
+    (https://issues.rudder.io/issues/24084[#24084])
+* Fixed: Technique editor method filters are not aligned correctly
+    (https://issues.rudder.io/issues/23885[#23885])
+
+==== Web - UI & UX
+
+* Fixed: Some tabs do no longer call Elm ports on click
+    (https://issues.rudder.io/issues/24287[#24287])
+* Fixed: The chevron down icon for "Status" is barely visible
+    (https://issues.rudder.io/issues/24197[#24197])
+* Fixed: Directive parameters UI details changed since bootstrap 5
+    (https://issues.rudder.io/issues/24176[#24176])
+* Fixed: Hooks page looks broken since bootstrap 5 update
+    (https://issues.rudder.io/issues/24204[#24204])
+* Fixed: Add space in the login form between inputs
+    (https://issues.rudder.io/issues/24194[#24194])
+* Fixed: The active tab indicator no longer works
+    (https://issues.rudder.io/issues/24170[#24170])
+* Fixed: Active buttons no longer have shadow
+    (https://issues.rudder.io/issues/24172[#24172])
+* Fixed: Jstree links are broken
+    (https://issues.rudder.io/issues/24152[#24152])
+* Fixed: System updates badges css in compliance score is not applied
+    (https://issues.rudder.io/issues/24155[#24155])
+* Fixed: Add score on top of tabs
+    (https://issues.rudder.io/issues/24096[#24096])
+* Fixed: Links and buttons don't have the right colour since the bootstrap update
+    (https://issues.rudder.io/issues/24124[#24124])
+* Fixed: Unknown rule targets UI is missing icon and border
+    (https://issues.rudder.io/issues/24102[#24102])
+* Fixed: Group compliance view does not give global and targeted compliance definitions
+    (https://issues.rudder.io/issues/24040[#24040])
+* Fixed: System updates badges in compliance score have no css
+    (https://issues.rudder.io/issues/24104[#24104])
+* Fixed: Fix small ui error in the rules information tab
+    (https://issues.rudder.io/issues/24079[#24079])
+* Fixed: Add margin-bottom to form group
+    (https://issues.rudder.io/issues/24048[#24048])
+* Fixed: Fix default font size and menu toggle
+    (https://issues.rudder.io/issues/24041[#24041])
+* Fixed: Fix the Settings page and its components following the bootstrap 5 update
+    (https://issues.rudder.io/issues/24035[#24035])
+
+==== Miscellaneous
+
+* Fixed: Incorrect error message about change request creation failure when it is not needed
+    (https://issues.rudder.io/issues/24278[#24278])
+
+==== Plugin manager cli
+
+* Fixed: rudder-pkg stops at first install error on the upgrade-all command
+    (https://issues.rudder.io/issues/24201[#24201])
+* Fixed: Pylint test fails with an exception
+    (https://issues.rudder.io/issues/24205[#24205])
+* Fixed: rudder package unpacks scripts.txz in the wrong place
+    (https://issues.rudder.io/issues/24131[#24131])
+* Fixed: Broken parsing of 8.1 plugin index
+    (https://issues.rudder.io/issues/24107[#24107])
+* Fixed: Allow running rudder-package with a malformed index
+    (https://issues.rudder.io/issues/24072[#24072])
+* Fixed: script.txz is not scripts.txz
+    (https://issues.rudder.io/issues/24060[#24060])
+* Fixed: script.txz is not scripts.txz
+    (https://issues.rudder.io/issues/24060[#24060])
+
+==== Architecture - Code maintenance
+
+* Fixed: Make spotless only check source of current project
+    (https://issues.rudder.io/issues/24177[#24177])
+* Fixed: Missing policy generation status
+    (https://issues.rudder.io/issues/24117[#24117])
+* Fixed: Backport test correction for allowed networks
+    (https://issues.rudder.io/issues/24093[#24093])
+
+==== Web - Compliance & node report
+
+* Fixed: Add missing score
+    (https://issues.rudder.io/issues/24158[#24158])
+* Fixed: lost audit/enforce on the node compliance page
+    (https://issues.rudder.io/issues/23930[#23930])
+
+==== Web - Config management
+
+* Fixed: We must not generate policies for nodes without a well formed certificate
+    (https://issues.rudder.io/issues/24112[#24112])
+* Fixed: when we import an archive and rules contains non existant targets, the targets can't be removed from the rules
+    (https://issues.rudder.io/issues/24007[#24007])
+
+==== Web - Maintenance
+
+* Fixed: Archiving allows to read inconsistent active technique category ids 
+    (https://issues.rudder.io/issues/24011[#24011])
+
+==== Security
+
+* Fixed: CSP headers are duplicated and missing report-uri
+    (https://issues.rudder.io/issues/24101[#24101])
+* Fixed: Implementing CSP headers without duplicating Lift scripts
+    (https://issues.rudder.io/issues/24062[#24062])
+* Fixed: Vulnerability in shlex Rust lib
+    (https://issues.rudder.io/issues/24069[#24069])
+* Fixed: Ignore cve on ext-js (unused dependency)
+    (https://issues.rudder.io/issues/24071[#24071])
+* Fixed: DoS vuln in h2 lib in relayd
+    (https://issues.rudder.io/issues/24068[#24068])
+
+==== System integration
+
+* Fixed: Score table migration
+    (https://issues.rudder.io/issues/24090[#24090])
+
+==== Performance and scalability
+
+* Fixed: Compliance has unoptimized usage of map view and policy mode computation  
+    (https://issues.rudder.io/issues/24047[#24047])
+
+==== Architecture - Internal libs
+
+* Fixed: Wrong agent type for dsc node in tests
+    (https://issues.rudder.io/issues/24051[#24051])
+
+==== Techniques
+
+* Fixed: File content directive add 4 spaces at the beginning of the line 
+    (https://issues.rudder.io/issues/24022[#24022])
+
+==== Agent
+
+* Fixed: rudder agent modified misses some files
+    (https://issues.rudder.io/issues/24133[#24133])
+* Fixed: Prompt warning and ask confirmation for factory reset
+    (https://issues.rudder.io/issues/23978[#23978])
+
+==== Generic methods
+
+* Fixed: Deprecate "Package check installed"
+    (https://issues.rudder.io/issues/24120[#24120])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.1.0.alpha1 (2024-01-19)
 
 === Changes
