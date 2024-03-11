@@ -1,5 +1,38 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.13 (2024-03-11)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Documentation on Windows installation misses the dependency on dsc plugin on the rudder server
+    (https://issues.rudder.io/issues/24229[#24229])
+
+==== Architecture - Internal libs
+
+* Fixed: windows Node in tests has invalid  certificate, failing test in plugin windows
+    (https://issues.rudder.io/issues/24289[#24289])
+
+==== API
+
+* Fixed: Merge user-management feature branch to 7.3
+    (https://issues.rudder.io/issues/24342[#24342])
+* Fixed: Empty role in users file is logged as warning
+    (https://issues.rudder.io/issues/24285[#24285])
+
+==== CI
+
+* Fixed: Adapt Jenkinsfile after warning-ng plugin upgrade
+    (https://issues.rudder.io/issues/24301[#24301])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.12 (2024-02-29)
 
 === Changes
