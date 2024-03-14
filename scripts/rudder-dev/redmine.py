@@ -379,8 +379,6 @@ class Redmine:
 
   def major_or_master(self, version):
     """ Return the major version or "master" if it is in alpha status """
-    if "-next" in version:
-      return version
     for k,v,recheck in Config.REDMINE_VERSION_DETECTOR:
       if re.match(k, version):
         major = re.sub(k, v, version)

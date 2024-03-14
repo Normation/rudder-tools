@@ -263,8 +263,8 @@ Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
 Config.LIFECYCLES = [ { "name": "rudder-plugins",
                  "project_id": "55",
-                 "detection": r'^\*?\s+remotes/{}/(\d+\.\d+)-next',
-                 "format": ["branches/rudder/{}", "({}-next)"],
+                 "detection": r'^\*?\s+remotes/{}/(\d+\.\d+)',
+                 "format": ["branches/rudder/{}"],
                }, { "name": "rudder",
                  "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
@@ -418,7 +418,7 @@ def get_next_version(old, internal=False):
 
 # Get branch name from version
 def branch_from_version(version):
-  if version == "master" or version.endswith("-next"):
+  if version == "master":
    return version
   else:
     # detect lifecycle and base the name on it
@@ -1234,15 +1234,6 @@ def merge_version(old, new, strategy=None, automatic=False, test=False, run_test
     branch = test_branch
     current_branch = test_branch
   merge_branch(branch, new, strategy, automatic, new, test, run_tests)
-  # Now handle next branches during merge of plugin
-  if lifecycle["name"] == "rudder-plugins":
-    # Merge old into old-next (branches/rudder/x.y into x.y-next)
-    merge_branch(branch, old+"-next", strategy, automatic, old, test, run_tests)
-    new_next = new+"-next"
-    if new == "master":
-      new_next = "master"
-    # Merci old-next into new-next (x.y-next into x.y+1-next)
-    merge_branch(old+"-next", new_next, strategy, automatic, new, test, run_tests)
 
 # Squash commits in PR if necessary
 def pre_merge_squash(version, pr_branch, pr, test=False):
@@ -1590,7 +1581,7 @@ if __name__ == "__main__":
     elif re.match(r'^i?\d{2,5}$', smart):
       arguments['branch'] = True
       arguments['<ticket_id>'] = smart
-    elif re.match(r'^\d\.(\d+|x)(-next)?$|^master$', smart):
+    elif re.match(r'^\d\.(\d+|x)$|^master$', smart):
       arguments['pull'] = True
       arguments['<branch>'] = smart
     elif re.match(r'^[A-Z]{3}$', smart):
