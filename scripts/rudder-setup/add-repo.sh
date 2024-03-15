@@ -85,7 +85,7 @@ add_repo() {
   if [ "${PM}" = "apt" ]
   then
     if [ "${OS_COMPATIBLE}" = "UBUNTU" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -le 10 ] ||
-       [ "${OS_COMPATIBLE}" = "DEBIAN" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -le 6 ]
+       [ "${OS_COMPATIBLE}" = "DEBIAN" -a $(echo ${OS_COMPATIBLE_VERSION}|cut -d. -f1) -le 7 ]
     then
       # old Debian / Ubuntu like
       ${PM_INSTALL} -y --force-yes gnupg
