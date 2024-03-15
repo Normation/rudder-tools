@@ -158,7 +158,7 @@ components = {
 
 # Highest API versions available in this release
 api-version = {
-                "webapp": "18",
+                "webapp": "19",
                 "relay": "1"
               }
 
