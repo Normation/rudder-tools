@@ -67,17 +67,6 @@ setup_server() {
       quiet_arg="--quiet"
     fi
 
-    # get licenses
-    if [ "${DOWNLOAD_USER}" != "" ]; then
-      cat > /opt/rudder/etc/rudder-pkg/rudder-pkg.conf <<EOF
-[Rudder]
-url = https://download.rudder.io/plugins
-username = ${DOWNLOAD_USER}
-password = ${DOWNLOAD_PASSWORD}
-EOF
-      rudder package licenses ${quiet_arg}
-    fi
-
     # Configure plugins
     if  [ "$(echo ${PLUGINS_VERSION} | sed  's|.*/||')" = "nightly" ]; then
       nightly_plugins="--nighty"
