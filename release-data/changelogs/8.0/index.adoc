@@ -1,6 +1,6 @@
 = Rudder 8.0 release notes
 
-We’re thrilled to announce the availability of pre-releases of Rudder 8.0.
+We’re thrilled to announce the availability of Rudder 8.0.
 The 8.X versions will be mainly dedicated to developing the compliance
 axis. This will affect different parts of the application, including the server
 and the agent, stay tuned for upcoming features!
