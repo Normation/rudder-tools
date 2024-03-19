@@ -441,8 +441,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>We’re thrilled to announce the availability of pre-releases of Rudder 8.1.
-The 8.X versions will be mainly dedicated to developing the compliance
+<p>We&#8217;re thrilled to announce the availability of pre-releases of Rudder 8.1.
+The 8.X versions is mainly dedicated to developing the compliance
 axis. This will affect different parts of the application, including the server
 and the agent, stay tuned for upcoming features!</p>
 </div>
@@ -458,12 +458,32 @@ and the agent, stay tuned for upcoming features!</p>
 <img src="images/score.png" alt="score">
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/score2.png" alt="score2">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_compliance_view_for_groups">Compliance view for groups</h3>
+<div class="paragraph">
+<p>The policy compliance view that already existed for nodes, rules and directives has
+also been added in the group pages.</p>
+</div>
+<div class="paragraph">
+<p>You can now explore the</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/group.png" alt="group">
+</div>
+</div>
+<div class="paragraph">
+<p>We added two visualization modes:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/targeted.png" alt="targeted">
 </div>
 </div>
 </div>
@@ -474,7 +494,27 @@ and the agent, stay tuned for upcoming features!</p>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_policy_mode_override_by_method">Policy mode override by method</h3>
-
+<div class="imageblock">
+<div class="content">
+<img src="images/override.png" alt="override">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_select_parameters_in_the_technique_editors_techniques">Select parameters in the technique editor&#8217;s techniques</h3>
+<div class="paragraph">
+<p>Technique parameters can now be restricted to a limited set of values.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/select1.png" alt="select1">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/select2.png" alt="select2">
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -482,10 +522,21 @@ and the agent, stay tuned for upcoming features!</p>
 <h2 id="_identity_and_access_management">Identity and Access Management</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_multi_tenant">Multi-tenant</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_oidc_based_user_provisioning">OIDC-based user provisioning</h3>
 <div class="paragraph">
 <p>You can now provision your Rudder users directly with an
 OpenID Connect server.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/oidc.png" alt="oidc">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -529,33 +580,54 @@ were reworked. For most used commands the changes are:</p>
 <p>You can still use the previous implementation with <code>RUDDER_PKG_COMPAT=1 rudder package &#8230;&#8203;</code>, but it will
 be removed in an upcoming release.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/package.png" alt="package">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_csp_headers">🔒 CSP headers</h3>
-
+<div class="paragraph">
+<p>To continue to strengthen the security of Rudder, we are introducing new
+<code>Content-Security-Policy</code> HTTP headers for Rudder&#8217;s interface,
+achieving [strict CSP](<a href="https://csp.withgoogle.com/docs/strict-csp.html" class="bare">https://csp.withgoogle.com/docs/strict-csp.html</a>)
+leveraging the latest features of the browsers (CSP level 3 and <code>strict-dynamic</code>),
+for state-of-the-art XSS protection.
+This is for now restricted to the <em>Health check</em> page and will be extended in upcoming versions.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_python_dep_agent">Python dep agent</h3>
-
+<h3 id="_python_dependency_for_linux_agents">Python dependency for Linux agents</h3>
+<div class="paragraph">
+<p>We added the system Python package as a dependency for our agent,
+as it was already required for package management features, and jinja2 templating.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_zio_json">ZIO JSON</h3>
-
+<div class="paragraph">
+<p>In the internals of the Web application, as part of our migration
+to the ZIO framework, we&#8217;ve rewritten a lot of our JSON/YAML serializers and deserializers using ZIO JSON.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_refactor_rust">Refactor Rust</h3>
-
+<h3 id="_refactoring_of_our_rust_projects">Refactoring of our Rust projects</h3>
+<div class="paragraph">
+<p>We now have a common cargo workspace for all our projects, enabling
+more consistent dependency management. We also have a common library for
+Rudder CLIs written in Rust, providing a consistent terminal UI/UX.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_preprocesseur_css_sass">Preprocesseur CSS SASS</h3>
-
+<h3 id="_sass_preprocessor_bootstrap_5">SASS preprocessor &amp; Bootstrap 5</h3>
+<div class="paragraph">
+<p>We upgraded our main CSS library, bootstrap, to its latest major version.
+This required major refactoring as we were on a quite older versions.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_bootstrap_5">Bootstrap 5</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_syntaxe_windows">Syntaxe Windows</h3>
+<h3 id="_syntax_windows">Syntax Windows</h3>
 
 </div>
 </div>
@@ -583,7 +655,7 @@ be removed in an upcoming release.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-26 18:08:30 +0100
+Last updated 2024-03-05 10:37:28 +0100
 </div>
 </div>
 </body>
