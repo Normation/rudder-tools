@@ -261,11 +261,7 @@ from versions import * # fake import
 Config.RUDDER_DEV_ORIGIN = "https://repository.rudder.io/tools/rudder-dev"
 Config.WARN_FOR_UPDATE_AFTER = 30 # days
 
-Config.LIFECYCLES = [ { "name": "rudder-plugins",
-                 "project_id": "55",
-                 "detection": r'^\*?\s+remotes/{}/(\d+\.\d+)',
-                 "format": ["branches/rudder/{}"],
-               }, { "name": "rudder",
+Config.LIFECYCLES = [ { "name": "rudder",
                  "project_id": "21",
                  "detection": r'^\*?\s+remotes/{}/branches/rudder/(.*)',
                  "format": [ "branches/rudder/{}" ],
@@ -1272,25 +1268,29 @@ def merge_branch(old, new, strategy=None, automatic=False, dsc_version="", test=
     shell("git branch -D " + test_branch + " 2>/dev/null || true")
     shell("git checkout -b " + test_branch)
     current_branch = test_branch
-  lifecycle = get_lifecycle()
-  fail_merge = lifecycle['name'] != "rudder-plugins"
-  # don't fail if merge fail within rudder-plugins, this is expected, especially on plugins-private
-  shell("git merge " + old + opts, "Merging " + old + " into " + new, fail_exit=fail_merge)
+  currentDir = os.getcwd()
+  isRudderPlugins = os.path.exists(currentDir + "/main-build.conf")
+  isRudderPluginsPrivate = os.path.exists(currentDir + "/rudder-plugins")
+  isPluginRepo = isRudderPlugins or isRudderPluginsPrivate
+
+  # don't fail if merge fail within plugins, this is expected, especially on plugins-private
+  shell("git merge " + old + opts, "Merging " + old + " into " + new, fail_exit=not isPluginRepo)
 
   # handle merge of specific rudder-plugins files
-  if not fail_merge:
+  if isPluginRepo:
     # rudder-plugins, only main-build.conf, we should ignore conflicts here and keep file as it is
-    shell("git restore main-build.conf --ours && git add main-build.conf", "restore main build.conf", fail_exit=False)
+    if isRudderPlugins:
+      shell("git restore main-build.conf --ours && git add main-build.conf", "restore main build.conf", fail_exit=False)
     # rudder-plugins-private, checkout and update dsc to current top of branch (a branches/rudder/x.y), we use a new parameter (name parameter, that was unused and is now renamed to dsc_branch)
-    dsc_branch = branch_from_version(dsc_version)
-    shell("cd dsc/rudder-agent-windows && git fetch && git checkout "+dsc_branch+" && git pull &&  cd ../.. && git add dsc/rudder-agent-windows " , "checkout rudder agent plugin to "+dsc_branch, fail_exit=False)
-    # rudder-plugins-private, checkout and update rudder-plugins to the same branch as we are currently on (new), as we can merge into branches, we need to use branch_from_version
     new_branch = branch_from_version(new)
-    shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .. && git add rudder-plugins" , "checkout rudder plugin to " + new_branch, fail_exit=False)
+    if isRudderPluginsPrivate:
+      shell("cd dsc/rudder-agent-windows && git fetch && git checkout "+new_branch+" && git pull &&  cd ../.. && git add dsc/rudder-agent-windows " , "checkout rudder agent plugin to "+new_branch, fail_exit=False)
+      # rudder-plugins-private, checkout and update rudder-plugins to the same branch as we are currently on (new), as we can merge into branches, we need to use branch_from_version
+      shell("cd rudder-plugins && git fetch && git checkout "+new_branch+" && git pull && cd .. && git add rudder-plugins" , "checkout rudder plugin to " + new_branch, fail_exit=False)
     opts = ""
     if automatic:
       opts += " --no-edit "
-    shell(" git diff --quiet && git diff --quiet --staged || git commit -m 'Update submodule during merge of "+old+" into "+new_branch+"' "+opts, "Commiting")
+    shell(" git diff --quiet && git diff --quiet --staged || git commit "+opts, "Commiting")
   # run merge tests if there are some
   if run_tests:
     toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
