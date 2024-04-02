@@ -1,5 +1,190 @@
 = Change logs for Rudder 8.0
 
+==  Rudder 8.0.7 (2024-04-02)
+
+=== Changes
+
+
+==== Web - UI & UX
+
+* Plugin information is too empty when there is no plugin
+    (https://issues.rudder.io/issues/24352[#24352])
+
+==== Relay server or API
+
+* relayd fail on reports containing non utf-8 characters
+    (https://issues.rudder.io/issues/24565[#24565])
+
+==== Architecture - Code maintenance
+
+*  Scala 3 syntax - branch 7.3 - core
+    (https://issues.rudder.io/issues/24532[#24532])
+
+==== CI
+
+* Add PoC SBOM tooling
+    (https://issues.rudder.io/issues/23356[#23356])
+
+==== rudderc
+
+* Add outcome conditions in rudderc docs
+    (https://issues.rudder.io/issues/24302[#24302])
+
+==== Techniques
+
+* Package manager options also work on yum
+    (https://issues.rudder.io/issues/24571[#24571])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: Techniques should not be writable by apache in SELinux
+    (https://issues.rudder.io/issues/24618[#24618])
+* Fixed: Update dependencies to manage CVE-2024-1597  CVE-2024-22257 and CVE-2024-22243
+    (https://issues.rudder.io/issues/24607[#24607])
+* Fixed: npm dep security checks are ignored
+    (https://issues.rudder.io/issues/24522[#24522])
+* Fixed: Ignore angularjs DoS in 7.3
+    (https://issues.rudder.io/issues/24517[#24517])
+
+==== Packaging
+
+* Fixed: Adapt rudder-agent packaging for Ubuntu 24.04
+    (https://issues.rudder.io/issues/24569[#24569])
+* Fixed: Move plugins postupgrade after webapp restart
+    (https://issues.rudder.io/issues/24449[#24449])
+
+==== Agent
+
+* Fixed: Typo in rudder-sign openssl 3 signing regex
+    (https://issues.rudder.io/issues/24359[#24359])
+* Fixed: rudder-sign fails on some machines with openssl 3
+    (https://issues.rudder.io/issues/24320[#24320])
+* Fixed: Add a warning in "rudder agent info" when cf-execd is stopped
+    (https://issues.rudder.io/issues/24620[#24620])
+
+==== Documentation
+
+* Fixed: Documentation on Windows installation misses the dependency on dsc plugin on the rudder server
+    (https://issues.rudder.io/issues/24229[#24229])
+* Fixed: Import/Export archive feature is no more in beta
+    (https://issues.rudder.io/issues/24290[#24290])
+* Fixed: Fix typo in file replace lines
+    (https://issues.rudder.io/issues/24609[#24609])
+
+==== System integration
+
+* Fixed: SELinux error for downloading files
+    (https://issues.rudder.io/issues/24589[#24589])
+* Fixed: Missing primary key statement for user sessions table creation when migrating
+    (https://issues.rudder.io/issues/24456[#24456])
+
+==== Web - UI & UX
+
+* Fixed: Elm properties app is loaded multiple times
+    (https://issues.rudder.io/issues/24416[#24416])
+* Fixed: Directive errors section is not consistent and always redirects to first tab
+    (https://issues.rudder.io/issues/24590[#24590])
+* Fixed: JS error when opening directive form more than once 
+    (https://issues.rudder.io/issues/24563[#24563])
+* Fixed: Margin is too small on Global compliance details module in dashboard
+    (https://issues.rudder.io/issues/24283[#24283])
+* Fixed: Errors in event log for deleted techniques
+    (https://issues.rudder.io/issues/24277[#24277])
+* Fixed: When the documentation of a technique is very long, the user has to scroll a long way before creating a directive from this technique
+    (https://issues.rudder.io/issues/23881[#23881])
+
+==== Web - Maintenance
+
+* Fixed: Missing event for Relay Demote preventing demotion
+    (https://issues.rudder.io/issues/24596[#24596])
+
+==== Relay server or API
+
+* Fixed: Teach relayd about a new report file name
+    (https://issues.rudder.io/issues/24564[#24564])
+* Fixed: Vulnerability in mio
+    (https://issues.rudder.io/issues/24516[#24516])
+
+==== rudderc
+
+* Fixed: Allow technique id starting with a number
+    (https://issues.rudder.io/issues/24592[#24592])
+* Fixed: rudderc test should dump the report file path or workdir when a check step fails
+    (https://issues.rudder.io/issues/24523[#24523])
+* Fixed: Broken detection of incorrect parameter names
+    (https://issues.rudder.io/issues/24371[#24371])
+* Fixed: Add integration tests to rudderc
+    (https://issues.rudder.io/issues/24291[#24291])
+
+==== Web - Nodes & inventories
+
+* Fixed: Wrong error message when no result are found when using a compliance filter
+    (https://issues.rudder.io/issues/24499[#24499])
+* Fixed: Technical logs are not loaded when visiting the tab
+    (https://issues.rudder.io/issues/24502[#24502])
+
+==== Web - Technique editor
+
+* Fixed: Compilation output tab icon in technique is not aligned
+    (https://issues.rudder.io/issues/24586[#24586])
+* Fixed: We shoud not able to save a technique with no method inside
+    (https://issues.rudder.io/issues/24579[#24579])
+* Fixed: An errors occurs within technique editor resource manager when we create a folder that has the same name than another parent folder
+    (https://issues.rudder.io/issues/24276[#24276])
+* Fixed: sysctl value generic method is not reporting
+    (https://issues.rudder.io/issues/20853[#20853])
+
+==== API
+
+* Fixed: API export of groups doesn't export the categories as dependencies
+    (https://issues.rudder.io/issues/24295[#24295])
+* Fixed: Async tests are failing for node certificates
+    (https://issues.rudder.io/issues/24520[#24520])
+* Fixed: Merge user-management feature branch to 7.3
+    (https://issues.rudder.io/issues/24342[#24342])
+* Fixed: Empty role in users file is logged as warning
+    (https://issues.rudder.io/issues/24285[#24285])
+
+==== Web - Config management
+
+* Fixed: Rudder should finish to migrate all techniques when booting instead of stopping on first error
+    (https://issues.rudder.io/issues/24515[#24515])
+
+==== Miscellaneous
+
+* Fixed: Existing deleted user managed by file cannot be reactivated 
+    (https://issues.rudder.io/issues/24318[#24318])
+
+==== Architecture - Internal libs
+
+* Fixed: windows Node in tests has invalid  certificate, failing test in plugin windows
+    (https://issues.rudder.io/issues/24289[#24289])
+
+==== CI
+
+* Fixed: Adapt Jenkinsfile after warning-ng plugin upgrade
+    (https://issues.rudder.io/issues/24301[#24301])
+
+==== System techniques
+
+* Fixed: Add a unique component to inventory and inventory signature file name
+    (https://issues.rudder.io/issues/24560[#24560])
+
+==== Generic methods
+
+* Fixed: Regex in file replace line must not match the string used as replacement
+    (https://issues.rudder.io/issues/24537[#24537])
+* Fixed: Missing constraint for enforce parameter in method File content
+    (https://issues.rudder.io/issues/24458[#24458])
+* Fixed: The yum module should install local package with yum
+    (https://issues.rudder.io/issues/24367[#24367])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.6 (2024-02-29)
 
 === Changes
