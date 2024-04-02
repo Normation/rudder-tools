@@ -1,13 +1,28 @@
 = Rudder 8.1 release notes
 
-We're thrilled to announce the availability of pre-releases of Rudder 8.1.
-The 8.X versions is mainly dedicated to developing the compliance
-axis. This will affect different parts of the application, including the server
-and the agent, stay tuned for upcoming features!
+We're thrilled to announce the availability of Rudder 8.1.
+The 8.X versions are mainly dedicated to developing the compliance
+axis, and the first results are now available!
 
 == Compliance
 
 === 📊 Rudder score
+
+The major addition to the 8.1 release is the Rudder score concept.
+Rudder has always had a focus on compliance and strives to provide
+excellent visibility to its users on the state of their infrastructure,
+thanks to various compliance views, and other dedicated views like available
+upgrades or known vulnerabilities.
+
+We're going a step further with the scores, which provide a synthetic overview
+of a node status. Various components are aggregated to provide a global score for the node,
+reflecting how in line it is with the security and configuration policies on a 360° horizon.
+This allows spotting at a glance the systems with the most associated risk and target
+remediation more efficiently.
+
+The scores have been added in node details, where the score
+is detailed with its sub-scores.
+Scores are also visible in the node list for overview, sorting, etc.
 
 image::images/score.png[]
 image::images/score2.png[]
@@ -16,12 +31,14 @@ image::images/score2.png[]
 
 The policy compliance view that already existed for nodes, rules and directives has
 also been added in the group pages.
-
-You can now explore the 
+You can now explore the detailed compliance at the group level:
 
 image::images/group.png[]
 
 We added two visualization modes:
+
+* Global compliance will show the compliance of all rules that apply directives to a node within this group.
+* Targeted compliance will show only the compliance of rules that explicitly include this group in their target.
 
 image::images/targeted.png[]
 
@@ -29,52 +46,105 @@ image::images/targeted.png[]
 
 === Policy mode override by method
 
+The technique editor and YAML policies now allow overriding the policy
+mode at the block or method level.
+The policy mode is usually set at the node, directive or global level,
+and configures whether the policy should be audited or enforced.
+This new feature is different in the way it is designed to operate inside the technique
+itself.
+It allows two things, lifting a long-time constraint of techniques:
+
+* overriding a policy part to enforce, to make an action necessary for an audit but not modifying the system, for example, running an audit script, creating a temporary file required for audit.
+* overriding a policy part to audit, to make the checks necessary in enforce mode without modifying the system, for example, checking for the presence of a user or package.
+
 image::images/override.png[]
+
+[source, yaml]
+----
+items:
+  - name: "Check chrony package"
+    condition: "debian"
+    method: package_present
+    params:
+      name: "chrony"
+    # either "enforce", "audit" or "none" (default)
+    policy_mode_override: "audit"
+----
 
 === Select parameters in the technique editor's techniques
 
 Technique parameters can now be restricted to a limited set of values.
+This is available both in the technique editor and in YAML techniques, and
+allows creating more robust interfaces, and prevents users of the technique
+from entering invalid values.
+
+There are two fields, one for the value actually used in the directive technique,
+and one to display in the directive form.
 
 image::images/select1.png[]
+
+[source, yaml]
+----
+params:
+  - name: ntp_server
+    constraints:
+      select:
+        - value: "192.123.23.21"
+          # If omitted, uses "value" as name
+          name: "DC1"
+        - value: "192.123.22.21"
+          name: "DC2"
+----
+
+In the directive form:
+
 image::images/select2.png[]
 
 == Identity and Access Management
 
-=== Multi-tenant
+=== Multi-tenant server
 
-We are introducing a new concept in Rudder, representing
+We are introducing a major new concept in Rudder ACLs, representing
 different teams working on the same Rudder server but
-operating different sets of nodes.
+operating different sets of nodes, called tenants.
 
-A Rudder server can be used bu different tenants, which are
+A Rudder server can be used by different tenants, which are
 defined as a set of users and a set of node groups.
+These users will only be able to read information about the nodes part of their tenant.
+A dedicated interface is also part of the feature, allowinf to manage the tenants of the server.
 
-These users will only be able to read information about the nodes affected to the tenant.
-For now there it is limited to read-only access.
+NOTE: It is for now limited to read-only users.
+
+image::images/tenant.png[]
 
 === OIDC-based user provisioning
 
-You can now provision your Rudder users directly with an 
-OpenID Connect server.
+You can now provision your Rudder users on the fly directly from
+an OpenID Connect server.
+This allows managing them dynamically, and integrating smoothly
+in a user provisioning process.
 
-image::images/oidc.png[]
+=== 👥 Extended user information
 
-=== 👥 User sessions
+In addition to the login and roles, it is now possible to store
+other information about the users:
 
-We now store all session history for users in the database.
-This information will be exposed in the Web interface in an upcoming
-version.
+image::images/user.png[]
+
+We also now store all session history for users in the database,
+and the last login date is available in the user
+management page.
 
 == 🛠️ Under the hood
 
 === New rudder package command
 
-The plugin manager has been rewritten and its command-line interface is now simpler
+The plugin manager has been rewritten, and its command-line interface is now simpler
 and more user-friendly.
 All commands taking plugin names now accept multiple values.
 
-The new interface is not compatible with the earlier one and the arguments and options
-were reworked. For most used commands the changes are:
+The new interface is not compatible with the earlier one, and the arguments and options
+were reworked. For most used commands, the changes are:
 
 * `rudder package install-file <file>` -> `rudder package install <file>`
 * `rudder package plugin enable/disable <plugin>` -> `rudder package enable/disable <plugin>`
@@ -89,9 +159,9 @@ image::images/package.png[]
 
 To continue to strengthen the security of Rudder, we are introducing new
 `Content-Security-Policy` HTTP headers for Rudder's interface,
-achieving [strict CSP](https://csp.withgoogle.com/docs/strict-csp.html)
-leveraging the latest features of the browsers (CSP level 3 and `strict-dynamic`),
-for state-of-the-art XSS protection.
+achieving https://csp.withgoogle.com/docs/strict-csp.html[strict CSP],
+by leveraging the latest features of the browsers (CSP level 3 and `strict-dynamic`),
+for modern XSS protection.
 This is for now restricted to the _Health check_ page and will be extended in upcoming versions.
 
 === Python dependency for Linux agents
@@ -112,10 +182,11 @@ Rudder CLIs written in Rust, providing a consistent terminal UI/UX.
 
 === SASS preprocessor & Bootstrap 5
 
-We upgraded our main CSS library, bootstrap, to its latest major version.
-This required major refactoring as we were on a quite older versions.
+We upgraded our main CSS library, https://getbootstrap.com/[Bootstrap], to its latest major version.
+This required important refactoring that also leads to the introduction of a CSS compilation
+using SASS preprocessor.
 
-=== Syntax Windows
+// === CycloneDX SBOM
 
 == 💾 Installing, upgrading and testing
 
