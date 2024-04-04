@@ -1,4 +1,5 @@
 = Rudder 8.1 release notes
+:source-highlighter: rouge
 
 We're thrilled to announce the availability of Rudder 8.1.
 The 8.X versions are mainly dedicated to developing the compliance
@@ -100,6 +101,12 @@ In the directive form:
 
 image::images/select2.png[]
 
+=== Setting properties on pending nodes
+
+It is now possible to set and modify properties on pending nodes.
+This allows providing enough information for proper group classification
+before the node gets its first policies.
+
 == Identity and Access Management
 
 === Multi-tenant server
@@ -111,7 +118,7 @@ operating different sets of nodes, called tenants.
 A Rudder server can be used by different tenants, which are
 defined as a set of users and a set of node groups.
 These users will only be able to read information about the nodes part of their tenant.
-A dedicated interface is also part of the feature, allowinf to manage the tenants of the server.
+A dedicated interface is also part of the feature, allowing to manage the tenants of the server.
 
 NOTE: It is for now limited to read-only users.
 
@@ -150,8 +157,8 @@ were reworked. For most used commands, the changes are:
 * `rudder package plugin enable/disable <plugin>` -> `rudder package enable/disable <plugin>`
 * `rudder package check-connection` -> `rudder package update --check`
 
-You can still use the previous implementation with `RUDDER_PKG_COMPAT=1 rudder package ...`, but it will
-be removed in an upcoming release.
+To ease the transition, you can still use the previous implementation with `RUDDER_PKG_COMPAT=1 rudder package ...`,
+but it will be removed in an upcoming release.
 
 image::images/package.png[]
 
