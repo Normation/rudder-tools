@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin reporting 8.1.\* versions
 
+== reporting-8.1.0-2.1 (2024-04-11)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Reporting plugin is broken in 8.1 without any stored report
+    (https://issues.rudder.io/issues/24645[#24645])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == reporting-8.1.0.rc1-2.1 (2024-04-08)
 
 === Changes
