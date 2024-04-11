@@ -1290,7 +1290,7 @@ def merge_branch(old, new, strategy=None, automatic=False, dsc_version="", test=
     opts = ""
     if automatic:
       opts += " --no-edit "
-    shell(" git diff --quiet && git diff --quiet --staged || git commit "+opts, "Commiting")
+    shell(" git diff --quiet && git diff --quiet --staged || git commit -m 'Update submodules' "+opts, "Commiting")
   # run merge tests if there are some
   if run_tests:
     toplevel = shell("git rev-parse --show-toplevel", keep_output=True).strip()
