@@ -3,16 +3,15 @@
 release = "8.1"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "final"
 
-#release-date = "2023-10-18"
+release-date = "2024-04-15"
 #public-eol-date = ""
 #public-last-patch = ""
 #standard-eol-date = ""
 #standard-last-patch = ""
 # = premium-eol-date
 #eol-date = ""
-
 
 # Supported architecture for each distribution
 architectures = {
@@ -168,5 +167,5 @@ api-version = {
 compatible-agents = [ "7.3", "8.0", "8.1" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "7.2", "7.3", "8.0", "8.1" ]
+supported-upgrade = [ "7.3", "8.0", "8.1" ]
 
