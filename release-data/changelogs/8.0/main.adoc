@@ -1,5 +1,120 @@
 = Change logs for Rudder 8.0
 
+==  Rudder 8.0.8 (2024-04-25)
+
+=== Changes
+
+
+==== Web - Compliance & node report
+
+* Document stopping process before Postgres restore maintenance to avoid primary key constrain get corrupted
+    (https://issues.rudder.io/issues/9752[#9752])
+
+==== Web - Config management
+
+* Have a reset-keys button on the node screen
+    (https://issues.rudder.io/issues/12791[#12791])
+
+==== rudderc
+
+* Reformat the rudderc technique Json schema to match the one published in the schemastore repository
+    (https://issues.rudder.io/issues/24655[#24655])
+
+==== System techniques
+
+* Make inventory verbose when run in inform mode
+    (https://issues.rudder.io/issues/24709[#24709])
+
+==== Agent
+
+* Import new gpg key in agent check
+    (https://issues.rudder.io/issues/24216[#24216])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: Fusion inventory fails to report software with exotic names
+    (https://issues.rudder.io/issues/24321[#24321])
+
+==== Packaging
+
+* Fixed: Add an inconditionnal restart of the slapd service in server postinst
+    (https://issues.rudder.io/issues/24662[#24662])
+
+==== Documentation
+
+* Fixed: Add warning for properties not case sensitive on Windows
+    (https://issues.rudder.io/issues/24234[#24234])
+* Fixed: Typo in ncf 8.0
+    (https://issues.rudder.io/issues/24693[#24693])
+
+==== Web - Compliance & node report
+
+* Fixed: Directives applied twice don't show in rule details (they should be skipped)
+    (https://issues.rudder.io/issues/22525[#22525])
+
+==== Web - Maintenance
+
+* Fixed: Webapp can fail to start with null sessionid error 
+    (https://issues.rudder.io/issues/24017[#24017])
+
+==== Performance and scalability
+
+* Fixed: ExpiredCompliance events are pilling up
+    (https://issues.rudder.io/issues/24712[#24712])
+
+==== Miscellaneous
+
+* Fixed: Empty description of technique parameter is not allowed
+    (https://issues.rudder.io/issues/24698[#24698])
+
+==== Web - Config management
+
+* Fixed: Missing icon in the rule creation page
+    (https://issues.rudder.io/issues/24487[#24487])
+* Fixed: File picker is broken in 8.0
+    (https://issues.rudder.io/issues/24679[#24679])
+
+==== Security
+
+* Fixed: Disabled provisioned users can still login and use Rudder
+    (https://issues.rudder.io/issues/24691[#24691])
+* Fixed: Ignore RUSTSEC-2024-0332 
+    (https://issues.rudder.io/issues/24678[#24678])
+
+==== Web - UI & UX
+
+* Fixed: Beautify node properties tooltips label badge
+    (https://issues.rudder.io/issues/24688[#24688])
+* Fixed: Typos in node state description
+    (https://issues.rudder.io/issues/24668[#24668])
+* Fixed: Broken policy mode badge in rule header
+    (https://issues.rudder.io/issues/24643[#24643])
+
+==== Web - Nodes & inventories
+
+* Fixed: When sending inventory with no software update anymore, inventory stored is not updated and keeps previous updates
+    (https://issues.rudder.io/issues/24675[#24675])
+* Fixed: API authorization error: secure/api/compliance/nodes/{id}/system
+    (https://issues.rudder.io/issues/24671[#24671])
+* Fixed: Number of nodes in rule badge is not correct with tenants
+    (https://issues.rudder.io/issues/24665[#24665])
+
+==== Techniques
+
+* Fixed: The services technique is not compatible with Windows
+    (https://issues.rudder.io/issues/24763[#24763])
+
+==== Generic methods
+
+* Fixed: Warning in yum module with python 3.12
+    (https://issues.rudder.io/issues/24731[#24731])
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.0.7 (2024-04-02)
 
 === Changes
