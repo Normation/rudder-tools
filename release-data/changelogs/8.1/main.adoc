@@ -1,5 +1,173 @@
 = Change logs for Rudder 8.1
 
+==  Rudder 8.1.1 (2024-04-25)
+
+=== Changes
+
+
+==== Web - Compliance & node report
+
+* Document stopping process before Postgres restore maintenance to avoid primary key constrain get corrupted
+    (https://issues.rudder.io/issues/9752[#9752])
+
+==== Documentation
+
+* Update doc content for 8.1 release
+    (https://issues.rudder.io/issues/24720[#24720])
+
+==== Web - Config management
+
+* Have a reset-keys button on the node screen
+    (https://issues.rudder.io/issues/12791[#12791])
+
+==== Web - UI & UX
+
+* Nodes table should not be displayed in every tab of group details
+    (https://issues.rudder.io/issues/24550[#24550])
+
+==== System techniques
+
+* Make inventory verbose when run in inform mode
+    (https://issues.rudder.io/issues/24709[#24709])
+
+==== Agent
+
+* Import new gpg key in agent check
+    (https://issues.rudder.io/issues/24216[#24216])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: Fusion inventory fails to report software with exotic names
+    (https://issues.rudder.io/issues/24321[#24321])
+
+==== Documentation
+
+* Fixed: Add warning for properties not case sensitive on Windows
+    (https://issues.rudder.io/issues/24234[#24234])
+
+==== Performance and scalability
+
+* Fixed: Directive details displaying leads to firing duplicated rest queries
+    (https://issues.rudder.io/issues/24775[#24775])
+* Fixed: Tree group is slow to load up because it contains the list of nodes in the tree
+    (https://issues.rudder.io/issues/24723[#24723])
+* Fixed: Dynamic groups are slow to compute in Rudder 8.1
+    (https://issues.rudder.io/issues/24713[#24713])
+* Fixed: ExpiredCompliance events are pilling up
+    (https://issues.rudder.io/issues/24712[#24712])
+
+==== Security
+
+* Fixed: Groups node ids list in API is still exhaustive even with restricted tenant access
+    (https://issues.rudder.io/issues/24708[#24708])
+* Fixed: Disabled provisioned users can still login and use Rudder
+    (https://issues.rudder.io/issues/24691[#24691])
+
+==== Web - Compliance & node report
+
+* Fixed: Broken compliance score for E
+    (https://issues.rudder.io/issues/24767[#24767])
+* Fixed: Directives applied twice don't show in rule details (they should be skipped)
+    (https://issues.rudder.io/issues/22525[#22525])
+* Fixed: Remove System compliance from Score
+    (https://issues.rudder.io/issues/24734[#24734])
+
+==== Web - Nodes & inventories
+
+* Fixed: Accepting one selected pending node pops up a windows that accepts them all
+    (https://issues.rudder.io/issues/24756[#24756])
+* Fixed: Node properties override hovers are not well rendered
+    (https://issues.rudder.io/issues/24497[#24497])
+* Fixed: There is no easy way to copy a property/inventory variable name to clipboard
+    (https://issues.rudder.io/issues/24498[#24498])
+* Fixed: OS type / name are not always compared lower case
+    (https://issues.rudder.io/issues/24703[#24703])
+* Fixed: API authorization error: secure/api/compliance/nodes/{id}/system
+    (https://issues.rudder.io/issues/24671[#24671])
+* Fixed: Number of nodes in rule badge is not correct with tenants
+    (https://issues.rudder.io/issues/24665[#24665])
+
+==== Miscellaneous
+
+* Fixed: Unable to log in - Server error
+    (https://issues.rudder.io/issues/24757[#24757])
+* Fixed: Badge style is not coherent in the whole UI 
+    (https://issues.rudder.io/issues/24742[#24742])
+* Fixed: Empty description of technique parameter is not allowed
+    (https://issues.rudder.io/issues/24698[#24698])
+
+==== Plugin manager cli
+
+* Fixed: Restart webapp even if some plugin installation failed
+    (https://issues.rudder.io/issues/24750[#24750])
+* Fixed: The webapp is not restarted when upgrading a plugin
+    (https://issues.rudder.io/issues/24738[#24738])
+
+==== Web - UI & UX
+
+* Fixed: Score explanation should not move score element when text is too long
+    (https://issues.rudder.io/issues/24744[#24744])
+* Fixed: Group property table is cropped
+    (https://issues.rudder.io/issues/24748[#24748])
+* Fixed: Close icon does not close the modal for creating an API account
+    (https://issues.rudder.io/issues/24741[#24741])
+* Fixed: Score details element should always appear in the same order
+    (https://issues.rudder.io/issues/24603[#24603])
+* Fixed: The font weight of labels is too low
+    (https://issues.rudder.io/issues/24717[#24717])
+* Fixed: The ul and ol lists have the same markdown rendering
+    (https://issues.rudder.io/issues/24605[#24605])
+* Fixed: Node rudder information section is clipped and needs scroll 
+    (https://issues.rudder.io/issues/24611[#24611])
+* Fixed: Group close button does not appear for readonly user
+    (https://issues.rudder.io/issues/24682[#24682])
+* Fixed: Beautify node properties tooltips label badge
+    (https://issues.rudder.io/issues/24688[#24688])
+* Fixed: Broken policy mode badge in rule header
+    (https://issues.rudder.io/issues/24643[#24643])
+
+==== Web - Maintenance
+
+* Fixed: Webapp can fail to start with null sessionid error 
+    (https://issues.rudder.io/issues/24017[#24017])
+
+==== Architecture - Code maintenance
+
+* Fixed: MockLdapServer needs to be a class instantiated for each test
+    (https://issues.rudder.io/issues/24719[#24719])
+
+==== Web - Config management
+
+* Fixed: Missing icon in the rule creation page
+    (https://issues.rudder.io/issues/24487[#24487])
+* Fixed: File picker is broken in 8.0
+    (https://issues.rudder.io/issues/24679[#24679])
+
+==== Web - Technique editor
+
+* Fixed: Dropown condition on OS in method is not overlapping the next method
+    (https://issues.rudder.io/issues/24543[#24543])
+
+==== Techniques
+
+* Fixed: The services technique is not compatible with Windows
+    (https://issues.rudder.io/issues/24763[#24763])
+
+==== Generic methods
+
+* Fixed: Warning in yum module with python 3.12
+    (https://issues.rudder.io/issues/24731[#24731])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Nicolas Ecarnot
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.1.0 (2024-04-11)
 
 === Changes
