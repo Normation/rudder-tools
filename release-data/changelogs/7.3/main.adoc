@@ -1,5 +1,136 @@
 = Change logs for Rudder 7.3
 
+==  Rudder 7.3.14 (2024-04-25)
+
+=== Changes
+
+
+==== Web - Compliance & node report
+
+* Document stopping process before Postgres restore maintenance to avoid primary key constrain get corrupted
+    (https://issues.rudder.io/issues/9752[#9752])
+
+==== Web - Config management
+
+* Have a reset-keys button on the node screen
+    (https://issues.rudder.io/issues/12791[#12791])
+
+==== Web - UI & UX
+
+* Plugin information is too empty when there is no plugin
+    (https://issues.rudder.io/issues/24352[#24352])
+
+==== Architecture - Code maintenance
+
+*  Scala 3 syntax - branch 7.3 - core
+    (https://issues.rudder.io/issues/24532[#24532])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Add warning for properties not case sensitive on Windows
+    (https://issues.rudder.io/issues/24234[#24234])
+* Fixed: Fix typo in file replace lines
+    (https://issues.rudder.io/issues/24609[#24609])
+
+==== Web - Compliance & node report
+
+* Fixed: Directives applied twice don't show in rule details (they should be skipped)
+    (https://issues.rudder.io/issues/22525[#22525])
+
+==== Web - Maintenance
+
+* Fixed: Webapp can fail to start with null sessionid error 
+    (https://issues.rudder.io/issues/24017[#24017])
+* Fixed: Missing event for Relay Demote preventing demotion
+    (https://issues.rudder.io/issues/24596[#24596])
+
+==== Performance and scalability
+
+* Fixed: ExpiredCompliance events are pilling up
+    (https://issues.rudder.io/issues/24712[#24712])
+
+==== Security
+
+* Fixed: Disabled provisioned users can still login and use Rudder
+    (https://issues.rudder.io/issues/24691[#24691])
+* Fixed: Ignore RUSTSEC-2024-0332 
+    (https://issues.rudder.io/issues/24678[#24678])
+* Fixed: Update dependencies to manage CVE-2024-1597  CVE-2024-22257 and CVE-2024-22243
+    (https://issues.rudder.io/issues/24607[#24607])
+* Fixed: npm dep security checks are ignored
+    (https://issues.rudder.io/issues/24522[#24522])
+* Fixed: Ignore angularjs DoS in 7.3
+    (https://issues.rudder.io/issues/24517[#24517])
+
+==== Web - Nodes & inventories
+
+* Fixed: Number of nodes in rule badge is not correct with tenants
+    (https://issues.rudder.io/issues/24665[#24665])
+
+==== Web - UI & UX
+
+* Fixed: Typos in node state description
+    (https://issues.rudder.io/issues/24668[#24668])
+* Fixed: Broken policy mode badge in rule header
+    (https://issues.rudder.io/issues/24643[#24643])
+* Fixed: Directive errors section is not consistent and always redirects to first tab
+    (https://issues.rudder.io/issues/24590[#24590])
+
+==== Relay server or API
+
+* Fixed: Teach relayd about a new report file name
+    (https://issues.rudder.io/issues/24564[#24564])
+* Fixed: Vulnerability in mio
+    (https://issues.rudder.io/issues/24516[#24516])
+
+==== API
+
+* Fixed: API export of groups doesn't export the categories as dependencies
+    (https://issues.rudder.io/issues/24295[#24295])
+* Fixed: Async tests are failing for node certificates
+    (https://issues.rudder.io/issues/24520[#24520])
+
+==== Web - Config management
+
+* Fixed: Rudder should finish to migrate all techniques when booting instead of stopping on first error
+    (https://issues.rudder.io/issues/24515[#24515])
+
+==== System integration
+
+* Fixed: Missing primary key statement for user sessions table creation when migrating
+    (https://issues.rudder.io/issues/24456[#24456])
+
+==== Miscellaneous
+
+* Fixed: Existing deleted user managed by file cannot be reactivated 
+    (https://issues.rudder.io/issues/24318[#24318])
+
+==== Techniques
+
+* Fixed: The services technique is not compatible with Windows
+    (https://issues.rudder.io/issues/24763[#24763])
+
+==== System techniques
+
+* Fixed: Add a unique component to inventory and inventory signature file name
+    (https://issues.rudder.io/issues/24560[#24560])
+
+==== Generic methods
+
+* Fixed: Regex in file replace line must not match the string used as replacement
+    (https://issues.rudder.io/issues/24537[#24537])
+
+==== Web - Technique editor
+
+* Fixed: sysctl value generic method is not reporting
+    (https://issues.rudder.io/issues/20853[#20853])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 7.3.13 (2024-03-11)
 
 === Changes
