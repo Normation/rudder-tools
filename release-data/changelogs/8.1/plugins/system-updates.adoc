@@ -27,6 +27,33 @@
 
 This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== system-updates-8.1.1-1.15 (2024-04-25)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: There is no differences between a "Software update" and a "System update" campaigns creation process
+    (https://issues.rudder.io/issues/24482[#24482])
+* Fixed: System update plugin metadata are not available to rudder web app
+    (https://issues.rudder.io/issues/24415[#24415])
+* Fixed:  System updates summary has misaligned updates badges 
+    (https://issues.rudder.io/issues/24697[#24697])
+* Fixed: Windows download count is always multiplied by two
+    (https://issues.rudder.io/issues/24716[#24716])
+
+==== Web - UI & UX
+
+* Fixed: Node page loads with CVE browser error depending on installed plugins
+    (https://issues.rudder.io/issues/24578[#24578])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-8.1.0-1.15 (2024-04-11)
 
 === Changes
