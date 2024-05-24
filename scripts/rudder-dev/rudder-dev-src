@@ -283,25 +283,21 @@ def update_nrm_users(project_id):
   if users is None:
     users = {}
   # just update it otherwise we would have only project specific data in it
-  user_list = requests.get(Config.REDMINE_API_URL + "/projects/" + str(project_id) + "/memberships.json?limit=100", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
-  for user in user_list.json()['memberships']:
-    if 'user' in user: # it can be a user or a group
-      id = user['user']['id']
-      user_data = requests.get(Config.REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
-      try:
-        user_detail = user_data.json()['user']
-      # some user cannot get info on some other users, but not all
-      except ValueError:
-        continue
-      if 'mail' in user_detail:
-        # accept both normation.com and rudder.io adresses
-        if user_detail['mail'].endswith("normation.com") or user_detail['mail'].endswith("rudder.io"):
-          trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
-          github_account = ''
-          for field in user_detail['custom_fields']:
-            if field['name'] == "GitHub":
-              github_account = field['value']
-          users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'], 'github':github_account }
+  user_list = requests.get(Config.REDMINE_API_URL + "/groups/314.json?include=users", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
+  for user in user_list.json()['group']['users']:
+    id = user['id']
+    user_data = requests.get(Config.REDMINE_API_URL + "/users/" + str(id) + ".json", headers = {'X-Redmine-API-Key': Config.REDMINE_TOKEN } )
+    try:
+      user_detail = user_data.json()['user']
+    # some user cannot get info on some other users, but not all
+    except ValueError:
+      continue
+    trigraph = (user_detail['firstname'][0] + user_detail['lastname'][:2]).upper()
+    github_account = ''
+    for field in user_detail['custom_fields']:
+      if field['name'] == "GitHub":
+        github_account = field['value']
+    users[trigraph] = { 'id': id, 'trigraph': trigraph, 'firstname':user_detail['firstname'] , 'lastname':user_detail['lastname'], 'github':github_account }
   set_cache_info(Config.REDMINE_API_URL, users)
   return users
 
