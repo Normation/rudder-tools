@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin system-updates 7.3.\* versions
 
+== system-updates-7.3.15-1.14 (2024-06-05)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Refresh button in campaign history and events does nothing
+    (https://issues.rudder.io/issues/24902[#24902])
+
+=== Release notes
+
+This is a bug fix release in the 7.3 series and therefore all installations of 7.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-7.3.14-1.14 (2024-04-25)
 
 === Changes
