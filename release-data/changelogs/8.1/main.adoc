@@ -1,5 +1,107 @@
 = Change logs for Rudder 8.1
 
+==  Rudder 8.1.4 (2024-06-20)
+
+=== Changes
+
+
+==== Documentation
+
+* Specify which repo to use in compatible os page
+    (https://issues.rudder.io/issues/24901[#24901])
+
+==== Architecture - Code maintenance
+
+* pylint test failing on rudder package 
+    (https://issues.rudder.io/issues/24982[#24982])
+
+==== Plugin manager cli
+
+* Improve tracing loggers
+    (https://issues.rudder.io/issues/24610[#24610])
+
+==== Architecture - Internal libs
+
+* Add hotswap agent conf file to gitignore to prevent surprises in production site
+    (https://issues.rudder.io/issues/24961[#24961])
+
+==== Generic methods
+
+* Missing a generic method "command_execution_as_user'
+    (https://issues.rudder.io/issues/22904[#22904])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Detection of remote database url in postinstallation script is not correct
+    (https://issues.rudder.io/issues/24969[#24969])
+* Fixed: rudder server debug fails on almalinux 8
+    (https://issues.rudder.io/issues/21941[#21941])
+
+==== Web - Nodes & inventories
+
+* Fixed: Process are not saved anymore in 8.1
+    (https://issues.rudder.io/issues/25035[#25035])
+* Fixed: When node compliance right is missing, we don't want a red error pop-up
+    (https://issues.rudder.io/issues/25008[#25008])
+* Fixed: User with node_all permission can't modify node policy mode
+    (https://issues.rudder.io/issues/25003[#25003])
+* Fixed: Search for machine type (virtual, physical) does not work
+    (https://issues.rudder.io/issues/24971[#24971])
+
+==== Architecture - Code maintenance
+
+* Fixed: Typo in NoopGetNodesbySofwareName prevent merge
+    (https://issues.rudder.io/issues/25018[#25018])
+
+==== Web - Config management
+
+* Fixed: Property inheritance of type array doesn't work
+    (https://issues.rudder.io/issues/24988[#24988])
+
+==== Security
+
+* Fixed: Ignore braces DoS in 7.3
+    (https://issues.rudder.io/issues/24995[#24995])
+
+==== Web - UI & UX
+
+* Fixed: Nodes page has console error from the tree script
+    (https://issues.rudder.io/issues/24784[#24784])
+* Fixed: We should rework the targets rules page when we create a directive
+    (https://issues.rudder.io/issues/24472[#24472])
+* Fixed: Error message when getting campaign through API
+    (https://issues.rudder.io/issues/24959[#24959])
+
+==== Miscellaneous
+
+* Fixed: bugfixes in the list of updates appears in white
+    (https://issues.rudder.io/issues/24983[#24983])
+
+==== Documentation
+
+* Fixed: API v19 documentation is missing in 8.1
+    (https://issues.rudder.io/issues/24899[#24899])
+
+==== rudderc
+
+* Fixed: stacktraces from rudderc
+    (https://issues.rudder.io/issues/24967[#24967])
+
+==== Generic methods
+
+* Fixed: Time lib still uses md5 for scheduling
+    (https://issues.rudder.io/issues/24990[#24990])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Maxime Mérian
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.1.3 (2024-06-02)
 
 === Changes
