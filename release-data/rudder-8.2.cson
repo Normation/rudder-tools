@@ -37,7 +37,7 @@ architectures = {
                   "rhel-7":         [ "i386", "amd64", "ppc64le" ],
                   "rhel-8":         [ "amd64", "ppc64le" ],
                   "rhel-8-omni":    [ "amd64" ],
-                  "rhel-9":         [ "amd64", "ppc64le" ],
+                  "rhel-9":         [ "amd64", "ppc64le", "arm64" ],
                   "rhel-9-omni":    [ "amd64" ],
                   "al-2023":        [ "amd64" ],
                   "sles-11"   :     [ "i386", "amd64" ],
