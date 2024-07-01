@@ -1,5 +1,62 @@
 = Change logs for Rudder 8.1
 
+==  Rudder 8.1.5 (2024-07-01)
+
+=== Changes
+
+
+==== Documentation
+
+* Add rocky to list of supported architecture
+    (https://issues.rudder.io/issues/25070[#25070])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Remove supported os for Ubuntu 24.04 for server and relay in 8.0
+    (https://issues.rudder.io/issues/25074[#25074])
+* Fixed: Include Ubuntu 24.04 in the list of supported OS
+    (https://issues.rudder.io/issues/25036[#25036])
+* Fixed: Only run the agent locally after install
+    (https://issues.rudder.io/issues/25049[#25049])
+
+==== Web - UI & UX
+
+* Fixed: Directive detail has compliance bar JS error
+    (https://issues.rudder.io/issues/25081[#25081])
+
+==== Security
+
+* Fixed: Escape ids to avoid XSS in rules and directives page
+    (https://issues.rudder.io/issues/25050[#25050])
+
+==== Plugin manager cli
+
+* Fixed: When a plugin fails to download, the installation is considered successful
+    (https://issues.rudder.io/issues/25048[#25048])
+
+==== Web - Nodes & inventories
+
+* Fixed: Processes are not displayed anymore in 8.1
+    (https://issues.rudder.io/issues/25044[#25044])
+* Fixed: Node delete has a todoQC
+    (https://issues.rudder.io/issues/25045[#25045])
+
+==== Performance and scalability
+
+* Fixed: Rudder 8.1 slows down over time
+    (https://issues.rudder.io/issues/24652[#24652])
+
+==== Miscellaneous
+
+* Fixed: Quick search bar selection/results box displays over input field, making input field unusable
+    (https://issues.rudder.io/issues/25010[#25010])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.1.4 (2024-06-20)
 
 === Changes
