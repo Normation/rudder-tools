@@ -1,5 +1,16 @@
 = Changelogs for Rudder plugin notify 8.0.\* versions
 
+== notify-8.0.10-2.2 (2024-07-02)
+
+=== Changes
+
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 8.0 series and therefore all installations of 8.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == notify-8.0.9-2.2 (2024-06-03)
 
 === Changes
