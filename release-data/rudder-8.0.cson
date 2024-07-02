@@ -6,10 +6,10 @@ release = "8.0"
 release-status = "final"
 
 release-date = "2023-10-18"
-#public-eol-date = ""
-#public-last-patch = ""
-#standard-eol-date = ""
-#standard-last-patch = ""
+public-eol-date = "2024-07-15"
+public-last-patch = "8.0.10"
+standard-eol-date = "2024-07-15"
+standard-last-patch = "8.0.10"
 # = premium-eol-date
 #eol-date = ""
 
