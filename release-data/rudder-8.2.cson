@@ -46,7 +46,6 @@ architectures = {
                   "slackware-14.1": [ "amd64" ],
                   "slackware-14.2": [ "amd64" ],
                   "slackware-15.0": [ "amd64" ],
-                  "aix-5":          [ "ppc" ],
                   "windows-2008r2": [ "amd64" ],
                 }
 
@@ -80,7 +79,6 @@ roles = {
           "sles-11":        [ "agent-allinone" ],
           "sles-12":        [ "agent-allinone" ],
           "sles-15":        [ "agent-allinone", "relay", "server" ],
-          "aix-5":          [ "agent-allinone" ],
           "slackware-14.1": [ "agent-allinone" ],
           "slackware-14.2": [ "agent-allinone" ],
           "slackware-15.0": [ "agent-allinone" ],
@@ -97,7 +95,6 @@ tier1 = [
           "rhel-7", "rhel-8", "rhel-9",
           "al-2023",
           "sles-11", "sles-12", "sles-15",
-          "aix-5",
           "slackware-14.1", "slackware-14.2", "slackware-15.0"
         ]
 
@@ -136,7 +133,6 @@ sales-tier = {
     "slackware-14.1": { "amd64": "tier2" },
     "slackware-14.2": { "amd64": "tier2" },
     "slackware-15.0": { "amd64": "tier2" },
-    "aix-5":          { "ppc": "tier3" },
     "windows-2008r2": { "amd64": "tier2" },
 }
 
