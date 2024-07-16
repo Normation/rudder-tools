@@ -11,8 +11,7 @@ public-last-patch = "8.0.10"
 standard-eol-date = "2024-07-15"
 standard-last-patch = "8.0.10"
 # = premium-eol-date
-#eol-date = ""
-
+eol-date = "2024-07-15"
 
 # Supported architecture for each distribution
 architectures = {
