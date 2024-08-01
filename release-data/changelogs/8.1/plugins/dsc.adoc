@@ -45,6 +45,51 @@
 
 This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
+== dsc-8.1.6-2.6 (2024-08-01)
+
+=== Changes
+
+
+==== Agent library
+
+* Add deserialization to the Rudder.Report type
+    (https://issues.rudder.io/issues/25124[#25124])
+
+==== Generic methods
+
+* There is no 'file-key-value' method type implemented for windows
+    (https://issues.rudder.io/issues/22823[#22823])
+
+==== ci
+
+* Make the docker build a one liner
+    (https://issues.rudder.io/issues/25086[#25086])
+
+=== Bug fixes
+
+==== Rudder web app
+
+* Fixed: use new variable name in technique generation
+    (https://issues.rudder.io/issues/25102[#25102])
+
+==== CLI
+
+* Fixed: Windows agent 1st run after policy changes systematically produces error
+    (https://issues.rudder.io/issues/25140[#25140])
+* Fixed: Remove the rudder.ps1 deployment from the policies as it can lead to complete removal of the rudder script
+    (https://issues.rudder.io/issues/25141[#25141])
+* Fixed: Add support for the rudder agent help command on Windows
+    (https://issues.rudder.io/issues/25039[#25039])
+
+==== System techniques
+
+* Fixed: Windows agent does not respect custom HTTPS port
+    (https://issues.rudder.io/issues/25099[#25099])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-8.1.5-2.6 (2024-07-01)
 
 === Changes
