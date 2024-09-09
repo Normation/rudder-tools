@@ -1,0 +1,89 @@
+= Changelogs for Rudder plugin security-benchmarks 8.2.\* versions
+
+== security-benchmarks-8.2.0.beta1-1.0 (2024-09-09)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Display the node's score in the compliance table
+    (https://issues.rudder.io/issues/25360[#25360])
+* Deploy the benchmark techniques in a dedicated technique category
+    (https://issues.rudder.io/issues/25394[#25394])
+* Improve scores display in chapters
+    (https://issues.rudder.io/issues/25389[#25389])
+* Improve display of new/deleted nodes and groups, and make access to their details more intuitive
+    (https://issues.rudder.io/issues/25384[#25384])
+* Support Score and compliance 
+    (https://issues.rudder.io/issues/25295[#25295])
+* The item conditions should be based on the rule id to avoid any conflicts between benchmarks
+    (https://issues.rudder.io/issues/25286[#25286])
+* Improve build steps
+    (https://issues.rudder.io/issues/25279[#25279])
+* Add delete button 
+    (https://issues.rudder.io/issues/25266[#25266])
+* Switch from children to items
+    (https://issues.rudder.io/issues/25269[#25269])
+* Automate the build
+    (https://issues.rudder.io/issues/25247[#25247])
+* Add an ‘Order by’ selector to the benchmarks list
+    (https://issues.rudder.io/issues/25222[#25222])
+* Make the name and description of a benchmark editable
+    (https://issues.rudder.io/issues/25195[#25195])
+* Make documentation accessible and editable
+    (https://issues.rudder.io/issues/25194[#25194])
+* Improving the display of benchmark chapters
+    (https://issues.rudder.io/issues/25178[#25178])
+* Add Targets selection interface
+    (https://issues.rudder.io/issues/25170[#25170])
+* Add benchmark creation interface
+    (https://issues.rudder.io/issues/25149[#25149])
+* Add edit parameters interface and properties fetch
+    (https://issues.rudder.io/issues/25158[#25158])
+* Security benchmarks backend and services
+    (https://issues.rudder.io/issues/25082[#25082])
+* Security benchmarks backend and services
+    (https://issues.rudder.io/issues/25082[#25082])
+* View and edit benchmark parameters
+    (https://issues.rudder.io/issues/25115[#25115])
+* Display benchmark details
+    (https://issues.rudder.io/issues/25113[#25113])
+* Display the list of benchmarks as a datatable
+    (https://issues.rudder.io/issues/25041[#25041])
+* Create elm application
+    (https://issues.rudder.io/issues/25043[#25043])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Make compliance tables filterable and sortable
+    (https://issues.rudder.io/issues/25402[#25402])
+* Fixed: Bump KCL to the 0.9.8 version
+    (https://issues.rudder.io/issues/25410[#25410])
+* Fixed: The build fails due to KCL files not compiling
+    (https://issues.rudder.io/issues/25405[#25405])
+* Fixed: Group and node compliance tabs should not ne visible while creating a new benchmark
+    (https://issues.rudder.io/issues/25355[#25355])
+* Fixed: Broken plugin build
+    (https://issues.rudder.io/issues/25340[#25340])
+* Fixed: Techniques are not placed correctly
+    (https://issues.rudder.io/issues/25283[#25283])
+* Fixed: Remove temporary sed hack used to modify the tag boolean values
+    (https://issues.rudder.io/issues/25278[#25278])
+* Fixed: The plugin fails to build if an embedded technique does not have any resource file
+    (https://issues.rudder.io/issues/25277[#25277])
+* Fixed: Override Parameters per Node/Group 
+    (https://issues.rudder.io/issues/25259[#25259])
+* Fixed: Show nodes and groups in dedicated tabs
+    (https://issues.rudder.io/issues/25249[#25249])
+* Fixed: The ‘Select Targets’ tab should not close when leaving the tab.
+    (https://issues.rudder.io/issues/25223[#25223])
+* Fixed: Allow to configure mode
+    (https://issues.rudder.io/issues/25173[#25173])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
