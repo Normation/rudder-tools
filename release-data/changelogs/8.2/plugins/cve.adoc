@@ -1,0 +1,28 @@
+= Changelogs for Rudder plugin cve 8.2.\* versions
+
+== cve-8.2.0.alpha1-2.10 (2024-09-09)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Make possible to create groups based on CVE
+    (https://issues.rudder.io/issues/25147[#25147])
+* Display the list of benchmarks as a datatable
+    (https://issues.rudder.io/issues/25041[#25041])
+* Log request made to check endpoint
+    (https://issues.rudder.io/issues/21058[#21058])
+* Log request made to check endpoint
+    (https://issues.rudder.io/issues/21058[#21058])
+* Make Windows CVE requests
+    (https://issues.rudder.io/issues/24987[#24987])
+* Update scala dependencies in private plugins
+    (https://issues.rudder.io/issues/24774[#24774])
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
