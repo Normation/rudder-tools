@@ -74,7 +74,7 @@ add_repo() {
 
   RELEASE_GPG_KEY="http${S}://repository.rudder.io/rudder_release_key"
   # RPM may use an old gpg key on old versions
-  if is_version_valid "${RUDDER_VERSION}" "[8.2 *]"
+  if is_version_valid "${RUDDER_VERSION}" "[8.3 *]"
   then
     RPM_GPG_KEY="${RELEASE_GPG_KEY}.pub"
   else
