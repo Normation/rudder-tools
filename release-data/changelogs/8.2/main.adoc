@@ -1,5 +1,260 @@
 
 = Change logs for Rudder 8.2
+==  Rudder 8.2.0.rc1 (2024-10-18)
+
+=== Changes
+
+
+==== Packaging
+
+* Reenable system-updates module build
+    (https://issues.rudder.io/issues/25651[#25651])
+
+==== Documentation
+
+* Document how to install plugins on Amazon 2023
+    (https://issues.rudder.io/issues/25678[#25678])
+* Add Ubuntu 24.04 as server in documentation
+    (https://issues.rudder.io/issues/25468[#25468])
+* Update users management doc in 8.2
+    (https://issues.rudder.io/issues/25401[#25401])
+
+==== Web - Compliance & node report
+
+* Node with kept compliance should have the clock icon in node list
+    (https://issues.rudder.io/issues/25649[#25649])
+* We need an icon and recognizable message style for node with expired maintained compliance
+    (https://issues.rudder.io/issues/25572[#25572])
+* Worst report takes the worst component instead of block
+    (https://issues.rudder.io/issues/25383[#25383])
+
+==== Web - Nodes & inventories
+
+* IP search field with slash notation
+    (https://issues.rudder.io/issues/3615[#3615])
+
+==== Architecture - evolution
+
+* Add missing service for plugins
+    (https://issues.rudder.io/issues/25609[#25609])
+* Remove webapp technique compilation fallback
+    (https://issues.rudder.io/issues/25504[#25504])
+* Normalize authentication logs
+    (https://issues.rudder.io/issues/25478[#25478])
+* Normalize authentication logs
+    (https://issues.rudder.io/issues/25478[#25478])
+
+==== Web - UI & UX
+
+* Add notifications on copy to clipboard 
+    (https://issues.rudder.io/issues/25602[#25602])
+
+==== Architecture - Code maintenance
+
+* Limit number of  rust jobs in build jobs
+    (https://issues.rudder.io/issues/25524[#25524])
+
+==== Techniques
+
+* Add linting to the powershell techniques
+    (https://issues.rudder.io/issues/25551[#25551])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Disable apt feature on Slackware
+    (https://issues.rudder.io/issues/25629[#25629])
+* Fixed: Error buiding system-updates on debian 12
+    (https://issues.rudder.io/issues/25615[#25615])
+* Fixed: Missing apt feature in system updates module
+    (https://issues.rudder.io/issues/25613[#25613])
+* Fixed: Pass an argument to CFEngine custom promise type binaries - 8.2
+    (https://issues.rudder.io/issues/25571[#25571])
+* Fixed: Take cargo fetures without the option
+    (https://issues.rudder.io/issues/25616[#25616])
+* Fixed: Set build limit to 2 jobs for Rust programs
+    (https://issues.rudder.io/issues/25541[#25541])
+
+==== Agent
+
+* Fixed: Skip libapt build on breaking systems
+    (https://issues.rudder.io/issues/25627[#25627])
+* Fixed: Skip libapt build on breaking systems
+    (https://issues.rudder.io/issues/25627[#25627])
+* Fixed: Skip libapt build on breaking systems
+    (https://issues.rudder.io/issues/25627[#25627])
+* Fixed: Backport scheduling fixes for cf-execd
+    (https://issues.rudder.io/issues/25505[#25505])
+* Fixed: System updates module expects snake case
+    (https://issues.rudder.io/issues/25686[#25686])
+* Fixed: Report more errors to the server
+    (https://issues.rudder.io/issues/25677[#25677])
+* Fixed: Fix system-updates schedule
+    (https://issues.rudder.io/issues/25661[#25661])
+* Fixed: Fix the package manager detection
+    (https://issues.rudder.io/issues/25653[#25653])
+* Fixed: Use the fixed rust-apt
+    (https://issues.rudder.io/issues/25640[#25640])
+* Fixed: Fix system-updates module technique compatibility
+    (https://issues.rudder.io/issues/25575[#25575])
+* Fixed: Fix the system-updates module
+    (https://issues.rudder.io/issues/25364[#25364])
+
+==== Inventory
+
+* Fixed: Inventory fails because rudder-agent has no version in inventory
+    (https://issues.rudder.io/issues/25496[#25496])
+
+==== Documentation
+
+* Fixed: Change of template.png in docs.rudder.io
+    (https://issues.rudder.io/issues/25646[#25646])
+* Fixed: Revert to using the old RPM key in the docs
+    (https://issues.rudder.io/issues/25543[#25543])
+* Fixed: User password change no longer needs restart in doc
+    (https://issues.rudder.io/issues/25444[#25444])
+* Fixed: Adapt doc for 8.2 build
+    (https://issues.rudder.io/issues/25431[#25431])
+* Fixed: Anchor link to Rudder Core doent work in the README
+    (https://issues.rudder.io/issues/25642[#25642])
+* Fixed: New README for Rudder
+    (https://issues.rudder.io/issues/25636[#25636])
+* Fixed: API documentation for user-management is missing some endpoints
+    (https://issues.rudder.io/issues/25459[#25459])
+* Fixed: API documentation for user management in 8.2
+    (https://issues.rudder.io/issues/25293[#25293])
+
+==== Relay server or API
+
+* Fixed: Add 127.0.0.1 as ServerAlias for multi-vhost  server configuration
+    (https://issues.rudder.io/issues/25675[#25675])
+
+==== Web - UI & UX
+
+* Fixed: System rules are now always shown in group compliance
+    (https://issues.rudder.io/issues/25673[#25673])
+* Fixed: Remove the Clipboard js library as it is no longer required
+    (https://issues.rudder.io/issues/25658[#25658])
+* Fixed: Node search query doesn't find any Windows node
+    (https://issues.rudder.io/issues/25638[#25638])
+* Fixed: When changing node properties the old table is sometimes still displayed
+    (https://issues.rudder.io/issues/25332[#25332])
+* Fixed: Display for checkbox "Show inherited properties" when adding a property column on node pages is broken
+    (https://issues.rudder.io/issues/25536[#25536])
+* Fixed: When accepting a node with a duplicate hostname, there's no error displayed
+    (https://issues.rudder.io/issues/25453[#25453])
+* Fixed: It's "AlmaLinux" and not "Alma Linux"
+    (https://issues.rudder.io/issues/25553[#25553])
+* Fixed: Typo in agent schedule selector
+    (https://issues.rudder.io/issues/25500[#25500])
+* Fixed: Event log table default period of two hours is too short
+    (https://issues.rudder.io/issues/25499[#25499])
+* Fixed: Score badge background image should not be repeated
+    (https://issues.rudder.io/issues/25391[#25391])
+
+==== Web - Config management
+
+* Fixed: "Started since" time in status zone is not correct
+    (https://issues.rudder.io/issues/25670[#25670])
+* Fixed: Hooks are not executed anymore from their directory
+    (https://issues.rudder.io/issues/25498[#25498])
+
+==== Miscellaneous
+
+* Fixed: Debug information download is broken by anti-CSRF header
+    (https://issues.rudder.io/issues/25534[#25534])
+* Fixed: Group properties wrongly appear empty when group has no member nodes
+    (https://issues.rudder.io/issues/25530[#25530])
+* Fixed: Target selection has a weird vertical text
+    (https://issues.rudder.io/issues/25507[#25507])
+* Fixed: Group position on dashboard statistics  make no sens
+    (https://issues.rudder.io/issues/25448[#25448])
+
+==== API
+
+* Fixed: Related rules return an authorization error in UI for non-admin users
+    (https://issues.rudder.io/issues/25645[#25645])
+* Fixed: System rules are now always shown in directives compliance
+    (https://issues.rudder.io/issues/25517[#25517])
+* Fixed: The severity ERROR for Node with ID ‘xxx’ was not found in Rudder’ is too strict
+    (https://issues.rudder.io/issues/25438[#25438])
+* Fixed: Archive API for import/export doesn't know about technique
+    (https://issues.rudder.io/issues/24789[#24789])
+
+==== Architecture - Code maintenance
+
+* Fixed: Add tests for the case where there is conflicts in group properties
+    (https://issues.rudder.io/issues/25419[#25419])
+* Fixed: Chunk appending when resolving node ids from union target can be optimized
+    (https://issues.rudder.io/issues/25635[#25635])
+* Fixed: NuProcessHandler.onStart NPE log message
+    (https://issues.rudder.io/issues/25306[#25306])
+
+==== Web - Compliance & node report
+
+* Fixed: Node in with no reports, pending and keep compliance lead to computation loop
+    (https://issues.rudder.io/issues/25650[#25650])
+* Fixed: No system status in 8.2
+    (https://issues.rudder.io/issues/25508[#25508])
+* Fixed: worst report by percentage seems to be non fonctionnal
+    (https://issues.rudder.io/issues/25513[#25513])
+* Fixed: Technical logs are not loaded when visiting the tab - rudder 8.1
+    (https://issues.rudder.io/issues/24332[#24332])
+
+==== Architecture - Test
+
+* Fixed: Sometimes tests with lift actor fails
+    (https://issues.rudder.io/issues/25637[#25637])
+
+==== Web - Nodes & inventories
+
+* Fixed: SQL error in the logs when deleting a node
+    (https://issues.rudder.io/issues/25633[#25633])
+* Fixed: Add support for Tuxedo OS
+    (https://issues.rudder.io/issues/25519[#25519])
+* Fixed: API don't include acceptedSince information
+    (https://issues.rudder.io/issues/25476[#25476])
+
+==== Plugin manager cli
+
+* Fixed: Detect local install tentative in rudder package
+    (https://issues.rudder.io/issues/25538[#25538])
+
+==== Security
+
+* Fixed: Unknown API tokens get logged in plain
+    (https://issues.rudder.io/issues/25555[#25555])
+* Fixed: Ignore RUSTSEC-2024-0365 as we are not vulnerable
+    (https://issues.rudder.io/issues/25456[#25456])
+* Fixed: User password and permission change should invalidate sessions
+    (https://issues.rudder.io/issues/25407[#25407])
+* Fixed: Invalidated user sessions need to have an endcause and user should be notified 
+    (https://issues.rudder.io/issues/25443[#25443])
+
+==== Techniques
+
+* Fixed: Techniques no longer compile with error in rudderc arguments
+    (https://issues.rudder.io/issues/25545[#25545])
+
+==== Web - Maintenance
+
+* Fixed: Users cleanup configuration is too strict on disabled users
+    (https://issues.rudder.io/issues/25479[#25479])
+
+==== rudderc
+
+* Fixed: Static rudderc builds are failing due to missing tracing import
+    (https://issues.rudder.io/issues/25439[#25439])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Fabrice FLORE-THÉBAULT
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.2.0.beta1 (2024-09-09)
 
 === Changes
