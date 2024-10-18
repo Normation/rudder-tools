@@ -1,5 +1,25 @@
 = Changelogs for Rudder plugin cve 8.2.\* versions
 
+== cve-8.2.0.rc1-2.10 (2024-10-18)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Security benchmarks post-install fails without creating benchmark category.xml
+    (https://issues.rudder.io/issues/25674[#25674])
+* Fixed: Typo in UI
+    (https://issues.rudder.io/issues/25672[#25672])
+* Fixed: Amazon Linux is not supported
+    (https://issues.rudder.io/issues/25546[#25546])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-8.2.0.beta1-2.10 (2024-09-09)
 
 === Changes
