@@ -1,5 +1,47 @@
 
 = Change logs for Rudder 8.2
+==  Rudder 8.2.0 (2024-10-29)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: APT update output mis-handles interactive output
+    (https://issues.rudder.io/issues/25751[#25751])
+* Fixed: Update schedule is not sen anymore
+    (https://issues.rudder.io/issues/25747[#25747])
+* Fixed: db error about pid column
+    (https://issues.rudder.io/issues/25745[#25745])
+
+==== Miscellaneous
+
+* Fixed: Software update campaign does not work on Debian 10 Buster
+    (https://issues.rudder.io/issues/25695[#25695])
+* Fixed: Software update campaign does not work on SLES 15
+    (https://issues.rudder.io/issues/25693[#25693])
+
+==== Documentation
+
+* Fixed: OpenAPI documentation is invalid with duplicate /nodes/pending endpoints
+    (https://issues.rudder.io/issues/25709[#25709])
+
+==== rudderc
+
+* Fixed: Windows techniques fail to catch the Nustache.Core.RaiseExceptionOnEmptyStringValue errors
+    (https://issues.rudder.io/issues/25708[#25708])
+
+==== System techniques
+
+* Fixed: rudder-cf-serverd is not restarted properly after a change in authorized network on a relay
+    (https://issues.rudder.io/issues/25639[#25639])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.2.0.rc1 (2024-10-18)
 
 === Changes
