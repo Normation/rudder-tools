@@ -1,5 +1,137 @@
 
 = Change logs for Rudder 8.2
+==  Rudder 8.2.1 (2024-11-08)
+
+=== Changes
+
+
+==== Documentation
+
+* Publish the audit report in the docs
+    (https://issues.rudder.io/issues/25803[#25803])
+
+==== Agent
+
+* Add a new CLI tool to converts raw Rudder reports to Json
+    (https://issues.rudder.io/issues/25757[#25757])
+
+==== Generic methods
+
+*  Add Windows support to the generic method file_report_content_tail
+    (https://issues.rudder.io/issues/25588[#25588])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Start jetty script in debug mode
+    (https://issues.rudder.io/issues/25735[#25735])
+* Fixed: rudder package log error when trying to update licence on a relay
+    (https://issues.rudder.io/issues/25821[#25821])
+* Fixed: Update Rust for typos check
+    (https://issues.rudder.io/issues/25790[#25790])
+
+==== Documentation
+
+* Fixed: Update docs for 8.2
+    (https://issues.rudder.io/issues/25826[#25826])
+* Fixed: Mark 8.2 doc as stable
+    (https://issues.rudder.io/issues/25773[#25773])
+* Fixed: Missing documentation on rudder.users.cleanup.account.disableAfterLastLogin
+    (https://issues.rudder.io/issues/25623[#25623])
+* Fixed: Property name case collision is not longer a thing on Windows node since 8.2
+    (https://issues.rudder.io/issues/25726[#25726])
+* Fixed: Update and fix the API doc tooling
+    (https://issues.rudder.io/issues/25809[#25809])
+
+==== Web - UI & UX
+
+* Fixed: Status bar can only be opened by clicking twice
+    (https://issues.rudder.io/issues/25834[#25834])
+* Fixed: Sometimes too long properties values move out actions buttons from window
+    (https://issues.rudder.io/issues/25762[#25762])
+* Fixed: Improve config log wording
+    (https://issues.rudder.io/issues/25829[#25829])
+* Fixed: Properties on newly created group are not initialized until policy generation or other group properties update
+    (https://issues.rudder.io/issues/25822[#25822])
+* Fixed: Tooltips in nodes compliance are not displayed
+    (https://issues.rudder.io/issues/25663[#25663])
+
+==== rudderc
+
+* Fixed: Override audit/enforce mode does not work with iterator
+    (https://issues.rudder.io/issues/25770[#25770])
+* Fixed: Missing annotation on a rudderc test case
+    (https://issues.rudder.io/issues/25775[#25775])
+* Fixed: Broken parsing of node inventory variable
+    (https://issues.rudder.io/issues/25771[#25771])
+
+==== Web - Nodes & inventories
+
+* Fixed: On new groups, adding a prop leads to "No query defined for group" error
+    (https://issues.rudder.io/issues/25820[#25820])
+* Fixed: Lost manufacturer & serial for BIOS  between 7.3 and 8.0
+    (https://issues.rudder.io/issues/25589[#25589])
+
+==== Web - Compliance & node report
+
+* Fixed: ReportsExecution doesn't have timezone on all fields
+    (https://issues.rudder.io/issues/25713[#25713])
+
+==== API
+
+* Fixed: API version for 8.2 is 20
+    (https://issues.rudder.io/issues/25800[#25800])
+* Fixed: Full archive export does not work anymore
+    (https://issues.rudder.io/issues/25691[#25691])
+
+==== Web - Config management
+
+* Fixed: Search on RAM fails in node groups
+    (https://issues.rudder.io/issues/25701[#25701])
+* Fixed: When removing files from a technique, it might get disabled unexpectedly
+    (https://issues.rudder.io/issues/23959[#23959])
+* Fixed: switching policy mode on a node from "Enforce" to anything else produce event log about properties
+    (https://issues.rudder.io/issues/25667[#25667])
+
+==== Web - Maintenance
+
+* Fixed: OIDC users are marked as deleted after a new user is provisionned
+    (https://issues.rudder.io/issues/25681[#25681])
+* Fixed: Bad postgresql time conversion for event log cleaning
+    (https://issues.rudder.io/issues/25782[#25782])
+* Fixed: Technical and event logs get log from browser timezone instead of server timezone
+    (https://issues.rudder.io/issues/25720[#25720])
+
+==== Server components
+
+* Fixed: Default settings for new nodes are not applied on a accepted node
+    (https://issues.rudder.io/issues/25652[#25652])
+
+==== Relay server or API
+
+* Fixed: Stacktrace in relayd on invalid run time file name
+    (https://issues.rudder.io/issues/25754[#25754])
+
+==== Security
+
+* Fixed: CSP violations from status tab in utilities pages
+    (https://issues.rudder.io/issues/25712[#25712])
+
+==== Architecture - Code maintenance
+
+* Fixed: Avoid Content-Security-Policy-Report-Only headers in dev mode
+    (https://issues.rudder.io/issues/25715[#25715])
+
+==== Agent
+
+* Fixed: rudder agent factory-reset -f doesn't do anything
+    (https://issues.rudder.io/issues/25607[#25607])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.2.0 (2024-10-29)
 
 === Changes
