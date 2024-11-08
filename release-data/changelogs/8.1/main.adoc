@@ -1,5 +1,135 @@
 = Change logs for Rudder 8.1
 
+==  Rudder 8.1.8 (2024-11-08)
+
+=== Changes
+
+
+==== Documentation
+
+* Publish the audit report in the docs
+    (https://issues.rudder.io/issues/25803[#25803])
+* Document how to install plugins on Amazon 2023
+    (https://issues.rudder.io/issues/25678[#25678])
+
+==== Agent
+
+* Add a new CLI tool to converts raw Rudder reports to Json
+    (https://issues.rudder.io/issues/25757[#25757])
+
+==== Generic methods
+
+*  Add Windows support to the generic method file_report_content_tail
+    (https://issues.rudder.io/issues/25588[#25588])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Start jetty script in debug mode
+    (https://issues.rudder.io/issues/25735[#25735])
+* Fixed: rudder package log error when trying to update licence on a relay
+    (https://issues.rudder.io/issues/25821[#25821])
+* Fixed: Update Rust for typos check
+    (https://issues.rudder.io/issues/25790[#25790])
+
+==== Documentation
+
+* Fixed: Missing documentation on rudder.users.cleanup.account.disableAfterLastLogin
+    (https://issues.rudder.io/issues/25623[#25623])
+* Fixed: Change of template.png in docs.rudder.io
+    (https://issues.rudder.io/issues/25646[#25646])
+* Fixed: OpenAPI documentation is invalid with duplicate /nodes/pending endpoints
+    (https://issues.rudder.io/issues/25709[#25709])
+
+==== Web - UI & UX
+
+* Fixed: Sometimes too long properties values move out actions buttons from window
+    (https://issues.rudder.io/issues/25762[#25762])
+* Fixed: Tooltips in nodes compliance are not displayed
+    (https://issues.rudder.io/issues/25663[#25663])
+* Fixed: Node search query doesn't find any Windows node
+    (https://issues.rudder.io/issues/25638[#25638])
+
+==== rudderc
+
+* Fixed: Override audit/enforce mode does not work with iterator
+    (https://issues.rudder.io/issues/25770[#25770])
+* Fixed: Broken parsing of node inventory variable
+    (https://issues.rudder.io/issues/25771[#25771])
+
+==== Web - Nodes & inventories
+
+* Fixed: On new groups, adding a prop leads to "No query defined for group" error
+    (https://issues.rudder.io/issues/25820[#25820])
+* Fixed: Lost manufacturer & serial for BIOS  between 7.3 and 8.0
+    (https://issues.rudder.io/issues/25589[#25589])
+* Fixed: SQL error in the logs when deleting a node
+    (https://issues.rudder.io/issues/25633[#25633])
+* Fixed: Add support for Tuxedo OS
+    (https://issues.rudder.io/issues/25519[#25519])
+
+==== Web - Compliance & node report
+
+* Fixed: ReportsExecution doesn't have timezone on all fields
+    (https://issues.rudder.io/issues/25713[#25713])
+
+==== Web - Config management
+
+* Fixed: Search on RAM fails in node groups
+    (https://issues.rudder.io/issues/25701[#25701])
+* Fixed: When removing files from a technique, it might get disabled unexpectedly
+    (https://issues.rudder.io/issues/23959[#23959])
+* Fixed: switching policy mode on a node from "Enforce" to anything else produce event log about properties
+    (https://issues.rudder.io/issues/25667[#25667])
+
+==== Web - Maintenance
+
+* Fixed: OIDC users are marked as deleted after a new user is provisionned
+    (https://issues.rudder.io/issues/25681[#25681])
+* Fixed: Technical and event logs get log from browser timezone instead of server timezone
+    (https://issues.rudder.io/issues/25720[#25720])
+
+==== Server components
+
+* Fixed: Default settings for new nodes are not applied on a accepted node
+    (https://issues.rudder.io/issues/25652[#25652])
+
+==== Relay server or API
+
+* Fixed: Stacktrace in relayd on invalid run time file name
+    (https://issues.rudder.io/issues/25754[#25754])
+* Fixed: Add 127.0.0.1 as ServerAlias for multi-vhost  server configuration
+    (https://issues.rudder.io/issues/25675[#25675])
+
+==== Architecture - Code maintenance
+
+* Fixed: Avoid Content-Security-Policy-Report-Only headers in dev mode
+    (https://issues.rudder.io/issues/25715[#25715])
+* Fixed: Add tests for the case where there is conflicts in group properties
+    (https://issues.rudder.io/issues/25419[#25419])
+* Fixed: Chunk appending when resolving node ids from union target can be optimized
+    (https://issues.rudder.io/issues/25635[#25635])
+
+==== API
+
+* Fixed: Related rules return an authorization error in UI for non-admin users
+    (https://issues.rudder.io/issues/25645[#25645])
+
+==== System techniques
+
+* Fixed: rudder-cf-serverd is not restarted properly after a change in authorized network on a relay
+    (https://issues.rudder.io/issues/25639[#25639])
+
+==== Agent
+
+* Fixed: rudder agent factory-reset -f doesn't do anything
+    (https://issues.rudder.io/issues/25607[#25607])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.1.7 (2024-10-01)
 
 === Changes
