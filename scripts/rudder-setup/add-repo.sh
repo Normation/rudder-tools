@@ -73,6 +73,7 @@ add_repo() {
   fi
 
   RELEASE_GPG_KEY="http${S}://repository.rudder.io/rudder_release_key"
+  APT_GPG_KEY="http${S}://repository.rudder.io/apt/rudder_apt_key"
   # RPM may use an old gpg key on old versions
   if is_version_valid "${RUDDER_VERSION}" "[8.3 *]"
   then
@@ -89,10 +90,10 @@ add_repo() {
     then
       # old Debian / Ubuntu like
       ${PM_INSTALL} -y --force-yes gnupg
-      get - "${RELEASE_GPG_KEY}.pub" | apt-key add -
+      get - "${APT_GPG_KEY}.pub" | apt-key add -
     else
       # Debian / Ubuntu like
-      get /etc/apt/trusted.gpg.d/rudder_release_key.gpg "${RELEASE_GPG_KEY}.gpg"
+      get /etc/apt/trusted.gpg.d/rudder_release_key.gpg "${APT_GPG_KEY}.gpg"
     fi
 
     # force the default architecture
