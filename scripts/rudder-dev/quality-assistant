@@ -355,9 +355,23 @@ if __name__ == "__main__":
   arguments = docopt.docopt(__doc__)
   section = "quality-assistant"
   read_configuration(section)
+
+  # Config.LOGLEVEL
+  if arguments['-d'] or arguments['--debug']:
+    Config.LOGLEVEL = "debug"
+  else:
+    Config.LOGLEVEL = get_config("loglevel", "No 'loglevel' entry in " + Config.CONFIG_FILE, section) # verbose, info, error
+
+  # Config.WORKING_DIRECTORY
+  if arguments['--work-dir'] is not None:
+    Config.WORKING_DIRECTORY = arguments['--work-dir']
+  else:
+    Config.WORKING_DIRECTORY = get_config("working_directory", "No 'working_directory' entry in " + Config.CONFIG_FILE, section)
+
+  # Config.force
+  Config.force = arguments['-f'] or arguments['--force']
+
   # qa specific configuration
-  Config.WORKING_DIRECTORY = get_config("working_directory", "No 'working_directory' entry in " + Config.CONFIG_FILE, section)
-  Config.LOGLEVEL = get_config("loglevel", "No 'loglevel' entry in " + Config.CONFIG_FILE, section) # verbose, info, error
   Config.LOCK_TIMEOUT = get_config("lock_timeout", None, section)
   Config.OLD_PR_DAYS = get_config("old_pr_days", None, section)
   if Config.OLD_PR_DAYS is None:
@@ -366,11 +380,6 @@ if __name__ == "__main__":
     # use a value that correspond to the overhead of cloning, checkouting and removing when using alt_dir
     Config.LOCK_TIMEOUT = 60
 
-  if arguments['-d'] or arguments['--debug']:
-    Config.LOGLEVEL = "debug"
-  if arguments['--work-dir'] is not None:
-    Config.WORKING_DIRECTORY = arguments['--work-dir']
-  Config.force = arguments['-f'] or arguments['--force']
   if arguments['merge'] and arguments['all']:
     list_repositories()
     repo_merge_all(arguments['--alt-dir'], arguments['--job-id'])
@@ -386,4 +395,4 @@ if __name__ == "__main__":
     pr_cleanup_all()
   elif arguments['pr-cleanup']:
     pr_cleanup(arguments['<repo>'])
-     
+
