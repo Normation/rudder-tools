@@ -1,5 +1,25 @@
 = Changelogs for Rudder plugin cve 8.2.\* versions
 
+== cve-8.2.1-2.10 (2024-11-28)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Error 500 when browsing Vulnerabilities because of SQL error offset must not be negative
+    (https://issues.rudder.io/issues/25601[#25601])
+* Fixed: Add documentation for 8.2 features (Windows and CVE Groups)
+    (https://issues.rudder.io/issues/25467[#25467])
+* Fixed: CVE plugin may skip some request
+    (https://issues.rudder.io/issues/25736[#25736])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-8.2.0-2.10 (2024-10-29)
 
 === Changes
