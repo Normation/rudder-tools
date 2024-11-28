@@ -1,5 +1,91 @@
 = Change logs for Rudder 8.1
 
+==  Rudder 8.1.9 (2024-11-28)
+
+=== Changes
+
+
+==== Packaging
+
+* Update openssl and curl
+    (https://issues.rudder.io/issues/25932[#25932])
+
+==== Documentation
+
+* Remove deprecated examples from rudder-by-example
+    (https://issues.rudder.io/issues/25909[#25909])
+
+==== Web - UI & UX
+
+* Add padding to trees to prevent the last element from being hidden when a link is hovered
+    (https://issues.rudder.io/issues/25923[#25923])
+
+==== rudderc
+
+* Allow validating JSON parameters in methods
+    (https://issues.rudder.io/issues/25871[#25871])
+
+==== Architecture - Code maintenance
+
+* Better log for bad node key
+    (https://issues.rudder.io/issues/25870[#25870])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Documention should advice to trigger agent run after promote a node to relay
+    (https://issues.rudder.io/issues/25967[#25967])
+* Fixed: Update example to keep up to date rudder-agent package
+    (https://issues.rudder.io/issues/25905[#25905])
+* Fixed: Remove references to syslog in the docs
+    (https://issues.rudder.io/issues/25865[#25865])
+* Fixed: Backup/Restore/Migrate documentation are missing essential bits
+    (https://issues.rudder.io/issues/25676[#25676])
+* Fixed: Documented repository  Rudder public key url is incorrect
+    (https://issues.rudder.io/issues/25845[#25845])
+
+==== Web - Nodes & inventories
+
+* Fixed: Error when accepting 2 or more nodes
+    (https://issues.rudder.io/issues/25892[#25892])
+
+==== Architecture - Dependencies
+
+* Fixed: Remove security check on a js dev dependency 
+    (https://issues.rudder.io/issues/25937[#25937])
+
+==== Web - UI & UX
+
+* Fixed: The setup initial page should not be displayed if rudder-pkg.conf has been modified
+    (https://issues.rudder.io/issues/25847[#25847])
+
+==== Web - Config management
+
+* Fixed: Locale issue: date picker should be in yyyy/MM/dd in group criteria
+    (https://issues.rudder.io/issues/25727[#25727])
+* Fixed: After restart, nodes that were set back to default policy mode return to their previous overriden mode
+    (https://issues.rudder.io/issues/25866[#25866])
+
+==== Web - Compliance & node report
+
+* Fixed: a node with no rules applied has a score of F
+    (https://issues.rudder.io/issues/25813[#25813])
+
+==== Plugin manager cli
+
+* Fixed: Use secrecy to store the password
+    (https://issues.rudder.io/issues/25873[#25873])
+
+==== Techniques
+
+* Fixed: File content from remote template technique should allow selecting a file from shared folder
+    (https://issues.rudder.io/issues/25851[#25851])
+
+=== Release notes
+
+This is a bug fix release in the 8.1 series and therefore all installations of 8.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.1.8 (2024-11-08)
 
 === Changes
