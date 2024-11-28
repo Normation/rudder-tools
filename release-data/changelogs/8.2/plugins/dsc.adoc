@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin dsc 8.2.\* versions
 
+== dsc-8.2.1-2.7 (2024-11-28)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Add the postrm to the package scripts
+    (https://issues.rudder.io/issues/25823[#25823])
+* Fixed: Removing plugin does not commit removed technique
+    (https://issues.rudder.io/issues/11581[#11581])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-8.2.0-2.7 (2024-10-29)
 
 === Changes
