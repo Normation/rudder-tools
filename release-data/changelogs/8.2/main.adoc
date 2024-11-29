@@ -1,5 +1,6 @@
 
 = Change logs for Rudder 8.2
+
 ==  Rudder 8.2.2 (2024-11-28)
 
 === Changes
