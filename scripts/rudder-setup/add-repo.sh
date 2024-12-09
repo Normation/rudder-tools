@@ -196,10 +196,23 @@ update_repo() {
   then
     file=/etc/yum.repos.d/rudder.repo
     REPO_TYPE="rpm"
+    if is_version_valid "${RUDDER_VERSION}" "[8.3 *]"
+    then
+      NEW_GPG_KEY="http${S}://repository.rudder.io/rudder_release_key.pub"
+      get "/tmp/rudder_rpm_key.pub" "${NEW_GPG_KEY}"
+      rpm --import "/tmp/rudder_rpm_key.pub"
+      sed -i "s%gpgkey=.*%gpgkey=${NEW_GPG_KEY}" "${file}"
+    fi
   elif [ "${PM}" = "zypper" ]
   then
     file=/etc/zypp/repos.d/Rudder.repo
     REPO_TYPE="rpm"
+    if is_version_valid "${RUDDER_VERSION}" "[8.3 *]"
+    then
+      NEW_GPG_KEY="http${S}://repository.rudder.io/rudder_release_key.pub"
+      get "/tmp/rudder_rpm_key.pub" "${NEW_GPG_KEY}"
+      rpm --import "/tmp/rudder_rpm_key.pub"
+    fi
   elif [ "${PM}" = "pkg" ]
   then
     URL_BASE=$(LANG=C pkg publisher | grep ^normation | awk '{print $5}' | sed "s%misc/solaris/\(latest\|nightly\|[0-9.]\+\(-nightly\|~beta[0-9]\+\|~rc[0-9]\+\)\?\)/%misc/solaris/${RUDDER_VERSION}/%")
