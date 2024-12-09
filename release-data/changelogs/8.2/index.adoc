@@ -7,15 +7,15 @@ axis, and the 8.2 release is no exception.
 
 == 🛡️ Security benchmarks
 
-Rudder already provided powerful tools to audit and applt security policies, possibly derived from standards like CIS, STIG, etc.
+Rudder already provided powerful tools to audit and apply security policies, possibly derived from standards like CIS, STIG, etc.
 
-The most important need when applying these kind of policies,
+The most important need when applying these kinds of policies,
 if users want them to be _actually usable_ and not just a theoretical exercise, is the ability to finely configure and tune them
 to match the reality of the systems: exceptions, different configurations, etc.
 This new feature provides a way to achieve this with minimal effort,
 by relying on the powerful data management capabilities of Rudder.
 
-It also allows to provide a dedicated sub-score, independent of general configuration
+It also provides a dedicated sub-score, independent of general configuration
 policies, allowing for a clear overview of the security level of the systems.
 
 image::images/sb.png[]
@@ -24,7 +24,7 @@ image::images/sb.png[]
 
 === 🪟 Manage Windows system vulnerabilities
 
-The vulnerabilities tracking feature, which previously only supported Linux system,
+The vulnerabilities tracking feature, which previously only supported Linux systems,
 is now also compatible with Windows. It allows tracking known vulnerabilities in the system,
 fixed by available KBs.
 
@@ -34,7 +34,7 @@ image::images/cve-win.png[]
 
 The new feature allows creating groups based on the presence of vulnerabilities, directly from the vulnerability entry
 in the interface.
-The groups are then created as usual, and can be used in policies, reports, etc.
+The groups can then be used in policies, reports, etc.
 This is useful to apply specific mitigation, plan a targeted upgrade campaign, etc.
 
 image::images/cve-group.png[]
@@ -49,21 +49,20 @@ image::images/camp.png[]
 === 🔒 Security-only system update (🐧 on Linux)
 
 The patch campaigns for Linux gained the ability to apply only the security upgrades.
-It uses the matching package manager feature depending on the target distribution.
+It uses the matching package manager feature depending on the target distribution. This feature requires the agent in version 8.2
 
 Users now have three options: full system upgrade, security system upgrade, or target upgrade from
 a list of packages.
 
 == 📊 Manage workstations and embedded systems with compliance persistence
 
-Rudder is built around a continuous feedback from the agents to the server.
-This allows displating real-time data.
-But this behavior does not match some use cases where machines can b unable to communication with the server continuously for different reasons: desktop/laptops, which are shut during the night,
+Rudder is built around continuous feedback from the agents to the server.
+This allows displaying real-time data.
+But this behavior does not fit some use cases when machines are unable to communicate with the server continuously for different reasons: desktop/laptops, which are shut during the night,
 embedded systems with inconsistent connectivity, etc.
-Currently, they will appear as unavailable "gray nodes", and lower the global compliance (for bad reasons).
+Currently, they will appear as unavailable "gray nodes", and lower the global compliance.
 
-For these cases, it will now be possible to keep the latest received data and use it in current graphs.
-This is a kind of "No news is good news" mode, with a configurable threshold.
+For these cases, it will now be possible to keep the latest received data and use them within reporting, for a configurable time.
 
 == 👥 The user management interface is now a core feature
 
@@ -74,7 +73,7 @@ image::images/users.png[]
 
 == Under the hood
 
-=== Local account hashes are now configurable by user
+=== Local account hashes are now configurable per user
 
 This will allow users still having deprecated hashes
 to gradually migrate to **bcrypt**, the modern password hash
@@ -82,14 +81,11 @@ available in Rudder.
 
 === ⚙️Introducing the node modules
 
-Module system update.
-Previously in Rust
-A whole new concept for agent extensibility. Continue Rustification.
-Two big focus: logging and reliability
+We introduce modules to extend the agent, with two focus: logging and reliability. These modules are written in Rust, and the first implementation is for system updates, to communicate with package manager.
 
 === 📜 New Windows variable evaluation context
 
-Previously, Powershell. Now Rudder-specific. Prevents code injection in variables.
+We are changing the variable evaluation for the Windows agent, switching to a Rudder-specific syntax (like for Linux). This new format prevents code injection in variables.
 
 === Continue frontend hardening with strict CSP headers
 
@@ -97,7 +93,7 @@ In the same vein as the previous releases, the frontend is now more secure thank
 
 === Search API for properties
 
-It is now possible to find via the quick search engine, or in a dedicated UI or API, the places where a property (global, group or node) is used.
+It is now possible to find via the quick search engine, or in a dedicated UI or API, in which technique or directive a property is used.
 
 === Removal of the old `rudder package` implementation
 
