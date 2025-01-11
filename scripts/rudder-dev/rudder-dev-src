@@ -13,7 +13,7 @@ Usage:
     rudder-dev [-d|--debug] [-f|--force] quickfix <pr_url/file> [<subject>|<trigraph>] [--merge]
     rudder-dev [-d|--debug] [-f|--force] technique <version> <comment>
     rudder-dev [-d|--debug] [-f|--force] subtask <new_title> [<next_branch>|--bug] [--base=<ticket_id>]
-    rudder-dev [-d|--debug] [-f|--force] wip
+    rudder-dev [-d|--debug] [-f|--force] wip [--nopr|<trigraph> [<PR_comment>]]
     rudder-dev [-d|--debug] [-f|--force] commit [--nopr|<trigraph> [<PR_comment>]]
     rudder-dev [-d|--debug] [-f|--force] amend [<PR_comment>]
     rudder-dev [-d|--debug] [-f|--force] fixup [<PR_comment>]
@@ -104,10 +104,7 @@ SUBTASK
     ex: rudder-dev sub <version>
 
 WIP
-    Commit a work in progress to keep it for later.
-    Later call to rudder-dev commit will merge wip with the final commit.
-    - commit with a sample "Work in progress" message
-    - push on matching branch on own repository
+    Works like the commit command, but creates a draft pull-request instead.
     ex: rudder-dev wip
 
 COMMIT
@@ -449,7 +446,7 @@ def remote_repo():
 
 
 # create a new PR
-def create_pr(master_branch, issue, message):
+def create_pr(master_branch, issue, message, draft=False):
   url = "https://api.github.com/repos/Normation/{repo}/pulls"
   user = get_github_user()
   body = Config.REDMINE_API_URL + "/issues/" + str(issue.id)
@@ -462,6 +459,7 @@ def create_pr(master_branch, issue, message):
     title = issue['name']
   pr = '{ "title": ' + json.dumps('Fixes #' + str(issue.id) + ": " + title) + ','
   pr += ' "body": ' + json.dumps(body) + ','
+  pr += ' "draft": ' + str(draft).lower() + ','
   pr += ' "head": "' + user + ':' + current_branch + '",'
   pr += ' "base": "' + master_branch + '" }'
   result = github_request(url, "Creating PR ...", pr_url=None, post_data=pr)
@@ -881,21 +879,6 @@ def subtask(next_version, new_title, base=None, bug=False):
     shell("git rebase -i " + next_branch, "Rebasing to " + next_version)
 
 
-# commit, push
-def wip():
-  # must be on a working branch
-  issue = issue_from_branch(current_branch)
-  commit_push(current_branch, "Work in progress")
-  url = "https://github.com/{user}/{repo}/commit/{commit}"
-  user = get_github_user()
-  repo = remote_repo()
-  commit = shell("git rev-parse HEAD", keep_output=True).strip()
-  # add a wip comment on the issue to find it later
-  commit_url = url.format(user=user, repo=repo, commit=commit)
-  issue.update(message="Work in progess here: " + commit_url)
-  print("You can find the commit here: " + commit_url)
-
-
 # open a quickfix issue then and link it
 def quick_fix_pr(pr_url, trigraph=None, merge=False):
   # find PR
@@ -939,7 +922,7 @@ def quick_fix_local(filename, subject, trigraph=None):
 
 
 # Commit, push, create pull-request, update ticket
-def commit(trigraph=None, message=None, nopr=False):
+def commit(trigraph=None, message=None, nopr=False, draft=False):
   issue = issue_from_branch(current_branch)
   master_branch = branch_from_version(issue['version'])
 
@@ -958,12 +941,12 @@ def commit(trigraph=None, message=None, nopr=False):
     return
 
   # create PR
-  pr_url = create_pr(master_branch, issue, message)
+  pr_url = create_pr(master_branch, issue, message, draft)
   pr = PR(pr_url)
 
   # update ticket
   if Config.REDMINE_TOKEN is not None:
-    if issue.can_modify():
+    if issue.can_modify() and (trigraph or not draft):
       (user, github) = ask_username(issue['project_id'], trigraph)
     else:
       (user, github) = (None, '')
@@ -979,6 +962,10 @@ def commit(trigraph=None, message=None, nopr=False):
   print("PR URL: " + str(pr_url))
 
 
+def wip(trigraph=None, message=None, nopr=False, draft=False):
+  commit(trigraph, message, nopr, draft=True)
+
+  
 # amend commit, push -f, comment PR
 def amend(comment=None):
   issue = issue_from_branch(current_branch)
