@@ -384,6 +384,8 @@ def get_versions(internal=False):
       redmine_version_list.append(v)
       version_dict[v] = version['id']
 
+  if not "master" in redmine_version_list:
+    redmine_version_list.append("master")
   # keep unique name and sort
   version_list = list(set(redmine_version_list))
   # order is the right one because x.y < 'master'
