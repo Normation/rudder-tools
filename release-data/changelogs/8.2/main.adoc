@@ -1,5 +1,136 @@
 
 = Change logs for Rudder 8.2
+==  Rudder 8.2.4 (2025-01-13)
+
+=== Changes
+
+
+==== rudderc
+
+* Allow the yaml extension for YAML files
+    (https://issues.rudder.io/issues/26036[#26036])
+
+==== System techniques
+
+* Pre install rpm repo key via a system technique
+    (https://issues.rudder.io/issues/26067[#26067])
+
+==== Generic methods
+
+* Allow passing env vars to package managers
+    (https://issues.rudder.io/issues/25908[#25908])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Installation of RHEL 9 flavors (alma, oraclelinux) fails with postgresql.service: Failed with result 'exit-code'
+    (https://issues.rudder.io/issues/26034[#26034])
+
+==== Agent
+
+* Fixed: FQDN on Windows node can take localhost as value
+    (https://issues.rudder.io/issues/25706[#25706])
+
+==== Documentation
+
+* Fixed: Doc use RPM gpg key for apt package
+    (https://issues.rudder.io/issues/26143[#26143])
+* Fixed: Documentation point to the wrong repository for AL1 and 2
+    (https://issues.rudder.io/issues/26041[#26041])
+
+==== Web - UI & UX
+
+* Fixed: The statistics on the dashboard are hardly readable
+    (https://issues.rudder.io/issues/26105[#26105])
+* Fixed: Change Rudder current-year to 2025
+    (https://issues.rudder.io/issues/26134[#26134])
+* Fixed: Trying to save a group with empty criteria removes all entries
+    (https://issues.rudder.io/issues/26075[#26075])
+* Fixed: Status should not be on error when there is technique compilator error on disable techniques
+    (https://issues.rudder.io/issues/26022[#26022])
+* Fixed: Discordance on node compliance between two tabs
+    (https://issues.rudder.io/issues/25617[#25617])
+* Fixed: Properties tab : Non-rearrangement of the pop-ups
+    (https://issues.rudder.io/issues/25824[#25824])
+* Fixed: Acceptation error with new node on hostname duplication is not hightlitghed
+    (https://issues.rudder.io/issues/25973[#25973])
+* Fixed: Quicksearch filters do not work
+    (https://issues.rudder.io/issues/25297[#25297])
+
+==== Web - Compliance & node report
+
+* Fixed: All rule show up in directive compliance
+    (https://issues.rudder.io/issues/26119[#26119])
+* Fixed: NPE in archive generation
+    (https://issues.rudder.io/issues/26088[#26088])
+* Fixed: Score breakdown has inconsistent numbers
+    (https://issues.rudder.io/issues/25948[#25948])
+
+==== Web - Config management
+
+* Fixed: error when importing  full archives
+    (https://issues.rudder.io/issues/26098[#26098])
+* Fixed: The directive page is much slower with Rudder 8.1 than in 7.3
+    (https://issues.rudder.io/issues/26002[#26002])
+
+==== Architecture - Code maintenance
+
+* Fixed: Build error in 8.2 (upmerge?)
+    (https://issues.rudder.io/issues/26108[#26108])
+* Fixed: Spotless check fails on RudderConfig unmerged imports
+    (https://issues.rudder.io/issues/26107[#26107])
+* Fixed: scoreService and scoreServiceManager are not initialized where they should
+    (https://issues.rudder.io/issues/25842[#25842])
+
+==== Techniques
+
+* Fixed: Technique compilation errors doesn't seems to be reloaded when the technique is deleted
+    (https://issues.rudder.io/issues/26023[#26023])
+* Fixed: Techniques file should not be executable
+    (https://issues.rudder.io/issues/26027[#26027])
+
+==== Security
+
+* Fixed: Vulnerability in idna
+    (https://issues.rudder.io/issues/26085[#26085])
+* Fixed: API token created for a OIDC user should not be usable - allow feature disabling
+    (https://issues.rudder.io/issues/25669[#25669])
+* Fixed: Path traversal in shared files API for technique resources
+    (https://issues.rudder.io/issues/26000[#26000])
+* Fixed: /var/rudder/tmp is world-readable
+    (https://issues.rudder.io/issues/25989[#25989])
+
+==== API
+
+* Fixed: Group query select attribute has different name in create and update payload
+    (https://issues.rudder.io/issues/26064[#26064])
+
+==== Web - Maintenance
+
+* Fixed: Non admin users in file get disabled even if last login parameter does not exceed the scheduled date
+    (https://issues.rudder.io/issues/26056[#26056])
+* Fixed: search on event log must also search on event type
+    (https://issues.rudder.io/issues/25705[#25705])
+
+==== Server components
+
+* Fixed: rudder-package fails to parse old plugin version numbers, breaking the upgrade
+    (https://issues.rudder.io/issues/25156[#25156])
+
+==== Generic methods
+
+* Fixed: Multi directive instance of a technique with jinja templating method fail
+    (https://issues.rudder.io/issues/26152[#26152])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Sylvain BALLARD
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.2.3 (2024-12-03)
 
 === Changes
