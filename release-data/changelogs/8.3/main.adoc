@@ -1,0 +1,266 @@
+= Change logs for Rudder 8.3==  Rudder 8.3.0.alpha1 (2025-01-23)
+
+=== Changes
+
+
+==== Packaging
+
+* Build the augeas module
+    (https://issues.rudder.io/issues/26183[#26183])
+* Add nettle as a rudder-package dependency
+    (https://issues.rudder.io/issues/26084[#26084])
+* Use ncf from the rudder repo
+    (https://issues.rudder.io/issues/26080[#26080])
+* Update compiled dependencies for Rudder 8.3
+    (https://issues.rudder.io/issues/25931[#25931])
+* Remove rudder-synchronize and rudder-api-client dependency
+    (https://issues.rudder.io/issues/25890[#25890])
+* Update to CFEngine 3.24.0 LTS
+    (https://issues.rudder.io/issues/25791[#25791])
+* Update to Rust 1.84.0
+    (https://issues.rudder.io/issues/26186[#26186])
+* Create an instance id on each root server
+    (https://issues.rudder.io/issues/25841[#25841])
+* Allow LGPL license in crates
+    (https://issues.rudder.io/issues/26086[#26086])
+* Test cleanup after ncf merge into Rudder
+    (https://issues.rudder.io/issues/26076[#26076])
+* Update to Rust 1.83.0
+    (https://issues.rudder.io/issues/25975[#25975])
+* Update Rust dependencies
+    (https://issues.rudder.io/issues/25843[#25843])
+
+==== System integration
+
+* Add a command to help splitting virtualhosts
+    (https://issues.rudder.io/issues/25144[#25144])
+* Instance ID should be added as a variable for nodes
+    (https://issues.rudder.io/issues/26135[#26135])
+
+==== Documentation
+
+* Add the 8.2 version of the techniques doc
+    (https://issues.rudder.io/issues/26187[#26187])
+* Update documentation for new rpm key in 8.3
+    (https://issues.rudder.io/issues/26006[#26006])
+
+==== Web - UI & UX
+
+* Add a user interface for managing method/block loops in the techniques editor
+    (https://issues.rudder.io/issues/26153[#26153])
+* Create a new ‘About’ page for easy access to technical information
+    (https://issues.rudder.io/issues/26059[#26059])
+* Change rudder 8.3 main menu
+    (https://issues.rudder.io/issues/26055[#26055])
+* Make fold-out menu css accessible everywhere in Rudder
+    (https://issues.rudder.io/issues/26028[#26028])
+* Remove rudder.css file
+    (https://issues.rudder.io/issues/25898[#25898])
+
+==== Module - augeas
+
+* Implement augeas module
+    (https://issues.rudder.io/issues/26089[#26089])
+
+==== Plugins integration
+
+* Allow to install plugins from user interface
+    (https://issues.rudder.io/issues/26144[#26144])
+
+==== Miscellaneous
+
+* Update api doc tooling
+    (https://issues.rudder.io/issues/26188[#26188])
+* Improve SVG image handling in the repo
+    (https://issues.rudder.io/issues/25225[#25225])
+
+==== Web - Nodes & inventories
+
+* Add windows 2025 data info in Rudder server
+    (https://issues.rudder.io/issues/26173[#26173])
+* Add description/doc field to node settable by API
+    (https://issues.rudder.io/issues/25984[#25984])
+
+==== Web - Maintenance
+
+* Update front-end dependencies
+    (https://issues.rudder.io/issues/26042[#26042])
+* Have a stable webapp log file
+    (https://issues.rudder.io/issues/26039[#26039])
+
+==== API
+
+* Make API authentication pluggable
+    (https://issues.rudder.io/issues/26167[#26167])
+* Remove unused and duplicate rest extractor lift-json methods
+    (https://issues.rudder.io/issues/25960[#25960])
+* Add and Remove/deprecate API for Rudder 8.3
+    (https://issues.rudder.io/issues/25945[#25945])
+
+==== Architecture - Code maintenance
+
+* Migrate compliance status from lift-json to zio-json
+    (https://issues.rudder.io/issues/26046[#26046])
+* Migrate from lift-json to zio-json in LDAPEntityMapper 
+    (https://issues.rudder.io/issues/25887[#25887])
+* Migrate Environment variable from lift-json to zio-json
+    (https://issues.rudder.io/issues/25886[#25886])
+* Migrate CustomProperties form lift-json to zio-json
+    (https://issues.rudder.io/issues/25885[#25885])
+* Migrate SecurityToken ldap json serialisation to ZIO
+    (https://issues.rudder.io/issues/25884[#25884])
+* Clean-up support for rsa key for inventory signature
+    (https://issues.rudder.io/issues/25780[#25780])
+* Migrate CmdbQuery to zio-json
+    (https://issues.rudder.io/issues/25894[#25894])
+* Remove all occurence of cfengine entreprise
+    (https://issues.rudder.io/issues/25779[#25779])
+
+==== Web - Config management
+
+* Add instance ID in group search criteria
+    (https://issues.rudder.io/issues/26136[#26136])
+* Remove AIX password hash support
+    (https://issues.rudder.io/issues/25836[#25836])
+
+==== Plugin manager cli
+
+* Handle the plugin metadata for license requirement
+    (https://issues.rudder.io/issues/26149[#26149])
+* Use sequoia in rudder-package
+    (https://issues.rudder.io/issues/26082[#26082])
+
+==== Module - system-updates
+
+* Create the augeas module
+    (https://issues.rudder.io/issues/25942[#25942])
+
+==== rudderc
+
+* Make compilation resolved loops over Blocks/Methods in techniques possible
+    (https://issues.rudder.io/issues/25970[#25970])
+
+==== Security
+
+* Deny iframes in Rudder
+    (https://issues.rudder.io/issues/26068[#26068])
+* Remove support for clear-text API tokens
+    (https://issues.rudder.io/issues/25902[#25902])
+
+==== Relay server or API
+
+* Add rsync configuration datastructure to relayd
+    (https://issues.rudder.io/issues/24997[#24997])
+
+==== Generic methods
+
+* Deprecated audit methods that have a non audit only alternative
+    (https://issues.rudder.io/issues/25939[#25939])
+*  Add Windows support to the generic method file_report_content_tail
+    (https://issues.rudder.io/issues/25588[#25588])
+* Deprecated audit methods that have a non audit only alternative
+    (https://issues.rudder.io/issues/25939[#25939])
+
+==== Architecture - Dependencies
+
+* Upgrade to ZIO 2.1.12
+    (https://issues.rudder.io/issues/24968[#24968])
+
+==== Techniques
+
+* Remove the zmd management technique
+    (https://issues.rudder.io/issues/26140[#26140])
+
+==== System techniques
+
+* Remove the metrics technique
+    (https://issues.rudder.io/issues/25920[#25920])
+
+==== Agent
+
+* Hide na reports by default
+    (https://issues.rudder.io/issues/25910[#25910])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Broken agent build on RHEL8
+    (https://issues.rudder.io/issues/26209[#26209])
+* Fixed: Use the fallback system-updates on Ubuntu 16.04 and Debian 9
+    (https://issues.rudder.io/issues/25655[#25655])
+* Fixed: Missing dependency on gpgv on RPM systems
+    (https://issues.rudder.io/issues/25494[#25494])
+* Fixed: raugeas does not build on arm
+    (https://issues.rudder.io/issues/26227[#26227])
+* Fixed: Allow unicode license
+    (https://issues.rudder.io/issues/25872[#25872])
+* Fixed: Don't configure a broken Rudder account by default
+    (https://issues.rudder.io/issues/25868[#25868])
+* Fixed: Update Rust for typos check
+    (https://issues.rudder.io/issues/25790[#25790])
+
+==== Agent
+
+* Fixed: Pass an argument to CFEngine custom promise type binaries
+    (https://issues.rudder.io/issues/25145[#25145])
+
+==== Documentation
+
+* Fixed: Troubleshooting ESET software modifying certifactes by replacing issuers
+    (https://issues.rudder.io/issues/26234[#26234])
+* Fixed: Fix the logo in the README
+    (https://issues.rudder.io/issues/25755[#25755])
+
+==== Architecture - Code maintenance
+
+* Fixed: Add tests and clean-up JsDataLine structures
+    (https://issues.rudder.io/issues/26070[#26070])
+* Fixed: Remove NodeInfoService and other related proxy service
+    (https://issues.rudder.io/issues/25781[#25781])
+
+==== Architecture - Test
+
+* Fixed: Fix API yaml tests on groups and remove restriction to event log
+    (https://issues.rudder.io/issues/26078[#26078])
+
+==== Web - UI & UX
+
+* Fixed: Node search page looks empty 
+    (https://issues.rudder.io/issues/26058[#26058])
+
+==== Web - Nodes & inventories
+
+* Fixed: Refuse inventory too far from "now"
+    (https://issues.rudder.io/issues/25996[#25996])
+
+==== rudderc
+
+* Fixed: Broken policies test
+    (https://issues.rudder.io/issues/25998[#25998])
+* Fixed: Create a global method call counter to help provide more unicity
+    (https://issues.rudder.io/issues/25776[#25776])
+* Fixed: We have no 8.3 build for now
+    (https://issues.rudder.io/issues/25346[#25346])
+
+==== API
+
+* Fixed: Migrate info api to zio-json
+    (https://issues.rudder.io/issues/25969[#25969])
+
+==== Generic methods
+
+* Fixed: Add a new type constraint to the variable_dict generic method
+    (https://issues.rudder.io/issues/25924[#25924])
+* Fixed: Broken jinja2 templating on Ubuntu 24.04
+    (https://issues.rudder.io/issues/25324[#25324])
+
+==== Architecture - Dependencies
+
+* Fixed: Update Scala dependencies
+    (https://issues.rudder.io/issues/25758[#25758])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
