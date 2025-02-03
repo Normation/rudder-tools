@@ -1,15 +1,4 @@
-#!/bin/sh
-# vim: syntax=python
-''':'
-# First try to run this script with python3, else run with python then python2
-if command -v python3 >/dev/null 2>/dev/null; then
-  exec python3 "$0" "$@"
-elif command -v python >/dev/null 2>/dev/null; then
-  exec python  "$0" "$@"
-else
-  exec python2 "$0" "$@"
-fi
-'''
+#!/usr/bin/python3
 
 """ Rudder inventory hook script to return EC2 metadata """
 
@@ -18,12 +7,11 @@ import json
 import sys
 from subprocess import Popen, PIPE
 import argparse
+from pprint import pprint
 try:
     import requests
 except:
     print("Install python-requests OR use python3")
-
-PY3 = sys.version_info > (3,)
 
 # The following url for viewing all categories of instance metadata from within a running instance.
 # The IP address 169.254.169.254 is a link-local address and is valid only from the instance.
@@ -35,10 +23,8 @@ METAURL = 'http://169.254.169.254/latest'
 def run(command, check=False):
     proc = Popen(command, stdout=PIPE, stderr=PIPE)
     output, error = proc.communicate()
-    if PY3:
-        output = output.decode('UTF-8')
-    if PY3:
-        error = error.decode('UTF-8')
+    error = error.decode('UTF-8')
+    output = output.decode('UTF-8')
     return (proc.returncode, output, error)
 
 def is_ec2(debug):
@@ -61,51 +47,43 @@ def is_ec2(debug):
             return uuid_start == "ec2"
     except:
         return False
-    return requests.get(METAURL).status_code == 200
+    return True
+
+def aws_get(api, token):
+    data = requests.get(METAURL+api, headers = { "X-aws-ec2-metadata-token": token })
+    if data.status_code != 200:
+        raise "AWS api error:" + data.reason
+    return data.text
+
+def aws_get_all(base, items, token,):
+    result = {}
+    for item in items:
+        data = aws_get(base + item, token)
+        # IMDSv2 doesn't tell what is a directory and what is a final entry, wild quess base on name's last char
+        if item.endswith("/"):
+            name = item[:-1]
+            new_items = data.split("\n")
+            result[name] = aws_get_all(base + item, new_items, token)
+        else:
+            # IMDSv2 doesn't tell when a result is a string or json, wild guess by trying to convert and fallback in cas or error (80% are not json)
+            try:
+                value = json.loads(data)
+            except:
+                value = data
+            result[item] = value
+    return result
+
+def get_token():
+    data = requests.put(METAURL+"/api/token", headers={ "X-aws-ec2-metadata-token-ttl-seconds": "21600"})
+    if data.status_code != 200:
+        raise "Cannot get IMDSv2 token: " + data.reason
+    return data.text
 
 def load(debug):
-    metadict = {'dynamic': {}, 'meta-data': {}}
-
-    for subsect in metadict.keys():
-        dataparse('{0}/{1}/'.format(METAURL, subsect), metadict[subsect])
-
-    newdict = {}
-    for key in metadict.keys():
-        try:
-            newdict['AWS-'+key] = metadict.get(key)
-        except KeyError:
-            pass
-
-    return newdict
-
-def dataparse(url,k):
-    data = requests.get(url)
-    if data.status_code == 404:
-        return
-
-    for key in data.text.split('\n'):
-        if not key:
-            continue
-
-        if key in [ "rsa2048", "pkcs7", "signature", "security-credentials/", "user-data" ]:
-            continue
-
-        newurl = '{0}{1}'.format(url, key)
-
-        if key.endswith('/'):
-            newkey = key.split('/')[-2]
-            k[newkey] = {}
-            dataparse(newurl, k[newkey], )
-
-        else:
-            data = requests.get(newurl)
-            if data.status_code != 404:
-                try:
-                    k[key] = json.loads(data.text)
-                except ValueError:
-                    k[key] = data.text
-            else:
-                k[key] = None
+    token = get_token()
+    result = aws_get_all("/", ["meta-data/", "dynamic/"], token)
+    output = { "AWS-meta-data": result["meta-data"], "AWS-dynamic": result["dynamic"] }
+    return output
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Retrieve the AWS data from the API and format them in JSON')
