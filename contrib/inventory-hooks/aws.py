@@ -52,10 +52,19 @@ def is_ec2(debug):
 def aws_get(api, token):
     data = requests.get(METAURL+api, headers = { "X-aws-ec2-metadata-token": token })
     if data.status_code != 200:
-        raise "AWS api error:" + data.reason
+        raise ValueError("AWS api error:" + data.reason + "\n When getting " + METAURL+api)
     return data.text
 
-def aws_get_all(base, items, token,):
+def aws_get_keys(base, items, token):
+    result = {}
+    for item in items:
+        # it sometimes works without the split, it should always works with it
+        path = item.split("=")[0]+"/openssh-key"
+        data = aws_get(base + path, token)
+        result[item] = data
+    return result
+
+def aws_get_all(base, items, token):
     result = {}
     for item in items:
         data = aws_get(base + item, token)
@@ -63,7 +72,11 @@ def aws_get_all(base, items, token,):
         if item.endswith("/"):
             name = item[:-1]
             new_items = data.split("\n")
-            result[name] = aws_get_all(base + item, new_items, token)
+            # IMDSv2 uses a different scheme for public keys
+            if name == "public-keys":
+                result[name] = aws_get_keys(base + item, new_items, token)
+            else:
+                result[name] = aws_get_all(base + item, new_items, token)
         else:
             # IMDSv2 doesn't tell when a result is a string or json, wild guess by trying to convert and fallback in cas or error (80% are not json)
             try:
@@ -76,11 +89,13 @@ def aws_get_all(base, items, token,):
 def get_token():
     data = requests.put(METAURL+"/api/token", headers={ "X-aws-ec2-metadata-token-ttl-seconds": "21600"})
     if data.status_code != 200:
-        raise "Cannot get IMDSv2 token: " + data.reason
+        raise ValueError("Cannot get IMDSv2 token: " + data.reason)
     return data.text
 
 def load(debug):
     token = get_token()
+    if debug:
+        print("Got token: "+token)
     result = aws_get_all("/", ["meta-data/", "dynamic/"], token)
     output = { "AWS-meta-data": result["meta-data"], "AWS-dynamic": result["dynamic"] }
     return output
@@ -96,3 +111,4 @@ if __name__ == '__main__':
     else:
       if debug: print("The machine is NOT an ec2 instance")
       print("{}")
+
