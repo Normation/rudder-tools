@@ -7,8 +7,11 @@ pipeline {
         stage('Tests') {
             stage('typos') {
                 agent {
-                dockerfile {
-                    filename 'ci/typos.Dockerfile'
+                    dockerfile {
+                        label 'generic-docker'
+                        filename 'ci/common.Dockerfile'
+                        args '-u 0:0'
+                    }
                 }
                 steps {
                     sh script: 'typos', label: 'check typos'
@@ -30,8 +33,11 @@ pipeline {
             }
             stage('shellcheck') {
                 agent {
-                dockerfile {
-                    filename 'ci/shellcheck.Dockerfile'
+                    dockerfile {
+                        label 'generic-docker'
+                        filename 'ci/common.Dockerfile'
+                        args '-u 0:0'
+                    }
                 }
                 steps {
                     sh script: './qa-test --shell', label: 'shellcheck'
@@ -54,7 +60,9 @@ pipeline {
             stage('python') {
                 agent {
                     dockerfile {
-                        filename 'ci/pylint.Dockerfile'
+                        label 'generic-docker'
+                        filename 'ci/common.Dockerfile'
+                        args '-u 0:0'
                     }
                 }
                 steps {
