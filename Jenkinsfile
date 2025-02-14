@@ -4,7 +4,6 @@ import org.gradiant.jenkins.slack.SlackNotifier
 pipeline {
     agent none
     stages {
-        stage('Tests') {
             stage('typos') {
                 agent {
                     dockerfile {
@@ -83,6 +82,5 @@ pipeline {
                     }
                 }
             }
-        }
     }
 }
