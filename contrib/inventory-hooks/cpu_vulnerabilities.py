@@ -43,7 +43,7 @@ def parse_vuln_status(raw_text):
         info["status"] = "not-affected"
     else:
         info["status"] = "unknown"
-    # Additionnal information
+    # Additional information
     details = DETAILS.search(data)
     if details:
         info["details"] = details.group(2)

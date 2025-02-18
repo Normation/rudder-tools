@@ -17,7 +17,7 @@ database = 'rudder'
 port_database = 5432
 
 # Proportion of repaired, error and non-compliant reports
-# Betweeen 0 (no such reports) and 1 (only this type of reports)
+# Between 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.3
 error_proportion = 0.2
 non_compliant_proportion = 0.1

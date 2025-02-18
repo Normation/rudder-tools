@@ -40,7 +40,7 @@
 
 ==== Miscellaneous
 
-* Fixed: Unecessary curl options are passed to the File-From-Http-Server method
+* Fixed: Unnecessary curl options are passed to the File-From-Http-Server method
     (https://issues.rudder.io/issues/20799[#20799])
 
 ==== Inventory
@@ -59,7 +59,7 @@
 
 ==== CLI
 
-* Fixed: Reports are not alligned when displayed
+* Fixed: Reports are not aligned when displayed
     (https://issues.rudder.io/issues/20213[#20213])
 * Fixed: Add certificate pinning on windows agent
     (https://issues.rudder.io/issues/19861[#19861])
@@ -279,7 +279,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
     (https://issues.rudder.io/issues/18727[#18727])
 * Fixed: DSC_compile method does not properly apply the compiled configuration
     (https://issues.rudder.io/issues/18520[#18520])
-* Fixed: DSC methods should catch the errors throwed by the DSC jobs
+* Fixed: DSC methods should catch the errors thrown by the DSC jobs
     (https://issues.rudder.io/issues/18398[#18398])
 * Fixed: Add DSC_apply GM tests
     (https://issues.rudder.io/issues/18322[#18322])

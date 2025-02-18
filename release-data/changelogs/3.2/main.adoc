@@ -112,11 +112,11 @@ necessary (https://www.rudder-project.org/redmine/issues/9869[#9869])
 * Fixed: expected reports, component keys
 (https://www.rudder-project.org/redmine/issues/8633[#8633])
 * Fixed: Missing ``default ='' word in node properties expansion
-documention (https://www.rudder-project.org/redmine/issues/9800[#9800])
+documentation (https://www.rudder-project.org/redmine/issues/9800[#9800])
 
 ==== Miscellaneous
 
-* Fixed: Typo in root of policy libray tree name
+* Fixed: Typo in root of policy library tree name
 (https://www.rudder-project.org/redmine/issues/9884[#9884])
 
 ==== Web - Compliance & node report
@@ -540,9 +540,9 @@ quicksearch (https://issues.rudder.io/issues/9185[#9185])
 
 ==== Builder - UI/UX
 
-* Fixed: Uneeded scrollbar when using ncf builder in an iframe
+* Fixed: Unneeded scrollbar when using ncf builder in an iframe
 (https://issues.rudder.io/issues/9164[#9164])
-* Fixed: Cannot save new generic method with some contraints
+* Fixed: Cannot save new generic method with some constraints
 (https://issues.rudder.io/issues/8981[#8981])
 * Fixed: We need to save twice after cloning a technique
 (https://issues.rudder.io/issues/8896[#8896])
@@ -563,7 +563,7 @@ VIRTUALMEMORY = 2297795780
 
 ==== Techniques
 
-* Fixed: Techniques use $ for paths of ressources files (ex:
+* Fixed: Techniques use $ for paths of resources files (ex:
 properties), which prevent their validation by the Web Interface during
 policies generation
 (https://issues.rudder.io/issues/9113[#9113])
@@ -786,7 +786,7 @@ database (https://issues.rudder.io/issues/8873[#8873])
 ==== Web - Config management
 
 * Fixed: Unable to save/edit a directive via rudder web ui when
-technique use an optionnal SELECT field
+technique use an optional SELECT field
 (https://issues.rudder.io/issues/8874[#8874])
 * Fixed: Typo in cf-clerk logs
 (https://issues.rudder.io/issues/8823[#8823])
@@ -875,7 +875,7 @@ promises ( log with 2 params )
 
 * Fixed: Some Javascript engine fails when accessing system values
 (https://issues.rudder.io/issues/8857[#8857])
-* Fixed: JS engine tests broken due to security exeception when using
+* Fixed: JS engine tests broken due to security exception when using
 jdk 1.8 (https://issues.rudder.io/issues/8856[#8856])
 * Fixed: broken tests on 3.2, missing properties.json in generated
 promises (https://issues.rudder.io/issues/8869[#8869])
@@ -1551,7 +1551,7 @@ no matching rudder-users.xml entry
 
 * Fixed: On Windows, a file c:\Program is created
 (https://issues.rudder.io/issues/8149[#8149])
-* Fixed: Environement variable fail to load on windows
+* Fixed: Environment variable fail to load on windows
 (https://issues.rudder.io/issues/8146[#8146])
 
 ==== Packaging
@@ -1948,7 +1948,7 @@ post-hook execution and lead to unexpected reports
 Nameserver does not allow the use of variable
 (https://issues.rudder.io/issues/3741[#3741])
 * Fixed: Package management for RHEL / CentOS / SuSE / RPM systems: The
-number of reports about ZMD is uncorrect
+number of reports about ZMD is incorrect
 (https://issues.rudder.io/issues/3478[#3478])
 * Fixed: syslog-ng’s loghost regex does not match with set line
 (https://issues.rudder.io/issues/7635[#7635])
@@ -2233,7 +2233,7 @@ on Linux Debian for example)
 
 ==== Initial promises & sys tech
 
-* Fixed: Promise copy is not convergent: if the copy is interupted, it
+* Fixed: Promise copy is not convergent: if the copy is interrupted, it
 will never recover (3.2 branch)
 (https://issues.rudder.io/issues/7472[#7472])
 

@@ -120,16 +120,16 @@ sponsoring the _node lifecycle_ feature!
 
 ==== Techniques
 
-* Fixed: Use umask defined in /etc/login.defs in Technique "SSH authorized keys"  for creating missing home dir 
+* Fixed: Use umask defined in /etc/login.defs in Technique "SSH authorized keys"  for creating missing home dir
     (https://issues.rudder.io/issues/14916[#14916])
 
 ==== Generic methods
 
-* Fixed: Style test fails because it parses .pyc files 
+* Fixed: Style test fails because it parses .pyc files
     (https://issues.rudder.io/issues/15061[#15061])
 * Fixed: Syntax error in file_report_content tests on 4.3
     (https://issues.rudder.io/issues/15053[#15053])
-* Fixed: Normal ordering is not respected in some policies in 4.3 
+* Fixed: Normal ordering is not respected in some policies in 4.3
     (https://issues.rudder.io/issues/15051[#15051])
 
 === Release notes
@@ -154,38 +154,38 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
 
 * Fixed: ncf-api-virtualenv does not have a group created
     (https://issues.rudder.io/issues/11126[#11126])
-* Fixed: Debian 8 packages fail to build  
+* Fixed: Debian 8 packages fail to build
     (https://issues.rudder.io/issues/14754[#14754])
 
 ==== Performance and scalability
 
-* Fixed: Correct disk usage in rudder configuration file 
+* Fixed: Correct disk usage in rudder configuration file
     (https://issues.rudder.io/issues/14844[#14844])
-* Fixed: Default archive retention is too large, which cause very large disk usage 
+* Fixed: Default archive retention is too large, which cause very large disk usage
     (https://issues.rudder.io/issues/14834[#14834])
 
 ==== Web - Config management
 
-* Fixed: Accepting a change request on dynamic group, make the group empty leads an invalid policy generation 
+* Fixed: Accepting a change request on dynamic group, make the group empty leads an invalid policy generation
     (https://issues.rudder.io/issues/14758[#14758])
 * Fixed: When restoring archive (full or groups) dynamic groups are created empty
     (https://issues.rudder.io/issues/4480[#4480])
 
 ==== Web - Maintenance
 
-* Fixed: Invalid comparison of String and Option[String] in HistorizationService 
+* Fixed: Invalid comparison of String and Option[String] in HistorizationService
     (https://issues.rudder.io/issues/14770[#14770])
 
 ==== Techniques
 
-* Fixed: Technique "SSH authorized keys" creates home directory with perms root:root when it does not exists yet 
+* Fixed: Technique "SSH authorized keys" creates home directory with perms root:root when it does not exists yet
     (https://issues.rudder.io/issues/14732[#14732])
 
 ==== Agent
 
-* Fixed: Rudder agent check cannot restore saved uuid on AIX 
+* Fixed: Rudder agent check cannot restore saved uuid on AIX
     (https://issues.rudder.io/issues/14763[#14763])
-* Fixed: Rudder agent check does not repair policies if they are broken 
+* Fixed: Rudder agent check does not repair policies if they are broken
     (https://issues.rudder.io/issues/14692[#14692])
 
 ==== Technique editor - UI/UX
@@ -382,7 +382,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
 
 * Fixed: Windows 2019 doesn't show up correctly in node list
     (https://issues.rudder.io/issues/14362[#14362])
-* Fixed: Mandatory fields for new inventories are not correctly checked 
+* Fixed: Mandatory fields for new inventories are not correctly checked
     (https://issues.rudder.io/issues/13962[#13962])
 
 ==== Web - Config management
@@ -459,7 +459,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
 
 ==== Techniques
 
-* Port techniques downloadFile & cronManagement to separated policy generation 
+* Port techniques downloadFile & cronManagement to separated policy generation
     (https://issues.rudder.io/issues/14002[#14002])
 
 ==== Technique editor - UI/UX
@@ -601,7 +601,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
     (https://issues.rudder.io/issues/14036[#14036])
 * Add a technique to manage basic SNMP configuration
     (https://issues.rudder.io/issues/13602[#13602])
-* Technique File download (Rudder server) has a borken posthook and should incorporate a windows and a linux section
+* Technique File download (Rudder server) has a broken posthook and should incorporate a windows and a linux section
     (https://issues.rudder.io/issues/13918[#13918])
 
 ==== Technique editor - UI/UX
@@ -623,7 +623,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
     (https://issues.rudder.io/issues/14059[#14059])
 * Fixed: When installing a rudder root server (on debian), it asks to run rudder-node-to-relay
     (https://issues.rudder.io/issues/11630[#11630])
-* Fixed: Change packaging to allow openjdk > 8 
+* Fixed: Change packaging to allow openjdk > 8
     (https://issues.rudder.io/issues/13896[#13896])
 * Fixed: When we stop rudder-jetty, it says it stops Jetty 7 (we are using Jetty 9 ...)
     (https://issues.rudder.io/issues/13929[#13929])
@@ -707,7 +707,7 @@ This is a bug fix release in the 4.3 series and therefore all installations of 4
 
 ==== Plugins integration
 
-* Fixed: Improve error messsage when path to install a plugin package is
+* Fixed: Improve error message when path to install a plugin package is
 not correct (https://issues.rudder.io/issues/13891[#13891])
 
 ==== Packaging
@@ -1032,7 +1032,7 @@ running after a server install on debian 8
 used (https://www.rudder-project.org/redmine/issues/13174[#13174])
 * Fixed: rudder.conf is not removed from /etc/ld.so.conf.d
 (https://www.rudder-project.org/redmine/issues/12554[#12554])
-* Fixed: Fusioninventory error about unitialized value $FQDN
+* Fixed: Fusioninventory error about uninitialized value $FQDN
 (https://www.rudder-project.org/redmine/issues/13739[#13739])
 * Fixed: ``type: systemctl : not found'' appears in rudder-agent
 installation logs
@@ -1203,7 +1203,7 @@ longer than 1024 chars
 (https://www.rudder-project.org/redmine/issues/13274[#13274])
 * Fixed: Update screenshot for Rudder Branding
 (https://www.rudder-project.org/redmine/issues/13270[#13270])
-* Fixed: Bad explanation for generic variable overide priority cause
+* Fixed: Bad explanation for generic variable override priority cause
 people making the opposite of what is needed
 (https://www.rudder-project.org/redmine/issues/13615[#13615])
 
@@ -1215,7 +1215,7 @@ in when authenticating to Rudder authentication API
 
 ==== Agent
 
-* Fixed: remove unessecary patch that remove truncation of line in
+* Fixed: remove unnecessary patch that remove truncation of line in
 inventory (https://www.rudder-project.org/redmine/issues/13403[#13403])
 * Fixed: rudder server command states that ``Warning: Long arguments are
 not supported, you probably tried to use one!'' - but it does support it
@@ -1816,7 +1816,7 @@ validation fails in special cases
 * Fixed: Delete directive confirmation popup should display the action
 to confirm (https://www.rudder-project.org/redmine/issues/12552[#12552])
 * Fixed: In technique editor, mouse cursor on top of technique parameter
-``use with'' should be a carret
+``use with'' should be a caret
 (https://www.rudder-project.org/redmine/issues/12266[#12266])
 
 ==== Generic methods
@@ -1882,7 +1882,7 @@ report (https://www.rudder-project.org/redmine/issues/12616[#12616])
 
 ==== Packaging
 
-* Fixed: .pyc file are not cleand up during postinst
+* Fixed: .pyc file are not cleaned up during postinst
 (https://www.rudder-project.org/redmine/issues/12634[#12634])
 * Fixed: Build fail because on non existent man3 directory
 (https://www.rudder-project.org/redmine/issues/12632[#12632])
@@ -1910,7 +1910,7 @@ interface has no ip address
 
 * Fixed: Documentation should use full path to rudder-pkg for command
 examples (https://www.rudder-project.org/redmine/issues/12771[#12771])
-* Fixed: Adding missings informations for Windows plugin installation
+* Fixed: Adding missing information for Windows plugin installation
 (https://www.rudder-project.org/redmine/issues/12748[#12748])
 * Fixed: Restricted java security policy breaks Rudder (class configured
 for Cipher(provider: BC)cannot be found)
@@ -2083,7 +2083,7 @@ when looking at the Rules to be applied
 
 ==== System integration
 
-* Fixed: apache_acl file is remplaced, even on relay with no http
+* Fixed: apache_acl file is replaced, even on relay with no http
 (https://www.rudder-project.org/redmine/issues/12530[#12530])
 
 ==== System techniques
@@ -2410,7 +2410,7 @@ ncf reporting
 
 ==== Generic methods
 
-* Migrate generic methods towards new loging system
+* Migrate generic methods towards new logging system
 (https://www.rudder-project.org/redmine/issues/12227[#12227])
 
 ==== Agent
@@ -2455,7 +2455,7 @@ upmerge (https://www.rudder-project.org/redmine/issues/12226[#12226])
 * Fixed: Incomplete ``Rules to be applied'' summary when accepting a new
 nodes when using groups of groups
 (https://www.rudder-project.org/redmine/issues/12060[#12060])
-* Fixed: Typo in agent build error ``reource''"
+* Fixed: Typo in agent build error ``resource''"
 (https://www.rudder-project.org/redmine/issues/12314[#12314])
 
 ==== Technique editor - API
@@ -2740,7 +2740,7 @@ nor solaris system
 
 ==== API
 
-* Fixed: Unathenticated API v1 are not accessible anymore
+* Fixed: Unauthenticated API v1 are not accessible anymore
 (https://www.rudder-project.org/redmine/issues/12216[#12216])
 * Fixed: Api does not fail on bad JSON
 (https://www.rudder-project.org/redmine/issues/5931[#5931])
@@ -3029,7 +3029,7 @@ file to send was created during run
 
 * Fixed: Autocompletion for rudder commands doesn’t work on RHEL and
 SLES (https://www.rudder-project.org/redmine/issues/11885[#11885])
-* Fixed: Errors are not diplayed when running agent without -i
+* Fixed: Errors are not displayed when running agent without -i
 (https://www.rudder-project.org/redmine/issues/9181[#9181])
 * Fixed: The agent moves obstructions regardless of policy mode
 (https://www.rudder-project.org/redmine/issues/11866[#11866])

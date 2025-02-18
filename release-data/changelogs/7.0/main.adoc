@@ -14,7 +14,7 @@
 
 ==== Web - Config management
 
-* Fixed: missing list of inpacted rules when creating a directive and applying it to a rule
+* Fixed: missing list of impacted rules when creating a directive and applying it to a rule
     (https://issues.rudder.io/issues/21671[#21671])
 * Fixed: generated policies are invalid when using a generic method that doesn't exist on linux
     (https://issues.rudder.io/issues/21686[#21686])
@@ -50,7 +50,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 This version is only available for extended support subscription
 
 ====
-    
+
 
 === Bug fixes
 
@@ -205,7 +205,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Documentation
 
-* Fixed: Some reponses are missing in technique api doc
+* Fixed: Some responses are missing in technique api doc
     (https://issues.rudder.io/issues/21304[#21304])
 
 ==== Agent
@@ -275,7 +275,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Web - Technique editor
 
-* Fixed: When a technique is not in the active techique tree, it can't be deleted in editor
+* Fixed: When a technique is not in the active technique tree, it can't be deleted in editor
     (https://issues.rudder.io/issues/21119[#21119])
 
 ==== Web - UI & UX
@@ -329,7 +329,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Documentation
 
-* Fixed: Documentation about certificate handling during uprade is not great
+* Fixed: Documentation about certificate handling during upgrade is not great
     (https://issues.rudder.io/issues/21129[#21129])
 * Fixed: Fix the relayd logging documentation
     (https://issues.rudder.io/issues/20985[#20985])
@@ -348,7 +348,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 * Fixed: security checks fails because of request to sonatype oss index
     (https://issues.rudder.io/issues/21179[#21179])
-* Fixed: Fix some cve in dependencies 
+* Fixed: Fix some cve in dependencies
     (https://issues.rudder.io/issues/21169[#21169])
 * Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
     (https://issues.rudder.io/issues/21103[#21103])
@@ -370,13 +370,13 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Web - Nodes & inventories
 
-* Fixed: Criteria not working when filter on IP adress and GoupID in group page
+* Fixed: Criteria not working when filter on IP address and GroupID in group page
     (https://issues.rudder.io/issues/21144[#21144])
 * Fixed: Sometime inventory processing is not done when inventory is receveived
     (https://issues.rudder.io/issues/19585[#19585])
 * Fixed: List of nodes by version does not include windows nodes
     (https://issues.rudder.io/issues/17728[#17728])
-* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+* Fixed: Two same envvar modulo a space at beginning of name leads to LDAP error when saving inventory
     (https://issues.rudder.io/issues/20984[#20984])
 
 ==== Web - Technique editor
@@ -385,7 +385,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21160[#21160])
 * Fixed: The display of the DSC icon is broken in the technical editor
     (https://issues.rudder.io/issues/21016[#21016])
-* Fixed: Unable to open a block within a block when it has just been drop from the list 
+* Fixed: Unable to open a block within a block when it has just been drop from the list
     (https://issues.rudder.io/issues/20787[#20787])
 * Fixed: When cloning a block with two identical methods, only one is cloned
     (https://issues.rudder.io/issues/21001[#21001])
@@ -394,7 +394,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 * Fixed: Directive and rule revision is not parsed in API
     (https://issues.rudder.io/issues/21150[#21150])
-* Fixed: Rudder incorectly parse URL with a '+' in the path into spaces
+* Fixed: Rudder incorrectly parse URL with a '+' in the path into spaces
     (https://issues.rudder.io/issues/20943[#20943])
 * Fixed: Deleting a rule's category leeds to an error
     (https://issues.rudder.io/issues/21080[#21080])
@@ -498,7 +498,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 * Windows support should be documented as the other agents
     (https://issues.rudder.io/issues/20835[#20835])
-* Add a compatibilty table for agent relay server in the documentation
+* Add a compatibility table for agent relay server in the documentation
     (https://issues.rudder.io/issues/20621[#20621])
 
 ==== Web - UI & UX
@@ -508,7 +508,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Architecture - Internal libs
 
-* Add name for spring security main auth configuration bean to be used by oauth2 
+* Add name for spring security main auth configuration bean to be used by oauth2
     (https://issues.rudder.io/issues/20886[#20886])
 
 ==== Language
@@ -568,7 +568,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/20972[#20972])
 * Fixed: "Disable reporting" for windows method calls does produce unexpected reports
     (https://issues.rudder.io/issues/20897[#20897])
-* Fixed: Compilation warning on branche 6.2
+* Fixed: Compilation warning on branch 6.2
     (https://issues.rudder.io/issues/20874[#20874])
 
 ==== Web - Technique editor
@@ -601,7 +601,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Web - Config management
 
-* Fixed: Starting policy generation by hand fails if node-configuration-hashes.json 
+* Fixed: Starting policy generation by hand fails if node-configuration-hashes.json
     (https://issues.rudder.io/issues/20926[#20926])
 
 ==== API
@@ -738,7 +738,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Web - Technique editor
 
-* Fixed: Ressource not found when creating a draft and comming back to it to save it as a technique
+* Fixed: Resource not found when creating a draft and coming back to it to save it as a technique
     (https://issues.rudder.io/issues/20184[#20184])
 * Fixed: Creating a technique with a name normalized to generic method id breaks technique editor
     (https://issues.rudder.io/issues/20710[#20710])
@@ -748,7 +748,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/20738[#20738])
 * Fixed: Tooltips remains when we remove a generic method
     (https://issues.rudder.io/issues/20557[#20557])
-* Fixed: Draft infos remaining after deletion 
+* Fixed: Draft infos remaining after deletion
     (https://issues.rudder.io/issues/20631[#20631])
 
 ==== API
@@ -791,7 +791,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Architecture - Dependencies
 
-* Fixed: Update xerces version 
+* Fixed: Update xerces version
     (https://issues.rudder.io/issues/20676[#20676])
 
 ==== Security
@@ -959,9 +959,9 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/20492[#20492])
 * Fixed: It's not possible to select a condition with the dropdownlist on technique editor in rudder 7
     (https://issues.rudder.io/issues/20420[#20420])
-* Fixed: block still disapear in technique editor when we put a method in it
+* Fixed: block still disappear in technique editor when we put a method in it
     (https://issues.rudder.io/issues/20551[#20551])
-* Fixed: Add loading effect for technique editor tree 
+* Fixed: Add loading effect for technique editor tree
     (https://issues.rudder.io/issues/20493[#20493])
 * Fixed: The technique editor allows saving methods with missing parameters
     (https://issues.rudder.io/issues/20415[#20415])
@@ -984,7 +984,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== API
 
-* Fixed: Missing api rights 
+* Fixed: Missing api rights
     (https://issues.rudder.io/issues/20609[#20609])
 * Fixed: State is missing from node api
     (https://issues.rudder.io/issues/20582[#20582])
@@ -1022,7 +1022,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/20478[#20478])
 * Fixed: Cancel button is missing when deleting a technique
     (https://issues.rudder.io/issues/20487[#20487])
-* Fixed: Wrong technique name displayed in deletion message 
+* Fixed: Wrong technique name displayed in deletion message
     (https://issues.rudder.io/issues/20488[#20488])
 * Fixed: The left menu is under the menu bar's shadow
     (https://issues.rudder.io/issues/20030[#20030])
@@ -1334,7 +1334,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Web - UI & UX
 
-* Fixed: wrong write for rule page 
+* Fixed: wrong write for rule page
     (https://issues.rudder.io/issues/20299[#20299])
 * Fixed: Redirection does not work on rule page
     (https://issues.rudder.io/issues/20298[#20298])
@@ -1400,7 +1400,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Architecture - Internal libs
 
-* Fixed: Add mock in test lib for secrets eventlogs 
+* Fixed: Add mock in test lib for secrets eventlogs
     (https://issues.rudder.io/issues/20256[#20256])
 
 === Release notes
@@ -1427,7 +1427,7 @@ Rudder 7.0 is currently the next version of Rudder.
     (https://issues.rudder.io/issues/19782[#19782])
 * Don't historize names of nodes, rules & groups in the database
     (https://issues.rudder.io/issues/20229[#20229])
-* Make consistant id+revision format accross rule, directive, techniques in API
+* Make consistent id+revision format across rule, directive, techniques in API
     (https://issues.rudder.io/issues/20190[#20190])
 
 ==== Web - UI & UX
@@ -1449,7 +1449,7 @@ Rudder 7.0 is currently the next version of Rudder.
 
 ==== Miscellaneous
 
-* Fixed: There is no cfengine-systemd patch anymore thus making package build faild
+* Fixed: There is no cfengine-systemd patch anymore thus making package build fail
     (https://issues.rudder.io/issues/20255[#20255])
 
 ==== System integration
@@ -1472,7 +1472,7 @@ Rudder 7.0 is currently the next version of Rudder.
 
 ==== Documentation
 
-* Fixed: Documentation about collection access in jinja2 template is incorect
+* Fixed: Documentation about collection access in jinja2 template is incorrect
     (https://issues.rudder.io/issues/20234[#20234])
 * Fixed: Document that HTTP port is not configurable with SELinux policies
     (https://issues.rudder.io/issues/20200[#20200])
@@ -1515,7 +1515,7 @@ Rudder 7.0 is currently the next version of Rudder.
 
 ==== Language
 
-* Fixed: technique cannot be compile if name contains \\"x 
+* Fixed: technique cannot be compile if name contains \\"x
     (https://issues.rudder.io/issues/19888[#19888])
 * Fixed: rudderc doesn't support multiline text
     (https://issues.rudder.io/issues/19900[#19900])
@@ -1604,7 +1604,7 @@ Rudder 7.0 is currently the next version of Rudder.
 
 ==== Web - Compliance & node report
 
-* Add revision to rule 
+* Add revision to rule
     (https://issues.rudder.io/issues/20081[#20081])
 
 ==== Web - Technique editor
@@ -1650,7 +1650,7 @@ Rudder 7.0 is currently the next version of Rudder.
 
 ==== Packaging
 
-* Fixed: ubuntu 13 doesn't support tlsv1.2 
+* Fixed: ubuntu 13 doesn't support tlsv1.2
     (https://issues.rudder.io/issues/20122[#20122])
 * Fixed: Some package still download sources from rudder-project
     (https://issues.rudder.io/issues/20072[#20072])
@@ -1823,7 +1823,7 @@ Rudder 7.0 is currently the next version of Rudder.
 
 ==== Architecture - Refactoring
 
-* Fixed: Change format to call engines in properties 
+* Fixed: Change format to call engines in properties
     (https://issues.rudder.io/issues/19943[#19943])
 
 ==== Miscellaneous
@@ -1844,7 +1844,7 @@ Rudder 7.0 is currently the next version of Rudder.
     (https://issues.rudder.io/issues/20153[#20153])
 * Fixed: Homogenize suse classes in system techniques
     (https://issues.rudder.io/issues/20155[#20155])
-* Fixed: boostrap bundle should not be present on relays
+* Fixed: bootstrap bundle should not be present on relays
     (https://issues.rudder.io/issues/20136[#20136])
 * Fixed: Apache is not reloaded when the generated /var/rudder/lib/ssl/nodescerts.pem changes
     (https://issues.rudder.io/issues/20096[#20096])
@@ -2042,7 +2042,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/19646[#19646])
 * Make rudder package command use version files
     (https://issues.rudder.io/issues/19476[#19476])
-* Adapt rudder package to support new versionning scheme
+* Adapt rudder package to support new versioning scheme
     (https://issues.rudder.io/issues/18557[#18557])
 
 ==== Relay server or API
@@ -2080,11 +2080,11 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/19558[#19558])
 * Be able to group reporting and methods so that we have clearer techniques and a better reporting
     (https://issues.rudder.io/issues/19323[#19323])
-* Move allowed network data to settings 
+* Move allowed network data to settings
     (https://issues.rudder.io/issues/18730[#18730])
 * Use rudderc to compile technique from the editor instead of rudder logic
     (https://issues.rudder.io/issues/19061[#19061])
-* Add HTTPS_POLICY_DISTRIBUTION_PORT system variable 
+* Add HTTPS_POLICY_DISTRIBUTION_PORT system variable
     (https://issues.rudder.io/issues/19259[#19259])
 * Directly generate policies with correct rights
     (https://issues.rudder.io/issues/18375[#18375])
@@ -2139,9 +2139,9 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/18121[#18121])
 * Technique from AST
     (https://issues.rudder.io/issues/18096[#18096])
-* remove cf-monitord variables
+* remove cf-monitored variables
     (https://issues.rudder.io/issues/18116[#18116])
-* update json tests and doc to match new format 
+* update json tests and doc to match new format
     (https://issues.rudder.io/issues/18095[#18095])
 * impl serialized Technique struct
     (https://issues.rudder.io/issues/18067[#18067])
@@ -2177,9 +2177,9 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/17904[#17904])
 * clean tests
     (https://issues.rudder.io/issues/18042[#18042])
-* differenciate classic and dsc generic methods
+* differentiate classic and dsc generic methods
     (https://issues.rudder.io/issues/17821[#17821])
-* differenciate classic and dsc generic methods
+* differentiate classic and dsc generic methods
     (https://issues.rudder.io/issues/17821[#17821])
 * Improve CFEngine code generation
     (https://issues.rudder.io/issues/17925[#17925])
@@ -2347,13 +2347,13 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== System integration
 
-* Fixed: Fusion inventory cannot read text files that contain BOM 
+* Fixed: Fusion inventory cannot read text files that contain BOM
     (https://issues.rudder.io/issues/19315[#19315])
 * Fixed: Missing default value for HTTPS port
     (https://issues.rudder.io/issues/19416[#19416])
-* Fixed: Warning: Nashorn engine is planned to be removed from a future JDK release 
+* Fixed: Warning: Nashorn engine is planned to be removed from a future JDK release
     (https://issues.rudder.io/issues/14753[#14753])
-* Fixed: Warning: Nashorn engine is planned to be removed from a future JDK release 
+* Fixed: Warning: Nashorn engine is planned to be removed from a future JDK release
     (https://issues.rudder.io/issues/14753[#14753])
 * Fixed: rudder agent run does not actually send the inventory
     (https://issues.rudder.io/issues/19594[#19594])
@@ -2402,7 +2402,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/19617[#19617])
 * Fixed: Display of DataTables' pagination buttons  is broken.
     (https://issues.rudder.io/issues/18881[#18881])
-* Fixed: Upgrade font awesome to latest version 
+* Fixed: Upgrade font awesome to latest version
     (https://issues.rudder.io/issues/18728[#18728])
 * Fixed: Group property inherited tooltip is not visible
     (https://issues.rudder.io/issues/17546[#17546])
@@ -2463,9 +2463,9 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/19873[#19873])
 * Fixed: When we save a rule, the directives are not saved
     (https://issues.rudder.io/issues/19744[#19744])
-* Fixed: node properties writen in policies is invalid
+* Fixed: node properties written in policies is invalid
     (https://issues.rudder.io/issues/19723[#19723])
-* Fixed: versionning is too technical on the directive tree
+* Fixed: versioning is too technical on the directive tree
     (https://issues.rudder.io/issues/19609[#19609])
 * Fixed: Broken pom after merge
     (https://issues.rudder.io/issues/19180[#19180])
@@ -2515,7 +2515,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/18866[#18866])
 * Fixed: fix invalid escape in parameter strings
     (https://issues.rudder.io/issues/18800[#18800])
-* Fixed: addd sled to rudderlang supported os list
+* Fixed: add sled to rudderlang supported os list
     (https://issues.rudder.io/issues/18799[#18799])
 * Fixed: fix doc generation
     (https://issues.rudder.io/issues/18798[#18798])
@@ -2525,7 +2525,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/18649[#18649])
 * Fixed: fix ci tests
     (https://issues.rudder.io/issues/18581[#18581])
-* Fixed: interpolated variable in conditions should not treat dots as AND operators 
+* Fixed: interpolated variable in conditions should not treat dots as AND operators
     (https://issues.rudder.io/issues/18486[#18486])
 * Fixed: add NA logs to cfengine generation
     (https://issues.rudder.io/issues/18440[#18440])

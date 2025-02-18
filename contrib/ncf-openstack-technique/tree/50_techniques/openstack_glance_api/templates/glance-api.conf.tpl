@@ -757,7 +757,7 @@ filesystem_store_datadir=/var/lib/glance/images/
 # Region name of this node (string value)
 #os_region_name=<None>
 
-# Location of ca certicates file to use for cinder client requests
+# Location of ca certificates file to use for cinder client requests
 # (string value)
 #cinder_ca_certificates_file=<None>
 

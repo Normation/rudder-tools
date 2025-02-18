@@ -68,7 +68,7 @@ def aws_get_all(base, items, token):
     result = {}
     for item in items:
         data = aws_get(base + item, token)
-        # IMDSv2 doesn't tell what is a directory and what is a final entry, wild quess base on name's last char
+        # IMDSv2 doesn't tell what is a directory and what is a final entry, wild guess base on name's last char
         if item.endswith("/"):
             name = item[:-1]
             new_items = data.split("\n")

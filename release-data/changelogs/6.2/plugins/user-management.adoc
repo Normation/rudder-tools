@@ -44,7 +44,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Miscellaneous
 
-* Fixed: Add a note indicating that usermanagement is not subject to worflow validation
+* Fixed: Add a note indicating that usermanagement is not subject to workflow validation
     (https://issues.rudder.io/issues/17869[#17869])
 * Fixed: Optimize elm plugins
     (https://issues.rudder.io/issues/17886[#17886])

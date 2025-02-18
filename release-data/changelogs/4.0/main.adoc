@@ -58,7 +58,7 @@ Ubuntu 10.04, Ubuntu 12.04, Ubuntu 12.10*
 
 ==== Architecture - Internal libs
 
-* Match non exaustive on workflow step: log on error
+* Match non exhaustive on workflow step: log on error
 (https://www.rudder-project.org/redmine/issues/10938[#10938])
 
 ==== Agent
@@ -190,7 +190,7 @@ Chrome (https://www.rudder-project.org/redmine/issues/9780[#9780])
 
 ==== Web - Config management
 
-* Fixed: Tooltips don’t disapear on safari
+* Fixed: Tooltips don’t disappear on safari
 (https://www.rudder-project.org/redmine/issues/6145[#6145])
 
 ==== Performance and scalability
@@ -260,7 +260,7 @@ because of invalid version of nss
 (https://www.rudder-project.org/redmine/issues/9905[#9905])
 * Fixed: Infinite ``rudder is loading'' page if rudder-init didn’t run
 (https://www.rudder-project.org/redmine/issues/10567[#10567])
-* Fixed: If an error happen during boostrap, the webapp starts but is in
+* Fixed: If an error happen during bootstrap, the webapp starts but is in
 a zombie state and the error page is not displayed
 (https://www.rudder-project.org/redmine/issues/1974[#1974])
 * Fixed: rudder server debug fails on SLES 11
@@ -374,7 +374,7 @@ dropdown (https://www.rudder-project.org/redmine/issues/10451[#10451])
 (https://www.rudder-project.org/redmine/issues/10452[#10452])
 * Fixed: padding-down instead of padding-bottom in rudder.css
 (https://www.rudder-project.org/redmine/issues/10465[#10465])
-* Fixed: Weird appearance of accet new nodes popup
+* Fixed: Weird appearance of accept new nodes popup
 (https://www.rudder-project.org/redmine/issues/10458[#10458])
 * Fixed: Display issue on ``Accept new Nodes'' page
 (https://www.rudder-project.org/redmine/issues/9165[#9165])
@@ -408,7 +408,7 @@ too precise (https://www.rudder-project.org/redmine/issues/9323[#9323])
 * Fixed: Cannot change schedule on Node
 (https://www.rudder-project.org/redmine/issues/10318[#10318])
 * Fixed: When trying to create a new API account that has the same name
-as an existing acocunt, nothing happen
+as an existing account, nothing happen
 (https://www.rudder-project.org/redmine/issues/10250[#10250])
 * Fixed: Setting title are barelly outstanding
 (https://www.rudder-project.org/redmine/issues/10261[#10261])
@@ -450,7 +450,7 @@ false (https://www.rudder-project.org/redmine/issues/10269[#10269])
 
 ==== Agent
 
-* Fixed: Policy loading is slow due to innefficient variable
+* Fixed: Policy loading is slow due to inefficient variable
 manipulation
 (https://www.rudder-project.org/redmine/issues/10576[#10576])
 * Fixed: On upgrade from 3.1 to 4.1, policy could not be generated any
@@ -594,7 +594,7 @@ to be parsed due to invalid sanitization of entry
 
 * Fixed: Compliance on all reports is always computed, even when not
 necessary (https://www.rudder-project.org/redmine/issues/9869[#9869])
-* Fixed: Incomplete logging in debug_timming
+* Fixed: Incomplete logging in debug_timing
 (https://www.rudder-project.org/redmine/issues/9853[#9853])
 
 ==== Web - Config management
@@ -627,7 +627,7 @@ not used for compliance computation
 
 ==== Miscellaneous
 
-* Fixed: Typo in root of policy libray tree name
+* Fixed: Typo in root of policy library tree name
 (https://www.rudder-project.org/redmine/issues/9884[#9884])
 
 ==== Agent
@@ -760,7 +760,7 @@ that does not exists anymore
 ==== Documentation
 
 * Fixed: Missing ``default ='' word in node properties expansion
-documention (https://issues.rudder.io/issues/9800[#9800])
+documentation (https://issues.rudder.io/issues/9800[#9800])
 
 ==== Server components
 
@@ -1075,7 +1075,7 @@ shows ``enforce'' in its details
 
 This version of Rudder is a final release. We have tested it thoroughly
 and believe it to be free of any major bugs. This version is now the
-latest version of Rudder (lastest ESR is still 3.1).
+latest version of Rudder (latest ESR is still 3.1).
 
 == Rudder 4.0.0~rc5 (2016-10-26)
 
@@ -1127,7 +1127,7 @@ November 4th.
 * The ``info'' icon should be replaced
 (https://issues.rudder.io/issues/9526[#9526])
 * LIttle improvements on Directive form display (bootstrap on general
-informations) (https://issues.rudder.io/issues/9509[#9509])
+information) (https://issues.rudder.io/issues/9509[#9509])
 
 ==== Documentation
 
@@ -1140,9 +1140,9 @@ informations) (https://issues.rudder.io/issues/9509[#9509])
 
 * Fixed: Compliance not display in node details from direct link
 (https://issues.rudder.io/issues/9533[#9533])
-* Fixed: Inconsitent naming of buttons in setting actions
+* Fixed: Inconsistent naming of buttons in setting actions
 (https://issues.rudder.io/issues/9532[#9532])
-* Fixed: Old icon when cleaning report datatbase
+* Fixed: Old icon when cleaning report database
 (https://issues.rudder.io/issues/9529[#9529])
 
 ==== Web - Config management
@@ -1194,7 +1194,7 @@ expectedreportsnodes table are still present
 
 * Fixed: Sometime ppkeys is not 700
 (https://issues.rudder.io/issues/9520[#9520])
-* Fixed: rudder agant post-install make an error trying to stop the
+* Fixed: rudder agent post-install make an error trying to stop the
 service (https://issues.rudder.io/issues/9519[#9519])
 * Fixed: rudder-init fails to check authorized networks
 (https://issues.rudder.io/issues/9515[#9515])
@@ -1267,7 +1267,7 @@ finished (https://issues.rudder.io/issues/9470[#9470])
 * Redesign Rudder web interface
 (https://issues.rudder.io/issues/8844[#8844]) ** New
 menu ** Responsive design ** New popups / tree / buttons ** New colors
-for compliance ** Upgraded all Javascript / css librairies, and
+for compliance ** Upgraded all Javascript / css libraries, and
 reorganized
 
 ==== Web - Nodes & inventories

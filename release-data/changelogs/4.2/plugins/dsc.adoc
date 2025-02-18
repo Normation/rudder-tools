@@ -127,7 +127,7 @@ the release enterprise-ready for deployment.
 
 * Add optional verbose logs on dsc agent
 (https://issues.rudder.io/issues/12403[#12403])
-* Add a technique to manage installed softwares on the windows agent
+* Add a technique to manage installed software on the windows agent
 (https://issues.rudder.io/issues/12494[#12494])
 * Add a variable_string_from_command GM
 (https://issues.rudder.io/issues/12492[#12492])

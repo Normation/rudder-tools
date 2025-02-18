@@ -74,7 +74,7 @@ This version provides packages for these operating systems:
 ==== Web - Config management
 
 * Fixed: Unable to save/edit a directive via rudder web ui when
-technique use an optionnal SELECT field
+technique use an optional SELECT field
 (https://issues.rudder.io/issues/8874[#8874])
 * Fixed: Typo in cf-clerk logs
 (https://issues.rudder.io/issues/8823[#8823])
@@ -838,7 +838,7 @@ post-hook execution and lead to unexpected reports
 Nameserver does not allow the use of variable
 (https://issues.rudder.io/issues/3741[#3741])
 * Fixed: Package management for RHEL / CentOS / SuSE / RPM systems: The
-number of reports about ZMD is uncorrect
+number of reports about ZMD is incorrect
 (https://issues.rudder.io/issues/3478[#3478])
 
 === Release notes
@@ -930,7 +930,7 @@ that would allow to set the suid and gid to multiple file
 
 * Fixed: Use whole path to binaries in cron from check-rudder-agent on
 AIX (https://issues.rudder.io/issues/7525[#7525])
-* Fixed: Use of nonexistant class cfengine_community makes failsafe.cf
+* Fixed: Use of nonexistent class cfengine_community makes failsafe.cf
 not copy CFEngine binaries to /var/rudder
 (https://issues.rudder.io/issues/7499[#7499])
 * Fixed: ``Update'' component of common technique sometimes return
@@ -1092,7 +1092,7 @@ SLES (https://issues.rudder.io/issues/7205[#7205])
 
 ==== Techniques
 
-* Fixed: Ssh key distribution cannot distibute several keys on one user
+* Fixed: Ssh key distribution cannot distribute several keys on one user
 (https://issues.rudder.io/issues/7254[#7254])
 
 ==== Initial promises & sys tech
@@ -1164,7 +1164,7 @@ manual (https://issues.rudder.io/issues/6603[#6603])
 * Fixed: System technique distributePolicy is not system and has two
 system var section
 (https://issues.rudder.io/issues/7138[#7138])
-* Fixed: Promise copy is not convergent: if the copy is interupted, it
+* Fixed: Promise copy is not convergent: if the copy is interrupted, it
 will never recover
 (https://issues.rudder.io/issues/7086[#7086])
 * Fixed: If the agent schedule is not every 5 minutes, inventory may not
@@ -1220,7 +1220,7 @@ consider the release enterprise-ready for deployment.
 always enabled
 (https://issues.rudder.io/issues/7064[#7064])
 * Fixed: Editing a rule category remove it from Git - rule categories
-disapear! (Ranärok ensues)
+disappear! (Ranärok ensues)
 (https://issues.rudder.io/issues/6840[#6840])
 * Fixed: Clear cache doesn’t regenerate expected reports
 (https://issues.rudder.io/issues/7080[#7080])
@@ -1357,7 +1357,7 @@ in the body runagent control
 (https://issues.rudder.io/issues/6916[#6916])
 * Fixed: Promises.st can’t load ncf on windows
 (https://issues.rudder.io/issues/6700[#6700])
-* Fixed: Nodes using syslogd coninue to report to their old server when
+* Fixed: Nodes using syslogd continue to report to their old server when
 changing their policy server
 (https://issues.rudder.io/issues/6845[#6845])
 * Fixed: Editing non-existent /etc/rsyslog.d/pgsql.conf in initial
@@ -1584,7 +1584,7 @@ compression (https://issues.rudder.io/issues/6439[#6439])
 
 * Fixed: Improve documentation of archives management
 (https://issues.rudder.io/issues/6485[#6485])
-* Fixed: Badly explain minimum requierement for Rudder in documentation
+* Fixed: Badly explain minimum requirement for Rudder in documentation
 (https://issues.rudder.io/issues/6453[#6453])
 * Fixed: Outdated chapter: Disable automatic regeneration of promises
 (https://issues.rudder.io/issues/6312[#6312])
@@ -1685,7 +1685,7 @@ the group edition page instead of adding the group to the Rule
 
 ==== Webapp - Node management
 
-* Fixed: List of impacted rules when accepting nodes or modifing
+* Fixed: List of impacted rules when accepting nodes or modifying
 directives is not accurate
 (https://issues.rudder.io/issues/5764[#5764])
 
@@ -1798,7 +1798,7 @@ with HTTP status: 413: FULL head
 
 ==== Webapp - Node management
 
-* Fixed: Cannot display software informations on accept new Nodes
+* Fixed: Cannot display software information on accept new Nodes
 (https://issues.rudder.io/issues/6155[#6155])
 * Fixed: When adding a line of search criteria, the category and field
 from the line above should be the same on the new line
@@ -1810,7 +1810,7 @@ from the line above should be the same on the new line
 
 ==== Webapp - Administration
 
-* Fixed: ``Server cannot be contacted at this time'' when tring to get
+* Fixed: ``Server cannot be contacted at this time'' when trying to get
 Event Log details
 (https://issues.rudder.io/issues/6172[#6172])
 * Fixed: Cleanup expected reports
@@ -2196,7 +2196,7 @@ package (https://issues.rudder.io/issues/5147[#5147])
 
 ==== Webapp - Config management
 
-* Fixed: Number of enties displayed in Rule table is not saved
+* Fixed: Number of entries displayed in Rule table is not saved
 (https://issues.rudder.io/issues/5615[#5615])
 * Fixed: No tooltip displayed when you add a new section in a Directive
 (https://issues.rudder.io/issues/5706[#5706])
@@ -2236,7 +2236,7 @@ wrong directory
 * Fixed: Packages are not updated correctly on redhat based systems
 (https://issues.rudder.io/issues/5608[#5608])
 * Fixed: Zypper Management Technique doesn’t behave correctly, and
-should be splitted in two separated techniques
+should be split in two separated techniques
 (https://issues.rudder.io/issues/5662[#5662])
 * Fixed: Multiline header is added at each run on managed files
 (https://issues.rudder.io/issues/4650[#4650])
@@ -2329,7 +2329,7 @@ correct takes too much time at startup
 
 ==== Windows integration
 
-* Fixed: list-comptabile-inputs doesn’t work on windows
+* Fixed: list-compatible-inputs doesn’t work on windows
 (https://issues.rudder.io/issues/5616[#5616])
 * Fixed: executor daemon command needs to be different on windows for it
 to work (https://issues.rudder.io/issues/5594[#5594])
@@ -2430,12 +2430,12 @@ regular and initial promises
 (https://issues.rudder.io/issues/5544[#5544])
 * Fixed: use list-compatible-inputs from ncf, not from tools
 (https://issues.rudder.io/issues/5527[#5527])
-* Fixed: Call list-comptible-inputs with /bin/sh
+* Fixed: Call list-compatible-inputs with /bin/sh
 (https://issues.rudder.io/issues/5519[#5519])
 * Fixed: The ``Download a file'' Technique contains a syntax error
 (https://issues.rudder.io/issues/5457[#5457])
 * Fixed: SSH Configuration Technique does not make timestamped version
-of all the version of the ssh config file, like other techiques
+of all the version of the ssh config file, like other techniques
 (https://issues.rudder.io/issues/5344[#5344])
 * Fixed: Add a placeholder for new technique on old versions
 (https://issues.rudder.io/issues/5463[#5463])
@@ -2610,7 +2610,7 @@ the service cron is not reloaded
 * Fixed: The check-rudder-agent script tries to use the stat command on
 AIX (https://issues.rudder.io/issues/5198[#5198])
 * Fixed: A whitespace added in debian/control of rudder-agent prevent it
-to be builded on Debian-like OSes
+to be built on Debian-like OSes
 (https://issues.rudder.io/issues/5380[#5380])
 * Fixed: Missing dependency on net-tools for rudder-agent and
 rudder-thin (https://issues.rudder.io/issues/5199[#5199])
@@ -2711,7 +2711,7 @@ not correct (https://issues.rudder.io/issues/5241[#5241])
 ``Server role'' is missing from search tool
 (https://issues.rudder.io/issues/5265[#5265])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Agent run may fail on nodes because some promises have not be
 correctly updated
@@ -2784,7 +2784,7 @@ released next week.
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: System Techniques does not use role rudder-relay-top
 (https://issues.rudder.io/issues/5189[#5189])
@@ -2800,7 +2800,7 @@ Parameter technique
 
 ==== System integration
 
-* Fixed: Remove uncessary question about policy server fqdn in
+* Fixed: Remove unnecessary question about policy server fqdn in
 rudder-init script
 (https://issues.rudder.io/issues/5206[#5206])
 * Fixed: Rename properties (rudder-front, rudder-webapp) in
@@ -2882,7 +2882,7 @@ released next week.
 * Only copy ``tools'' that are required for each platform
 (https://issues.rudder.io/issues/5108[#5108])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Deprecate Debian 5 support as a Rudder server
 (https://issues.rudder.io/issues/5104[#5104])
@@ -2906,17 +2906,17 @@ to /var/archives during installation
 (https://issues.rudder.io/issues/5064[#5064]), postgresql
 (https://issues.rudder.io/issues/5076[#5076])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: A typo in component-check.cf prevent agent starting on initial
 promises (https://issues.rudder.io/issues/5143[#5143])
-* Fixed: In splitted architecture, the initial promises don’t send
+* Fixed: In split architecture, the initial promises don’t send
 inventories to the proper endpoint
 (https://issues.rudder.io/issues/5120[#5120])
 * Fixed: Promises generated generated for server roles are not correct
 and are missing from initial promises
 (https://issues.rudder.io/issues/5117[#5117])
-* Fixed: Authorized networks in splitted environment, does not allow
+* Fixed: Authorized networks in split environment, does not allow
 inventory sending
 (https://issues.rudder.io/issues/5087[#5087])
 

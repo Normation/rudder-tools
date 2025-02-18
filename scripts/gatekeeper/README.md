@@ -76,7 +76,7 @@ If you have a graphical interface, run meld between source and destination to sy
 gatekeeper meld <environment>
 ```
 
-NOTE: it is recommended, if you want to have totally synchronized environnement, to copy all files and folder from rudder-source to rudder-destination
+NOTE: it is recommended, if you want to have totally synchronized environment, to copy all files and folder from rudder-source to rudder-destination
 
 
 Commit your change to the destination server:

@@ -1,6 +1,6 @@
 = OpenSCAP plugin
 
-OpenSCAP is an ecosystem that provides several tools to assist admnistrators and auditors with assessment, measurement, and enforcement of security baselines. It allows the use of different profiles aligned with different standards such as PCI-DSS.
+OpenSCAP is an ecosystem that provides several tools to assist administrators and auditors with assessment, measurement, and enforcement of security baselines. It allows the use of different profiles aligned with different standards such as PCI-DSS.
 
 The plugin aims to upload automatically the openSCAP auditing results to the Rudder Server, and, if you have the `external-reports-plugin`, to integrate these reports directly in the Rudder node webpage.
 
@@ -24,7 +24,7 @@ The Technique comes with two parameters:
 * `profile` which is the profile name you want to audit
 * `scap_file` which is the absolute path (on the node) of the SCAP content from which you will base the audit on
 
-SCAP content refers to document in the XCCDF, OVAL and Source DataStream formats. These documents can be presented in different forms and by different organizations to meet their security automation and technical implementation needs. You can find more informations on the https://github.com/ComplianceAsCode/content[ComplianceAsCode]  GitHub project.
+SCAP content refers to document in the XCCDF, OVAL and Source DataStream formats. These documents can be presented in different forms and by different organizations to meet their security automation and technical implementation needs. You can find more information on the https://github.com/ComplianceAsCode/content[ComplianceAsCode]  GitHub project.
 
 By default, available `scap_files` are located on `/usr/share/xml/scap/ssg/content/` after install of the openSCAP agent on the nodes. Given profiles for specific scap_files can be obtain with the command:
 

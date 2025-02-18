@@ -17,7 +17,7 @@
 
 * Fixed: When no filters are set, the plugin does not behave like
 expected (https://issues.rudder.io/issues/13925[#13925])
-* Fixed: Missing dependecy on python-configparser
+* Fixed: Missing dependency on python-configparser
 (https://issues.rudder.io/issues/13922[#13922])
 * Fixed: Some plugins overwrite configuration when upgrading
 (https://issues.rudder.io/issues/13575[#13575])

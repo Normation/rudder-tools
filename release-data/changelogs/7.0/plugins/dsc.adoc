@@ -83,7 +83,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 * Fixed: Use report instead of loglevel
     (https://issues.rudder.io/issues/20956[#20956])
-* Fixed: Unecessary curl options are passed to the File-From-Http-Server method
+* Fixed: Unnecessary curl options are passed to the File-From-Http-Server method
     (https://issues.rudder.io/issues/20799[#20799])
 
 ==== Techniques
@@ -226,7 +226,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== CLI
 
-* Fixed: Reports are not alligned when displayed
+* Fixed: Reports are not aligned when displayed
     (https://issues.rudder.io/issues/20213[#20213])
 
 ==== Generic methods

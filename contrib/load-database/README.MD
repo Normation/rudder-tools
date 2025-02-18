@@ -8,7 +8,7 @@ This folder contains stress testing script which generates fake reports for Rudd
 
 ## Compatibility
 
-Script load-database.py is compatible with Rudder 4.x and 5.0. It will generate exact reports for all accepted node, by reading content of table nodesconfigurations, and either insert them directly in database, or send them via syslog. It can also optionnaly generates Error and Repairs logs
+Script load-database.py is compatible with Rudder 4.x and 5.0. It will generate exact reports for all accepted node, by reading content of table nodesconfigurations, and either insert them directly in database, or send them via syslog. It can also optionally generates Error and Repairs logs
 
 Script load-database-3.x.py is compatible with Rudder 3.x. It works in a degraded mode, as it simply copies all reports from Rudder root server to the nodes, with correct NodeConfigId - so unless all the nodes have exactly the same configuration as the Rudder server root, there will be a lot of Missing and Unexpected reports
 

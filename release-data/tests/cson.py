@@ -329,7 +329,7 @@ def csons2json(csonString, indent=0):
     return toJSON(csonString, indent)
 
 def getrefvalue(dataObj, ref):
-    """ Derefernce a scope (e.g. .item.subitem) into a value """
+    """ Dereference a scope (e.g. .item.subitem) into a value """
     namespace = ref.split('.')[1:]
     keyRef = dataObj
     for name in namespace:
@@ -337,7 +337,7 @@ def getrefvalue(dataObj, ref):
     return keyRef
 
 def setrefvalue(dataObj, ref, value):
-    """ Derefernce a scope (e.g. .item.subitem) into a value """
+    """ Dereference a scope (e.g. .item.subitem) into a value """
     namespace = ref.split('.')[1:]
     keyRef = dataObj
     for name in namespace[:-1]:

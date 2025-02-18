@@ -17,7 +17,7 @@ and rc versions are listed below for convenience.
 ** Group categories
 ** Query on Nodes
 ** Compliance
-** Global API informations
+** Global API information
 * Allow to sort rules and directive execution on nodes (since 3.1.1)
 * Display compliance of each Node in Nodes list
 * Add filter boxes on Directive/Group tree in Rule details
@@ -67,7 +67,7 @@ This version provides packages for these operating systems:
 
 * Upgrade openssl to 1.0.2m
 (https://www.rudder-project.org/redmine/issues/11734[#11734])
-* Change rudder-techniques ncf depdency to a correct version
+* Change rudder-techniques ncf dependency to a correct version
 (https://www.rudder-project.org/redmine/issues/11692[#11692])
 
 === Bug fixes
@@ -271,7 +271,7 @@ the release enterprise-ready for deployment.
 
 ==== Web - UI & UX
 
-* Fixed: Wrong XML identation in event log
+* Fixed: Wrong XML indentation in event log
 (https://www.rudder-project.org/redmine/issues/10951[#10951])
 
 ==== Documentation
@@ -284,7 +284,7 @@ install/upgrade instructions
 
 * Fixed: Typo in generation error
 (https://www.rudder-project.org/redmine/issues/11232[#11232])
-* Fixed: Typo in unauthorized acces message
+* Fixed: Typo in unauthorized access message
 (https://www.rudder-project.org/redmine/issues/11182[#11182])
 * Fixed: Cannot add a directive with a " in its name in Rule
 (https://www.rudder-project.org/redmine/issues/10754[#10754])
@@ -335,7 +335,7 @@ the release enterprise-ready for deployment.
 
 ==== Architecture - Internal libs
 
-* Match non exaustive on workflow step: log on error
+* Match non exhaustive on workflow step: log on error
 (https://www.rudder-project.org/redmine/issues/10938[#10938])
 
 ==== Documentation
@@ -413,7 +413,7 @@ Chrome (https://www.rudder-project.org/redmine/issues/9780[#9780])
 
 ==== Web - Config management
 
-* Fixed: Tooltips don’t disapear on safari
+* Fixed: Tooltips don’t disappear on safari
 (https://www.rudder-project.org/redmine/issues/6145[#6145])
 * Fixed: Clearly report on template attribute with a `.' in them
 (https://www.rudder-project.org/redmine/issues/10742[#10742])
@@ -478,7 +478,7 @@ because of invalid version of nss
 (https://www.rudder-project.org/redmine/issues/9905[#9905])
 * Fixed: Infinite ``rudder is loading'' page if rudder-init didn’t run
 (https://www.rudder-project.org/redmine/issues/10567[#10567])
-* Fixed: If an error happen during boostrap, the webapp starts but is in
+* Fixed: If an error happen during bootstrap, the webapp starts but is in
 a zombie state and the error page is not displayed
 (https://www.rudder-project.org/redmine/issues/1974[#1974])
 * Fixed: rudder server debug fails on SLES 11
@@ -583,7 +583,7 @@ missing permissions
 * Fixed: Compliance display when hoverving over the compliance bar is
 too precise (https://www.rudder-project.org/redmine/issues/9323[#9323])
 * Fixed: When trying to create a new API account that has the same name
-as an existing acocunt, nothing happen
+as an existing account, nothing happen
 (https://www.rudder-project.org/redmine/issues/10250[#10250])
 
 ==== Web - Nodes & inventories
@@ -611,7 +611,7 @@ exporting / importing archive
 
 ==== Agent
 
-* Fixed: Policy loading is slow due to innefficient variable
+* Fixed: Policy loading is slow due to inefficient variable
 manipulation
 (https://www.rudder-project.org/redmine/issues/10576[#10576])
 * Fixed: On upgrade from 3.1 to 4.1, policy could not be generated any
@@ -728,11 +728,11 @@ necessary (https://www.rudder-project.org/redmine/issues/9869[#9869])
 * Fixed: expected reports, component keys
 (https://www.rudder-project.org/redmine/issues/8633[#8633])
 * Fixed: Missing ``default ='' word in node properties expansion
-documention (https://www.rudder-project.org/redmine/issues/9800[#9800])
+documentation (https://www.rudder-project.org/redmine/issues/9800[#9800])
 
 ==== Miscellaneous
 
-* Fixed: Typo in root of policy libray tree name
+* Fixed: Typo in root of policy library tree name
 (https://www.rudder-project.org/redmine/issues/9884[#9884])
 
 ==== Web - Compliance & node report
@@ -1094,9 +1094,9 @@ correctly (https://issues.rudder.io/issues/8957[#8957])
 
 ==== Builder - UI/UX
 
-* Fixed: Uneeded scrollbar when using ncf builder in an iframe
+* Fixed: Unneeded scrollbar when using ncf builder in an iframe
 (https://issues.rudder.io/issues/9164[#9164])
-* Fixed: Cannot save new generic method with some contraints
+* Fixed: Cannot save new generic method with some constraints
 (https://issues.rudder.io/issues/8981[#8981])
 * Fixed: We need to save twice after cloning a technique
 (https://issues.rudder.io/issues/8896[#8896])
@@ -1117,7 +1117,7 @@ VIRTUALMEMORY = 2297795780
 
 ==== Techniques
 
-* Fixed: Techniques use $ for paths of ressources files (ex:
+* Fixed: Techniques use $ for paths of resources files (ex:
 properties), which prevent their validation by the Web Interface during
 policies generation
 (https://issues.rudder.io/issues/9113[#9113])
@@ -1322,7 +1322,7 @@ database (https://issues.rudder.io/issues/8873[#8873])
 ==== Web - Config management
 
 * Fixed: Unable to save/edit a directive via rudder web ui when
-technique use an optionnal SELECT field
+technique use an optional SELECT field
 (https://issues.rudder.io/issues/8874[#8874])
 * Fixed: Typo in cf-clerk logs
 (https://issues.rudder.io/issues/8823[#8823])
@@ -1406,7 +1406,7 @@ give -i (https://issues.rudder.io/issues/8861[#8861])
 
 * Fixed: Some Javascript engine fails when accessing system values
 (https://issues.rudder.io/issues/8857[#8857])
-* Fixed: JS engine tests broken due to security exeception when using
+* Fixed: JS engine tests broken due to security exception when using
 jdk 1.8 (https://issues.rudder.io/issues/8856[#8856])
 
 ==== Architecture - Refactoring
@@ -2052,7 +2052,7 @@ no matching rudder-users.xml entry
 
 * Fixed: On Windows, a file c:\Program is created
 (https://issues.rudder.io/issues/8149[#8149])
-* Fixed: Environement variable fail to load on windows
+* Fixed: Environment variable fail to load on windows
 (https://issues.rudder.io/issues/8146[#8146])
 
 ==== Packaging
@@ -2419,7 +2419,7 @@ post-hook execution and lead to unexpected reports
 Nameserver does not allow the use of variable
 (https://issues.rudder.io/issues/3741[#3741])
 * Fixed: Package management for RHEL / CentOS / SuSE / RPM systems: The
-number of reports about ZMD is uncorrect
+number of reports about ZMD is incorrect
 (https://issues.rudder.io/issues/3478[#3478])
 * Fixed: syslog-ng’s loghost regex does not match with set line
 (https://issues.rudder.io/issues/7635[#7635])
@@ -2648,7 +2648,7 @@ that would allow to set the suid and gid to multiple file
 
 * Fixed: Use whole path to binaries in cron from check-rudder-agent on
 AIX (https://issues.rudder.io/issues/7525[#7525])
-* Fixed: Use of nonexistant class cfengine_community makes failsafe.cf
+* Fixed: Use of nonexistent class cfengine_community makes failsafe.cf
 not copy CFEngine binaries to /var/rudder
 (https://issues.rudder.io/issues/7499[#7499])
 * Fixed: ``Update'' component of common technique sometimes return
@@ -2698,7 +2698,7 @@ rudder-agent twice
 (https://issues.rudder.io/issues/7419[#7419])
 * Fixed: Rudder OpenLDAP Authentication sans ipv4 localhost
 (https://issues.rudder.io/issues/4922[#4922])
-* Fixed: Missing debuging information for explain_compliance
+* Fixed: Missing debugging information for explain_compliance
 (https://issues.rudder.io/issues/7353[#7353])
 * Fixed: rudder-upgrade recommends to use deprecated rudder-server-root
 init script (https://issues.rudder.io/issues/7449[#7449])
@@ -2855,7 +2855,7 @@ SLES (https://issues.rudder.io/issues/7205[#7205])
 
 ==== Techniques
 
-* Fixed: Ssh key distribution cannot distibute several keys on one user
+* Fixed: Ssh key distribution cannot distribute several keys on one user
 (https://issues.rudder.io/issues/7254[#7254])
 
 ==== Agent
@@ -2956,13 +2956,13 @@ it’s order may be lost
 * Fixed: System technique distributePolicy is not system and has two
 system var section
 (https://issues.rudder.io/issues/7138[#7138])
-* Fixed: Promise copy is not convergent: if the copy is interupted, it
+* Fixed: Promise copy is not convergent: if the copy is interrupted, it
 will never recover
 (https://issues.rudder.io/issues/7086[#7086])
 * Fixed: If the agent schedule is not every 5 minutes, inventory may not
 be sent anymore
 (https://issues.rudder.io/issues/6718[#6718])
-* Fixed: Environnement variables cannot be used on windows
+* Fixed: Environment variables cannot be used on windows
 (https://issues.rudder.io/issues/7150[#7150])
 * Fixed: send-clean.sh always wait for expiration time for signed
 inventories (https://issues.rudder.io/issues/7212[#7212])
@@ -3043,7 +3043,7 @@ run in production reliably for several months.
 always enabled
 (https://issues.rudder.io/issues/7064[#7064])
 * Fixed: Editing a rule category remove it from Git - rule categories
-disapear! (Ranärok ensues)
+disappear! (Ranärok ensues)
 (https://issues.rudder.io/issues/6840[#6840])
 * Fixed: Clear cache doesn’t regenerate expected reports
 (https://issues.rudder.io/issues/7080[#7080])
@@ -3205,7 +3205,7 @@ run in production reliably for several months.
 
 ==== Web - UI & UX
 
-* Fixed: More coherent informations on dashboard
+* Fixed: More coherent information on dashboard
 (https://issues.rudder.io/issues/6777[#6777])
 * Fixed: Broken down stats by agent version is completely out of it
 (https://issues.rudder.io/issues/6491[#6491])
@@ -3246,7 +3246,7 @@ directives (https://issues.rudder.io/issues/6907[#6907])
 * Fixed: We can’t use cf-runagent because port is not taken into account
 in the body runagent control
 (https://issues.rudder.io/issues/6916[#6916])
-* Fixed: Nodes using syslogd coninue to report to their old server when
+* Fixed: Nodes using syslogd continue to report to their old server when
 changing their policy server
 (https://issues.rudder.io/issues/6845[#6845])
 * Fixed: Editing non-existent /etc/rsyslog.d/pgsql.conf in initial
@@ -3375,7 +3375,7 @@ and believe it to be free of any major bugs.
 ==== Web - Technique editor
 
 * Fixed: Cannot save technique with ncf builder - error during the API
-call to the technique librairy reload
+call to the technique library reload
 (https://issues.rudder.io/issues/6724[#6724])
 
 ==== System integration
@@ -3463,7 +3463,7 @@ SELinux compliance
 
 * Add a rudder remote run command
 (https://issues.rudder.io/issues/6543[#6543])
-* Add rudder-agent general informations command
+* Add rudder-agent general information command
 (https://issues.rudder.io/issues/6432[#6432])
 
 ==== Web - UI & UX

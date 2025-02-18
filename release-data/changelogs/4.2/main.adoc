@@ -7,7 +7,7 @@ and rc versions are listed below for convenience.
 
 *Main new features in Rudder 4.2:*
 
-* New plugable policy generation, allowing to support new Agent or OS
+* New pluggable policy generation, allowing to support new Agent or OS
 via plugin
 * Internal support for DSC agent type (Inventory, display compatibility
 of Techniques/methods …). Policy generation is supported by separated
@@ -188,7 +188,7 @@ the machine id
 (https://www.rudder-project.org/redmine/issues/12750[#12750])
 * Fixed: Documentation should use full path to rudder-pkg for command
 examples (https://www.rudder-project.org/redmine/issues/12771[#12771])
-* Fixed: Adding missings informations for Windows plugin installation
+* Fixed: Adding missing information for Windows plugin installation
 (https://www.rudder-project.org/redmine/issues/12748[#12748])
 
 ==== Technique editor - UI/UX
@@ -441,7 +441,7 @@ report (https://www.rudder-project.org/redmine/issues/12616[#12616])
 
 ==== Packaging
 
-* Fixed: .pyc file are not cleand up during postinst
+* Fixed: .pyc file are not cleaned up during postinst
 (https://www.rudder-project.org/redmine/issues/12634[#12634])
 * Fixed: Fix flask version during build
 (https://www.rudder-project.org/redmine/issues/12541[#12541])
@@ -535,7 +535,7 @@ escaped but it should not
 * Fixed: Cannot generate policies when there is a loop in policy server
 hierharchy (stackoverflow)
 (https://www.rudder-project.org/redmine/issues/12359[#12359])
-* Fixed: Typo in agent build error ``reource''"
+* Fixed: Typo in agent build error ``resource''"
 (https://www.rudder-project.org/redmine/issues/12314[#12314])
 
 ==== Technique editor - Techniques
@@ -1001,7 +1001,7 @@ and agent (https://www.rudder-project.org/redmine/issues/11754[#11754])
 
 * Fixed: Impossible to add authorized network for relay
 (https://www.rudder-project.org/redmine/issues/11797[#11797])
-* Fixed: Category name must have 3 caracters
+* Fixed: Category name must have 3 characters
 (https://www.rudder-project.org/redmine/issues/11801[#11801])
 * Fixed: CentOS is written ``Centos'' in the OS graph on the dashboard
 (https://www.rudder-project.org/redmine/issues/11652[#11652])
@@ -1116,7 +1116,7 @@ the release enterprise-ready for deployment.
 
 ==== Packaging
 
-* Change rudder-techniques ncf depdency to a correct version
+* Change rudder-techniques ncf dependency to a correct version
 (https://www.rudder-project.org/redmine/issues/11692[#11692])
 
 ==== Web - UI & UX
@@ -1307,7 +1307,7 @@ the release enterprise-ready for deployment.
 
 ==== Web - Config management
 
-* Update generation process to make it plugable by agenttype AND by os
+* Update generation process to make it pluggable by agenttype AND by os
 (https://www.rudder-project.org/redmine/issues/11431[#11431])
 
 ==== Web - UI & UX
@@ -1343,7 +1343,7 @@ the dsc agent
 ==== Initial promises & sys tech
 
 * Fixed: Error message on classical windows agent when getting
-environement variable
+environment variable
 (https://www.rudder-project.org/redmine/issues/11435[#11435])
 
 ==== Documentation
@@ -1401,7 +1401,7 @@ deprecated ones
 ==== Web - UI & UX
 
 * Fixed: Cannot select version of directive to create if technique
-desciption contains curly braces
+description contains curly braces
 (https://www.rudder-project.org/redmine/issues/11393[#11393])
 * Fixed: Allowed networks UI is broken in Chromium
 (https://www.rudder-project.org/redmine/issues/11351[#11351])
@@ -1679,7 +1679,7 @@ version displayed
 
 ==== Web - Config management
 
-* Fixed: Typo in unauthorized acces message
+* Fixed: Typo in unauthorized access message
 (https://www.rudder-project.org/redmine/issues/11182[#11182])
 * Fixed: Cannot add a directive with a " in its name in Rule
 (https://www.rudder-project.org/redmine/issues/10754[#10754])
@@ -1757,9 +1757,9 @@ inefficient, and invalid
 
 * Fixed: In Directive details, tags input is broken on Iceweasel
 (https://www.rudder-project.org/redmine/issues/11118[#11118])
-* Fixed: Wrong XML identation in event log
+* Fixed: Wrong XML indentation in event log
 (https://www.rudder-project.org/redmine/issues/10951[#10951])
-* Fixed: Wrong XML identation in event log
+* Fixed: Wrong XML indentation in event log
 (https://www.rudder-project.org/redmine/issues/10951[#10951])
 * Fixed: Keep (open/folded) menu state in cache
 (https://www.rudder-project.org/redmine/issues/10955[#10955])
@@ -1897,7 +1897,7 @@ agent type to a node
 
 ==== Documentation
 
-* Fixed: Style broken in documention: upgrade_from_rudder_3_1_3_2_or_4_0
+* Fixed: Style broken in documentation: upgrade_from_rudder_3_1_3_2_or_4_0
 (https://www.rudder-project.org/redmine/issues/11002[#11002])
 
 ==== Miscellaneous

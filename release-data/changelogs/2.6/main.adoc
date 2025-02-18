@@ -116,7 +116,7 @@ release is marked as `old-stable' since a subsequent release (branch
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Initial promises use yum list installed to check installed
 package rather than rpm
@@ -196,7 +196,7 @@ Rudder 2.11 (https://issues.rudder.io/issues/5328[#5328])
 modification reporting is in ``No answer'' status if the file is correct
 (https://issues.rudder.io/issues/5318[#5318])
 * Fixed: Technique ``Enforce a file content'' v5.0: post-hook
-modification reporting is in ``Uknown'' status if we request a mix of
+modification reporting is in ``Unknown'' status if we request a mix of
 insertion, deletion and/or replacement
 (https://issues.rudder.io/issues/5312[#5312])
 * Fixed: Technique ``User Management'' v3.0: If the password is not set,
@@ -257,7 +257,7 @@ group creation even if option is not set
 using the same name already exists
 (https://issues.rudder.io/issues/4270[#4270])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Initial promises on server cause an error to be logged due to
 duplicate ``empty_file_before_editing'' setting
@@ -288,7 +288,7 @@ unrecognized option `–rfc-3339=second’''
 (https://issues.rudder.io/issues/4998[#4998])
 * Fixed: The documentation gives no examples about role management in
 Rudder (https://issues.rudder.io/issues/4960[#4960])
-* Fixed: Procedure on how to update the Technique Librairy is invalid
+* Fixed: Procedure on how to update the Technique Library is invalid
 (https://issues.rudder.io/issues/4822[#4822])
 
 === Release notes
@@ -328,7 +328,7 @@ lot of warnings about that
 * Fixed: Automatic reparation method for cf_lock. is only checked once
 an hour (https://issues.rudder.io/issues/4812[#4812])
 * Fixed: Reports are not inserted into Rudder because regexp in rsyslog
-is too greedy when matching execuction timestamp
+is too greedy when matching execution timestamp
 (https://issues.rudder.io/issues/4761[#4761])
 
 ==== Inventory (webapp, Fusion)
@@ -430,7 +430,7 @@ https://www.rudder-project.org/site/documentation/faq/#what_is_the_versioning_po
 insteractive question
 (https://issues.rudder.io/issues/4599[#4599])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Last update detection is broken, causing cron remove cf_lock
 database and flood with emails every 5 minutes
@@ -577,7 +577,7 @@ web interface (https://issues.rudder.io/issues/4500[#4500])
 * Fixed: Variables from /etc/profile and /etc/profile.d files are not
 passed to the inventory environment
 (https://issues.rudder.io/issues/4493[#4493])
-* Fixed: When new inventory is processed, hardware Node informations may
+* Fixed: When new inventory is processed, hardware Node information may
 not be updated
 (https://issues.rudder.io/issues/4440[#4440])
 * Fixed: Process start date are not parsed correctly when parsing
@@ -617,7 +617,7 @@ page (https://issues.rudder.io/issues/4495[#4495])
 making a new archive of the configuration
 (https://issues.rudder.io/issues/4479[#4479])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Log file about non compliant reports is not managed by
 logrotate on Red Hat-like Rudder server
@@ -816,7 +816,7 @@ availability of the release.
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: The rsyslog version > 5.7.1 drops messages if there is more
 than 200 messages in 5 seconds and could lead to `No Answer' status of
@@ -824,7 +824,7 @@ all nodes (https://issues.rudder.io/issues/4127[#4127])
 
 ==== Logging
 
-* Fixed: Disabling workflow functionnality should disable change
+* Fixed: Disabling workflow functionality should disable change
 request, however a log about change request is still displayed
 (https://issues.rudder.io/issues/4143[#4143])
 
@@ -895,7 +895,7 @@ packaged on promises updates lead to have `No answer' states after a
 modification of packages in Directive
 (https://issues.rudder.io/issues/4145[#4145])
 * Fixed: Remove comma after the promiser from passwordCheck in the
-distirbutePolicy promises
+distributePolicy promises
 (https://issues.rudder.io/issues/4040[#4040])
 * Fixed: The failsafe of the initial promises cannot update promises
 (https://issues.rudder.io/issues/4025[#4025])
@@ -1022,7 +1022,7 @@ unfortunately did not meet our quality and assurance requirements.
 
 ==== Techniques
 
-* Prevent the /etc/cron.d/rudder-agent script from sending unsollicited
+* Prevent the /etc/cron.d/rudder-agent script from sending unsolicited
 e-mails (https://issues.rudder.io/issues/3944[#3944])
 * Technique ``Package management for RHEL / CentOS / (SuSE / RPM
 systems'' v4.1: Backport from Rudder 2.6 to Rudder 2.4
@@ -1038,7 +1038,7 @@ the beginning or the end of the file
 
 ==== Documentation
 
-* Add Advices to separate partitions in server installation section
+* Add advises to separate partitions in server installation section
 (https://issues.rudder.io/issues/3932[#3932])
 
 === Bug fixes
@@ -1221,7 +1221,7 @@ SUID and SGID to files copied
 Rudder (https://issues.rudder.io/issues/3009[#3009])
 * Explain how to migrate a server to another machine
 (https://issues.rudder.io/issues/2958[#2958])
-* Add informations about the rsync modules of rudder-project
+* Add information about the rsync modules of rudder-project
 (https://issues.rudder.io/issues/3831[#3831])
 
 === Bug fixes
@@ -1232,7 +1232,7 @@ Rudder (https://issues.rudder.io/issues/3009[#3009])
 sometimes fails with a message saying it is corrupted
 (https://issues.rudder.io/issues/3884[#3884])
 * Fixed: Promises are not updated when running agent too often (< 5
-minutes beteween 2 executions)
+minutes between 2 executions)
 (https://issues.rudder.io/issues/3849[#3849])
 * Fixed: Backport the git lock erase promise if older than 5 minutes
 from 2.5 to 2.4
@@ -1279,7 +1279,7 @@ LDAP directory, aborting
 LDAP (https://issues.rudder.io/issues/3834[#3834],
 (https://issues.rudder.io/issues/3836[#3836],
 (https://issues.rudder.io/issues/3837[#3837])
-* Fixed: OS Full name should be queriable
+* Fixed: OS Full name should be queryable
 (https://issues.rudder.io/issues/3835[#3835])
 
 ==== Packaging
@@ -1367,7 +1367,7 @@ polished version.
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Use cron.d instead of the crontab to store Rudder cron entry (also in
 initial promises)
@@ -1379,7 +1379,7 @@ promises (https://issues.rudder.io/issues/3730[#3730])
 
 * Non compliant reports flood the Rudder logs on a new installation
 (https://issues.rudder.io/issues/3655[#3655])
-* Some debug logs informations about concurrent access were wrong
+* Some debug logs information about concurrent access were wrong
 (https://issues.rudder.io/issues/3641[#3641])
 
 ==== Inventory (webapp, Fusion)
@@ -1509,7 +1509,7 @@ more polished version.
 
 ==== Inventory (webapp, Fusion)
 
-* When a node has two intefaces with the same IP, it does not appear as
+* When a node has two interfaces with the same IP, it does not appear as
 pending node in Rudder [WebUI](WebUI) +
 and can’t be accepted
 (https://issues.rudder.io/issues/3626[#3626])
@@ -1683,7 +1683,7 @@ confirm change
 (https://issues.rudder.io/issues/3554[#3554])
 * Change Request event logs created even when change requests are
 disabled (https://issues.rudder.io/issues/3553[#3553])
-* On change request page, no menus are higlighted
+* On change request page, no menus are highlighted
 (https://issues.rudder.io/issues/3508[#3508])
 
 ==== Webapp - Node management
@@ -1758,7 +1758,7 @@ over time yet. The current ``stable'' release is still 2.4.*.
 
 ==== Webapp - Administration
 
-* Utilities menu is not shwon without workflow
+* Utilities menu is not shown without workflow
 (https://issues.rudder.io/issues/3530[#3530])
 * Choice reset if there is an error in next step popup
 (https://issues.rudder.io/issues/3507[#3507])
@@ -1842,7 +1842,7 @@ practices for Technique redaction
 (https://issues.rudder.io/issues/3474[#3474])
 * Improve change request owner
 (https://issues.rudder.io/issues/3455[#3455])
-* Improve User authorization for worklow
+* Improve User authorization for workflow
 (https://issues.rudder.io/issues/3440[#3440])
 
 ==== Webapp - Node management

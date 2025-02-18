@@ -28,7 +28,7 @@ Config.DISCUSSION_CODE = 4
 Config.REDMINE_VERSION_DETECTOR = [ (r'master', r'master', False), (r'(\d+\.\d+)-.*', r'\1', True), (r'(\d+\.\d+).*', r'\1', False) ]
 
 class Issue:
-  """Class to hold informations about a single issue"""
+  """Class to hold information about a single issue"""
   def __init__(self, name, must_be_open=True):
     """name is a string like: 1234 or i1234"""
     self.must_be_open = must_be_open
@@ -84,7 +84,7 @@ class Issue:
       return None
 
   def _get_info(self):
-    """Get issue informations from redmine"""
+    """Get issue information from redmine"""
     if self.info is not None:
       return self.info
     # Find issue in redmine

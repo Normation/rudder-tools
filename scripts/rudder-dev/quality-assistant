@@ -18,7 +18,7 @@ Usage:
 Options:
         alt-dir : after waiting on a lock, use alternate directory instead of failing
 
-        merge <repo>: merge all PR that are tagged "Ready for merge" for theis repo
+        merge <repo>: merge all PR that are tagged "Ready for merge" for this repo
 
         merge all: do a merge on all known repositories
 
@@ -100,7 +100,7 @@ def clean_repo(repo, alt_dir):
       os.chdir(workdir)
       shell(rudder_dev_cmd() + " clone "+repo+redirect, "Cloning "+repo+" in a temporary directory")
     else:
-      print("Lockfile " + lockfile + " is present, stoping")
+      print("Lockfile " + lockfile + " is present, stopping")
       exit(1)
 
   # cleanup working directory
@@ -196,7 +196,7 @@ def reassign(pr):
           if Config.LOGLEVEL == "debug":
             print("Found previous owner, reassigning " + pr.url + " to redmine user " + str(uid))
         return
- 
+
 def kant_merge():
   quotes = [
           "Science is organized knowledge. Wisdom is organized life.",
@@ -229,7 +229,7 @@ def pr_merge(repo, url, alt_dir, jobid):
   if code == 127:
     # extract 15 first lines of (error then output) to limit comment size
     lines = (log).split('\n')
-    msg = "\n" . join(lines[:5]) + "\n[...]\n" + "\n".join(lines[-10:]) 
+    msg = "\n" . join(lines[:5]) + "\n[...]\n" + "\n".join(lines[-10:])
     comment="""This PR breaks """ + Config.QA_TEST + """
 ```
 """ + msg + """
@@ -343,7 +343,7 @@ def pr_cleanup(repo):
     #  print("forgotten pr @"+" @".join(reviewers))
     #if unmergeable and update_age > 1 and can_ping:
     #  print("Your pr is not mergeable anymore @"+author)
- 
+
 
 def pr_cleanup_all():
   for repo in Config.REPOSITORIES:

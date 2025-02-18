@@ -104,7 +104,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/19696[#19696])
 * Use https repos in maven config
     (https://issues.rudder.io/issues/19165[#19165])
-* Adapt rudder plugins makefile so that we make release based on new versionning scheme
+* Adapt rudder plugins makefile so that we make release based on new versioning scheme
     (https://issues.rudder.io/issues/18558[#18558])
 
 ==== Documentation

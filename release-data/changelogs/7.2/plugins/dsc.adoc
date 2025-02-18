@@ -42,7 +42,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: Typo in the reporting message of powershell_execution in repaired cases
     (https://issues.rudder.io/issues/22854[#22854])
-* Fixed: file from shared forlder fails badly if the file doesn't exist on the shared folder
+* Fixed: file from shared folder fails badly if the file doesn't exist on the shared folder
     (https://issues.rudder.io/issues/21685[#21685])
 
 === Release notes
@@ -82,7 +82,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
     (https://issues.rudder.io/issues/22863[#22863])
 * Fixed: Audit from Powershell execution documentation is truncated in the technique editor
     (https://issues.rudder.io/issues/22858[#22858])
-* Fixed: File_lines_present fails to identify missings lines when they are a sub string of an already written line in the target path
+* Fixed: File_lines_present fails to identify missing lines when they are a sub string of an already written line in the target path
     (https://issues.rudder.io/issues/22799[#22799])
 
 ==== Agent library
@@ -381,7 +381,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Rudder web app
 
-* Resurect DSC policy generation test for rudder 7.1
+* Resurrect DSC policy generation test for rudder 7.1
     (https://issues.rudder.io/issues/21483[#21483])
 
 ==== Miscellaneous
@@ -529,7 +529,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Agent library
 
-* Add logging and Rudder report writter to the rudderLib
+* Add logging and Rudder report written to the rudderLib
     (https://issues.rudder.io/issues/21294[#21294])
 * Add a code formatter for F#
     (https://issues.rudder.io/issues/21273[#21273])

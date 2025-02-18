@@ -7,9 +7,9 @@ usage() {
   echo "Usage $0 [add-repository|setup-local|test-local] <ncf_version> <cfengine_version> [test-target] [--testinfra]"
   echo "  $0 test-pr <ncf_version> <cfengine_version> <pull_request_id> [test-target] [--testinfra]"
 
-  echo "  Adds a repository and setup ncf on your OS" 
+  echo "  Adds a repository and setup ncf on your OS"
   echo "  Should work on as many OS as possible"
-  echo "  Currently suported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
+  echo "  Currently supported : Debian, Ubuntu, RHEL, Fedora, Centos, Amazon, Oracle, SLES"
   echo "  ncf_version ex: 1.0.0.201607292014, rudder-3.1, git@github.com:Normation/ncf.git#master"
   echo "  cfengine_version ex: 3.6.6 3.7.1 rudder-3.1 ci/rudder-3.2.1"
   echo "  test-target: test, test-unsafe"

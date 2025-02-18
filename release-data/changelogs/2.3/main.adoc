@@ -328,7 +328,7 @@ Directive (#2816)
 the button `Update' has never been used (#2798)
 * Fix acceptance of inventories if using a strict umask on system of
 Rudder server (#2767)
-* Add more informations in the webapp log file when trying to load
+* Add more information in the webapp log file when trying to load
 Policy Templates fails (#2633)
 * Fix reports which were not received in Rudder if backslash was used in
 some Policy Instances variables (#2582)
@@ -451,7 +451,7 @@ the entier /etc/hosts file contents is now configurable in the UI
 (#2614, #2606, #2600, #2555, #2553, #2488, #2485)
 * Various fixes for Windows compatibility (#2562, #2561, #2554, #2498)
 
-=== Contibutors
+=== Contributors
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make Rudder a better tool:
@@ -553,7 +553,7 @@ contain double quotes that would break CFEngine generated promises
 * Various fixes in reporting, variable definition and descriptions
 #2481, #2467, #2435, #2416, #2393, #2374, #2343, #2225, #1905)
 
-=== Contibutors
+=== Contributors
 
 Special thanks go out to the following individuals who invested time,
 patience, testing, patches or bug reports to make Rudder a better tool:

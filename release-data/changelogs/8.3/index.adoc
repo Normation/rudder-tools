@@ -1,7 +1,7 @@
 
 = Change logs for Rudder 8.3
 
-Rudder 8.3 is currently the developement version of Rudder.
+Rudder 8.3 is currently the development version of Rudder.
 You can test it using development builds, but not use it in production.
 
 == 💾 Installing, upgrading and testing

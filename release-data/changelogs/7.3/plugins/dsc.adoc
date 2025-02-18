@@ -258,7 +258,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Typo in the reporting message of powershell_execution in repaired cases
     (https://issues.rudder.io/issues/22854[#22854])
-* Fixed: file from shared forlder fails badly if the file doesn't exist on the shared folder
+* Fixed: file from shared folder fails badly if the file doesn't exist on the shared folder
     (https://issues.rudder.io/issues/21685[#21685])
 
 === Release notes
@@ -312,9 +312,9 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
     (https://issues.rudder.io/issues/22863[#22863])
 * Fixed: Audit from Powershell execution documentation is truncated in the technique editor
     (https://issues.rudder.io/issues/22858[#22858])
-* Fixed: File_lines_present fails to identify missings lines when they are a sub string of an already written line in the target path
+* Fixed: File_lines_present fails to identify missing lines when they are a sub string of an already written line in the target path
     (https://issues.rudder.io/issues/22799[#22799])
-* Fixed: Condition_from_command fails to report the correct errors in case of multiple exception throwed in the same method call
+* Fixed: Condition_from_command fails to report the correct errors in case of multiple exception thrown in the same method call
     (https://issues.rudder.io/issues/22795[#22795])
 
 ==== ci
@@ -430,7 +430,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Allow the msi to do MajorUpgrade on nightly builds
     (https://issues.rudder.io/issues/22582[#22582])
-* Fixed: The name of the Rudder sofware did change, it must not
+* Fixed: The name of the Rudder software did change, it must not
     (https://issues.rudder.io/issues/22555[#22555])
 
 ==== CLI
@@ -502,7 +502,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Missing rudder agent factory reset on windows agent
     (https://issues.rudder.io/issues/22454[#22454])
-* Fixed: when rudder agent is disabled, we can still run it 
+* Fixed: when rudder agent is disabled, we can still run it
     (https://issues.rudder.io/issues/21596[#21596])
 * Fixed: rudder agent server-keys-reset does throw errors at execution
     (https://issues.rudder.io/issues/21231[#21231])
@@ -522,7 +522,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Load inputs from system techniques
     (https://issues.rudder.io/issues/22222[#22222])
-* Remove the directives.ps1 and system-direcitves.ps1 from the dsc-common bundle
+* Remove the directives.ps1 and system-directives.ps1 from the dsc-common bundle
     (https://issues.rudder.io/issues/22238[#22238])
 
 ==== Packaging
@@ -538,7 +538,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== System techniques
 
-* Update the system techiques to the standard generation format
+* Update the system techniques to the standard generation format
     (https://issues.rudder.io/issues/22275[#22275])
 
 ==== Agent library

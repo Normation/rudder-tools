@@ -213,7 +213,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Documentation
 
-* Fixed: Documention should advice to trigger agent run after promote a node to relay
+* Fixed: Documentation should advice to trigger agent run after promote a node to relay
     (https://issues.rudder.io/issues/25967[#25967])
 * Fixed: Update example to keep up to date rudder-agent package
     (https://issues.rudder.io/issues/25905[#25905])
@@ -254,7 +254,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Architecture - Dependencies
 
-* Fixed: Remove security check on a js dev dependency 
+* Fixed: Remove security check on a js dev dependency
     (https://issues.rudder.io/issues/25937[#25937])
 
 ==== Web - UI & UX
@@ -268,7 +268,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 * Fixed: Locale issue: date picker should be in yyyy/MM/dd in group criteria
     (https://issues.rudder.io/issues/25727[#25727])
-* Fixed: After restart, nodes that were set back to default policy mode return to their previous overriden mode
+* Fixed: After restart, nodes that were set back to default policy mode return to their previous overridden mode
     (https://issues.rudder.io/issues/25866[#25866])
 
 ==== Architecture - Code maintenance
@@ -391,7 +391,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: OIDC users are marked as deleted after a new user is provisionned
+* Fixed: OIDC users are marked as deleted after a new user is provisioned
     (https://issues.rudder.io/issues/25681[#25681])
 * Fixed: Bad postgresql time conversion for event log cleaning
     (https://issues.rudder.io/issues/25782[#25782])
@@ -436,7 +436,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Agent
 
-* Fixed: APT update output mis-handles interactive output
+* Fixed: APT update output miss-handles interactive output
     (https://issues.rudder.io/issues/25751[#25751])
 * Fixed: Update schedule is not sen anymore
     (https://issues.rudder.io/issues/25747[#25747])
@@ -515,7 +515,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Web - UI & UX
 
-* Add notifications on copy to clipboard 
+* Add notifications on copy to clipboard
     (https://issues.rudder.io/issues/25602[#25602])
 
 ==== Architecture - Code maintenance
@@ -534,13 +534,13 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 * Fixed: Disable apt feature on Slackware
     (https://issues.rudder.io/issues/25629[#25629])
-* Fixed: Error buiding system-updates on debian 12
+* Fixed: Error building system-updates on debian 12
     (https://issues.rudder.io/issues/25615[#25615])
 * Fixed: Missing apt feature in system updates module
     (https://issues.rudder.io/issues/25613[#25613])
 * Fixed: Pass an argument to CFEngine custom promise type binaries - 8.2
     (https://issues.rudder.io/issues/25571[#25571])
-* Fixed: Take cargo fetures without the option
+* Fixed: Take cargo features without the option
     (https://issues.rudder.io/issues/25616[#25616])
 * Fixed: Set build limit to 2 jobs for Rust programs
     (https://issues.rudder.io/issues/25541[#25541])
@@ -666,7 +666,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25650[#25650])
 * Fixed: No system status in 8.2
     (https://issues.rudder.io/issues/25508[#25508])
-* Fixed: worst report by percentage seems to be non fonctionnal
+* Fixed: worst report by percentage seems to be non functional
     (https://issues.rudder.io/issues/25513[#25513])
 * Fixed: Technical logs are not loaded when visiting the tab - rudder 8.1
     (https://issues.rudder.io/issues/24332[#24332])
@@ -698,7 +698,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25456[#25456])
 * Fixed: User password and permission change should invalidate sessions
     (https://issues.rudder.io/issues/25407[#25407])
-* Fixed: Invalidated user sessions need to have an endcause and user should be notified 
+* Fixed: Invalidated user sessions need to have an endcause and user should be notified
     (https://issues.rudder.io/issues/25443[#25443])
 
 ==== Techniques
@@ -747,7 +747,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Web - Nodes & inventories
 
-* Add an optional visibility attribute on node property 
+* Add an optional visibility attribute on node property
     (https://issues.rudder.io/issues/25369[#25369])
 
 ==== Agent
@@ -775,7 +775,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25257[#25257])
 * Fixed: rust build-caching breaks hosts without rust
     (https://issues.rudder.io/issues/25206[#25206])
-* Fixed: do not build rust items on sustems that do not support it
+* Fixed: do not build rust items on systems that do not support it
     (https://issues.rudder.io/issues/25205[#25205])
 * Fixed: Changes for modules packaging
     (https://issues.rudder.io/issues/25342[#25342])
@@ -808,7 +808,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25371[#25371])
 * Fixed: Event logs details look broken in 8.1
     (https://issues.rudder.io/issues/25071[#25071])
-* Fixed: Nodes table sorting is not obvious and we need to guess the sort column and direction 
+* Fixed: Nodes table sorting is not obvious and we need to guess the sort column and direction
     (https://issues.rudder.io/issues/25136[#25136])
 * Fixed: Some minor UI issues in node property usage search
     (https://issues.rudder.io/issues/25333[#25333])
@@ -816,7 +816,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25326[#25326])
 * Fixed: User management 'providers' column is still missing when there are multiple values
     (https://issues.rudder.io/issues/25299[#25299])
-* Fixed: Only remaining user managed by file cannot be deleted 
+* Fixed: Only remaining user managed by file cannot be deleted
     (https://issues.rudder.io/issues/25300[#25300])
 * Fixed: User management table always shows additional 'no_rights' authorization
     (https://issues.rudder.io/issues/25296[#25296])
@@ -888,7 +888,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== System integration
 
-* Fixed: One user is created each case change even if case sensivity if false
+* Fixed: One user is created each case change even if case sensitivity if false
     (https://issues.rudder.io/issues/24955[#24955])
 
 ==== Security
@@ -1140,7 +1140,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
 
 
-Rudder 8.2 is currently the developement version of Rudder.
+Rudder 8.2 is currently the development version of Rudder.
 You can test it using development builds, but not use it in production.
 
 This page provides a summary of changes for each version. Previous beta

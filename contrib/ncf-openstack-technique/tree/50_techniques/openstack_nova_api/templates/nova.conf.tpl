@@ -3824,7 +3824,7 @@ lock_path=/var/lib/nova/tmp
 # Deprecated group;name - [amqp1]/trace
 #trace=false
 
-# CA certificate PEM file for verifing server certificate (string value)
+# CA certificate PEM file for verifying server certificate (string value)
 # Deprecated group;name - [amqp1]/ssl_ca_file
 #ssl_ca_file =
 

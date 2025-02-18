@@ -1,0 +1,6 @@
+[files]
+extend-exclude = [ "*.ocs", "Jenkinsfile", "rcli.py", "lib.sh", "dirdiff.vim", "rudder-security.asc"  ]
+
+[default]
+extend-ignore-re = [ "-passin", "iSER", "hax" ]
+

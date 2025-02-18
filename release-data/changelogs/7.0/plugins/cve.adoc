@@ -43,7 +43,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: Fix complitation issues and remove id from api calls
+* Fixed: Fix compilation issues and remove id from api calls
     (https://issues.rudder.io/issues/20890[#20890])
 
 === Release notes

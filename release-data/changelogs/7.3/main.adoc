@@ -12,7 +12,7 @@
 
 ==== Architecture - Code maintenance
 
-* pylint test failing on rudder package 
+* pylint test failing on rudder package
     (https://issues.rudder.io/issues/24982[#24982])
 
 ==== Architecture - Internal libs
@@ -139,7 +139,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - Maintenance
 
-* Fixed: Webapp can fail to start with null sessionid error 
+* Fixed: Webapp can fail to start with null sessionid error
     (https://issues.rudder.io/issues/24017[#24017])
 * Fixed: Missing event for Relay Demote preventing demotion
     (https://issues.rudder.io/issues/24596[#24596])
@@ -153,7 +153,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Disabled provisioned users can still login and use Rudder
     (https://issues.rudder.io/issues/24691[#24691])
-* Fixed: Ignore RUSTSEC-2024-0332 
+* Fixed: Ignore RUSTSEC-2024-0332
     (https://issues.rudder.io/issues/24678[#24678])
 * Fixed: Update dependencies to manage CVE-2024-1597  CVE-2024-22257 and CVE-2024-22243
     (https://issues.rudder.io/issues/24607[#24607])
@@ -202,7 +202,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: Existing deleted user managed by file cannot be reactivated 
+* Fixed: Existing deleted user managed by file cannot be reactivated
     (https://issues.rudder.io/issues/24318[#24318])
 
 ==== Techniques
@@ -301,7 +301,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - Maintenance
 
-* Fixed: Archiving allows to read inconsistent active technique category ids 
+* Fixed: Archiving allows to read inconsistent active technique category ids
     (https://issues.rudder.io/issues/24011[#24011])
 
 ==== API
@@ -401,7 +401,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - Config management
 
-* Fixed: Static group which depends on dynamic subgroup must be forbiden
+* Fixed: Static group which depends on dynamic subgroup must be forbidden
     (https://issues.rudder.io/issues/18952[#18952])
 * Fixed: Rudder agent scheduled runs are not triggered at regular interval
     (https://issues.rudder.io/issues/23956[#23956])
@@ -430,7 +430,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Techniques
 
-* Fixed: File content directive add 4 spaces at the beginning of the line 
+* Fixed: File content directive add 4 spaces at the beginning of the line
     (https://issues.rudder.io/issues/24022[#24022])
 * Fixed: FileTemplate technique fails with an error on the Directory-Create method call
     (https://issues.rudder.io/issues/23954[#23954])
@@ -568,7 +568,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - UI & UX
 
-* The "Required/May be empy" button in the parameters of a technique is not intuitive enough
+* The "Required/May be empty" button in the parameters of a technique is not intuitive enough
     (https://issues.rudder.io/issues/23610[#23610])
 * After creating a change request, give the user a redirection link to its details
     (https://issues.rudder.io/issues/23443[#23443])
@@ -617,7 +617,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Several low impact CVE in Jetty 10.0.12
     (https://issues.rudder.io/issues/23608[#23608])
-* Fixed: Assessments of several low impact CVE in current 7.3.x reported by contrastsecurity tool 
+* Fixed: Assessments of several low impact CVE in current 7.3.x reported by contrastsecurity tool
     (https://issues.rudder.io/issues/23609[#23609])
 
 ==== Documentation
@@ -659,12 +659,12 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Last modified attribute of change request is always "unknown"
     (https://issues.rudder.io/issues/19317[#19317])
-* Fixed: PostgreSQL error doobie.util.invariant$UnexpectedEnd$ 
+* Fixed: PostgreSQL error doobie.util.invariant$UnexpectedEnd$
     (https://issues.rudder.io/issues/22527[#22527])
 
 ==== Web - Config management
 
-* Fixed: Tag are not displayed with a nice diff in eventLog 
+* Fixed: Tag are not displayed with a nice diff in eventLog
     (https://issues.rudder.io/issues/15019[#15019])
 * Fixed: Quotes in group name generate JS errors when using GroupId criteria
     (https://issues.rudder.io/issues/23320[#23320])
@@ -686,7 +686,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - Compliance & node report
 
-* Fixed: Focus reporting is not working 
+* Fixed: Focus reporting is not working
     (https://issues.rudder.io/issues/23466[#23466])
 
 ==== Generic methods
@@ -758,7 +758,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: Make writing node state to fact repos optionnal
+* Fixed: Make writing node state to fact repos optional
     (https://issues.rudder.io/issues/23424[#23424])
 
 ==== Web - UI & UX
@@ -773,7 +773,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
     (https://issues.rudder.io/issues/23183[#23183])
 * Fixed: Tables in Rudder UI are sorted alphabetically but should also follow a numerical sort
     (https://issues.rudder.io/issues/23335[#23335])
-* Fixed: Inconsitency background color in generic method section in technique editor
+* Fixed: Inconsistency background color in generic method section in technique editor
     (https://issues.rudder.io/issues/23170[#23170])
 * Fixed: Inconsistent color of save button in directives
     (https://issues.rudder.io/issues/23196[#23196])
@@ -787,7 +787,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - Maintenance
 
-* Fixed: Plugin cannot add custom roles or it will be overwritten by boot custom roles 
+* Fixed: Plugin cannot add custom roles or it will be overwritten by boot custom roles
     (https://issues.rudder.io/issues/23098[#23098])
 
 ==== Architecture - Code maintenance
@@ -883,7 +883,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: doc for external db is not very clear
     (https://issues.rudder.io/issues/23245[#23245])
-* Fixed: Wrong OS for amazon linux 2023 server install 
+* Fixed: Wrong OS for amazon linux 2023 server install
     (https://issues.rudder.io/issues/23242[#23242])
 * Fixed: correct rudder server requirements in doc
     (https://issues.rudder.io/issues/23131[#23131])
@@ -902,7 +902,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== System integration
 
-* Fixed: Windows agent cannot get immediatly its policies right after being accepted
+* Fixed: Windows agent cannot get immediately its policies right after being accepted
     (https://issues.rudder.io/issues/23218[#23218])
 
 ==== Web - Config management
@@ -929,7 +929,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Server components
 
-* Fixed: Broken "server create-user" command when auth file has different formating
+* Fixed: Broken "server create-user" command when auth file has different formatting
     (https://issues.rudder.io/issues/23203[#23203])
 
 === Release notes
@@ -959,7 +959,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Performance and scalability
 
-* Make commiting nodes to fact-repo optionnal
+* Make committing nodes to fact-repo optional
     (https://issues.rudder.io/issues/23045[#23045])
 
 ==== Web - UI & UX
@@ -990,7 +990,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Documentation
 
-* Fixed: Add relevent items from jetty config to the webapp conf section
+* Fixed: Add relevant items from jetty config to the webapp conf section
     (https://issues.rudder.io/issues/23026[#23026])
 * Fixed: Document the report mode setting
     (https://issues.rudder.io/issues/13289[#13289])
@@ -1003,7 +1003,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Web - Compliance & node report
 
-* Fixed: Bad report maching when reportid are present
+* Fixed: Bad report matching when reportid are present
     (https://issues.rudder.io/issues/22388[#22388])
 * Fixed: Multiline string in component name or value breaks pattern comparison for expected report
     (https://issues.rudder.io/issues/23090[#23090])
@@ -1073,7 +1073,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Generic methods
 
-* Add a methd to force the secondary groups of a user
+* Add a method to force the secondary groups of a user
     (https://issues.rudder.io/issues/22722[#22722])
 
 === Bug fixes
@@ -1338,12 +1338,12 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Packaging
 
-* Fixed: Rudder agent force a lot of dependencies on RHEL9 
+* Fixed: Rudder agent force a lot of dependencies on RHEL9
     (https://issues.rudder.io/issues/22610[#22610])
 
 ==== Miscellaneous
 
-* Fixed: Ignore CVE 2023-20860 
+* Fixed: Ignore CVE 2023-20860
     (https://issues.rudder.io/issues/22708[#22708])
 * Fixed: Missing "latest" in archive API tests leads to error with upmerge
     (https://issues.rudder.io/issues/22636[#22636])
@@ -1439,7 +1439,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
     (https://issues.rudder.io/issues/22677[#22677])
 * Fixed: report_if_condition report contain twice "was correct"
     (https://issues.rudder.io/issues/22665[#22665])
-* Fixed: Missleading use of parameter variable_name in method condition_from_variable_match
+* Fixed: Misleading use of parameter variable_name in method condition_from_variable_match
     (https://issues.rudder.io/issues/22620[#22620])
 
 === Release notes
@@ -1531,7 +1531,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: Update doc for 7.3
     (https://issues.rudder.io/issues/22607[#22607])
-* Fixed: Add rudder agent verbose command in windows install 
+* Fixed: Add rudder agent verbose command in windows install
     (https://issues.rudder.io/issues/22598[#22598])
 * Fixed: Typo in windows msiexec command in documentation
     (https://issues.rudder.io/issues/22554[#22554])
@@ -1632,7 +1632,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== System integration
 
-* Fixed: server-create-user uses old role attribte in place of new permissions one
+* Fixed: server-create-user uses old role attribute in place of new permissions one
     (https://issues.rudder.io/issues/22498[#22498])
 * Fixed: Parent fix does not work: Fusioninventory is not tracked by check-rudder-health
     (https://issues.rudder.io/issues/11102[#11102])
@@ -1652,7 +1652,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Agent
 
-* Remove the fallback on "rudder" host when no policy server is configued
+* Remove the fallback on "rudder" host when no policy server is configured
     (https://issues.rudder.io/issues/22407[#22407])
 
 ==== Documentation
@@ -1798,7 +1798,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Architecture - Refactoring
 
-* Fixed: Remove pattern matching warning 
+* Fixed: Remove pattern matching warning
     (https://issues.rudder.io/issues/22424[#22424])
 
 ==== Web - Compliance & node report
@@ -1826,14 +1826,14 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 * Fixed: A 6.2 relay cannot talk to a 7.2 server through HTTPS
     (https://issues.rudder.io/issues/22402[#22402])
-* Fixed: Changes only does not support campaign reports 
+* Fixed: Changes only does not support campaign reports
     (https://issues.rudder.io/issues/22240[#22240])
 
 ==== Generic methods
 
 * Fixed: file key value parameter in list accepts entries without separator
     (https://issues.rudder.io/issues/22322[#22322])
-* Fixed: Descriptin of permissions dirs recursive is misleading
+* Fixed: Description of permissions dirs recursive is misleading
     (https://issues.rudder.io/issues/17122[#17122])
 
 ==== Agent

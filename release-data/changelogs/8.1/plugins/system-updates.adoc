@@ -134,9 +134,9 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Add extra informations on each Windows update when installed
+* Add extra information on each Windows update when installed
     (https://issues.rudder.io/issues/24947[#24947])
-* Handle new informations of package state 
+* Handle new information of package state 
     (https://issues.rudder.io/issues/25004[#25004])
 * Improve understanding of filters by type
     (https://issues.rudder.io/issues/24909[#24909])
@@ -276,7 +276,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24580[#24580])
 * Fixed: up to date page is barely visible since update of bootstrap / css changes
     (https://issues.rudder.io/issues/24553[#24553])
-* Fixed: Resize external link in system update tabe
+* Fixed: Resize external link in system update table
     (https://issues.rudder.io/issues/24572[#24572])
 * Fixed: we should no automatically upgrade the rudder server with patch campaign
     (https://issues.rudder.io/issues/24149[#24149])

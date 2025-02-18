@@ -4,7 +4,7 @@
 
 The repository contains Rudder techniques to deploy and maintain a simple OpenStack infrastructure.
 
-The master branch tracks OpenStack Kilo. The deployment has only been tested on CentOS, but should be easy to adapt to Ubuntu. It does not provide choice over the backends, and choses:
+The master branch tracks OpenStack Kilo. The deployment has only been tested on CentOS, but should be easy to adapt to Ubuntu. It does not provide choice over the backends, and chooses:
 * RabbitMQ as message queue
 * MariaDB as database
 

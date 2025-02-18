@@ -67,7 +67,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17886[#17886])
 * Fixed: Add screenshots for validated users
     (https://issues.rudder.io/issues/17866[#17866])
-* Fixed: Trying to add a group property with change request plugin enabled lead to a blanck property (plugin side)
+* Fixed: Trying to add a group property with change request plugin enabled lead to a blank property (plugin side)
     (https://issues.rudder.io/issues/17819[#17819])
 
 === Release notes
@@ -89,7 +89,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: Fix non compiling plugins after changes on Rudder
     (https://issues.rudder.io/issues/17448[#17448])
-* Fixed: Adapt change validation plugin to changes made with properties (goup / global)
+* Fixed: Adapt change validation plugin to changes made with properties (group / global)
     (https://issues.rudder.io/issues/17269[#17269])
 
 ==== Documentation

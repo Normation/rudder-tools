@@ -587,7 +587,7 @@ compliant once it exists
 
 ==== Packaging
 
-* Fixed: Fusioninventory error about unitialized value $FQDN
+* Fixed: Fusioninventory error about uninitialized value $FQDN
 (https://www.rudder-project.org/redmine/issues/13739[#13739])
 * Fixed: Rudder syslog port is reset after upgrade on Ubuntu (< 14)
 Servers (https://www.rudder-project.org/redmine/issues/12714[#12714])
@@ -671,7 +671,7 @@ failing (https://www.rudder-project.org/redmine/issues/13523[#13523])
 (https://www.rudder-project.org/redmine/issues/13659[#13659])
 * Fixed: Document Amazon Linux compatibility
 (https://www.rudder-project.org/redmine/issues/13624[#13624])
-* Fixed: Bad explanation for generic variable overide priority cause
+* Fixed: Bad explanation for generic variable override priority cause
 people making the opposite of what is needed
 (https://www.rudder-project.org/redmine/issues/13615[#13615])
 
@@ -1153,7 +1153,7 @@ report (https://www.rudder-project.org/redmine/issues/12616[#12616])
 
 ==== Packaging
 
-* Fixed: .pyc file are not cleand up during postinst
+* Fixed: .pyc file are not cleaned up during postinst
 (https://www.rudder-project.org/redmine/issues/12634[#12634])
 * Fixed: Fix flask version during build
 (https://www.rudder-project.org/redmine/issues/12541[#12541])
@@ -1239,7 +1239,7 @@ the release enterprise-ready for deployment.
 * Fixed: Cannot generate policies when there is a loop in policy server
 hierharchy (stackoverflow)
 (https://www.rudder-project.org/redmine/issues/12359[#12359])
-* Fixed: Typo in agent build error ``reource''"
+* Fixed: Typo in agent build error ``resource''"
 (https://www.rudder-project.org/redmine/issues/12314[#12314])
 
 ==== Technique editor - Techniques
@@ -1647,7 +1647,7 @@ the release enterprise-ready for deployment.
 
 * Upgrade openssl to 1.0.2m
 (https://www.rudder-project.org/redmine/issues/11734[#11734])
-* Change rudder-techniques ncf depdency to a correct version
+* Change rudder-techniques ncf dependency to a correct version
 (https://www.rudder-project.org/redmine/issues/11692[#11692])
 
 ==== Web - UI & UX
@@ -1859,7 +1859,7 @@ lines (https://www.rudder-project.org/redmine/issues/11585[#11585])
 * Fixed: Update Directive popup is broken on firefox 38.6.1esr
 (https://www.rudder-project.org/redmine/issues/11584[#11584])
 * Fixed: Cannot select version of directive to create if technique
-desciption contains curly braces
+description contains curly braces
 (https://www.rudder-project.org/redmine/issues/11393[#11393])
 
 ==== Web - Nodes & inventories
@@ -1920,7 +1920,7 @@ anymore (https://www.rudder-project.org/redmine/issues/11385[#11385])
 * Fixed: Tidy expected reports does have a too big TTL
 (https://www.rudder-project.org/redmine/issues/11591[#11591])
 * Fixed: Error message on classical windows agent when getting
-environement variable
+environment variable
 (https://www.rudder-project.org/redmine/issues/11435[#11435])
 
 ==== API
@@ -2120,7 +2120,7 @@ as Disabled
 (https://www.rudder-project.org/redmine/issues/11205[#11205])
 * Fixed: In Directive details, tags input is broken on Iceweasel
 (https://www.rudder-project.org/redmine/issues/11118[#11118])
-* Fixed: Wrong XML identation in event log
+* Fixed: Wrong XML indentation in event log
 (https://www.rudder-project.org/redmine/issues/10951[#10951])
 * Fixed: Add a margin between the filters and the table in Technical
 logs tab (https://www.rudder-project.org/redmine/issues/11083[#11083])
@@ -2139,7 +2139,7 @@ version displayed
 
 * Fixed: Typo in generation error
 (https://www.rudder-project.org/redmine/issues/11232[#11232])
-* Fixed: Typo in unauthorized acces message
+* Fixed: Typo in unauthorized access message
 (https://www.rudder-project.org/redmine/issues/11182[#11182])
 * Fixed: Cannot add a directive with a " in its name in Rule
 (https://www.rudder-project.org/redmine/issues/10754[#10754])
@@ -2153,7 +2153,7 @@ install/upgrade instructions
 (https://www.rudder-project.org/redmine/issues/11136[#11136])
 * Fixed: Wrong doc for restore of Rudder ldap on 4.1
 (https://www.rudder-project.org/redmine/issues/11127[#11127])
-* Fixed: Style broken in documention: upgrade_from_rudder_3_1_3_2_or_4_0
+* Fixed: Style broken in documentation: upgrade_from_rudder_3_1_3_2_or_4_0
 (https://www.rudder-project.org/redmine/issues/11002[#11002])
 
 ==== Web - Compliance & node report
@@ -2266,7 +2266,7 @@ the release enterprise-ready for deployment.
 
 ==== Architecture - Internal libs
 
-* Match non exaustive on workflow step: log on error
+* Match non exhaustive on workflow step: log on error
 (https://www.rudder-project.org/redmine/issues/10938[#10938])
 * Bad comparison in unique variable
 (https://www.rudder-project.org/redmine/issues/10825[#10825])
@@ -2466,7 +2466,7 @@ policy validation
 
 ==== Web - Config management
 
-* Fixed: Tooltips don’t disapear on safari
+* Fixed: Tooltips don’t disappear on safari
 (https://www.rudder-project.org/redmine/issues/6145[#6145])
 
 ==== Documentation
@@ -2546,7 +2546,7 @@ CentOS6 (https://www.rudder-project.org/redmine/issues/10734[#10734])
 (https://www.rudder-project.org/redmine/issues/10432[#10432])
 * Fixed: rudder-init doesn’t use fully qualified path for executing
 cf-agent (https://www.rudder-project.org/redmine/issues/10607[#10607])
-* Fixed: rudder-pkg error on debian8: missing depency to xz-utils
+* Fixed: rudder-pkg error on debian8: missing dependency to xz-utils
 (https://www.rudder-project.org/redmine/issues/10628[#10628])
 * Fixed: When fetching webapp WARs, a repository maven is created in
 user home (https://www.rudder-project.org/redmine/issues/10618[#10618])
@@ -2567,7 +2567,7 @@ because of invalid version of nss
 (https://www.rudder-project.org/redmine/issues/9905[#9905])
 * Fixed: Infinite ``rudder is loading'' page if rudder-init didn’t run
 (https://www.rudder-project.org/redmine/issues/10567[#10567])
-* Fixed: If an error happen during boostrap, the webapp starts but is in
+* Fixed: If an error happen during bootstrap, the webapp starts but is in
 a zombie state and the error page is not displayed
 (https://www.rudder-project.org/redmine/issues/1974[#1974])
 * Fixed: rudder server debug fails on SLES 11
@@ -2694,7 +2694,7 @@ dependency to Java 1.8 for Rudder 4.1
 
 ==== Agent
 
-* Fixed: Policy loading is slow due to innefficient variable
+* Fixed: Policy loading is slow due to inefficient variable
 manipulation
 (https://www.rudder-project.org/redmine/issues/10576[#10576])
 * Fixed: On upgrade from 3.1 to 4.1, policy could not be generated any
@@ -2801,7 +2801,7 @@ the main bar
 (https://www.rudder-project.org/redmine/issues/10452[#10452])
 * Fixed: padding-down instead of padding-bottom in rudder.css
 (https://www.rudder-project.org/redmine/issues/10465[#10465])
-* Fixed: Weird appearance of accet new nodes popup
+* Fixed: Weird appearance of accept new nodes popup
 (https://www.rudder-project.org/redmine/issues/10458[#10458])
 * Fixed: Display issue on ``Accept new Nodes'' page
 (https://www.rudder-project.org/redmine/issues/9165[#9165])
@@ -3100,7 +3100,7 @@ label (https://www.rudder-project.org/redmine/issues/10323[#10323])
 * Fixed: When clicking refresh in rules, grid header height change
 (https://www.rudder-project.org/redmine/issues/10262[#10262])
 * Fixed: When trying to create a new API account that has the same name
-as an existing acocunt, nothing happen
+as an existing account, nothing happen
 (https://www.rudder-project.org/redmine/issues/10250[#10250])
 * Fixed: Setting title are barelly outstanding
 (https://www.rudder-project.org/redmine/issues/10261[#10261])
@@ -3472,7 +3472,7 @@ possible to scroll anymore in the Directive tree
 
 ==== Server components
 
-* Fixed: the relay api shoud read nodeslist on each call
+* Fixed: the relay api should read nodeslist on each call
 (https://issues.rudder.io/issues/10111[#10111])
 
 === Release notes

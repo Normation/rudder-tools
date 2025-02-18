@@ -20,5 +20,5 @@ sign-and-send-reports.sh: script to sign and send reports generated
 
 ## Tips
 
-On the Rudder server, you'll wan't to increase hard ansd soft limit for nofile in /etc/secutiry/limits.conf, and remove rate limiting in journald in /etc/systemd/journald.conf
+On the Rudder server, you'll wan't to increase hard and soft limit for nofile in /etc/secutiry/limits.conf, and remove rate limiting in journald in /etc/systemd/journald.conf
 

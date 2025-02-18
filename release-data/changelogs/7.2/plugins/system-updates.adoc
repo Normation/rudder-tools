@@ -198,7 +198,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Make System update campaing plugin api public
+* Make System update campaign plugin api public
     (https://issues.rudder.io/issues/22082[#22082])
 * Add skip reason in event information tab
     (https://issues.rudder.io/issues/21871[#21871])
@@ -303,9 +303,9 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: errors and output of results should be optionnal
+* Fixed: errors and output of results should be optional
     (https://issues.rudder.io/issues/21876[#21876])
-* Fixed: Campaign events are duplicated when swtiching between events and campaign tab  and back to events again
+* Fixed: Campaign events are duplicated when switching between events and campaign tab  and back to events again
     (https://issues.rudder.io/issues/21870[#21870])
 * Fixed: Improve the appearance of the "execution schedule" form
     (https://issues.rudder.io/issues/21860[#21860])

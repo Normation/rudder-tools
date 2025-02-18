@@ -54,7 +54,7 @@ ubuntu = {
 rhel = {
   aliases = [ "redhat", "centos" ]
   package-format = "rpm"
-  name = "Red Hat Entreprise Linux / CentOS"
+  name = "Red Hat Enterprise Linux / CentOS"
   codenames = {
     "3": "RHEL_3",
     "4": "RHEL_4",

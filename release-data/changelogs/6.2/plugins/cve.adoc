@@ -90,7 +90,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Miscellaneous
 
-* Fixed: If an error occurs during cve check of a node, previous result is lost 
+* Fixed: If an error occurs during cve check of a node, previous result is lost
     (https://issues.rudder.io/issues/19318[#19318])
 * Fixed: Improve doc to state that we need at least 4Gb of RAM
     (https://issues.rudder.io/issues/18985[#18985])
@@ -129,13 +129,13 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Miscellaneous
 
-* Fixed: Assigner field in CVE details maybe empty 
+* Fixed: Assigner field in CVE details maybe empty
     (https://issues.rudder.io/issues/19204[#19204])
 * Fixed: Broken images in doc
     (https://issues.rudder.io/issues/19084[#19084])
 * Fixed: Add documentation
     (https://issues.rudder.io/issues/18971[#18971])
-* Fixed: Document list ot compatible OSes
+* Fixed: Document list of compatible OSes
     (https://issues.rudder.io/issues/18933[#18933])
 * Fixed: Typo in logs
     (https://issues.rudder.io/issues/18908[#18908])

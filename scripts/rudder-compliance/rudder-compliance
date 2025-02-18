@@ -267,7 +267,7 @@ if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                      description="""\
-Get the compliance of Directives or Rules, and optionnally output it in the CSV format.
+Get the compliance of Directives or Rules, and optionally output it in the CSV format.
 
 Example: %(prog)s --csv /tmp/rules.csv --rules
          Will output all the rules compliance to stdout and write them in the csv file /tmp/rules.csv
@@ -307,7 +307,7 @@ Example: %(prog)s --csv /tmp/rules.csv --rules
     headers          = {"X-API-Token": api_token}
     compliance_url   = "%s/%s/compliance/rules" % (api_url, api_version)
     directives_url   = "%s/%s/directives" % (api_url, api_version)
-    rules_url        = "%s/%s/rules" % (api_url, api_version)    
+    rules_url        = "%s/%s/rules" % (api_url, api_version)
 
 
     # Override the default CSV file if needed

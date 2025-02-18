@@ -130,7 +130,7 @@ function create_inventory {
 
   echo "Creating inventories based on the folders in ${DEST_PATH}"
 
-  # compute numer of OSs
+  # compute number of OSs
   os_list_size=${#DEF_LONG_OS_NAME[@]}
   echo $os_list_size
 

@@ -68,7 +68,7 @@ This version is only available for extended support subscription
 
 ==== Web - Config management
 
-* Fixed: missing list of inpacted rules when creating a directive and applying it to a rule
+* Fixed: missing list of impacted rules when creating a directive and applying it to a rule
     (https://issues.rudder.io/issues/21671[#21671])
 
 ==== API
@@ -237,7 +237,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Web - Technique editor
 
-* Fixed: When a technique is not in the active techique tree, it can't be deleted in editor
+* Fixed: When a technique is not in the active technique tree, it can't be deleted in editor
     (https://issues.rudder.io/issues/21119[#21119])
 
 ==== Web - UI & UX
@@ -309,18 +309,18 @@ This version is only available for extended support subscription
 
 ==== Web - Nodes & inventories
 
-* Fixed: Criteria not working when filter on IP adress and GoupID in group page
+* Fixed: Criteria not working when filter on IP address and GroupID in group page
     (https://issues.rudder.io/issues/21144[#21144])
 * Fixed: Sometime inventory processing is not done when inventory is receveived
     (https://issues.rudder.io/issues/19585[#19585])
 * Fixed: List of nodes by version does not include windows nodes
     (https://issues.rudder.io/issues/17728[#17728])
-* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+* Fixed: Two same envvar modulo a space at beginning of name leads to LDAP error when saving inventory
     (https://issues.rudder.io/issues/20984[#20984])
 
 ==== API
 
-* Fixed: Rudder incorectly parse URL with a '+' in the path into spaces
+* Fixed: Rudder incorrectly parse URL with a '+' in the path into spaces
     (https://issues.rudder.io/issues/20943[#20943])
 * Fixed: Update api doc tool chain
     (https://issues.rudder.io/issues/21073[#21073])
@@ -356,7 +356,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 * Windows support should be documented as the other agents
     (https://issues.rudder.io/issues/20835[#20835])
-* Add a compatibilty table for agent relay server in the documentation
+* Add a compatibility table for agent relay server in the documentation
     (https://issues.rudder.io/issues/20621[#20621])
 * Document how to automatically synchronize technique resources from an external repository
     (https://issues.rudder.io/issues/20495[#20495])
@@ -446,7 +446,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
     (https://issues.rudder.io/issues/20972[#20972])
 * Fixed: Update spring to 5.2.20 to fix CVE-2022-22965
     (https://issues.rudder.io/issues/20972[#20972])
-* Fixed: Compilation warning on branche 6.2
+* Fixed: Compilation warning on branch 6.2
     (https://issues.rudder.io/issues/20874[#20874])
 * Fixed: In 6.2.10 the plugin can not uninstall itself in some cases
     (https://issues.rudder.io/issues/20392[#20392])
@@ -680,7 +680,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Documentation
 
-* Fixed: Documentation about collection access in jinja2 template is incorect
+* Fixed: Documentation about collection access in jinja2 template is incorrect
     (https://issues.rudder.io/issues/20234[#20234])
 
 ==== Performance and scalability
@@ -972,7 +972,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
     (https://issues.rudder.io/issues/19400[#19400])
 * Fixed: rudder.auth.admin.pass should be stored in bcrypt format
     (https://issues.rudder.io/issues/19308[#19308])
-* Fixed: Ignore security alert for unused js embeded in scala lib
+* Fixed: Ignore security alert for unused js embedded in scala lib
     (https://issues.rudder.io/issues/19272[#19272])
 
 ==== Web - UI & UX
@@ -982,7 +982,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Performance and scalability
 
-* Fixed: Inefficient comparision of strings in Rudder
+* Fixed: Inefficient comparison of strings in Rudder
     (https://issues.rudder.io/issues/19467[#19467])
 * Fixed: Improve NodeInfo cache
     (https://issues.rudder.io/issues/19399[#19399])
@@ -1124,7 +1124,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 * Fixed: relay package fails to build on rhel7
     (https://issues.rudder.io/issues/19247[#19247])
-* Fixed: API documentation is missleading for properties
+* Fixed: API documentation is misleading for properties
     (https://issues.rudder.io/issues/19202[#19202])
 * Fixed: Policy generation does change technique resource files when it should not
     (https://issues.rudder.io/issues/19222[#19222])
@@ -1897,7 +1897,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 ==== Web - Maintenance
 
-* Skip non-standard moint FS for free-space check
+* Skip non-standard mount FS for free-space check
     (https://issues.rudder.io/issues/18534[#18534])
 
 ==== Techniques
@@ -2008,7 +2008,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
 
 * Fixed: Clicking on "show docs" on a generic method scroll down too much
     (https://issues.rudder.io/issues/18612[#18612])
-* Fixed: Many alignement issues on 6.2
+* Fixed: Many alignment issues on 6.2
     (https://issues.rudder.io/issues/18610[#18610])
 * Fixed: In read_only mode, many things are editable
     (https://issues.rudder.io/issues/18627[#18627])
@@ -2044,7 +2044,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
     (https://issues.rudder.io/issues/11714[#11714])
 * Fixed: In Groups page, the search filter should take up the full width available
     (https://issues.rudder.io/issues/18533[#18533])
-* Fixed: after editing columns in the group or serach node page, there's a JS error when doing a search
+* Fixed: after editing columns in the group or search node page, there's a JS error when doing a search
     (https://issues.rudder.io/issues/18498[#18498])
 * Fixed: Missing (404) ajax-loader.gif on node pending page 
     (https://issues.rudder.io/issues/18491[#18491])
@@ -2088,7 +2088,7 @@ This is a bug fix release in the 6.2 series and therefore all installations of 6
     (https://issues.rudder.io/issues/18654[#18654])
 * Fixed: Bad file name in api-doc: set-allowed-networks.yml
     (https://issues.rudder.io/issues/18608[#18608])
-* Fixed: Check parition should check the lowest space available first
+* Fixed: Check partition should check the lowest space available first
     (https://issues.rudder.io/issues/18480[#18480])
 * Fixed: Typo in API doc
     (https://issues.rudder.io/issues/18457[#18457])

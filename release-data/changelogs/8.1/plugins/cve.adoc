@@ -163,7 +163,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Web - UI & UX
 
-* Fixed: Score details for vunlnerabilities is really confusing when there is no vulnerabilites found
+* Fixed: Score details for vunlnerabilities is really confusing when there is no vulnerabilities found
     (https://issues.rudder.io/issues/24704[#24704])
 
 === Release notes
@@ -186,7 +186,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Web - UI & UX
 
-* Fixed: Score details for vunlnerabilities is really confusing when there is no vulnerabilites found
+* Fixed: Score details for vunlnerabilities is really confusing when there is no vulnerabilities found
     (https://issues.rudder.io/issues/24704[#24704])
 
 === Release notes

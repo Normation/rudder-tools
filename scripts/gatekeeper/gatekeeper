@@ -18,7 +18,7 @@ check_origin() {
 # Check the EUID and abort if this script is run as root
 check_root_id() {
 if [[ $EUID = 0 ]]; then
-   echo "CRITICAL: Do not run $(basename $0) as root! Aborting." 
+   echo "CRITICAL: Do not run $(basename $0) as root! Aborting."
    exit 10
 fi
 }
@@ -80,7 +80,7 @@ prepare() {
      unset yesno
      read -r -p "Do you want to create $SRC_FOLDER? [y/N] " yesno
        case $yesno in
-	[Yy] ) 
+	[Yy] )
 	  mkdir -p "$SRC_FOLDER"
 	    if [ $? -ne 0 ]; then
 	      echo "CRITICAL: Cannot create directory $SRC_FOLDER, aborting."
@@ -133,10 +133,10 @@ prepare() {
       exit 2
     fi
   fi
- 
+
   # update their content
   cd "$SRC_FOLDER" && update "${SOURCE_SERVER}"
-  
+
   cd "$DEST_FOLDER" && update "${DESTINATION_SERVER}"
 
   echo "Environment ${environment} successfully prepared in ${ENV_FOLDER}"
@@ -181,7 +181,7 @@ reset() {
   # Reset the SRC_FOLDER directory
   cd "$SRC_FOLDER"
   if [[ "$(pwd)" == "$SRC_FOLDER" ]]
-  then 
+  then
     echo "WARNING: You are about to delete (rm -rf) the content of the directory $SRC_FOLDER"
     unset yesno
     read -r -p "Are you sure to to that? [y/N] " yesno
@@ -230,11 +230,11 @@ reset() {
        esac
   else
     echo "Unknown error, could not move to $DEST_FOLDER"
-    exit 2 
+    exit 2
   fi
 }
 
-# init: copy config faile to ~/.gatekeeper
+# init: copy config failed to ~/.gatekeeper
 init() {
   if [ -f ~/.gatekeeper ]
   then
@@ -309,7 +309,7 @@ case "$1" in
   prepare)
     check_root_id
     define_variable "$2"
-    prepare "$2" 
+    prepare "$2"
     ;;
   meld)
     define_variable "$2"

@@ -18,7 +18,7 @@ and rc versions are listed below for convenience.
 webapp
 * More flexibility when selecting Rule targets, you can now exclude some
 groups
-* Get all inventory datas from a node using the REST API
+* Get all inventory data from a node using the REST API
 * Rudder agent is now supported on AIX 5.3+
 * Various improvements on packaging, refactoring and small UI fixes
 
@@ -86,7 +86,7 @@ relay (https://issues.rudder.io/issues/7301[#7301])
 AIX (https://issues.rudder.io/issues/7525[#7525])
 * Fixed: Erroneous use of ``\&'' in initial promises
 (https://issues.rudder.io/issues/7517[#7517])
-* Fixed: Use of nonexistant class cfengine_community makes failsafe.cf
+* Fixed: Use of nonexistent class cfengine_community makes failsafe.cf
 not copy CFEngine binaries to /var/rudder
 (https://issues.rudder.io/issues/7499[#7499])
 * Fixed: ``Update'' component of common technique sometimes return
@@ -193,7 +193,7 @@ and improvements of a more mature and stable version.
 
 ==== Techniques
 
-* Fixed: Ssh key distribution cannot distibute several keys on one user
+* Fixed: Ssh key distribution cannot distribute several keys on one user
 (https://issues.rudder.io/issues/7254[#7254])
 
 === Release notes
@@ -224,7 +224,7 @@ and improvements of a more mature and stable version.
 * Fixed: System technique distributePolicy is not system and has two
 system var section
 (https://issues.rudder.io/issues/7138[#7138])
-* Fixed: Promise copy is not convergent: if the copy is interupted, it
+* Fixed: Promise copy is not convergent: if the copy is interrupted, it
 will never recover
 (https://issues.rudder.io/issues/7086[#7086])
 * Fixed: If the agent schedule is not every 5 minutes, inventory may not
@@ -260,7 +260,7 @@ and improvements of a more mature and stable version.
 always enabled
 (https://issues.rudder.io/issues/7064[#7064])
 * Fixed: Editing a rule category remove it from Git - rule categories
-disapear! (Ranärok ensues)
+disappear! (Ranärok ensues)
 (https://issues.rudder.io/issues/6840[#6840])
 
 ==== Web - Compliance & node report
@@ -342,7 +342,7 @@ may have their promises stored in a non reachable location
 
 ==== Initial promises & sys tech
 
-* Fixed: Nodes using syslogd coninue to report to their old server when
+* Fixed: Nodes using syslogd continue to report to their old server when
 changing their policy server
 (https://issues.rudder.io/issues/6845[#6845])
 * Fixed: Editing non-existent /etc/rsyslog.d/pgsql.conf in initial
@@ -501,7 +501,7 @@ content technique
 
 * Fixed: Improve documentation of archives management
 (https://issues.rudder.io/issues/6485[#6485])
-* Fixed: Badly explain minimum requierement for Rudder in documentation
+* Fixed: Badly explain minimum requirement for Rudder in documentation
 (https://issues.rudder.io/issues/6453[#6453])
 * Fixed: Outdated chapter: Disable automatic regeneration of promises
 (https://issues.rudder.io/issues/6312[#6312])
@@ -677,7 +677,7 @@ with HTTP status: 413: FULL head
 
 ==== Webapp - Node management
 
-* Fixed: Cannot display software informations on accept new Nodes
+* Fixed: Cannot display software information on accept new Nodes
 (https://issues.rudder.io/issues/6155[#6155])
 * Fixed: When adding a line of search criteria, the category and field
 from the line above should be the same on the new line
@@ -689,7 +689,7 @@ from the line above should be the same on the new line
 
 ==== Webapp - Administration
 
-* Fixed: ``Server cannot be contacted at this time'' when tring to get
+* Fixed: ``Server cannot be contacted at this time'' when trying to get
 Event Log details
 (https://issues.rudder.io/issues/6172[#6172])
 * Fixed: Cleanup expected reports
@@ -972,7 +972,7 @@ availability of the release.
 
 ==== Webapp - Config management
 
-* Fixed: Number of enties displayed in Rule table is not saved
+* Fixed: Number of entries displayed in Rule table is not saved
 (https://issues.rudder.io/issues/5615[#5615])
 * Fixed: No tooltip displayed when you add a new section in a Directive
 (https://issues.rudder.io/issues/5706[#5706])
@@ -1010,7 +1010,7 @@ wrong directory
 * Fixed: Packages are not updated correctly on redhat based systems
 (https://issues.rudder.io/issues/5608[#5608])
 * Fixed: Zypper Management Technique doesn’t behave correctly, and
-should be splitted in two separated techniques
+should be split in two separated techniques
 (https://issues.rudder.io/issues/5662[#5662])
 * Fixed: Multiline header is added at each run on managed files
 (https://issues.rudder.io/issues/4650[#4650])
@@ -1085,7 +1085,7 @@ correct takes too much time at startup
 
 ==== Windows integration
 
-* Fixed: list-comptabile-inputs doesn’t work on windows
+* Fixed: list-compatible-inputs doesn’t work on windows
 (https://issues.rudder.io/issues/5616[#5616])
 * Fixed: executor daemon command needs to be different on windows for it
 to work (https://issues.rudder.io/issues/5594[#5594])
@@ -1131,7 +1131,7 @@ availability of the release.
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Tools folder are empty!
 (https://issues.rudder.io/issues/5564[#5564])
@@ -1160,14 +1160,14 @@ regular and initial promises
 (https://issues.rudder.io/issues/5544[#5544])
 * Fixed: use list-compatible-inputs from ncf, not from tools
 (https://issues.rudder.io/issues/5527[#5527])
-* Fixed: Call list-comptible-inputs with /bin/sh
+* Fixed: Call list-compatible-inputs with /bin/sh
 (https://issues.rudder.io/issues/5519[#5519])
 * Fixed: Rewrite techniques to use normal ordering on 2.10
 (https://issues.rudder.io/issues/5507[#5507])
 * Fixed: downloadFile.st contains a syntax error
 (https://issues.rudder.io/issues/5457[#5457])
 * Fixed: SSH Configuration Technique does not make timestamped version
-of all the version of the ssh config file, like other techiques
+of all the version of the ssh config file, like other techniques
 (https://issues.rudder.io/issues/5344[#5344])
 * Fixed: The Rudder logrotate configuration uses the wrong argument to
 reload rsyslog on Debian Wheezy
@@ -1497,7 +1497,7 @@ group creation even if option is not set
 using the same name already exists
 (https://issues.rudder.io/issues/4270[#4270])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Initial promises on server cause an error to be logged due to
 duplicate ``empty_file_before_editing'' setting
@@ -1544,7 +1544,7 @@ exist (https://issues.rudder.io/issues/4997[#4997])
 (https://issues.rudder.io/issues/4998[#4998])
 * Fixed: The documentation gives no examples about role management in
 Rudder (https://issues.rudder.io/issues/4960[#4960])
-* Fixed: Procedure on how to update the Technique Librairy is invalid
+* Fixed: Procedure on how to update the Technique Library is invalid
 (https://issues.rudder.io/issues/4822[#4822])
 
 === Release notes
@@ -1650,7 +1650,7 @@ report correctly on AIX
 * Fixed: On AIX, several techniques try to use the group ``root''
 (https://issues.rudder.io/issues/4705[#4705])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: cf-agent slowed by users addition into inventory and displays a
 lot of warnings about that
@@ -1658,7 +1658,7 @@ lot of warnings about that
 * Fixed: Automatic reparation method for cf_lock. is only checked once
 an hour (https://issues.rudder.io/issues/4812[#4812])
 * Fixed: Reports are not inserted into Rudder because regexp in rsyslog
-is too greedy when matching execuction timestamp
+is too greedy when matching execution timestamp
 (https://issues.rudder.io/issues/4761[#4761])
 * Fixed: The initial promises use a remote copy which does not permit
 the copy of ncf files to /var/rudder/ncf/ and generation of promises
@@ -1740,13 +1740,13 @@ init scripts on AIX
 * Fixed: RPM postinst and check-rudder-agent fail on AIX because our
 ``uuidgen'' is not executable
 (https://issues.rudder.io/issues/4698[#4698])
-* Fixed: On AIX, check-rudder-agent script complains uses nonexistant
+* Fixed: On AIX, check-rudder-agent script complains uses nonexistent
 options for ps and echo
 (https://issues.rudder.io/issues/4695[#4695])
 
 ==== System integration
 
-* Fixed: rudder-agent may be stucked by tokyo cabinet database bloating
+* Fixed: rudder-agent may be stuck by tokyo cabinet database bloating
 (https://issues.rudder.io/issues/4769[#4769])
 * Fixed: Default file header should be one liner to prevent header
 repetition. (https://issues.rudder.io/issues/4755[#4755])
@@ -1808,7 +1808,7 @@ gives wrong mount options
 
 ==== Logging
 
-* Fixed: A developpment log line is displayed when saving Directive edit
+* Fixed: A development log line is displayed when saving Directive edit
 form (https://issues.rudder.io/issues/4660[#4660])
 
 ==== Miscellaneous
@@ -1898,7 +1898,7 @@ and keep the output of all commands in the log
 
 ==== Logging
 
-* Fixed: A developpment log line is displayed when saving Directive edit
+* Fixed: A development log line is displayed when saving Directive edit
 form (https://issues.rudder.io/issues/4660[#4660])
 
 === Release notes

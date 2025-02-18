@@ -5,21 +5,21 @@ Terraform module which creates EC2 instances on AWS to deploy Rudder 5.0 infrast
 Synopsis
 ~~~~~~~~
 
-* This file contains environnement specific configuration like region name, CIDR blocks, 
+* This file contains environment specific configuration like region name, CIDR blocks,
 and AWS credentials.
- 
 
-* This example creates AWS VPC resources, making a VPC in eu-west region ans create also subnet in 
-VPC. You have possibility to create a set of subnets in differents availability zones.
+
+* This example creates AWS VPC resources, making a VPC in eu-west region ans create also subnet in
+VPC. You have possibility to create a set of subnets in different availability zones.
 
 NOTE: Region : container module for all of the network resources within a region. This is instantiated once per region.
 
 NOTE: Subnet : presents a subnet within a given availability zone. This is instantiated twice per region, using the first availability zone supported within the target AWS account.
 
-== Installation 
+== Installation
 
 * Terraform must first be installed in your machine, it's distributed as a binary package. To install
-Terraform, find the appropriate package "https://www.terraform.io/downloads.html" for your system and download it. Terraform is packaged as a zip archive. 
+Terraform, find the appropriate package "https://www.terraform.io/downloads.html" for your system and download it. Terraform is packaged as a zip archive.
 
 == Usage
 * To initialize a working directory containing terraform configuration file. This is the first command that should be run.
@@ -33,13 +33,13 @@ terraform init
 * Theses commands allows you respectively to execute and write a plan to apply, execute the plan to change your infrastructure states and finally deleting all the resources :
 
 ----
-terraform plan 
+terraform plan
 ----
 
 ----
 terraform apply
 ----
- 
+
 ----
 terraform destroy
 ----

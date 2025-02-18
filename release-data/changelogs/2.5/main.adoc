@@ -76,7 +76,7 @@ Answer' status
 * Technique ``APT package manager configuration'': It is very complex to
 use (https://issues.rudder.io/issues/2277[#2277])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Use cron.d instead of the crontab to store Rudder cron entry (also in
 initial promises)
@@ -93,7 +93,7 @@ promises (https://issues.rudder.io/issues/3730[#3730])
 
 * Non compliant reports flood the Rudder logs on a new installation
 (https://issues.rudder.io/issues/3655[#3655])
-* Some debug logs informations about concurrent access were wrong
+* Some debug logs information about concurrent access were wrong
 (https://issues.rudder.io/issues/3641[#3641])
 
 ==== Miscellaneous
@@ -124,7 +124,7 @@ http://www.rudder-project.org/foswiki/FAQ/#What_is_the_versioning_policy_63.
 
 ==== Inventory (webapp, Fusion)
 
-* When a node has two intefaces with the same IP, it does not appear as
+* When a node has two interfaces with the same IP, it does not appear as
 pending node in Rudder [WebUI](WebUI) +
 and can’t be accepted
 (https://issues.rudder.io/issues/3626[#3626])
@@ -329,7 +329,7 @@ and later (https://issues.rudder.io/issues/3375[#3375])
 * Technique ``Time settings'': Fix errors if /etc/localtime is a
 symbolic link (https://issues.rudder.io/issues/3437[#3437])
 * Technique ``Package management for Debian / Ubuntu / APT systems'':
-Support ``allow untrusted'' (optionnally)
+Support ``allow untrusted'' (optionally)
 (https://issues.rudder.io/issues/3396[#3396])
 * Technique ``Download a file'': Fix reports
 (https://issues.rudder.io/issues/3346[#3346])
@@ -426,7 +426,7 @@ better:
 This is a maintenance release in the 2.5 series. All installations of
 2.5.x should be upgraded when possible. This version is not yet marked
 ``stable'' but it is already in use on several internal platforms. We
-recommand you to continue to use Rudder 2.4 into production systems.
+recommend you to continue to use Rudder 2.4 into production systems.
 
 == Rudder 2.5.1 (2013-04-12)
 
@@ -527,7 +527,7 @@ wiki (https://issues.rudder.io/issues/3105[#3105])
 This is a maintenance release in the 2.5 series. All installations of
 2.5.x should be upgraded when possible. This version is not yet marked
 ``stable'' but it is already in use on several internal platforms. We
-recommand you to continue to use Rudder 2.4 into production systems.
+recommend you to continue to use Rudder 2.4 into production systems.
 
 == Rudder 2.5.0 (2013-01-30)
 
@@ -561,7 +561,7 @@ http://www.rudder-project.org/rudder-doc-2.5/rudder-doc.html
 ==== UI
 
 * Fix visualisation of reports in the node details page which couldn’t
-be completly drop drown
+be completely drop drown
 (https://issues.rudder.io/issues/3226[#3226])
 
 === Release notes

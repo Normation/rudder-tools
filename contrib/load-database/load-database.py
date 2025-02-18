@@ -15,9 +15,9 @@ fi
 
 # This script is compatible Rudder 6.x
 # As it cannot sign with certificates, it cannot use https, but still database insertion will work
-# See inventory-generation/load-database.py  
-# It function by reading all nodeconfigurations, and generating reports 
-# with randomized timestamps 
+# See inventory-generation/load-database.py
+# It function by reading all nodeconfigurations, and generating reports
+# with randomized timestamps
 
 from __future__ import print_function
 
@@ -41,12 +41,12 @@ mode_full_compliance = True
 is_rudder_7_1_or_later = True
 
 # Proportion of repaired, error and non-compliant reports
-# Betweeen 0 (no such reports) and 1 (only this type of reports)
+# Between 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.05
 error_proportion = 0.02
 non_compliant_proportion = 0.01
 
-# Proportion of poping last report run (to interleave agents runs)
+# Proportion of popping last report run (to interleave agents runs)
 last_run_frequency = 0.5
 
 sleep_between_run=0.050
@@ -138,7 +138,7 @@ if len(sys.argv) > 1:
     use_config_id()
   else:
     usage()
-  
+
 # from a line like [{'bid': 'Linux sshd ciphers', 'rl': 'weighted', 'scs': [{'vid': 'File key-value present', 'vs': [{'id': '6bac7b4e-742d-4250-bf15-21bc6c4a6eb1', 'v': '/etc/ssh/sshd_config'}]}, {'vid': 'Service restart', 'vs': [{'id': '56cf515b-7b32-412c-a243-18c98dcbf9b7', 'v': 'sshd'}]}]}]
 # returns all the couple (vid, vs) that are within
 
@@ -160,7 +160,7 @@ def get_each_value_block(entry):
 
 startTime = datetime.datetime.now()
 nbReports = 0
-formatedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+formattedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 cur.execute( "select nodeid, nodeconfigid, begindate, configuration from nodeconfigurations where enddate is null;")
 
@@ -223,7 +223,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                             status = 'audit_compliant'
 
                     nbReports += 1
-                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
+                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ):
                       if use_syslog:
                         syslog_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ components['componentName'] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                         syslog.syslog(syslog.LOG_INFO, syslog_string)
@@ -251,7 +251,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                           else:
                             value = 'None'
                             serial = '0'
-                      
+
                       comp_name = cur_value[get_parsing_key('componentName')]
 
                       # randomize the reports to have also error and repaired
@@ -272,7 +272,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                               status = 'audit_compliant'
 
                       nbReports += 1
-                      if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
+                      if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ):
                         if use_syslog:
                           syslog_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ comp_name + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                           syslog.syslog(syslog.LOG_INFO, syslog_string)
@@ -295,7 +295,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
          syslog.syslog(syslog.LOG_INFO, start_string)
          syslog_string = 'R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution'
          syslog.syslog(syslog.LOG_INFO, syslog_string)
-         
+
       else:
          write = myConnection.cursor()
          write.execute('insert into ruddersysevents(executiondate, nodeid, directiveid, ruleid, ' + get_parsing_key('serial') + ', component, keyvalue, executiontimestamp, eventtype, policy, msg) values (%s, %s, %s, %s, %s, %s, %s , %s , %s , %s, %s) returning id', (ending[1], ending[2], 'run', 'rudder',  '0', 'start', ending[0], ending[1], 'control', '', 'Start execution'))

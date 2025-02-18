@@ -41,7 +41,7 @@ REDMINE['default'] = { "url": "https://www.rudder-project.org/redmine",
                        "id": "me",
                        "token": "",
                        "status_review": "3|10", # 3=TR, 10=FR
-                       "status_todo": "1|9|4", # 1=New, 9=In Progess, 4=Discussion
+                       "status_todo": "1|9|4", # 1=New, 9=In Progress, 4=Discussion
                        "priority_max": "7", # 7=1
                        "tracker_bug": "1",
                        "users_normation": "196|170|5|6|192|9|4|146|34",
@@ -50,7 +50,7 @@ REDMINE['alt'] =     { "url": "https://redmine.normation.com",
                        "id": "me",
                        "token": "",
                        "status_review": "3|10", # 3=TR, 10=FR
-                       "status_todo": "1|8|2|9|4", # 1=New, 8=Qualified, 2=To be started, 9=In Progess, 4=Discussion
+                       "status_todo": "1|8|2|9|4", # 1=New, 8=Qualified, 2=To be started, 9=In Progress, 4=Discussion
                        "priority_max": "7", # 7=1
                        "tracker_bug": "1",
                        "users_normation": "*",

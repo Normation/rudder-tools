@@ -416,7 +416,7 @@ no matching rudder-users.xml entry
 
 * Fixed: On Windows, a file c:\Program is created
 (https://issues.rudder.io/issues/8149[#8149])
-* Fixed: Environement variable fail to load on windows
+* Fixed: Environment variable fail to load on windows
 (https://issues.rudder.io/issues/8146[#8146])
 
 ==== Packaging
@@ -768,7 +768,7 @@ post-hook execution and lead to unexpected reports
 Nameserver does not allow the use of variable
 (https://issues.rudder.io/issues/3741[#3741])
 * Fixed: Package management for RHEL / CentOS / SuSE / RPM systems: The
-number of reports about ZMD is uncorrect
+number of reports about ZMD is incorrect
 (https://issues.rudder.io/issues/3478[#3478])
 * Fixed: syslog-ng’s loghost regex does not match with set line
 (https://issues.rudder.io/issues/7635[#7635])
@@ -965,7 +965,7 @@ that would allow to set the suid and gid to multiple file
 
 * Fixed: Use whole path to binaries in cron from check-rudder-agent on
 AIX (https://issues.rudder.io/issues/7525[#7525])
-* Fixed: Use of nonexistant class cfengine_community makes failsafe.cf
+* Fixed: Use of nonexistent class cfengine_community makes failsafe.cf
 not copy CFEngine binaries to /var/rudder
 (https://issues.rudder.io/issues/7499[#7499])
 * Fixed: ``Update'' component of common technique sometimes return
@@ -1009,7 +1009,7 @@ rudder-agent twice
 (https://issues.rudder.io/issues/7419[#7419])
 * Fixed: Rudder OpenLDAP Authentication sans ipv4 localhost
 (https://issues.rudder.io/issues/4922[#4922])
-* Fixed: Missing debuging information for explain_compliance
+* Fixed: Missing debugging information for explain_compliance
 (https://issues.rudder.io/issues/7353[#7353])
 
 ==== Packaging
@@ -1152,7 +1152,7 @@ SLES (https://issues.rudder.io/issues/7205[#7205])
 
 ==== Techniques
 
-* Fixed: Ssh key distribution cannot distibute several keys on one user
+* Fixed: Ssh key distribution cannot distribute several keys on one user
 (https://issues.rudder.io/issues/7254[#7254])
 
 ==== Agent
@@ -1240,13 +1240,13 @@ manual (https://issues.rudder.io/issues/6603[#6603])
 * Fixed: System technique distributePolicy is not system and has two
 system var section
 (https://issues.rudder.io/issues/7138[#7138])
-* Fixed: Promise copy is not convergent: if the copy is interupted, it
+* Fixed: Promise copy is not convergent: if the copy is interrupted, it
 will never recover
 (https://issues.rudder.io/issues/7086[#7086])
 * Fixed: If the agent schedule is not every 5 minutes, inventory may not
 be sent anymore
 (https://issues.rudder.io/issues/6718[#6718])
-* Fixed: Environnement variables cannot be used on windows
+* Fixed: Environment variables cannot be used on windows
 (https://issues.rudder.io/issues/7150[#7150])
 
 ==== System integration
@@ -1307,7 +1307,7 @@ run in production reliably for several months.
 always enabled
 (https://issues.rudder.io/issues/7064[#7064])
 * Fixed: Editing a rule category remove it from Git - rule categories
-disapear! (Ranärok ensues)
+disappear! (Ranärok ensues)
 (https://issues.rudder.io/issues/6840[#6840])
 * Fixed: Clear cache doesn’t regenerate expected reports
 (https://issues.rudder.io/issues/7080[#7080])
@@ -1425,7 +1425,7 @@ run in production reliably for several months.
 
 ==== Web - UI & UX
 
-* Fixed: More coherent informations on dashboard
+* Fixed: More coherent information on dashboard
 (https://issues.rudder.io/issues/6777[#6777])
 * Fixed: Broken down stats by agent version is completely out of it
 (https://issues.rudder.io/issues/6491[#6491])
@@ -1456,7 +1456,7 @@ directives (https://issues.rudder.io/issues/6907[#6907])
 * Fixed: We can’t use cf-runagent because port is not taken into account
 in the body runagent control
 (https://issues.rudder.io/issues/6916[#6916])
-* Fixed: Nodes using syslogd coninue to report to their old server when
+* Fixed: Nodes using syslogd continue to report to their old server when
 changing their policy server
 (https://issues.rudder.io/issues/6845[#6845])
 * Fixed: Editing non-existent /etc/rsyslog.d/pgsql.conf in initial
@@ -1574,7 +1574,7 @@ rule (https://issues.rudder.io/issues/6519[#6519])
 ==== Web - Technique editor
 
 * Fixed: Cannot save technique with ncf builder - error during the API
-call to the technique librairy reload
+call to the technique library reload
 (https://issues.rudder.io/issues/6724[#6724])
 * Fixed: ncf post-hooks fails when there is nothing to commit
 (https://issues.rudder.io/issues/6617[#6617])
@@ -1760,7 +1760,7 @@ compression (https://issues.rudder.io/issues/6439[#6439])
 
 * Fixed: Improve documentation of archives management
 (https://issues.rudder.io/issues/6485[#6485])
-* Fixed: Badly explain minimum requierement for Rudder in documentation
+* Fixed: Badly explain minimum requirement for Rudder in documentation
 (https://issues.rudder.io/issues/6453[#6453])
 * Fixed: Outdated chapter: Disable automatic regeneration of promises
 (https://issues.rudder.io/issues/6312[#6312])
@@ -1874,7 +1874,7 @@ the group edition page instead of adding the group to the Rule
 
 ==== Webapp - Node management
 
-* Fixed: List of impacted rules when accepting nodes or modifing
+* Fixed: List of impacted rules when accepting nodes or modifying
 directives is not accurate
 (https://issues.rudder.io/issues/5764[#5764])
 * Fixed: Cannot remove node properties when setting value to ""
@@ -2048,7 +2048,7 @@ deprecated is disabled
 (https://issues.rudder.io/issues/6116[#6116])
 * Fixed: Accept new node screen has some minor display issue
 (https://issues.rudder.io/issues/6114[#6114])
-* Fixed: List of impacted rules when accepting nodes or modifing
+* Fixed: List of impacted rules when accepting nodes or modifying
 directives is not accurate
 (https://issues.rudder.io/issues/5764[#5764])
 
@@ -2328,7 +2328,7 @@ generated promises
 * Fixed: With the API, it is possible to set a Group with no criteria
 (https://issues.rudder.io/issues/3767[#3767])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Rudder crons sends too much mails
 (https://issues.rudder.io/issues/5922[#5922])
@@ -2345,7 +2345,7 @@ uppercase (https://issues.rudder.io/issues/5772[#5772])
 (https://issues.rudder.io/issues/5986[#5986])
 * Fixed: Eventlogs for global frequency modification are missing
 (https://issues.rudder.io/issues/5985[#5985])
-* Fixed: Eventlogs to track global hearbeat change is missing
+* Fixed: Eventlogs to track global heartbeat change is missing
 (https://issues.rudder.io/issues/5837[#5837])
 
 ==== Webapp - Config management
@@ -2535,7 +2535,7 @@ systems (https://issues.rudder.io/issues/5293[#5293])
 
 ==== Webapp - CFEngine integration
 
-* Optionnal variables should not be nulled (if they are not system
+* Optional variables should not be nulled (if they are not system
 variables) (https://issues.rudder.io/issues/3014[#3014])
 
 ==== Logging

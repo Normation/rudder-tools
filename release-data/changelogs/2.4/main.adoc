@@ -76,7 +76,7 @@ or init script are not restored
 ==== Techniques
 
 * Fixed: Remove comma after the promiser from passwordCheck in the
-distirbutePolicy promises
+distributePolicy promises
 (https://issues.rudder.io/issues/4040[#4040])
 * Fixed: The failsafe of the initial promises cannot update promises
 (https://issues.rudder.io/issues/4025[#4025])
@@ -206,7 +206,7 @@ the beginning or the end of the file
 
 ==== Documentation
 
-* Add Advices to separate partitions in server installation section
+* Add advises to separate partitions in server installation section
 (https://issues.rudder.io/issues/3932[#3932])
 
 === Bug fixes
@@ -338,7 +338,7 @@ SUID and SGID to files copied
 Rudder (https://issues.rudder.io/issues/3009[#3009])
 * Explain how to migrate a server to another machine
 (https://issues.rudder.io/issues/2958[#2958])
-* Add informations about the rsync modules of rudder-project
+* Add information about the rsync modules of rudder-project
 (https://issues.rudder.io/issues/3831[#3831])
 
 === Bug fixes
@@ -349,7 +349,7 @@ Rudder (https://issues.rudder.io/issues/3009[#3009])
 LDAP (https://issues.rudder.io/issues/3834[#3834],
 (https://issues.rudder.io/issues/3836[#3836],
 (https://issues.rudder.io/issues/3837[#3837])
-* Fixed: OS Full name should be queriable
+* Fixed: OS Full name should be queryable
 (https://issues.rudder.io/issues/3835[#3835])
 
 ==== Webapp - Administration
@@ -500,7 +500,7 @@ Answer' status
 * Technique ``APT package manager configuration'': It is very complex to
 use (https://issues.rudder.io/issues/2277[#2277])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Cron on RHEL/CentOS and Ubuntu nodes was not checked with initial
 promises (https://issues.rudder.io/issues/3730[#3730])
@@ -512,7 +512,7 @@ promises (https://issues.rudder.io/issues/3730[#3730])
 
 ==== Logging
 
-* Some debug logs informations about concurrent access were wrong
+* Some debug logs information about concurrent access were wrong
 (https://issues.rudder.io/issues/3641[#3641])
 
 ==== Miscellaneous
@@ -544,7 +544,7 @@ http://www.rudder-project.org/foswiki/FAQ/#What_is_the_versioning_policy_63.
 
 ==== Inventory (webapp, Fusion)
 
-* When a node has two intefaces with the same IP, it does not appear as
+* When a node has two interfaces with the same IP, it does not appear as
 pending node in Rudder [WebUI](WebUI) +
 and can’t be accepted
 (https://issues.rudder.io/issues/3626[#3626])
@@ -719,7 +719,7 @@ and later (https://issues.rudder.io/issues/3375[#3375])
 * Technique ``Time settings'': Fix errors if /etc/localtime is a
 symbolic link (https://issues.rudder.io/issues/3437[#3437])
 * Technique ``Package management for Debian / Ubuntu / APT systems'':
-Support ``allow untrusted'' (optionnally)
+Support ``allow untrusted'' (optionally)
 (https://issues.rudder.io/issues/3396[#3396])
 * Technique ``Download a file'': Fix reports
 (https://issues.rudder.io/issues/3346[#3346])
@@ -1107,7 +1107,7 @@ transaction logs (#2963)
 * Fix broken Java dependencies on CentOS (#2941)
 * Fix reporting on nodes with syslogd (not syslog-ng nor rsyslog) which
 never communicated back to Rudder server (#2943)
-* Add check to avoid any more than 5 cf-agents running simulataneously
+* Add check to avoid any more than 5 cf-agents running simultaneously
 (#3012)
 * Fix cron check to relaunch CFEngine to detect cf-execd and cf-agent
 too (#3013)
@@ -1136,7 +1136,7 @@ There is one known issue with this release of Rudder:
 (#3027), causing the following bug fixes to be unavailable:
 ** Technique ``Enforce a file content'': Option to choose if the file to
 edit should be created or not if it doesn’t already exist (#2945)
-** Technique ``Enforce a file content'': line remplacement didn’t work
+** Technique ``Enforce a file content'': line replacement didn’t work
 if the replacement was empty and only one Directive from this Technique
 was applied on a node (#2819)
 

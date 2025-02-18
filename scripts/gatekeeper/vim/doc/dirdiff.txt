@@ -82,7 +82,7 @@ The following commands can be used inside the diff window:
 
 <q>                     Quit DirDiff
  
-The following comamnds can be used in the Vim diff mode if this is global flag
+The following commands can be used in the Vim diff mode if this is global flag
 is set to 1 (default to 0): >
 
     let g:DirDiffEnableMappings = 1
@@ -230,7 +230,7 @@ HISTORY                                         *dirdiff-history*
 0.94 - Fixed a bug where the diff will give incorrect A and B file due to
        similarity of directory names.  Allow you to modify the diff
        argument.
-0.93 - Opps, messed up the key mapping usage.
+0.93 - Oops, messed up the key mapping usage.
 0.92 - Doesn't use n and p mappings since it confuses the search next key
        mapping and causes some bugs.  Minor modification to change the
        exclude and ignore pattern.

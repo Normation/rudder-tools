@@ -11,7 +11,7 @@
 # @man +
 # @man *-c*: raw color mode, all output are non-colored text
 # @man +
-# @man *-v*: verbose mode, display more detailed informations of the execution
+# @man *-v*: verbose mode, display more detailed information of the execution
 # @man +
 # @man *-i|-I*: case insensitive pattern search
 

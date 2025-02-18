@@ -51,7 +51,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Agent library
 
-* Fixed: Rudder agent shoud not store its own data in fake uninstall registry
+* Fixed: Rudder agent should not store its own data in fake uninstall registry
     (https://issues.rudder.io/issues/25502[#25502])
 
 === Release notes

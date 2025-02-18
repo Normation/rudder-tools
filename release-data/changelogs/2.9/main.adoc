@@ -49,7 +49,7 @@ group creation even if option is not set
 using the same name already exists
 (https://issues.rudder.io/issues/4270[#4270])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Initial promises on server cause an error to be logged due to
 duplicate ``empty_file_before_editing'' setting
@@ -80,7 +80,7 @@ unrecognized option `–rfc-3339=second’''
 (https://issues.rudder.io/issues/4998[#4998])
 * Fixed: The documentation gives no examples about role management in
 Rudder (https://issues.rudder.io/issues/4960[#4960])
-* Fixed: Procedure on how to update the Technique Librairy is invalid
+* Fixed: Procedure on how to update the Technique Library is invalid
 (https://issues.rudder.io/issues/4822[#4822])
 
 === Release notes
@@ -112,7 +112,7 @@ https://www.rudder-project.org/site/documentation/faq/#what_is_the_versioning_po
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: cf-agent slowed by users addition into inventory and displays a
 lot of warnings about that
@@ -120,7 +120,7 @@ lot of warnings about that
 * Fixed: Automatic reparation method for cf_lock. is only checked once
 an hour (https://issues.rudder.io/issues/4812[#4812])
 * Fixed: Reports are not inserted into Rudder because regexp in rsyslog
-is too greedy when matching execuction timestamp
+is too greedy when matching execution timestamp
 (https://issues.rudder.io/issues/4761[#4761])
 * Fixed: The initial promises use a remote copy which does not permit
 the copy of ncf files to /var/rudder/ncf/ and generation of promises
@@ -133,7 +133,7 @@ promises (https://issues.rudder.io/issues/4745[#4745])
 
 ==== Logging
 
-* Fixed: A developpment log line is displayed when saving Directive edit
+* Fixed: A development log line is displayed when saving Directive edit
 form (https://issues.rudder.io/issues/4660[#4660])
 
 ==== Inventory (webapp, Fusion)
@@ -205,7 +205,7 @@ policy_server.dat file, resulting in a non functioning Rudder server
 
 ==== System integration
 
-* Fixed: rudder-agent may be stucked by tokyo cabinet database bloating
+* Fixed: rudder-agent may be stuck by tokyo cabinet database bloating
 (https://issues.rudder.io/issues/4769[#4769])
 * Fixed: Default file header should be one liner to prevent header
 repetition. (https://issues.rudder.io/issues/4755[#4755])
@@ -644,7 +644,7 @@ where the shared folder is located
 * Fixed: Archive parameter files are named `ParameterName(name).xml'
 instead of `name.xml'
 (https://issues.rudder.io/issues/4377[#4377])
-* Fixed: Parameters are not included when dowloading zip archive
+* Fixed: Parameters are not included when downloading zip archive
 (https://issues.rudder.io/issues/4374[#4374])
 * Fixed: Techniques are not included when downloading zip archive
 (https://issues.rudder.io/issues/4279[#4279])
@@ -670,7 +670,7 @@ one name is too long
 another server Rudder is not working
 (https://issues.rudder.io/issues/4149[#4149])
 * Fixed: When there are errors in Directive parameters, wrong tab
-(Informations) is displayed
+(Information) is displayed
 (https://issues.rudder.io/issues/4372[#4372])
 * Fixed: Parameters tab is too small in Directive edit form and should
 fit the browser size
@@ -701,7 +701,7 @@ missing (https://issues.rudder.io/issues/4280[#4280])
 ==== Techniques
 
 * Fixed: Report state is ``unknown'' on Root server for ``Inventories''
-component in ``Distibute policy''
+component in ``Distribute policy''
 (https://issues.rudder.io/issues/4364[#4364])
 * Fixed: There is no reports for package removal on debian/ubuntu
 systems (https://issues.rudder.io/issues/4144[#4144])
@@ -929,7 +929,7 @@ Directives in Rule parameters
 (https://issues.rudder.io/issues/4224[#4224])
 * Make visible if a Directive is not in use by any Rule
 (https://issues.rudder.io/issues/4208[#4208])
-* Add tabs to the Directive paremeters, add a tab to assign the
+* Add tabs to the Directive parameters, add a tab to assign the
 Directive to multiple Rules
 (https://issues.rudder.io/issues/4180[#4180])
 * Add category of Rules and simplify Rules list

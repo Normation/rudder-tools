@@ -14,15 +14,15 @@ fi
 # This script will generate reports and insert them in the database
 
 # This script is compatible Rudder 6.0 and more
-# It function by reading all nodeconfigurations, and generating reports 
-# with randomized timestamps 
+# It function by reading all nodeconfigurations, and generating reports
+# with randomized timestamps
 
 from __future__ import print_function
 
 import sys, os
 
 # Get path from script
-path_name = os.path.dirname(sys.argv[0])        
+path_name = os.path.dirname(sys.argv[0])
 report_path = path_name + "/reports/"
 
 ## Configuration part
@@ -48,12 +48,12 @@ mode_full_compliance = True
 is_rudder_7_1_or_later = True
 
 # Proportion of repaired, error and non-compliant reports
-# Betweeen 0 (no such reports) and 1 (only this type of reports)
+# Between 0 (no such reports) and 1 (only this type of reports)
 repair_proportion = 0.05
 error_proportion = 0.02
 non_compliant_proportion = 0.01
 
-# Proportion of poping last report run (to interleave agents runs)
+# Proportion of popping last report run (to interleave agents runs)
 last_run_frequency = 0.5
 
 sleep_between_run=0.050
@@ -145,10 +145,10 @@ if len(sys.argv) > 1:
     use_config_id()
   else:
     usage()
-  
+
 startTime = datetime.datetime.now()
 nbReports = 0
-formatedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+formattedStartTime = startTime.strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 cur.execute( "select nodeid, nodeconfigid, begindate, configuration from nodeconfigurations where enddate is null;")
 
@@ -219,10 +219,10 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                             status = 'audit_compliant'
 
                     nbReports += 1
-                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
+                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ):
                       report_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ components[get_parsing_key('componentName')] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                       if use_https:
-                        report_file.write(formatedStartTime + ' ' +report_string)
+                        report_file.write(formattedStartTime + ' ' +report_string)
 
                       if use_syslog:
                         syslog.syslog(syslog.LOG_INFO, report_string)
@@ -263,10 +263,10 @@ for nodeid, config, begindate, configuration in cur.fetchall():
                             status = 'audit_compliant'
 
                     nbReports += 1
-                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ): 
+                    if mode_full_compliance == True or ( status != 'result_success' and status != 'audit_compliant' ):
                       report_string = 'R: @@Test@@' + status + '@@' + rules[get_parsing_key('ruleId')] + '@@' + directives[get_parsing_key('directiveId')] + '@@' + serial + '@@'+ block[get_parsing_key('componentName')] + '@@' + value + '@@' + unicode(reportDate) + '+00:00##' + nodeid + '@#Dummy report for load test and make it a bit longer in case of, we never know what could trigger something\n'
                       if use_https:
-                        report_file.write(formatedStartTime + ' ' +report_string)
+                        report_file.write(formattedStartTime + ' ' +report_string)
 
                       if use_syslog:
                         syslog.syslog(syslog.LOG_INFO, report_string)
@@ -284,9 +284,9 @@ for nodeid, config, begindate, configuration in cur.fetchall():
     if (use_https):
       # always send last message with rest in https
       ending = lastruns.popitem()[1]
-      start_string = formatedStartTime +' R: @@Common@@control@@rudder@@run@@0@@start@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#Start execution\n'
+      start_string = formattedStartTime +' R: @@Common@@control@@rudder@@run@@0@@start@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#Start execution\n'
       report_file.write(start_string)
-      report_string = formatedStartTime +' R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution\n'
+      report_string = formattedStartTime +' R: @@Common@@control@@rudder@@run@@0@@end@@' + ending[0] + '@@' + unicode(ending[1]) + '+00:00##' + ending[2] + '@#End execution\n'
       report_file.write(report_string)
       report_file.close()
       if (send_reports_https):

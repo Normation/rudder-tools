@@ -23,11 +23,6 @@ pipeline {
                             slackSend(channel: slackResponse.threadId, message: "Check typos on all plugins failed - <${currentBuild.absoluteUrl}console|Console>", color: "#CC3421")
                         }
                     }
-                    cleanup {
-                        script {
-                            running.remove("check typos")
-                        }
-                    }
                 }
             }
             stage('shellcheck') {
@@ -73,11 +68,6 @@ pipeline {
                             errors.add("python scripts")
                             slackResponse = updateSlack(errors, running, slackResponse, version, changeUrl)
                             slackSend(channel: slackResponse.threadId, message: "Check python scripts on all plugins failed - <${currentBuild.absoluteUrl}console|Console>", color: "#CC3421")
-                        }
-                    }
-                    cleanup {
-                        script {
-                            running.remove("python scripts")
                         }
                     }
                 }

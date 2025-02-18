@@ -230,7 +230,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
 * Bas B
-* Frédéric COSTANT
+* Frédéric CONSTANT
 * Alexander Brunhirl
 * Florian Heigl
 * Dmitry Svyatogorov
@@ -382,7 +382,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== System techniques
 
-* Fixed: Rudder 6 check postgresql process failes
+* Fixed: Rudder 6 check postgresql process fails
     (https://issues.rudder.io/issues/17145[#17145])
 * Fixed: Error when setting classes for agent capabilities
     (https://issues.rudder.io/issues/17480[#17480])
@@ -635,9 +635,9 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16602[#16602])
 * Fixed: Broken formatting of network requirements
     (https://issues.rudder.io/issues/16970[#16970])
-* Fixed: Documentation for variables is "splitted" in two
+* Fixed: Documentation for variables is "split" in two
     (https://issues.rudder.io/issues/16933[#16933])
-* Fixed: Typo in Variable doc: hsotname
+* Fixed: Typo in Variable doc: hostname
     (https://issues.rudder.io/issues/16918[#16918])
 * Fixed: Document /var/rudder/policy-generation-info
     (https://issues.rudder.io/issues/16903[#16903])
@@ -665,7 +665,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Web - UI & UX
 
-* Fixed: Some alignement issues in the interface
+* Fixed: Some alignment issues in the interface
     (https://issues.rudder.io/issues/16430[#16430])
 * Fixed: Generation status color must not be grey
     (https://issues.rudder.io/issues/17104[#17104])
@@ -691,7 +691,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: Test files are not correctly clean
     (https://issues.rudder.io/issues/17079[#17079])
-* Fixed: Trace log in policy generation is displaying the same value for two differents entries
+* Fixed: Trace log in policy generation is displaying the same value for two different entries
     (https://issues.rudder.io/issues/16916[#16916])
 
 ==== Web - Config management
@@ -755,7 +755,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16993[#16993])
 * Fixed: Technique editor does not prevent user from cloning a technique with an already existing id
     (https://issues.rudder.io/issues/17030[#17030])
-* Fixed: When editing the content of a ressource, the "save" button is lowercase
+* Fixed: When editing the content of a resource, the "save" button is lowercase
     (https://issues.rudder.io/issues/16722[#16722])
 
 ==== Generic methods - User Management
@@ -992,7 +992,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Relay server or API
 
-* Fixed: Remote run always timeout for nodes behing relays
+* Fixed: Remote run always timeout for nodes behind relays
     (https://issues.rudder.io/issues/16760[#16760])
 * Fixed: Parsing error of agent output when it contains warn of info logs
     (https://issues.rudder.io/issues/16644[#16644])
@@ -1348,7 +1348,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: Technique resource are not copied to the correct path
     (https://issues.rudder.io/issues/16446[#16446])
-* Fixed: Missing report for "Installation" conponent in ssh technique
+* Fixed: Missing report for "Installation" component in ssh technique
     (https://issues.rudder.io/issues/16385[#16385])
 
 ==== Web - UI & UX
@@ -1357,7 +1357,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16392[#16392])
 * Fixed:  scroll-issue after policy-rebuild on the GUI
     (https://issues.rudder.io/issues/16434[#16434])
-* Fixed: Wrong vertical alignement of numerous items
+* Fixed: Wrong vertical alignment of numerous items
     (https://issues.rudder.io/issues/16406[#16406])
 * Fixed: Incorrect hour display in node list's last seen column
     (https://issues.rudder.io/issues/16389[#16389])
@@ -1375,7 +1375,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: Rudder-pkg fails to parse new plugin nightly version
     (https://issues.rudder.io/issues/16422[#16422])
-* Fixed: Rudder-pkg fails to show installed plugins when they are not available in the configurated repo if any
+* Fixed: Rudder-pkg fails to show installed plugins when they are not available in the configured repo if any
     (https://issues.rudder.io/issues/16398[#16398])
 
 ==== Server components
@@ -1400,7 +1400,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Technique editor - API
 
-* Fixed: Technique does not appear anymore if some ressources are defined
+* Fixed: Technique does not appear anymore if some resources are defined
     (https://issues.rudder.io/issues/16425[#16425])
 
 ==== Technique editor - UI/UX
@@ -1430,7 +1430,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16080[#16080])
 * Automatically restart relayd in case of crash
     (https://issues.rudder.io/issues/16081[#16081])
-* Stop listenning for inventories on port 80
+* Stop listening for inventories on port 80
     (https://issues.rudder.io/issues/16122[#16122])
 
 ==== Documentation
@@ -1590,7 +1590,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16250[#16250])
 * Fixed: Typo in rudder agent health output
     (https://issues.rudder.io/issues/16229[#16229])
-* Fixed: Command rudder agent start shoud list activated/deactivated services
+* Fixed: Command rudder agent start should list activated/deactivated services
     (https://issues.rudder.io/issues/16145[#16145])
 * Fixed: Cleanup disable server flag
     (https://issues.rudder.io/issues/16170[#16170])
@@ -1651,7 +1651,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15271[#15271])
 * Fixed: Debian/Ubuntu install doc fails if lsb_release is not installed
     (https://issues.rudder.io/issues/14632[#14632])
-* Fixed: Document that a plugin is required for user roles and LDAP authentification
+* Fixed: Document that a plugin is required for user roles and LDAP authentication
     (https://issues.rudder.io/issues/14812[#14812])
 * Fixed: Document the usage of environment variables during installation
     (https://issues.rudder.io/issues/10015[#10015])
@@ -1659,7 +1659,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/14633[#14633])
 * Fixed: Display 6.0 as 6.0-beta in doc menu
     (https://issues.rudder.io/issues/16156[#16156])
-* Fixed: Missing link to the beginning of the guide in getting strated home page
+* Fixed: Missing link to the beginning of the guide in getting started home page
     (https://issues.rudder.io/issues/15408[#15408])
 * Fixed: Document that a full policy regeneration is necessary after a backup restoration
     (https://issues.rudder.io/issues/15984[#15984])
@@ -1862,7 +1862,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16220[#16220])
 * Fixed: Copying a file to a directory using the "file_from_shared_folder" method results in a success report even if nothing is done
     (https://issues.rudder.io/issues/16267[#16267])
-* Fixed: Do not store response when response code is an error in file_fom_http_server
+* Fixed: Do not store response when response code is an error in file_from_http_server
     (https://issues.rudder.io/issues/12780[#12780])
 
 ==== Generic methods - Service Management
@@ -2068,7 +2068,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15992[#15992])
 * Simplify error type definitions
     (https://issues.rudder.io/issues/15949[#15949])
-* Refector api code in relayd
+* Refactor api code in relayd
     (https://issues.rudder.io/issues/15883[#15883])
 * Improve status API
     (https://issues.rudder.io/issues/15866[#15866])
@@ -2078,7 +2078,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15610[#15610])
 * Add inventory forwarding on relays in relayd
     (https://issues.rudder.io/issues/15497[#15497])
-* Split API tests and fix tracing depency versions
+* Split API tests and fix tracing dependency versions
     (https://issues.rudder.io/issues/15489[#15489])
 * Move rudder-pkg to rudder repo
     (https://issues.rudder.io/issues/14943[#14943])
@@ -2177,7 +2177,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== System techniques
 
-* Remove ununsed nodeslist.json in /opt/rudder/etc
+* Remove unused nodeslist.json in /opt/rudder/etc
     (https://issues.rudder.io/issues/16015[#16015])
 * Cleanup roles in system techniques
     (https://issues.rudder.io/issues/15757[#15757])
@@ -2492,7 +2492,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16076[#16076])
 * Fixed: HTTP errors when forwarding reports or inventories should generally be considered as transient
     (https://issues.rudder.io/issues/16065[#16065])
-* Fixed: Remote-run sometimes returns empty outpout or output with missing newlines
+* Fixed: Remote-run sometimes returns empty output or output with missing newlines
     (https://issues.rudder.io/issues/16047[#16047])
 * Fixed: Remote-run starts commands with no host name
     (https://issues.rudder.io/issues/16044[#16044])
@@ -2579,7 +2579,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== System techniques
 
-* Fixed: Agent bootstraping does not work on root server
+* Fixed: Agent bootstrapping does not work on root server
     (https://issues.rudder.io/issues/14788[#14788])
 * Fixed: Typo in the system technique PropagatePromises
     (https://issues.rudder.io/issues/16064[#16064])
@@ -2617,7 +2617,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15446[#15446])
 * Fixed: Syntax error in promises.cf
     (https://issues.rudder.io/issues/15415[#15415])
-* Fixed: Broken reports forwaring policy
+* Fixed: Broken reports forwarding policy
     (https://issues.rudder.io/issues/15404[#15404])
 * Fixed: In 5.1 common policies always return a missing reports on the server
     (https://issues.rudder.io/issues/15334[#15334])
@@ -2681,9 +2681,9 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Technique editor - Techniques
 
-* Fixed: Policy generation is broken when using condition on generic methds
+* Fixed: Policy generation is broken when using condition on generic methods
     (https://issues.rudder.io/issues/16069[#16069])
-* Fixed: ressources are not correctly referenced in technique
+* Fixed: resources are not correctly referenced in technique
     (https://issues.rudder.io/issues/16039[#16039])
 * Fixed: Resources in technique are not put in the correct folder
     (https://issues.rudder.io/issues/16033[#16033])
@@ -2692,7 +2692,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 * Fixed: Error message in technique editor when using wrong syntax for node properties is REALLY not clear enough 
     (https://issues.rudder.io/issues/15048[#15048])
-* Fixed: Policy generation fails when we have technique ressources
+* Fixed: Policy generation fails when we have technique resources
     (https://issues.rudder.io/issues/16008[#16008])
 * Fixed: In rudder 5.1 we can no more put multiple lines in technique editor fields
     (https://issues.rudder.io/issues/15314[#15314])
@@ -2810,7 +2810,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15233[#15233])
 * Fixed: public key and key-hash comparison not consistent in Rust's version of shared-file API
     (https://issues.rudder.io/issues/15233[#15233])
-* Fixed: Handling keept_output and asynchronous parameters in the remote-run API
+* Fixed: Handling kept_output and asynchronous parameters in the remote-run API
     (https://issues.rudder.io/issues/15206[#15206])
 * Fixed: Logging the remote-run API with warp
     (https://issues.rudder.io/issues/15202[#15202])

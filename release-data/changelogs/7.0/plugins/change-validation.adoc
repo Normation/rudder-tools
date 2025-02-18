@@ -117,7 +117,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 * Use elm-0.19.1 in plugins
     (https://issues.rudder.io/issues/19696[#19696])
-* Adapt rudder plugins makefile so that we make release based on new versionning scheme
+* Adapt rudder plugins makefile so that we make release based on new versioning scheme
     (https://issues.rudder.io/issues/18558[#18558])
 
 === Bug fixes

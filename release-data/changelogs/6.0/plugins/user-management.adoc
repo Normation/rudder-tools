@@ -40,7 +40,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
 
 ==== Miscellaneous
 
-* Fixed: Updating informations by submitting empty fields invalidates user's loggin 
+* Fixed: Updating information by submitting empty fields invalidates user's login 
     (https://issues.rudder.io/issues/16296[#16296])
 
 === Release notes

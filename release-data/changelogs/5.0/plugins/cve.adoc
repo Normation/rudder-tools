@@ -24,7 +24,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 ==== Miscellaneous
 
-* Change how empty cvss (v3 missing) score are stored in databse
+* Change how empty cvss (v3 missing) score are stored in database
     (https://issues.rudder.io/issues/14855[#14855])
 * Display details of the selected CVE
     (https://issues.rudder.io/issues/14709[#14709])

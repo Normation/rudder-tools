@@ -72,7 +72,7 @@ if [ "${redmine_token}" != "" ]; then
 else
   echo "3. What is your redmine token ?"
   echo " If you don't have an account, create one at http://www.rudder-project.org/redmine/my/account"
-  echo " If you have an account, go to http://www.rudder-project.org/redmine/my/account and clik on 'display' under 'API access key'"
+  echo " If you have an account, go to http://www.rudder-project.org/redmine/my/account and click on 'display' under 'API access key'"
   echo -n " What is your token? (leave empty to skip using redmine): "
   read redmine_token
 fi
@@ -205,7 +205,7 @@ cat <<EOF
    -> let's say rudder-techniques
  - Go to the directory containing this directory
    -> cd ~/Rudder/rudder-techniques
- - Create your working branch based on the issue informations
+ - Create your working branch based on the issue information
    -> rudder-dev 1234
    -> this will pull the right source branch, create a new branch and update the issue
  - Work on the issue

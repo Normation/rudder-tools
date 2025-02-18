@@ -186,7 +186,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Documentation
 
-* Fixed: Documention should advice to trigger agent run after promote a node to relay
+* Fixed: Documentation should advice to trigger agent run after promote a node to relay
     (https://issues.rudder.io/issues/25967[#25967])
 * Fixed: Update example to keep up to date rudder-agent package
     (https://issues.rudder.io/issues/25905[#25905])
@@ -216,7 +216,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 * Fixed: Locale issue: date picker should be in yyyy/MM/dd in group criteria
     (https://issues.rudder.io/issues/25727[#25727])
-* Fixed: After restart, nodes that were set back to default policy mode return to their previous overriden mode
+* Fixed: After restart, nodes that were set back to default policy mode return to their previous overridden mode
     (https://issues.rudder.io/issues/25866[#25866])
 
 ==== Web - Compliance & node report
@@ -323,7 +323,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: OIDC users are marked as deleted after a new user is provisionned
+* Fixed: OIDC users are marked as deleted after a new user is provisioned
     (https://issues.rudder.io/issues/25681[#25681])
 * Fixed: Technical and event logs get log from browser timezone instead of server timezone
     (https://issues.rudder.io/issues/25720[#25720])
@@ -539,7 +539,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== System integration
 
-* Fixed: One user is created each case change even if case sensivity if false
+* Fixed: One user is created each case change even if case sensitivity if false
     (https://issues.rudder.io/issues/24955[#24955])
 
 ==== Architecture - Test
@@ -781,7 +781,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Architecture - Code maintenance
 
-* Fixed: Typo in NoopGetNodesbySofwareName prevent merge
+* Fixed: Typo in NoopGetNodesbySoftwareName prevent merge
     (https://issues.rudder.io/issues/25018[#25018])
 
 ==== Web - Config management
@@ -1403,9 +1403,9 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24594[#24594])
 * Fixed: Compilation output tab icon in technique is not aligned
     (https://issues.rudder.io/issues/24586[#24586])
-* Fixed: We shoud not able to save a technique with no method inside
+* Fixed: We should not able to save a technique with no method inside
     (https://issues.rudder.io/issues/24579[#24579])
-* Fixed: Persistant tooltip on info icon in methods
+* Fixed: Persistent tooltip on info icon in methods
     (https://issues.rudder.io/issues/24419[#24419])
 * Fixed: Delete modal in technique editor is offset
     (https://issues.rudder.io/issues/24453[#24453])
@@ -1493,7 +1493,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Generic methods
 
-* Migrate the condition_from_command methode to logger_v4
+* Migrate the condition_from_command method to logger_v4
     (https://issues.rudder.io/issues/24377[#24377])
 * Migrate inventory trigger method to logger_v4
     (https://issues.rudder.io/issues/24378[#24378])
@@ -1538,7 +1538,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24528[#24528])
 * Fixed: Beautify global properties creation
     (https://issues.rudder.io/issues/24471[#24471])
-* Fixed: Directive applicaton preview  in pending nodes is broken
+* Fixed: Directive application preview  in pending nodes is broken
     (https://issues.rudder.io/issues/24324[#24324])
 * Fixed: Nodes table can take almost all the height of the group page 
     (https://issues.rudder.io/issues/24429[#24429])
@@ -1813,7 +1813,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 * Fixed: An errors occurs within technique editor resource manager when we create a folder that has the same name than another parent folder
     (https://issues.rudder.io/issues/24276[#24276])
-* Fixed: when we have conditions on blocks, the condition text is not correctly positionned when the block is opened
+* Fixed: when we have conditions on blocks, the condition text is not correctly positioned when the block is opened
     (https://issues.rudder.io/issues/24150[#24150])
 * Fixed: Technique import doesn't refresh the list of method in technique editor
     (https://issues.rudder.io/issues/24123[#24123])
@@ -1905,7 +1905,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 * Fixed: We must not generate policies for nodes without a well formed certificate
     (https://issues.rudder.io/issues/24112[#24112])
-* Fixed: when we import an archive and rules contains non existant targets, the targets can't be removed from the rules
+* Fixed: when we import an archive and rules contains non existent targets, the targets can't be removed from the rules
     (https://issues.rudder.io/issues/24007[#24007])
 
 ==== Web - Maintenance
@@ -2172,7 +2172,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Web - Config management
 
-* Fixed: Static group which depends on dynamic subgroup must be forbiden
+* Fixed: Static group which depends on dynamic subgroup must be forbidden
     (https://issues.rudder.io/issues/18952[#18952])
 * Fixed: Rudder agent scheduled runs are not triggered at regular interval
     (https://issues.rudder.io/issues/23956[#23956])
@@ -2197,7 +2197,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/23941[#23941])
 * Fixed: rudderc code is not properly formatted due to a failed resolution of merge
     (https://issues.rudder.io/issues/23940[#23940])
-* Fixed: Parameters are not properly intepreted in method call conditions
+* Fixed: Parameters are not properly interpreted in method call conditions
     (https://issues.rudder.io/issues/23925[#23925])
 * Fixed: tests output should be displayed even if not valid utf-8
     (https://issues.rudder.io/issues/23788[#23788])

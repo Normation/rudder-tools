@@ -14,7 +14,7 @@ This page provides a summary of changes for each version. Previous beta
 This version is only available for extended support subscription
 
 ====
-    
+
 
 === Bug fixes
 
@@ -46,7 +46,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 === Bug fixes
 
@@ -73,7 +73,7 @@ This version is only available for extended support subscription
 
 * Fixed: security checks fails because of request to sonatype oss index
     (https://issues.rudder.io/issues/21179[#21179])
-* Fixed: Fix some cve in dependencies 
+* Fixed: Fix some cve in dependencies
     (https://issues.rudder.io/issues/21169[#21169])
 * Fixed: Ignore some CVE that cannot be fixed in 6.1 branch
     (https://issues.rudder.io/issues/21103[#21103])
@@ -84,7 +84,7 @@ This version is only available for extended support subscription
 
 * Fixed: Sometime inventory processing is not done when inventory is receveived
     (https://issues.rudder.io/issues/19585[#19585])
-* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+* Fixed: Two same envvar modulo a space at beginning of name leads to LDAP error when saving inventory
     (https://issues.rudder.io/issues/20984[#20984])
 
 ==== API
@@ -119,11 +119,11 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 ==== Documentation
 
-* Add a compatibilty table for agent relay server in the documentation
+* Add a compatibility table for agent relay server in the documentation
     (https://issues.rudder.io/issues/20621[#20621])
 
 ==== CI
@@ -180,7 +180,7 @@ This version is only available for extended support subscription
 
 ==== Architecture - Dependencies
 
-* Fixed: Update xerces version 
+* Fixed: Update xerces version
     (https://issues.rudder.io/issues/20676[#20676])
 
 ==== API
@@ -222,7 +222,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 ==== CI
 
@@ -309,7 +309,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 ==== CI
 
@@ -320,14 +320,14 @@ This version is only available for extended support subscription
 
 ==== Packaging
 
-* Fixed: ubuntu 13 doesn't support tlsv1.2 
+* Fixed: ubuntu 13 doesn't support tlsv1.2
     (https://issues.rudder.io/issues/20122[#20122])
 * Fixed: old distro build fail to get source
     (https://issues.rudder.io/issues/20063[#20063])
 
 ==== Documentation
 
-* Fixed: Documentation about collection access in jinja2 template is incorect
+* Fixed: Documentation about collection access in jinja2 template is incorrect
     (https://issues.rudder.io/issues/20234[#20234])
 
 ==== Performance and scalability
@@ -395,7 +395,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 ==== Packaging
 
@@ -483,7 +483,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 === Bug fixes
 
@@ -518,7 +518,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 This version is only available for extended support subscription
 
 ====
-    
+
 
 ==== Packaging
 
@@ -593,12 +593,12 @@ This version is only available for extended support subscription
     (https://issues.rudder.io/issues/19400[#19400])
 * Fixed: rudder.auth.admin.pass should be stored in bcrypt format
     (https://issues.rudder.io/issues/19308[#19308])
-* Fixed: Ignore security alert for unused js embeded in scala lib
+* Fixed: Ignore security alert for unused js embedded in scala lib
     (https://issues.rudder.io/issues/19272[#19272])
 
 ==== Performance and scalability
 
-* Fixed: Inefficient comparision of strings in Rudder
+* Fixed: Inefficient comparison of strings in Rudder
     (https://issues.rudder.io/issues/19467[#19467])
 * Fixed: Improve NodeInfo cache
     (https://issues.rudder.io/issues/19399[#19399])
@@ -686,7 +686,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 == Rudder 6.1.13 (2021-05-18)
 
 === Changes
-    
+
 ==== Packaging
 
 * Improve script linter in rudder repo
@@ -745,7 +745,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: relay package fails to build on rhel7
     (https://issues.rudder.io/issues/19247[#19247])
-* Fixed: API documentation is missleading for properties
+* Fixed: API documentation is misleading for properties
     (https://issues.rudder.io/issues/19202[#19202])
 * Fixed: Policy generation does change technique resource files when it should not
     (https://issues.rudder.io/issues/19222[#19222])
@@ -839,7 +839,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Documentation
 
-* Fixed: Incorrect option in pg_restore for archive 
+* Fixed: Incorrect option in pg_restore for archive
     (https://issues.rudder.io/issues/19036[#19036])
 
 ==== Web - Config management
@@ -1249,7 +1249,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: Improve documentation on disk space requirement
     (https://issues.rudder.io/issues/18532[#18532])
-* Fixed: Correct documentation about arrray merge for node properties
+* Fixed: Correct documentation about array merge for node properties
     (https://issues.rudder.io/issues/18467[#18467])
 * Fixed: Search window appears behind "dev version warning" bar
     (https://issues.rudder.io/issues/18524[#18524])
@@ -1542,7 +1542,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Nodes & inventories
 
-* Fixed: Optionally accept node with same hostname as an already accepted one 
+* Fixed: Optionally accept node with same hostname as an already accepted one
     (https://issues.rudder.io/issues/18272[#18272])
 
 ==== API
@@ -1562,7 +1562,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== System integration
 
-* Fixed: Fiber error when postgres is unavaible breaks generation forever
+* Fixed: Fiber error when postgres is unavailable breaks generation forever
     (https://issues.rudder.io/issues/18227[#18227])
 
 ==== Technique editor - API
@@ -1648,7 +1648,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Fixed: "id" setting is silently ignored for new group created through the REST API.
     (https://issues.rudder.io/issues/10216[#10216])
-* Fixed: Rudder directive API seem to take key-value order into account in json POST request 
+* Fixed: Rudder directive API seem to take key-value order into account in json POST request
     (https://issues.rudder.io/issues/14934[#14934])
 
 ==== Miscellaneous
@@ -1742,7 +1742,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Agent
 
-* Add debug information when sending reports 
+* Add debug information when sending reports
     (https://issues.rudder.io/issues/17981[#17981])
 * Add an option to exit with an error code if here was an application error
     (https://issues.rudder.io/issues/17689[#17689])
@@ -1900,7 +1900,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
 
 * Nicolas Ecarnot
-* Frédéric COSTANT
+* Frédéric CONSTANT
 * Bas B
 
 This is a bug fix release in the 6.1 series and therefore all installations of 6.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
@@ -1937,7 +1937,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Rudder language
 
-* add doc about logs and generated techniques 
+* add doc about logs and generated techniques
     (https://issues.rudder.io/issues/17738[#17738])
 
 ==== Techniques
@@ -1953,7 +1953,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17883[#17883])
 * Fixed: "unsaved changed" technique editor pop-up appears when not needed
     (https://issues.rudder.io/issues/17750[#17750])
-* Fixed: Resource path of a technique with a category different thant default category are wrong
+* Fixed: Resource path of a technique with a category different than default category are wrong
     (https://issues.rudder.io/issues/17747[#17747])
 * Fixed: When removing and adding a new method, the save button is disabled
     (https://issues.rudder.io/issues/17776[#17776])
@@ -1975,15 +1975,15 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17874[#17874])
 * Fixed: Typo in network resiliency documentation
     (https://issues.rudder.io/issues/17892[#17892])
-* Fixed: Add trigger agent run feature from UI in get started 
+* Fixed: Add trigger agent run feature from UI in get started
     (https://issues.rudder.io/issues/17855[#17855])
 * Fixed: remove pg_repack from documentation
     (https://issues.rudder.io/issues/17839[#17839])
-* Fixed: Update screenshots in usage doc section 
+* Fixed: Update screenshots in usage doc section
     (https://issues.rudder.io/issues/17843[#17843])
 * Fixed: Missing doc about root-relay communication flows
     (https://issues.rudder.io/issues/17837[#17837])
-* Fixed: Missing ressources feature in technique editor doc
+* Fixed: Missing resources feature in technique editor doc
     (https://issues.rudder.io/issues/17787[#17787])
 * Fixed: Broken link in apply advanced configuration get started doc
     (https://issues.rudder.io/issues/17792[#17792])
@@ -2025,7 +2025,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Config management
 
-* Fixed: Wrong error message when policy server of a Node is not found during generation 
+* Fixed: Wrong error message when policy server of a Node is not found during generation
     (https://issues.rudder.io/issues/17851[#17851])
 * Fixed: Trying to add a group property with change request plugin enabled lead to blank property
     (https://issues.rudder.io/issues/17804[#17804])
@@ -2033,7 +2033,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17836[#17836])
 * Fixed: Updating property merge them in place of replacing them
     (https://issues.rudder.io/issues/17830[#17830])
-* Fixed: When there is a serialisation error for parameter, their edit screen is unavaible
+* Fixed: When there is a serialisation error for parameter, their edit screen is unavailable
     (https://issues.rudder.io/issues/17702[#17702])
 * Fixed: Duplicate category name error when saving a new user technique
     (https://issues.rudder.io/issues/17774[#17774])
@@ -2060,9 +2060,9 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - UI & UX
 
-* Fixed: user with read_only right has button that allows write actions 
+* Fixed: user with read_only right has button that allows write actions
     (https://issues.rudder.io/issues/17725[#17725])
-* Fixed: Select node state in settings is confusiing for read_only user 
+* Fixed: Select node state in settings is confusiing for read_only user
     (https://issues.rudder.io/issues/17627[#17627])
 * Fixed: when we create a group, we should go directly to the criteria page
     (https://issues.rudder.io/issues/17678[#17678])
@@ -2083,7 +2083,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== System techniques
 
-* Fixed: Rudder 6 check postgresql process failes
+* Fixed: Rudder 6 check postgresql process fails
     (https://issues.rudder.io/issues/17145[#17145])
 * Fixed: error when installing rudder server root on debian 9 - 6.1
     (https://issues.rudder.io/issues/17765[#17765])
@@ -2181,7 +2181,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17695[#17695])
 * Fixed: All package script should be set -e
     (https://issues.rudder.io/issues/17687[#17687])
-* Fixed: Upgrade to 6.1 fails on httpd start beacause of old ncf conf is still present on rpm
+* Fixed: Upgrade to 6.1 fails on httpd start because of old ncf conf is still present on rpm
     (https://issues.rudder.io/issues/17681[#17681])
 * Fixed: gpg import error in rudder-pkg
     (https://issues.rudder.io/issues/17692[#17692])
@@ -2248,15 +2248,15 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Miscellaneous
 
-* Dockerizing Rudder agent 
+* Dockerizing Rudder agent
     (https://issues.rudder.io/issues/17604[#17604])
-* Dockerizing Rudder agent 
+* Dockerizing Rudder agent
     (https://issues.rudder.io/issues/17604[#17604])
-* Dockerizing Rudder agent 
+* Dockerizing Rudder agent
     (https://issues.rudder.io/issues/17604[#17604])
-* Dockerizing Rudder agent 
+* Dockerizing Rudder agent
     (https://issues.rudder.io/issues/17604[#17604])
-* Dockerizing Rudder agent 
+* Dockerizing Rudder agent
     (https://issues.rudder.io/issues/17604[#17604])
 
 ==== Rudder language
@@ -2292,7 +2292,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17646[#17646])
 * Fixed: Group value should only display value for that element in main table
     (https://issues.rudder.io/issues/17625[#17625])
-* Fixed: Plugin expiration warning misalignement problem
+* Fixed: Plugin expiration warning misalignment problem
     (https://issues.rudder.io/issues/17619[#17619])
 * Fixed: Overridden pop-up top is missing
     (https://issues.rudder.io/issues/17623[#17623])
@@ -2562,7 +2562,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Plugins integration
 
-* Fixed: add rudder-synchonize within Rudder
+* Fixed: add rudder-synchronize within Rudder
     (https://issues.rudder.io/issues/17345[#17345])
 
 ==== Agent
@@ -2591,7 +2591,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17484[#17484])
 * Fixed: Broken links in docs
     (https://issues.rudder.io/issues/17389[#17389])
-* Fixed: Add explanation to setup technique editor in development environement in 6.1
+* Fixed: Add explanation to setup technique editor in development environment in 6.1
     (https://issues.rudder.io/issues/17502[#17502])
 * Fixed: Missing validated user endpoints in change validation api doc
     (https://issues.rudder.io/issues/17434[#17434])
@@ -2617,7 +2617,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Miscellaneous
 
-* Fixed: When no User rules are defined on a node, compliance tab on node details shows an error 
+* Fixed: When no User rules are defined on a node, compliance tab on node details shows an error
     (https://issues.rudder.io/issues/17527[#17527])
 * Fixed: add debug to makefile
     (https://issues.rudder.io/issues/17191[#17191])
@@ -2997,7 +2997,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16752[#16752])
 * Add upgrade note to document how to switch from previous hash function to BCrypt
     (https://issues.rudder.io/issues/16729[#16729])
-* Add Bcrypt support informations 
+* Add Bcrypt support information
     (https://issues.rudder.io/issues/16724[#16724])
 * Adapt doc for 6.1
     (https://issues.rudder.io/issues/15846[#15846])
@@ -3087,7 +3087,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/17114[#17114])
 * test loop integration
     (https://issues.rudder.io/issues/16902[#16902])
-* Full review of rudder-lang suported systems
+* Full review of rudder-lang supported systems
     (https://issues.rudder.io/issues/16974[#16974])
 * Rework os class translation into rudder-lang
     (https://issues.rudder.io/issues/17052[#17052])
@@ -3125,11 +3125,11 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16807[#16807])
 * rl add an optional path for compilation and translation
     (https://issues.rudder.io/issues/16775[#16775])
-* rl allow splitted global variables declaration
+* rl allow split global variables declaration
     (https://issues.rudder.io/issues/16774[#16774])
-* rl enchance variables handling 
+* rl enhance variables handling
     (https://issues.rudder.io/issues/16728[#16728])
-* rl enchance variables handling 
+* rl enhance variables handling
     (https://issues.rudder.io/issues/16728[#16728])
 * rl generate enum mappings from os tree
     (https://issues.rudder.io/issues/16717[#16717])
@@ -3137,7 +3137,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/16658[#16658])
 * rl add non terminating errors and related integration tests
     (https://issues.rudder.io/issues/16616[#16616])
-* format entire rudderlang code according to style guidelines 
+* format entire rudderlang code according to style guidelines
     (https://issues.rudder.io/issues/16614[#16614])
 
 ==== Web - Nodes & inventories
@@ -3251,7 +3251,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Nodes & inventories
 
-* Fixed: when a node is removed from a dynamc group, it log "adding nothing, removing nothing"
+* Fixed: when a node is removed from a dynamic group, it log "adding nothing, removing nothing"
     (https://issues.rudder.io/issues/17220[#17220])
 * Fixed: Concurrent access to node info cache cause exception to be thrown when accessing cache content
     (https://issues.rudder.io/issues/17172[#17172])

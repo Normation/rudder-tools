@@ -387,7 +387,7 @@ where the shared folder is located
 * Fixed: Archive parameter files are named `ParameterName(name).xml'
 instead of `name.xml'
 (https://issues.rudder.io/issues/4377[#4377])
-* Fixed: Parameters are not included when dowloading zip archive
+* Fixed: Parameters are not included when downloading zip archive
 (https://issues.rudder.io/issues/4374[#4374])
 * Fixed: Techniques are not included when downloading zip archive
 (https://issues.rudder.io/issues/4279[#4279])
@@ -442,7 +442,7 @@ missing (https://issues.rudder.io/issues/4280[#4280])
 ==== Techniques
 
 * Fixed: Report state is ``unknown'' on Root server for ``Inventories''
-component in ``Distibute policy''
+component in ``Distribute policy''
 (https://issues.rudder.io/issues/4364[#4364])
 * Fixed: There is no reports for package removal on debian/ubuntu
 systems (https://issues.rudder.io/issues/4144[#4144])
@@ -536,7 +536,7 @@ stable very soon.
 
 * Fixed: Excessive logs from ``Store Agent Run Times'' task
 (https://issues.rudder.io/issues/4138[#4138])
-* Fixed: Disabling workflow functionnality should disable change
+* Fixed: Disabling workflow functionality should disable change
 request, however a log about change request is still displayed
 (https://issues.rudder.io/issues/4143[#4143])
 
@@ -645,7 +645,7 @@ migration of CFEngine variable, leading to wrong promises generated
 * Fixed: User manual doesn’t mention Debian wheezy support
 (https://issues.rudder.io/issues/4124[#4124])
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: The rSyslog rate limiting bug fix is defined but not called in
 the Techniques
@@ -720,7 +720,7 @@ and any feedback!
 
 === Changes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Rudder-agent cron file now use check-rudder-agent script
 (/opt/rudder/bin/check-rudder-agent)
@@ -761,7 +761,7 @@ uploaded on the agent and an inventory runs.
 
 === Bug fixes
 
-==== Techniques - Sys & init promis
+==== Techniques - Sys & init promise
 
 * Fixed: Using list of path for sending inventories in Rudder 2.8 leads
 to inconsistent failure
@@ -819,7 +819,7 @@ modifications to save
 ==== Techniques
 
 * Fixed: Remove comma after the promiser from passwordCheck in the
-distirbutePolicy promises
+distributePolicy promises
 (https://issues.rudder.io/issues/4040[#4040])
 * Fixed: The failsafe of the initial promises cannot update promises
 (https://issues.rudder.io/issues/4025[#4025])
@@ -868,7 +868,7 @@ and any feedback!
 
 ==== Documentation
 
-* Add informations about the upgrade process for Rudder 2.8
+* Add information about the upgrade process for Rudder 2.8
 (https://issues.rudder.io/issues/3986[#3986])
 ** Look at the
 http://www.rudder-project.org/rudder-doc-2.8/rudder-doc.html#_upgrading_from_rudder_2_4_2_6_or_2_7[upgrade

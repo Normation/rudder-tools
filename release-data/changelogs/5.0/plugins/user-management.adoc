@@ -34,7 +34,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 * Fixed: move historical doc to the dedicated plugin documentation
     (https://issues.rudder.io/issues/16190[#16190])
-* Fixed: Missing better-files depenency in pom-template
+* Fixed: Missing better-files dependency in pom-template
     (https://issues.rudder.io/issues/15594[#15594])
 * Fixed: Wrong import in RoleComputationTest
     (https://issues.rudder.io/issues/15593[#15593])

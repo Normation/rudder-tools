@@ -21,7 +21,7 @@
 
 * Fixed: The password should not be required for LDAP users
     (https://issues.rudder.io/issues/18565[#18565])
-* Fixed: Add a note indicating that usermanagement is not subject to worflow validation
+* Fixed: Add a note indicating that usermanagement is not subject to workflow validation
     (https://issues.rudder.io/issues/17869[#17869])
 * Fixed: Optimize elm plugins
     (https://issues.rudder.io/issues/17886[#17886])
@@ -38,7 +38,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 * Add BCrypt support for password encoder message box
     (https://issues.rudder.io/issues/16720[#16720])
-* Update documentation with missing informations
+* Update documentation with missing information
     (https://issues.rudder.io/issues/16723[#16723])
 
 === Bug fixes

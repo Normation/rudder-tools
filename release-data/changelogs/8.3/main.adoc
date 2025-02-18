@@ -113,7 +113,7 @@
     (https://issues.rudder.io/issues/25780[#25780])
 * Migrate CmdbQuery to zio-json
     (https://issues.rudder.io/issues/25894[#25894])
-* Remove all occurence of cfengine entreprise
+* Remove all occurrence of cfengine enterprise
     (https://issues.rudder.io/issues/25779[#25779])
 
 ==== Web - Config management
@@ -207,7 +207,7 @@
 
 ==== Documentation
 
-* Fixed: Troubleshooting ESET software modifying certifactes by replacing issuers
+* Fixed: Troubleshooting ESET software modifying certificates by replacing issuers
     (https://issues.rudder.io/issues/26234[#26234])
 * Fixed: Fix the logo in the README
     (https://issues.rudder.io/issues/25755[#25755])

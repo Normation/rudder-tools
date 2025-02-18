@@ -225,7 +225,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21917[#21917])
 * Fixed: Unable to sort on property in list of nodes tab
     (https://issues.rudder.io/issues/21503[#21503])
-* Fixed: Input Text disapear in technic editor when entering a space with Grammarly/LanguageTool extension
+* Fixed: Input Text disappear in technique editor when entering a space with Grammarly/LanguageTool extension
     (https://issues.rudder.io/issues/21172[#21172])
 
 ==== Miscellaneous
@@ -256,7 +256,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 * Fixed: Cannot save a technique after removing a block
     (https://issues.rudder.io/issues/21768[#21768])
-* Fixed: Report if condition and Environement_variable_present by default cause missing report
+* Fixed: Report if condition and Environment_variable_present by default cause missing report
     (https://issues.rudder.io/issues/21752[#21752])
 * Fixed: Methods markdown documentation in the technique editor are not properly rendered
     (https://issues.rudder.io/issues/21368[#21368])
@@ -294,7 +294,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Web - Config management
 
-* Fixed: missing list of inpacted rules when creating a directive and applying it to a rule
+* Fixed: missing list of impacted rules when creating a directive and applying it to a rule
     (https://issues.rudder.io/issues/21671[#21671])
 * Fixed: generated policies are invalid when using a generic method that doesn't exist on linux
     (https://issues.rudder.io/issues/21686[#21686])
@@ -358,7 +358,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Architecture - Internal libs
 
-* Port policy writting test to rudder 7.1
+* Port policy writing test to rudder 7.1
     (https://issues.rudder.io/issues/21477[#21477])
 
 ==== Techniques
@@ -540,7 +540,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Documentation
 
-* Fixed: Some reponses are missing in technique api doc
+* Fixed: Some responses are missing in technique api doc
     (https://issues.rudder.io/issues/21304[#21304])
 
 ==== Agent
@@ -620,7 +620,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Web - Technique editor
 
-* Fixed: When a technique is not in the active techique tree, it can't be deleted in editor
+* Fixed: When a technique is not in the active technique tree, it can't be deleted in editor
     (https://issues.rudder.io/issues/21119[#21119])
 
 ==== Web - UI & UX
@@ -690,7 +690,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Documentation
 
-* Fixed: Documentation about certificate handling during uprade is not great
+* Fixed: Documentation about certificate handling during upgrade is not great
     (https://issues.rudder.io/issues/21129[#21129])
 * Fixed: Mark 7.1 as released in the docs
     (https://issues.rudder.io/issues/21030[#21030])
@@ -733,7 +733,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Web - Nodes & inventories
 
-* Fixed: Criteria not working when filter on IP adress and GoupID in group page
+* Fixed: Criteria not working when filter on IP address and GroupID in group page
     (https://issues.rudder.io/issues/21144[#21144])
 * Fixed: Sometime inventory processing is not done when inventory is receveived
     (https://issues.rudder.io/issues/19585[#19585])
@@ -749,7 +749,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 * Fixed: Directive and rule revision is not parsed in API
     (https://issues.rudder.io/issues/21150[#21150])
-* Fixed: Rudder incorectly parse URL with a '+' in the path into spaces
+* Fixed: Rudder incorrectly parse URL with a '+' in the path into spaces
     (https://issues.rudder.io/issues/20943[#20943])
 * Fixed: Deleting a rule's category leeds to an error
     (https://issues.rudder.io/issues/21080[#21080])
@@ -912,7 +912,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Web - Nodes & inventories
 
-* Fixed: Two same envvar modulo a space at begining of name leads to LDAP error when saving inventory
+* Fixed: Two same envvar modulo a space at beginning of name leads to LDAP error when saving inventory
     (https://issues.rudder.io/issues/20984[#20984])
 
 ==== System techniques
@@ -1087,7 +1087,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: Compilation warning on branche 6.2
+* Fixed: Compilation warning on branch 6.2
     (https://issues.rudder.io/issues/20874[#20874])
 
 ==== System techniques
@@ -1146,7 +1146,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
 
 * Windows support should be documented as the other agents
     (https://issues.rudder.io/issues/20835[#20835])
-* Add a compatibilty table for agent relay server in the documentation
+* Add a compatibility table for agent relay server in the documentation
     (https://issues.rudder.io/issues/20621[#20621])
 * Prepare 7.1 API doc
     (https://issues.rudder.io/issues/20737[#20737])

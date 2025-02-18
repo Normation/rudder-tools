@@ -892,9 +892,9 @@ if ($MODE eq 'ROOT') {
             }
 
             ## Here we handle the case where a 500 could mean a temporary badness on server side, but the inventory would be parseable
-            ## so retry it multiple times, but also limit it to a sane value since a broken inventory coud cause the parser to throw a
+            ## so retry it multiple times, but also limit it to a sane value since a broken inventory could cause the parser to throw a
             ## so beautiful Java Exception, that my portrait-aligned wide-screen was not able to show it on one page, and this would just
-            ## keep failing and "pollute" the queue by unparseable inventories... Good thing is if we return <0, the item will get pushed
+            ## keep failing and "pollute" the queue by unparsable inventories... Good thing is if we return <0, the item will get pushed
             ## to the end of the queue, so inventories could still be parsed before this blocks the queue
             if (++$failcount{$path} > $MAX_FAILS_PER_INVENTORY) {
                 LOG(ERROR, "send_file: HTTP/%s: Gave up on '%s' after %s tries!", $code, $path, ${MAX_FAILS_PER_INVENTORY});

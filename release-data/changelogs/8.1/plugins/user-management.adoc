@@ -53,9 +53,9 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Fixed: A user should not be able to delete themselves in user management
+* Fixed: A user should not be able to delete themselvess in user management
     (https://issues.rudder.io/issues/25464[#25464])
-* Fixed: A users should not be able to disable themselve in user management
+* Fixed: A users should not be able to disable themselves in user management
     (https://issues.rudder.io/issues/25454[#25454])
 
 === Release notes
@@ -192,7 +192,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Fixed: Missleading placeholder for empty field value
+* Fixed: Misleading placeholder for empty field value
     (https://issues.rudder.io/issues/24461[#24461])
 * Fixed: Fix user-management build failure when requiring schema.sql file
     (https://issues.rudder.io/issues/24438[#24438])

@@ -131,7 +131,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 * Fixed: copyright date on agent install is 2017
     (https://issues.rudder.io/issues/14303[#14303])
-* Fixed: The packaging/Files/modules directory shoud be in the repository
+* Fixed: The packaging/Files/modules directory should be in the repository
     (https://issues.rudder.io/issues/13950[#13950])
 
 ==== Rudder web app

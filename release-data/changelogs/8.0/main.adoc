@@ -12,7 +12,7 @@
 
 ==== Architecture - Code maintenance
 
-* pylint test failing on rudder package 
+* pylint test failing on rudder package
     (https://issues.rudder.io/issues/24982[#24982])
 
 ==== Architecture - Internal libs
@@ -238,7 +238,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: Webapp can fail to start with null sessionid error 
+* Fixed: Webapp can fail to start with null sessionid error
     (https://issues.rudder.io/issues/24017[#24017])
 
 ==== Performance and scalability
@@ -262,7 +262,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Fixed: Disabled provisioned users can still login and use Rudder
     (https://issues.rudder.io/issues/24691[#24691])
-* Fixed: Ignore RUSTSEC-2024-0332 
+* Fixed: Ignore RUSTSEC-2024-0332
     (https://issues.rudder.io/issues/24678[#24678])
 
 ==== Web - UI & UX
@@ -383,7 +383,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24416[#24416])
 * Fixed: Directive errors section is not consistent and always redirects to first tab
     (https://issues.rudder.io/issues/24590[#24590])
-* Fixed: JS error when opening directive form more than once 
+* Fixed: JS error when opening directive form more than once
     (https://issues.rudder.io/issues/24563[#24563])
 * Fixed: Margin is too small on Global compliance details module in dashboard
     (https://issues.rudder.io/issues/24283[#24283])
@@ -426,7 +426,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Fixed: Compilation output tab icon in technique is not aligned
     (https://issues.rudder.io/issues/24586[#24586])
-* Fixed: We shoud not able to save a technique with no method inside
+* Fixed: We should not able to save a technique with no method inside
     (https://issues.rudder.io/issues/24579[#24579])
 * Fixed: An errors occurs within technique editor resource manager when we create a folder that has the same name than another parent folder
     (https://issues.rudder.io/issues/24276[#24276])
@@ -451,7 +451,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Fixed: Existing deleted user managed by file cannot be reactivated 
+* Fixed: Existing deleted user managed by file cannot be reactivated
     (https://issues.rudder.io/issues/24318[#24318])
 
 ==== Architecture - Internal libs
@@ -538,7 +538,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Technique editor
 
-* Fixed: when we have conditions on blocks, the condition text is not correctly positionned when the block is opened
+* Fixed: when we have conditions on blocks, the condition text is not correctly positioned when the block is opened
     (https://issues.rudder.io/issues/24150[#24150])
 * Fixed: Technique import doesn't refresh the list of method in technique editor
     (https://issues.rudder.io/issues/24123[#24123])
@@ -557,7 +557,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: Archiving allows to read inconsistent active technique category ids 
+* Fixed: Archiving allows to read inconsistent active technique category ids
     (https://issues.rudder.io/issues/24011[#24011])
 
 ==== API
@@ -633,9 +633,9 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Config management
 
-* Fixed: when we import an archive and rules contains non existant targets, the targets can't be removed from the rules
+* Fixed: when we import an archive and rules contains non existent targets, the targets can't be removed from the rules
     (https://issues.rudder.io/issues/24007[#24007])
-* Fixed: Static group which depends on dynamic subgroup must be forbiden
+* Fixed: Static group which depends on dynamic subgroup must be forbidden
     (https://issues.rudder.io/issues/18952[#18952])
 * Fixed: Rudder agent scheduled runs are not triggered at regular interval
     (https://issues.rudder.io/issues/23956[#23956])
@@ -719,7 +719,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
     (https://issues.rudder.io/issues/23953[#23953])
 * Fixed: Improve rudderc test error message when no library is passed in the parameters
     (https://issues.rudder.io/issues/23941[#23941])
-* Fixed: Parameters are not properly intepreted in method call conditions
+* Fixed: Parameters are not properly interpreted in method call conditions
     (https://issues.rudder.io/issues/23925[#23925])
 
 ==== Architecture - Internal libs
@@ -734,7 +734,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Techniques
 
-* Fixed: File content directive add 4 spaces at the beginning of the line 
+* Fixed: File content directive add 4 spaces at the beginning of the line
     (https://issues.rudder.io/issues/24022[#24022])
 * Fixed: FileTemplate technique fails with an error on the Directory-Create method call
     (https://issues.rudder.io/issues/23954[#23954])
@@ -986,7 +986,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - UI & UX
 
-* The "Required/May be empy" button in the parameters of a technique is not intuitive enough
+* The "Required/May be empty" button in the parameters of a technique is not intuitive enough
     (https://issues.rudder.io/issues/23610[#23610])
 * Improve deleted directive screen
     (https://issues.rudder.io/issues/23172[#23172])
@@ -1035,7 +1035,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Fixed: Several low impact CVE in Jetty 10.0.12
     (https://issues.rudder.io/issues/23608[#23608])
-* Fixed: Assessments of several low impact CVE in current 7.3.x reported by contrastsecurity tool 
+* Fixed: Assessments of several low impact CVE in current 7.3.x reported by contrastsecurity tool
     (https://issues.rudder.io/issues/23609[#23609])
 
 ==== Documentation
@@ -1099,7 +1099,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Config management
 
-* Fixed: Tag are not displayed with a nice diff in eventLog 
+* Fixed: Tag are not displayed with a nice diff in eventLog
     (https://issues.rudder.io/issues/15019[#15019])
 * Fixed: Quotes in group name generate JS errors when using GroupId criteria
     (https://issues.rudder.io/issues/23320[#23320])
@@ -1248,7 +1248,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Fixed: PostgreSQL error doobie.util.invariant$UnexpectedEnd$ 
+* Fixed: PostgreSQL error doobie.util.invariant$UnexpectedEnd$
     (https://issues.rudder.io/issues/22527[#22527])
 
 ==== Plugins integration
@@ -1263,7 +1263,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Nodes & inventories
 
-* Fixed: String node poperties are displayed in quotes
+* Fixed: String node properties are displayed in quotes
     (https://issues.rudder.io/issues/23517[#23517])
 * Fixed: Changing group property value displays spurious “renamed” message
     (https://issues.rudder.io/issues/23514[#23514])
@@ -1386,7 +1386,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Fixed: Compliance filter is not clear enough when disabling a group of reports
     (https://issues.rudder.io/issues/23492[#23492])
-* Fixed: Focus reporting is not working 
+* Fixed: Focus reporting is not working
     (https://issues.rudder.io/issues/23466[#23466])
 
 ==== API
@@ -1409,7 +1409,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Fixed: Update jgit to remove CVE-2023-4759 error message
     (https://issues.rudder.io/issues/23495[#23495])
-* Fixed: Make writing node state to fact repos optionnal
+* Fixed: Make writing node state to fact repos optional
     (https://issues.rudder.io/issues/23424[#23424])
 
 ==== Techniques
@@ -1632,7 +1632,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Performance and scalability
 
-* Make commiting nodes to fact-repo optionnal
+* Make committing nodes to fact-repo optional
     (https://issues.rudder.io/issues/23045[#23045])
 
 ==== Generic methods
@@ -1698,7 +1698,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
     (https://issues.rudder.io/issues/23233[#23233])
 * Fixed: CVE-2016-1000027 false positive detection
     (https://issues.rudder.io/issues/23231[#23231])
-* Fixed: Some internal APIs in the Web application bypass ACLs 
+* Fixed: Some internal APIs in the Web application bypass ACLs
     (https://issues.rudder.io/issues/23227[#23227])
 * Fixed: File manager API is vulnerable to malicious input
     (https://issues.rudder.io/issues/23225[#23225])
@@ -1724,11 +1724,11 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
     (https://issues.rudder.io/issues/23259[#23259])
 * Fixed: doc for external db is not very clear
     (https://issues.rudder.io/issues/23245[#23245])
-* Fixed: Wrong OS for amazon linux 2023 server install 
+* Fixed: Wrong OS for amazon linux 2023 server install
     (https://issues.rudder.io/issues/23242[#23242])
 * Fixed: correct rudder server requirements in doc
     (https://issues.rudder.io/issues/23131[#23131])
-* Fixed: Add relevent items from jetty config to the webapp conf section
+* Fixed: Add relevant items from jetty config to the webapp conf section
     (https://issues.rudder.io/issues/23026[#23026])
 * Fixed: Document the report mode setting
     (https://issues.rudder.io/issues/13289[#13289])
@@ -1753,11 +1753,11 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
     (https://issues.rudder.io/issues/23346[#23346])
 * Fixed: In the quicksearch window, the link for a result is not applied to the entire line
     (https://issues.rudder.io/issues/23345[#23345])
-* Fixed: In Technique Editor, the quicksearch window appears behind the navigation menu. 
+* Fixed: In Technique Editor, the quicksearch window appears behind the navigation menu.
     (https://issues.rudder.io/issues/23343[#23343])
 * Fixed: In quicksearch window, Warning message "please refine your query" is displayed even if there is less than 10 results
     (https://issues.rudder.io/issues/23342[#23342])
-* Fixed: Inconsitency background color in generic method section in technique editor
+* Fixed: Inconsistency background color in generic method section in technique editor
     (https://issues.rudder.io/issues/23170[#23170])
 * Fixed: Node property name is reset to the previous value when editing the value on creation
     (https://issues.rudder.io/issues/23182[#23182])
@@ -1824,7 +1824,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Architecture - Code maintenance
 
-* Fixed: Clean-up unsuported old format for expected report and techniques
+* Fixed: Clean-up unsupported old format for expected report and techniques
     (https://issues.rudder.io/issues/23369[#23369])
 * Fixed: Add rudder 8.0 inventories to unit tests
     (https://issues.rudder.io/issues/23319[#23319])
@@ -1868,7 +1868,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: Plugin cannot add custom roles or it will be overwritten by boot custom roles 
+* Fixed: Plugin cannot add custom roles or it will be overwritten by boot custom roles
     (https://issues.rudder.io/issues/23098[#23098])
 
 ==== Plugin manager cli
@@ -1887,7 +1887,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== System integration
 
-* Fixed: Windows agent cannot get immediatly its policies right after being accepted
+* Fixed: Windows agent cannot get immediately its policies right after being accepted
     (https://issues.rudder.io/issues/23218[#23218])
 
 ==== Generic methods
@@ -1906,7 +1906,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Web - Compliance & node report
 
-* Fixed: Bad report maching when reportid are present
+* Fixed: Bad report matching when reportid are present
     (https://issues.rudder.io/issues/22388[#22388])
 * Fixed: Multiline string in component name or value breaks pattern comparison for expected report
     (https://issues.rudder.io/issues/23090[#23090])
@@ -1925,7 +1925,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Server components
 
-* Fixed: Broken "server create-user" command when auth file has different formating
+* Fixed: Broken "server create-user" command when auth file has different formatting
     (https://issues.rudder.io/issues/23203[#23203])
 
 === Release notes
@@ -1990,7 +1990,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Rewrite angular app "textForm" in JavaScript
     (https://issues.rudder.io/issues/23041[#23041])
-* Remove QueryTrait 
+* Remove QueryTrait
     (https://issues.rudder.io/issues/22678[#22678])
 
 ==== API
@@ -2032,7 +2032,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 ==== Architecture - Dependencies
 
-* Update webapp dependencies 
+* Update webapp dependencies
     (https://issues.rudder.io/issues/22800[#22800])
 
 ==== System techniques

@@ -23,7 +23,7 @@ Usage:
     rudder-dev [-d|--debug] [-f|--force] revert <ticket_id> [--retarget]
     rudder-dev [-d|--debug] [-f|--force] merge all [(-s <strategy>)] [-a|--automatic] [-t|--test]
     rudder-dev [-d|--debug] [-f|--force] merge <first_branch/ticket_id/pr_url> [(-s <strategy>)] [-a|--automatic] [-t|--test] [--no-autosquash]
-    rudder-dev [-d|--debug] [-f|--force] merge <first_branch> <next_branch> [(-s <strategy>)] [-a|--automatic] [-t|--test] 
+    rudder-dev [-d|--debug] [-f|--force] merge <first_branch> <next_branch> [(-s <strategy>)] [-a|--automatic] [-t|--test]
     rudder-dev [-d|--debug] [-f|--force] merge [(-s <strategy>)] [-a|--automatic] [-t|--test] [--no-autosquash]
     rudder-dev [-d|--debug] [-f|--force] find <command>
     rudder-dev [-d|--debug] [-f|--force] cleanup [--more] [-n|--dry-run]
@@ -115,7 +115,7 @@ COMMIT
     - push the branch to your github repository
     - stop if --nopr is given
     - make a pull-request to Normation's repository
-    - update the coresponding bug with those informations
+    - update the corresponding bug with those information
     ex: rudder-dev commit BPF "@reviewer please tell me it's good"
     ex: rudder-dev commit
 
@@ -413,7 +413,7 @@ def branch_from_version(version):
    return version
   else:
     # detect lifecycle and base the name on it
-    # assume firt position is not next
+    # assume first position is not next
     lifecycle = get_lifecycle()
     branch = lifecycle['format'][0].format(version)
     print("Branch name for version '"+version+"' is: " + branch)
@@ -967,7 +967,7 @@ def commit(trigraph=None, message=None, nopr=False, draft=False):
 def wip(trigraph=None, message=None, nopr=False, draft=False):
   commit(trigraph, message, nopr, draft=True)
 
-  
+
 # amend commit, push -f, comment PR
 def amend(comment=None):
   issue = issue_from_branch(current_branch)
@@ -1275,7 +1275,7 @@ def merge_branch(old, new, strategy=None, automatic=False, dsc_version="", test=
     opts = ""
     if automatic:
       opts += " --no-edit "
-    shell(" git diff --quiet && git diff --quiet --staged || git commit -m 'Update submodules' "+opts, "Commiting")
+    shell(" git diff --quiet && git diff --quiet --staged || git commit -m 'Update submodules' "+opts, "Committing")
   first_merge = False
   if not test:
     shell("git push " + Config.UPSTREAM_REPOSITORY + " " + branch_from_version(new), "Pushing merged branch")
@@ -1373,7 +1373,7 @@ def revert(ticket, retarget = False):
   shell("git revert -m1 " + commit, "Reverting issue #" + str(issue.id) + ":" + issue["name"]+ ", commit: " + commit  )
   shell("git push " + Config.UPSTREAM_REPOSITORY, "Updating " + Config.UPSTREAM_REPOSITORY)
 
-  # If we retarget that issue, merge it with ours strategy so the chnage is still present in next version
+  # If we retarget that issue, merge it with ours strategy so the change is still present in next version
   if retarget:
     merge_to_next(issue['version'], "ours")
 

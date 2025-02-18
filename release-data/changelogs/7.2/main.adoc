@@ -40,7 +40,7 @@
 
 ==== Miscellaneous
 
-* Fixed: Make writing node state to fact repos optionnal
+* Fixed: Make writing node state to fact repos optional
     (https://issues.rudder.io/issues/23424[#23424])
 
 ==== Relay server or API
@@ -125,7 +125,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Performance and scalability
 
-* Make commiting nodes to fact-repo optionnal
+* Make committing nodes to fact-repo optional
     (https://issues.rudder.io/issues/23045[#23045])
 
 ==== Web - UI & UX
@@ -147,7 +147,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Documentation
 
-* Fixed: Add relevent items from jetty config to the webapp conf section
+* Fixed: Add relevant items from jetty config to the webapp conf section
     (https://issues.rudder.io/issues/23026[#23026])
 * Fixed: Document the report mode setting
     (https://issues.rudder.io/issues/13289[#13289])
@@ -156,7 +156,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Web - Compliance & node report
 
-* Fixed: Bad report maching when reportid are present
+* Fixed: Bad report matching when reportid are present
     (https://issues.rudder.io/issues/22388[#22388])
 * Fixed: Multiline string in component name or value breaks pattern comparison for expected report
     (https://issues.rudder.io/issues/23090[#23090])
@@ -219,7 +219,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Generic methods
 
-* Add a methd to force the secondary groups of a user
+* Add a method to force the secondary groups of a user
     (https://issues.rudder.io/issues/22722[#22722])
 
 === Bug fixes
@@ -453,7 +453,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Packaging
 
-* Fixed: Rudder agent force a lot of dependencies on RHEL9 
+* Fixed: Rudder agent force a lot of dependencies on RHEL9
     (https://issues.rudder.io/issues/22610[#22610])
 * Fixed: rudder-init replaces rudder-db password at postinst
     (https://issues.rudder.io/issues/22608[#22608])
@@ -485,7 +485,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: Ignore CVE 2023-20860 
+* Fixed: Ignore CVE 2023-20860
     (https://issues.rudder.io/issues/22708[#22708])
 * Fixed: Missing "latest" in archive API tests leads to error with upmerge
     (https://issues.rudder.io/issues/22636[#22636])
@@ -588,7 +588,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
     (https://issues.rudder.io/issues/22677[#22677])
 * Fixed: report_if_condition report contain twice "was correct"
     (https://issues.rudder.io/issues/22665[#22665])
-* Fixed: Missleading use of parameter variable_name in method condition_from_variable_match
+* Fixed: Misleading use of parameter variable_name in method condition_from_variable_match
     (https://issues.rudder.io/issues/22620[#22620])
 
 === Release notes
@@ -781,14 +781,14 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: A 6.2 relay cannot talk to a 7.2 server through HTTPS
     (https://issues.rudder.io/issues/22402[#22402])
-* Fixed: Changes only does not support campaign reports 
+* Fixed: Changes only does not support campaign reports
     (https://issues.rudder.io/issues/22240[#22240])
 
 ==== Generic methods
 
 * Fixed: file key value parameter in list accepts entries without separator
     (https://issues.rudder.io/issues/22322[#22322])
-* Fixed: Descriptin of permissions dirs recursive is misleading
+* Fixed: Description of permissions dirs recursive is misleading
     (https://issues.rudder.io/issues/17122[#17122])
 
 ==== Agent
@@ -860,7 +860,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Web - Campaigns
 
-* Fixed: Running deleted campaign don't get their directive cleaned-up 
+* Fixed: Running deleted campaign don't get their directive cleaned-up
     (https://issues.rudder.io/issues/22139[#22139])
 
 ==== Security
@@ -925,7 +925,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 This version is only available for extended support subscription
 
 ====
-    
+
 
 ==== Architecture - Internal libs
 
@@ -948,7 +948,7 @@ This version is only available for extended support subscription
 
 * Fixed: Missing diverted file in rudder-relay package
     (https://issues.rudder.io/issues/22193[#22193])
-* Fixed: aix postinst doesn't install a crontab fo rudder agent check
+* Fixed: aix postinst doesn't install a crontab for rudder agent check
     (https://issues.rudder.io/issues/22167[#22167])
 
 ==== Web - Nodes & inventories
@@ -993,7 +993,7 @@ This version is only available for extended support subscription
 
 ==== Generic methods
 
-* Fixed: when there are no python installed on a node, tempate from jinja2 and packages generic method fail without explaining why
+* Fixed: when there are no python installed on a node, template from jinja2 and packages generic method fail without explaining why
     (https://issues.rudder.io/issues/22122[#22122])
 
 === Release notes
@@ -1075,7 +1075,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Web - UI & UX
 
-* Fixed: Click on graph node with "applying" compliance lead to JS error 
+* Fixed: Click on graph node with "applying" compliance lead to JS error
     (https://issues.rudder.io/issues/22134[#22134])
 * Fixed: Deleting custom column in based on a property in nodes list fails
     (https://issues.rudder.io/issues/22092[#22092])
@@ -1086,7 +1086,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Miscellaneous
 
-* Fixed: Windows generic method parameters are always written "mandatory=true" even when "mayBeEmpty" 
+* Fixed: Windows generic method parameters are always written "mandatory=true" even when "mayBeEmpty"
     (https://issues.rudder.io/issues/22126[#22126])
 * Fixed: Missing epoch string in search node query from pie chart
     (https://issues.rudder.io/issues/22015[#22015])
@@ -1104,7 +1104,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== System integration
 
-* Fixed: Delete action for node is not the correct one because of merge 
+* Fixed: Delete action for node is not the correct one because of merge
     (https://issues.rudder.io/issues/22121[#22121])
 
 ==== Web - Config management
@@ -1403,7 +1403,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: One shot schedule condition is invalid
     (https://issues.rudder.io/issues/21865[#21865])
-* Fixed: Campaign json should be versionned
+* Fixed: Campaign json should be versioned
     (https://issues.rudder.io/issues/21811[#21811])
 * Fixed: Switch campaign schedule from a duration to a end time
     (https://issues.rudder.io/issues/21792[#21792])
@@ -1420,9 +1420,9 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21837[#21837])
 * Fixed: Impossible to move groups
     (https://issues.rudder.io/issues/21755[#21755])
-* Fixed: Added a warning icon in a rule details if no target has been selected 
+* Fixed: Added a warning icon in a rule details if no target has been selected
     (https://issues.rudder.io/issues/21789[#21789])
-* Fixed: Input Text disapear in technic editor when entering a space with Grammarly/LanguageTool extension
+* Fixed: Input Text disappear in technique editor when entering a space with Grammarly/LanguageTool extension
     (https://issues.rudder.io/issues/21172[#21172])
 * Fixed: Add css code to generate datatable loading animation
     (https://issues.rudder.io/issues/21711[#21711])
@@ -1455,7 +1455,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: Cannot save a technique after removing a block
     (https://issues.rudder.io/issues/21768[#21768])
-* Fixed: Report if condition and Environement_variable_present by default cause missing report
+* Fixed: Report if condition and Environment_variable_present by default cause missing report
     (https://issues.rudder.io/issues/21752[#21752])
 * Fixed: Methods markdown documentation in the technique editor are not properly rendered
     (https://issues.rudder.io/issues/21368[#21368])
@@ -1472,7 +1472,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Packaging
 
-* Fixed: Cleanup cron job for relay not removed on upgrade ot 7.2
+* Fixed: Cleanup cron job for relay not removed on upgrade of 7.2
     (https://issues.rudder.io/issues/21714[#21714])
 
 ==== Techniques
@@ -1537,7 +1537,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Web - Campaigns
 
-* Add reason field to disabled field in campains and campain events
+* Add reason field to disabled field in campaigns and campaign events
     (https://issues.rudder.io/issues/21698[#21698])
 
 ==== Plugins integration
@@ -1559,7 +1559,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Make campaign test work
     (https://issues.rudder.io/issues/21539[#21539])
-* Port policy writting test to rudder 7.1
+* Port policy writing test to rudder 7.1
     (https://issues.rudder.io/issues/21477[#21477])
 
 ==== Techniques
@@ -1592,7 +1592,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: Missing dependency on libpq for relay on centos9
     (https://issues.rudder.io/issues/21674[#21674])
-* Fixed: Uprading relay to 7.2 fails on ubuntu 22
+* Fixed: Upgrading relay to 7.2 fails on ubuntu 22
     (https://issues.rudder.io/issues/21640[#21640])
 * Fixed: Postinst message on AIX about hostname rudder not found
     (https://issues.rudder.io/issues/21626[#21626])
@@ -1640,7 +1640,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 ==== Web - Config management
 
-* Fixed: missing list of inpacted rules when creating a directive and applying it to a rule
+* Fixed: missing list of impacted rules when creating a directive and applying it to a rule
     (https://issues.rudder.io/issues/21671[#21671])
 * Fixed: Group permission of policies is not correctly set anymore in 7.2
     (https://issues.rudder.io/issues/21695[#21695])
@@ -1749,7 +1749,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21491[#21491])
 * Fixed: Adapt webapp policy generation to 7.2 technique syntax
     (https://issues.rudder.io/issues/21502[#21502])
-* Fixed: technique from technique editor not commited in git
+* Fixed: technique from technique editor not committed in git
     (https://issues.rudder.io/issues/21430[#21430])
 
 ==== Relay server or API
@@ -1902,7 +1902,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21221[#21221])
 * Harmonise the color scheme used in Rudder
     (https://issues.rudder.io/issues/21099[#21099])
-* Update Javascript dependencies 
+* Update Javascript dependencies
     (https://issues.rudder.io/issues/21149[#21149])
 * Update the dashboard design with the new graphic charter
     (https://issues.rudder.io/issues/21072[#21072])
@@ -1965,7 +1965,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: Prepare 7.1 doc
     (https://issues.rudder.io/issues/20794[#20794])
-* Fixed: Some reponses are missing in technique api doc
+* Fixed: Some responses are missing in technique api doc
     (https://issues.rudder.io/issues/21304[#21304])
 * Fixed: Fix typos in techniques API doc
     (https://issues.rudder.io/issues/21290[#21290])
@@ -2001,7 +2001,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
 
 * Fixed: Impossible to put a Rule in a subcategory
     (https://issues.rudder.io/issues/21175[#21175])
-* Fixed: Cancel button not showed within disable rule menu 
+* Fixed: Cancel button not showed within disable rule menu
     (https://issues.rudder.io/issues/21171[#21171])
 
 ==== Architecture - Refactoring
