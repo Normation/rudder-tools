@@ -8,11 +8,11 @@ release-status = "final"
 release-date = "2024-04-15"
 
 public-eol-date = "2025-01-29"
-#public-last-patch = "8.1.X"
+public-last-patch = "8.1.11"
 standard-eol-date = "2025-01-29"
-#standard-last-patch = "8.1.X"
+standard-last-patch = "8.1.11"
 # = premium-eol-date
-eol-date = "2025-01-29"
+eol-date = "2025-04-29"
 
 # Supported architecture for each distribution
 architectures = {
