@@ -1,5 +1,292 @@
 = Change logs for Rudder 8.3==  Rudder 8.3.0.alpha1 (2025-01-23)
 
+==  Rudder 8.3.0.beta1 (2025-03-06)
+
+=== Changes
+
+
+==== Packaging
+
+* Clean rudder package calls
+    (https://issues.rudder.io/issues/26423[#26423])
+* Cleanup server package for 8.3
+    (https://issues.rudder.io/issues/26331[#26331])
+* Upgrade to CFEngine 3.24.1
+    (https://issues.rudder.io/issues/26321[#26321])
+* Embed pcre2 on Slackware 14
+    (https://issues.rudder.io/issues/26311[#26311])
+* Disable augeas build on Slackware
+    (https://issues.rudder.io/issues/26304[#26304])
+
+==== Agent
+
+* We should not be able to install package on wrong OS
+    (https://issues.rudder.io/issues/26090[#26090])
+
+==== CI
+
+* Integrate the methods tests to the CI
+    (https://issues.rudder.io/issues/26485[#26485])
+* Publish step for CI runs the tests when they already have previously run
+    (https://issues.rudder.io/issues/26411[#26411])
+* Make rudder jenkins task work with ns-remap
+    (https://issues.rudder.io/issues/26370[#26370])
+* Make rudder-techniques jenkins task work with ns-remap
+    (https://issues.rudder.io/issues/26368[#26368])
+* Add docker based tests in rudder-agent
+    (https://issues.rudder.io/issues/26379[#26379])
+
+==== Architecture - evolution
+
+* Changes for scala 3 migration - branch 8.3
+    (https://issues.rudder.io/issues/26455[#26455])
+
+==== API
+
+* Rework api authorization models
+    (https://issues.rudder.io/issues/24872[#24872])
+* Port RestApiAccount api endpoint to zio-json 
+    (https://issues.rudder.io/issues/26335[#26335])
+* Allow to choose api account ID on creation
+    (https://issues.rudder.io/issues/26292[#26292])
+
+==== Plugin manager cli
+
+* Allow skipping the postinst
+    (https://issues.rudder.io/issues/26451[#26451])
+
+==== Architecture - Code maintenance
+
+* Update to Rust 1.85.0 and Rust 2024 edition
+    (https://issues.rudder.io/issues/26421[#26421])
+* Some more changes needed for scala 3 migrations
+    (https://issues.rudder.io/issues/26328[#26328])
+
+==== Web - UI & UX
+
+* Add foreach on blocks
+    (https://issues.rudder.io/issues/26278[#26278])
+* Prettify About page
+    (https://issues.rudder.io/issues/26338[#26338])
+* Improve license errors handling in webapp
+    (https://issues.rudder.io/issues/26243[#26243])
+* Pop up validation for restoring archive
+    (https://issues.rudder.io/issues/26265[#26265])
+* There is no "refresh" on the compliance in directive page and group page
+    (https://issues.rudder.io/issues/26062[#26062])
+* Make it possible to edit the values of items in a foreach
+    (https://issues.rudder.io/issues/26213[#26213])
+* Make it possible to edit the values of items in a foreach
+    (https://issues.rudder.io/issues/26213[#26213])
+
+==== Module - augeas
+
+* Implement checks in augeas
+    (https://issues.rudder.io/issues/26238[#26238])
+
+==== Generic methods
+
+* Write a new test framework for the Rudder methods
+    (https://issues.rudder.io/issues/26340[#26340])
+
+==== Architecture - Test
+
+* Ignore policies tests scripts in shellcheck
+    (https://issues.rudder.io/issues/26403[#26403])
+
+==== Web - Maintenance
+
+* Migrate logback.xml to new fixed logfile 
+    (https://issues.rudder.io/issues/26303[#26303])
+
+==== Architecture - Dependencies
+
+* Update zio and zio-json to take benefits of perf improvments
+    (https://issues.rudder.io/issues/26297[#26297])
+
+==== rudderc
+
+* Add policy type in rudderc
+    (https://issues.rudder.io/issues/26270[#26270])
+
+==== Web - Config management
+
+* Allow to enable/disable technique from the directive tree screen
+    (https://issues.rudder.io/issues/26161[#26161])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Fix typos in ruddder-packages
+    (https://issues.rudder.io/issues/26409[#26409])
+* Fixed: Builds fail to cleanup
+    (https://issues.rudder.io/issues/26308[#26308])
+* Fixed: Agent fails to build on old systems
+    (https://issues.rudder.io/issues/26306[#26306])
+* Fixed: rudder server package writes in different log files ...
+    (https://issues.rudder.io/issues/26137[#26137])
+* Fixed: Upmerge of 8.1.11 into 8.3 has spotless issue
+    (https://issues.rudder.io/issues/26247[#26247])
+
+==== Documentation
+
+* Fixed: Typos in docs
+    (https://issues.rudder.io/issues/26410[#26410])
+* Fixed: Fixup rudder-doc test task
+    (https://issues.rudder.io/issues/26369[#26369])
+* Fixed: Change path to webapp log file in doc
+    (https://issues.rudder.io/issues/26312[#26312])
+* Fixed: Add 8.3 api doc and 8.2 api deprecation
+    (https://issues.rudder.io/issues/26481[#26481])
+* Fixed: Create a doc for Rust agent support
+    (https://issues.rudder.io/issues/26323[#26323])
+
+==== Miscellaneous
+
+* Fixed: Bad "OnSuccess" delay in log
+    (https://issues.rudder.io/issues/26479[#26479])
+
+==== Web - Compliance & node report
+
+* Fixed: Inconsistent compliance computation between Directive compliance per Node and Node compliance (directive compliance page is probably wrong)
+    (https://issues.rudder.io/issues/26330[#26330])
+
+==== Web - Maintenance
+
+* Fixed: Policy backup and plugins pages should not be available as read-only admin
+    (https://issues.rudder.io/issues/26447[#26447])
+
+==== Web - UI & UX
+
+* Fixed: Keep line breaks in reports
+    (https://issues.rudder.io/issues/26417[#26417])
+* Fixed: Adding a property column to nodes list causes lines to double height thus screen shows 2 times less nodes
+    (https://issues.rudder.io/issues/26354[#26354])
+* Fixed: Hooks documentation link redirects to non-existing page
+    (https://issues.rudder.io/issues/26399[#26399])
+* Fixed: Compliance : Directive displayed as Enforce when running in Audit mode
+    (https://issues.rudder.io/issues/26232[#26232])
+* Fixed: Fix display problems related to menu changes in 8.3
+    (https://issues.rudder.io/issues/26359[#26359])
+* Fixed: Fix display problems related to menu changes in 8.3
+    (https://issues.rudder.io/issues/26359[#26359])
+* Fixed: Fix display problems related to menu changes in 8.3
+    (https://issues.rudder.io/issues/26359[#26359])
+* Fixed: When several plugins are using the same menu, only the last one is displayed
+    (https://issues.rudder.io/issues/26322[#26322])
+* Fixed: The "Save" button disappears from the group webpage if the group name is too long
+    (https://issues.rudder.io/issues/26261[#26261])
+* Fixed: Technique can be created with technique ID starting with a forbidden character
+    (https://issues.rudder.io/issues/26249[#26249])
+* Fixed: Directive will not be displayed when clicking on a technique then on directive in tree
+    (https://issues.rudder.io/issues/26206[#26206])
+* Fixed: Persistant tooltips on rules page
+    (https://issues.rudder.io/issues/25586[#25586])
+
+==== Module - system-updates
+
+* Fixed: Sometimes the error output sent to the server only contain only empty lines
+    (https://issues.rudder.io/issues/26441[#26441])
+* Fixed: Pretty print the json in the show cmd output
+    (https://issues.rudder.io/issues/26437[#26437])
+* Fixed: Patch management campaigns on CentOS 7 end in error
+    (https://issues.rudder.io/issues/26194[#26194])
+
+==== Plugin manager cli
+
+* Fixed: rudder-pkg reports a success when installing a plugin even if the postinst plugin script was in error
+    (https://issues.rudder.io/issues/26428[#26428])
+* Fixed: “rudder package upgrade” alone does not upgrade any plugin
+    (https://issues.rudder.io/issues/26175[#26175])
+* Fixed: rudder-package should create the license folder when not already there
+    (https://issues.rudder.io/issues/26317[#26317])
+
+==== Web - Config management
+
+* Fixed: Authorize global parameter names that are not alpha numeric only 
+    (https://issues.rudder.io/issues/25962[#25962])
+
+==== Web - Nodes & inventories
+
+* Fixed: Resolved properties conflicts still appear as errors in status 
+    (https://issues.rudder.io/issues/26325[#26325])
+
+==== CI
+
+* Fixed: Cache is not shared anymode
+    (https://issues.rudder.io/issues/26414[#26414])
+* Fixed: Test for hooks is failing in Docker CI
+    (https://issues.rudder.io/issues/26406[#26406])
+* Fixed: Test for instance ID is failing on Docker CI
+    (https://issues.rudder.io/issues/26396[#26396])
+* Fixed: Add a NVD API key to the Jenkins-security jobs
+    (https://issues.rudder.io/issues/26385[#26385])
+
+==== Architecture - Test
+
+* Fixed: Roles parsing for custom plugin role may fail in tests
+    (https://issues.rudder.io/issues/26342[#26342])
+
+==== Web - Campaigns
+
+* Fixed: Get campaign is creating an empty file when campaign does not exist
+    (https://issues.rudder.io/issues/26337[#26337])
+
+==== Agent
+
+* Fixed: The relayd reports parser can break on multiline fields in logs
+    (https://issues.rudder.io/issues/26290[#26290])
+* Fixed: rudder agent modified may not detect some dates
+    (https://issues.rudder.io/issues/26476[#26476])
+
+==== Architecture - Code maintenance
+
+* Fixed: InstanceId check must be in early bootstrap checks
+    (https://issues.rudder.io/issues/26286[#26286])
+* Fixed: Error at rudder start after an upgrade
+    (https://issues.rudder.io/issues/26200[#26200])
+
+==== Security
+
+* Fixed: Update the openssl crate
+    (https://issues.rudder.io/issues/26305[#26305])
+
+==== rudderc
+
+* Fixed: Undefined variables can lead to unwanted policy overrides
+    (https://issues.rudder.io/issues/26138[#26138])
+* Fixed: UTF-8 chars are HTML escaped when used in policy variables
+    (https://issues.rudder.io/issues/26151[#26151])
+
+==== Web - Technique editor
+
+* Fixed: Unable to download technique resources
+    (https://issues.rudder.io/issues/26159[#26159])
+
+==== System techniques
+
+* Fixed: Fix more typos in system techniques
+    (https://issues.rudder.io/issues/26408[#26408])
+* Fixed: Fix some typos in system techniques
+    (https://issues.rudder.io/issues/26407[#26407])
+
+==== Techniques
+
+* Fixed: ssh key distribution reports The user <username> does not have a defined home dir when username has a dash in it
+    (https://issues.rudder.io/issues/26351[#26351])
+* Fixed: Reporting on user management technique is broken when multiple users are defined in a directive
+    (https://issues.rudder.io/issues/26255[#26255])
+
+==== Generic methods
+
+* Fixed: Fix the abort_default acceptance test
+    (https://issues.rudder.io/issues/26372[#26372])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 === Changes
 
 
