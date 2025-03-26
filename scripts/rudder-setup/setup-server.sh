@@ -63,10 +63,6 @@ setup_server() {
   # install plugins
   if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
   then
-    if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
-      quiet_arg="--quiet"
-    fi
-
     # Configure plugins
     if  [ "$(echo ${PLUGINS_VERSION} | sed  's|.*/||')" = "nightly" ]; then
       nightly_plugins="--nighty"
@@ -86,7 +82,7 @@ password = ${DOWNLOAD_PASSWORD}
 EOF
 
     # list available packages
-    rudder package update ${quiet_arg}
+    rudder package --quiet update
     if [ "${PLUGINS}" = "all" ]; then
       PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
     fi
@@ -97,7 +93,7 @@ EOF
     fi
     for p in ${PLUGINS}
     do
-      rudder package install "${p}" ${nightly_plugins} ${quiet_arg} || true # accept plugin install to fail
+      rudder package --quiet install "${p}" ${nightly_plugins} || true # accept plugin install to fail
     done
 
     # remove credentials if needed
