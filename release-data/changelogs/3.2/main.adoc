@@ -1007,7 +1007,7 @@ AIX (https://issues.rudder.io/issues/8593[#8593])
 refresh data (https://issues.rudder.io/issues/8630[#8630])
 * Fixed: When updating runs, hooks should really be async
 (https://issues.rudder.io/issues/8424[#8424])
-* Fixed: When a node send reports with an unknow configID, no expected
+* Fixed: When a node send reports with an unknown configID, no expected
 reports are showned
 (https://issues.rudder.io/issues/8409[#8409])
 

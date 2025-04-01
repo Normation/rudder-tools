@@ -53,7 +53,7 @@
 
 * Fixed: Fixup rudder-doc test task
     (https://issues.rudder.io/issues/26369[#26369])
-* Fixed: Troubleshooting ESET software modifying certifactes by replacing issuers
+* Fixed: Troubleshooting ESET software modifying certificates by replacing issuers
     (https://issues.rudder.io/issues/26234[#26234])
 
 ==== Plugin manager cli
@@ -89,7 +89,7 @@
     (https://issues.rudder.io/issues/26261[#26261])
 * Fixed: Directive will not be displayed when clicking on a technique then on directive in tree
     (https://issues.rudder.io/issues/26206[#26206])
-* Fixed: Persistant tooltips on rules page
+* Fixed: Persistent tooltips on rules page
     (https://issues.rudder.io/issues/25586[#25586])
 
 ==== Security
@@ -325,7 +325,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Architecture - Dependencies
 
-* Fixed: Remove security check on a js dev dependency 
+* Fixed: Remove security check on a js dev dependency
     (https://issues.rudder.io/issues/25937[#25937])
 
 ==== Web - UI & UX
@@ -568,9 +568,9 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25371[#25371])
 * Fixed: Event logs details look broken in 8.1
     (https://issues.rudder.io/issues/25071[#25071])
-* Fixed: Nodes table sorting is not obvious and we need to guess the sort column and direction 
+* Fixed: Nodes table sorting is not obvious and we need to guess the sort column and direction
     (https://issues.rudder.io/issues/25136[#25136])
-* Fixed: Only remaining user managed by file cannot be deleted 
+* Fixed: Only remaining user managed by file cannot be deleted
     (https://issues.rudder.io/issues/25300[#25300])
 * Fixed: Message « This node has no properties » on group
     (https://issues.rudder.io/issues/25171[#25171])
@@ -587,7 +587,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/25456[#25456])
 * Fixed: User password and permission change should invalidate sessions
     (https://issues.rudder.io/issues/25407[#25407])
-* Fixed: Invalidated user sessions need to have an endcause and user should be notified 
+* Fixed: Invalidated user sessions need to have an endcause and user should be notified
     (https://issues.rudder.io/issues/25443[#25443])
 * Fixed: Authentication happens twice with same session id
     (https://issues.rudder.io/issues/25123[#25123])
@@ -756,7 +756,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 * Fixed: Create property from inherited one
     (https://issues.rudder.io/issues/25109[#25109])
-* Fixed: Some results of quicksearch cannot be opened 
+* Fixed: Some results of quicksearch cannot be opened
     (https://issues.rudder.io/issues/25046[#25046])
 * Fixed: Second digit of minutes for agent scheduled not displayed
     (https://issues.rudder.io/issues/25078[#25078])
@@ -862,7 +862,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Architecture - Code maintenance
 
-* pylint test failing on rudder package 
+* pylint test failing on rudder package
     (https://issues.rudder.io/issues/24982[#24982])
 
 ==== Plugin manager cli
@@ -1030,7 +1030,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Architecture - Code maintenance
 
-* Fixed: exclude all old rudder package files from python tests 
+* Fixed: exclude all old rudder package files from python tests
     (https://issues.rudder.io/issues/24954[#24954])
 * Fixed: Fix upmerge of 24856 in 8.1
     (https://issues.rudder.io/issues/24864[#24864])
@@ -1043,7 +1043,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24948[#24948])
 * Fixed: Properties tab in groups has no content after a save
     (https://issues.rudder.io/issues/24942[#24942])
-* Fixed: Refresh on nodes tables leads to datatable and console error 
+* Fixed: Refresh on nodes tables leads to datatable and console error
     (https://issues.rudder.io/issues/24925[#24925])
 * Fixed: Clicking on technique in technique tree doesn't do anything
     (https://issues.rudder.io/issues/24439[#24439])
@@ -1053,7 +1053,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24834[#24834])
 * Fixed: Technique markdown documentation are no longer rendered in the directive page
     (https://issues.rudder.io/issues/24808[#24808])
-* Fixed: Score details columns in node tables cannot be saved 
+* Fixed: Score details columns in node tables cannot be saved
     (https://issues.rudder.io/issues/24629[#24629])
 * Fixed: Group table should display more elements
     (https://issues.rudder.io/issues/24807[#24807])
@@ -1251,7 +1251,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 * Fixed: Unable to log in - Server error
     (https://issues.rudder.io/issues/24757[#24757])
-* Fixed: Badge style is not coherent in the whole UI 
+* Fixed: Badge style is not coherent in the whole UI
     (https://issues.rudder.io/issues/24742[#24742])
 * Fixed: Empty description of technique parameter is not allowed
     (https://issues.rudder.io/issues/24698[#24698])
@@ -1277,7 +1277,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24717[#24717])
 * Fixed: The ul and ol lists have the same markdown rendering
     (https://issues.rudder.io/issues/24605[#24605])
-* Fixed: Node rudder information section is clipped and needs scroll 
+* Fixed: Node rudder information section is clipped and needs scroll
     (https://issues.rudder.io/issues/24611[#24611])
 * Fixed: Group close button does not appear for readonly user
     (https://issues.rudder.io/issues/24682[#24682])
@@ -1288,7 +1288,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: Webapp can fail to start with null sessionid error 
+* Fixed: Webapp can fail to start with null sessionid error
     (https://issues.rudder.io/issues/24017[#24017])
 
 ==== Architecture - Code maintenance
@@ -1411,7 +1411,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 * Fixed: Techniques should not be writable by apache in SELinux
     (https://issues.rudder.io/issues/24618[#24618])
-* Fixed: Ignore RUSTSEC-2024-0332 
+* Fixed: Ignore RUSTSEC-2024-0332
     (https://issues.rudder.io/issues/24678[#24678])
 * Fixed: Score API are not accessible to readonly user
     (https://issues.rudder.io/issues/24638[#24638])
@@ -1477,7 +1477,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24547[#24547])
 * Fixed: Tooltip on compliance in rule page is not rendered
     (https://issues.rudder.io/issues/24436[#24436])
-* Fixed: JS error when opening directive form more than once 
+* Fixed: JS error when opening directive form more than once
     (https://issues.rudder.io/issues/24563[#24563])
 * Fixed: Add margin right to system updates badge
     (https://issues.rudder.io/issues/24557[#24557])
@@ -1498,7 +1498,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24613[#24613])
 * Fixed: Improvements on score: F score, rework tooltip, improve messages
     (https://issues.rudder.io/issues/24637[#24637])
-* Fixed: Tags displayed in directive form are broken 
+* Fixed: Tags displayed in directive form are broken
     (https://issues.rudder.io/issues/24548[#24548])
 * Fixed: API authorization menu bellow username is barely usable
     (https://issues.rudder.io/issues/24433[#24433])
@@ -1538,7 +1538,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Techniques
 
-* Fixed: We should not be able to save a technique with empty enum parameters 
+* Fixed: We should not be able to save a technique with empty enum parameters
     (https://issues.rudder.io/issues/24583[#24583])
 
 ==== API
@@ -1661,7 +1661,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24471[#24471])
 * Fixed: Directive application preview  in pending nodes is broken
     (https://issues.rudder.io/issues/24324[#24324])
-* Fixed: Nodes table can take almost all the height of the group page 
+* Fixed: Nodes table can take almost all the height of the group page
     (https://issues.rudder.io/issues/24429[#24429])
 * Fixed: The "condition" border appears on all methods in the tech. editor.
     (https://issues.rudder.io/issues/24519[#24519])
@@ -1669,7 +1669,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24447[#24447])
 * Fixed: Node tabs have onclick event handlers assigned on unrendered elements
     (https://issues.rudder.io/issues/24405[#24405])
-* Fixed: Directives button to set parameters on new directive does nothing 
+* Fixed: Directives button to set parameters on new directive does nothing
     (https://issues.rudder.io/issues/24428[#24428])
 * Fixed: Missing space between badge score and number
     (https://issues.rudder.io/issues/24420[#24420])
@@ -1687,7 +1687,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24317[#24317])
 * Fixed: Odd spacing with filters elements in node search page
     (https://issues.rudder.io/issues/24348[#24348])
-* Fixed: Enforce policy mode in block method has a different display than audit  
+* Fixed: Enforce policy mode in block method has a different display than audit
     (https://issues.rudder.io/issues/24382[#24382])
 * Fixed: Update Rudder CSS to support bug fixes in plugins interface
     (https://issues.rudder.io/issues/24233[#24233])
@@ -1705,7 +1705,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24345[#24345])
 * Fixed: Some dropdowns display are broken
     (https://issues.rudder.io/issues/24323[#24323])
-* Fixed: Odd rendering on tooltips in search node page 
+* Fixed: Odd rendering on tooltips in search node page
     (https://issues.rudder.io/issues/24349[#24349])
 * Fixed: Tooltips persisted on refresh button on the table in search node page
     (https://issues.rudder.io/issues/24351[#24351])
@@ -1759,7 +1759,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
     (https://issues.rudder.io/issues/24463[#24463])
 * Fixed: Cannot translate campaign on boot, leading to skipped events
     (https://issues.rudder.io/issues/24441[#24441])
-* Fixed: Existing deleted user managed by file cannot be reactivated 
+* Fixed: Existing deleted user managed by file cannot be reactivated
     (https://issues.rudder.io/issues/24318[#24318])
 
 ==== Relay server or API
@@ -2031,7 +2031,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Web - Maintenance
 
-* Fixed: Archiving allows to read inconsistent active technique category ids 
+* Fixed: Archiving allows to read inconsistent active technique category ids
     (https://issues.rudder.io/issues/24011[#24011])
 
 ==== Security
@@ -2054,7 +2054,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Performance and scalability
 
-* Fixed: Compliance has unoptimized usage of map view and policy mode computation  
+* Fixed: Compliance has unoptimized usage of map view and policy mode computation
     (https://issues.rudder.io/issues/24047[#24047])
 
 ==== Architecture - Internal libs
@@ -2064,7 +2064,7 @@ This is a bug fix release in the 8.1 series and therefore all installations of 8
 
 ==== Techniques
 
-* Fixed: File content directive add 4 spaces at the beginning of the line 
+* Fixed: File content directive add 4 spaces at the beginning of the line
     (https://issues.rudder.io/issues/24022[#24022])
 
 ==== Agent

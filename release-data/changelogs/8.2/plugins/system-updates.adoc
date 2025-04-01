@@ -16,7 +16,7 @@
 
 ==== Module - system-updates
 
-* Fixed: System update campaign targetting Rudder server causes “Missing report” from server
+* Fixed: System update campaign targeting Rudder server causes “Missing report” from server
     (https://issues.rudder.io/issues/26189[#26189])
 
 === Release notes
@@ -187,7 +187,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 * Fixed: The lint test are not passing in 8.2
     (https://issues.rudder.io/issues/25175[#25175])
-* Fixed: Icon in campaign events for success and error status 
+* Fixed: Icon in campaign events for success and error status
     (https://issues.rudder.io/issues/24999[#24999])
 
 === Release notes

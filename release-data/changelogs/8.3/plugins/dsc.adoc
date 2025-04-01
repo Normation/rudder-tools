@@ -67,7 +67,7 @@
     (https://issues.rudder.io/issues/26395[#26395])
 * Fixed: the registry path to the rudder agent in technique windows software in rudder 7.3 is not valid anymore
     (https://issues.rudder.io/issues/22694[#22694])
-* Fixed:  Windows software directive skip download check on audit mode 
+* Fixed:  Windows software directive skip download check on audit mode
     (https://issues.rudder.io/issues/26299[#26299])
 
 ==== Miscellaneous

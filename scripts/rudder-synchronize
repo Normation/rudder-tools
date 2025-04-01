@@ -59,7 +59,7 @@ def startLogger(logLevel):
     elif logLevel == 'DEBUG':
         stdoutHandler.setLevel(logging.DEBUG)
     else:
-        fail("unknow loglevel %s"%(logLevel))
+        fail("unknown loglevel %s"%(logLevel))
 
     # log file logger
     fileHandler = logging.FileHandler(filename=LOG_PATH , mode='w')

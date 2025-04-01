@@ -67,7 +67,7 @@
     (https://issues.rudder.io/issues/26410[#26410])
 * Fixed: Fixup rudder-doc test task
     (https://issues.rudder.io/issues/26369[#26369])
-* Fixed: Troubleshooting ESET software modifying certifactes by replacing issuers
+* Fixed: Troubleshooting ESET software modifying certificates by replacing issuers
     (https://issues.rudder.io/issues/26234[#26234])
 
 ==== Plugin manager cli
@@ -88,7 +88,7 @@
 
 ==== Web - Nodes & inventories
 
-* Fixed: Resolved properties conflicts still appear as errors in status 
+* Fixed: Resolved properties conflicts still appear as errors in status
     (https://issues.rudder.io/issues/26325[#26325])
 
 ==== Web - UI & UX
@@ -101,7 +101,7 @@
     (https://issues.rudder.io/issues/26249[#26249])
 * Fixed: Directive will not be displayed when clicking on a technique then on directive in tree
     (https://issues.rudder.io/issues/26206[#26206])
-* Fixed: Persistant tooltips on rules page
+* Fixed: Persistent tooltips on rules page
     (https://issues.rudder.io/issues/25586[#25586])
 
 ==== CI

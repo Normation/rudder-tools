@@ -45,7 +45,7 @@
 
 * Rework api authorization models
     (https://issues.rudder.io/issues/24872[#24872])
-* Port RestApiAccount api endpoint to zio-json 
+* Port RestApiAccount api endpoint to zio-json
     (https://issues.rudder.io/issues/26335[#26335])
 * Allow to choose api account ID on creation
     (https://issues.rudder.io/issues/26292[#26292])
@@ -96,12 +96,12 @@
 
 ==== Web - Maintenance
 
-* Migrate logback.xml to new fixed logfile 
+* Migrate logback.xml to new fixed logfile
     (https://issues.rudder.io/issues/26303[#26303])
 
 ==== Architecture - Dependencies
 
-* Update zio and zio-json to take benefits of perf improvments
+* Update zio and zio-json to take benefits of perf improvements
     (https://issues.rudder.io/issues/26297[#26297])
 
 ==== rudderc
@@ -181,7 +181,7 @@
     (https://issues.rudder.io/issues/26249[#26249])
 * Fixed: Directive will not be displayed when clicking on a technique then on directive in tree
     (https://issues.rudder.io/issues/26206[#26206])
-* Fixed: Persistant tooltips on rules page
+* Fixed: Persistent tooltips on rules page
     (https://issues.rudder.io/issues/25586[#25586])
 
 ==== Module - system-updates
@@ -204,12 +204,12 @@
 
 ==== Web - Config management
 
-* Fixed: Authorize global parameter names that are not alpha numeric only 
+* Fixed: Authorize global parameter names that are not alpha numeric only
     (https://issues.rudder.io/issues/25962[#25962])
 
 ==== Web - Nodes & inventories
 
-* Fixed: Resolved properties conflicts still appear as errors in status 
+* Fixed: Resolved properties conflicts still appear as errors in status
     (https://issues.rudder.io/issues/26325[#26325])
 
 ==== CI
@@ -388,7 +388,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 * Migrate compliance status from lift-json to zio-json
     (https://issues.rudder.io/issues/26046[#26046])
-* Migrate from lift-json to zio-json in LDAPEntityMapper 
+* Migrate from lift-json to zio-json in LDAPEntityMapper
     (https://issues.rudder.io/issues/25887[#25887])
 * Migrate Environment variable from lift-json to zio-json
     (https://issues.rudder.io/issues/25886[#25886])
@@ -513,7 +513,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Web - UI & UX
 
-* Fixed: Node search page looks empty 
+* Fixed: Node search page looks empty
     (https://issues.rudder.io/issues/26058[#26058])
 
 ==== Web - Nodes & inventories

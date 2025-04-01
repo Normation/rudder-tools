@@ -19,7 +19,7 @@
 
 ==== Miscellaneous
 
-* Fixed:  Add OAuth2 Opaque Accesss Bearer token with client_credentials flow for Rudder API authentication
+* Fixed:  Add OAuth2 Opaque Access Bearer token with client_credentials flow for Rudder API authentication
     (https://issues.rudder.io/issues/26291[#26291])
 
 ==== UI - UX
