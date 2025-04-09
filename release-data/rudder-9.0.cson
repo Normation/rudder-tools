@@ -106,7 +106,7 @@ sales-tier = {
 packages = {
              "agent-allinone": [ "rudder-agent" ],
              "relay":          [ "rudder-relay" ],
-             "server":         [ "rudder-server", "rudder-api-client", "rudder-external-db" ],
+             "server":         [ "rudder-server", "rudder-external-db" ],
            }
 
 # Packages that are architecture dependent (others are independent)
