@@ -1,5 +1,63 @@
 = Changelogs for Rudder plugin dsc 8.2.\* versions
 
+== dsc-8.2.6-2.9 (2025-05-07)
+
+=== Changes
+
+
+==== Misc
+
+* Documentation for DSC plugin should exist
+    (https://issues.rudder.io/issues/26484[#26484])
+
+==== Packaging
+
+* Add agent version file
+    (https://issues.rudder.io/issues/26838[#26838])
+
+==== Generic methods
+
+* Add a method to put a domain user into a local group
+    (https://issues.rudder.io/issues/26420[#26420])
+
+=== Bug fixes
+
+==== Generic methods
+
+* Fixed: Revert the variable control when using mustache templating
+    (https://issues.rudder.io/issues/26846[#26846])
+* Fixed: Translate the user in local group generic method documentation to YAML
+    (https://issues.rudder.io/issues/26840[#26840])
+* Fixed:  Fix the Service-Disabled method on Windows
+    (https://issues.rudder.io/issues/26522[#26522])
+* Fixed: The file_key_value_present_option method fails to edit files
+    (https://issues.rudder.io/issues/26528[#26528])
+
+==== CLI
+
+* Fixed: Windows server 2016 define the windows_2016 condition instead of windows_server_2016
+    (https://issues.rudder.io/issues/26662[#26662])
+* Fixed: Remove rudderCli unapproved verbs warning
+    (https://issues.rudder.io/issues/26550[#26550])
+* Fixed: Unecessary cleanup done when updating the policies
+    (https://issues.rudder.io/issues/26506[#26506])
+
+==== System techniques
+
+* Fixed: Scheduled rudder agent run can be skipped by the task scheduler
+    (https://issues.rudder.io/issues/26591[#26591])
+
+==== Agent library
+
+* Fixed: Re-canonify the expression before evualting them
+    (https://issues.rudder.io/issues/26537[#26537])
+* Fixed: agent inventory error due to white space in path for inventory log file
+    (https://issues.rudder.io/issues/26450[#26450])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-8.2.5-2.9 (2025-02-27)
 
 === Changes
