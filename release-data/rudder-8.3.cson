@@ -72,7 +72,7 @@ roles = {
           "rhel-8-omni":    [ "agent-allinone" ],
           "rhel-9":         [ "agent-allinone", "relay", "server" ],
           "rhel-9-omni":    [ "agent-allinone", "relay", "server" ],
-          "rhel-10":         [ "agent-allinone", "relay", "server" ],
+          "rhel-10":        [ "agent-allinone", "relay", "server" ],
           "al-2023":        [ "agent-allinone", "relay", "server" ],
           "sles-11":        [ "agent-allinone" ],
           "sles-12":        [ "agent-allinone" ],
