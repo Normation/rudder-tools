@@ -65,6 +65,8 @@ rhel = {
     "8-omni": "RHEL_8_OMNI"
     "9": "RHEL_9"
     "9-omni": "RHEL_9_OMNI"
+    "9": "RHEL_9"
+    "10": "RHEL_10"
   }
 }
 
