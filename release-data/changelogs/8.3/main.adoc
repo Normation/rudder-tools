@@ -1,5 +1,139 @@
 = Change logs for Rudder 8.3==  Rudder 8.3.0.alpha1 (2025-01-23)
 
+==  Rudder 8.3.2 (2025-06-04)
+
+=== Changes
+
+
+==== Packaging
+
+* RHEL 10 Rudder server should depend on java 21
+    (https://issues.rudder.io/issues/27025[#27025])
+* Add packages dependencies for RHEL10
+    (https://issues.rudder.io/issues/26995[#26995])
+
+==== Miscellaneous
+
+* Remove apr-util-bdb from relay dependencies on RHEL10
+    (https://issues.rudder.io/issues/27017[#27017])
+
+==== Module - augeas
+
+* Document the augeas module
+    (https://issues.rudder.io/issues/26919[#26919])
+
+==== Web - Nodes & inventories
+
+* Store agent-version as a dedicated field
+    (https://issues.rudder.io/issues/26918[#26918])
+
+==== Architecture - Code maintenance
+
+* Add a logger for rudderc gm lib command
+    (https://issues.rudder.io/issues/26922[#26922])
+* Prepare EventActor serialization for scala3
+    (https://issues.rudder.io/issues/26898[#26898])
+
+==== Web - UI & UX
+
+* Adjust the bootstrap theme dark color used for checkbox buttons
+    (https://issues.rudder.io/issues/26826[#26826])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: "Already on 'master'" in postinst logs
+    (https://issues.rudder.io/issues/26966[#26966])
+* Fixed: rudder server reload-techniques should work even if webapp is stopped
+    (https://issues.rudder.io/issues/26897[#26897])
+
+==== System integration
+
+* Fixed: When using an external database, special characters are breaking the password detection
+    (https://issues.rudder.io/issues/26432[#26432])
+
+==== Web - Technique editor
+
+* Fixed: Workspace directory is missing when saving a technique
+    (https://issues.rudder.io/issues/27026[#27026])
+
+==== Security
+
+* Fixed: Potential XSS vulnerability in radio button in event logs
+    (https://issues.rudder.io/issues/27010[#27010])
+* Fixed: Nodes page parses URL without escaping which allows XSS
+    (https://issues.rudder.io/issues/26997[#26997])
+* Fixed: Ensure zip extraction doesn't slip out of its directory
+    (https://issues.rudder.io/issues/26954[#26954])
+* Fixed: Rollback event log endpoint has the wrong HTTP method
+    (https://issues.rudder.io/issues/26973[#26973])
+* Fixed: Path traversal in technique categories
+    (https://issues.rudder.io/issues/26957[#26957])
+* Fixed: Check for path traversal in inventory api
+    (https://issues.rudder.io/issues/26944[#26944])
+* Fixed: Metadata parsing must use a safe SaxParser to avoid XXE
+    (https://issues.rudder.io/issues/26936[#26936])
+* Fixed: User management API endpoints require admin privileges
+    (https://issues.rudder.io/issues/26925[#26925])
+
+==== API
+
+* Fixed: Update api doc tooling
+    (https://issues.rudder.io/issues/26999[#26999])
+* Fixed: Debug script API must be a POST with admin write rights
+    (https://issues.rudder.io/issues/26945[#26945])
+
+==== Miscellaneous
+
+* Fixed: API account form should not display tenants when full access is selected 
+    (https://issues.rudder.io/issues/26980[#26980])
+
+==== Web - UI & UX
+
+* Fixed: When there is too many nodes in groups, we can't change criteria anymore
+    (https://issues.rudder.io/issues/26972[#26972])
+* Fixed: Number of “nodes in audit mode” wrong on "About" page
+    (https://issues.rudder.io/issues/26747[#26747])
+* Fixed: User management UI does not display when a user info is a complex JSON object
+    (https://issues.rudder.io/issues/26939[#26939])
+* Fixed: Plugin successful install can display an error because of service restart
+    (https://issues.rudder.io/issues/26940[#26940])
+* Fixed: Technique details on built-in technique are wrong
+    (https://issues.rudder.io/issues/26860[#26860])
+* Fixed: Archive “download as zip” creates backup with wrong name (but right contents)
+    (https://issues.rudder.io/issues/26779[#26779])
+* Fixed: Groups with special target has clone button but cannot be cloned
+    (https://issues.rudder.io/issues/26832[#26832])
+* Fixed: User management page no longer displays individual authorizations
+    (https://issues.rudder.io/issues/26842[#26842])
+
+==== Web - Nodes & inventories
+
+* Fixed: Remove default root description 
+    (https://issues.rudder.io/issues/26878[#26878])
+
+==== Architecture - Code maintenance
+
+* Fixed: Missing visibility change for parameter
+    (https://issues.rudder.io/issues/26889[#26889])
+
+==== Web - Maintenance
+
+* Fixed: XML unserialization of ACL is incorrect
+    (https://issues.rudder.io/issues/26888[#26888])
+
+==== Techniques
+
+* Fixed: “Users” standard technique : Fails setting secondary groups when already correct.
+    (https://issues.rudder.io/issues/26823[#26823])
+* Fixed: “Users” standard technique causes “Missing report” on Windows
+    (https://issues.rudder.io/issues/26935[#26935])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.3.1 (2025-05-07)
 
 === Changes
