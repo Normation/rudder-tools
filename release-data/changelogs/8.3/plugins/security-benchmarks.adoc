@@ -1,5 +1,33 @@
 = Changelogs for Rudder plugin security-benchmarks 8.3.\* versions
 
+== security-benchmarks-8.3.2-1.1 (2025-06-04)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Add the intermediate genrated YAML to the repository
+    (https://issues.rudder.io/issues/27030[#27030])
+* Fixed: Small score icon when text is wrapping
+    (https://issues.rudder.io/issues/26960[#26960])
+* Fixed: Cannot configure the benchmark because of long description of items 
+    (https://issues.rudder.io/issues/26741[#26741])
+* Fixed: Duplicate files in benchmark build
+    (https://issues.rudder.io/issues/26807[#26807])
+* Fixed: Do not load directly technique category XML
+    (https://issues.rudder.io/issues/26937[#26937])
+* Fixed: Support security benchmark parameter constraints
+    (https://issues.rudder.io/issues/26893[#26893])
+* Fixed: Benchmark should not contain model, only use an id as reference
+    (https://issues.rudder.io/issues/26822[#26822])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-8.3.1-1.1 (2025-05-07)
 
 === Changes
