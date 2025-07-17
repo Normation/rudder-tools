@@ -14,6 +14,141 @@
 
 ==== Packaging
 
+* Fixed: Update curl version to 8.14.1 & openssl to 3.0.16
+    (https://issues.rudder.io/issues/27072[#27072])
+* Fixed: libpq may be missing on rudder-relay on alma8
+    (https://issues.rudder.io/issues/26654[#26654])
+
+==== Agent
+
+* Fixed: Define the "suse" system condition on SLED systems
+    (https://issues.rudder.io/issues/27082[#27082])
+
+==== Web - Config management
+
+* Fixed: Score service does not really clean unmanaged score, it only removes them from cache but keeps in database
+    (https://issues.rudder.io/issues/26900[#26900])
+* Fixed: Misleading comments about RUDDER_POLICIES_DIRECTORY in hook template
+    (https://issues.rudder.io/issues/27232[#27232])
+* Fixed: Many diffs no longer display in event logs 
+    (https://issues.rudder.io/issues/27114[#27114])
+
+==== Web - UI & UX
+
+* Fixed: "Directive" should not be displayed in each directive title, it is redundant
+    (https://issues.rudder.io/issues/23870[#23870])
+* Fixed: Redundant "Compliance" title in the "Compliance" tab inside a group detail
+    (https://issues.rudder.io/issues/24507[#24507])
+* Fixed: Add a global warning and alert banner in user management with unsafe hashes
+    (https://issues.rudder.io/issues/27200[#27200])
+* Fixed: When editing a long textarea browser scrolls to top
+    (https://issues.rudder.io/issues/22355[#22355])
+* Fixed: Sometimes, property values that are too long push the action buttons out of the window
+    (https://issues.rudder.io/issues/26991[#26991])
+
+==== Miscellaneous
+
+* Fixed: Deleting a running Update Campaign does not remove associated system policies
+    (https://issues.rudder.io/issues/27184[#27184])
+* Fixed: History API ignores 'before' and 'order' keywords
+    (https://issues.rudder.io/issues/23507[#23507])
+* Fixed: Event logs rollback does not work anymore
+    (https://issues.rudder.io/issues/27051[#27051])
+
+==== Security
+
+* Fixed: Security update of webapp dependencies 
+    (https://issues.rudder.io/issues/27199[#27199])
+* Fixed: Bad logger used for authentication error
+    (https://issues.rudder.io/issues/27090[#27090])
+* Fixed: Inventory role allows to get system status detailed logs and technical logs 
+    (https://issues.rudder.io/issues/27040[#27040])
+
+==== Web - Technique editor
+
+* Fixed: Technique editor Operating System condition RHEL generates wrong “redhat” condition
+    (https://issues.rudder.io/issues/27144[#27144])
+* Fixed: Technique editor conditions do not differentiate between Alma/Rocky and CentOS
+    (https://issues.rudder.io/issues/26983[#26983])
+
+==== Generic methods
+
+* Fixed: When the component value of a method is too long, the reporting can be missing
+    (https://issues.rudder.io/issues/27167[#27167])
+* Fixed: Add Windows support to the Audit from osquery generic method
+    (https://issues.rudder.io/issues/27227[#27227])
+
+==== Server components
+
+* Fixed: Do not send CA list on client authentication
+    (https://issues.rudder.io/issues/27156[#27156])
+
+==== Architecture - Code maintenance
+
+* Fixed: Bad package for TestCheckUsersFile
+    (https://issues.rudder.io/issues/27152[#27152])
+
+==== Web - Maintenance
+
+* Fixed: Rudder webapp migration create table ScoreDetails with message constraint
+    (https://issues.rudder.io/issues/26976[#26976])
+
+==== Documentation
+
+* Fixed: Incorrect HTTP method documentation for the usermanagement/users/reload endpoint
+    (https://issues.rudder.io/issues/26948[#26948])
+* Fixed: OpenAPI doc for plugin infos endpoint has a warning on details field
+    (https://issues.rudder.io/issues/27001[#27001])
+
+==== Web - Nodes & inventories
+
+* Fixed: Error when parsing date for last user loggin awaited format is EEE MMM dd HH:mm
+    (https://issues.rudder.io/issues/27067[#27067])
+
+==== Techniques
+
+* Fixed: Creating a technique with resources in folders can break the technique library
+    (https://issues.rudder.io/issues/26912[#26912])
+* Fixed: “SSH server” technique proposes deprecated “Use privilege separation” option
+    (https://issues.rudder.io/issues/26938[#26938])
+
+==== Web - Compliance & node report
+
+* Fixed: Rule detail compliance has no indication that it is loading
+    (https://issues.rudder.io/issues/26711[#26711])
+
+==== System techniques
+
+* Fixed: Overwrite the /var/rudder/lib/ssl/policy_server.pem when it is a symlink
+    (https://issues.rudder.io/issues/27267[#27267])
+
+==== Performance and scalability
+
+* Fixed: rudder agent update is really slow
+    (https://issues.rudder.io/issues/26384[#26384])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Nicolas Pawlak
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
+==  Rudder 8.2.8 (2025-07-17)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Change request count badge needs more contrast on hover
+    (https://issues.rudder.io/issues/27027[#27027])
+
+=== Bug fixes
+
+==== Packaging
+
 * Fixed: Update curl & openssl
     (https://issues.rudder.io/issues/27072[#27072])
 * Fixed: libpq may be missing on rudder-relay on alma8
