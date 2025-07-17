@@ -136,7 +136,7 @@ compatible-agents = [ "8.1", "8.2", "8.3", "9.0" ]
 supported-upgrade = [ "8.1", "8.2", "8.3", "9.0" ]
 
 
-plugins = [ "auth-backends", "centreon", "datasources", 
+plugins = [ "auth-backends", "centreon", "datasources", 
             "openscap", "api-authorizations", "change-validation",
             "scale-out-relay",  "vault", "glpi",
             "node-external-reports", "zabbix" , "branding", "consul", "notify",
