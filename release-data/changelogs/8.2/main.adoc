@@ -15,23 +15,23 @@
 
 ==== Packaging
 
-* Fixed: Update curl & openssl
+* Fixed: Update curl version to 8.14.1 & openssl to 3.0.16
     (https://issues.rudder.io/issues/27072[#27072])
 * Fixed: libpq may be missing on rudder-relay on alma8
     (https://issues.rudder.io/issues/26654[#26654])
 
 ==== Agent
 
-* Fixed: Define the "suse" class on SLED systems
+* Fixed: Define the "suse" system condition on SLED systems
     (https://issues.rudder.io/issues/27082[#27082])
 
 ==== Web - Config management
 
-* Fixed: Score service does not really clean unmanaged score, only remove them in cache but they are still in database
+* Fixed: Score service does not really clean unmanaged score, it only removes them from cache but keeps them in database
     (https://issues.rudder.io/issues/26900[#26900])
-* Fixed: In hook template, RUDDER_POLICIES_DIRECTORY comments is false
+* Fixed: Misleading comments about RUDDER_POLICIES_DIRECTORY in hook template
     (https://issues.rudder.io/issues/27232[#27232])
-* Fixed: Many diffs no longer display in event logs 
+* Fixed: Many diffs no longer display in event logs
     (https://issues.rudder.io/issues/27114[#27114])
 
 ==== Web - UI & UX
@@ -58,11 +58,11 @@
 
 ==== Security
 
-* Fixed: Security update of webapp dependencies 
+* Fixed: Security update of webapp dependencies
     (https://issues.rudder.io/issues/27199[#27199])
 * Fixed: Bad logger used for authentication error
     (https://issues.rudder.io/issues/27090[#27090])
-* Fixed: Inventory role allows to get system status detailed logs and technical logs 
+* Fixed: Inventory role allows to get system status detailed logs and technical logs
     (https://issues.rudder.io/issues/27040[#27040])
 
 ==== Web - Technique editor
