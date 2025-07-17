@@ -166,3 +166,10 @@ compatible-agents = [ "8.1", "8.2" ]
 # Versions you can upgrade from directly
 supported-upgrade = [ "8.1", "8.2" ]
 
+plugins = [ "auth-backends", "centreon", "datasources", 
+            "openscap", "api-authorizations", "change-validation",
+            "scale-out-relay",  "vault", "glpi",
+            "node-external-reports", "zabbix" , "branding", "consul", "notify",
+            "cve", "multi-tenants", "security-benchmarks",
+            "dsc", "reporting", "system-updates", "secret-management"
+          ]

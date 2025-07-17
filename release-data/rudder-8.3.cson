@@ -163,3 +163,12 @@ compatible-agents = [ "8.1", "8.2", "8.3" ]
 # Versions you can upgrade from directly
 supported-upgrade = [ "8.1", "8.2", "8.3" ]
 
+
+plugins = [ "auth-backends", "centreon", "datasources", 
+            "openscap", "api-authorizations", "change-validation",
+            "scale-out-relay",  "vault", "glpi",
+            "node-external-reports", "zabbix" , "branding", "consul", "notify",
+            "cve", "multi-tenants", "security-benchmarks",
+            "dsc", "system-updates", "secret-management",
+            "benchmark-cis-rhel-8", "benchmark-cis-rhel-9", "benchmark-cis-ubuntu-20-04"
+          ]
