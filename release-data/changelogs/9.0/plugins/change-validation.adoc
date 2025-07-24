@@ -1,0 +1,43 @@
+= Changelogs for Rudder plugin change-validation 9.0.\* versions
+
+== change-validation-9.0.0.alpha1-2.4 (2025-07-24)
+
+=== Changes
+
+
+==== Plugins management
+
+* Update plugins parent pom to use scala 3
+    (https://issues.rudder.io/issues/27032[#27032])
+
+==== Miscellaneous
+
+* Add the 'Validate All' check box to the WorkflowUsers Elm app
+    (https://issues.rudder.io/issues/26946[#26946])
+* Rewrite WorkflowInformation navigation bar in Elm
+    (https://issues.rudder.io/issues/26788[#26788])
+* Refactoring : use ZIO instead of Box in change-validation snippets
+    (https://issues.rudder.io/issues/26775[#26775])
+* Add a new internal endpoint in order to replace WorkflowInformation
+    (https://issues.rudder.io/issues/26760[#26760])
+* Refactoring of ValidationNeeded class : replace type Box with IOResult
+    (https://issues.rudder.io/issues/26698[#26698])
+
+==== Refactoring
+
+* WoChangeRequestJdbcRepository#updateChangeRequest executes several transactions
+    (https://issues.rudder.io/issues/26770[#26770])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Change request page is not updated directly after using the form to edit the title/description 
+    (https://issues.rudder.io/issues/27289[#27289])
+* Fixed: ChangeRequestJdbcRepository ignores error when change request unserialization fails
+    (https://issues.rudder.io/issues/26953[#26953])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
