@@ -1,0 +1,30 @@
+= Changelogs for Rudder plugin cve 9.0.\* versions
+
+== cve-9.0.0.alpha1-2.10 (2025-07-24)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add filter for groups in cve vulnerabilities page
+    (https://issues.rudder.io/issues/27209[#27209])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed:  CVE last check API upmerge of tests make build fail in 9.0
+    (https://issues.rudder.io/issues/27313[#27313])
+* Fixed: CVE plugin not compiling in 9.0
+    (https://issues.rudder.io/issues/26982[#26982])
+
+==== Architecture - Code maintenance
+
+* Fixed: CVE last check API tests are failing
+    (https://issues.rudder.io/issues/27297[#27297])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
