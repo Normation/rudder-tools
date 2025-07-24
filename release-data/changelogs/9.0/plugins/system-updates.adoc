@@ -1,0 +1,23 @@
+= Changelogs for Rudder plugin system-updates 9.0.\* versions
+
+== system-updates-9.0.0.alpha1-1.17 (2025-07-24)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Move system update hooks out of /var
+    (https://issues.rudder.io/issues/27116[#27116])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: System updates plugin not compiling in 9.0
+    (https://issues.rudder.io/issues/27003[#27003])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
