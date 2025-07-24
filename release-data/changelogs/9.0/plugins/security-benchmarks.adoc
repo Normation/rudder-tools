@@ -1,0 +1,23 @@
+= Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
+
+== security-benchmarks-9.0.0.alpha1-1.1 (2025-07-24)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Turn the Summary tab into a dashboard view
+    (https://issues.rudder.io/issues/27257[#27257])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: metadata.json generated is incomplete
+    (https://issues.rudder.io/issues/27291[#27291])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
