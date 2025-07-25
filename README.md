@@ -6,3 +6,4 @@ The folder contrib/ contains tools from contribution and consist in a folder by 
 The folder scripts/ contains tools to debug, to manage or to install Rudder.
 
 this is a test
+  
