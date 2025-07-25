@@ -65,7 +65,7 @@
     (https://issues.rudder.io/issues/27014[#27014])
 * Port remaining lift-json into zio-json
     (https://issues.rudder.io/issues/26866[#26866])
-* Compatibility fixe for scala 3 in Rudder 9.0
+* Compatibility fix for scala 3 in Rudder 9.0
     (https://issues.rudder.io/issues/26887[#26887])
 * Clean-up insertion in ruddersysevents
     (https://issues.rudder.io/issues/26865[#26865])

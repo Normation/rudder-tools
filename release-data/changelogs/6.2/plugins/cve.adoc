@@ -13,7 +13,7 @@
     (https://issues.rudder.io/issues/20768[#20768])
 * Fixed: Fix jawn cve
     (https://issues.rudder.io/issues/20728[#20728])
-* Fixed: Update circe dependendy in cve plugin so that we fix CVE-2022-21653
+* Fixed: Update circe dependency in cve plugin so that we fix CVE-2022-21653
     (https://issues.rudder.io/issues/20637[#20637])
 * Fixed: Fix typos in cve plugin
     (https://issues.rudder.io/issues/20169[#20169])

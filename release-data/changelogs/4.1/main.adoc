@@ -3466,7 +3466,7 @@ feedback!
 
 ==== Web - Config management
 
-* Fixed: When I save a Directive, after cliking ``save'', it’s not
+* Fixed: When I save a Directive, after clicking ``save'', it’s not
 possible to scroll anymore in the Directive tree
 (https://issues.rudder.io/issues/10010[#10010])
 

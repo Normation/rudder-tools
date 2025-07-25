@@ -1006,7 +1006,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/20573[#20573])
 * Fixed: Compliance by nodes in the Rules page shows the node id rather than it's name
     (https://issues.rudder.io/issues/20490[#20490])
-* Fixed: Sub categories have too many "|-" displaed in select box
+* Fixed: Sub categories have too many "|-" displayed in select box
     (https://issues.rudder.io/issues/20559[#20559])
 * Fixed: Tables look weird when empty in Rules UI
     (https://issues.rudder.io/issues/20467[#20467])
@@ -2069,7 +2069,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Architecture - Dependencies
 
-* Update all java dependencies to latests version for Rudder 7.0
+* Update all java dependencies to latest version for Rudder 7.0
     (https://issues.rudder.io/issues/19612[#19612])
 * Upgrade to ZIO 1.0.1
     (https://issues.rudder.io/issues/18149[#18149])

@@ -166,7 +166,7 @@
 
 ==== Web - Nodes & inventories
 
-* Fixed: Error when parsing date for last user loggin awaited format is EEE MMM dd HH:mm
+* Fixed: Error when parsing date for last user login awaited format is EEE MMM dd HH:mm
     (https://issues.rudder.io/issues/27067[#27067])
 
 ==== Techniques
@@ -356,7 +356,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Completly ignore source target of rules when importing an archive
+* Completely ignore source target of rules when importing an archive
     (https://issues.rudder.io/issues/23998[#23998])
 
 === Bug fixes
@@ -705,7 +705,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Web - Technique editor
 
-* Fixed: Dubius vertical alignement in generic method
+* Fixed: Dubius vertical alignment in generic method
     (https://issues.rudder.io/issues/26630[#26630])
 * Fixed: Rudder 8.3 Beta 2 : Result conditions duplicated in technique editor
     (https://issues.rudder.io/issues/26560[#26560])

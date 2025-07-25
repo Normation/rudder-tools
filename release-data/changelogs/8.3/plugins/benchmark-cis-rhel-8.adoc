@@ -14,7 +14,7 @@
 
 ==== Miscellaneous
 
-* Fixed: Add the intermediate genrated YAML to the repository
+* Fixed: Add the intermediate generated YAML to the repository
     (https://issues.rudder.io/issues/27030[#27030])
 
 === Release notes
