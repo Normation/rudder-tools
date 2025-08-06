@@ -126,7 +126,7 @@ It happens (we know, extremely rarely, but it happens) that you have to provide 
 rudder-dev fixup
 ```
 
-It will create a commit that has the correct syntax to be smashed upon merge and push it to your PR. 
+It will create a commit that has the correct syntax to be squashed upon merge and push it to your PR. 
 
 ## Other usages
 
