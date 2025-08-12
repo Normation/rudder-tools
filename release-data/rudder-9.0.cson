@@ -73,7 +73,7 @@ roles = {
 # tier 1 are systems that must not fail during a release (community supported or subscription paid)
 # tier 2 are systems that are built but may fail to release
 tier1 = [
-          "debian-10", "debian-11", "debian-12",
+          "debian-10", "debian-11", "debian-12", "debian-13",
           "ubuntu-20.04", "ubuntu-22.04", "ubuntu-24.04",
           "rhel-7", "rhel-8", "rhel-9", "rhel-10",
           "al-2023",
@@ -86,6 +86,7 @@ sales-tier = {
     "debian-10":      { "i386": "tier3", "amd64": "tier3", "armhf": "tier3", "arm64": "tier3" },
     "debian-11":      { "i386": "tier2", "amd64": "tier2", "armhf": "tier3", "arm64": "tier3" },
     "debian-12":      { "i386": "tier1", "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "debian-13":      { "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
     "ubuntu-16.04":   { "i386": "tier3", "amd64": "tier3" },
     "ubuntu-18.04":   { "i386": "tier3", "amd64": "tier3" },
     "ubuntu-20.04":   { "amd64": "tier2" },
