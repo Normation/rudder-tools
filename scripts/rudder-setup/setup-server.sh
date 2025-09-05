@@ -64,9 +64,6 @@ setup_server() {
   if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
   then
     # Configure plugins
-    if  [ "$(echo ${PLUGINS_VERSION} | sed  's|.*/||')" = "nightly" ]; then
-      nightly_plugins="--nighty"
-    fi
     if [ "$(echo ${PLUGINS_VERSION} | sed  's|/.*||')" = "ci" ]; then
       url="https://publisher.normation.com/plugins/"
     elif [ "${DOWNLOAD_USER}" = "" ]; then
@@ -88,12 +85,9 @@ EOF
     fi
 
     # install plugins
-    if [ "${PLUGINS_VERSION}" = "nightly" ] || echo "${RUDDER_VERSION}" | grep -q nightly ; then
-      nightly_plugins="--nightly"
-    fi
     for p in ${PLUGINS}
     do
-      rudder package --quiet install "${p}" ${nightly_plugins} || true # accept plugin install to fail
+      rudder package --quiet install "${p}" || true # accept plugin install to fail
     done
 
     # remove credentials if needed
@@ -150,14 +144,11 @@ upgrade_server() {
 
   if is_version_valid "${RUDDER_VERSION}" "[6.0 *]" && [ "${PLUGINS}" != "" ]
   then
-    if [ "${PLUGINS_VERSION}" = "nightly" ]; then
-      nightly_plugins="--nightly"
-    fi
     if is_version_valid "${RUDDER_VERSION}" "[6.1 *]"; then
       quiet_arg="--quiet"
     fi
     rudder package update ${quiet_arg}
-    rudder package upgrade-all ${nightly_plugins} ${quiet_arg}
+    rudder package upgrade-all ${quiet_arg}
   fi
 
   if is_version_valid "${RUDDER_VERSION}" "[5.0.14 *]"; then
