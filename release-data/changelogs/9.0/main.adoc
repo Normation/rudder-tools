@@ -1,5 +1,217 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.0.beta1 (2025-09-09)
+
+=== Changes
+
+
+==== Packaging
+
+* Add apache conf template to the package
+    (https://issues.rudder.io/issues/27517[#27517])
+* Prepare Debian 13 packaging
+    (https://issues.rudder.io/issues/27430[#27430])
+
+==== Documentation
+
+* Document server certificate change in 9.0
+    (https://issues.rudder.io/issues/27390[#27390])
+* User API update documentation is incorrect
+    (https://issues.rudder.io/issues/27521[#27521])
+
+==== System techniques
+
+* Allow configuring the certificates
+    (https://issues.rudder.io/issues/27451[#27451])
+
+==== Architecture - Internal libs
+
+* Move & update AuthorizationType into rudder-core
+    (https://issues.rudder.io/issues/22595[#22595])
+* Move & update AuthorizationType into rudder-core
+    (https://issues.rudder.io/issues/22595[#22595])
+
+==== Architecture - Code maintenance
+
+* Using Cons for big lists can blow the compiler stack and prevent scala project compilation entirely
+    (https://issues.rudder.io/issues/27412[#27412])
+* Add a generic json codec for enumeratum
+    (https://issues.rudder.io/issues/27364[#27364])
+
+==== Agent
+
+* Adding command module
+    (https://issues.rudder.io/issues/27218[#27218])
+
+==== Relay server or API
+
+* Finish Rust dependency update
+    (https://issues.rudder.io/issues/27404[#27404])
+
+==== Security
+
+* We need to resolve directory real path in our path trasversal check
+    (https://issues.rudder.io/issues/27402[#27402])
+
+==== rudderc
+
+* Remove unused promises from rudderc generated techniques
+    (https://issues.rudder.io/issues/27400[#27400])
+
+==== Web - Campaigns
+
+* Add campaign hooks in the campaign workflow engine
+    (https://issues.rudder.io/issues/26883[#26883])
+
+==== Web - UI & UX
+
+* Make doughnut graphs accessible and manipulable
+    (https://issues.rudder.io/issues/27391[#27391])
+* Move the graph creation functions from homepage.js to another js file.
+    (https://issues.rudder.io/issues/27329[#27329])
+
+==== System integration
+
+* Allow per-hook-kind logger
+    (https://issues.rudder.io/issues/27365[#27365])
+
+==== Architecture - Evolution
+
+* Add an ID for node details tab content container
+    (https://issues.rudder.io/issues/27358[#27358])
+
+=== Bug fixes
+
+==== Agent
+
+* Fixed: Add a stricter permission control to the inventory hooks executed by the inventory on Windows nodes
+    (https://issues.rudder.io/issues/27476[#27476])
+* Fixed: Fix the rudder_info! macro to make it usable in audit mode
+    (https://issues.rudder.io/issues/27450[#27450])
+
+==== System integration
+
+* Fixed: Upload large file in technique resources or file download returns error
+    (https://issues.rudder.io/issues/27413[#27413])
+
+==== Packaging
+
+* Fixed: Missing rudder-sources when building rudderc
+    (https://issues.rudder.io/issues/27441[#27441])
+* Fixed: Missing rudder-sources when building rudderc
+    (https://issues.rudder.io/issues/27441[#27441])
+* Fixed: Add a compatibility flag for apt lib
+    (https://issues.rudder.io/issues/27436[#27436])
+* Fixed: perl-Digest-MD5 is missing from dependencies in RHEL6
+    (https://issues.rudder.io/issues/25491[#25491])
+
+==== Documentation
+
+* Fixed: correct prerequisites for Rudder install
+    (https://issues.rudder.io/issues/27395[#27395])
+* Fixed: Add RHEL 10 in supported OS list
+    (https://issues.rudder.io/issues/27362[#27362])
+
+==== Web - UI & UX
+
+* Fixed: Hosts table contains local ipv6 address
+    (https://issues.rudder.io/issues/27112[#27112])
+* Fixed: When the JSON property is invalid in global properties, the error is nasty
+    (https://issues.rudder.io/issues/26718[#26718])
+* Fixed: Cannot delete a technique from technique tree with grayed screen
+    (https://issues.rudder.io/issues/27387[#27387])
+* Fixed: There is no explanation as to why Save button is disabled
+    (https://issues.rudder.io/issues/27386[#27386])
+* Fixed: Event logs restore button creates as many confirmation blocks as clicks
+    (https://issues.rudder.io/issues/25361[#25361])
+* Fixed: When a technique is enabled, the directive page button to disabled it is way too exposed
+    (https://issues.rudder.io/issues/27239[#27239])
+
+==== Security
+
+* Fixed: Vulnerability in tracing
+    (https://issues.rudder.io/issues/27519[#27519])
+* Fixed:  Ignore CVEs for icu4j
+    (https://issues.rudder.io/issues/27437[#27437])
+* Fixed: Hashed password is logged at debug level for all non OAuth2 users 
+    (https://issues.rudder.io/issues/26767[#26767])
+
+==== Web - Compliance & node report
+
+* Fixed: Ignored nodes should be excluded from compliance and score processing
+    (https://issues.rudder.io/issues/27446[#27446])
+
+==== Generic methods
+
+* Fixed: File_from_template_options fails to render a file when using a custom data as source
+    (https://issues.rudder.io/issues/27515[#27515])
+* Fixed: When the component value of a method is too long, the reporting can be missing
+    (https://issues.rudder.io/issues/27167[#27167])
+
+==== Web - Technique editor
+
+* Fixed: No manual when a filter for methods in the technique editor right panel
+    (https://issues.rudder.io/issues/26813[#26813])
+
+==== CI
+
+* Fixed: fix broken agent installation on CI
+    (https://issues.rudder.io/issues/27469[#27469])
+* Fixed: Missing curl dependency in the methods docker test image
+    (https://issues.rudder.io/issues/27453[#27453])
+
+==== Module - templates
+
+* Fixed: Fix audit bug for the template module
+    (https://issues.rudder.io/issues/27448[#27448])
+* Fixed: Fixing rudder_module_type.yml for the template module
+    (https://issues.rudder.io/issues/27381[#27381])
+
+==== Miscellaneous
+
+* Fixed: Dashboard will not display charts when switching between bechmarks
+    (https://issues.rudder.io/issues/27370[#27370])
+
+==== rudderc
+
+* Fixed: Constraint doesn't allow to change variable
+    (https://issues.rudder.io/issues/27363[#27363])
+
+==== API
+
+* Fixed: Nodes API payload for agentKey has the wrong JSON format
+    (https://issues.rudder.io/issues/27369[#27369])
+
+==== Module - system-updates
+
+* Fixed: Security updates not applied on Debian 12, but campaign ends without error
+    (https://issues.rudder.io/issues/26855[#26855])
+* Fixed: Log the list of restarted services
+    (https://issues.rudder.io/issues/27367[#27367])
+
+==== Web - Maintenance
+
+* Fixed: Users cleanup configuration is still too strict for disabling/deleting
+    (https://issues.rudder.io/issues/27379[#27379])
+
+==== Plugin manager cli
+
+* Fixed: Quiet option still show spinner in rudder package
+    (https://issues.rudder.io/issues/27371[#27371])
+
+==== System techniques
+
+* Fixed: Archive tarball contains wrong directories
+    (https://issues.rudder.io/issues/27368[#27368])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Matthieu Baechler
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.0.alpha1 (2025-07-24)
 
 === Changes
