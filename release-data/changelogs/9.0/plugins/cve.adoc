@@ -1,5 +1,29 @@
 = Changelogs for Rudder plugin cve 9.0.\* versions
 
+== cve-9.0.0.beta1-2.12 (2025-09-09)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Spaces at the end of the line proxy_url break the parsing of proxy url/port
+    (https://issues.rudder.io/issues/27488[#27488])
+* Fixed: Inventory is emptied when a node is updated for cve groups (added or removed property)
+    (https://issues.rudder.io/issues/27475[#27475])
+* Fixed: Inventory is emptied when a node is updated for cve groups (added or removed property)
+    (https://issues.rudder.io/issues/27475[#27475])
+* Fixed: Vuls need sources packages as separated data for all packages now.
+    (https://issues.rudder.io/issues/27460[#27460])
+* Fixed: Vuls need sources packages as separated data for all packages now.
+    (https://issues.rudder.io/issues/27460[#27460])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-9.0.0.alpha1-2.10 (2025-07-24)
 
 === Changes
