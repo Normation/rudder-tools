@@ -1,0 +1,22 @@
+= Changelogs for Rudder plugin benchmark-cis-ubuntu-20-04 9.0.\* versions
+
+== benchmark-cis-ubuntu-20-04-9.0.0.beta1-0.10 (2025-09-09)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: CIS - Debian 11 - Implement Section 6
+    (https://issues.rudder.io/issues/27410[#27410])
+* Fixed: CIS RHEL 8 Section 1.1.1.1 compliant code is reversed
+    (https://issues.rudder.io/issues/27357[#27357])
+* Fixed: multiple missing bash for calling ressources script
+    (https://issues.rudder.io/issues/27355[#27355])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
