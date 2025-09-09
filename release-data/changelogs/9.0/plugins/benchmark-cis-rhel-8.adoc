@@ -1,0 +1,57 @@
+= Changelogs for Rudder plugin benchmark-cis-rhel-8 9.0.\* versions
+
+== benchmark-cis-rhel-8-9.0.0.beta1-0.10 (2025-09-09)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Extend shellcheck to all benchmarks
+    (https://issues.rudder.io/issues/27359[#27359])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: RHEL 9 - 5.4.1.6 - test command is invalid
+    (https://issues.rudder.io/issues/27510[#27510])
+* Fixed: CIS RHEL 8 : fixes on control points
+    (https://issues.rudder.io/issues/27492[#27492])
+* Fixed: CIS : Fixes on RHEL 8
+    (https://issues.rudder.io/issues/27484[#27484])
+* Fixed: CIS : Fixes on RHEL 8
+    (https://issues.rudder.io/issues/27484[#27484])
+* Fixed: CIS - Debian 11 - Implement Section 4
+    (https://issues.rudder.io/issues/27408[#27408])
+* Fixed: RHEL 8 - 1.5.1.3 - add constraint on parameter
+    (https://issues.rudder.io/issues/27396[#27396])
+* Fixed: Error in Section 1.5.1.4 of RHEL8
+    (https://issues.rudder.io/issues/27344[#27344])
+* Fixed: CIS RHEL 8 Section 1.1.1.1 compliant code is reversed
+    (https://issues.rudder.io/issues/27357[#27357])
+* Fixed: RHEL 8 - Section 3.4 : error on control point
+    (https://issues.rudder.io/issues/27345[#27345])
+* Fixed: Error in Section 1.8.10 of RHEL8
+    (https://issues.rudder.io/issues/27338[#27338])
+* Fixed: RHEL 8 - Section 4.1 : missing section & fixes
+    (https://issues.rudder.io/issues/27339[#27339])
+* Fixed: RHEL 8 - Section 4.2 : missing const.dollar & fixes
+    (https://issues.rudder.io/issues/27340[#27340])
+* Fixed: RHEL 8 - Section 2.2 : inversion of key / value & fixes
+    (https://issues.rudder.io/issues/27342[#27342])
+* Fixed: RHEL 8 - Section 3.1 : errors on control point
+    (https://issues.rudder.io/issues/27343[#27343])
+* Fixed: RHEL 8 - Section 5.2 - Configure system accounting
+    (https://issues.rudder.io/issues/27222[#27222])
+* Fixed: RHEL 8 - Section 4.3 : missing bash for executing script
+    (https://issues.rudder.io/issues/27341[#27341])
+* Fixed: Script 6_2_4_UIDs_consistency.sh, 6_2_5_GIDs_consistency.sh, 6_2_6_username_consistency.sh, 6_2_7_groupname_consistency.sh exit 0 even when it should node
+    (https://issues.rudder.io/issues/27350[#27350])
+* Fixed: RHEL 8 - Section 6.2 - Local group & group settings
+    (https://issues.rudder.io/issues/27225[#27225])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
