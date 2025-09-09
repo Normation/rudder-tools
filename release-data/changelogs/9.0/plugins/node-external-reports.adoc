@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin node-external-reports 9.0.\* versions
 
+== node-external-reports-9.0.0.beta1-2.1 (2025-09-09)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Plugin complains about lack of license
+    (https://issues.rudder.io/issues/27323[#27323])
+* Fixed: Plugin doesn't show anything
+    (https://issues.rudder.io/issues/27321[#27321])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == node-external-reports-9.0.0.alpha1-2.1 (2025-07-24)
 
 === Changes
