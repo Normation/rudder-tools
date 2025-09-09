@@ -1,0 +1,42 @@
+= Changelogs for Rudder plugin benchmark-cis-rhel-9 9.0.\* versions
+
+== benchmark-cis-rhel-9-9.0.0.beta1-0.10 (2025-09-09)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: RHEL 9 - 5.4.1.6 - test command is invalid
+    (https://issues.rudder.io/issues/27510[#27510])
+* Fixed: RHEL 9 - Section 3.1.2 - wrong path for resources_dir
+    (https://issues.rudder.io/issues/27508[#27508])
+* Fixed: CIS RHEL 9 : missing tree on control points v2
+    (https://issues.rudder.io/issues/27493[#27493])
+* Fixed: CIS RHEL 9 : Fix tree on Sections
+    (https://issues.rudder.io/issues/27485[#27485])
+* Fixed: CIS : Fix titles, description and documentation on RHEL 9
+    (https://issues.rudder.io/issues/27483[#27483])
+* Fixed: CIS : Fix titles, description and documentation on RHEL 9
+    (https://issues.rudder.io/issues/27483[#27483])
+* Fixed: CIS - Debian 11 - Implement Section 4
+    (https://issues.rudder.io/issues/27408[#27408])
+* Fixed: CIS RHEL 8 Section 1.1.1.1 compliant code is reversed
+    (https://issues.rudder.io/issues/27357[#27357])
+* Fixed: multiple missing bash for calling ressources script
+    (https://issues.rudder.io/issues/27355[#27355])
+* Fixed: RHEL 8 - Section 4.2 : missing const.dollar & fixes
+    (https://issues.rudder.io/issues/27340[#27340])
+* Fixed: RHEL 8 - Section 2.2 : inversion of key / value & fixes
+    (https://issues.rudder.io/issues/27342[#27342])
+* Fixed: Script 6_2_4_UIDs_consistency.sh, 6_2_5_GIDs_consistency.sh, 6_2_6_username_consistency.sh, 6_2_7_groupname_consistency.sh exit 0 even when it should node
+    (https://issues.rudder.io/issues/27350[#27350])
+* Fixed: RHEL 8 - Section 6.2 - Local group & group settings
+    (https://issues.rudder.io/issues/27225[#27225])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
