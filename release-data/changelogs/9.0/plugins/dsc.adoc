@@ -1,5 +1,126 @@
 = Changelogs for Rudder plugin dsc 9.0.\* versions
 
+== dsc-9.0.0.beta1-2.10 (2025-09-09)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add a validation when changing checks to enforce 
+    (https://issues.rudder.io/issues/27262[#27262])
+* Adding the rust build for the module template 
+    (https://issues.rudder.io/issues/26955[#26955])
+
+==== Misc
+
+* Update .NET dependencies
+    (https://issues.rudder.io/issues/27130[#27130])
+
+==== Generic methods
+
+* Missing error details when command execution method fail on Windows
+    (https://issues.rudder.io/issues/26242[#26242])
+
+==== Techniques
+
+* Warn when a system is too old to run the agent
+    (https://issues.rudder.io/issues/26891[#26891])
+
+==== Packaging
+
+* Add agent version file
+    (https://issues.rudder.io/issues/26838[#26838])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Backport 27164 to 8.2
+    (https://issues.rudder.io/issues/27439[#27439])
+* Fixed: Unnecessary rsync filter on the src folder copy
+    (https://issues.rudder.io/issues/27518[#27518])
+* Fixed: After a fresh install the postinst can fail to create the Rudder scheduled tasks
+    (https://issues.rudder.io/issues/27237[#27237])
+
+==== Generic methods
+
+* Fixed: The new File-From-Template-Options method fails when the Engine parameter is left blank
+    (https://issues.rudder.io/issues/27514[#27514])
+* Fixed: Implement the file_from_template_options GM for windows
+    (https://issues.rudder.io/issues/27095[#27095])
+* Fixed: create an os query method on windows
+    (https://issues.rudder.io/issues/26546[#26546])
+* Fixed: Revert the variable control when using mustache templating
+    (https://issues.rudder.io/issues/26846[#26846])
+* Fixed: Translate the user in local group generic method documentation to YAML
+    (https://issues.rudder.io/issues/26840[#26840])
+* Fixed:  Fix the Service-Disabled method on Windows
+    (https://issues.rudder.io/issues/26522[#26522])
+* Fixed: The file_key_value_present_option method fails to edit files
+    (https://issues.rudder.io/issues/26528[#26528])
+
+==== Misc
+
+* Fixed: Add a new powershell script to audit if a file can be edited by a non local admin account
+    (https://issues.rudder.io/issues/27477[#27477])
+
+==== System techniques
+
+* Fixed: Remove extra field in the Rudder-Agent scheduled task template source
+    (https://issues.rudder.io/issues/27504[#27504])
+* Fixed: Incorrect path for the scheduled task template path
+    (https://issues.rudder.io/issues/27463[#27463])
+* Fixed: Error message when no policies are applied to a node
+    (https://issues.rudder.io/issues/27212[#27212])
+* Fixed: Scheduled rudder agent run can be skipped by the task scheduler
+    (https://issues.rudder.io/issues/26591[#26591])
+
+==== Inventory
+
+* Fixed: Error at windows agent installation
+    (https://issues.rudder.io/issues/26554[#26554])
+
+==== Techniques
+
+* Fixed: If a software have some corrupted data in the registry, we cannot check its version with software present method
+    (https://issues.rudder.io/issues/27429[#27429])
+
+==== CLI
+
+* Fixed: Fix the rudder agent check-scheduled-tasks CLI
+    (https://issues.rudder.io/issues/27432[#27432])
+* Fixed: Remove the now obsolete function Invoke-RudderCurl from the RudderCli module
+    (https://issues.rudder.io/issues/27447[#27447])
+* Fixed: Error in the first agent run after a fresh install
+    (https://issues.rudder.io/issues/27171[#27171])
+* Fixed: Policy server file hostname read from the policy-server.conf file should be trimmed
+    (https://issues.rudder.io/issues/25561[#25561])
+* Fixed: Windows server 2016 define the windows_2016 condition instead of windows_server_2016
+    (https://issues.rudder.io/issues/26662[#26662])
+* Fixed: Remove rudderCli unapproved verbs warning
+    (https://issues.rudder.io/issues/26550[#26550])
+
+==== ci
+
+* Fixed: dotnet-fsharplint is no longer in use
+    (https://issues.rudder.io/issues/27286[#27286])
+* Fixed: Build test is missing the cargo binaries in its path
+    (https://issues.rudder.io/issues/27136[#27136])
+* Fixed: Fix typo in Jenkinsfile
+    (https://issues.rudder.io/issues/27135[#27135])
+* Fixed: Pass the build on Ubuntu Noble to easily bump gcc version
+    (https://issues.rudder.io/issues/27120[#27120])
+
+==== Agent library
+
+* Fixed: Re-canonify the expression before evualting them
+    (https://issues.rudder.io/issues/26537[#26537])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-9.0.0.alpha1-2.9 (2025-07-24)
 
 === Changes
