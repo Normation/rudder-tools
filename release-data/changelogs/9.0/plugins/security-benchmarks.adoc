@@ -1,5 +1,60 @@
 = Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
 
+== security-benchmarks-9.0.0.beta1-1.1 (2025-09-09)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* No Answer nodes should be ignored in benchmark score, missing reports message improvement
+    (https://issues.rudder.io/issues/27495[#27495])
+* Add a validation when changing checks to enforce 
+    (https://issues.rudder.io/issues/27262[#27262])
+* Enforce a precise kcl version
+    (https://issues.rudder.io/issues/27377[#27377])
+* Add links between the dashboard and the score details tab
+    (https://issues.rudder.io/issues/27378[#27378])
+* Add filters to score details
+    (https://issues.rudder.io/issues/27351[#27351])
+* Add a confirmation step before deleting a benchmark
+    (https://issues.rudder.io/issues/27361[#27361])
+* Improve display of sub items in node score details
+    (https://issues.rudder.io/issues/27332[#27332])
+* Improve benchmark dashboard
+    (https://issues.rudder.io/issues/27312[#27312])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Score computation rules need adjustments
+    (https://issues.rudder.io/issues/27403[#27403])
+* Fixed: Order of control points in nodes reporting is not correct
+    (https://issues.rudder.io/issues/27288[#27288])
+* Fixed: Multiplication of rudder_auto_conditions
+    (https://issues.rudder.io/issues/27334[#27334])
+* Fixed: Scores shown missing reports for reports that are no longer expected
+    (https://issues.rudder.io/issues/27280[#27280])
+* Fixed: When selecting Targets, the filter search does not filter anything
+    (https://issues.rudder.io/issues/26471[#26471])
+* Fixed: Score computation takes disabled sections into account
+    (https://issues.rudder.io/issues/27380[#27380])
+* Fixed: Create documentation on how the benchmark are created/built/tested
+    (https://issues.rudder.io/issues/27376[#27376])
+* Fixed: Setting section to enforce change checks that only have audit/disable as existing states
+    (https://issues.rudder.io/issues/27347[#27347])
+* Fixed: multiple missing bash for calling ressources script
+    (https://issues.rudder.io/issues/27355[#27355])
+* Fixed: Use new charting.js file instead of homepage.js
+    (https://issues.rudder.io/issues/27330[#27330])
+* Fixed: Chart is not updated when new score is fetched from the API
+    (https://issues.rudder.io/issues/27335[#27335])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.0.0.alpha1-1.1 (2025-07-24)
 
 === Changes
