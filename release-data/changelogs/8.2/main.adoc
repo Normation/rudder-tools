@@ -1,5 +1,71 @@
 
 = Change logs for Rudder 8.2
+==  Rudder 8.2.9 (2025-09-15)
+
+=== Changes
+
+
+==== Architecture - Dependencies
+
+* Ignore adler advisory in 8.2
+    (https://issues.rudder.io/issues/27539[#27539])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Only cache the module binaries
+    (https://issues.rudder.io/issues/27565[#27565])
+* Fixed: perl-Digest-MD5 is missing from dependencies in RHEL6
+    (https://issues.rudder.io/issues/25491[#25491])
+
+==== Documentation
+
+* Fixed: Remove metion to AIX from the menu
+    (https://issues.rudder.io/issues/27535[#27535])
+
+==== API
+
+* Fixed: Missleading format for parameter category in API
+    (https://issues.rudder.io/issues/27384[#27384])
+
+==== Security
+
+* Fixed: Vulnerability in tracing
+    (https://issues.rudder.io/issues/27519[#27519])
+* Fixed:  Ignore CVEs for icu4j
+    (https://issues.rudder.io/issues/27437[#27437])
+* Fixed: Cannot remove all rights from a user who has a single role, from the User management GUI
+    (https://issues.rudder.io/issues/27211[#27211])
+
+==== Web - UI & UX
+
+* Fixed: When the JSON property is invalid in global properties, the error is nasty
+    (https://issues.rudder.io/issues/26718[#26718])
+* Fixed: Event logs restore button creates as many confirmation blocks as clicks
+    (https://issues.rudder.io/issues/25361[#25361])
+* Fixed: Missing enable / disable action button for group
+    (https://issues.rudder.io/issues/27127[#27127])
+
+==== Plugin manager cli
+
+* Fixed: Quiet option still show spinner in rudder package
+    (https://issues.rudder.io/issues/27371[#27371])
+
+==== Web - Compliance & node report
+
+* Fixed: the hover on compliance shows HTML
+    (https://issues.rudder.io/issues/25584[#25584])
+
+==== CI
+
+* Fixed: Missing curl dependency in the methods docker test image
+    (https://issues.rudder.io/issues/27453[#27453])
+
+=== Release notes
+
+This is a bug fix release in the 8.2 series and therefore all installations of 8.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 
 ==  Rudder 8.2.8 (2025-07-17)
 
