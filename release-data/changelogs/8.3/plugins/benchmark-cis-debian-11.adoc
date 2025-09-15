@@ -1,0 +1,48 @@
+= Changelogs for Rudder plugin benchmark-cis-debian-11 8.3.\* versions
+
+== benchmark-cis-debian-11-8.3.4-0.10 (2025-09-15)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: CIS Debian 11 : “5.4.2.2 - Ensure root is the only GID 0 account” audit results incorrect
+    (https://issues.rudder.io/issues/27499[#27499])
+* Fixed: CIS Debian 11 : “5.4.1.4 Ensure strong password hashing algorithm is configured” Parameter list value selector incorrect
+    (https://issues.rudder.io/issues/27516[#27516])
+* Fixed: CIS : Fix titles, description and documentation on Debian 11
+    (https://issues.rudder.io/issues/27487[#27487])
+* Fixed: CIS Debian 11 - Section 1.5 : Missing check for package
+    (https://issues.rudder.io/issues/27479[#27479])
+* Fixed: CIS Debian 11 : Fix broken description and documentation on sections
+    (https://issues.rudder.io/issues/27478[#27478])
+* Fixed: Replace deprecated method file_check_exists by file_present
+    (https://issues.rudder.io/issues/27470[#27470])
+* Fixed: CIS - Debian 11 - Implement Section 6
+    (https://issues.rudder.io/issues/27410[#27410])
+* Fixed: CIS - Debian 11 - Implement Section 1
+    (https://issues.rudder.io/issues/27405[#27405])
+* Fixed: CIS - Debian 11 - Implement Section 5
+    (https://issues.rudder.io/issues/27409[#27409])
+* Fixed: CIS - Debian 11 - Implement Section 3
+    (https://issues.rudder.io/issues/27407[#27407])
+* Fixed: CIS Debian 11 Section 7 : Missing id
+    (https://issues.rudder.io/issues/27462[#27462])
+* Fixed: CIS - Debian 11 - Implement Section 7
+    (https://issues.rudder.io/issues/27411[#27411])
+* Fixed: CIS - Debian 11 - Implement Section 2
+    (https://issues.rudder.io/issues/27406[#27406])
+* Fixed: CIS - Debian 11 - Implement Section 4
+    (https://issues.rudder.io/issues/27408[#27408])
+* Fixed: Document how to add entries in a benchmark
+    (https://issues.rudder.io/issues/27398[#27398])
+* Fixed: Create documentation on how the benchmark are created/built/tested
+    (https://issues.rudder.io/issues/27376[#27376])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
