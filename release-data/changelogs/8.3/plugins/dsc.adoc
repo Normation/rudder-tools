@@ -1,5 +1,69 @@
 = Changelogs for Rudder plugin dsc 8.3.\* versions
 
+== dsc-8.3.5-2.10 (2025-10-02)
+
+=== Changes
+
+
+==== Generic methods
+
+* Missing error details when command execution method fail on Windows
+    (https://issues.rudder.io/issues/26242[#26242])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Unnecessary rsync filter on the src folder copy
+    (https://issues.rudder.io/issues/27518[#27518])
+* Fixed: After a fresh install the postinst can fail to create the Rudder scheduled tasks
+    (https://issues.rudder.io/issues/27237[#27237])
+
+==== Misc
+
+* Fixed: Add a new powershell script to audit if a file can be edited by a non local admin account
+    (https://issues.rudder.io/issues/27477[#27477])
+
+==== System techniques
+
+* Fixed: Remove extra field in the Rudder-Agent scheduled task template source
+    (https://issues.rudder.io/issues/27504[#27504])
+* Fixed: Incorrect path for the scheduled task template path
+    (https://issues.rudder.io/issues/27463[#27463])
+* Fixed: Error message when no policies are applied to a node
+    (https://issues.rudder.io/issues/27212[#27212])
+
+==== Inventory
+
+* Fixed: Error at windows agent installation
+    (https://issues.rudder.io/issues/26554[#26554])
+
+==== Techniques
+
+* Fixed: If a software have some corrupted data in the registry, we cannot check its version with software present method
+    (https://issues.rudder.io/issues/27429[#27429])
+
+==== CLI
+
+* Fixed: Fix the rudder agent check-scheduled-tasks CLI
+    (https://issues.rudder.io/issues/27432[#27432])
+* Fixed: Error in the first agent run after a fresh install
+    (https://issues.rudder.io/issues/27171[#27171])
+
+==== ci
+
+* Fixed: dotnet-fsharplint is no longer in use
+    (https://issues.rudder.io/issues/27286[#27286])
+
+==== Generic methods
+
+* Fixed: create an os query method on windows
+    (https://issues.rudder.io/issues/26546[#26546])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == dsc-8.3.4-2.10 (2025-09-15)
 
 === Changes
