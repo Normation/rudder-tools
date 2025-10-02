@@ -1,5 +1,31 @@
 = Changelogs for Rudder plugin benchmark-cis-rhel-9 8.3.\* versions
 
+== benchmark-cis-rhel-9-8.3.5-0.10 (2025-10-02)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: RHEL 9 - Section 6.2.2.2 checks only /etc/systemd/journald.conf
+    (https://issues.rudder.io/issues/27512[#27512])
+* Fixed: RHEL 9 - Section 4.3.3 and 4.3.4 are compliant even if nftable is not present
+    (https://issues.rudder.io/issues/27509[#27509])
+* Fixed: There are some "null" in the bench descriptions
+    (https://issues.rudder.io/issues/27583[#27583])
+* Fixed: RHEL 9 - Section 6.2.4.1, 7.1.11 and 7.1.12 , 7.2.8 and 7.2.9 are not implemented, but we don't document why
+    (https://issues.rudder.io/issues/27513[#27513])
+* Fixed: RHEL 9 - Section 1.8.10 reports an error even if gdm is not there
+    (https://issues.rudder.io/issues/27507[#27507])
+* Fixed: RHEL 9 - selinux check missing
+    (https://issues.rudder.io/issues/27505[#27505])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == benchmark-cis-rhel-9-8.3.4-0.10 (2025-09-15)
 
 === Changes
