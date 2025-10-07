@@ -1,5 +1,166 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.0.beta2 (2025-10-07)
+
+=== Changes
+
+
+==== Packaging
+
+* Package the command module
+    (https://issues.rudder.io/issues/27545[#27545])
+
+==== Module - commands
+
+* add uid/gid lookup by name for the commands module
+    (https://issues.rudder.io/issues/27651[#27651])
+* The command module should avoid using custom parsing methods for lists
+    (https://issues.rudder.io/issues/27598[#27598])
+* The command module should avoid using custom parsing methods for lists
+    (https://issues.rudder.io/issues/27598[#27598])
+
+==== Module - common
+
+* Better logging for custom promise type protocol when a CFEngine request is malformed
+    (https://issues.rudder.io/issues/27568[#27568])
+
+==== API
+
+* Return categoryId in JSON groups API
+    (https://issues.rudder.io/issues/27531[#27531])
+
+==== Architecture - Dependencies
+
+* Ignore adler advisory in 8.2
+    (https://issues.rudder.io/issues/27539[#27539])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: openssl build broken on RHEL7
+    (https://issues.rudder.io/issues/27664[#27664])
+* Fixed: Missing flags for required CFEngine dependencies
+    (https://issues.rudder.io/issues/27647[#27647])
+* Fixed: Allow caching single files
+    (https://issues.rudder.io/issues/27571[#27571])
+* Fixed: Missing slash in cache path
+    (https://issues.rudder.io/issues/27569[#27569])
+* Fixed: Only cache the module binaries
+    (https://issues.rudder.io/issues/27565[#27565])
+
+==== Agent
+
+* Fixed: Unable to install RHEL agent
+    (https://issues.rudder.io/issues/27590[#27590])
+* Fixed: APT agents are built without apt support in system-updates
+    (https://issues.rudder.io/issues/27649[#27649])
+* Fixed: Error trying to compile rudder-agent 8.3.4~git202508191033 on armhf Debian 13 trixie (libapt)
+    (https://issues.rudder.io/issues/27459[#27459])
+* Fixed: Agent stops when creating modules symlink
+    (https://issues.rudder.io/issues/27526[#27526])
+
+==== Security
+
+* Fixed: Update curl & openssl
+    (https://issues.rudder.io/issues/27558[#27558])
+* Fixed: We need latest cargo deny to check licenses
+    (https://issues.rudder.io/issues/27620[#27620])
+* Fixed: XSS vulnerability in ammonia dep
+    (https://issues.rudder.io/issues/27615[#27615])
+
+==== Inventory
+
+* Fixed: Incorrect script name in the Rudder inventory task
+    (https://issues.rudder.io/issues/27534[#27534])
+
+==== Documentation
+
+* Fixed: Remove doc about automatically defined reporting section
+    (https://issues.rudder.io/issues/27635[#27635])
+* Fixed: Remove metion to AIX from the menu
+    (https://issues.rudder.io/issues/27535[#27535])
+* Fixed: System info API changed format in v21 and needs new documentation
+    (https://issues.rudder.io/issues/26637[#26637])
+
+==== Web - Campaigns
+
+* Fixed: Inconsistency in campaigneventstate between init and DB migration
+    (https://issues.rudder.io/issues/27674[#27674])
+* Fixed: Campaign hook readme is incorrect
+    (https://issues.rudder.io/issues/27544[#27544])
+
+==== Generic methods
+
+* Fixed: Document the file_from_template_options method
+    (https://issues.rudder.io/issues/27646[#27646])
+* Fixed: Test the command_execution_options generic method
+    (https://issues.rudder.io/issues/27585[#27585])
+* Fixed: [Regression] Rudder 9.0 Beta 2 : sysctl generic method causes apparent repair loops
+    (https://issues.rudder.io/issues/27627[#27627])
+* Fixed: Incorrect serialization of the parameters passed by the command_execution_options method to its underlying module
+    (https://issues.rudder.io/issues/27550[#27550])
+
+==== Techniques
+
+* Fixed: Password setting from standard user technique fails after upgrade to Rudder 9.0 Beta 2
+    (https://issues.rudder.io/issues/27622[#27622])
+
+==== Module - templates
+
+* Fixed: The file_from_template_options method should accept inline JSON in its data field
+    (https://issues.rudder.io/issues/27636[#27636])
+
+==== Architecture - Code maintenance
+
+* Fixed: Scala compilation should happen in maven compile phase
+    (https://issues.rudder.io/issues/27638[#27638])
+
+==== Web - UI & UX
+
+* Fixed: Copy button on first login page for creating user not working anymore
+    (https://issues.rudder.io/issues/27588[#27588])
+* Fixed: In technique editor the number of techniqes is under "techniques" big title
+    (https://issues.rudder.io/issues/27595[#27595])
+* Fixed: Nodes table has CSP error with column containing JSON property
+    (https://issues.rudder.io/issues/27577[#27577])
+* Fixed: Nodes server list can no longer be exported to CSV
+    (https://issues.rudder.io/issues/27578[#27578])
+* Fixed: Plugins error callouts width are same as title width
+    (https://issues.rudder.io/issues/27561[#27561])
+* Fixed: Compliance - No data available
+    (https://issues.rudder.io/issues/27623[#27623])
+
+==== Module - system-updates
+
+* Fixed: Document how the services to restart and reboot state are computed
+    (https://issues.rudder.io/issues/27553[#27553])
+
+==== rudderc
+
+* Fixed: Allow empty string in JSON fields
+    (https://issues.rudder.io/issues/27548[#27548])
+
+==== API
+
+* Fixed: Make group tree API not include system by default
+    (https://issues.rudder.io/issues/27498[#27498])
+* Fixed: Missleading format for parameter category in API
+    (https://issues.rudder.io/issues/27384[#27384])
+
+==== System techniques
+
+* Fixed: Missing report in http only mode
+    (https://issues.rudder.io/issues/27563[#27563])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Pierre-Yves Taczynski
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.0.beta1 (2025-09-09)
 
 === Changes
