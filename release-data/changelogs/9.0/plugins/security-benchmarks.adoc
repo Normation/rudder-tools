@@ -1,5 +1,34 @@
 = Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
 
+== security-benchmarks-9.0.0.beta2-1.1 (2025-10-07)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Bootstrap security benchmark documentation
+    (https://issues.rudder.io/issues/27593[#27593])
+* User should not be able to select system groups as targets
+    (https://issues.rudder.io/issues/27349[#27349])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: "No data available" at some level of benchmark for items, not for node
+    (https://issues.rudder.io/issues/27656[#27656])
+* Fixed: fix typo in readme
+    (https://issues.rudder.io/issues/27637[#27637])
+* Fixed: Balance score computation on a more optimistic basis
+    (https://issues.rudder.io/issues/27582[#27582])
+* Fixed: There are some "null" in the bench descriptions
+    (https://issues.rudder.io/issues/27583[#27583])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.0.0.beta1-1.1 (2025-09-09)
 
 === Changes
