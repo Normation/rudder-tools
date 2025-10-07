@@ -1,5 +1,43 @@
 = Changelogs for Rudder plugin benchmark-cis-debian-11 9.0.\* versions
 
+== benchmark-cis-debian-11-9.0.0.beta2-0.10 (2025-10-07)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Debian 11 - No report in 4.2.6 - Ensure nftables loopback traffic is configured
+    (https://issues.rudder.io/issues/27605[#27605])
+* Fixed: CIS Debian 11 : "1.5.3 Ensure core dumps are restricted" package check in wrong place
+    (https://issues.rudder.io/issues/27609[#27609])
+* Fixed: CIS Debian 11 - Missing reports in 5.1.4
+    (https://issues.rudder.io/issues/27607[#27607])
+* Fixed: Make RHEL8, RHEL9 and Debian11 plugin available
+    (https://issues.rudder.io/issues/27629[#27629])
+* Fixed: CIS Debian 11 - 2.1.21 Ensure mail transfer agent is configured for local-only mode
+    (https://issues.rudder.io/issues/27602[#27602])
+* Fixed: CIS Debian 11 : “5.4.1.6 Ensure all users last password change date is in the past” audit results incorrect
+    (https://issues.rudder.io/issues/27501[#27501])
+* Fixed: CIS Debian 11 : “5.4.2.3 Ensure group root is the only GID 0 group” audit results incorrect
+    (https://issues.rudder.io/issues/27502[#27502])
+* Fixed: RHEL 9 - Section 4.3.3 and 4.3.4 are compliant even if nftable is not present
+    (https://issues.rudder.io/issues/27509[#27509])
+* Fixed: There are some "null" in the bench descriptions
+    (https://issues.rudder.io/issues/27583[#27583])
+* Fixed: CIS Debian 11 - Section 2 : Fixes
+    (https://issues.rudder.io/issues/27466[#27466])
+* Fixed: CIS Debian 11 : “5.4.2.2 - Ensure root is the only GID 0 account” audit results incorrect
+    (https://issues.rudder.io/issues/27499[#27499])
+* Fixed: CIS Debian 11 : “5.4.1.4 Ensure strong password hashing algorithm is configured” Parameter list value selector incorrect
+    (https://issues.rudder.io/issues/27516[#27516])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == benchmark-cis-debian-11-9.0.0.beta1-0.10 (2025-09-09)
 
 === Changes
