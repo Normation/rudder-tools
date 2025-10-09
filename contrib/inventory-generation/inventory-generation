@@ -37,8 +37,8 @@ ANY_OPTION_DEFINED=false
 HASH=sha512
 
 #Defining list of inventory (short & long)
-DEF_LONG_OS_NAME=("Microsoft Windows Server 2019 Standard" "Debian GNU/Linux 9.1 (stretch)" "Debian GNU/Linux 9.2 (stretch)" "Debian GNU/Linux 8.6 (Jessie)" "CentOS Linux release 7.6.1810 (Core)" "CentOS Linux release 7.4.1810 (Core)" "CentOS Linux release 6.10 (Final)")
-DEF_SHORT_OS_NAME=(Windows Debian Debian Debian Centos Centos Centos)
+DEF_LONG_OS_NAME=("Debian GNU/Linux 9.1 (stretch)" "Debian GNU/Linux 9.2 (stretch)" "Debian GNU/Linux 8.6 (Jessie)" "CentOS Linux release 7.6.1810 (Core)" "CentOS Linux release 7.4.1810 (Core)" "CentOS Linux release 6.10 (Final)")
+DEF_SHORT_OS_NAME=(Debian Debian Debian Centos Centos Centos)
 
 MAX_SOFT_VERSION=100
 
@@ -118,7 +118,7 @@ function generate_data {
 
     echo "CentOS release 6.6 (Final)" > ${DEST_PATH}/${UUID}/fullosname
 
-    echo "7.1.0-beta" >  ${DEST_PATH}/${UUID}/agent_version
+    echo "8.3.5" >  ${DEST_PATH}/${UUID}/agent_version
   done
 
 
@@ -132,7 +132,6 @@ function create_inventory {
 
   # compute number of OSs
   os_list_size=${#DEF_LONG_OS_NAME[@]}
-  echo $os_list_size
 
   # List all data 
   for d in ${DEST_PATH}/*; do
@@ -143,6 +142,7 @@ function create_inventory {
       PRIVKEY=$d/localhost.priv
       PUBKEY=$d/localhost.pub
 
+      DATE=$(date '+%Y-%m-%d %H:%M:%S')
       # read variables    
       UUID=$(<$d/uuid)
       IP=$(<$d/ip)
