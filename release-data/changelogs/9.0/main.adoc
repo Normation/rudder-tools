@@ -1,5 +1,83 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.0.rc1 (2025-10-13)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Update onboarding documentations
+    (https://issues.rudder.io/issues/27604[#27604])
+* Update onboarding documentations
+    (https://issues.rudder.io/issues/27604[#27604])
+
+==== Generic methods
+
+* add metadata to the GM of the modules
+    (https://issues.rudder.io/issues/27663[#27663])
+
+==== CI
+
+* Pin the typos-cli version
+    (https://issues.rudder.io/issues/27684[#27684])
+
+=== Bug fixes
+
+==== Web - Technique editor
+
+* Fixed: Rudder 9.0 Beta 2 : Error message when deleting technique in editor
+    (https://issues.rudder.io/issues/27644[#27644])
+* Fixed: Frozen method in the technique editor after reset of a draft
+    (https://issues.rudder.io/issues/27564[#27564])
+
+==== Module - augeas
+
+* Fixed: fix supported_targets in augeas module metadata
+    (https://issues.rudder.io/issues/27725[#27725])
+
+==== Module - commands
+
+* Fixed: fix warnings in commands module tests
+    (https://issues.rudder.io/issues/27717[#27717])
+* Fixed: Error with command_execution_results but everything looks ok
+    (https://issues.rudder.io/issues/27683[#27683])
+
+==== Web - UI & UX
+
+* Fixed: "Close" button in API account modals uses the wrong CSS class
+    (https://issues.rudder.io/issues/27713[#27713])
+* Fixed: Notifications hides the button
+    (https://issues.rudder.io/issues/27612[#27612])
+* Fixed: Drag-and-drop icon appears when hovering a method over a block
+    (https://issues.rudder.io/issues/27625[#27625])
+
+==== Generic methods
+
+* Fixed: Test the file_from_template_options method
+    (https://issues.rudder.io/issues/27639[#27639])
+
+==== Miscellaneous
+
+* Fixed: Post-hooks for campaigns should be executed even even if pre-hooks are in failure
+    (https://issues.rudder.io/issues/27574[#27574])
+
+==== Web - Config management
+
+* Fixed: The migrate button in directive pages is always displayed and often useless and ugly
+    (https://issues.rudder.io/issues/24486[#24486])
+* Fixed: Random error after node-to-relay is applied and other dynamic group and node accepted by API problems
+    (https://issues.rudder.io/issues/27264[#27264])
+
+==== Web - Nodes & inventories
+
+* Fixed: Multiple JS error on properties page
+    (https://issues.rudder.io/issues/27596[#27596])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.0.beta2 (2025-10-07)
 
 === Changes
