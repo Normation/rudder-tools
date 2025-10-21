@@ -1,5 +1,42 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.0 (2025-10-21)
+
+=== Changes
+
+
+==== Documentation
+
+* Add upgrade notes
+    (https://issues.rudder.io/issues/27754[#27754])
+* Update openapi doc to v22 in 9.0
+    (https://issues.rudder.io/issues/27753[#27753])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Remove the 8.1 & 8.2 documentation
+    (https://issues.rudder.io/issues/27746[#27746])
+* Fixed:  Adapt doc for 9.0
+    (https://issues.rudder.io/issues/27738[#27738])
+* Fixed: API versions 21 is missing in documentation
+    (https://issues.rudder.io/issues/27748[#27748])
+
+==== Module - system-updates
+
+* Fixed: Only the first service detected by needrestart is restarted after system update campaign
+    (https://issues.rudder.io/issues/27732[#27732])
+
+==== Web - UI & UX
+
+* Fixed: The Settings -> Licence page should be name License
+    (https://issues.rudder.io/issues/27191[#27191])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.0.rc2 (2025-10-15)
 
 === Changes
