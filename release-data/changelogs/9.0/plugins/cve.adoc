@@ -1,5 +1,47 @@
 = Changelogs for Rudder plugin cve 9.0.\* versions
 
+== cve-9.0.0-2.12 (2025-10-22)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* CVE: Update CVE details | 'Start update' button shows an error
+    (https://issues.rudder.io/issues/27491[#27491])
+* CVE: Update CVE details | 'Start update' button shows an error
+    (https://issues.rudder.io/issues/27491[#27491])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: CVE do not display all checks unless page is opened a certain way 
+    (https://issues.rudder.io/issues/26638[#26638])
+* Fixed: CVE display inconsistency in the nodes vulnerabilities table
+    (https://issues.rudder.io/issues/27654[#27654])
+* Fixed: The filter by group is not updating the list of nodes when a group is empty
+    (https://issues.rudder.io/issues/27643[#27643])
+* Fixed: Spaces at the end of the line proxy_url break the parsing of proxy url/port
+    (https://issues.rudder.io/issues/27488[#27488])
+* Fixed: Inventory is emptied when a node is updated for cve groups (added or removed property)
+    (https://issues.rudder.io/issues/27475[#27475])
+* Fixed: Inventory is emptied when a node is updated for cve groups (added or removed property)
+    (https://issues.rudder.io/issues/27475[#27475])
+* Fixed: Vuls need sources packages as separated data for all packages now.
+    (https://issues.rudder.io/issues/27460[#27460])
+* Fixed: Vuls need sources packages as separated data for all packages now.
+    (https://issues.rudder.io/issues/27460[#27460])
+
+==== UI - UX
+
+* Fixed: Nodes tabs in plugins are causing CSP errors  
+    (https://issues.rudder.io/issues/27576[#27576])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-9.0.0-2.10 (2025-10-22)
 
 === Changes
