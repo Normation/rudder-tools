@@ -1,5 +1,32 @@
 = Changelogs for Rudder plugin system-updates 9.0.\* versions
 
+== system-updates-9.0.0-1.18 (2025-10-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Formatting of python code fails with blue
+    (https://issues.rudder.io/issues/27718[#27718])
+* Fixed: Generation error on migration hook due to duplicated bundle name
+    (https://issues.rudder.io/issues/27655[#27655])
+* Fixed: Change bandit version in requirements.txt to fix tests
+    (https://issues.rudder.io/issues/27496[#27496])
+* Fixed: Incorrect relative path of Json file in the Software Update campaign type
+    (https://issues.rudder.io/issues/27465[#27465])
+
+==== UI - UX
+
+* Fixed: Nodes tabs in plugins are causing CSP errors  
+    (https://issues.rudder.io/issues/27576[#27576])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-9.0.0-1.17 (2025-10-22)
 
 === Changes
