@@ -3,9 +3,9 @@
 release = "9.0"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "final"
 
-#release-date = "2024-10-29"
+release-date = "2025-10-22"
 #public-eol-date = ""
 #public-last-patch = ""
 #standard-eol-date = ""
@@ -33,8 +33,6 @@ architectures = {
                   "al-2023":        [ "amd64" ],
                   "sles-12"   :     [ "amd64" ],
                   "sles-15"   :     [ "amd64" ],
-                  "slackware-14.1": [ "amd64" ],
-                  "slackware-14.2": [ "amd64" ],
                   "slackware-15.0": [ "amd64" ],
                   # technically this us windows 2016, but it is only used internally by authz.lua, let's keep it as long as it's not public
                   "windows-2008r2": [ "amd64" ],
@@ -62,11 +60,7 @@ roles = {
           "al-2023":        [ "agent-allinone", "relay", "server" ],
           "sles-12":        [ "agent-allinone" ],
           "sles-15":        [ "agent-allinone", "relay", "server" ],
-          "slackware-14.1": [ "agent-allinone" ],
-          "slackware-14.2": [ "agent-allinone" ],
           "slackware-15.0": [ "agent-allinone" ],
-          "solaris-11.3":   [ "agent-allinone" ],
-          "solaris-11.4":   [ "agent-allinone" ],
           "windows-2008r2": [ "agent-allinone" ],
         }
 
@@ -78,7 +72,7 @@ tier1 = [
           "rhel-7", "rhel-8", "rhel-9", "rhel-10",
           "al-2023",
           "sles-12", "sles-15",
-          "slackware-14.1", "slackware-14.2", "slackware-15.0"
+          "slackware-15.0"
         ]
 
 # see https://docs.google.com/spreadsheets/d/1MbpYDH5Eqmgj1j-G4Gu0oKQoBaiGhjUfwVY5qtXTsu4/edit#gid=0
@@ -101,8 +95,6 @@ sales-tier = {
     "al-2023":        { "amd64": "tier1" },
     "sles-12":        { "amd64": "tier3" },
     "sles-15":        { "amd64": "tier1" },
-    "slackware-14.1": { "amd64": "tier3" },
-    "slackware-14.2": { "amd64": "tier3" },
     "slackware-15.0": { "amd64": "tier3" },
     "windows-2008r2": { "amd64": "tier2" },
 }
@@ -127,15 +119,15 @@ components = {
 
 # Highest API versions available in this release
 api-version = {
-                "webapp": "21",
+                "webapp": "22",
                 "relay": "1"
               }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "8.1", "8.2", "8.3", "9.0" ]
+compatible-agents = [ "8.3", "9.0" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "8.1", "8.2", "8.3", "9.0" ]
+supported-upgrade = [ "8.3", "9.0" ]
 
 
 plugins = [ "auth-backends", "centreon", "datasources", 

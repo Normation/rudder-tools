@@ -6,12 +6,12 @@ release = "8.3"
 release-status = "final"
 
 release-date = "2025-04-23"
-#public-eol-date = ""
+public-eol-date = "2026-01-22"
 #public-last-patch = ""
-#standard-eol-date = ""
+standard-eol-date = "2026-04-22"
 #standard-last-patch = ""
 # = premium-eol-date
-#eol-date = ""
+eol-date = "2026-07-22"
 
 
 # Supported architecture for each distribution
