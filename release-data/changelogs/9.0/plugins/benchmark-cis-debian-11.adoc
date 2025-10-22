@@ -1,5 +1,29 @@
 = Changelogs for Rudder plugin benchmark-cis-debian-11 9.0.\* versions
 
+== benchmark-cis-debian-11-9.0.0-0.10 (2025-10-22)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: fix debian 11 benchmark
+    (https://issues.rudder.io/issues/27757[#27757])
+* Fixed: Create Ubuntu 22 benchmark
+    (https://issues.rudder.io/issues/27666[#27666])
+* Fixed: CIS Debian 11: Block disabled breaking the benchmark import
+    (https://issues.rudder.io/issues/27749[#27749])
+* Fixed: CIS Debian 11 - Error in 1.7.4 Ensure GDM screen locks when the user is idle
+    (https://issues.rudder.io/issues/27601[#27601])
+* Fixed: Debian 11: 1.6.2 there is a /usr/bin/env before the grep
+    (https://issues.rudder.io/issues/27600[#27600])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == benchmark-cis-debian-11-9.0.0.rc1-0.10 (2025-10-13)
 
 === Changes
