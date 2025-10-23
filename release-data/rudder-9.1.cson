@@ -1,0 +1,140 @@
+# Release data file
+
+release = "9.1"
+
+# Status of the release (alpha, beta, rc, final)
+release-status = "alpha"
+
+#release-date = "2025-10-22"
+#public-eol-date = ""
+#public-last-patch = ""
+#standard-eol-date = ""
+#standard-last-patch = ""
+# = premium-eol-date
+#eol-date = ""
+
+
+# Supported architecture for each distribution
+architectures = {
+                  "debian-10":      [ "i386", "amd64", "armhf", "arm64" ],
+                  "debian-11":      [ "i386", "amd64", "armhf", "arm64" ],
+                  "debian-12":      [ "i386", "amd64", "armhf", "arm64" ],
+                  "debian-13":      [ "amd64", "armhf", "arm64" ],
+                  "ubuntu-18.04":   [ "amd64" ],
+                  "ubuntu-20.04":   [ "amd64" ],
+                  "ubuntu-22.04":   [ "amd64" ],
+                  "ubuntu-24.04":   [ "amd64" ],
+                  "rhel-7":         [ "amd64" ],
+                  "rhel-8":         [ "amd64" ],
+                  "rhel-8-omni":    [ "amd64" ],
+                  "rhel-9":         [ "amd64", "arm64" ],
+                  "rhel-9-omni":    [ "amd64" ],
+                  "rhel-10":        [ "amd64", "arm64" ],
+                  "al-2023":        [ "amd64" ],
+                  "sles-12"   :     [ "amd64" ],
+                  "sles-15"   :     [ "amd64" ],
+                  "slackware-15.0": [ "amd64" ],
+                  # technically this us windows 2016, but it is only used internally by authz.lua, let's keep it as long as it's not public
+                  "windows-2008r2": [ "amd64" ],
+                }
+
+# Roles are package groups
+# We should only support server on LTS distro less that 3-4 years old (2 Ubuntu, 2 Debian, 1 RHEL, 1 SLES)
+roles = {
+          "debian-10":      [ "agent-allinone" ],
+          "debian-11":      [ "agent-allinone" ],
+          "debian-12":      [ "agent-allinone", "relay", "server" ],
+          "debian-13":      [ "agent-allinone", "relay", "server" ],
+          "ubuntu-16.04":   [ "agent-allinone" ],
+          "ubuntu-18.04":   [ "agent-allinone" ],
+          "ubuntu-20.04":   [ "agent-allinone" ],
+          "ubuntu-22.04":   [ "agent-allinone" ],
+          "ubuntu-24.04":   [ "agent-allinone", "relay", "server" ],
+          "rhel-6":         [ "agent-allinone" ],
+          "rhel-7":         [ "agent-allinone" ],
+          "rhel-8":         [ "agent-allinone" ],
+          "rhel-8-omni":    [ "agent-allinone" ],
+          "rhel-9":         [ "agent-allinone", "relay", "server" ],
+          "rhel-9-omni":    [ "agent-allinone", "relay", "server" ],
+          "rhel-10":        [ "agent-allinone", "relay", "server" ],
+          "al-2023":        [ "agent-allinone", "relay", "server" ],
+          "sles-12":        [ "agent-allinone" ],
+          "sles-15":        [ "agent-allinone", "relay", "server" ],
+          "slackware-15.0": [ "agent-allinone" ],
+          "windows-2008r2": [ "agent-allinone" ],
+        }
+
+# tier 1 are systems that must not fail during a release (community supported or subscription paid)
+# tier 2 are systems that are built but may fail to release
+tier1 = [
+          "debian-10", "debian-11", "debian-12", "debian-13",
+          "ubuntu-20.04", "ubuntu-22.04", "ubuntu-24.04",
+          "rhel-7", "rhel-8", "rhel-9", "rhel-10",
+          "al-2023",
+          "sles-12", "sles-15",
+          "slackware-15.0"
+        ]
+
+# see https://docs.google.com/spreadsheets/d/1MbpYDH5Eqmgj1j-G4Gu0oKQoBaiGhjUfwVY5qtXTsu4/edit#gid=0
+sales-tier = {
+    "debian-10":      { "i386": "tier3", "amd64": "tier3", "armhf": "tier3", "arm64": "tier3" },
+    "debian-11":      { "i386": "tier2", "amd64": "tier2", "armhf": "tier3", "arm64": "tier3" },
+    "debian-12":      { "i386": "tier1", "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "debian-13":      { "amd64": "tier1", "armhf": "tier2", "arm64": "tier2" },
+    "ubuntu-16.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-18.04":   { "i386": "tier3", "amd64": "tier3" },
+    "ubuntu-20.04":   { "amd64": "tier2" },
+    "ubuntu-22.04":   { "amd64": "tier2" },
+    "ubuntu-24.04":   { "amd64": "tier1" },
+    "rhel-7":         { "amd64": "tier3" },
+    "rhel-8":         { "amd64": "tier2" },
+    "rhel-8-omni":    { "amd64": "tier2" },
+    "rhel-9":         { "amd64": "tier1" "arm64": "tier2" },
+    "rhel-9-omni":    { "amd64": "tier1" },
+    "rhel-10":        { "amd64": "tier1" "arm64": "tier2" },
+    "al-2023":        { "amd64": "tier1" },
+    "sles-12":        { "amd64": "tier3" },
+    "sles-15":        { "amd64": "tier1" },
+    "slackware-15.0": { "amd64": "tier3" },
+    "windows-2008r2": { "amd64": "tier2" },
+}
+
+# Packages that are built
+packages = {
+             "agent-allinone": [ "rudder-agent" ],
+             "relay":          [ "rudder-relay" ],
+             "server":         [ "rudder-server", "rudder-external-db" ],
+           }
+
+# Packages that are architecture dependent (others are independent)
+arch-dependent-packages = [ "rudder-agent", "rudder-relay", "rudder-server" ]
+
+# Internal components versions
+components = {
+               "cfengine": "3.24"
+               "postgresql": "13"
+               "jdk": "17"
+             }
+
+
+# Highest API versions available in this release
+api-version = {
+                "webapp": "22",
+                "relay": "1"
+              }
+
+# Agent versions you can use with this version's server
+compatible-agents = [ "8.3", "9.0" ]
+
+# Versions you can upgrade from directly
+supported-upgrade = [ "8.3", "9.0" ]
+
+
+plugins = [ "auth-backends", "centreon", "datasources", 
+            "openscap", "api-authorizations", "change-validation",
+            "scale-out-relay",  "vault", "glpi",
+            "node-external-reports", "zabbix" , "branding", "consul", "notify",
+            "cve", "multi-tenants", "security-benchmarks",
+            "dsc", "system-updates", "secret-management",
+            "benchmark-cis-rhel-8", "benchmark-cis-rhel-9", "benchmark-cis-ubuntu-20-04"
+          ]
