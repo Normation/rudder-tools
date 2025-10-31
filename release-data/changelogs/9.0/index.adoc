@@ -76,6 +76,15 @@ template, as an alternative to the global agent context.
 It also improves reporting, with a diff-like display of changes
 and non-compliances.
 
+== Improved commands method on Linux
+
+The is a new method for running commands on the Linux agent,
+name *Command execution options*.
+It is based on a new module, and supports much more
+options than existing ones, including
+timeout, user/group/umask/ structured output,
+behavior in audit mode, and more!
+
 == Agent can run with `/var` mounted with `noexec`
 
 It is now possible to run Linux agents on systems where the
