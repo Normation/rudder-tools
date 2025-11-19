@@ -1,5 +1,139 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.1 (2025-11-19)
+
+=== Changes
+
+
+==== Packaging
+
+* Update openssl
+    (https://issues.rudder.io/issues/27809[#27809])
+
+==== Web - Nodes & inventories
+
+* Add the possibility to get all inventory where lastInventoryDate is after a given datetime
+    (https://issues.rudder.io/issues/27737[#27737])
+
+==== Module - augeas
+
+* update help flag for rudder-module-augeas
+    (https://issues.rudder.io/issues/27812[#27812])
+* add documentation for rudder-module-augeas
+    (https://issues.rudder.io/issues/27799[#27799])
+* add documentation and bugfix for rudder-module-augeas
+    (https://issues.rudder.io/issues/27747[#27747])
+
+==== Web - Maintenance
+
+* Use ESM modules in rudder-web
+    (https://issues.rudder.io/issues/27124[#27124])
+
+==== Documentation
+
+* Update api doc tooling
+    (https://issues.rudder.io/issues/27803[#27803])
+* Add arch doc about remote run
+    (https://issues.rudder.io/issues/27796[#27796])
+
+==== Miscellaneous
+
+* Update onboarding documentations
+    (https://issues.rudder.io/issues/27720[#27720])
+
+==== rudderc
+
+* Adapt the Windows technique generation to support ID based resulting conditions
+    (https://issues.rudder.io/issues/27766[#27766])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Remove leftover init script
+    (https://issues.rudder.io/issues/27755[#27755])
+* Fixed: Incorrect data passed to the apache template in the postinst relay script
+    (https://issues.rudder.io/issues/27861[#27861])
+
+==== Documentation
+
+* Fixed: Typo in the JSON path example of the documentation
+    (https://issues.rudder.io/issues/27870[#27870])
+* Fixed: Mention rudder-api-client in upgrade notes
+    (https://issues.rudder.io/issues/27828[#27828])
+* Fixed: Add known var/readonly issue to the doc
+    (https://issues.rudder.io/issues/27788[#27788])
+* Fixed: Campaings hooks readme.adoc starts with wrong comment (node-post-acceptance)
+    (https://issues.rudder.io/issues/27775[#27775])
+
+==== Web - UI & UX
+
+* Fixed: Node properties cannot be exported in 9.0 since 27580 
+    (https://issues.rudder.io/issues/27865[#27865])
+* Fixed: Rollback buttons in change logs are out of reach
+    (https://issues.rudder.io/issues/27836[#27836])
+* Fixed: Node properties diff in change logs show whole diff of all properties
+    (https://issues.rudder.io/issues/27819[#27819])
+
+==== Web - Compliance & node report
+
+* Fixed: The 1000 reports of the technical log is not enough with a benchmark
+    (https://issues.rudder.io/issues/27782[#27782])
+
+==== Module - augeas
+
+* Fixed: report file not deleted while running in audit mode
+    (https://issues.rudder.io/issues/27857[#27857])
+* Fixed: Return error when no file associated with path in rudder-module-augeas
+    (https://issues.rudder.io/issues/27805[#27805])
+* Fixed: Fix warning in augeas module
+    (https://issues.rudder.io/issues/27801[#27801])
+
+==== System techniques
+
+* Fixed: Don't use datastate for apache config templating
+    (https://issues.rudder.io/issues/27845[#27845])
+* Fixed: Disable webdav check in CA mode
+    (https://issues.rudder.io/issues/27821[#27821])
+
+==== Server components
+
+* Fixed: Fix definition of system utilities paths for Manjaro Linux
+    (https://issues.rudder.io/issues/27795[#27795])
+
+==== Architecture - Code maintenance
+
+* Fixed: Endpoint name are not unique cause /info API endpoint to be inexhaustive
+    (https://issues.rudder.io/issues/27731[#27731])
+
+==== Generic methods
+
+* Fixed: The audit/enforce mode status is not passed to the augeas module
+    (https://issues.rudder.io/issues/27667[#27667])
+
+==== CI
+
+* Fixed: Update docker requiring the Rudder agent to Debian 12 or 13
+    (https://issues.rudder.io/issues/27780[#27780])
+
+==== Web - Nodes & inventories
+
+* Fixed: Nodes properties cannot be exported to CSV
+    (https://issues.rudder.io/issues/27580[#27580])
+
+==== Agent
+
+* Fixed: Missing flag file touch on HTTP policy update
+    (https://issues.rudder.io/issues/27818[#27818])
+* Fixed: System update node hooks are still in /var
+    (https://issues.rudder.io/issues/27777[#27777])
+* Fixed: rudder agent info doesn't detect masked service
+    (https://issues.rudder.io/issues/27743[#27743])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.0 (2025-10-21)
 
 === Changes
