@@ -1,5 +1,27 @@
 = Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
 
+== security-benchmarks-9.0.1-1.2 (2025-11-19)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Remove Rudder Security Checks from the plugin security benchmark
+    (https://issues.rudder.io/issues/27804[#27804])
+* Fixed: Remove Rudder Security Checks from the plugin security benchmark
+    (https://issues.rudder.io/issues/27804[#27804])
+* Fixed: Still some beta tags in security benchmark page 
+    (https://issues.rudder.io/issues/27814[#27814])
+* Fixed: Security benchmarks trembling interface
+    (https://issues.rudder.io/issues/27673[#27673])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.0.0-1.2 (2025-10-24)
 
 === Changes
