@@ -1,5 +1,21 @@
 = Changelogs for Rudder plugin benchmark-cis-rhel-8 9.0.\* versions
 
+== benchmark-cis-rhel-8-9.0.1-0.10 (2025-11-19)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Allow fields to have no policy mode (only disabled) and display Manual and Unimplemented tags
+    (https://issues.rudder.io/issues/27714[#27714])
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == benchmark-cis-rhel-8-9.0.0-0.10 (2025-10-22)
 
 === Changes
