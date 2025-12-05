@@ -81,14 +81,13 @@ EOF
     # list available packages
     rudder package --quiet update
     if [ "${PLUGINS}" = "all" ]; then
-      PLUGINS=$(rudder package list --all | grep rudder-plugin | awk '{print $2}')
+      PLUGINS=$(rudder package list -a -f json | jq -r '.[].name')
     fi
 
     # install plugins
-    for p in ${PLUGINS}
-    do
-      rudder package --quiet install "${p}" || true # accept plugin install to fail
-    done
+    if [ ! -z "${PLUGINS}" ]; then
+      echo "${PLUGINS}" | xargs rudder package --quiet install || true # accept plugin install to fail
+    fi
 
     # remove credentials if needed
     if [ "${FORGET_CREDENTIALS}" = "true" ]; then
