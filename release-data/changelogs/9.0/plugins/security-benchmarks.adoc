@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
 
+== security-benchmarks-9.0.2-1.2 (2025-12-10)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add group compliance api, node and group should be adapted to look like benchmark compliance
+    (https://issues.rudder.io/issues/27949[#27949])
+* Add new CIS fields and display them in right part (sharing space with documentation)
+    (https://issues.rudder.io/issues/27868[#27868])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Persistent benchmark score even if the node is not in the target group anymore
+    (https://issues.rudder.io/issues/27922[#27922])
+* Fixed: Unselect of a score does not work when all score are selected
+    (https://issues.rudder.io/issues/27592[#27592])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.0.1-1.2 (2025-11-19)
 
 === Changes
