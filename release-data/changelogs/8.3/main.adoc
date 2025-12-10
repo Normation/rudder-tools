@@ -1,5 +1,140 @@
 = Change logs for Rudder 8.3
 
+==  Rudder 8.3.7 (2025-12-10)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Modify result conditioning of method "condition_from_string_match" in the UI
+    (https://issues.rudder.io/issues/27773[#27773])
+
+==== Architecture - Code maintenance
+
+* Fatal error are not displayed in the webapp.log
+    (https://issues.rudder.io/issues/27979[#27979])
+
+==== Web - UI & UX
+
+* Use pre+mono font for reports
+    (https://issues.rudder.io/issues/27909[#27909])
+
+==== Module - augeas
+
+* add args in rudder-module-augeas documentation
+    (https://issues.rudder.io/issues/27848[#27848])
+
+==== Security
+
+* Update the publication credentials
+    (https://issues.rudder.io/issues/27930[#27930])
+
+==== Web - Nodes & inventories
+
+* Add a trigger inventory button
+    (https://issues.rudder.io/issues/27611[#27611])
+* Missing last agent run on the node details
+    (https://issues.rudder.io/issues/27614[#27614])
+
+==== Web - Technique editor
+
+* Improve the display of the resource editing modal
+    (https://issues.rudder.io/issues/27884[#27884])
+
+=== Bug fixes
+
+==== System integration
+
+* Fixed: Broken tracking of Jetty pidfile due to SELinux
+    (https://issues.rudder.io/issues/28015[#28015])
+
+==== Security
+
+* Fixed: Restrict session cookie path
+    (https://issues.rudder.io/issues/27932[#27932])
+
+==== Packaging
+
+* Fixed: Let systemd track the rudder-jetty PID file
+    (https://issues.rudder.io/issues/27893[#27893])
+* Fixed: Add a build dep to perl-Time-Piece on RHEL 6 & 7
+    (https://issues.rudder.io/issues/27915[#27915])
+
+==== Agent
+
+* Fixed: System logs are polluted by agent logs
+    (https://issues.rudder.io/issues/27876[#27876])
+
+==== Documentation
+
+* Fixed: correct doc on postgresql tuning
+    (https://issues.rudder.io/issues/27956[#27956])
+* Fixed: remove power architecture from README
+    (https://issues.rudder.io/issues/28001[#28001])
+* Fixed: Enforce TLS 1.3 in demo webapp apache config
+    (https://issues.rudder.io/issues/27962[#27962])
+
+==== Web - UI & UX
+
+* Fixed: Event log link in Setting -> Audit logs section lead to 404 not found
+    (https://issues.rudder.io/issues/28011[#28011])
+* Fixed: Technical logs are truncated on smaller display
+    (https://issues.rudder.io/issues/27937[#27937])
+* Fixed: Multiple reports are concatenated
+    (https://issues.rudder.io/issues/27908[#27908])
+* Fixed: When a technique has blocks its directive has empty sections
+    (https://issues.rudder.io/issues/27704[#27704])
+* Fixed: Log about node status should be lower than info
+    (https://issues.rudder.io/issues/27907[#27907])
+
+==== Generic methods
+
+* Fixed: variable_from* should forbid the usage of some chars as the variable definition will fail anyway when using them
+    (https://issues.rudder.io/issues/27987[#27987])
+* Fixed: Use nextest as test runner for policies-methods tests
+    (https://issues.rudder.io/issues/27964[#27964])
+* Fixed: variable method don't prevent from create variable with a - in their names
+    (https://issues.rudder.io/issues/27798[#27798])
+
+==== CI
+
+* Fixed: Flaky relayd test
+    (https://issues.rudder.io/issues/27997[#27997])
+* Fixed: Add rustfmt and clippy as required components
+    (https://issues.rudder.io/issues/27968[#27968])
+
+==== Server components
+
+* Fixed: Content of rudder-users.xml file can somehow be duplicated
+    (https://issues.rudder.io/issues/27910[#27910])
+
+==== Web - Maintenance
+
+* Fixed: If we give the same rules id two times in export API, it's included two time in archive
+    (https://issues.rudder.io/issues/27953[#27953])
+* Fixed: Error when rollbacking a change
+    (https://issues.rudder.io/issues/27878[#27878])
+
+==== Module - augeas
+
+* Fixed: Error on augeas check method to compare numeric
+    (https://issues.rudder.io/issues/27947[#27947])
+
+==== rudderc
+
+* Fixed: allow_white_space semantics is wrong in rudderc
+    (https://issues.rudder.io/issues/27890[#27890])
+
+==== Web - Nodes & inventories
+
+* Fixed: There is no way to know that the OS is a dropdown list when creating a group
+    (https://issues.rudder.io/issues/27784[#27784])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.3.6 (2025-11-19)
 
 === Changes
