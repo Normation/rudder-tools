@@ -1,5 +1,26 @@
 = Changelogs for Rudder plugin system-updates 9.0.\* versions
 
+== system-updates-9.0.2-1.18 (2025-12-10)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Export to CSV doesn't include node in error if they don't have any packages installed
+    (https://issues.rudder.io/issues/27879[#27879])
+
+==== Documentation
+
+* Fixed: Documentation incoherency in https://docs.rudder.io/reference/9.0/plugins/system-updates.html
+    (https://issues.rudder.io/issues/27776[#27776])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-9.0.1-1.18 (2025-11-19)
 
 === Changes
