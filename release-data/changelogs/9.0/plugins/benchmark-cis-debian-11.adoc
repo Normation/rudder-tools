@@ -1,5 +1,38 @@
 = Changelogs for Rudder plugin benchmark-cis-debian-11 9.0.\* versions
 
+== benchmark-cis-debian-11-9.0.2-0.10 (2025-12-10)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Refactor all bash script call
+    (https://issues.rudder.io/issues/27994[#27994])
+* Add lib for augeas methods and implement it in all benchmarks
+    (https://issues.rudder.io/issues/27761[#27761])
+* Refactoring level 2 controls point in kcllib
+    (https://issues.rudder.io/issues/27764[#27764])
+* Add new CIS fields and display them in right part (sharing space with documentation)
+    (https://issues.rudder.io/issues/27868[#27868])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Changes on whitespace semantic breaks benchmarks
+    (https://issues.rudder.io/issues/27936[#27936])
+* Fixed: CIS RHEL 9 Section 5.3.3.2.6 : 1st test is reversed
+    (https://issues.rudder.io/issues/27854[#27854])
+* Fixed: Postint should create  /var/rudder/plugins/security-benchmarks/install otherwise rsync may fails
+    (https://issues.rudder.io/issues/27794[#27794])
+* Fixed: Rename the benchmarks RHEL 8, Debian 11, Debian 12 and Ubuntu 22 to remove CIS
+    (https://issues.rudder.io/issues/27806[#27806])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == benchmark-cis-debian-11-9.0.1-0.10 (2025-11-19)
 
 === Changes
