@@ -1,5 +1,115 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.3 (2025-12-22)
+
+=== Changes
+
+
+==== Documentation
+
+* Reword some entries in the documentation to make them easier to find
+    (https://issues.rudder.io/issues/27990[#27990])
+
+==== Web - UI & UX
+
+* Hide Empty score on dashboard
+    (https://issues.rudder.io/issues/28029[#28029])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: add cfengine patch for libntech json serialization fix
+    (https://issues.rudder.io/issues/28009[#28009])
+
+==== Web - Compliance & node report
+
+* Fixed: Compliance displayed in tab "Target rule" in directive page is missing values
+    (https://issues.rudder.io/issues/28062[#28062])
+* Fixed: Wrong timezone (UTC) displayed on node compliance as being “local”
+    (https://issues.rudder.io/issues/27742[#27742])
+
+==== Plugins integration
+
+* Fixed: Webapp complains that node-external-reports is missing a license, but it does not need one (and it doesn't complain)
+    (https://issues.rudder.io/issues/27905[#27905])
+
+==== API
+
+* Fixed: API Import does not reload imported techniques before importing elements that rely on them
+    (https://issues.rudder.io/issues/24294[#24294])
+
+==== Architecture - Code maintenance
+
+* Fixed: Cache correction for report executions is not in branch 8.3
+    (https://issues.rudder.io/issues/28057[#28057])
+
+==== rudderc
+
+* Fixed: Don't display a backtrace in prod errors
+    (https://issues.rudder.io/issues/28004[#28004])
+
+==== Module - templates
+
+* Fixed: Template path does not work with mustache
+    (https://issues.rudder.io/issues/28049[#28049])
+* Fixed: Atomic writes for files written by the modules
+    (https://issues.rudder.io/issues/28047[#28047])
+* Fixed: Allow whitespaces in template string
+    (https://issues.rudder.io/issues/28046[#28046])
+* Fixed: Missing details in minijinja  rendering errors
+    (https://issues.rudder.io/issues/27889[#27889])
+
+==== Web - UI & UX
+
+* Fixed: System node groups have misaligned action buttons 
+    (https://issues.rudder.io/issues/27984[#27984])
+* Fixed: Fix capitalization in inventory trigger button
+    (https://issues.rudder.io/issues/28006[#28006])
+* Fixed: Edit description is not working on API account
+    (https://issues.rudder.io/issues/27998[#27998])
+* Fixed: Make agent latest run time name more consistent
+    (https://issues.rudder.io/issues/28014[#28014])
+
+==== Web - Nodes & inventories
+
+* Fixed: We should not display empty score on node details
+    (https://issues.rudder.io/issues/27076[#27076])
+
+==== Web - Maintenance
+
+* Fixed: Disabled OIDC user is logged as unknown at info level
+    (https://issues.rudder.io/issues/27860[#27860])
+
+==== Generic methods
+
+* Fixed: Enable trim_blocks on MiniJinja
+    (https://issues.rudder.io/issues/28012[#28012])
+
+==== Security
+
+* Fixed: Ignore JS glob dependency advisory on npm
+    (https://issues.rudder.io/issues/27913[#27913])
+
+==== CI
+
+* Fixed: Alert about unmaintained rustls-pemfile
+    (https://issues.rudder.io/issues/28026[#28026])
+
+==== Architecture - Test
+
+* Fixed: API tests in yaml files do not really support text content
+    (https://issues.rudder.io/issues/28018[#28018])
+
+==== Web - Config management
+
+* Fixed: Compliance displayed in tab "Target rule" in directive page is not up to date
+    (https://issues.rudder.io/issues/27626[#27626])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.2 (2025-12-10)
 
 === Changes
