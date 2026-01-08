@@ -88,10 +88,8 @@ def read_configuration(section=None):
 ## If github cli is installed, rudder-dev will read hub's configuration file to get the user's github token
 ## Otherwise, yo manage your tokens, click here https://github.com/settings/tokens (click "Generate new token")
 # github_token = 
-## Redmine personal access token, get yours here http://www.rudder-project.org/redmine/my/account (under "API access key")
+## Redmine personal access token, get yours here https://issues.rudder.io/my/account (under "API access key")
 #redmine_token = 
-## For Normation people only
-#redmine_alt_token = 
 ## Set to 'https' if you don't have ssh access to github, 'ssh' is the default
 #remote_protocol = ssh
 ## For colorblind or dumb terminal change ansicode here (ref: http://pueblo.sourceforge.net/doc/manual/ansi_color_codes.html)
@@ -115,7 +113,6 @@ def read_configuration(section=None):
   Config.OWN_REPOSITORY = get_config("own_upstream", "No 'own_upstream' entry in " + Config.CONFIG_FILE, section)
   Config.GITHUB_TOKEN = get_config("github_token", None, section)
   Config.REDMINE_TOKEN = get_config("redmine_token", None, section)
-  Config.REDMINE_ALT_TOKEN = get_config("redmine_alt_token", None, section)
   Config.REMOTE_PROTOCOL = get_config("remote_protocol", None, section)
   if Config.REMOTE_PROTOCOL is None:
     Config.REMOTE_PROTOCOL = "ssh"

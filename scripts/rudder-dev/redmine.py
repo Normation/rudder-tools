@@ -6,7 +6,6 @@ import json
 if 'Config' not in vars():
   from common import *
 
-Config.REDMINE_ALT_API_URL = "https://redmine.normation.com"
 Config.REDMINE_API_URL = "https://issues.rudder.io"
 Config.REDMINE_API_LIMIT = 100
 Config.REDMINE_CLOSED_STATUSES = [5, 6, 16, 11] # 5=Released, 6=rejected, 16=resolved, 11=Pending release
@@ -14,13 +13,11 @@ Config.REDMINE_META_TRACKERS = [3]
 Config.ACCESS_ROLE_LIST = [ 3, 4, 5, 6, 7, 8, 9, 11 ] # 7=Product owner, 3=Scrum master, 8=Lead developer, 4=Developer, 5=Reporter, 11=Release manager, 6=Consultant, 9=Integrator
 
 Config.REDMINE_NRM_GROUP = 314
-Config.REDMINE_ALT_NRM_GROUP = 36
 
 Config.TRACKER_NAME_MAPPING = { 'Bug': 'bug', 'User story': 'ust', 'Architecture': 'arch', 'Change': 'chg', 'Problem': 'pbm', 'Incident': 'inc', 'Enhancement': 'enh' }
 Config.PENDING_TR_CODE = 3
 Config.IN_PROGRESS_CODE = 9
 Config.CUSTOM_FIELD_PR = 3
-Config.ALT_CUSTOM_FIELD_PR = 1
 Config.BUG_TACKER_ID = 1
 Config.PENDING_MERGE_CODE = 12
 Config.DISCUSSION_CODE = 4
@@ -30,29 +27,17 @@ Config.REDMINE_VERSION_DETECTOR = [ (r'master', r'master', False), (r'(\d+\.\d+)
 class Issue:
   """Class to hold information about a single issue"""
   def __init__(self, name, must_be_open=True):
-    """name is a string like: 1234 or i1234"""
+    """name is a string like: 1234"""
     self.must_be_open = must_be_open
     self.info = None
     if name.startswith('#'):
       name = name [1:]
     self.name = name
-    is_internal = re.match(r'i(\d+)', name)
-    if is_internal:
-      self.id = int(is_internal.group(1))
-      self.token = Config.REDMINE_ALT_TOKEN
-      self.api_url = Config.REDMINE_ALT_API_URL
-      self.custom_field_pr = Config.ALT_CUSTOM_FIELD_PR
-      self.internal = True
-      # Some deprecated usage of these global vars still exist
-      Config.REDMINE_API_URL = Config.REDMINE_ALT_API_URL
-      Config.REDMINE_TOKEN = Config.REDMINE_ALT_TOKEN
-    else:
-      self.id = int(name)
-      self.token = Config.REDMINE_TOKEN
-      self.api_url = Config.REDMINE_API_URL
-      self.custom_field_pr = Config.CUSTOM_FIELD_PR
-      self.internal = False
-    self.server = Redmine(self.internal)
+    self.id = int(name)
+    self.token = Config.REDMINE_TOKEN
+    self.api_url = Config.REDMINE_API_URL
+    self.custom_field_pr = Config.CUSTOM_FIELD_PR
+    self.server = Redmine()
 
   def __getitem__(self, key):
     """Make Issue behave like a dict"""
@@ -161,10 +146,7 @@ class Issue:
   def branch_name(self):
     """Create a branch name base on this issue"""
     branchified_name = re.sub("__+", "_", re.sub("[^" + string.ascii_letters + string.digits + "]", "_", self['name'].strip().lower())).strip("_")
-    if self.internal:
-      id = 'i' + str(self.id)
-    else:
-      id = str(self.id)
+    id = str(self.id)
     if self['private']:
       branch_name = Config.TRACKER_NAME_MAPPING[self['type']] + "_" + id + "/_"
     else:
@@ -174,10 +156,7 @@ class Issue:
   def existing_branch(self):
     """Check if a branch already exists fir this issue"""
     for line in os.popen("git branch --no-color --list"):
-      if self.internal:
-        ticket = 'i'+str(self.id)
-      else:
-        ticket = str(self.id)
+      ticket = str(self.id)
       match = re.search(r'^\*?\s*(\w+_' + ticket + r'/.*?)\n', line)
       if match:
         return match.group(1)
@@ -300,17 +279,11 @@ class Issue:
 
 class Redmine:
   """Class to query a redmine server"""
-  def __init__(self, internal):
-    self.internal = internal
+  def __init__(self):
     self.can_modify = None
-    if internal:
-      self.token = Config.REDMINE_ALT_TOKEN
-      self.api_url = Config.REDMINE_ALT_API_URL
-      self.nrm_group = Config.REDMINE_ALT_NRM_GROUP
-    else:
-      self.token = Config.REDMINE_TOKEN
-      self.api_url = Config.REDMINE_API_URL
-      self.nrm_group = Config.REDMINE_NRM_GROUP
+    self.token = Config.REDMINE_TOKEN
+    self.api_url = Config.REDMINE_API_URL
+    self.nrm_group = Config.REDMINE_NRM_GROUP
 
   def _query(self, query, post_data=None, put_data=None):
     """ Function to directly request the right redmine server """
@@ -335,10 +308,7 @@ class Redmine:
       logfail("Issue creation error: " + ret.reason + "\n" + ret.text)
       if not Config.force:
         exit(3)
-    if self.internal:
-      new_id = 'i' + str(ret.json()['issue']['id'])
-    else:
-      new_id = str(ret.json()['issue']['id'])
+    new_id = str(ret.json()['issue']['id'])
     return Issue(new_id)
 
   def can_modify_issues(self, project_id):
