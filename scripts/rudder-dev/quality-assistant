@@ -135,7 +135,7 @@ def repo_merge(repo, alt_dir, jobid):
 
   # Merge approved PR only if we are not in freeze period
   freeze = False
-  server = Redmine(False)
+  server = Redmine()
   if server.has_locked_version('rudder'):
     if Config.LOGLEVEL == "debug" or Config.LOGLEVEL == "info":
       print("Freeze period, approved PR won't be merged !")
