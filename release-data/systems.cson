@@ -96,8 +96,9 @@ sles = {
   codenames = {
     "10sp3": "SLES_10_SP3",
     "11": "SLES_11",
-    "12": "SLES_12"
-    "15": "SLES_15"
+    "12": "SLES_12",
+    "15": "SLES_15",
+    "16": "SLES_16"
   }
 }
 

@@ -31,8 +31,9 @@ architectures = {
                   "rhel-9-omni":    [ "amd64" ],
                   "rhel-10":        [ "amd64", "arm64" ],
                   "al-2023":        [ "amd64" ],
-                  "sles-12"   :     [ "amd64" ],
-                  "sles-15"   :     [ "amd64" ],
+                  "sles-12":        [ "amd64" ],
+                  "sles-15":        [ "amd64" ],
+                  "sles-16":        [ "amd64" ],
                   "slackware-15.0": [ "amd64" ],
                   # technically this us windows 2016, but it is only used internally by authz.lua, let's keep it as long as it's not public
                   "windows-2008r2": [ "amd64" ],
