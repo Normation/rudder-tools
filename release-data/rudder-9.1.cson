@@ -61,6 +61,7 @@ roles = {
           "al-2023":        [ "agent-allinone", "relay", "server" ],
           "sles-12":        [ "agent-allinone" ],
           "sles-15":        [ "agent-allinone", "relay", "server" ],
+          "sles-16":        [ "agent-allinone", "relay", "server" ],
           "slackware-15.0": [ "agent-allinone" ],
           "windows-2008r2": [ "agent-allinone" ],
         }
@@ -72,7 +73,7 @@ tier1 = [
           "ubuntu-20.04", "ubuntu-22.04", "ubuntu-24.04",
           "rhel-7", "rhel-8", "rhel-9", "rhel-10",
           "al-2023",
-          "sles-12", "sles-15",
+          "sles-12", "sles-15", "sles-16",
           "slackware-15.0"
         ]
 
@@ -96,6 +97,7 @@ sales-tier = {
     "al-2023":        { "amd64": "tier1" },
     "sles-12":        { "amd64": "tier3" },
     "sles-15":        { "amd64": "tier1" },
+    "sles-16":        { "amd64": "tier1" },
     "slackware-15.0": { "amd64": "tier3" },
     "windows-2008r2": { "amd64": "tier2" },
 }
