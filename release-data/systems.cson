@@ -49,6 +49,7 @@ ubuntu = {
     "21.10": "impish",
     "22.04": "jammy"
     "24.04": "noble"
+    "26.04": "resolute"
   }
 }
 
