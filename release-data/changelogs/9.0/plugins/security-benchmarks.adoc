@@ -1,5 +1,32 @@
 = Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
 
+== security-benchmarks-9.0.4-1.2 (2026-02-16)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Show property override and inheritance
+    (https://issues.rudder.io/issues/27995[#27995])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Error with multiple saves of benchmark
+    (https://issues.rudder.io/issues/28204[#28204])
+* Fixed: Creating new benchmark leads to an error about missing score
+    (https://issues.rudder.io/issues/28180[#28180])
+* Fixed: Double colone in title breaks parsing for metadata.json
+    (https://issues.rudder.io/issues/28220[#28220])
+* Fixed: CIS : rudder_syctl_file is not defined for the benchmark
+    (https://issues.rudder.io/issues/28192[#28192])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.0.3-1.2 (2025-12-22)
 
 === Changes
