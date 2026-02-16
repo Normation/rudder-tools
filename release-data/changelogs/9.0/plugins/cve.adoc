@@ -1,5 +1,28 @@
 = Changelogs for Rudder plugin cve 9.0.\* versions
 
+== cve-9.0.4-2.12 (2026-02-16)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* In the CVE plugin there is a remove group button but not a remove campaign button
+    (https://issues.rudder.io/issues/27694[#27694])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Revert 26924 since checkbox is broken
+    (https://issues.rudder.io/issues/28330[#28330])
+* Fixed: Remediated CVE don't show up in the list if they are not found inthe node details first
+    (https://issues.rudder.io/issues/26924[#26924])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-9.0.3-2.12 (2025-12-22)
 
 === Changes
