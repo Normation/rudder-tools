@@ -1,0 +1,23 @@
+= Changelogs for Rudder plugin benchmark-cis-windows-2022 9.0.\* versions
+
+== benchmark-cis-windows-2022-9.0.4-0.10 (2026-02-16)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Init Windows Server 2022 CIS directory project
+    (https://issues.rudder.io/issues/28065[#28065])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Double colone in title breaks parsing for metadata.json
+    (https://issues.rudder.io/issues/28220[#28220])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
