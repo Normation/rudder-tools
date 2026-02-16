@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin change-validation 9.0.\* versions
 
+== change-validation-9.0.4-2.4 (2026-02-16)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Error "Workflow API is not available" upon trying to view any change request page 
+    (https://issues.rudder.io/issues/28138[#28138])
+* Fixed: Change requests table status filter is missing + button
+    (https://issues.rudder.io/issues/27772[#27772])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == change-validation-9.0.3-2.4 (2025-12-22)
 
 === Changes
