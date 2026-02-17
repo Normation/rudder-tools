@@ -19,6 +19,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CLEAN="true"
 DATA_PATH=$DIR/data
 REPORTS_PATH=$DIR/reports
+WEBDAV_PASS="rudder" # <- replace me
 SERVER=""
 UUID=""
 ALL_INVENTORIES=false
@@ -117,7 +118,7 @@ function compress_and_sign {
 
     mv "${SOURCE_FILE}.signed.gz" "${SOURCE_FILE}.gz"
 
-    curl --tlsv1.2 -k -s  --fail  --proxy '' --user "rudder:rudder" --upload-file "${SOURCE_FILE}.gz" https://${SERVER}/reports/ > /dev/null
+    curl --tlsv1.3 -k -s  --fail  --proxy '' --user "rudder:${WEBDAV_PASS}" --upload-file "${SOURCE_FILE}.gz" https://${SERVER}/reports/ > /dev/null
 
     NB_REPORT_SENT=$((NB_REPORT_SENT+1))
     if [ "${CLEAN}" = "true" ]

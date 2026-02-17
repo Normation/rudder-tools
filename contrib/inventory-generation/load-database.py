@@ -33,6 +33,8 @@ password = 'Normation'
 database = 'rudder'
 port_database = 5432
 
+# on python 3, unicode is not there
+
 # Use syslog rather than database
 use_syslog = False
 use_https  = True
@@ -172,7 +174,7 @@ for nodeid, config, begindate, configuration in cur.fetchall():
     if use_https:
       try:
         os.mkdir(report_path+nodeid)
-      except OSError, e:
+      except e:
         if e.errno != os.errno.EEXIST:
             raise
       formatted_date = reportDate.strftime("%Y-%m-%dT%H:%M:%S+00:00")
