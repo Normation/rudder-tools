@@ -1,5 +1,114 @@
 = Change logs for Rudder 8.3
 
+==  Rudder 8.3.10 (2026-04-01)
+
+=== Changes
+
+
+==== Architecture - ADR
+
+* Add an ADR for usage of elm/time as main frontend library for display of dates
+    (https://issues.rudder.io/issues/28524[#28524])
+* Add an ADR for java-time usage
+    (https://issues.rudder.io/issues/28515[#28515])
+
+==== Security
+
+* Improve the "reset status to be able to accept a different key" node feature
+    (https://issues.rudder.io/issues/26653[#26653])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-server Java dependencies on SLES15SP6+ are incorrect
+    (https://issues.rudder.io/issues/28620[#28620])
+* Fixed: Incorrect rudder-server package openjdk dependency on SLES15 sp6+
+    (https://issues.rudder.io/issues/28409[#28409])
+
+==== Miscellaneous
+
+* Fixed: Embedded jq fails with missing library
+    (https://issues.rudder.io/issues/28412[#28412])
+
+==== Security
+
+* Fixed: Bump embedded openssl
+    (https://issues.rudder.io/issues/28375[#28375])
+* Fixed: ADR for proper initialization of query context in Lift snippets
+    (https://issues.rudder.io/issues/28452[#28452])
+* Fixed: Some npm build vulnerabilities in sass and gulp-svgmin
+    (https://issues.rudder.io/issues/28487[#28487])
+
+==== Documentation
+
+* Fixed: Broken link in user documentation to manage windows registry
+    (https://issues.rudder.io/issues/28554[#28554])
+* Fixed: Take into account RHEL like OS for the backup process
+    (https://issues.rudder.io/issues/28252[#28252])
+* Fixed: Doc on Rudder versionning is invalid
+    (https://issues.rudder.io/issues/28366[#28366])
+
+==== Module - augeas
+
+* Fixed: add documentation for augeas GM
+    (https://issues.rudder.io/issues/28594[#28594])
+
+==== Plugin manager cli
+
+* Fixed: Update the tar version used by rudder-packages
+    (https://issues.rudder.io/issues/28577[#28577])
+* Fixed: Confusing message by rudder package when no credential is set
+    (https://issues.rudder.io/issues/27783[#27783])
+
+==== Architecture - Internal libs
+
+* Fixed: Stacktrace when an empty group is created while a change request deleted it
+    (https://issues.rudder.io/issues/28147[#28147])
+
+==== Generic methods
+
+* Fixed: Agent 9.0.4 fails with Rudder server 8.3
+    (https://issues.rudder.io/issues/28555[#28555])
+
+==== Web - UI & UX
+
+* Fixed: When we click on a gorup with a long description, the description popup remains
+    (https://issues.rudder.io/issues/27787[#27787])
+
+==== Architecture - Evolution
+
+* Fixed: Add an ADR for dates formats and timezones in Rudder
+    (https://issues.rudder.io/issues/28227[#28227])
+
+==== Architecture - Dependencies
+
+* Fixed: False positive npm vulnerability on minimatch and glob
+    (https://issues.rudder.io/issues/28463[#28463])
+* Fixed: Some npm dependencies should be in devDependencies 
+    (https://issues.rudder.io/issues/28459[#28459])
+
+==== Web - Nodes & inventories
+
+* Fixed: After restart, windows 11 group is empty and os name is os.name.Windows in place of Windows 11
+    (https://issues.rudder.io/issues/28419[#28419])
+
+==== Techniques
+
+* Fixed: Wrong name for ed25519-sk key type
+    (https://issues.rudder.io/issues/28400[#28400])
+* Fixed: Technique Package sources and settings (APT) doesn't manage HTTPS proxy
+    (https://issues.rudder.io/issues/28185[#28185])
+
+==== System techniques
+
+* Fixed: Relay « Cannot propagate shared files »
+    (https://issues.rudder.io/issues/26597[#26597])
+
+=== Release notes
+
+This is a bug fix release in the 8.3 series and therefore all installations of 8.3.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 8.3.9 (2026-02-16)
 
 === Changes
