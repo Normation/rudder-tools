@@ -1,5 +1,26 @@
 = Changelogs for Rudder plugin scale-out-relay 9.0.\* versions
 
+== scale-out-relay-9.0.5-2.1 (2026-04-02)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Start of promoting and demoting should be info level log
+    (https://issues.rudder.io/issues/28475[#28475])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Error log when rolling back a node should not be at debug level
+    (https://issues.rudder.io/issues/28494[#28494])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == scale-out-relay-9.0.4-2.1 (2026-02-16)
 
 === Changes
