@@ -1,5 +1,211 @@
 = Change logs for Rudder 9.1==  Rudder 9.1.0.alpha1 (2026-01-26)
 
+==  Rudder 9.1.0.rc1 (2026-04-02)
+
+=== Changes
+
+
+==== Web - UI & UX
+
+* Improve dashboard display on small screens
+    (https://issues.rudder.io/issues/28566[#28566])
+
+==== Web - Maintenance
+
+* Be able to represent API account that was never authenticated
+    (https://issues.rudder.io/issues/28580[#28580])
+
+==== Documentation
+
+* Update rudder documentation webapp.md adding fix to setup dev environment
+    (https://issues.rudder.io/issues/28367[#28367])
+* ADR for restart handling
+    (https://issues.rudder.io/issues/28559[#28559])
+
+==== Architecture - Code maintenance
+
+* Simplify derivation in RudderJsonResponse
+    (https://issues.rudder.io/issues/28538[#28538])
+
+==== Module - system-updates
+
+* Add exclusions in system-updates - apt
+    (https://issues.rudder.io/issues/28336[#28336])
+
+==== Architecture - ADR
+
+* Add an ADR for usage of elm/time as main frontend library for display of dates
+    (https://issues.rudder.io/issues/28524[#28524])
+* Add an ADR for java-time usage
+    (https://issues.rudder.io/issues/28515[#28515])
+
+==== Architecture - Test
+
+* Unit tests to cover missing cases in node agent cache
+    (https://issues.rudder.io/issues/28514[#28514])
+
+==== Security
+
+* Logger for secure dispatch snippet should be application.authentication logger 
+    (https://issues.rudder.io/issues/28505[#28505])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: rudder-server Java dependencies on SLES15SP6+ are incorrect
+    (https://issues.rudder.io/issues/28620[#28620])
+
+==== Documentation
+
+* Fixed: Broken link in user documentation to manage windows registry
+    (https://issues.rudder.io/issues/28554[#28554])
+* Fixed: Take into account RHEL like OS for the backup process
+    (https://issues.rudder.io/issues/28252[#28252])
+
+==== Web - Nodes & inventories
+
+* Fixed: Cannot get inventory from pending node or history
+    (https://issues.rudder.io/issues/28668[#28668])
+* Fixed: Double table header when we change the columns in the node list
+    (https://issues.rudder.io/issues/28664[#28664])
+* Fixed: Cannot access to group criteria on Rudder 9.1 with a lot of nodes
+    (https://issues.rudder.io/issues/28625[#28625])
+* Fixed: tabs from nodes to System Updates & CVEs are not there in 9.1
+    (https://issues.rudder.io/issues/28590[#28590])
+* Fixed: Node settings cannot be updated from UI when audit log message are mandatory
+    (https://issues.rudder.io/issues/28435[#28435])
+
+==== Web - UI & UX
+
+* Fixed: When user is not admin, there is an error when accessing the dashboard
+    (https://issues.rudder.io/issues/28647[#28647])
+* Fixed: Rewrite 'Parameter ... start or end with whitespace characters' message
+    (https://issues.rudder.io/issues/28565[#28565])
+* Fixed: On tables showing Compliance, some lines don't return to next line. It moves the compliance score out of the screen.
+    (https://issues.rudder.io/issues/28591[#28591])
+* Fixed: When we click on a gorup with a long description, the description popup remains
+    (https://issues.rudder.io/issues/27787[#27787])
+* Fixed: Rules page title is wrapped in medium screen width because of too many buttons
+    (https://issues.rudder.io/issues/28523[#28523])
+* Fixed: Spinner icon broken on Trigger agent inventory and Trigger agent buttons
+    (https://issues.rudder.io/issues/28417[#28417])
+* Fixed: When we click on a gorup with a long description, the description popup remains
+    (https://issues.rudder.io/issues/27787[#27787])
+* Fixed: Node property edition line has cell that are misaligned and have wrong colspan 
+    (https://issues.rudder.io/issues/28522[#28522])
+* Fixed: Rule's compliance tabs should not be empty if directives or nodes are applied but there is no compliance.
+    (https://issues.rudder.io/issues/28481[#28481])
+* Fixed: ChartJS tooltips do not disappear
+    (https://issues.rudder.io/issues/28521[#28521])
+* Fixed: Plugins selection causes header of page to grow
+    (https://issues.rudder.io/issues/28512[#28512])
+* Fixed: lack of space preservation in compliance value menu
+    (https://issues.rudder.io/issues/28428[#28428])
+* Fixed: The about page displays license dates with way too much precision
+    (https://issues.rudder.io/issues/28433[#28433])
+
+==== Module - system-updates
+
+* Fixed: Missing log for system reboot
+    (https://issues.rudder.io/issues/28653[#28653])
+* Fixed: Service restart is broken on yum/zypper
+    (https://issues.rudder.io/issues/28652[#28652])
+* Fixed: Run system updates tests on Windows
+    (https://issues.rudder.io/issues/28629[#28629])
+* Fixed: Frequent common errors with service restarts on APT systems
+    (https://issues.rudder.io/issues/28385[#28385])
+* Fixed: Missing yum command run in logs
+    (https://issues.rudder.io/issues/28536[#28536])
+
+==== Web - Compliance & node report
+
+* Fixed: Duplicate header for Technical Logs in Rudder 9.1
+    (https://issues.rudder.io/issues/28587[#28587])
+
+==== Module - augeas
+
+* Fixed: add documentation for augeas GM
+    (https://issues.rudder.io/issues/28594[#28594])
+
+==== Web - Config management
+
+* Fixed: Change logs pagination number of total entries is wrong
+    (https://issues.rudder.io/issues/28579[#28579])
+
+==== Miscellaneous
+
+* Fixed: Missing values in security benchmark node parameters CSV export 
+    (https://issues.rudder.io/issues/28596[#28596])
+* Fixed: More build error for windows
+    (https://issues.rudder.io/issues/28585[#28585])
+* Fixed: The module fails to build on Windows due do a warning of unused import
+    (https://issues.rudder.io/issues/28578[#28578])
+* Fixed: Add reboot support for windows nodes using the new rust module
+    (https://issues.rudder.io/issues/28568[#28568])
+* Fixed: Incorrect filter on the "excluded" updates on Windows
+    (https://issues.rudder.io/issues/28558[#28558])
+* Fixed:  Directive change log shows whole sectionval diff
+    (https://issues.rudder.io/issues/28526[#28526])
+
+==== API
+
+* Fixed: Clicking a change log element to view its details may create a ZonedDateTime-related error notification
+    (https://issues.rudder.io/issues/28572[#28572])
+
+==== Web - Maintenance
+
+* Fixed: Viewing rollback event details in the change logs page creates an error log
+    (https://issues.rudder.io/issues/28506[#28506])
+* Fixed: Manual reports cleaning message has wrong path for webapp logs
+    (https://issues.rudder.io/issues/28436[#28436])
+
+==== Module - secedit
+
+* Fixed: add documentation for secedit GM
+    (https://issues.rudder.io/issues/28583[#28583])
+* Fixed: rename secedit method
+    (https://issues.rudder.io/issues/28510[#28510])
+
+==== Plugin manager cli
+
+* Fixed: Update the tar version used by rudder-packages
+    (https://issues.rudder.io/issues/28577[#28577])
+
+==== Web - Technique editor
+
+* Fixed: Method block has truncated view of tabs
+    (https://issues.rudder.io/issues/28551[#28551])
+
+==== Architecture - Internal libs
+
+* Fixed: Stacktrace when an empty group is created while a change request deleted it
+    (https://issues.rudder.io/issues/28147[#28147])
+
+==== Plugins integration
+
+* Fixed: When license status change, the security benchmarks menu is not always updated
+    (https://issues.rudder.io/issues/28246[#28246])
+
+==== Generic methods
+
+* Fixed: Agent 9.0.4 fails with Rudder server 8.3
+    (https://issues.rudder.io/issues/28555[#28555])
+
+==== Security
+
+* Fixed: ADR for proper initialization of query context in Lift snippets
+    (https://issues.rudder.io/issues/28452[#28452])
+
+==== Architecture - Evolution
+
+* Fixed: Add an ADR for dates formats and timezones in Rudder
+    (https://issues.rudder.io/issues/28227[#28227])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.1.0.beta1 (2026-03-09)
 
 === Changes
