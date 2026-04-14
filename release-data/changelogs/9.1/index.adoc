@@ -1,8 +1,7 @@
 
 = Change logs for Rudder 9.1
 
-Rudder 9.1 is currently the development version of Rudder.
-You can test it using development builds, but not use it in production.
+Rudder 9.1 is currently a maintained version of Rudder.
 
 After adding a new major feature in 9.0, security benchmarks, the 9.1 releases focuses on
 improving the existing features, and consolidating the foundations of Rudder,
@@ -18,7 +17,7 @@ image::images/csvench.png[]
 
 image::images/benchgroup.png[]
 
-* The configuration excetions hierarchy is now visible.
+* The configuration exceptions hierarchy is now visible.
 
 image::images/over.png[]
 
@@ -29,7 +28,7 @@ image::images/over.png[]
 
 * The "Security-only" system campaigns are now usable on Windows systems too.
 
-* The available updates can be be viewed by group (like it was already possible with vulnerabilities)
+* The available updates can be viewed by group (like it was already possible with vulnerabilities)
 
 image::images/exclude.png[]
 
@@ -43,7 +42,7 @@ image::images/dashboard.png[]
 
 === More CSV exports
 
-More tables incluse a button to expore the content as CSV,
+More tables include a button to explore the content as CSV,
 allowing easier communication with other stakeholders:
 
 * Rules
