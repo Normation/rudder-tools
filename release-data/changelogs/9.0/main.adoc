@@ -1,6 +1,6 @@
 = Change logs for Rudder 9.0
 
-==  Rudder 9.0.5 (2026-04-15)
+==  Rudder 9.0.5 (2026-04-01)
 
 === Changes
 
