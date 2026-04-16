@@ -95,7 +95,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27806[#27806])
 * Fixed: CIS RHEL 9 Section 5.3.3.2.6 : Incorrect numbering
     (https://issues.rudder.io/issues/27853[#27853])
-* Fixed: CIS RHEL 9 Section 6.1.3 : Incorrect path harcoded in our test, may vary on actual target systems
+* Fixed: CIS RHEL 9 Section 6.1.3 : Incorrect path hardcoded in our test, may vary on actual target systems
     (https://issues.rudder.io/issues/27847[#27847])
 
 === Release notes
@@ -195,7 +195,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27408[#27408])
 * Fixed: CIS RHEL 8 Section 1.1.1.1 compliant code is reversed
     (https://issues.rudder.io/issues/27357[#27357])
-* Fixed: multiple missing bash for calling ressources script
+* Fixed: multiple missing bash for calling resources script
     (https://issues.rudder.io/issues/27355[#27355])
 * Fixed: RHEL 8 - Section 4.2 : missing const.dollar & fixes
     (https://issues.rudder.io/issues/27340[#27340])

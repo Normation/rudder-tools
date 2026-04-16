@@ -1089,7 +1089,7 @@ correct takes too much time at startup
 (https://issues.rudder.io/issues/5616[#5616])
 * Fixed: executor daemon command needs to be different on windows for it
 to work (https://issues.rudder.io/issues/5594[#5594])
-* Fixed: System technique make cfengine enterprise copy binairies from
+* Fixed: System technique make cfengine enterprise copy binaries from
 /opt/rudder, killing itself
 (https://issues.rudder.io/issues/5590[#5590])
 * Fixed: Handling of inventory fails on Windows
@@ -1329,7 +1329,7 @@ class_prefix based on filename, reports will be in ``Unknown'' and ``No
 answer'' status
 (https://issues.rudder.io/issues/5330[#5330])
 * Fixed: Popup content can be displayed outside of popup if content grow
-after intiialisation
+after initialisation
 (https://issues.rudder.io/issues/5314[#5314])
 
 ==== Packaging
@@ -1612,7 +1612,7 @@ ids (https://issues.rudder.io/issues/4831[#4831])
 
 ==== Webapp - CFEngine integration
 
-* Fixed: Unconsistencies on generated promise due to bug on comparison
+* Fixed: Inconsistencies on generated promise due to bug on comparison
 logic between them
 (https://issues.rudder.io/issues/4878[#4878])
 

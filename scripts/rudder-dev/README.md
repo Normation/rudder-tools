@@ -60,11 +60,11 @@ An empty template is created for you the first time `rudder-dev` is run. So run 
 
 You will need: 
 
-- a github account with your (a) personnal API token from [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new)
+- a github account with your (a) personal API token from [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new)
 - a Rudder bugtracker account from [https://issues.rudder.io](https://issues.rudder.io) and corresponding API token from [https://issues.rudder.io/my/account](https://issues.rudder.io/my/account) (manage in the left part of the page)
-- optionnaly, the `hub` command
+- optionally, the `hub` command
 
-Parameters should be commented enought to be explicit. 
+Parameters should be commented enough to be explicit. 
 
 # Usage
 
@@ -100,7 +100,7 @@ It will also update the bucktracker issue to set the user working on the issue a
 
 Now you just have to work on your local branch until you’re happy.
 
-### Commiting a work-in-progress
+### Committing a work-in-progress
 
 If at some point you want to share a WIP of your code, use:
 
@@ -110,7 +110,7 @@ rudder-dev wip
 
 It will create a commit on your local branch and push it on your repo, plus update the bugtracker with a link toward the WIP code on github.
 
-### Commiting for review
+### Committing for review
 
 Once you’re happy with your code and tests, and have run the linter (for ex for scala code: `mvn spotless:apply`), you can commit your code so that a reviewer can review it. 
 
@@ -124,7 +124,7 @@ Where `[trigram]` is the identifier trigram for the reviewer. If you don’t spe
 
 Then, `rudder-dev` will:
 
-- create a commit with a commit message with the correct syntax to triger the link with the issue (ie `Fixes #20111: Name of the issue`)
+- create a commit with a commit message with the correct syntax to trigger the link with the issue (ie `Fixes #20111: Name of the issue`)
 - push it on a remote branch on your own repo,
 - create a pull-request and assign it to the reviewer,
 - update the issue status to set it to “waiting for review”, changing the actor accordingly,
@@ -140,7 +140,7 @@ It happens (we know, extremely rarely, but it happens) that you have to provide 
 rudder-dev fixup
 ```
 
-It will create a commit that has the correct syntaxt to be smashed upon merge and push it to your PR. 
+It will create a commit that has the correct syntax to be smashed upon merge and push it to your PR. 
 
 ## Other usages
 

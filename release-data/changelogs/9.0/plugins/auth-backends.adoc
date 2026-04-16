@@ -125,7 +125,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 ==== Documentation
 
-* Fixed: How to configure a proxy for SSO feaure
+* Fixed: How to configure a proxy for SSO feature
     (https://issues.rudder.io/issues/27320[#27320])
 
 === Release notes

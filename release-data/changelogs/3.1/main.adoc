@@ -2626,7 +2626,7 @@ inventories fetch
 
 ==== Documentation
 
-* Fixed: Add a section about ncf-builder and its integration wihin
+* Fixed: Add a section about ncf-builder and its integration within
 Rudder (https://issues.rudder.io/issues/6305[#6305])
 * Fixed: Doc build is broken because of missing Makefile dependencies
 (https://issues.rudder.io/issues/7339[#7339])

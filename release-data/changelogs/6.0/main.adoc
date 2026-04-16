@@ -2380,7 +2380,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/14744[#14744])
 * Fixed: Package for slackware doesn't build
     (https://issues.rudder.io/issues/14745[#14745])
-* Fixed: Remove localdepends target in packages.makfile 
+* Fixed: Remove localdepends target in packages.makefile 
     (https://issues.rudder.io/issues/14674[#14674])
 * Fixed: Remove http1.1 parameter from curl
     (https://issues.rudder.io/issues/14671[#14671])
@@ -2520,7 +2520,7 @@ This is a bug fix release in the 6.0 series and therefore all installations of 6
     (https://issues.rudder.io/issues/15597[#15597])
 * Fixed: Make clean doesn't remove all python files downloaded and generated on rudder-relay
     (https://issues.rudder.io/issues/15490[#15490])
-* Fixed: rudder-pkg python lib are missplaced on the server
+* Fixed: rudder-pkg python lib are misplaced on the server
     (https://issues.rudder.io/issues/15483[#15483])
 * Fixed: Report PUT is missing the file name
     (https://issues.rudder.io/issues/15482[#15482])

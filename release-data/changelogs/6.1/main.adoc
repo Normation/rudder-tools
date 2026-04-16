@@ -367,7 +367,7 @@ This version is only available for extended support subscription
     (https://issues.rudder.io/issues/20108[#20108])
 * Fixed: testinfra based tests should pass via the python executable and not py.test
     (https://issues.rudder.io/issues/20001[#20001])
-* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escpaing characters
+* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escaping characters
     (https://issues.rudder.io/issues/19908[#19908])
 
 ==== CI
@@ -697,7 +697,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
     (https://issues.rudder.io/issues/19214[#19214])
 * Add maven deploy task to pipeline
     (https://issues.rudder.io/issues/19197[#19197])
-* Add scripts to setup Rust build environements in CI
+* Add scripts to setup Rust build environments in CI
     (https://issues.rudder.io/issues/19184[#19184])
 
 ==== Miscellaneous
@@ -1097,7 +1097,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Performance and scalability
 
-* Fixed: Backport new inventory priorisation, software deletion API and log correction in 6.1
+* Fixed: Backport new inventory prioritisation, software deletion API and log correction in 6.1
     (https://issues.rudder.io/issues/18839[#18839])
 
 ==== API
@@ -1521,7 +1521,7 @@ This is a bug fix release in the 6.1 series and therefore all installations of 6
 
 ==== Web - Config management
 
-* Fixed: Array as root json are seens as string
+* Fixed: Array as root json are seen as string
     (https://issues.rudder.io/issues/18285[#18285])
 * Fixed: Uncommitted rudder_reporting.cf  when creating a technique with a condition
     (https://issues.rudder.io/issues/18266[#18266])

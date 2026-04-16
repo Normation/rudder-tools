@@ -46,7 +46,7 @@
     (https://issues.rudder.io/issues/28554[#28554])
 * Fixed: Take into account RHEL like OS for the backup process
     (https://issues.rudder.io/issues/28252[#28252])
-* Fixed: Doc on Rudder versionning is invalid
+* Fixed: Doc on Rudder versioning is invalid
     (https://issues.rudder.io/issues/28366[#28366])
 
 ==== Module - augeas
@@ -73,7 +73,7 @@
 
 ==== Web - UI & UX
 
-* Fixed: When we click on a gorup with a long description, the description popup remains
+* Fixed: When we click on a group with a long description, the description popup remains
     (https://issues.rudder.io/issues/27787[#27787])
 
 ==== Architecture - Evolution
@@ -541,7 +541,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== API
 
-* Fixed: systemUpdate/targets requieres a POST to get the list of nodes
+* Fixed: systemUpdate/targets requires a POST to get the list of nodes
     (https://issues.rudder.io/issues/27715[#27715])
 
 ==== Web - Config management
@@ -635,7 +635,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Security
 
-* We need to resolve directory real path in our path trasversal check
+* We need to resolve directory real path in our path traversal check
     (https://issues.rudder.io/issues/27402[#27402])
 
 ==== Web - UI & UX
@@ -684,7 +684,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Documentation
 
-* Fixed: Remove metion to AIX from the menu
+* Fixed: Remove mention to AIX from the menu
     (https://issues.rudder.io/issues/27535[#27535])
 * Fixed: correct prerequisites for Rudder install
     (https://issues.rudder.io/issues/27395[#27395])
@@ -702,7 +702,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== API
 
-* Fixed: Missleading format for parameter category in API
+* Fixed: Misleading format for parameter category in API
     (https://issues.rudder.io/issues/27384[#27384])
 * Fixed: Nodes API payload for agentKey has the wrong JSON format
     (https://issues.rudder.io/issues/27369[#27369])
@@ -754,7 +754,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Miscellaneous
 
-* Fixed: Dashboard will not display charts when switching between bechmarks
+* Fixed: Dashboard will not display charts when switching between benchmarks
     (https://issues.rudder.io/issues/27370[#27370])
 * Fixed: the logo doesn't display well anymore
     (https://issues.rudder.io/issues/27316[#27316])
@@ -1525,7 +1525,7 @@ This is a bug fix release in the 8.3 series and therefore all installations of 8
 
 ==== Plugin manager cli
 
-* Fixed: rudder package update never test nor use the crendentials
+* Fixed: rudder package update never test nor use the credentials
     (https://issues.rudder.io/issues/26493[#26493])
 
 ==== Inventory

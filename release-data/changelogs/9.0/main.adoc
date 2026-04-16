@@ -85,7 +85,7 @@
     (https://issues.rudder.io/issues/28554[#28554])
 * Fixed: Take into account RHEL like OS for the backup process
     (https://issues.rudder.io/issues/28252[#28252])
-* Fixed: Doc on Rudder versionning is invalid
+* Fixed: Doc on Rudder versioning is invalid
     (https://issues.rudder.io/issues/28366[#28366])
 * Fixed: We should add the notion of tier in supported OS
     (https://issues.rudder.io/issues/28269[#28269])
@@ -107,9 +107,9 @@
     (https://issues.rudder.io/issues/28565[#28565])
 * Fixed: On tables showing Compliance, some lines don't return to next line. It moves the compliance score out of the screen.
     (https://issues.rudder.io/issues/28591[#28591])
-* Fixed: When we click on a gorup with a long description, the description popup remains
+* Fixed: When we click on a group with a long description, the description popup remains
     (https://issues.rudder.io/issues/27787[#27787])
-* Fixed: When we click on a gorup with a long description, the description popup remains
+* Fixed: When we click on a group with a long description, the description popup remains
     (https://issues.rudder.io/issues/27787[#27787])
 * Fixed: Node property edition line has cell that are misaligned and have wrong colspan 
     (https://issues.rudder.io/issues/28522[#28522])
@@ -590,7 +590,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 ==== Generic methods
 
-* Deprecate file_fom_remote_source[_recursion]
+* Deprecate file_from_remote_source[_recursion]
     (https://issues.rudder.io/issues/27897[#27897])
 
 ==== Web - Technique editor
@@ -813,7 +813,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27828[#27828])
 * Fixed: Add known var/readonly issue to the doc
     (https://issues.rudder.io/issues/27788[#27788])
-* Fixed: Campaings hooks readme.adoc starts with wrong comment (node-post-acceptance)
+* Fixed: Campaigns hooks readme.adoc starts with wrong comment (node-post-acceptance)
     (https://issues.rudder.io/issues/27775[#27775])
 
 ==== Web - UI & UX
@@ -947,7 +947,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27828[#27828])
 * Fixed: Add known var/readonly issue to the doc
     (https://issues.rudder.io/issues/27788[#27788])
-* Fixed: Campaings hooks readme.adoc starts with wrong comment (node-post-acceptance)
+* Fixed: Campaigns hooks readme.adoc starts with wrong comment (node-post-acceptance)
     (https://issues.rudder.io/issues/27775[#27775])
 
 ==== Web - UI & UX
@@ -1064,7 +1064,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 ==== API
 
-* Fixed: systemUpdate/targets requieres a POST to get the list of nodes
+* Fixed: systemUpdate/targets requires a POST to get the list of nodes
     (https://issues.rudder.io/issues/27715[#27715])
 
 === Release notes
@@ -1227,7 +1227,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 * Fixed: Remove doc about automatically defined reporting section
     (https://issues.rudder.io/issues/27635[#27635])
-* Fixed: Remove metion to AIX from the menu
+* Fixed: Remove mention to AIX from the menu
     (https://issues.rudder.io/issues/27535[#27535])
 * Fixed: System info API changed format in v21 and needs new documentation
     (https://issues.rudder.io/issues/26637[#26637])
@@ -1294,7 +1294,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 * Fixed: Make group tree API not include system by default
     (https://issues.rudder.io/issues/27498[#27498])
-* Fixed: Missleading format for parameter category in API
+* Fixed: Misleading format for parameter category in API
     (https://issues.rudder.io/issues/27384[#27384])
 
 ==== System techniques
@@ -1360,7 +1360,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 ==== Security
 
-* We need to resolve directory real path in our path trasversal check
+* We need to resolve directory real path in our path traversal check
     (https://issues.rudder.io/issues/27402[#27402])
 
 ==== rudderc
@@ -1479,7 +1479,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 ==== Miscellaneous
 
-* Fixed: Dashboard will not display charts when switching between bechmarks
+* Fixed: Dashboard will not display charts when switching between benchmarks
     (https://issues.rudder.io/issues/27370[#27370])
 
 ==== rudderc

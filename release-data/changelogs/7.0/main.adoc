@@ -248,7 +248,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21270[#21270])
 * Fixed: Missing encoding of postgresql password
     (https://issues.rudder.io/issues/21203[#21203])
-* Fixed: Query seems to be ignored for pendings nodes
+* Fixed: Query seems to be ignored for pending nodes
     (https://issues.rudder.io/issues/20281[#20281])
 
 ==== Techniques
@@ -1198,7 +1198,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
 
 ==== Relay server or API
 
-* Fixed: Query seems to be ignored for pendings nodes
+* Fixed: Query seems to be ignored for pending nodes
     (https://issues.rudder.io/issues/20281[#20281])
 * Fixed: Test that the distributed config files are valid
     (https://issues.rudder.io/issues/20416[#20416])
@@ -1882,7 +1882,7 @@ Rudder 7.0 is currently the next version of Rudder.
     (https://issues.rudder.io/issues/20001[#20001])
 * Fixed: error in file_key_value_present_in_ini_section
     (https://issues.rudder.io/issues/19992[#19992])
-* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escpaing characters
+* Fixed: Strict mode of file_key_value_present_option does not introduce unwanted escaping characters
     (https://issues.rudder.io/issues/19908[#19908])
 
 ==== CI
@@ -2279,7 +2279,7 @@ This is a bug fix release in the 7.0 series and therefore all installations of 7
     (https://issues.rudder.io/issues/16859[#16859])
 * Fixed: Stop using removed system API
     (https://issues.rudder.io/issues/19825[#19825])
-* Fixed: server key reste should also remove HTTP pin
+* Fixed: server key reset should also remove HTTP pin
     (https://issues.rudder.io/issues/19783[#19783])
 * Fixed: Wrong variable name for server key hash
     (https://issues.rudder.io/issues/19619[#19619])

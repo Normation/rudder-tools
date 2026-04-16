@@ -381,7 +381,7 @@ This is a bug fix release in the 7.2 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21688[#21688])
 * Fixed: fix some issues in the campaigns view
     (https://issues.rudder.io/issues/21688[#21688])
-* Fixed: Elm app path are produced in a directory and are not kept by plugin packging
+* Fixed: Elm app path are produced in a directory and are not kept by plugin packaging
     (https://issues.rudder.io/issues/21646[#21646])
 * Fixed: Improve the display of the list of past events
     (https://issues.rudder.io/issues/21633[#21633])

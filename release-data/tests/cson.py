@@ -2,7 +2,7 @@
 #
 # coding: utf8
 #
-# cson (schema-compessed json)
+# cson (schema-compressed json)
 #
 # author: Russell Leake, http://leakerlabs.com, gt3389b@gmail.com
 # note: based on CSON-js by JongChan Choi, https://github.com/disjukr/CSON-js

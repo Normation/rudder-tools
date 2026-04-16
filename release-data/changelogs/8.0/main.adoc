@@ -1199,7 +1199,7 @@ This is a bug fix release in the 8.0 series and therefore all installations of 8
 
 * Fixed: Remove technique.json and rudder_reporting.cf when migrating technique to new format
     (https://issues.rudder.io/issues/23547[#23547])
-* Fixed: Migration of techniques is failling when there is a resource.
+* Fixed: Migration of techniques is failing when there is a resource.
     (https://issues.rudder.io/issues/23546[#23546])
 
 ==== rudderc

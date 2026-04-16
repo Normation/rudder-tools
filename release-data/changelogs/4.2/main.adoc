@@ -525,7 +525,7 @@ escaped but it should not
 
 ==== Generic methods
 
-* Fixed: Job cheduler methods with mode are broken
+* Fixed: Job scheduler methods with mode are broken
 (https://www.rudder-project.org/redmine/issues/12378[#12378])
 * Fixed: Missing report for ``Shared file to node''
 (https://www.rudder-project.org/redmine/issues/12377[#12377])
@@ -1427,7 +1427,7 @@ description contains curly braces
 
 * Fixed: Cannot save plugin status during initial install
 (https://www.rudder-project.org/redmine/issues/11395[#11395])
-* Fixed: When ugrading Rudder, the Windows plugins is not enabled
+* Fixed: When upgrading Rudder, the Windows plugins is not enabled
 anymore (https://www.rudder-project.org/redmine/issues/11385[#11385])
 * Fixed: PORT in /etc/default/rudder-slapd is ignored
 (https://www.rudder-project.org/redmine/issues/11331[#11331])

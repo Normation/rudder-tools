@@ -22,12 +22,12 @@
 
 ==== Documentation
 
-* Fixed: Remove metion to AIX from the menu
+* Fixed: Remove mention to AIX from the menu
     (https://issues.rudder.io/issues/27535[#27535])
 
 ==== API
 
-* Fixed: Missleading format for parameter category in API
+* Fixed: Misleading format for parameter category in API
     (https://issues.rudder.io/issues/27384[#27384])
 
 ==== Security
@@ -457,7 +457,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 ==== Plugin manager cli
 
-* Fixed: rudder package update never test nor use the crendentials
+* Fixed: rudder package update never test nor use the credentials
     (https://issues.rudder.io/issues/26493[#26493])
 
 ==== Inventory
@@ -1417,7 +1417,7 @@ This is a bug fix release in the 8.2 series and therefore all installations of 8
 
 * Build the system-updates module
     (https://issues.rudder.io/issues/25305[#25305])
-* Remove python-dev as a builld dependency on rudder-server
+* Remove python-dev as a build dependency on rudder-server
     (https://issues.rudder.io/issues/25317[#25317])
 * Add rust build to packaging
     (https://issues.rudder.io/issues/25197[#25197])

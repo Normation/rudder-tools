@@ -238,7 +238,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27376[#27376])
 * Fixed: Setting section to enforce change checks that only have audit/disable as existing states
     (https://issues.rudder.io/issues/27347[#27347])
-* Fixed: multiple missing bash for calling ressources script
+* Fixed: multiple missing bash for calling resources script
     (https://issues.rudder.io/issues/27355[#27355])
 * Fixed: Use new charting.js file instead of homepage.js
     (https://issues.rudder.io/issues/27330[#27330])

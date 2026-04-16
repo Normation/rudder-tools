@@ -100,13 +100,13 @@ This is a bug fix release in the 9.1 series and therefore all installations of 9
     (https://issues.rudder.io/issues/28565[#28565])
 * Fixed: On tables showing Compliance, some lines don't return to next line. It moves the compliance score out of the screen.
     (https://issues.rudder.io/issues/28591[#28591])
-* Fixed: When we click on a gorup with a long description, the description popup remains
+* Fixed: When we click on a group with a long description, the description popup remains
     (https://issues.rudder.io/issues/27787[#27787])
 * Fixed: Rules page title is wrapped in medium screen width because of too many buttons
     (https://issues.rudder.io/issues/28523[#28523])
 * Fixed: Spinner icon broken on Trigger agent inventory and Trigger agent buttons
     (https://issues.rudder.io/issues/28417[#28417])
-* Fixed: When we click on a gorup with a long description, the description popup remains
+* Fixed: When we click on a group with a long description, the description popup remains
     (https://issues.rudder.io/issues/27787[#27787])
 * Fixed: Node property edition line has cell that are misaligned and have wrong colspan 
     (https://issues.rudder.io/issues/28522[#28522])
@@ -416,7 +416,7 @@ This is a bug fix release in the 9.1 series and therefore all installations of 9
 
 ==== Documentation
 
-* Fixed: Doc on Rudder versionning is invalid
+* Fixed: Doc on Rudder versioning is invalid
     (https://issues.rudder.io/issues/28366[#28366])
 * Fixed: We should add the notion of tier in supported OS
     (https://issues.rudder.io/issues/28269[#28269])
@@ -670,7 +670,7 @@ This is a bug fix release in the 9.1 series and therefore all installations of 9
 
 ==== System integration
 
-* Allow to override server certiicate even if cert_validation is not enabled
+* Allow to override server certificate even if cert_validation is not enabled
     (https://issues.rudder.io/issues/28107[#28107])
 
 ==== Build & Deps - Rust

@@ -945,7 +945,7 @@ inventories fetch
 
 ==== Documentation
 
-* Fixed: Add a section about ncf-builder and its integration wihin
+* Fixed: Add a section about ncf-builder and its integration within
 Rudder (https://issues.rudder.io/issues/6305[#6305])
 * Fixed: Doc build is broken because of missing Makefile dependencies
 (https://issues.rudder.io/issues/7339[#7339])
@@ -2073,7 +2073,7 @@ with HTTP status: 413: FULL head
 (https://issues.rudder.io/issues/6090[#6090])
 * Fixed: Some buttons does not work correctly with IE9
 (https://issues.rudder.io/issues/6077[#6077])
-* Fixed: Add missing logger when there is an error when dsplaying
+* Fixed: Add missing logger when there is an error when displaying
 compliance (https://issues.rudder.io/issues/6053[#6053])
 * Fixed: Save message notification misplaced for global agent run
 preference (https://issues.rudder.io/issues/6022[#6022])
@@ -2259,7 +2259,7 @@ was clicked (https://issues.rudder.io/issues/6045[#6045])
 (https://issues.rudder.io/issues/6049[#6049])
 * Fixed: No popup displayed in IE9
 (https://issues.rudder.io/issues/6048[#6048])
-* Fixed: The interface is unsusable under some versions of firefox
+* Fixed: The interface is unusable under some versions of firefox
 (https://issues.rudder.io/issues/5962[#5962])
 
 ==== System integration

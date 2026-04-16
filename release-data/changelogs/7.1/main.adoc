@@ -579,7 +579,7 @@ This is a bug fix release in the 7.1 series and therefore all installations of 7
     (https://issues.rudder.io/issues/21270[#21270])
 * Fixed: Missing encoding of postgresql password
     (https://issues.rudder.io/issues/21203[#21203])
-* Fixed: Query seems to be ignored for pendings nodes
+* Fixed: Query seems to be ignored for pending nodes
     (https://issues.rudder.io/issues/20281[#20281])
 
 ==== Packaging

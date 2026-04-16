@@ -211,7 +211,7 @@ my $event_handler = sub {
     local *__ANON__ = 'event_handler';
     my $e = shift;
     LOG(ERROR, "event_handler: Event queue overflown!") if $e->IN_Q_OVERFLOW;
-    die "Filesystem was umounted!" if $e->IN_UNMOUNT;
+    die "Filesystem was unmounted!" if $e->IN_UNMOUNT;
     my $path = $e->fullname;
     $queue_file->($path);
 };
@@ -548,7 +548,7 @@ if ($MODE eq 'RELAY') {
             unlink $path;
             return 1;
         } else {
-            LOG(ERROR, "forward_file: HTTP %s: Failed for '%s', Server responeded: %s", $code, $path, $message);
+            LOG(ERROR, "forward_file: HTTP %s: Failed for '%s', Server responded: %s", $code, $path, $message);
             return 0;
         }
     };

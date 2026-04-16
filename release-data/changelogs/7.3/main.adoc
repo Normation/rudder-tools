@@ -1112,7 +1112,7 @@ This is a bug fix release in the 7.3 series and therefore all installations of 7
 
 ==== Performance and scalability
 
-* Fixed: resources sent to the browser are not compressed when using a custom cetificate
+* Fixed: resources sent to the browser are not compressed when using a custom certificate
     (https://issues.rudder.io/issues/22749[#22749])
 * Fixed: When we arrive on the node search page with a query pre-filed, the query is done twice
     (https://issues.rudder.io/issues/21236[#21236])

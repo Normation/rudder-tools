@@ -1705,7 +1705,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 ==== Documentation
 
-* Fixed: Disk usage in documentation is insuficiently precise
+* Fixed: Disk usage in documentation is insufficiently precise
     (https://issues.rudder.io/issues/14842[#14842])
 * Fixed: Add 2019 CfgMgmgtCamp videos to the docs
     (https://issues.rudder.io/issues/14731[#14731])
@@ -1732,7 +1732,7 @@ This is a bug fix release in the 5.0 series and therefore all installations of 5
 
 ==== Web - Maintenance
 
-* Fixed: Postgres fills up and can't be vaccumed
+* Fixed: Postgres fills up and can't be vacuumed
     (https://issues.rudder.io/issues/14789[#14789])
 * Fixed: Invalid comparison of String and Option[String] in HistorizationService
     (https://issues.rudder.io/issues/14770[#14770])

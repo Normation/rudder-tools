@@ -9,7 +9,7 @@ This folder contains tooling to generate data for Rudder:
 
 # Folder Description
 
-* data: generaed data containing the raw data for inventories, on per node uuid. It contains: uuid, hostname, ip, mac, public/private key, certificate, OS name, agent version 
+* data: generated data containing the raw data for inventories, on per node uuid. It contains: uuid, hostname, ip, mac, public/private key, certificate, OS name, agent version 
 * inventories: the generated inventories
 * template: template used to generate inventories
 

@@ -23,7 +23,7 @@
 
 ==== Documentation
 
-* Fixed: Clean pugin install docs
+* Fixed: Clean plugin install docs
     (https://issues.rudder.io/issues/17276[#17276])
 
 === Release notes

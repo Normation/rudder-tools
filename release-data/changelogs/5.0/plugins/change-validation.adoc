@@ -132,7 +132,7 @@ the release enterprise-ready for deployment.
 
 ==== Miscellaneous
 
-* Improve Change Valdiation plugin UI
+* Improve Change Validation plugin UI
 (https://issues.rudder.io/issues/13729[#13729])
 
 === Bug fixes

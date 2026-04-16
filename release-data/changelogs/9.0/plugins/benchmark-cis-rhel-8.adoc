@@ -84,7 +84,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27794[#27794])
 * Fixed: Rename the benchmarks RHEL 8, Debian 11, Debian 12 and Ubuntu 22 to remove CIS
     (https://issues.rudder.io/issues/27806[#27806])
-* Fixed: CIS RHEL 9 Section 6.1.3 : Incorrect path harcoded in our test, may vary on actual target systems
+* Fixed: CIS RHEL 9 Section 6.1.3 : Incorrect path hardcoded in our test, may vary on actual target systems
     (https://issues.rudder.io/issues/27847[#27847])
 
 === Release notes

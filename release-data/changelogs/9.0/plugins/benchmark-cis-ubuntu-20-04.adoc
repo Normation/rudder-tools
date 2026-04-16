@@ -148,7 +148,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
     (https://issues.rudder.io/issues/27410[#27410])
 * Fixed: CIS RHEL 8 Section 1.1.1.1 compliant code is reversed
     (https://issues.rudder.io/issues/27357[#27357])
-* Fixed: multiple missing bash for calling ressources script
+* Fixed: multiple missing bash for calling resources script
     (https://issues.rudder.io/issues/27355[#27355])
 
 === Release notes

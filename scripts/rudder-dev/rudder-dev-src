@@ -747,7 +747,7 @@ def create_branch(ticket, base=None):
     # checkout the new branch
     shell("git checkout " + branch_name, "Checkouting the base branch " + branch_name)
   else:
-    # Look for release branch and ckeckout its last version
+    # Look for release branch and checkout its last version
     pull(issue['version'])
 
   # Create the branch
@@ -1129,7 +1129,7 @@ def retarget(version=None):
       print("New PR URL: " + pr_url)
 
 
-# ckeckout version, pull
+# checkout version, pull
 def pull(version=None):
   global current_branch
   if version is not None:
