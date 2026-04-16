@@ -69,7 +69,7 @@ def main():
   api_container = { "properties": data_container }
 
   # Post to API
-  node_url = "%s/latest/nodes/%s" % (api_url, node_id)
+  node_url = "%s/latest/nodes/%s" % (api_url, node_id) # pylint: disable=possibly-used-before-assignment
   requests.post(node_url, data=json.dumps(api_container), headers=headers, verify=False)
 
 if __name__ == "__main__":

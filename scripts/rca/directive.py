@@ -52,7 +52,7 @@ class GenericVariableDefinitionDirective:
           name = "generic_variable_definition." + iVar["var"]["value"]
         elif iVar["var"]["name"] == "GENERIC_VARIABLE_CONTENT":
           value = iVar["var"]["value"]
-      variables.append({ "name": name, "value": value })
+      variables.append({ "name": name, "value": value }) # pylint: disable=possibly-used-before-assignment,used-before-assignment
     return variables
 
   def getValues(self, varName):
