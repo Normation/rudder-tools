@@ -1,5 +1,135 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.6 (2026-05-02)
+
+=== Changes
+
+
+==== Web - UI & UX
+
+* Installing plugin is a common operation and should be visible in the plugins page
+    (https://issues.rudder.io/issues/28139[#28139])
+* Remove column type in change logs table
+    (https://issues.rudder.io/issues/28695[#28695])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Fix the context comparison in build-caching
+    (https://issues.rudder.io/issues/28786[#28786])
+
+==== Documentation
+
+* Fixed: Documentation mention .exe installer
+    (https://issues.rudder.io/issues/28684[#28684])
+* Fixed: The Campaigns API documentation has erroneous response/request schemas
+    (https://issues.rudder.io/issues/28685[#28685])
+
+==== Web - Config management
+
+* Fixed: Change logs : undefined timezones in dates
+    (https://issues.rudder.io/issues/28823[#28823])
+
+==== Security
+
+* Fixed: Ignore RUSTSEC-2026-0111
+    (https://issues.rudder.io/issues/28811[#28811])
+* Fixed: Spring security CVE-2026-22732
+    (https://issues.rudder.io/issues/28781[#28781])
+* Fixed: Rhino jar 1.7.15 CVE-2025-66453
+    (https://issues.rudder.io/issues/28719[#28719])
+* Fixed: Rand is unsound with a custom logger using `rand::rng()`
+    (https://issues.rudder.io/issues/28711[#28711])
+
+==== CI
+
+* Fixed: Only share the cargo sources between jobs
+    (https://issues.rudder.io/issues/28805[#28805])
+
+==== Agent
+
+* Fixed: Improper link formatting in Rust comment
+    (https://issues.rudder.io/issues/28796[#28796])
+
+==== Web - UI & UX
+
+* Fixed: Fix typography in plugin management
+    (https://issues.rudder.io/issues/28780[#28780])
+* Fixed: Change logs pagination cannot be set to "All"
+    (https://issues.rudder.io/issues/28683[#28683])
+* Fixed: CSP error in change logs pages
+    (https://issues.rudder.io/issues/27185[#27185])
+* Fixed: Property value textarea is cropped while editing multiline string or JSON
+    (https://issues.rudder.io/issues/28723[#28723])
+* Fixed: Notification error on user without admin_read rights on node page
+    (https://issues.rudder.io/issues/28654[#28654])
+* Fixed: Refresh button has the wrong class in directive by node compliance
+    (https://issues.rudder.io/issues/28697[#28697])
+* Fixed: Change request save button in rule page doesn't work properly
+    (https://issues.rudder.io/issues/28168[#28168])
+* Fixed: Buttons in tree headers do not auto-wrap when the screen becomes too small
+    (https://issues.rudder.io/issues/28681[#28681])
+* Fixed: Foreach keys are alphabetically ordered
+    (https://issues.rudder.io/issues/28176[#28176])
+
+==== Miscellaneous
+
+* Fixed: Add ADR for Handling IO encoding in Rust modules
+    (https://issues.rudder.io/issues/28507[#28507])
+* Fixed: Ignored node compliance are seens as no report
+    (https://issues.rudder.io/issues/28651[#28651])
+
+==== Module - common
+
+* Fixed: Handle IO encoding in rust modules
+    (https://issues.rudder.io/issues/28504[#28504])
+
+==== Web - Maintenance
+
+* Fixed: Policy generation could fail with runtime reflection error
+    (https://issues.rudder.io/issues/28764[#28764])
+* Fixed: Wrong message for node deletion in activity 
+    (https://issues.rudder.io/issues/28670[#28670])
+
+==== Module - augeas
+
+* Fixed: file augeas method doesn't support [ ] for set and touch
+    (https://issues.rudder.io/issues/28707[#28707])
+
+==== Generic methods
+
+* Fixed: We should define report_id based classes even in no report case
+    (https://issues.rudder.io/issues/28735[#28735])
+
+==== Module - system-updates
+
+* Fixed: Required reboot detection on APT systems requires the presence of unnatended-upgrades
+    (https://issues.rudder.io/issues/28666[#28666])
+
+==== API
+
+* Fixed: When we create a Node with a PUT, the properties are not taken into account
+    (https://issues.rudder.io/issues/28592[#28592])
+
+==== Web - Nodes & inventories
+
+* Fixed: We should have consistant behaviour when creating group with empty criteria
+    (https://issues.rudder.io/issues/28682[#28682])
+* Fixed: When no rules are applied, the message in the compliance tab of a node is missleading
+    (https://issues.rudder.io/issues/28611[#28611])
+* Fixed: Cannot export node list if there pagination has more elements
+    (https://issues.rudder.io/issues/28665[#28665])
+
+==== Techniques
+
+* Fixed: Package management technique fails with specific version/arch
+    (https://issues.rudder.io/issues/28699[#28699])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.5 (2026-04-01)
 
 === Changes
