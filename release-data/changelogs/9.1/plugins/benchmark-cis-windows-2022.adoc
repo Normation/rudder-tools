@@ -1,5 +1,48 @@
 = Changelogs for Rudder plugin benchmark-cis-windows-2022 9.1.\* versions
 
+== benchmark-cis-windows-2022-9.1.1-0.10 (2026-05-04)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* CIS Windows Server 2022 - section 17
+    (https://issues.rudder.io/issues/28696[#28696])
+* CIS Windows Server 2022 - Section 2.2 : User Rights Assignment
+    (https://issues.rudder.io/issues/28700[#28700])
+* CIS Windows Server 2022 - Section 19 : Administrative Templates (User)
+    (https://issues.rudder.io/issues/28750[#28750])
+* CIS Windows Server 2022 - Section 9 : Windows Defender Firewall with Advanced Security
+    (https://issues.rudder.io/issues/28721[#28721])
+* CIS Windows Server 2022 - Section 5 : System Services
+    (https://issues.rudder.io/issues/28718[#28718])
+* CIS Windows Server 2022 - Section 2.3 : Security Options (Secedit)
+    (https://issues.rudder.io/issues/28709[#28709])
+* CIS Windows Server 2022 - section 1.2 Account Lockout Policy
+    (https://issues.rudder.io/issues/28691[#28691])
+* CIS Windows Server 2022 - section 1.1  Password Policy
+    (https://issues.rudder.io/issues/28553[#28553])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Script parsing .xlsx for metadata.json does not work properly for windows
+    (https://issues.rudder.io/issues/28712[#28712])
+* Fixed: CIS Windows Server 2022 - Section 18 : Administrative Templates (Computer)
+    (https://issues.rudder.io/issues/28761[#28761])
+* Fixed: CIS Windows Server 2022 - cannot have empties sections items list
+    (https://issues.rudder.io/issues/28776[#28776])
+* Fixed: CIS Windows Server 2022 - Missing 2.1 empty section
+    (https://issues.rudder.io/issues/28762[#28762])
+* Fixed: CIS Windows Server 2022 - add all top level section
+    (https://issues.rudder.io/issues/28716[#28716])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == benchmark-cis-windows-2022-9.1.0-0.10 (2026-04-13)
 
 === Changes
