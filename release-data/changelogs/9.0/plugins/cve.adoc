@@ -1,5 +1,16 @@
 = Changelogs for Rudder plugin cve 9.0.\* versions
 
+== cve-9.0.6-2.12 (2026-05-04)
+
+=== Changes
+
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == cve-9.0.5-2.12 (2026-04-02)
 
 === Changes
