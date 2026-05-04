@@ -1,5 +1,26 @@
 = Changelogs for Rudder plugin scale-out-relay 9.1.\* versions
 
+== scale-out-relay-9.1.1-2.1 (2026-05-04)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Relay-to-node operation succeeds even if some nodes still depend on relay
+    (https://issues.rudder.io/issues/28657[#28657])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Relay operations info logs have NodeId in them
+    (https://issues.rudder.io/issues/28649[#28649])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == scale-out-relay-9.1.0-2.1 (2026-04-13)
 
 === Changes
