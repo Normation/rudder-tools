@@ -59,3 +59,7 @@ This execution will:
     List all nodes that are not 100% compliant.
 
     Retrieve patch campaigns from approximately the last two days, showing the number of successful and failed nodes, as well as the list of failed and missing nodes.
+
+## LICENSE
+
+This script is licensed under the GNU Affero General Public License v3.0
