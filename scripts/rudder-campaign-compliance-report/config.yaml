@@ -1,0 +1,9 @@
+rudder:
+  url: "https://"
+  token: ""
+  verify_ssl: false
+
+mail:
+  from: "@"
+  to:
+    - "@"
