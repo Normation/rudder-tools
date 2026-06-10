@@ -249,6 +249,7 @@ After this, you can remove the """ + Config.BOT_CANNOT_MERGE_LABEL + """ ta
     comment="""This PR is not mergeable to upper versions.
 Since it is "Ready for merge" you must merge it by yourself using the following command:
 `rudder-dev merge """ + url + """`
+If necessary please resolve conflicts. Then check the state of higher version branches and run `rudder-dev merge all` if needed.
 -- Your faithful QA
 """ + kant_merge()
     if jobid is not None:
