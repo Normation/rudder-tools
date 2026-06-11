@@ -1,5 +1,42 @@
 = Changelogs for Rudder plugin system-updates 9.1.\* versions
 
+== system-updates-9.1.2-1.18 (2026-06-11)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Add ui test cases on search bar in update campaigns in result tab
+    (https://issues.rudder.io/issues/28963[#28963])
+* Add a new log file to log the Windows module calls
+    (https://issues.rudder.io/issues/28921[#28921])
+* Add ui tests on filter result tab of a campaign event  
+    (https://issues.rudder.io/issues/28886[#28886])
+* Add ui tests on filter result tab of a campaign event  
+    (https://issues.rudder.io/issues/28886[#28886])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Search bar in campaign nodes does not work
+    (https://issues.rudder.io/issues/28974[#28974])
+* Fixed: Search bar in software campaign nodes does not work
+    (https://issues.rudder.io/issues/29006[#29006])
+* Fixed: The Windows technique does not try to send the JSON report if the module returns nor success nor repaired
+    (https://issues.rudder.io/issues/28952[#28952])
+* Fixed: Fix upmerge of 28886
+    (https://issues.rudder.io/issues/28894[#28894])
+* Fixed: The filter on campaign status don't work if we don't click on "load more"
+    (https://issues.rudder.io/issues/28858[#28858])
+* Fixed: Search bar in update campaigns doesn't work
+    (https://issues.rudder.io/issues/28093[#28093])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-9.1.1-1.18 (2026-05-04)
 
 === Changes
