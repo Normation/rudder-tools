@@ -1,5 +1,176 @@
 = Change logs for Rudder 9.1
 
+==  Rudder 9.1.2 (2026-06-12)
+
+=== Changes
+
+
+==== Packaging
+
+* Properly cache single files in build-caching
+    (https://issues.rudder.io/issues/28930[#28930])
+* Add a locking mechanism to build-caching
+    (https://issues.rudder.io/issues/28929[#28929])
+* Disable test in perl modules
+    (https://issues.rudder.io/issues/28920[#28920])
+* Bump openssl & curl
+    (https://issues.rudder.io/issues/28916[#28916])
+
+==== Documentation
+
+* Document the usage of the license archive
+    (https://issues.rudder.io/issues/29033[#29033])
+
+==== Miscellaneous
+
+* POC architecture documentation c4
+    (https://issues.rudder.io/issues/28722[#28722])
+
+==== Web - Technique editor
+
+* Use a select input for parameters that require one rather than a text input
+    (https://issues.rudder.io/issues/28763[#28763])
+
+==== Architecture - ADR
+
+* ADR for CSS classes naming of tables
+    (https://issues.rudder.io/issues/28570[#28570])
+* ADR for Elm initialization and handling of authorization
+    (https://issues.rudder.io/issues/28702[#28702])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Bump openssl
+    (https://issues.rudder.io/issues/29032[#29032])
+
+==== Agent
+
+* Fixed: Unmatch update types between dnf and Rudder on RHEL like OS
+    (https://issues.rudder.io/issues/28917[#28917])
+* Fixed: Revert the Windows inventory hook permissions audit script
+    (https://issues.rudder.io/issues/28904[#28904])
+* Fixed: Agent inventory in https only mode can fail
+    (https://issues.rudder.io/issues/28957[#28957])
+* Fixed: “rudder agent diff” says a file wasn't modified, when it was
+    (https://issues.rudder.io/issues/28574[#28574])
+
+==== Web - UI & UX
+
+* Fixed: SCSS compilation errors should make the build fail
+    (https://issues.rudder.io/issues/29011[#29011])
+* Fixed: When a generation is processing, we don't know the last generation status
+    (https://issues.rudder.io/issues/29007[#29007])
+* Fixed: Link from dashboard to node by compliance doesn't work since Rudder 9.0
+    (https://issues.rudder.io/issues/28860[#28860])
+* Fixed: Rule deletion/disable/enable has no notice about change requests when workflow are enabled
+    (https://issues.rudder.io/issues/28775[#28775])
+* Fixed: Datatables page number is not highlighted in footer
+    (https://issues.rudder.io/issues/28863[#28863])
+
+==== Module - system-updates
+
+* Fixed: Add '--' before passing arguments to package managers
+    (https://issues.rudder.io/issues/28987[#28987])
+
+==== Module - templates
+
+* Fixed: Document that the python Jinja2 implementation is not sandboxed
+    (https://issues.rudder.io/issues/28980[#28980])
+* Fixed: The jinja2 python script is never updated
+    (https://issues.rudder.io/issues/28978[#28978])
+
+==== Relay server or API
+
+* Fixed: Ignore  RUSTSEC-2026-0172 
+    (https://issues.rudder.io/issues/28988[#28988])
+
+==== Module - commands
+
+* Fixed: Umask is never reset
+    (https://issues.rudder.io/issues/28979[#28979])
+
+==== Miscellaneous
+
+* Fixed: Campaign report do not log the reboot command error if any
+    (https://issues.rudder.io/issues/28925[#28925])
+* Fixed: Group page is empty with group_read permission with nodes in tenants
+    (https://issues.rudder.io/issues/28948[#28948])
+* Fixed: Campaigns keep running on Windows Server 2022
+    (https://issues.rudder.io/issues/28901[#28901])
+* Fixed: Service restart is broken on RedHat after campaing update
+    (https://issues.rudder.io/issues/28896[#28896])
+* Fixed: There is no documentation on special tenants value
+    (https://issues.rudder.io/issues/28856[#28856])
+* Fixed: Error after campaing update on Windows node
+    (https://issues.rudder.io/issues/28900[#28900])
+* Fixed: update node build version in dockerfile
+    (https://issues.rudder.io/issues/28882[#28882])
+* Fixed: The export of archive is broken
+    (https://issues.rudder.io/issues/28878[#28878])
+
+==== CI
+
+* Fixed: Reduce the size of the Jenkinsfile pipeline
+    (https://issues.rudder.io/issues/28959[#28959])
+* Fixed: Fail on error in container setup script
+    (https://issues.rudder.io/issues/28924[#28924])
+* Fixed: Resolve better-npm-audit dependency vulnerabilities on fast-url
+    (https://issues.rudder.io/issues/28910[#28910])
+* Fixed: Add openSCAP to the known words for typo
+    (https://issues.rudder.io/issues/28862[#28862])
+
+==== Architecture - Code maintenance
+
+* Fixed: Use per call message digest
+    (https://issues.rudder.io/issues/28973[#28973])
+
+==== Web - Config management
+
+* Fixed: Property creation on root server is not persisted after rebooting
+    (https://issues.rudder.io/issues/28965[#28965])
+* Fixed: The groups All nodes managed by 'xxxx' policy server don't show the windows agent
+    (https://issues.rudder.io/issues/28720[#28720])
+
+==== Web - Maintenance
+
+* Fixed: Debug and trace log are not always lazy
+    (https://issues.rudder.io/issues/28905[#28905])
+
+==== Generic methods
+
+* Fixed: File augeas is still in beta
+    (https://issues.rudder.io/issues/28556[#28556])
+* Fixed: file_from_shared_folder result condition is invalid because of invalid class_prefix
+    (https://issues.rudder.io/issues/28903[#28903])
+* Fixed: clean up variable_string_from_command 
+    (https://issues.rudder.io/issues/28877[#28877])
+
+==== Build & Deps - Rust
+
+* Fixed: add diesel cve to deny.toml
+    (https://issues.rudder.io/issues/28892[#28892])
+
+==== Web - Nodes & inventories
+
+* Fixed: When a relay points to itelf, we cannot delete it
+    (https://issues.rudder.io/issues/28861[#28861])
+
+==== Web - Technique editor
+
+* Fixed: Avoid displaying underscores in parameter names
+    (https://issues.rudder.io/issues/28798[#28798])
+
+==== Architecture - Dependencies
+
+* Fixed: Postgresql driver CVE-2026-42198
+    (https://issues.rudder.io/issues/28834[#28834])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.1.1 (2026-05-02)
 
 === Changes
