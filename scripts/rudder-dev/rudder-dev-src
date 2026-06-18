@@ -455,10 +455,7 @@ def create_pr(master_branch, issue, message, draft=False):
   if message is not None:
     body += "\n\n" + message + "\n"
 
-  if issue['private']:
-    title = ''
-  else:
-    title = issue['name']
+  title = issue['name']
   pr = '{ "title": ' + json.dumps('Fixes #' + str(issue.id) + ": " + title) + ','
   pr += ' "body": ' + json.dumps(body) + ','
   pr += ' "draft": ' + str(draft).lower() + ','
@@ -929,10 +926,7 @@ def commit(trigraph=None, message=None, nopr=False, draft=False):
   master_branch = branch_from_version(issue['version'])
 
   # commit and push
-  if issue['private']:
-    title = ''
-  else:
-    title = issue['name'].replace("\"", "\\\"")
+  title = issue['name'].replace("\"", "\\\"")
   if nopr is True:
     prefix = "Refs"
   else:
@@ -973,10 +967,7 @@ def amend(comment=None):
   issue = issue_from_branch(current_branch)
 
   # commit over last commit and push
-  if issue['private']:
-    title = ''
-  else:
-    title = issue['name'].replace("\"", "\\\"")
+  title = issue['name'].replace("\"", "\\\"")
   commit_push(current_branch, "Fixes #" + str(issue.id) + ": " + title, True)
 
   # Remove labels
@@ -1004,10 +995,7 @@ def fixup(comment=None):
   issue = issue_from_branch(current_branch)
 
   # commit over last commit and push
-  if issue['private']:
-    title = ''
-  else:
-    title = issue['name'].replace("\"", "\\\"")
+  title = issue['name'].replace("\"", "\\\"")
   commit_push(current_branch, "Fixes #" + str(issue.id) + ": " + title, False, True)
 
   # Remove labels
