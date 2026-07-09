@@ -1,5 +1,217 @@
 = Change logs for Rudder 9.0
 
+==  Rudder 9.0.8 (2026-07-09)
+
+=== Changes
+
+
+==== Packaging
+
+* Remove the rudder-debug-info script
+    (https://issues.rudder.io/issues/29076[#29076])
+
+==== Documentation
+
+* Update rudder webapp documentation webapp.md by adding some setup about /var/rudder/ncf
+    (https://issues.rudder.io/issues/29210[#29210])
+* Add a claude skill for scala in rudder
+    (https://issues.rudder.io/issues/29072[#29072])
+* Better document server side campaign logger and symlink
+    (https://issues.rudder.io/issues/29086[#29086])
+* Add a contribution statement regarding GenAI
+    (https://issues.rudder.io/issues/26892[#26892])
+
+==== Build & Deps - Rust
+
+* Add a skill for Rust code
+    (https://issues.rudder.io/issues/29119[#29119])
+
+==== Web - Technique editor
+
+* Add a tab for directives using the technique in editor
+    (https://issues.rudder.io/issues/29107[#29107])
+
+==== Architecture - Code maintenance
+
+* Format elm code with elm-format
+    (https://issues.rudder.io/issues/28989[#28989])
+* Enable exhaustive pattern matching checks in Scala 3
+    (https://issues.rudder.io/issues/28967[#28967])
+
+==== Generic methods
+
+* Missing timeout in method condition_from_command and variable_from_command
+    (https://issues.rudder.io/issues/28876[#28876])
+* Add a support for envfile in variable_dict_from_file_type
+    (https://issues.rudder.io/issues/29082[#29082])
+
+==== API
+
+* TechniqueApi is not stable for category order
+    (https://issues.rudder.io/issues/29118[#29118])
+
+==== Web - UI & UX
+
+* Move technique link from directive hidden details to next to title
+    (https://issues.rudder.io/issues/29106[#29106])
+
+==== Web - Nodes & inventories
+
+* Add nodeId to inventory variables
+    (https://issues.rudder.io/issues/29105[#29105])
+
+==== Module - templates
+
+* Add function/filter for file inclusion in templates
+    (https://issues.rudder.io/issues/29091[#29091])
+
+==== Architecture - ADR
+
+* Add an ADR for choosing elm formatter
+    (https://issues.rudder.io/issues/29059[#29059])
+
+==== Architecture - Dependencies
+
+* Upgrade to spring-security 6.5.11
+    (https://issues.rudder.io/issues/29060[#29060])
+
+==== Module - system-updates
+
+* Remove panic on rpm output parsing
+    (https://issues.rudder.io/issues/29053[#29053])
+
+==== System techniques
+
+* Only allow the inventory class to be remotely defined
+    (https://issues.rudder.io/issues/29159[#29159])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Bump curl to 8.21.0
+    (https://issues.rudder.io/issues/29117[#29117])
+* Fixed: Make the generated password longer
+    (https://issues.rudder.io/issues/29062[#29062])
+* Fixed: Broken sed in augeas build
+    (https://issues.rudder.io/issues/29056[#29056])
+
+==== System integration
+
+* Fixed: dpkg source package name is wrong in inventory
+    (https://issues.rudder.io/issues/29084[#29084])
+
+==== Server components
+
+* Fixed: Remove cf-serverd error log "Failed to canonicalise filename"
+    (https://issues.rudder.io/issues/29017[#29017])
+
+==== Documentation
+
+* Fixed: Documentation doesn't clearly state where the inventory hooks should be on windows
+    (https://issues.rudder.io/issues/29014[#29014])
+* Fixed: Remove old apt key doc
+    (https://issues.rudder.io/issues/29190[#29190])
+* Fixed: Policy backup is still named Archives in the documentation
+    (https://issues.rudder.io/issues/28830[#28830])
+* Fixed: Complete documentation for the new HTTPS protocol
+    (https://issues.rudder.io/issues/28449[#28449])
+* Fixed: Custom roles with underscore are not allowed but error is misleading 
+    (https://issues.rudder.io/issues/28984[#28984])
+
+==== Security
+
+* Fixed: Vulnerabilities detected in Rust dependencies
+    (https://issues.rudder.io/issues/29218[#29218])
+* Fixed: Vulnerabilities in quick-xml
+    (https://issues.rudder.io/issues/29181[#29181])
+* Fixed: Restrict grant of only the uuid file
+    (https://issues.rudder.io/issues/29155[#29155])
+* Fixed: Correct CurrentUser initialisation problem
+    (https://issues.rudder.io/issues/29034[#29034])
+* Fixed: Ignore RUSTSEC-2026-0172 - 8.3
+    (https://issues.rudder.io/issues/29040[#29040])
+
+==== Module - system-updates
+
+* Fixed: Error restarting auditd on rhel8
+    (https://issues.rudder.io/issues/28557[#28557])
+* Fixed: Properly detect errors in needs-restarting reboot test
+    (https://issues.rudder.io/issues/29054[#29054])
+
+==== Relay server or API
+
+* Fixed: Reports fail when a node has run log too big
+    (https://issues.rudder.io/issues/28379[#28379])
+
+==== API
+
+* Fixed: Log of importing archive are missing archive name
+    (https://issues.rudder.io/issues/29177[#29177])
+
+==== Web - UI & UX
+
+* Fixed: Technique parameter help text is half useful
+    (https://issues.rudder.io/issues/28162[#28162])
+* Fixed: Update a directive while tree filter is not empty breaks the filtering
+    (https://issues.rudder.io/issues/28895[#28895])
+* Fixed: The reason why Trigger agent inventory and Trigger agent buttons are greyed out on windows agents is not explained in the webapp
+    (https://issues.rudder.io/issues/29012[#29012])
+
+==== Plugin manager cli
+
+* Fixed: Warning when running "rudder package list" on air gap
+    (https://issues.rudder.io/issues/29133[#29133])
+
+==== Web - Compliance & node report
+
+* Fixed: PreparingEOL nodes don't have compliance
+    (https://issues.rudder.io/issues/29127[#29127])
+
+==== Miscellaneous
+
+* Fixed: remove useless backup file
+    (https://issues.rudder.io/issues/29099[#29099])
+
+==== Module - templates
+
+* Fixed: Don-t display a message in template cli when diff is disabled
+    (https://issues.rudder.io/issues/29089[#29089])
+* Fixed: Broken error message when both template file and string were passed
+    (https://issues.rudder.io/issues/29052[#29052])
+
+==== Generic methods
+
+* Fixed: Backport changes made to ncf after the import into the Rudder repo
+    (https://issues.rudder.io/issues/29049[#29049])
+* Fixed: Backport changes made to ncf after the import into the Rudder repo
+    (https://issues.rudder.io/issues/29049[#29049])
+* Fixed: Rudder standard technique “Users” updates “last password changed” field in /etc/shadow daily even if no change was made
+    (https://issues.rudder.io/issues/28839[#28839])
+
+==== Architecture - Dependencies
+
+* Fixed: Update spring to latest patch release
+    (https://issues.rudder.io/issues/29048[#29048])
+
+==== Plugins integration
+
+* Fixed: fix double .scala extension
+    (https://issues.rudder.io/issues/29039[#29039])
+
+==== Agent
+
+* Fixed: rudder agent check fails to restart cf-execd when stalled
+    (https://issues.rudder.io/issues/29067[#29067])
+* Fixed: When a policy file is missing on linux, the rudder agent check doesn't detect it (and don't fix it)
+    (https://issues.rudder.io/issues/29055[#29055])
+* Fixed: rudder agent run -i should enable  full compliance
+    (https://issues.rudder.io/issues/29065[#29065])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.0.7 (2026-06-12)
 
 === Changes
