@@ -1,5 +1,26 @@
 = Changelogs for Rudder plugin security-benchmarks 9.0.\* versions
 
+== security-benchmarks-9.0.8-1.2 (2026-07-12)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Show policy mode override and inheritance
+    (https://issues.rudder.io/issues/28833[#28833])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Open group/node tabs are closed and node count goes to 0 when saving
+    (https://issues.rudder.io/issues/28932[#28932])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.0.7-1.2 (2026-06-12)
 
 === Changes
