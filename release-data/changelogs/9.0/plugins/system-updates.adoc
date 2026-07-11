@@ -1,5 +1,23 @@
 = Changelogs for Rudder plugin system-updates 9.0.\* versions
 
+== system-updates-9.0.8-1.18 (2026-07-12)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Terminated system update campaign events can be "Skipped"
+    (https://issues.rudder.io/issues/28919[#28919])
+* Fixed: icons that display the type of available update are not correctly set when nodes have long name
+    (https://issues.rudder.io/issues/28706[#28706])
+
+=== Release notes
+
+This is a bug fix release in the 9.0 series and therefore all installations of 9.0.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-9.0.7-1.18 (2026-06-12)
 
 === Changes
