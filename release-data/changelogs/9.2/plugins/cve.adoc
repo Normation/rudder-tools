@@ -1,0 +1,34 @@
+= Changelogs for Rudder plugin cve 9.2.\* versions
+
+== cve-9.2.0.alpha1-2.12 (2026-07-20)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Create a dashboard to display system update data
+    (https://issues.rudder.io/issues/29068[#29068])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Nodes are not filtered according to tenancy in security benchmark
+    (https://issues.rudder.io/issues/29246[#29246])
+* Fixed: Log file path are build from unescaped variables
+    (https://issues.rudder.io/issues/29242[#29242])
+* Fixed: Wrong user name in postinst
+    (https://issues.rudder.io/issues/29278[#29278])
+* Fixed: webapp non-root: fix postinst in rudder-plugins-private
+    (https://issues.rudder.io/issues/29158[#29158])
+
+==== UI - UX
+
+* Fixed: Small ui improvements and adapt to changes in 29149
+    (https://issues.rudder.io/issues/29151[#29151])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
