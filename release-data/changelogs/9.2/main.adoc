@@ -1,0 +1,342 @@
+= Change logs for Rudder 9.2==  Rudder 9.2.0.alpha1 (2026-07-20)
+
+=== Changes
+
+
+==== Agent
+
+* Add an option to run the inventory module instead of fusion
+    (https://issues.rudder.io/issues/28955[#28955])
+* Add a windows service to run the agent
+    (https://issues.rudder.io/issues/28513[#28513])
+* Add a windows service to run the agent
+    (https://issues.rudder.io/issues/28513[#28513])
+
+==== Packaging
+
+* Update C dependencies
+    (https://issues.rudder.io/issues/28914[#28914])
+* Upgrade to CFEngine 3.27 LTS
+    (https://issues.rudder.io/issues/28743[#28743])
+* Update Rust and dependencies
+    (https://issues.rudder.io/issues/28815[#28815])
+* Migration instance-id and force_technique_reload
+    (https://issues.rudder.io/issues/29283[#29283])
+
+==== Architecture - Dependencies
+
+* Update our version of jetty to 12.1.8
+    (https://issues.rudder.io/issues/28838[#28838])
+* Replace string template with a fastparse native implementation
+    (https://issues.rudder.io/issues/29316[#29316])
+* Update of scala dependencies 9.2 branch, June 2026 edition
+    (https://issues.rudder.io/issues/29050[#29050])
+* Update front-end dependencies
+    (https://issues.rudder.io/issues/28819[#28819])
+* Update scala dependencies
+    (https://issues.rudder.io/issues/28806[#28806])
+* Migrate to Lift 4.0.0-RC1 in scala 3
+    (https://issues.rudder.io/issues/28769[#28769])
+
+==== Documentation
+
+* Update link to cheatsheet
+    (https://issues.rudder.io/issues/29108[#29108])
+* Add a README for the cheatsheet
+    (https://issues.rudder.io/issues/29112[#29112])
+* Publish cheatsheet to files folder
+    (https://issues.rudder.io/issues/29110[#29110])
+* Update api doc tooling
+    (https://issues.rudder.io/issues/28829[#28829])
+
+==== Miscellaneous
+
+* Architecture changes needed Rudder side for Benchmark derivation 
+    (https://issues.rudder.io/issues/29288[#29288])
+* Export Group compliance by Node to CSV
+    (https://issues.rudder.io/issues/29222[#29222])
+* Bump rudder-elm-library version to 0.2.5
+    (https://issues.rudder.io/issues/29260[#29260])
+* Export directive compliance by node to CSV
+    (https://issues.rudder.io/issues/29221[#29221])
+* Export Node compliance to CSV
+    (https://issues.rudder.io/issues/29097[#29097])
+* Export Group compliance by Rule to CSV
+    (https://issues.rudder.io/issues/29030[#29030])
+* Export Rule compliance by node to CSV
+    (https://issues.rudder.io/issues/28831[#28831])
+* Cover an Elm app with tests, including the `update` function
+    (https://issues.rudder.io/issues/28794[#28794])
+* Export Rule compliance by directive to CSV
+    (https://issues.rudder.io/issues/28802[#28802])
+* update owner for rudder-users.xml and rudder-web.properties
+    (https://issues.rudder.io/issues/28951[#28951])
+
+==== Security
+
+* Implement TOTP for Rudder users
+    (https://issues.rudder.io/issues/29025[#29025])
+
+==== Build & Deps - Rust
+
+* Use the new regex! macro
+    (https://issues.rudder.io/issues/29234[#29234])
+* Bump to Rust 1.97.0
+    (https://issues.rudder.io/issues/29228[#29228])
+
+==== Web - Config management
+
+* Add recent activity tab in technique detail page
+    (https://issues.rudder.io/issues/29081[#29081])
+* Add tenant management to configuration objects
+    (https://issues.rudder.io/issues/28945[#28945])
+* Add recent activity tab in directive detail page
+    (https://issues.rudder.io/issues/28887[#28887])
+* Inventory should happen at the end of agent run
+    (https://issues.rudder.io/issues/28960[#28960])
+* Add a configurable target for root node policies directory
+    (https://issues.rudder.io/issues/28912[#28912])
+* Change logs : fix search
+    (https://issues.rudder.io/issues/28157[#28157])
+
+==== Generic methods
+
+* It would be great to have the impacted sections in the secedit diff when a repair is reported
+    (https://issues.rudder.io/issues/28593[#28593])
+
+==== Module - templates
+
+* Add a template rendering trust mode and FS access methods in MiniJinja
+    (https://issues.rudder.io/issues/29187[#29187])
+
+==== Web - UI & UX
+
+* Improve the integration and appearance of the ‘Patches and vulnerabilities’ dashboard
+    (https://issues.rudder.io/issues/29149[#29149])
+* Adding CSS specific to the display of dedicated dashboard pages
+    (https://issues.rudder.io/issues/29128[#29128])
+* Add 'Patches & vulnerabilities' and 'Security benchmarks' sections to the dashboard
+    (https://issues.rudder.io/issues/28872[#28872])
+
+==== Relay server or API
+
+* Switch relayd to Rust 2024
+    (https://issues.rudder.io/issues/29124[#29124])
+* Add a size limit on files handled by relayd
+    (https://issues.rudder.io/issues/26026[#26026])
+* Switch back to upstream warp
+    (https://issues.rudder.io/issues/29041[#29041])
+
+==== Web - Campaigns
+
+* Be able to schedule campaigns every n months
+    (https://issues.rudder.io/issues/29120[#29120])
+
+==== Architecture - Code maintenance
+
+* Remove end of line in elm.json file
+    (https://issues.rudder.io/issues/29074[#29074])
+* UserId list parameter should be userIds
+    (https://issues.rudder.io/issues/28873[#28873])
+* Migrate to zio-json
+    (https://issues.rudder.io/issues/23677[#23677])
+* Migrate Properties/Property hierarchy to zio-json
+    (https://issues.rudder.io/issues/28759[#28759])
+* Migrate Properties/Property hierarchy to zio-json
+    (https://issues.rudder.io/issues/28759[#28759])
+* Migrate CampaignApiTest and last bit in rudder-rest to zio-jons
+    (https://issues.rudder.io/issues/28748[#28748])
+* Port SharedFileApi to zio-json
+    (https://issues.rudder.io/issues/28741[#28741])
+* Migrate RuleGrid and JsDataTable
+    (https://issues.rudder.io/issues/28739[#28739])
+* Migrate several rudder-web js param to zio-json
+    (https://issues.rudder.io/issues/28738[#28738])
+* Migrate system api to zio-json
+    (https://issues.rudder.io/issues/28734[#28734])
+* Migrate NodeContext to zio-json
+    (https://issues.rudder.io/issues/28742[#28742])
+
+==== rudderc
+
+* Only compile the Rust regexes once
+    (https://issues.rudder.io/issues/29051[#29051])
+
+==== Module - common
+
+* Remove the directory module
+    (https://issues.rudder.io/issues/29044[#29044])
+
+==== API
+
+* Copy rule compliance API endpoints to Rule API
+    (https://issues.rudder.io/issues/28911[#28911])
+* Port quicksearch to zio-json
+    (https://issues.rudder.io/issues/28509[#28509])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29302[#29302])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29300[#29300])
+* Fixed: Can't create techniques
+    (https://issues.rudder.io/issues/29297[#29297])
+* Fixed: ncf_hash_file owned by root
+    (https://issues.rudder.io/issues/29296[#29296])
+* Fixed: The webapp needs to write to /var/rudder/plugin-resources
+    (https://issues.rudder.io/issues/29293[#29293])
+* Fixed: All git actions should be made as rudder-webapp
+    (https://issues.rudder.io/issues/29292[#29292])
+* Fixed: Broken RPM build
+    (https://issues.rudder.io/issues/29291[#29291])
+* Fixed: webapp non root: fix rudder-upgrade script
+    (https://issues.rudder.io/issues/29282[#29282])
+* Fixed: Add /var/rudder/plugins as a webapp dir
+    (https://issues.rudder.io/issues/29280[#29280])
+* Fixed: webapp non-root: fix broken rpm packaging
+    (https://issues.rudder.io/issues/29277[#29277])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29275[#29275])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29274[#29274])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29262[#29262])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29220[#29220])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29213[#29213])
+* Fixed: webapp non-root: update user & group in rudder-jetty.service
+    (https://issues.rudder.io/issues/29100[#29100])
+* Fixed: webapp non-root: enable systemd tmp mount in service file
+    (https://issues.rudder.io/issues/29094[#29094])
+
+==== Miscellaneous
+
+* Fixed: webapp non-root: fix webapp tmp directory
+    (https://issues.rudder.io/issues/29104[#29104])
+* Fixed: webapp non-root: update webapp tmp directory
+    (https://issues.rudder.io/issues/29093[#29093])
+* Fixed: Missing usage of fragments in JDBC repository
+    (https://issues.rudder.io/issues/29257[#29257])
+* Fixed: Rollback change logs should not be able to be rolled back again
+    (https://issues.rudder.io/issues/29223[#29223])
+
+==== Documentation
+
+* Fixed: Documentation on supported operating systems by Rudder is not valid
+    (https://issues.rudder.io/issues/28609[#28609])
+* Fixed: Documentation on start.ini is not up to date with jetty 12
+    (https://issues.rudder.io/issues/29129[#29129])
+* Fixed: Missleading documentation about parameter maximum size of file uploads on the server
+    (https://issues.rudder.io/issues/28233[#28233])
+* Fixed: New cheatsheet
+    (https://issues.rudder.io/issues/29096[#29096])
+
+==== Security
+
+* Fixed: Change validation rudder-core internal API lose isCreator parameter
+    (https://issues.rudder.io/issues/29241[#29241])
+
+==== Web - Technique editor
+
+* Fixed: Rudder 9.1.3 : Technique action menu opens mostly hidden by left pane
+    (https://issues.rudder.io/issues/29272[#29272])
+
+==== Build & Deps - Rust
+
+* Fixed: Cap size when reading /etc/os-release
+    (https://issues.rudder.io/issues/29273[#29273])
+* Fixed: Fix the shorten string panic
+    (https://issues.rudder.io/issues/29266[#29266])
+* Fixed: Panics in common libraries
+    (https://issues.rudder.io/issues/29268[#29268])
+* Fixed: add diesel cve to deny.toml
+    (https://issues.rudder.io/issues/28892[#28892])
+
+==== Module - secedit
+
+* Fixed: Secedit remove user for user right assignements
+    (https://issues.rudder.io/issues/28849[#28849])
+* Fixed: Secedit remove user for user right assignements
+    (https://issues.rudder.io/issues/28849[#28849])
+* Fixed: Secedit remove user for user right assignements
+    (https://issues.rudder.io/issues/28849[#28849])
+* Fixed: Keep the previous default output format of the module CLI as JSON
+    (https://issues.rudder.io/issues/29235[#29235])
+* Fixed: Secedit some sections don't exist
+    (https://issues.rudder.io/issues/28852[#28852])
+* Fixed: Port the Windows modules to CFEngine Runner Protocol version 0 instead of CLI based API
+    (https://issues.rudder.io/issues/29170[#29170])
+
+==== Relay server or API
+
+* Fixed: Don't respond with complete error in API
+    (https://issues.rudder.io/issues/29265[#29265])
+* Fixed: Blocking DB query inside async warp filter
+    (https://issues.rudder.io/issues/29264[#29264])
+* Fixed: Prevent all dot components in relayd shared files API
+    (https://issues.rudder.io/issues/29071[#29071])
+* Fixed: Enforce TLS 1.3 in relayd HTTP client
+    (https://issues.rudder.io/issues/28348[#28348])
+
+==== Architecture - Dependencies
+
+* Fixed: Update postgresql to latest patch release
+    (https://issues.rudder.io/issues/29252[#29252])
+
+==== Generic methods
+
+* Fixed: Upmerge the variable_string_match tests
+    (https://issues.rudder.io/issues/29251[#29251])
+* Fixed: Migrate the variable_string_match to logger v4
+    (https://issues.rudder.io/issues/29247[#29247])
+
+==== Web - Nodes & inventories
+
+* Fixed: Document the nodeId new inventory variable
+    (https://issues.rudder.io/issues/29174[#29174])
+* Fixed: VMmemory attribute should be an integer, not a string
+    (https://issues.rudder.io/issues/20614[#20614])
+
+==== Web - UI & UX
+
+* Fixed: Missing edit button on node documentation
+    (https://issues.rudder.io/issues/26574[#26574])
+
+==== System integration
+
+* Fixed: WebApp non-root: run hooks with sudo only in production
+    (https://issues.rudder.io/issues/29079[#29079])
+* Fixed: WebApp non-root: run hooks with sudo only in production
+    (https://issues.rudder.io/issues/29079[#29079])
+
+==== CI
+
+* Fixed: Update the windows methods test dockerfile's sdk to 10.0
+    (https://issues.rudder.io/issues/28824[#28824])
+
+==== Architecture - Code maintenance
+
+* Fixed: Port RestCompletion to zio-json
+    (https://issues.rudder.io/issues/28733[#28733])
+
+==== Agent
+
+* Fixed: rudder server upgrade-techniques needs to partly run as rudder-webapp
+    (https://issues.rudder.io/issues/29294[#29294])
+* Fixed: rudder server upgrade-techniques needs to partly run as rudder-webapp
+    (https://issues.rudder.io/issues/29294[#29294])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Matthieu Baechler
+* Lars Koenen
+* Alexander Brunhirl
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
