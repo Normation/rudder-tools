@@ -1,0 +1,18 @@
+= Changelogs for Rudder plugin benchmark-cis-ubuntu-20-04 9.2.\* versions
+
+== benchmark-cis-ubuntu-20-04-9.2.0.alpha1-0.10 (2026-07-20)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Benchmark derivation
+    (https://issues.rudder.io/issues/28918[#28918])
+
+=== Bug fixes
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
