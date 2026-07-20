@@ -1,0 +1,22 @@
+= Changelogs for Rudder plugin vault 9.2.\* versions
+
+== vault-9.2.0.alpha1-2.1 (2026-07-21)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Update the variable_from_vault generic method to log_v4
+    (https://issues.rudder.io/issues/29249[#29249])
+* Fixed: webapp non-root: fix broken postinst
+    (https://issues.rudder.io/issues/29214[#29214])
+* Fixed: webapp non-root: fix postinst in rudder-plugins
+    (https://issues.rudder.io/issues/29156[#29156])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
