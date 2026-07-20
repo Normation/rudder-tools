@@ -1,0 +1,69 @@
+= Changelogs for Rudder plugin dsc 9.2.\* versions
+
+== dsc-9.2.0.alpha1-2.12 (2026-07-20)
+
+=== Changes
+
+
+==== Agent library
+
+* Add a Rudder module runner to the .NET library
+    (https://issues.rudder.io/issues/29057[#29057])
+* Force the minimal .NET requirement to net standard 2.0
+    (https://issues.rudder.io/issues/28999[#28999])
+
+==== ci
+
+* Update the dev/build dependencies
+    (https://issues.rudder.io/issues/29116[#29116])
+* Add some CI packaging tests
+    (https://issues.rudder.io/issues/28966[#28966])
+
+==== Packaging
+
+* Add agentd service to windows agent package
+    (https://issues.rudder.io/issues/29047[#29047])
+* Port the wix build to MSBuild
+    (https://issues.rudder.io/issues/28821[#28821])
+* Migrate the MSI installer from Wix v3 to Wix v6
+    (https://issues.rudder.io/issues/28694[#28694])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Broken postinst in dsc
+    (https://issues.rudder.io/issues/29281[#29281])
+* Fixed: Port 29219 to the merge powershell script
+    (https://issues.rudder.io/issues/29259[#29259])
+* Fixed: Use uconv instead of sed to remove UTF-8 BOM from powershell scripts at build time 
+    (https://issues.rudder.io/issues/29219[#29219])
+* Fixed: Upmerge broke docker build
+    (https://issues.rudder.io/issues/29038[#29038])
+
+==== Miscellaneous
+
+* Fixed: webapp non-root: fix postinst in rudder-plugins-private
+    (https://issues.rudder.io/issues/29158[#29158])
+
+==== System techniques
+
+* Fixed: Fix the initial policies
+    (https://issues.rudder.io/issues/29271[#29271])
+
+==== Generic methods
+
+* Fixed: Make Rudder-PowershellExecution timeout configurable
+    (https://issues.rudder.io/issues/29176[#29176])
+* Fixed: Fix the call to the module protocol Library
+    (https://issues.rudder.io/issues/29168[#29168])
+
+==== ci
+
+* Fixed: Keep the generated msi path consistent with earlier versions in the build
+    (https://issues.rudder.io/issues/28909[#28909])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
