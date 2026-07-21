@@ -1,5 +1,7 @@
 = Change logs for Rudder 8.3
 
+**Rudder 8.3 has reached end of life in July 2026**
+
 Rudder 8.3 focuses on polishing and consolidating
 the features introduced in Rudder 8.
 
