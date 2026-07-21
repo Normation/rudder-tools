@@ -1560,7 +1560,7 @@ if __name__ == "__main__":
     elif re.match(r'^i?\d{2,5}$', smart):
       arguments['branch'] = True
       arguments['<ticket_id>'] = smart
-    elif re.match(r'^\d\.(\d+|x)$|^master$', smart):
+    elif re.match(r'^\d+\.(\d+|x)$|^master$', smart):
       arguments['pull'] = True
       arguments['<branch>'] = smart
     elif re.match(r'^[A-Z]{3}$', smart):
