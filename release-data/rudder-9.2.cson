@@ -130,10 +130,10 @@ api-version = {
               }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "8.3", "9.0", "9.1" ]
+compatible-agents = [ "9.0", "9.1", "9.2" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "8.3", "9.0", "9.1" ]
+supported-upgrade = [ "9.0", "9.1", "9.2" ]
 
 
 plugins = [ "auth-backends", "centreon", "datasources", 
