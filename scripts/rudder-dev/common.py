@@ -74,6 +74,18 @@ def shell(command, comment=None, keep_output=False, fail_exit=True, keep_error=F
 def logfail(message):
   print(Config.ERROR_TPL.format(message))
 
+# Git ref names allow shell metacharacters (;|&$`(), spaces are the only
+# thing forbidden), so any ref coming from an external source (GitHub API,
+# etc.) must be checked against this safe allowlist before being
+# interpolated into a shell() command.
+REF_NAME_RE = re.compile(r'^[A-Za-z0-9._/-]+$')
+
+def validate_ref_name(name):
+  if not isinstance(name, str) or not REF_NAME_RE.match(name) or ".." in name:
+    logfail("Invalid ref name: {!r}".format(name))
+    exit(1)
+  return name
+
 # Read rudder configuration from ~/.rudder-dev or create a template if none found
 def read_configuration(section=None):
   # Detect missing configuration

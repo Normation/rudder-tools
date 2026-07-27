@@ -47,11 +47,11 @@ class PR:
 
   def remote_branch(self):
     self._request_pr()
-    return self.info['head']['ref']
+    return validate_ref_name(self.info['head']['ref'])
 
   def base_branch(self):
     self._request_pr()
-    return self.info['base']['ref']
+    return validate_ref_name(self.info['base']['ref'])
 
   def author(self):
     self._request_pr()

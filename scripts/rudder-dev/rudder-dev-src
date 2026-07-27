@@ -504,7 +504,7 @@ def close_pr(pr_url, comment):
 def get_pr_upstream(pr_url):
   url = "https://api.github.com/repos/Normation/{repo}/pulls/{pr_id}"
   pr = github_request(url, None, pr_url)
-  return pr['base']['ref']
+  return validate_ref_name(pr['base']['ref'])
 
 # get PR merge commit
 def get_pr_merge_commit(pr_url):
