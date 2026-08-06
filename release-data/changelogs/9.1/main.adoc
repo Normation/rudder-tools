@@ -1,5 +1,169 @@
 = Change logs for Rudder 9.1
 
+==  Rudder 9.1.4 (2026-08-06)
+
+=== Changes
+
+
+==== Security
+
+* Restrict session tracking mode to cookie
+    (https://issues.rudder.io/issues/29411[#29411])
+
+==== Generic methods
+
+* It would be great to have the impacted sections in the secedit diff when a repair is reported
+    (https://issues.rudder.io/issues/28593[#28593])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Warning about missing strt.ini in RPM 9.0 -> 9.1 upgrade
+    (https://issues.rudder.io/issues/29471[#29471])
+* Fixed: Jetty restart in postinst fails in RPM packages on 9.0 -> 9.1
+    (https://issues.rudder.io/issues/29466[#29466])
+* Fixed: postinst of cis benchmark rhel9 to change parameters fails
+    (https://issues.rudder.io/issues/29321[#29321])
+* Fixed: Move the plugin update state file
+    (https://issues.rudder.io/issues/29439[#29439])
+
+==== Documentation
+
+* Fixed: Upgrade doc on sles is invalid
+    (https://issues.rudder.io/issues/29446[#29446])
+* Fixed: What is rudder description is outdated
+    (https://issues.rudder.io/issues/29269[#29269])
+* Fixed: adapt Rudder sizing requirements to Policy Benchmarks
+    (https://issues.rudder.io/issues/29357[#29357])
+* Fixed: Documentation on supported operating systems by Rudder is not valid
+    (https://issues.rudder.io/issues/28609[#28609])
+* Fixed: Documentation on start.ini is not up to date with jetty 12
+    (https://issues.rudder.io/issues/29129[#29129])
+* Fixed: Missleading documentation about parameter maximum size of file uploads on the server
+    (https://issues.rudder.io/issues/28233[#28233])
+* Fixed: Clean the base rudder-users.xml
+    (https://issues.rudder.io/issues/29381[#29381])
+
+==== Miscellaneous
+
+* Fixed: missing changes in rudder doc 9.1
+    (https://issues.rudder.io/issues/29342[#29342])
+* Fixed: Missing usage of fragments in JDBC repository
+    (https://issues.rudder.io/issues/29257[#29257])
+* Fixed: Rollback change logs should not be able to be rolled back again
+    (https://issues.rudder.io/issues/29223[#29223])
+
+==== Security
+
+* Fixed: Escape html in remote run error handler
+    (https://issues.rudder.io/issues/29465[#29465])
+* Fixed: Escape some more JS values
+    (https://issues.rudder.io/issues/29394[#29394])
+* Fixed: Switch to trivy for vuln tracking
+    (https://issues.rudder.io/issues/29356[#29356])
+* Fixed: Enforce bcrypt factor >= 10 for new passwords
+    (https://issues.rudder.io/issues/25521[#25521])
+* Fixed: Change validation rudder-core internal API lose isCreator parameter
+    (https://issues.rudder.io/issues/29241[#29241])
+
+==== Web - Technique editor
+
+* Fixed: Windows datastate rendering diverges between the webapp and rudderc ({{ vs {{{)
+    (https://issues.rudder.io/issues/29418[#29418])
+* Fixed: Rudder 9.1.3 : Technique action menu opens mostly hidden by left pane
+    (https://issues.rudder.io/issues/29272[#29272])
+
+==== Web - Nodes & inventories
+
+* Fixed: Search on processes don't work anymore
+    (https://issues.rudder.io/issues/28621[#28621])
+* Fixed: LDAP error when deleting a node
+    (https://issues.rudder.io/issues/29365[#29365])
+* Fixed: Document the nodeId new inventory variable
+    (https://issues.rudder.io/issues/29174[#29174])
+
+==== Web - UI & UX
+
+* Fixed: Recent changes on nodes should use the hostname
+    (https://issues.rudder.io/issues/29152[#29152])
+* Fixed: Link to search in agent version donut are not correct
+    (https://issues.rudder.io/issues/27111[#27111])
+* Fixed: Missing edit button on node documentation
+    (https://issues.rudder.io/issues/26574[#26574])
+
+==== Module - system-updates
+
+* Fixed: Puzzling UUID output for rudder-module-system-updates list
+    (https://issues.rudder.io/issues/29361[#29361])
+* Fixed: TOCTOU in lock SQL query
+    (https://issues.rudder.io/issues/29324[#29324])
+
+==== Relay server or API
+
+* Fixed: Add node_id to logs about broken reports
+    (https://issues.rudder.io/issues/29354[#29354])
+* Fixed: Don't respond with complete error in API
+    (https://issues.rudder.io/issues/29265[#29265])
+
+==== API
+
+* Fixed: Missing documentation for "force" param of technique deletion API
+    (https://issues.rudder.io/issues/26916[#26916])
+
+==== Module - templates
+
+* Fixed: Crash on python error
+    (https://issues.rudder.io/issues/29318[#29318])
+
+==== Module - secedit
+
+* Fixed: Secedit remove user for user right assignements
+    (https://issues.rudder.io/issues/28849[#28849])
+* Fixed: Secedit remove user for user right assignements
+    (https://issues.rudder.io/issues/28849[#28849])
+* Fixed: Secedit remove user for user right assignements
+    (https://issues.rudder.io/issues/28849[#28849])
+* Fixed: Secedit some sections don't exist
+    (https://issues.rudder.io/issues/28852[#28852])
+
+==== Build & Deps - Rust
+
+* Fixed: Panics in common libraries
+    (https://issues.rudder.io/issues/29268[#29268])
+
+==== Architecture - Dependencies
+
+* Fixed: Update postgresql to latest patch release
+    (https://issues.rudder.io/issues/29252[#29252])
+
+==== Generic methods
+
+* Fixed: Upmerge the variable_string_match tests
+    (https://issues.rudder.io/issues/29251[#29251])
+* Fixed: Migrate the variable_string_match to logger v4
+    (https://issues.rudder.io/issues/29247[#29247])
+
+==== System techniques
+
+* Fixed: Add a rudder agent run to bootstrap policies
+    (https://issues.rudder.io/issues/29395[#29395])
+
+==== Agent
+
+* Fixed: Inventory and run broken in https_only mode
+    (https://issues.rudder.io/issues/29378[#29378])
+* Fixed: rudder agent restore cannot restore a file, where it should
+    (https://issues.rudder.io/issues/29326[#29326])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Alexander Brunhirl
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.1.3 (2026-07-09)
 
 === Changes
