@@ -1,5 +1,25 @@
 = Changelogs for Rudder plugin consul 9.2.\* versions
 
+== consul-9.2.0.beta1-2.1 (2026-08-31)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Missing config loading
+    (https://issues.rudder.io/issues/29642[#29642])
+* Fixed: webapp non-root: fix change-validation postinst
+    (https://issues.rudder.io/issues/29467[#29467])
+* Fixed: Syntax errors in methods
+    (https://issues.rudder.io/issues/29426[#29426])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == consul-9.2.0.alpha1-2.1 (2026-07-21)
 
 === Changes
