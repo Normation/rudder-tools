@@ -1,5 +1,47 @@
 = Changelogs for Rudder plugin security-benchmarks 9.2.\* versions
 
+== security-benchmarks-9.2.0.beta1-1.2 (2026-08-31)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Replace ok/ko with compliant/not compliant when benchmark compliance is exported to CSV
+    (https://issues.rudder.io/issues/29498[#29498])
+* Security benchmark ui does not support new benchmark model
+    (https://issues.rudder.io/issues/29419[#29419])
+* Add unit tests for compliance exports to csv
+    (https://issues.rudder.io/issues/29314[#29314])
+
+=== Bug fixes
+
+==== Security
+
+* Fixed: We must not vendor jsPDF
+    (https://issues.rudder.io/issues/29598[#29598])
+
+==== Miscellaneous
+
+* Fixed: webapp non-root: fix plugins postinst 
+    (https://issues.rudder.io/issues/29601[#29601])
+* Fixed: The interface does not take up 100% of the screen width
+    (https://issues.rudder.io/issues/29576[#29576])
+* Fixed: Add set -e to shell scripts in rudder-plugins-private
+    (https://issues.rudder.io/issues/29570[#29570])
+* Fixed: Bootcheck error: relation "securitybenchmarks" does not exist
+    (https://issues.rudder.io/issues/29555[#29555])
+* Fixed: update benchmark score for node log should be debug
+    (https://issues.rudder.io/issues/29475[#29475])
+* Fixed: Some missing changes in techniques (missing conditions, missing parameters) also some conditions where wrong
+    (https://issues.rudder.io/issues/29400[#29400])
+* Fixed: The home page of security bechmarks is not great
+    (https://issues.rudder.io/issues/29355[#29355])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.2.0.alpha1-1.2 (2026-07-20)
 
 === Changes
