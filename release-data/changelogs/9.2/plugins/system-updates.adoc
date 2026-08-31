@@ -1,5 +1,36 @@
 = Changelogs for Rudder plugin system-updates 9.2.\* versions
 
+== system-updates-9.2.0.beta1-1.18 (2026-08-31)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Make package updates by node Export to CSV button more specific
+    (https://issues.rudder.io/issues/29338[#29338])
+* Get targeted nodes list for planned events
+    (https://issues.rudder.io/issues/28352[#28352])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Duplicate menu 410 error message
+    (https://issues.rudder.io/issues/29554[#29554])
+* Fixed: Add set -e to shell scripts in rudder-plugins-private
+    (https://issues.rudder.io/issues/29570[#29570])
+* Fixed: Fix compilation errors of #28352 in version 9.2
+    (https://issues.rudder.io/issues/29484[#29484])
+* Fixed: Fix compilation errors of #28352 in version 9.1
+    (https://issues.rudder.io/issues/29478[#29478])
+* Fixed: Concurrent windows agents run can trigger the post upgrade hooks multiple times
+    (https://issues.rudder.io/issues/28881[#28881])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-9.2.0.alpha1-1.18 (2026-07-20)
 
 === Changes
