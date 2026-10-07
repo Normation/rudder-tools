@@ -1,5 +1,31 @@
 = Changelogs for Rudder plugin security-benchmarks 9.1.\* versions
 
+== security-benchmarks-9.1.5-1.2 (2026-10-07)
+
+=== Changes
+
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Import diff script for CIS benchmarks
+    (https://issues.rudder.io/issues/29433[#29433])
+* Fixed: correct page access rights
+    (https://issues.rudder.io/issues/29822[#29822])
+* Fixed: Missing a space above the title Score details by groups in the Security benchmarks Groups tab
+    (https://issues.rudder.io/issues/28626[#28626])
+* Fixed: Node score computation is quadratic when it can be linear
+    (https://issues.rudder.io/issues/29695[#29695])
+* Fixed: Security benchmarks graphs still present in dashboard after being deleted
+    (https://issues.rudder.io/issues/29681[#29681])
+* Fixed: update benchmark score for node log should be debug
+    (https://issues.rudder.io/issues/29475[#29475])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.1.4-1.2 (2026-08-06)
 
 === Changes
