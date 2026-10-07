@@ -1,5 +1,210 @@
 = Change logs for Rudder 9.1
 
+==  Rudder 9.1.5 (2026-10-07)
+
+=== Changes
+
+
+==== Web - Technique editor
+
+* Make file size in techniques resources upload configurable 
+    (https://issues.rudder.io/issues/29791[#29791])
+
+==== Web - UI & UX
+
+* Reorganise compliance tab in node details
+    (https://issues.rudder.io/issues/29748[#29748])
+
+==== Miscellaneous
+
+* Technique change logs miss a link to go the technique view
+    (https://issues.rudder.io/issues/29655[#29655])
+* Change logs : column Actor should be named User
+    (https://issues.rudder.io/issues/29654[#29654])
+* We embeded useless data in war that bloat it sizes
+    (https://issues.rudder.io/issues/29552[#29552])
+
+==== Documentation
+
+* Update Redoc tooling and remove RapiDoc
+    (https://issues.rudder.io/issues/29568[#29568])
+
+==== Architecture - Dependencies
+
+* Some dependencies have no parameterized version in pom.xml
+    (https://issues.rudder.io/issues/29537[#29537])
+
+==== Build & Deps - Rust
+
+* Clippy clean the Windows build
+    (https://issues.rudder.io/issues/29513[#29513])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Actually, filename encoding of jetty produced file is not UTF-8
+    (https://issues.rudder.io/issues/29869[#29869])
+* Fixed: Bump to openssl 3.5.9 & curl 8.22.0
+    (https://issues.rudder.io/issues/29826[#29826])
+
+==== Documentation
+
+* Fixed: Update DOC on relay
+    (https://issues.rudder.io/issues/29858[#29858])
+* Fixed: document that rudder agent uses about 90 MB
+    (https://issues.rudder.io/issues/29717[#29717])
+* Fixed: Document that Rudder relay need to be in version 9.0 at least with Rudder server 9.1
+    (https://issues.rudder.io/issues/28982[#28982])
+* Fixed: Fix relay configuration files path
+    (https://issues.rudder.io/issues/29586[#29586])
+* Fixed: PostgreSQL documentation is incorrect wrt to current support version
+    (https://issues.rudder.io/issues/29473[#29473])
+* Fixed: JSON payload in create technique endpoint is completely wrong
+    (https://issues.rudder.io/issues/29647[#29647])
+* Fixed: Recompute the redoc.js hash after our changes
+    (https://issues.rudder.io/issues/29582[#29582])
+
+==== System integration
+
+* Fixed: Upload limit problem in 27413 is back 
+    (https://issues.rudder.io/issues/29226[#29226])
+
+==== Web - UI & UX
+
+* Fixed: Permissions in user information are displayed with "anon"
+    (https://issues.rudder.io/issues/29878[#29878])
+* Fixed: When we creates a group category, the console fills up with a stream of error
+    (https://issues.rudder.io/issues/29847[#29847])
+* Fixed: When we create a global property, the create button disappear
+    (https://issues.rudder.io/issues/29205[#29205])
+* Fixed: Impossible to delete a category in the Techniques Tree
+    (https://issues.rudder.io/issues/26191[#26191])
+* Fixed: The text filter for Group compliance by node does not work correctly
+    (https://issues.rudder.io/issues/29730[#29730])
+* Fixed: LastPass extension breaks node properties
+    (https://issues.rudder.io/issues/28879[#28879])
+* Fixed: Standardise the message when no results match the filters
+    (https://issues.rudder.io/issues/29585[#29585])
+* Fixed: The rules' recent changes tab may contain an empty "recent changes" dropdown
+    (https://issues.rudder.io/issues/29501[#29501])
+
+==== Build & Deps - Rust
+
+* Fixed: CVE-2026-102342 in ammonia
+    (https://issues.rudder.io/issues/29864[#29864])
+* Fixed: Small hardening fixes in relayd
+    (https://issues.rudder.io/issues/29432[#29432])
+
+==== CI
+
+* Fixed: Fix broken augeas build
+    (https://issues.rudder.io/issues/29873[#29873])
+* Fixed: Dockerfile of policies uses 8.3 instead of 9.0 version in build
+    (https://issues.rudder.io/issues/29606[#29606])
+
+==== rudderc
+
+* Fixed: rudderc should log parms error on lib
+    (https://issues.rudder.io/issues/29868[#29868])
+* Fixed: Tests on rudderc files are disabled
+    (https://issues.rudder.io/issues/29666[#29666])
+* Fixed: Tests on rudderc files are disabled
+    (https://issues.rudder.io/issues/29666[#29666])
+
+==== Performance and scalability
+
+* Fixed: Score cache are not used during boot
+    (https://issues.rudder.io/issues/29781[#29781])
+* Fixed: We need to have a startup timing log 
+    (https://issues.rudder.io/issues/29701[#29701])
+* Fixed: Reading nodes at startup must be done in a bulk request
+    (https://issues.rudder.io/issues/29696[#29696])
+* Fixed: nodelastcompliance table can get *really* big
+    (https://issues.rudder.io/issues/29154[#29154])
+
+==== Plugins integration
+
+* Fixed: When the version in the license doesn't match the version of Rudder, nothing says in the web interface that it is not compatible
+    (https://issues.rudder.io/issues/29706[#29706])
+
+==== Miscellaneous
+
+* Fixed: Missing path trasersal hardening for campaigns
+    (https://issues.rudder.io/issues/29799[#29799])
+* Fixed: Ignore CVE-2026-8657 in rudder 9.0
+    (https://issues.rudder.io/issues/29687[#29687])
+* Fixed: Bump jsondiffpatch version to 0.7.6
+    (https://issues.rudder.io/issues/29686[#29686])
+* Fixed: exotic passwords fails vulnerability management
+    (https://issues.rudder.io/issues/29519[#29519])
+
+==== Architecture - Code maintenance
+
+* Fixed: Update and consolidate claude skills
+    (https://issues.rudder.io/issues/29438[#29438])
+
+==== Web - Nodes & inventories
+
+* Fixed: attribute 'commandName' is unknown for type 'process'
+    (https://issues.rudder.io/issues/29733[#29733])
+* Fixed: It is impossible to remove an override on the the rudder node property or equivalent
+    (https://issues.rudder.io/issues/29682[#29682])
+
+==== Architecture - Dependencies
+
+* Fixed: Bump svgo version
+    (https://issues.rudder.io/issues/29728[#29728])
+
+==== Web - Config management
+
+* Fixed: Technique modification event log rollback causes sql error
+    (https://issues.rudder.io/issues/29500[#29500])
+
+==== Web - Maintenance
+
+* Fixed: Restore of archive backup should not have rollback events 
+    (https://issues.rudder.io/issues/29520[#29520])
+
+==== Security
+
+* Fixed: Handle Scala dependency security checks since Trivy
+    (https://issues.rudder.io/issues/29539[#29539])
+* Fixed: Use latest release of bouncycastle
+    (https://issues.rudder.io/issues/29540[#29540])
+* Fixed: Clarify the npm dependency security checks
+    (https://issues.rudder.io/issues/29531[#29531])
+* Fixed: Remove better-npm-audit dev dependency
+    (https://issues.rudder.io/issues/29532[#29532])
+* Fixed: Clarify the Rust dependency security checks
+    (https://issues.rudder.io/issues/29530[#29530])
+* Fixed: Bump spring-ldap-core version
+    (https://issues.rudder.io/issues/29533[#29533])
+* Fixed: Fix trivy branch checks
+    (https://issues.rudder.io/issues/29505[#29505])
+* Fixed: Make the argon2 impl more reliable
+    (https://issues.rudder.io/issues/29477[#29477])
+
+==== Web - Technique editor
+
+* Fixed: Filter input and search icon are misaligned in the Target rules tab
+    (https://issues.rudder.io/issues/29497[#29497])
+
+==== Techniques
+
+* Fixed: Missing Report for "Create User Second Groups" Directive on Multiple Nodes
+    (https://issues.rudder.io/issues/28034[#28034])
+* Fixed: In technique packageManagement already_install class is defined in pass1
+    (https://issues.rudder.io/issues/29416[#29416])
+
+=== Release notes
+
+Special thanks go out to the following individuals who invested time, patience, testing, patches or bug reports to make this version of Rudder better:
+
+* Killian Duranti
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.1.4 (2026-08-06)
 
 === Changes
