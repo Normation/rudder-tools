@@ -1,5 +1,41 @@
 = Changelogs for Rudder plugin system-updates 9.2.\* versions
 
+== system-updates-9.2.0.rc1-1.18 (2026-10-14)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* System-updates documentation for CSV export should exist
+    (https://issues.rudder.io/issues/26486[#26486])
+* Add JSON serialization/deserialization unit tests for PackageState
+    (https://issues.rudder.io/issues/29835[#29835])
+* Add a new package-action state "pending-install" to the campaign reports
+    (https://issues.rudder.io/issues/29724[#29724])
+* Enhancements on export to CSV buttons in system-updates
+    (https://issues.rudder.io/issues/29713[#29713])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: Compilation error for missing parameter of mock
+    (https://issues.rudder.io/issues/29951[#29951])
+* Fixed: 9.1 windows techniques fails to pass the excluded patchs to the rust module
+    (https://issues.rudder.io/issues/29913[#29913])
+* Fixed: The windows module never really check if the "excludes" feature is supported or not
+    (https://issues.rudder.io/issues/29854[#29854])
+
+==== UI - UX
+
+* Fixed: Remove the dedicated ‘Dashboard’ page from the ‘Patches & vulnerabilities’ menu
+    (https://issues.rudder.io/issues/29635[#29635])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == system-updates-9.2.0.beta1-1.18 (2026-08-31)
 
 === Changes
