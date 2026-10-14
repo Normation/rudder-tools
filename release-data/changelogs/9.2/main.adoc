@@ -1,5 +1,347 @@
 = Change logs for Rudder 9.2==  Rudder 9.2.0.alpha1 (2026-07-20)
 
+==  Rudder 9.2.0.rc1 (2026-10-14)
+
+=== Changes
+
+
+==== Documentation
+
+* Document configuration of TOTP and provider cases
+    (https://issues.rudder.io/issues/29795[#29795])
+* Document the hook mv-policies
+    (https://issues.rudder.io/issues/29793[#29793])
+
+==== Web - UI & UX
+
+* "show logs" button in node compliance tab looks bad when no policies are applied
+    (https://issues.rudder.io/issues/29814[#29814])
+* Reorganise compliance tab in node details
+    (https://issues.rudder.io/issues/29748[#29748])
+* Put rule's node compliance and directive compliance tabs in a parent Compliance tab
+    (https://issues.rudder.io/issues/29544[#29544])
+* Remove unused js function in rudder-datatable
+    (https://issues.rudder.io/issues/29661[#29661])
+
+==== Web - Compliance & node report
+
+* The last reports date is not displayed in the System status page of a node 
+    (https://issues.rudder.io/issues/29734[#29734])
+
+==== Miscellaneous
+
+* Update to zio-json 1.1.0 for Rudder 9.2
+    (https://issues.rudder.io/issues/29889[#29889])
+* Enhancements on export to CSV buttons
+    (https://issues.rudder.io/issues/29697[#29697])
+* Recent Activity feature reworded to History
+    (https://issues.rudder.io/issues/29736[#29736])
+* Recent Activity get last 100 event logs sorted by date order desc
+    (https://issues.rudder.io/issues/29742[#29742])
+* Recent Activity : column Actor should be named User
+    (https://issues.rudder.io/issues/29683[#29683])
+* Technique change logs miss a link to go the technique view
+    (https://issues.rudder.io/issues/29655[#29655])
+
+==== Security - tenants
+
+* Add tenant management to configuration objects
+    (https://issues.rudder.io/issues/28945[#28945])
+* Add tenant management to configuration objects
+    (https://issues.rudder.io/issues/28945[#28945])
+
+==== Web - Technique editor
+
+* Make file size in techniques resources upload configurable 
+    (https://issues.rudder.io/issues/29791[#29791])
+
+==== Generic methods
+
+* Allow new pkgs on apt upgrades
+    (https://issues.rudder.io/issues/29722[#29722])
+
+==== Web - Config management
+
+* Make it possible to rollback item after a commit 
+    (https://issues.rudder.io/issues/29776[#29776])
+
+==== Agent
+
+* Add a CLI to list agentd active jobs as JSON
+    (https://issues.rudder.io/issues/29768[#29768])
+* Provide a get-next-run command to agentd
+    (https://issues.rudder.io/issues/29574[#29574])
+
+==== Architecture - Dependencies
+
+* Use scala 3.9.0 in Rudder 9.2
+    (https://issues.rudder.io/issues/29761[#29761])
+
+==== Module - secedit
+
+* Add a report_file optional input to the secedit module
+    (https://issues.rudder.io/issues/29749[#29749])
+
+==== Server components
+
+* Add the technique writer logger to the logback file
+    (https://issues.rudder.io/issues/29731[#29731])
+
+==== Build & Deps - Rust
+
+* Update to Rust 1.98.0
+    (https://issues.rudder.io/issues/29662[#29662])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Reset initial policies in servers at upgrade
+    (https://issues.rudder.io/issues/29949[#29949])
+* Fixed: We can not synchronize the ncf folders in the rudder-server-postinst as the plugins postinst have yet to run, a sync before them would only deploy outdated methods metadata
+    (https://issues.rudder.io/issues/29935[#29935])
+* Fixed: Force the update of the ncf content in the rudder-server-postinst before starting the webapp
+    (https://issues.rudder.io/issues/29932[#29932])
+* Fixed: Incorrect permission change on /var/rudder/ncf/local done by the rudder-server-postinst
+    (https://issues.rudder.io/issues/29931[#29931])
+* Fixed: webapp non-root: fix perms on /var/rudder/ncf/local/
+    (https://issues.rudder.io/issues/29921[#29921])
+* Fixed: Actually, filename encoding of jetty produced file is not UTF-8
+    (https://issues.rudder.io/issues/29869[#29869])
+* Fixed: Bump to openssl 3.5.9 & curl 8.22.0
+    (https://issues.rudder.io/issues/29826[#29826])
+* Fixed: webapp non-root: add /var/log to systemd sandbox
+    (https://issues.rudder.io/issues/29777[#29777])
+* Fixed: webapp non-root: create backup directory 
+    (https://issues.rudder.io/issues/29766[#29766])
+* Fixed: Missing chown on /var/rudder/backup
+    (https://issues.rudder.io/issues/29760[#29760])
+* Fixed: webapp non-root: fix wrong owner after acl restoration
+    (https://issues.rudder.io/issues/29757[#29757])
+
+==== Miscellaneous
+
+* Fixed: webapp non-root: fix /var/rudder/ncf/local perms
+    (https://issues.rudder.io/issues/29875[#29875])
+* Fixed: webapp non-root: fix sudo-rs environment restriction issue
+    (https://issues.rudder.io/issues/29669[#29669])
+* Fixed: Correct password escaping in post-inst
+    (https://issues.rudder.io/issues/29658[#29658])
+* Fixed: Include not fully installed updates (with pending reboot for instance) to the Windows packages reporting
+    (https://issues.rudder.io/issues/29139[#29139])
+* Fixed: Missing path trasersal hardening for campaigns
+    (https://issues.rudder.io/issues/29799[#29799])
+* Fixed: Missing path trasersal hardening for campaigns
+    (https://issues.rudder.io/issues/29799[#29799])
+* Fixed: Fix typo after manual merge on History
+    (https://issues.rudder.io/issues/29771[#29771])
+* Fixed: Recent Activity : link to change logs page on id only for administrator
+    (https://issues.rudder.io/issues/29751[#29751])
+* Fixed: Ignore CVE-2026-8657 in rudder 9.0
+    (https://issues.rudder.io/issues/29687[#29687])
+* Fixed: Bump jsondiffpatch version to 0.7.6
+    (https://issues.rudder.io/issues/29686[#29686])
+* Fixed: Wrong change logs result when comming from recent activity id link
+    (https://issues.rudder.io/issues/29648[#29648])
+* Fixed: error 500 when deleting a campaign
+    (https://issues.rudder.io/issues/29625[#29625])
+* Fixed: exotic passwords fails vulnerability management
+    (https://issues.rudder.io/issues/29519[#29519])
+* Fixed: fix rudder agent non-root failsafe
+    (https://issues.rudder.io/issues/29833[#29833])
+
+==== Web - UI & UX
+
+* Fixed: Login error for invalid TOTP is an ugly apache error
+    (https://issues.rudder.io/issues/29819[#29819])
+* Fixed: Directive count on dashboard is off
+    (https://issues.rudder.io/issues/29725[#29725])
+* Fixed: Permissions in user information are displayed with "anon"
+    (https://issues.rudder.io/issues/29878[#29878])
+* Fixed: Dashboard layout is surprising in 9.2
+    (https://issues.rudder.io/issues/29845[#29845])
+* Fixed: When we creates a group category, the console fills up with a stream of error
+    (https://issues.rudder.io/issues/29847[#29847])
+* Fixed: User management page shows TOTP warning for OIDC users
+    (https://issues.rudder.io/issues/29798[#29798])
+* Fixed: When we create a global property, the create button disappear
+    (https://issues.rudder.io/issues/29205[#29205])
+* Fixed: Impossible to delete a category in the Techniques Tree
+    (https://issues.rudder.io/issues/26191[#26191])
+* Fixed: Display of item rollback is confusing in change log details
+    (https://issues.rudder.io/issues/29729[#29729])
+* Fixed: OTP page can be a redirect page of itself
+    (https://issues.rudder.io/issues/29726[#29726])
+* Fixed: The text filter for Group compliance by node does not work correctly
+    (https://issues.rudder.io/issues/29730[#29730])
+* Fixed: LastPass extension breaks node properties
+    (https://issues.rudder.io/issues/28879[#28879])
+
+==== System integration
+
+* Fixed: Permissions error(s) at upgrade from 9.1-nightly to 9.2-nightly
+    (https://issues.rudder.io/issues/29710[#29710])
+* Fixed: Upload limit problem in 27413 is back 
+    (https://issues.rudder.io/issues/29226[#29226])
+* Fixed: webapp non-root: force the webapp to use sudo.ws
+    (https://issues.rudder.io/issues/29794[#29794])
+
+==== Documentation
+
+* Fixed: Update DOC on relay
+    (https://issues.rudder.io/issues/29858[#29858])
+* Fixed: document that rudder agent uses about 90 MB
+    (https://issues.rudder.io/issues/29717[#29717])
+* Fixed: Document that Rudder relay need to be in version 9.0 at least with Rudder server 9.1
+    (https://issues.rudder.io/issues/28982[#28982])
+* Fixed: API documentation mentions JWT but it is not in Rudder API
+    (https://issues.rudder.io/issues/29918[#29918])
+
+==== Web - Config management
+
+* Fixed: Missing trace log on target nodes filtered by tenant due to skipped ZIO
+    (https://issues.rudder.io/issues/29953[#29953])
+* Fixed: Rollback of all configuration is skipped without any log
+    (https://issues.rudder.io/issues/29952[#29952])
+* Fixed: Technique modification event log rollback causes sql error
+    (https://issues.rudder.io/issues/29500[#29500])
+
+==== API
+
+* Fixed: Missing tenant API doc and output for nodes is inconsistent
+    (https://issues.rudder.io/issues/29939[#29939])
+* Fixed: If one parameter's id contains another parameter's id, the recent activity table of the second parameter will contain event logs that concern the first parameter
+    (https://issues.rudder.io/issues/29549[#29549])
+
+==== Plugin manager cli
+
+* Fixed: Rudder package should always clean the /opt/rudder/share/plugins/<plugin id> folder before unpacking a plugin
+    (https://issues.rudder.io/issues/27873[#27873])
+
+==== Web - Maintenance
+
+* Fixed: Inconsistencies in history tabs, and link not always usefull
+    (https://issues.rudder.io/issues/29842[#29842])
+* Fixed: Users clean success log results in stack trace
+    (https://issues.rudder.io/issues/29838[#29838])
+
+==== Agent
+
+* Fixed: Agentd should not break if there is a configuration file error
+    (https://issues.rudder.io/issues/29832[#29832])
+* Fixed: agentd configuration parsing errors are not logged
+    (https://issues.rudder.io/issues/29825[#29825])
+* Fixed: Typo introduced in 29574
+    (https://issues.rudder.io/issues/29758[#29758])
+* Fixed: Improve agent logs
+    (https://issues.rudder.io/issues/29665[#29665])
+* Fixed: Missing generic OS System conditions for redhat family nodes
+    (https://issues.rudder.io/issues/29693[#29693])
+* Fixed: Issue a proper error message and exit when agent is started as non-root
+    (https://issues.rudder.io/issues/29486[#29486])
+
+==== Security - tenants
+
+* Fixed: Missing tenant filtering in technique repository
+    (https://issues.rudder.io/issues/29884[#29884])
+* Fixed: Add tenant management to techniques
+    (https://issues.rudder.io/issues/29812[#29812])
+
+==== CI
+
+* Fixed: Fix broken augeas build
+    (https://issues.rudder.io/issues/29873[#29873])
+* Fixed: Fix broken augeas build
+    (https://issues.rudder.io/issues/29873[#29873])
+
+==== Build & Deps - Rust
+
+* Fixed: CVE-2026-102342 in ammonia
+    (https://issues.rudder.io/issues/29864[#29864])
+* Fixed: Update to Rust 1.98.1
+    (https://issues.rudder.io/issues/29762[#29762])
+
+==== rudderc
+
+* Fixed: rudderc should log parms error on lib
+    (https://issues.rudder.io/issues/29868[#29868])
+* Fixed: Tests on rudderc files are disabled
+    (https://issues.rudder.io/issues/29666[#29666])
+* Fixed: Tests on rudderc files are disabled
+    (https://issues.rudder.io/issues/29666[#29666])
+
+==== Architecture - Code maintenance
+
+* Fixed: Upmerge broke build
+    (https://issues.rudder.io/issues/29862[#29862])
+* Fixed: Some change were reverted during merge of 29390
+    (https://issues.rudder.io/issues/29803[#29803])
+* Fixed: Update and consolidate claude skills
+    (https://issues.rudder.io/issues/29438[#29438])
+* Fixed: Adding new instance reaches platform limit in RudderConfig
+    (https://issues.rudder.io/issues/29699[#29699])
+* Fixed: org.eclipse.jgit.errors.MissingObjectException maybe link to Jgit multiPackIndex support
+    (https://issues.rudder.io/issues/29674[#29674])
+
+==== Performance and scalability
+
+* Fixed: Score cache are not used during boot
+    (https://issues.rudder.io/issues/29781[#29781])
+* Fixed: We need to have a startup timing log 
+    (https://issues.rudder.io/issues/29701[#29701])
+* Fixed: Reading nodes at startup must be done in a bulk request
+    (https://issues.rudder.io/issues/29696[#29696])
+* Fixed: nodelastcompliance table can get *really* big
+    (https://issues.rudder.io/issues/29154[#29154])
+
+==== Module - system-updates
+
+* Fixed: Missing run_module CLI option for the rudder_system_updates module in 9.2
+    (https://issues.rudder.io/issues/29831[#29831])
+
+==== Plugins integration
+
+* Fixed: When the version in the license doesn't match the version of Rudder, nothing says in the web interface that it is not compatible
+    (https://issues.rudder.io/issues/29706[#29706])
+
+==== Web - Nodes & inventories
+
+* Fixed: attribute 'commandName' is unknown for type 'process'
+    (https://issues.rudder.io/issues/29733[#29733])
+* Fixed: It is impossible to remove an override on the the rudder node property or equivalent
+    (https://issues.rudder.io/issues/29682[#29682])
+
+==== Architecture - Dependencies
+
+* Fixed: Bump svgo version
+    (https://issues.rudder.io/issues/29728[#29728])
+
+==== Web - Compliance & node report
+
+* Fixed: When we trigger a full policy generation, we have an error about missing hash file (twice)
+    (https://issues.rudder.io/issues/29678[#29678])
+
+==== System techniques
+
+* Fixed: Broken update
+    (https://issues.rudder.io/issues/29756[#29756])
+
+==== Server components
+
+* Fixed: /var/rudder/ncf must be readable by the webapp to generate techniques
+    (https://issues.rudder.io/issues/29739[#29739])
+* Fixed: /var/rudder/ncf must be readable by the webapp to generate techniques
+    (https://issues.rudder.io/issues/29739[#29739])
+
+==== Techniques
+
+* Fixed: In technique packageManagement already_install class is defined in pass1
+    (https://issues.rudder.io/issues/29416[#29416])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.2.0.beta1 (2026-08-31)
 
 === Changes
