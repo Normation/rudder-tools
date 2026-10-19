@@ -3,7 +3,7 @@
 release = "9.2"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "alpha"
+release-status = "rc"
 
 #release-date = "2025-10-22"
 #public-eol-date = ""
@@ -117,7 +117,7 @@ arch-dependent-packages = [ "rudder-agent", "rudder-relay", "rudder-server" ]
 
 # Internal components versions
 components = {
-               "cfengine": "3.24"
+               "cfengine": "3.27"
                "postgresql": "13"
                "jdk": "17"
              }
@@ -130,10 +130,10 @@ api-version = {
               }
 
 # Agent versions you can use with this version's server
-compatible-agents = [ "9.0", "9.1", "9.2" ]
+compatible-agents = [ "9.1", "9.2" ]
 
 # Versions you can upgrade from directly
-supported-upgrade = [ "9.0", "9.1", "9.2" ]
+supported-upgrade = [ "9.1", "9.2" ]
 
 
 plugins = [ "auth-backends", "centreon", "datasources", 
