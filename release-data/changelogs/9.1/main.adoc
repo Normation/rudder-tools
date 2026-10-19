@@ -711,11 +711,11 @@ This is a bug fix release in the 9.1 series and therefore all installations of 9
     (https://issues.rudder.io/issues/28948[#28948])
 * Fixed: Campaigns keep running on Windows Server 2022
     (https://issues.rudder.io/issues/28901[#28901])
-* Fixed: Service restart is broken on RedHat after campaing update
+* Fixed: Service restart is broken on RedHat after campaign update
     (https://issues.rudder.io/issues/28896[#28896])
 * Fixed: There is no documentation on special tenants value
     (https://issues.rudder.io/issues/28856[#28856])
-* Fixed: Error after campaing update on Windows node
+* Fixed: Error after campaign update on Windows node
     (https://issues.rudder.io/issues/28900[#28900])
 * Fixed: update node build version in dockerfile
     (https://issues.rudder.io/issues/28882[#28882])

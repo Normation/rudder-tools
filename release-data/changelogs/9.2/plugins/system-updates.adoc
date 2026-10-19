@@ -22,7 +22,7 @@
 
 * Fixed: Compilation error for missing parameter of mock
     (https://issues.rudder.io/issues/29951[#29951])
-* Fixed: 9.1 windows techniques fails to pass the excluded patchs to the rust module
+* Fixed: 9.1 windows techniques fails to pass the excluded patches to the rust module
     (https://issues.rudder.io/issues/29913[#29913])
 * Fixed: The windows module never really check if the "excludes" feature is supported or not
     (https://issues.rudder.io/issues/29854[#29854])

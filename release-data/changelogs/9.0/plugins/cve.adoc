@@ -46,7 +46,7 @@ This is a bug fix release in the 9.0 series and therefore all installations of 9
 
 ==== Miscellaneous
 
-* Fixed: Some CVEs may have conflicting information for their score, which causes display inconsistencies (might be releatd to CVSSv4 and CVSSv3 difference in score)
+* Fixed: Some CVEs may have conflicting information for their score, which causes display inconsistencies (might be related to CVSSv4 and CVSSv3 difference in score)
     (https://issues.rudder.io/issues/27939[#27939])
 * Fixed: Correct source package management for debian requests
     (https://issues.rudder.io/issues/29085[#29085])

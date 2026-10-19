@@ -35,7 +35,7 @@ This is a bug fix release in the 9.1 series and therefore all installations of 9
 
 ==== Miscellaneous
 
-* Fixed: The home page of security bechmarks is not great
+* Fixed: The home page of security benchmarks is not great
     (https://issues.rudder.io/issues/29355[#29355])
 * Fixed: Nodes are not filtered according to tenancy in security benchmark
     (https://issues.rudder.io/issues/29246[#29246])

@@ -84,7 +84,7 @@ This is a bug fix release in the 9.2 series and therefore all installations of 9
     (https://issues.rudder.io/issues/29475[#29475])
 * Fixed: Some missing changes in techniques (missing conditions, missing parameters) also some conditions where wrong
     (https://issues.rudder.io/issues/29400[#29400])
-* Fixed: The home page of security bechmarks is not great
+* Fixed: The home page of security benchmarks is not great
     (https://issues.rudder.io/issues/29355[#29355])
 
 === Release notes
