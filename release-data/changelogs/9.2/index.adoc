@@ -3,6 +3,7 @@
 * Security benchmarks
   * Derivation: create custom benchmarks from the standard one, with customized control points, etc.
   * Scheduling: On Linux, the benchmark schedule can be configured to be coarses than the agent's own schedule.
+  * PDF export of the results
 * The dashboard now has score breakdowns.
 * Change logs
   * A lot of items now have a "recent changes tab".
@@ -13,7 +14,16 @@
 * More CSV exports: rules compliance, node compliance, score details in benchmarks.
 * The multi-tenants feature can now handle read-write users (with some limitations).
 * The webapp now runs as a dedicated system user. All interactions with the `configuration-repository` git repository now need to be made as `rudder-webapp`.
+* The inventory now runs as the last step of the agent run, allowing to trigger an inventory in the current run.
 * Agents are now available for the ARM64 architecture on Ubuntu 24.04 and 26.04 LTS.
+
+=== Under the hood
+
+* Windows agent 
+  * The Windows agent now requires `netstandard2.0`.
+  * The MSI installer hab been updated to Wix 6.
+  * The agent is now started by a new `agentd` daemon, replacing the scheduled task by default.
+  * The Rust modules now run using a new F#-based runner instead of CLIs.
 
 == 💾 Installing, upgrading and testing
 
