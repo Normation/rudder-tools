@@ -1,8 +1,19 @@
-
 = Change logs for Rudder 9.2
 
-Rudder 9.2 is currently the developement version of Rudder.
-You can test it using development builds, but not use it in production.
+* Security benchmarks
+  * Derivation: create custom benchmarks from the standard one, with customized control points, etc.
+  * Scheduling: On Linux, the benchmark schedule can be configured to be coarses than the agent's own schedule.
+* The dashboard now has score breakdowns.
+* Change logs
+  * A lot of items now have a "recent changes tab".
+  * It is now possible to restore the previous state of specific items without rollbacking the whole configuration.
+* Authentication
+  * TOTP-based MFA is now part of the local user management.
+  * JWT tokens can now be encrypted.
+* More CSV exports: rules compliance, node compliance, score details in benchmarks.
+* The multi-tenants feature can now handle read-write users (with some limitations).
+* The webapp now runs as a dedicated system user. All interactions with the `configuration-repository` git repository now need to be made as `rudder-webapp`.
+* Agents are now available for the ARM64 architecture on Ubuntu 24.04 and 26.04 LTS.
 
 == 💾 Installing, upgrading and testing
 
