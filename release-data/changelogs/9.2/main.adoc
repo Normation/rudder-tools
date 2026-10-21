@@ -1,5 +1,32 @@
 = Change logs for Rudder 9.2==  Rudder 9.2.0.alpha1 (2026-07-20)
 
+==  Rudder 9.2.0 (2026-10-21)
+
+=== Changes
+
+
+==== Documentation
+
+* Upgrade note for tenants
+    (https://issues.rudder.io/issues/29991[#29991])
+* Add 9.2 upgrade notes
+    (https://issues.rudder.io/issues/29969[#29969])
+
+=== Bug fixes
+
+==== Documentation
+
+* Fixed: Missing 9.2 version in makefile
+    (https://issues.rudder.io/issues/29997[#29997])
+* Fixed: update the webapp user documentation 
+    (https://issues.rudder.io/issues/29909[#29909])
+* Fixed: Remove beta header from the 9.2 doc
+    (https://issues.rudder.io/issues/29994[#29994])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.2.0.rc1 (2026-10-14)
 
 === Changes
