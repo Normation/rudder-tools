@@ -1,5 +1,30 @@
 = Changelogs for Rudder plugin security-benchmarks 9.2.\* versions
 
+== security-benchmarks-9.2.1-1.2 (2026-11-04)
+
+=== Changes
+
+
+==== Miscellaneous
+
+* Update CIS Diff script
+    (https://issues.rudder.io/issues/30058[#30058])
+
+=== Bug fixes
+
+==== Miscellaneous
+
+* Fixed: bump dompurify version so that our vulns scanner are ok (unused dependency ...) 
+    (https://issues.rudder.io/issues/30052[#30052])
+* Fixed: Benchmark information tab has misaligned form elements
+    (https://issues.rudder.io/issues/30012[#30012])
+* Fixed: Ugly tooltip on run now button after creating a benchmark
+    (https://issues.rudder.io/issues/29928[#29928])
+
+=== Release notes
+
+This is a bug fix release in the 9.2 series and therefore all installations of 9.2.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 == security-benchmarks-9.2.0-1.2 (2026-10-21)
 
 === Changes
