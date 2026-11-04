@@ -1,5 +1,117 @@
 = Change logs for Rudder 9.1
 
+==  Rudder 9.1.6 (2026-11-04)
+
+=== Changes
+
+
+==== Web - Maintenance
+
+* We should display timezone used in date pickers of change logs page
+    (https://issues.rudder.io/issues/29937[#29937])
+
+==== Web - UI & UX
+
+* order buttons from most to least essential in group, rule, and technique tree headers 
+    (https://issues.rudder.io/issues/30069[#30069])
+
+==== CI
+
+* Rework Jenkinsfile so that we don't miss a failure
+    (https://issues.rudder.io/issues/30061[#30061])
+
+==== System integration
+
+* Allow HOCON configuration files for plugins
+    (https://issues.rudder.io/issues/29989[#29989])
+
+=== Bug fixes
+
+==== Packaging
+
+* Fixed: Bump curl to 8.23.0
+    (https://issues.rudder.io/issues/30101[#30101])
+* Fixed: Notify user when upgrading policy-server with disable agent can cause malfunctions
+    (https://issues.rudder.io/issues/29990[#29990])
+
+==== Documentation
+
+* Fixed: HTTPS setup documentation is not rendered as it should be
+    (https://issues.rudder.io/issues/30087[#30087])
+* Fixed: Inventory happens betweem 0 and 6
+    (https://issues.rudder.io/issues/30013[#30013])
+* Fixed: Document how to setup the https_with_cert_validation communication mode on Windows agents
+    (https://issues.rudder.io/issues/30000[#30000])
+* Fixed: Missing delete in publication rsync
+    (https://issues.rudder.io/issues/29974[#29974])
+
+==== Web - UI & UX
+
+* Fixed: Property explanation tooltip says global parameter instead of global property
+    (https://issues.rudder.io/issues/30018[#30018])
+* Fixed: In the technique editor the component name cannot be validated with the keyboard
+    (https://issues.rudder.io/issues/30022[#30022])
+* Fixed: Input in group criteria is too small
+    (https://issues.rudder.io/issues/30016[#30016])
+* Fixed: Technique directives tab does not allow to switch to yaml edition mode
+    (https://issues.rudder.io/issues/29891[#29891])
+* Fixed: Generation text overflows the menu border
+    (https://issues.rudder.io/issues/29923[#29923])
+
+==== Web - Technique editor
+
+* Fixed: It is possible to create a technique without name from the technique editor
+    (https://issues.rudder.io/issues/29389[#29389])
+* Fixed: In Technique editor, parameters names for “Use in templates” misses the spaces around the brackets
+    (https://issues.rudder.io/issues/30005[#30005])
+
+==== Generic methods
+
+* Fixed: Run download-shared-file when the agent is in https local mode
+    (https://issues.rudder.io/issues/29824[#29824])
+* Fixed: Variable string from command can reuse previous results
+    (https://issues.rudder.io/issues/29986[#29986])
+
+==== Security
+
+* Fixed: Vulnerability in zip crate
+    (https://issues.rudder.io/issues/30079[#30079])
+
+==== CI
+
+* Fixed: Force update in dependency check
+    (https://issues.rudder.io/issues/30054[#30054])
+* Fixed: ci/methods.Dockerfile rudder version for rudder-setup is incorrect
+    (https://issues.rudder.io/issues/29998[#29998])
+* Fixed: ci/methods.Dockerfile rudder version for rudder-setup is incorrect
+    (https://issues.rudder.io/issues/29998[#29998])
+
+==== Web - Maintenance
+
+* Fixed: Adding a resource in an existing technique doesn't include the resource in the change log
+    (https://issues.rudder.io/issues/29896[#29896])
+* Fixed: Unexpected explanation in Change logs when modifying a policy mode in a technique generic method
+    (https://issues.rudder.io/issues/29906[#29906])
+
+==== rudderc
+
+* Fixed: Fix Windows nested policy mode
+    (https://issues.rudder.io/issues/30023[#30023])
+
+==== Miscellaneous
+
+* Fixed: Clean benchmarks hooks duration can be logged in nanoseconds
+    (https://issues.rudder.io/issues/29927[#29927])
+
+==== Module - templates
+
+* Fixed: broken test_b64encode_filter test
+    (https://issues.rudder.io/issues/30028[#30028])
+
+=== Release notes
+
+This is a bug fix release in the 9.1 series and therefore all installations of 9.1.x should be upgraded when possible. When we release a new version of Rudder it has been thoroughly tested, and we consider the release enterprise-ready for deployment.
+
 ==  Rudder 9.1.5 (2026-10-07)
 
 === Changes
