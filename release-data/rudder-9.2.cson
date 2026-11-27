@@ -3,9 +3,9 @@
 release = "9.2"
 
 # Status of the release (alpha, beta, rc, final)
-release-status = "rc"
+release-status = "final"
 
-#release-date = "2025-10-22"
+release-date = "2025-10-22"
 #public-eol-date = ""
 #public-last-patch = ""
 #standard-eol-date = ""
